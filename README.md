@@ -3,6 +3,12 @@
 Cross-machine continuity for coding agents. A relay is the handoff: the baton
 moves, nobody stops running.
 
+> ⚠️ **Source-Available, Not Open Source.** Copyright © 2026 Who Visions LLC.
+> Published so you can inspect, learn from, and personally run it. Commercial
+> use, redistribution for a fee, competing hosted services, and reimplementing
+> the protocol design in a competing product are **not** granted.
+> See [LICENSE.md](./LICENSE.md).
+
 Several machines work the same repo — different boxes, different models,
 different sessions. NouGenRelay is how they avoid doing each other's work
 twice, and how one picks up where another stopped. It travels through git, so
@@ -299,3 +305,10 @@ copies and drive real pushes and pulls between them, because the transport *is*
 the behaviour worth testing. That has a measurement cost — coverage.py cannot
 see into a subprocess, so `conftest.py` arms the children explicitly; without it
 the suite reports 20% while exercising 63%.
+
+## Notice
+
+Copyright © 2026 Who Visions LLC. All rights reserved. Source-available under
+the [Who Visions Source-Available License](./LICENSE.md); see
+[NOTICE.md](./NOTICE.md). **Who Visions**, **NouGen**, and **NouGenRelay** are
+trademarks of Who Visions LLC. For commercial inquiries: contact@whovisions.com.

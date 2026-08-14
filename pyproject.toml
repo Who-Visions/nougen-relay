@@ -10,6 +10,7 @@ authors = [
 ]
 description = "Cross-machine continuity for coding agents. Claim work before it starts, pass the baton when it ends — carried by git."
 readme = "README.md"
+license = { file = "LICENSE.md" }
 requires-python = ">=3.10"
 classifiers = [
     "Programming Language :: Python :: 3",
