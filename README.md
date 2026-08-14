@@ -21,10 +21,9 @@ relay create -g "what you did" -m "where you left off"
 
 `relay init` stores the lane in `git config nougen.agent`. That is per-clone
 rather than per-shell, so it survives new terminals, reboots, and the `git
-commit` on the next line — which the environment variable did not. Two machines
-wrote records stamped `unknown-agent` on the same day because of exactly that,
-and one had a commit refused for it. `NOUGEN_AGENT=other relay ...` still
-overrides for a one-off.
+commit` on the next line — which the environment variable did not: an env var
+set for one command never reaches the next process, and records land stamped
+`unknown-agent`. `NOUGEN_AGENT=other relay ...` still overrides for a one-off.
 
 Bare `relay` answers the three questions worth asking before you touch
 anything — has anything moved, is a leg waiting, is anyone in my way — because
@@ -46,17 +45,15 @@ was mistyped constantly.
 >
 > Put `NOUGEN_AGENT` in your shell **profile**, not one command. Set on a single
 > line it will not reach the next process, and records land stamped
-> `unknown-agent` — that has already happened once in a live registry.
+> `unknown-agent`.
 
 ## Why two halves
 
-Handoffs alone are not enough, and we learned that the expensive way.
-
-On 2026-07-31 the same work was done **twice on three separate occasions** in
-one repo: the app scaffold, the handoff tooling itself, and an OAuth host fix.
-Two machines even built the same product on unrelated git histories — one
-Astro, one Next.js — against the same deploy route, and neither knew until a
-push was rejected.
+Handoffs alone are not enough, and that lesson was learned the expensive way:
+in live use, the same work was done twice on three separate occasions in a
+single day — an app scaffold, tooling, and a config fix. Two machines even
+built the same product on unrelated git histories against the same deploy
+route, and neither knew until a push was rejected.
 
 Handoffs are written when work **ends**. Nothing announced work **beginning**.
 
@@ -69,8 +66,8 @@ Handoffs are written when work **ends**. Nothing announced work **beginning**.
 
 A leg stays `open` until another machine takes it. Without that, a handoff is a
 message posted into the void — you cannot tell a note that was picked up from
-one that was ignored. The first time an ack check ran against a real registry
-it found **nine unacked legs**, none of them dropped on purpose. There had
+one that was ignored. The first time an ack check ran against a live registry
+it found a backlog of unacked legs, none of them dropped on purpose. There had
 simply been no way to see them.
 
 ```bash
@@ -101,7 +98,7 @@ both legitimate but not the same claim.
 
 ```
 relay whoami
-🧠 machine  whoart      (via NOUGEN_MACHINE; hostname=WhoArt)
+🧠 machine  studio      (via NOUGEN_MACHINE; hostname=Studio)
 🤝 agent    claude-cli  (via NOUGEN_AGENT)
 ```
 
@@ -142,12 +139,11 @@ ignored.
 
 ## Adopt a repo
 
-A claim only protects the repo whose registry it lives in. On 2026-08-01 a
-correctly-taken claim for a `NouGenTracker` file overlapped nothing — the claim
-was recorded here, `NouGenTracker` had no `.handoffs`, and the check reported
-"no active claim overlaps this scope" while another machine was already doing
-the work. That was the fourth duplication in two days, and the first one where
-the protocol had been followed.
+A claim only protects the repo whose registry it lives in. A correctly-taken
+claim in one repo overlaps nothing in a sibling repo that has no `.handoffs`
+of its own — the check reports "no active claim overlaps this scope" while
+another machine is already doing the work, and the protocol was followed the
+whole way down.
 
 So the registry has to exist everywhere work happens:
 
@@ -160,12 +156,11 @@ Idempotent, additive, and it never seizes a hooks directory a repo already
 configured — pass `--dry` to see what it would change.
 
 It also checks the registry is **readable by anyone else**, which is a different
-question from whether it exists. NouGen kept 130+ records under a `.handoffs/`
-line in `.gitignore` since June: the directory was there, so every check said
-covered, and not one leg ever left the machine that wrote it. `exists()` is a
-filesystem question; `git ls-files` is the one that matters. An ignored registry
-is now reported and refuses to resolve itself, because only a human can decide
-which records are worth sharing.
+question from whether it exists. A `.handoffs/` line in `.gitignore` means the
+directory is there, every check says covered, and not one leg ever leaves the
+machine that wrote it. `exists()` is a filesystem question; `git ls-files` is
+the one that matters. An ignored registry is reported and refuses to resolve
+itself, because only a human can decide which records are worth sharing.
 
 ## The guard
 
@@ -198,11 +193,9 @@ git config core.hooksPath hooks
 ```
 
 **An existing trailer is never overwritten.** This hook re-runs on every commit
-a rebase or cherry-pick replays, with the *replaying* machine's environment.
-Measured here on 2026-07-31: one `git rebase` rewrote a commit stamped
-`phoebus` / `claude-cli` into `blade1tb` / `unknown-agent` — silently moving
-another machine's work onto the rebasing box. The trailer records who wrote the
-commit, so the environment only ever fills a blank.
+a rebase or cherry-pick replays, with the *replaying* machine's environment — a
+`git rebase` on box B silently restamps box A's commits as B's. The trailer
+records who wrote the commit, so the environment only ever fills a blank.
 
 It also refuses a **new** commit that would enter history misidentified, because
 a warning written in a setup document arrives after the mistake:
@@ -228,7 +221,7 @@ picked up when a human remembers to look.
 
 ```bash
 relay rules add --id mac-build --run './scripts/build.sh' \
-  --from-machine whoart --goal-contains deploy
+  --from-machine buildbox --goal-contains deploy
 relay react                # fire rules for legs this box has not reacted to
 relay react --dry          # show what would run, run nothing
 relay rules runs           # audit: what fired, from whom, with what exit code

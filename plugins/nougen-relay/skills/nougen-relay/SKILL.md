@@ -1,15 +1,15 @@
 ---
 name: nougen-relay
-description: Coordinates work across the machines that share a repo (whoart, blade1tb, phoebus). Claims scope before editing files and writes a handoff after. Use whenever starting work in a git repo that contains a .handoffs directory, before editing any file, and before ending a working session.
+description: Coordinates work across the machines that share a repo. Claims scope before editing files and writes a handoff after. Use whenever starting work in a git repo that contains a .handoffs directory, before editing any file, and before ending a working session.
 ---
 
 # NouGenRelay — do not start work blind
 
 Several machines work these repos at once, each running its own agent lane.
-They do not see each other's screens; they see this registry. On 2026-07-31 the
-same work was done **twice on three separate occasions** — the app scaffold, the
-handoff tooling itself, and an OAuth host fix — because handoffs were written
-when work *ended* and nothing announced work *beginning*.
+They do not see each other's screens; they see this registry. In live use the
+same work was once done **twice on three separate occasions in a single day**
+— an app scaffold, the handoff tooling itself, and a config fix — because
+handoffs were written when work *ended* and nothing announced work *beginning*.
 
 You have no hook system. Nothing will stop you. That makes following this your
 responsibility rather than the harness's.
@@ -33,8 +33,8 @@ machine holds an overlapping scope. Read their claim, then either stand down and
 pick different work, or decide deliberately to override. Do not retry with a
 narrower string to slip past it.
 
-Standing down is a success, not a failure. Two lanes did exactly that today and
-each saved the other a duplicated guard.
+Standing down is a success, not a failure. Two lanes doing exactly that saves
+each the other's duplicated work.
 
 ## While working
 
@@ -66,7 +66,7 @@ Run `relay_whoami` if anything looks wrong. Records are stamped with a machine
 and an agent lane. `NOUGEN_AGENT` has no OS equivalent, so if it is unset your
 records land as `unknown-agent` — that has already happened once in a live
 registry. The machine name comes from the hostname unless `NOUGEN_MACHINE` says
-otherwise; on the Mac mini it must be `phoebus`.
+otherwise; set it explicitly on any box whose hostname is not the lane name.
 
 ## Writing a good handoff
 
