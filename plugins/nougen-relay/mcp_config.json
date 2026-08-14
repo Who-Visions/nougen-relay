@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "nougen-relay": {
+      "command": "python",
+      "args": ["-m", "nougen_relay.mcp_server"],
+      "env": {
+        "PYTHONIOENCODING": "utf-8",
+        "NOUGEN_AGENT": "agy-cli"
+      }
+    }
+  }
+}

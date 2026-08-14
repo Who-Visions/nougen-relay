@@ -1,0 +1,13 @@
+# Correctness over style. `select` is stated explicitly rather than inherited
+# from ruff's defaults: CI pins the ruff version, and the ruleset belongs to the
+# repo, not to whatever the tool happened to default to that day.
+#
+# E4/E7/E9 + F, deliberately NOT bare "E" — bare "E" pulls in E5, whose E501
+# line-length rule is style, not correctness.
+[lint]
+select = ["E4", "E7", "E9", "F"]
+ignore = [
+    # Compact one-line statements (`if x: return`) are established style here.
+    "E701",
+    "E702",
+]

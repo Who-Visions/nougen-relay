@@ -1,0 +1,35 @@
+# Coverage that counts the tests which actually matter here.
+#
+# Most of this suite drives the CLI in a SUBPROCESS, because the behaviour worth
+# testing is a real git transport between two working copies. coverage.py cannot
+# see into a subprocess by default, so it reported core.py at 21% while its CLI
+# paths were heavily exercised. That number was an artefact, and an artefact that
+# flatters a gap is worse than no number at all.
+#
+# `parallel` writes one data file per process; `conftest.py` arms the child
+# processes via COVERAGE_PROCESS_START. Combine before reporting:
+#
+#     coverage run -m pytest tests -q && coverage combine && coverage report
+[run]
+# `source_pkgs`, not `source`: children run with cwd set to a throwaway repo,
+# where the relative path src/nougen_relay does not exist — so every child
+# measured nothing and combine skipped 136 of 146 data files. A package name is
+# resolved by import, which is the same answer from any directory.
+source_pkgs = nougen_relay
+parallel = true
+branch = true
+
+[paths]
+# Child processes see the installed path, the parent sees src/. Same code.
+source =
+    src/nougen_relay
+    */nougen_relay
+    *\nougen_relay
+
+[report]
+show_missing = true
+skip_covered = false
+exclude_lines =
+    pragma: no cover
+    if __name__ == .__main__.:
+    raise NotImplementedError
