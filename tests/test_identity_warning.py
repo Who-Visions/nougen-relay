@@ -12,6 +12,7 @@ reading; the tool frequently runs where nobody is.
 """
 
 import os
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -28,7 +29,8 @@ def git(*args, cwd):
 
 
 def relay(repo, *args, machine, agent="claude-cli", **extra):
-    env = {**os.environ, "PYTHONPATH": SRC, "NOUGEN_MACHINE": machine,
+    base_env = {k: v for k, v in os.environ.items() if k != "NOUGEN_IDENTITY_OK"}
+    env = {**base_env, "PYTHONPATH": SRC, "NOUGEN_MACHINE": machine,
            "NOUGEN_AGENT": agent, "PYTHONIOENCODING": "utf-8"}
     env.update({k: str(v) for k, v in extra.items()})
     return subprocess.run([sys.executable, "-m", "nougen_relay.cli", *args],
@@ -107,6 +109,7 @@ def test_the_override_silences_it(repo):
     assert "never written a record" not in out.stdout, out.stdout
 
 
+@pytest.mark.skipif(shutil.which("sh") is None, reason="Needs sh to test the hook's shell snippet")
 def test_tool_and_hook_agree_on_who_is_known(repo):
     """Two notions of 'known' would be worse than one."""
     relay(repo, "create", "-g", "first", "-m", "notes", machine="phoebus")

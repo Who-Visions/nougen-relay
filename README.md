@@ -14,6 +14,12 @@ different sessions. NouGenRelay is how they avoid doing each other's work
 twice, and how one picks up where another stopped. It travels through git, so
 there is no server, no daemon, and nothing to keep running.
 
+An optional [relay watcher](./docs/DAEMON.md) can monitor open legs, record
+health and lag telemetry, and dispatch tightly bounded follow-up checks. It is
+not part of the transport: clones continue to exchange relays through git when
+the watcher is absent. The watcher uses a singleton lock, runtime-discovered
+configuration, and a dry-run mode suitable for evaluation before deployment.
+
 ```bash
 pip install -e .
 relay init --agent claude-cli     # once per clone. no exports, ever again.

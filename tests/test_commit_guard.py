@@ -9,6 +9,7 @@ the hook now refuses at the only moment the mistake is still fixable.
 import os
 import shutil
 import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -173,6 +174,7 @@ def test_a_replay_is_never_refused_partway(repo):
     assert "Machine: phoebus" in last_message(repo)
 
 
+@pytest.mark.skipif(sys.platform == "win32", reason="PATH shim needs a POSIX shell")
 def test_a_probed_hostname_drops_its_network_suffix(repo, tmp_path):
     """Parity with core.resolve_machine(): `.local` says how the box is
     reachable, not which box it is, and the hook must not disagree with the
