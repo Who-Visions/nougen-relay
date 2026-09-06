@@ -1,0 +1,26 @@
+{
+  "goal": "Scrubbed plaintext API key from settings.local.json and integrated native git-commit based relay watchdog into NouGen",
+  "branch": "main",
+  "status": "completed",
+  "when": "2026-08-31T17:08:00.000Z",
+  "source": "antigravity",
+  "agent": "whoart",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-31T17:58:26Z",
+      "note": "Confirmed: plaintext GOOGLE_AI_API_KEY export rule scrubbed from settings.local.json on WhoArt, and a native git-log-based relay watchdog (bypassing the 1000-entry API listing ceiling) deployed to WhoArt/Blade/Phoebus, verified against leg 20260831T170210Z__perplexity-app__g-whoentertains. No action needed."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Scrubbed plaintext API key from settings.local.json and integrated native git-co' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

@@ -1,0 +1,22 @@
+# 🤝 Git Handoff — claude-app / g-whoentertains
+
+**Goal**: VERIFIED LIVE: griot Worker fixes deployed (etag 7a2194c924bb) incl. a fan-out envelope regression fix; ask_griot returns titled packets again; node restart still pending on Dave
+**Branch**: `n/a` (written via fleet connector)
+**When**: 2026-09-01T23:42:52.761Z
+
+---
+## Fleet parallelogram check on ask_griot (blade1tb, claude-cli, 2026-09-01 19:45 EDT)
+
+Follow-up to my leg `20260901T215519Z`. Dave asked for verification across the fleet; here are the four corners.
+
+**1. Worker (shards.nougenai.com/mcp)**: live etag `7a2194c924bb`, modified 23:41:55Z, 2,628 lines, 32 bindings intact, esbuild preamble intact. Carries fan-out v2 (from leg `20260901T230046Z`) PLUS my rebased patches: `ask_dav1d` tool, stateless-initialize skip with self-heal (`SHARD_GATEWAY_STATELESS`), `GRIOT_ARM_TIMEOUT_MS` window budget, and a **regression fix**: after fan-out v2, `griotRows` took the `{hits, count, fanout, complete}` envelope as ONE untitled row, so every `ask_griot` packet through the connector read `shown:1 "(untitled)"`. One line (`Array.isArray(v.hits)`) fixes it. Mocked smoke 8/8 + ask_dav1d smoke pass. Two guarded content-only PUTs (modified_on checked before each, bindings re-read after each). `deploy.py` gate now asserts the `__name` DEFINITION and the file's first line, per your near-miss.
+
+**2. Connector**: `ask_griot("what slows down ask_griot")` -> 5 titled memories with ids, failures []. Bounded ask (since 2026-08) -> 5 titled, held_back 0. Before the fix both returned an untitled placeholder. (`ask_dav1d` needs a connector reconnect to appear in tools/list.)
+
+**3. Blade node direct (127.0.0.1:4444)**: STILL PID 84796 on the pre-patch app.py/core.py. Window arm returns 0 rows for the multi-word question, /health 3.3s during a recall. My node patches (timestamp index already built on all 9 DBs, async tools, parallel window + FTS fallback, embed cache, warm-up) are on disk, uncommitted, waiting for an **elevated** `.\tools\node_lane.ps1 -Action stop; .\tools\node_lane.ps1 -Action start` in NouGenShards-push-main. Non-elevated stop reports success and misses the process.
+
+**4. Phoebus**: flapping. /health 502 at 23:35Z, 200 in 1.1s at 23:41Z; fan-out reported "peer exceeded 6000ms grace after primary" -> complete:false. Consistent with your "degrades with uptime" note. Each griot arm now pays up to PHOEBUS_GRACE_MS waiting on it; bounded, tunable, `SHARD_FANOUT=off` kills it.
+
+**Rollback**: `nougen-worker-backups\griot-20260901\worker.LIVE.20260901T2335Z.js` is the fan-out base; `worker.DEPLOYED.444657c21cd8.js` / `worker.DEPLOYED.7a2194c924bb.js` are the two deploys; `rebase_worker.py` re-applies everything onto any newer live snapshot.
+
+Done-when for the whole mission: Dave restarts the node, then `griot_time.py` from the backup dir shows the window arm returning rows and /health under 100ms during a recall.

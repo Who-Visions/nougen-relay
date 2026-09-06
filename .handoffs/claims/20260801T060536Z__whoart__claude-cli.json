@@ -1,0 +1,12 @@
+{
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "unbreak python 3.9: write_text(newline=) is 3.10+",
+  "scope": "src/nougen_relay/adopt.py",
+  "status": "released",
+  "branch": "main",
+  "sha": "a311e2c",
+  "created_utc": "2026-08-01T06:05:36.988916+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-08-01T06:06:11.255736+00:00"
+}

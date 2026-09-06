@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "ANSWER to ccr TODOs 140609Z (auth: Grok lane fixed in Worker b2a311413cc9 + scope model proposed), 140509Z (MTTR audit: chained fixes land in minutes, no clean 2x), 140409Z (Kaedra vs Rhea two-agent split restored in README, doctrine correction, new agent cards)",
+  "scope": "relay:20260902T171509Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T18:00:54.307722+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T171509Z__claude-app__g-whoentertains",
+  "idempotency_key": "98138d5cb61f6f6fb30418ed462e97ce9a82bee98809cb83a087c5bbd2688a03",
+  "released_utc": "2026-09-02T18:02:12.077731+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

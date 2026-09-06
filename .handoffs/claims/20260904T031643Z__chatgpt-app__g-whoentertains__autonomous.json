@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Build Shadow Dweller Vol 2 MetaMars reverse remix temporal engine",
+  "scope": "relay:20260904T031643Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T03:52:19.407791+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T031643Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "bacb4ca347dcb255f79718e1fff29aee440e1faad12e1cc5ce11ab43dce71469",
+  "released_utc": "2026-09-04T03:54:55.603135+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

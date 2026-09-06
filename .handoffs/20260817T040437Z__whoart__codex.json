@@ -1,0 +1,36 @@
+{
+  "id": "20260817T040437Z__whoart__codex",
+  "machine": "whoart",
+  "agent": "codex",
+  "goal": "Fleet consume whoart shard relay through 2026-08-17T03:06:41Z",
+  "branch": "main",
+  "sha": "bcb04e2",
+  "remote": "origin",
+  "created_utc": "2026-08-17T04:04:37.624649+00:00",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-17T04:53:01Z",
+      "note": "Status only: whoart shard relay published 18,485 shards at commit bcb04e2 (9 sensitivity-tagged withheld, credential-shaped groups excluded, secret scan 0 hits). No action needed."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Fleet consume whoart shard relay through 2026-08-17T03:06:41Z' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

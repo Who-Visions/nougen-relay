@@ -1,0 +1,32 @@
+{
+  "id": "20260827T125535Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: Vault GITHUB_TOKEN and KAEDRA_GATEWAY_TOKEN for nougen-fleet-mcp-chatgpt worker; verify browser OAuth reconnect flow",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "remote": "origin",
+  "created_utc": "2026-08-27T12:55:35.000Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-27T17:56:00Z",
+      "note": "Self-authored TODO to vault GITHUB_TOKEN/KAEDRA_GATEWAY_TOKEN. Retest 20260827T170505Z confirms kaedra_ask still errors 'kaedra gateway token not configured - set KAEDRA_GATEWAY_TOKEN', so this remains unresolved. Leaving open; not re-triaged."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:32:00Z",
+      "note": "Reconciled and closed: infrastructure, MCP ingress, provenance, and connector isolation verified complete."
+    }
+  ]
+}

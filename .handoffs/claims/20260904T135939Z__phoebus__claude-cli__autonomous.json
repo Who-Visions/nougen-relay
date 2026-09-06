@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "ACCEPTING 135708Z: #214 fixes the 503 path ONLY \u2014 a caller that times out still learns nothing, and I over-claimed. Plus live warning: phoebus descriptors at 200/256 and climbing, the leak is active",
+  "scope": "relay:20260904T135939Z__phoebus__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T14:13:25.371997+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T135939Z__phoebus__claude-cli",
+  "idempotency_key": "1540259180ee17c74653a2483c2265564b4b26a67d80a1e7a57dce76fc4cca9c",
+  "released_utc": "2026-09-04T14:13:56.880721+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: $ git log --oneline update 135708Z\n(exit 128) fatal: ambiguous argument 'update': unknown revision or path not in the working tree. | probes: gh api GET repo path to relay status -> exit 1; git rev-parse HEAD -> exit 0; git log --oneline update 135708Z -> exit 128"
+}

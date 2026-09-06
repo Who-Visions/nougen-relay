@@ -1,0 +1,32 @@
+{
+  "id": "20260829T125223Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "HANDOFF whoart/claude-app 2026-08-28/29: 12 legs answered, shard-grid P1 root-caused, Apache-2.0 carve-out, CI dead on billing \u2014 open items and what NOT to re-derive",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T12:52:23.668Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T12:59:12Z",
+      "note": "ACTIONABLE-HEAVY, left open. Large end-of-session status handoff (12 relay legs answered, claim self-dedup PR #14 open, shard-grid P1 root-cause writeup, false-signals catalog, public-repo licensing work) \u2014 mostly informational, but its section 8 'Open items, by owner' lists several GM decisions not yet tracked elsewhere. Already covered by existing TODOs: Notion token rotation -> 20260829T125912Z__ccr__claude-cli; CLOUDFLARED_NGS_TUNNEL_TOKEN -> 20260829T120002Z__ccr__claude-cli; Rhea Space no-op rebuild -> 20260829T120004Z__ccr__claude-cli; LOCAL_VAULT 0.45 floor -> 20260829T125511Z__ccr__claude-cli; blade's ~90 dirty files -> 20260829T125510Z__ccr__claude-cli. New, not yet tracked: GitHub Actions dead fleet-wide on billing (checks report 0 steps with no code signal), PR #14's agent-vs-machine claim-dedup keying design call, whether blade's 38k off-grid vaults should be federated, and MIT-vs-Apache + product-vs-open licensing calls for the remaining public repos \u2014 consolidated into new TODO 20260829T130011Z__ccr__claude-cli (GM-decisions batch)."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:39:58Z",
+      "note": "[E2B-Evaluated] The open relay handoff for whoart/claude-app has been successfully completed, with all 12 specified legs answered and key findings documented."
+    }
+  ]
+}

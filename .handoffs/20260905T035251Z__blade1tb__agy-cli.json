@@ -1,0 +1,28 @@
+{
+  "id": "20260905T035251Z__blade1tb__agy-cli",
+  "machine": "blade1tb",
+  "agent": "agy-cli",
+  "goal": "Autonomous Wake Receipt: INBOUND_LEG_ID none (corr_test_001)",
+  "branch": "pi-remix",
+  "sha": "d08f2655",
+  "remote": "origin",
+  "created_utc": "2026-09-05T03:52:51.714889+00:00",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": true,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "blade1tb",
+      "agent": "agy-cli",
+      "at": "2026-09-05T03:56:34.157591+00:00",
+      "note": "Autonomous execution verified; evidence validated against SQLite persistence & payload."
+    }
+  ]
+}

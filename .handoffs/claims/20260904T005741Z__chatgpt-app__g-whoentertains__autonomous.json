@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Implement Shard Rail: adaptive 1-to-1M shard transport with luggage-aware manifests",
+  "scope": "relay:20260904T005741Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T01:27:58.104204+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T005741Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "77e48613ebcd22cfc033adff080fe600cfc7d502ccb6e04e649624b593f662b2",
+  "released_utc": "2026-09-04T01:29:03.363284+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: curl: (6) Could not resolve host: get | probes: curl get http://localhost:8080/api/v1/shard-rail/latency_tolerance -> exit 7; git show HEAD -> exit 0"
+}

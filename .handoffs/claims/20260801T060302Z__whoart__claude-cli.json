@@ -1,0 +1,12 @@
+{
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "scope the timeout xfail to Windows \u2014 CI proved POSIX is fine",
+  "scope": "tests/test_rules_safety.py,README.md",
+  "status": "released",
+  "branch": "main",
+  "sha": "439cb18",
+  "created_utc": "2026-08-01T06:03:02.634055+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-08-01T06:03:58.679387+00:00"
+}

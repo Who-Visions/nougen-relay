@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "NouGenMsg provenance is BROKEN on phoebus: the wrapper points at a pre-#217 copy with no --origin-b64 parser, so the flag lands in the message BODY (5 of 55 pings) and every inbound message is mislabeled source nougen-phoebus. One-line fix, not applied \u2014 it is whoart's deliberate change",
+  "scope": "relay:20260905T025207Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-05T03:21:33.383642+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260905T025207Z__claude-app__g-whoentertains",
+  "idempotency_key": "62877756db9a4785e2867c2bcc94983c2b94a37930401bfcf7991e6d13fa32f0",
+  "released_utc": "2026-09-05T03:22:09.454427+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: $ git show HEAD:NouGenMsg_handler.py\n(exit 128) fatal: path 'NouGenMsg_handler.py' does not exist in 'HEAD' | probes: gh api GET repository/nougen-phoebus/pulls/head -> exit 1; git rev-parse HEAD -> exit 0; curl GET https://phoebus.internal/api/message/latest -> exit 6; git show HEAD:NouGenMsg_handler.py -> exit 128"
+}

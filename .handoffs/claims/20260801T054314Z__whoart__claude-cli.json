@@ -1,0 +1,12 @@
+{
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "test the code that runs shell commands on another machine's behalf",
+  "scope": "tests/test_rules_safety.py",
+  "status": "released",
+  "branch": "main",
+  "sha": "9eb51c8",
+  "created_utc": "2026-08-01T05:43:14.085073+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-08-01T05:59:46.979708+00:00"
+}

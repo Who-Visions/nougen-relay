@@ -1,0 +1,56 @@
+{
+  "id": "20260901T234336Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Prototype HF Responses agents directly against NouGen MCP",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-01T23:43:36.163Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "body": "Source: Hugging Face Inference Providers Responses API beta docs reviewed 2026-09-01. Key capability: OpenAI Responses-compatible router can execute remote MCP server tools server-side. Prototype a minimal HF-routed open-model agent pointed at canonical https://shards.nougenai.com/mcp, with least-privilege allowed_tools rather than the full fleet surface. Start read-only: fleet_whoami + shards_recall/search/window, then add one role-specific profile at a time. Capture provenance fields harness=hf-responses, model repo id, downstream provider, routing policy (:fastest/:cheapest/:preferred/pinned), reasoning effort, tool allowlist, and actual MCP source_node/fanout completeness. Test semantic streaming and structured outputs separately. Build an eval matrix where the same task runs with low/medium/high reasoning and fastest/cheapest/pinned routing so NouGen can learn quality/latency/cost by role. Keep require_approval conservative for write/destructive tools. Done when one HF Responses agent can recall from NouGen through the canonical MCP door, provenance is preserved end-to-end, unauthorized tools are unavailable, and the result is reproducible under a pinned provider.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-02T14:02:11Z",
+      "note": "Asks for a least-privilege HF-Responses-routed agent prototype against the canonical MCP door, expanding tool access incrementally with an eval matrix across reasoning/routing settings. New prototype touching MCP tool auth surface, outside relay-watch's reach. Queued to the blade/claude-cli lane; flag: must keep allowed_tools least-privilege and require_approval conservative for write/destructive tools per the leg's own guardrail."
+    },
+    {
+      "event": "dead_letter",
+      "machine": "blade1tb",
+      "agent": "claude-cli",
+      "at": "2026-09-02T06:00:37.915446+00:00",
+      "note": "Exceeded max retries (3): non-zero exit (1)"
+    },
+    {
+      "event": "checkpoint",
+      "state": "blocked",
+      "machine": "blade1tb",
+      "agent": "codex",
+      "at": "2026-09-02T23:54:21.352552+00:00",
+      "note": "Reconciled blocker: scheduler, HF catalog, read-only hf-app lane, tooling and tests shipped; end-to-end HF Responses acceptance is blocked because the vaulted Hugging Face token lacks Inference Providers permission. HuggingChat UI confirmation and two-harness HF eval also remain external prerequisites."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ],
+  "retry_count": 3,
+  "failures": [
+    {
+      "attempt": 3,
+      "error": "non-zero exit (1)",
+      "failed_utc": "2026-09-02T06:00:37.915446+00:00"
+    }
+  ]
+}

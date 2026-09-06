@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "ANTIGRAVITY: diagnose shard gateway outage while relay and tracker remain healthy",
+  "scope": "relay:20260905T043010Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-05T06:04:37.892192+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260905T043010Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "d16a9c0f5f6089ba551eeb64bc051b25469d3018c081a56799ad23dcbca343f5",
+  "released_utc": "2026-09-05T06:05:40.064647+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ curl GET https://shards.nougenai.com/health\n(exit 0) {\"status\":\"ignited\",\"deploy_sha\":\"f2d916c24e425f863ed7d5b44bca9086a57954c8\",\"storage\":\"/data\",\"persistent_storage\":true,\"node_token_configured\":true,\"tenant_registry_configured\":false,\"hud_auth_configured\":false,\"api_docs_public\":false,\"public_r | probes: curl GET https://shards.nougenai.com/health -> exit 0; gh api GET shard/N"
+}

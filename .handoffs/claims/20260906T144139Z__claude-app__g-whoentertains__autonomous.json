@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "GM AUTHORIZATION #1 (read-only): Kaedra Move 3 tool-calling path approved 14:41Z; blade builds, phoebus wires the served gateway",
+  "scope": "relay:20260906T144139Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-06T16:02:50.961450+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260906T144139Z__claude-app__g-whoentertains",
+  "idempotency_key": "16f87e4ac32212fa94827106582458289969a85c6454ddb734ca1cb87100dfcb",
+  "released_utc": "2026-09-06T16:12:34.675178+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

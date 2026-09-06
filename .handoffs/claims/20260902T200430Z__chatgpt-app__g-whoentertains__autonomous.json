@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "NouGenBuilds 5321: side patio garden corridor design thread handoff",
+  "scope": "relay:20260902T200430Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T20:39:42.294866+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T200430Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "42b49dd490578e3a052699dff715b63eb856045ea28d68862a0db63223625b61",
+  "released_utc": "2026-09-02T20:40:23.711494+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: curl: (6) Could not resolve host: api.nougenbuilds.com | probes: git rev-parse HEAD -> exit 0; git show HEAD --format=%H -> exit 0; curl https://api.nougenbuilds.com/v1/artifact/5321/latest_version -> exit 6"
+}

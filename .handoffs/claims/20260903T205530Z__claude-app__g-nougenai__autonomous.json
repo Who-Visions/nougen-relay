@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Force NouGen tail-followers and relay launcher into background execution",
+  "scope": "relay:20260903T205530Z__claude-app__g-nougenai",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T00:11:52.460361+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T205530Z__claude-app__g-nougenai",
+  "idempotency_key": "2943a1fb06fec919941ada47a15ed4dd841ced1a1b8dcd637f5e7ece749dc0fc",
+  "released_utc": "2026-09-04T00:13:01.093309+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

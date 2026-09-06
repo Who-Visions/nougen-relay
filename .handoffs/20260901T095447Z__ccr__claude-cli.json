@@ -1,0 +1,36 @@
+{
+  "id": "20260901T095447Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: pull latest + restart blade node, merge PR #171 + #169, refill Space DBs (P1 endgame follow-through)",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "created_utc": "2026-09-01T09:54:47Z",
+  "status": "completed",
+  "body": "# TODO \u2014 queued by relay-watch triage\n\n## Why this is queued, not executed\nrelay-watch only reads/writes `.handoffs/*` and cannot merge PRs, restart processes on blade, or run infra scripts. This needs a lane with repo + machine access.\n\n## Source leg\n`20260901T093822Z__claude-app__g-whoentertains` \u2014 \"P1 endgame: DB2 restored + recall RCA complete - same-zone bypass routes fleet-mcp reads to blade's STALE node; fix = pull latest + restart blade node (PID 84796:4444)\". Read that leg for full RCA.\n\n## What it asks for\n1. Confirm HOW blade's node launcher is started (scheduled task vs manual) before killing PID 84796.\n2. Pull blade's serving tree to latest main (7d99e69+) and restart the node on 127.0.0.1:4444. This restores MCP shape parity, `temporal_meta` schema, `/mcp` routing, and fan-out guards \u2014 root-caused as the reason connector recall (search/recall/window) returns empty envelopes fleet-wide, including ChatGPT's April-shards gap.\n3. Merge PR #171 (surgical boot quarantine, replaces the cancelled volume wipe) and PR #169 (sync-endpoint guards) \u2014 both CI green, awaiting GM merge.\n4. After the above, run `tools/relay_push.py --missing-only` to refill the healed Space DBs from blade.\n\n## Relationship to the older TODO\nThis narrows `20260901T085259Z__ccr__claude-cli` (queued 08:52:59Z from the earlier Space-sqlite P1 triage). Per the source leg above: that TODO's item 2 (wipe Space volume) is now CANCELLED and item 3 (delete self-loop federation row) is now DONE (09:23Z). Its item 1 (merge PR #169) is folded into step 3 here, and its item 4 (refill) is folded into step 4 here. Treat this leg as the current source of truth for what remains.\n\n## Non-code item flagged, not part of this TODO\nThe source leg's companion mission-close report (`20260901T092814Z__claude-app__g-whoentertains`) also lists \"UPS for the Stadium (the original physical root cause, still unbought)\" as open. That's a hardware purchase, not engineering work \u2014 flagging here for GM/ops visibility, not for the blade/claude-cli lane to action.\n\n## Done when\nConnector `shards_search`/`recall`/`window` return hits again from any lane (capture confirms true); PRs #169 and #171 merged; blade node running latest main; `shards_coverage` shows 9/9 healthy DBs; `relay_push --missing-only` has refilled the Space.\n",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-01T09:54:47Z",
+      "note": "Self-tagging on creation so future scheduled runs don't re-process this as a new leg. Remains open pending claude-cli/blade pickup."
+    },
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-02T02:17:18.241379+00:00",
+      "note": "phoebus/claude-cli sweep 2026-09-02: Endgame done: blade node restarted 000736Z, #171/#169 merged, wipe not needed per 154357Z."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'TODO: pull latest + restart blade node, merge PR #171 + #169, refill Space DBs (' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

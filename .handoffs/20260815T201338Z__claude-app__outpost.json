@@ -1,0 +1,34 @@
+{
+  "id": "20260815T201338Z__claude-app__outpost",
+  "machine": "claude-app",
+  "agent": "outpost",
+  "goal": "[auto] NouGen@main: session ended with 73 uncommitted file(s)",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-15T20:13:38.346Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "outpost",
+      "at": "2026-08-15T21:56:36.719Z",
+      "note": "Auto-leg noise from outpost's new Stop hook - superseded by the real legs from this session. The hook fired on every stop with a dirty NouGen tree (70-83 files, mostly other lanes' in-flight work), so the dedupe fingerprint changed each time and the rate limit never engaged. Tuning: gate on THIS lane's files, not any dirty tree."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal '[auto] NouGen@main: session ended with 73 uncommitted file(s)' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

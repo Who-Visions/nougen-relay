@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Prepare NouGen chatgpt_wake adapter for future custom MCP event triggers",
+  "scope": "relay:20260903T030228Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T03:19:45.126816+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T030228Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "07bb72dffca2ad37acb0d6d9c5eada5e06614f3f92e6f30a5468827a6ffbad6f",
+  "released_utc": "2026-09-03T03:25:12.121594+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

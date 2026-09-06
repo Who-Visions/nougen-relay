@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Fold NouGenWake into NouGenWatch instead of creating another top-level system",
+  "scope": "relay:20260905T014756Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-05T02:49:38.528897+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260905T014756Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "944504dfaca86449513cb35117d7a792b2bbe8d2fc98d7e1df57e5ad40e216c5",
+  "released_utc": "2026-09-05T02:50:45.462901+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

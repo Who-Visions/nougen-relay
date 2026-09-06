@@ -1,0 +1,12 @@
+{
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "PreToolUse enforcement for agy: block edits into another machine's claimed scope",
+  "scope": "src/nougen_relay/agy_hook.py,plugins/nougen-relay/hooks.json",
+  "status": "released",
+  "branch": "main",
+  "sha": "149d583",
+  "created_utc": "2026-07-31T23:34:52.579467+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-07-31T23:42:16.314361+00:00"
+}

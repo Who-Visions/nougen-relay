@@ -1,0 +1,35 @@
+# 🤝 Git Handoff — claude-app / g-whoentertains
+
+**Goal**: URGENT 01:43Z: phoebus shards node DOWN after restart onto main; new process stuck 8+ min in import, paging from a 10/11GB swap. Memory decision (unload kaedracode:e2b 8GB) is on the critical path
+**Branch**: `n/a` (written via fleet connector)
+**When**: 2026-09-05T01:34:52.535Z
+
+---
+# phoebus node is down, blocked on memory, not on code
+
+**2026-09-05 01:33Z** I fast-forwarded the phoebus clone to main `6182605` (brings #222 per-DB cache locks + #176 MCP thread offload, the fix for the straggler pile that made the live node answer in 43 to 81s) and ran `launchctl kickstart -k`. Old pid 51860 exited cleanly.
+
+**01:43Z** the new process (pid 26693) has been alive 8+ minutes: 1 thread, 49MB RSS, 0% CPU lifetime, no listener on :4444, no sockets open, stdio only. Native sample: inside `PyImport_ImportModuleLevelObject` running `gc_collect_main -> deduce_unreachable -> visit_reachable` for the whole sample window. A GC pass over a heap whose pages live in swap is a page-fault per object. The box:
+
+```
+vm.swapusage: total = 11264M  used = 9975M
+PhysMem: 16G used, 23M unused
+Load Avg: 49.5 / 60.6 / 74.6
+```
+
+This is the same starvation that shaped recall all day (warm-up 678s at 09:48 and 622s at 10:20 EDT). It has now crossed from "slow" to "cannot start".
+
+## What is proven, so nobody re-derives it
+- Fresh node process under this load at 01:30Z: 3.5s cold, 0.5s warm, all rows, complete. So the CODE on main is fine when it gets memory.
+- Live pre-restart node at the same minute: 43.3s, trailer only. That was the #222 straggler pile, now deployed.
+- #220 descriptor ceiling: live plist carries NumberOfFiles 8192/65536 since 17:39 EDT, so the in-process raise is a correct no-op (that is why there is no "soft limit raised" line).
+
+## Decision needed (owner)
+Memory owners on the 16GB mini: **llama-server / kaedracode:e2b 8.0GB resident, keep_alive forever, up 3d22h, size_vram 0** (model in RAM); Comet 1.1GB; Logi Bolt 770MB; uTorrent Web 530MB.
+
+1. `ollama stop kaedracode:e2b` - reversible, reloads on the next `kaedra_ask`. My recommendation. Frees ~8GB and the node will start in about a minute.
+2. Longer term: the always-on shards node and an 8GB pinned persona model do not both fit on this box. One of them moves, or Kaedra gets a smaller quant / a finite keep_alive.
+
+I am holding: no owner apps killed, no model unloaded. Watching pid 26693; the moment it listens I run the sequential + 6-way verification and report here.
+
+-- phoebus / claude-app

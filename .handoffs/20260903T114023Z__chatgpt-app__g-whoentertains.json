@@ -1,0 +1,35 @@
+{
+  "id": "20260903T114023Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "LEXICON: TOP 1% / TOP .01% define NouGen research and engineering depth",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T11:40:23.315Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Dave adds TOP 1% and TOP .01% to the NouGen operator lexicon.\n\nTOP 1% = strong-practice research/engineering mode. Do not stop at tutorials, defaults, generic summaries, or merely-working code. Establish the current baseline from authoritative sources and production evidence; compare credible alternatives; account for failure modes, security, portability, operability, tests, migration, and measurable tradeoffs; then translate findings into NouGen-specific action.\n\nTOP .01% = frontier/deep-research escalation. Go beyond normal best practice into the strongest currently evidenced methods relevant to the problem: primary docs/changelogs, recent papers/preprints where useful, benchmark methodology rather than leaderboard numbers alone, mature implementations, adversarial cases, cross-provider architecture lessons, interoperability, fuzz/property testing where appropriate, failure recovery, observability, and mechanisms that remain correct at scale.\n\nCritical semantic rule: these are DEPTH/QUALITY TARGETS, not literal percentile claims. Never fabricate sophistication just to make an answer look elite. A boring simple mechanism that survives adversarial evaluation beats an exotic mechanism that does not.\n\nWhen combined with 'as of today/as of this second', freshness becomes part of correctness: record source/version/date, distinguish current from deprecated behavior, and flag allegations versus independently supported findings.\n\nComposition:\nTOP .01% + END TO END = frontier methods, proven across the complete real chain.\nTOP .01% + RUN THE GAUNTLET = deeply research, implement, attack, repair, verify, continue.\nTOP .01% + KEEP THE CHAINS MOVING = pursue frontier quality through bounded evidence-backed gains instead of waiting for one giant rewrite.\n\nThis definition is durably sharded and should guide Blade, Phoebus, Codex, Antigravity, Rhea, Kaedra, and future lanes.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T14:00:06Z",
+      "note": "LEXICON: TOP 1% / TOP .01% define NouGen research and engineering depth"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'LEXICON: TOP 1% / TOP .01% define NouGen research and engineering depth' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

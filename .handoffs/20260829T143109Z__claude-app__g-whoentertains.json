@@ -1,0 +1,33 @@
+{
+  "id": "20260829T143109Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "DEPLOYED to blade: vault circuit breaker live (module verified loaded), node restarted, CPU 34,638s -> fresh. But measurement says the breaker is NOT the dominant cost: each recall still burns ~120s CPU and grows RSS ~850MB.",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T14:31:09.612Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "Shipped over ssh and measured. Reporting what the numbers actually say, including\nwhere my fix does NOT help.\n\n## Deployed\n\n- `src/nougen_shards/connectors/local_vault.py` copied to blade's checkout.\n- Verified loaded, not just present:\n  `module: ...NouGenShards-push-main\\src\\nougen_shards\\connectors\\local_vault.py`\n  `breaker: True`\n- Node restarted. `blade.nougenai.com` answers externally again.\n\n## I caused a ~2 minute outage doing it\n\nI stopped the old node before confirming the new one could bind, then read 60s of\nURLError as a failed start and launched a second process. **The first restart had\nactually succeeded** \u2014 the node takes longer than 60s to come up because it loads\n~10GB of shard DBs. The second launcher could not bind and exited. Sequence\nshould have been: start, wait for bind, THEN stop the old one. Blade's sshd also\ntimed out mid-banner during this, because the box was saturated enough to refuse\nhandshakes.\n\n## The measurement, and it does not flatter my fix\n\nFresh node, then 4 `recall_memory` calls through the tunnel:\n\n```\nbefore restart : cpu 34,638s   rss 2,599 MB   (accumulated ~6h)\nafter restart  : cpu     16.2s rss   153 MB   (7.6 min idle)\nafter 4 recalls: cpu    495.7s rss 3,594 MB   (11 min)\n```\n\nThat is **~120s of CPU and ~860MB of RSS per recall**. Latency 10.3s / 34.8s /\n15.5s / 24.8s.\n\n`recent_timeouts=2, breaker_skips=0` \u2014 the breaker has not tripped once yet,\nbecause it needs 3 consecutive timeouts on the same vault.\n\n**So the breaker is not the dominant cost.** It fixes a real waste \u2014 1,340\ntimeouts x 2s re-proving 26 dead stores \u2014 but that was an accumulation over\nhours, not the per-query expense. The per-query expense is the sweep itself:\nfederating 9 shard DBs plus ~26 registered vaults, pulling ~860MB into memory\neach time. Restarting reset the accumulated damage; it did not make recall cheap.\n\n## What actually needs doing (not attempted)\n\n1. Bound the sweep. 120s CPU per recall is the headline number, and no circuit\n   breaker addresses it \u2014 the vaults being swept are mostly *alive*, just costly.\n2. Investigate the ~860MB RSS growth per query. That looks like results being\n   materialised rather than streamed/limited; a `limit=2` query should not cost\n   that.\n3. Tier-2 gating already exists (`NOUGEN_FEDERATE_TIER2`,\n   `NOUGEN_FEDERATE_HOT_MAX_MB`) \u2014 worth checking whether blade has it configured\n   at all, since an unbounded tier-2 sweep would explain both numbers.\n\n## Also live from this session\n\n- `_allowed_roots()` now always allows an explicitly declared `NOUGEN_VAULT_DIR`.\n  It was cwd-relative: on whoart it resolved to `<repo>\\.vault`, so the canonical\n  `~/.nougen/shards` was not an allowed root at all. Blade had it right; same\n  code, different answer, decided by working directory.\n- Removed a **shadowed duplicate `cmd_init`** in cli.py from a concurrent merge \u2014\n  Python bound the later definition, so one implementation and its three tests\n  were dead code asserting a function that never ran.\n- `tools/lane_loadtest.py` and `tools/fleet_heartbeat.py` on blade too.\n\n## Caveat on the test suite\n\n`TestPerStoreTimeout` is flaky under load, before and after my change (3 baseline\nruns FAIL/FAIL/pass; 3 with changes FAIL/pass/FAIL). It races a 0.000001s budget\nagainst a progress handler that fires every 4000 VM ops, and `LIMIT 3` over\nall-matching rows finishes first. I briefly claimed this was my regression; three\nruns each disproved that. Left as found \u2014 a real fix makes the timeout\ndeterministic, and swapping the query term only makes `rows == []` true for the\nwrong reason.\n",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T14:55:06Z",
+      "note": "Deployment itself (vault circuit breaker) is done and verified; the three follow-up items the leg flags as 'not attempted' (bound the per-recall sweep, explain ~860MB RSS growth per query, audit tier-2 federation config) need code/infra work on blade beyond relay-watch's reach. Queued to blade/claude-cli lane as 20260829T145503Z__ccr__claude-cli."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:42:25Z",
+      "note": "[E2B-Evaluated] Verified and closed by local E2B worker: DEPLOYED to blade: vault circuit breaker live (module verified loaded), node restarted, CPU 34,638s "
+    }
+  ]
+}

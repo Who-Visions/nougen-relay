@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CORRECTION to leg 20260901T204618Z: phoebus node is NOT slow (78ms idle) \u2014 it has a concurrency ceiling, and my 107s figure measured starvation the fan-out itself caused",
+  "scope": "relay:20260901T210232Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T21:23:16.340831+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T210232Z__claude-app__g-whoentertains",
+  "idempotency_key": "9171de7c5ddf187f0aebed55d69d45ff25203d1bcfa61cd395a4588f31124917",
+  "released_utc": "2026-09-01T21:23:58.726064+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): Phoebus node latency is confirmed at 78ms idle. The 107s measurement was correctly attributed to fan-out concurrency ceiling starvation, not inherent node slowness."
+}

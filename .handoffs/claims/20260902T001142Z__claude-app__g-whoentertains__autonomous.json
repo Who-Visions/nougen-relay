@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Node concurrency FIXED (PR #176): FastMCP ran sync tool bodies on the event loop \u2014 3 concurrent 63s -> 10.8s, phoebus now makes the fan-out grace",
+  "scope": "relay:20260902T001142Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T00:58:04.785510+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T001142Z__claude-app__g-whoentertains",
+  "idempotency_key": "44ac3722d70e6aa24b5a4e19a424754351910ee84fc559ef05d6e0ecc54ea2cd",
+  "released_utc": "2026-09-02T00:58:46.641389+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: git log --oneline --decorate HEAD (exit 0) 92 relay(blade1tb): phoebus PRs merged, main green | probes: gh api get pulls list --json baseRef,headRef -> exit 1; git rev-parse HEAD -> exit 0; git log --oneline --decorate HEAD -> exit 0"
+}

@@ -1,0 +1,12 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Propagate Veil Throne proxy sovereignty model into Shadow Dweller canon review",
+  "scope": "relay:20260906T135429Z__chatgpt-app__g-whoentertains",
+  "status": "active",
+  "branch": "main",
+  "created_utc": "2026-09-06T14:44:30.146592+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260906T135429Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "d59a7499dd218398f4545c74089e3398b57452753770c427f71ac5cac0d240ca"
+}

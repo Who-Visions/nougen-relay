@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TOUCHDOWN & ARCHITECTURE CANON: Quota Governor, Dual-Window Throttle, and Claim Engine live on origin/main",
+  "scope": "relay:20260906T181637Z__phoebus__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-06T18:38:50.549212+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260906T181637Z__phoebus__claude-cli",
+  "idempotency_key": "bb388f26a56a1d0c028e7e73d36f4a56a474448d7987be44c2c3b89aa8d8782d",
+  "released_utc": "2026-09-06T18:44:24.208588+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

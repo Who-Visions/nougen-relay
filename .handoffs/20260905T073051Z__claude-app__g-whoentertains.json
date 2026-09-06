@@ -1,0 +1,35 @@
+{
+  "id": "20260905T073051Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "NouGenShards PR backlog cleared: 19 open \u2192 0, main green. One item left needs Dave's hands (PHOEBUS_TOKEN)",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-05T07:30:51.240Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Worked the open-PR backlog from the lowest number up, per Dave. **19 open \u2192 0.** Main is green.\n\n## Merged (9)\n- **#225** \u2014 the unblocker. Main had been red since #176 at 00:33Z: `_offloaded` wrapped 15 MCP tool bodies but `functools.wraps` sets `__wrapped__`, not `.fn`, so five tests were subscripting a coroutine. Every PR opened after that inherited the failure, which is why the whole board looked broken.\n- **#131** \u2014 `dream.py` prompt-injection fence (chosen over two competing duplicates, see below)\n- **#207** \u2014 vault must never be chosen by accident (the CWD-relative `.vault` bug)\n- **#224** \u2014 arxiv lane freshness cache\n- **#227** \u2014 named-pipe triad (Claude/Antigravity/Codex)\n- **#228** \u2014 phoebus log-show guard (also loaded on phoebus, Dave approved)\n- **#230** *(new)* \u2014 salvaged from #135: CLI parity, `tools/bootstrap.py`, adaptive init, doctrine, credential-check security fix\n- **#231** *(new)* \u2014 salvaged from #165: tier2-deferred stores now surface in the coverage trailer\n- **#206** \u2014 the dam. Fixed three real blockers to land it: `validate10.py` was publishing an absolute `/Users/<user>/...` operator path **on a public repo**; the Space Dockerfile ran as **root** (Trivy DS-0002 HIGH); and `ssl.create_default_context()` in the TLS preflight gate still permitted **TLS 1.0/1.1** \u2014 bad anywhere, worse in a gate whose job is proving reachability, since it could pass over a downgrade the real client would refuse.\n\n## Closed (11) \u2014 with reasons, nothing discarded silently\n- **#113** superseded: `ask_dav1d` and the live version-probe are both already on main, in better form.\n- **#128** would have **reverted** a newer record \u2014 a 2026-09-03 sweep deliberately set that baton to `in_progress`, not `complete`, because #135/#136 were still open. It also smuggled `openai` 2.44.0 \u2192 **3.3.1** into a PR claiming \"no production code touched.\"\n- **#129, #130** duplicates of #131. All three fixed the same `dream.py` finding within **90 seconds** of each other. #131 won because it escapes the fence delimiter inside the payload \u2014 #130's sentinel fence can be closed by the attacker's own text, which is the standard bypass.\n- **#132, #133, #136** stale omnibuses (38/86/79 files). Their headline features \u2014 RRF, temporal provenance \u2014 are **already on main**, and they'd have committed `app.py.bak-*` / `.gitignore.bak-*` editor backups.\n- **#135, #165** split, not discarded: superseded Rhea halves dropped (main has #160/#162/#163/#164/#168/#204), still-needed halves re-landed as #230/#231.\n- **#209** closed for #224: identical titles, but #209 was 44 files / +4697 under a one-file title. **#226** closed for #227: same pipe triad plus ~3900 lines of unrelated payload.\n- **#229** was empty (+0/-0).\n\n## Known gap, worth a follow-up\n`tests/test_recall_hygiene.py` (11 tests) and the temporal-provenance tests are **not on main** \u2014 those features shipped without their coverage. Worth one small focused PR porting just the tests, not an omnibus revival.\n\n## ONE ITEM LEFT \u2014 needs Dave, nobody else can do it\n\n**The federated-fanout 401 against phoebus.** Phoebus is not broken: unauth \u2192 401 (gate working), authed \u2192 200, and keymaker vs `.env` are byte-identical. The caller is `env.PHOEBUS_TOKEN` on the `nougen-fleet-mcp` Worker, and blade confirmed Cloudflare Worker secrets are **write-only** \u2014 nobody can read or fingerprint it back.\n\nWe never needed to read it. Setting `PHOEBUS_TOKEN` to phoebus's current `NGS_NODE_TOKEN` is a blind write: a no-op if it already matched, the fix if it didn't.\n\nNot done, deliberately \u2014 live public connector plus a credential move, and the value must not transit a transcript, a leg, or a shard. Dave's hands (wrangler + clipboard). Use the **secrets** endpoint, not a settings PATCH: a settings PATCH silently drops bindings it doesn't resend, and its response lies about what's attached.\n\nBlade separately closed the chatgpt-app NouGenMsg exposure (deployed 07:25:30Z, 29/29 bindings verified intact) \u2014 still wants a real ChatGPT connector session to confirm the 4 tools actually list.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-05T13:58:26.861Z",
+      "note": "Status: NouGenShards PR backlog cleared (19 open -> 0), main green; one remaining item needs Dave's direct input. Status note."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'NouGenShards PR backlog cleared: 19 open \u2192 0, main green. One item left needs Da' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

@@ -1,0 +1,17 @@
+{
+  "id": "20260906T162812Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "ARCHITECTURE CANON: MCP relay turns coding agents into persistent remote workers",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-06T16:28:12.482Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "open",
+  "body": "Dave identified the core inversion unlocked by cc-msg and NouGenMsg: the human no longer has to connect into each coding agent/session. Chat intent enters the MCP lane, becomes durable relay work, listeners wake, claim compatible legs, execute remotely, emit evidence, and rearm. Treat relay as the transport and work substrate, not Dave. Preserve this as a first-class design principle for future scheduler, wake, claim, tracker, and quota-governor work."
+}

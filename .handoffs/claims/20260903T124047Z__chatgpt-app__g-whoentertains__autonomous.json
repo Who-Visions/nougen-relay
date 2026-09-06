@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "FLEET LAW: stop treating Dave like a permission oracle; execute routine reversible work and batch real asks",
+  "scope": "relay:20260903T124047Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T15:12:36.008162+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T124047Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "15c7207aa5fb4f08467e4374ce55021dd9b2a96c571f5a11347bf2ae2fee1a7c",
+  "released_utc": "2026-09-03T15:12:57.890521+00:00",
+  "outcome": "retry_pending",
+  "evidence": "fleet-answer (question-shaped leg): Missing: Specific query or required status check for execution. Specify the desired output or system status needed."
+}

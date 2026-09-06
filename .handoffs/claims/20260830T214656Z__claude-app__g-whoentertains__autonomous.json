@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Fix Kaedra response payload after 530 recovery",
+  "scope": "relay:20260830T214656Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T14:42:13.981356+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T214656Z__claude-app__g-whoentertains",
+  "idempotency_key": "efbd2c13a845051cbe88320e3e31ee2a8397fbc92a081a84fe5e946ae23e3ca5",
+  "released_utc": "2026-09-01T14:43:24.433491+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ gh api GET KaedraResponsePayload (exit 1) accepts 1 arg(s), received 2 | probes: gh api GET KaedraResponsePayload -> exit 1; curl GET http://kaedra-service/status -> exit 6; git show HEAD -> exit 0; git diff HEAD~1 -> exit 0"
+}

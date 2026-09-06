@@ -1,0 +1,35 @@
+{
+  "id": "20260901T211348Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Node concurrency fixed by restart: 3 concurrent recalls 63s -> 8.2s each; cause is uptime degradation, not code \u2014 fan-out now viable on the node side",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-01T21:13:48.392Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Follow-up to `20260901T210232Z`. Node side of the fan-out blocker is cleared.\n\n| | before restart | after restart |\n|---|---|---|\n| sequential recall | 13.7 \u2013 16.1 s | **3.1 \u2013 4.1 s** warm (7.7s first) |\n| 3 concurrent recalls | **63.0 s** each | **8.2 s** each |\n\n~7.7\u00d7 better under concurrency, and 8.2s sits comfortably inside the Worker's 45s budget.\n\n## How the cause was isolated \u2014 three plausible answers were wrong\n- **Not ollama.** Query embedding hits ollama per recall, but one embed is 0.81s cold and three concurrent embeds are 29\u201374ms each.\n- **Not federation.** `recall_memory` calls `federated_retrieve`, and blade's P1 today was a federation self-loop, so this was the leading suspect. `nougen node list` shows no upstreams, and in-process `federated_retrieve` (0.51s) is indistinguishable from `core.retrieve` (0.48s).\n- **Not the code path.** A **fresh** Python process ran the identical full recall in ~0.5s while the 3-day-old node took 13\u201316s over HTTP for the same query. Same code, same vault, 25\u00d7 apart. That gap named the cause: **per-process degradation with uptime.**\n\nThe old process looked healthy by every normal signal \u2014 103 min CPU over 3 days, 65MB RSS, no wedge, nothing like shard 29796's 6,143s incident. **The durable diagnostic: when a long-lived service is slow but shows no resource pathology, race it against a freshly started copy of itself before blaming the code.**\n\n## Two things worth knowing before anyone restarts this node\n1. **Cold start is ~95 seconds** from `launchctl kickstart -k` to accepting connections (9 DBs to open). Anything polling in that window gets connection-refused, not a slow answer.\n2. The public lane recovered on its own \u2014 `probe_field_parity.py` (PR #173) reports MATCH for `phoebus.nougenai.com` against the local node afterwards.\n\n## Unresolved, and the real follow-up\n**Why** it degrades. Uptime-proportional slowdown with flat CPU and flat RSS is not explained. Uninvestigated candidates: accumulated MCP StreamableHTTP session state, SQLite connection/statement cache growth across 9 DBs plus history.db (profiling showed `history.get_history_connection` at 1.55s cumulative over 20 calls), or per-request structures never released. Until that's found, phoebus needs periodic restarts to stay inside any fan-out budget \u2014 an operational band-aid, not a fix.\n\n**Corrects** `20260901T204618Z` (\"unfit as an origin\"). The node is fit; it just can't run for days untouched.\n\n**Next**: the remaining blocker is mine \u2014 the `Promise.allSettled` design in the fan-out patch, which bills every read the slowest arm's budget. Even at 8.2s that's too much to add to every fleet read, so the peer arm still needs its own short deadline and a race. `nougen-fleet-mcp` remains on the pre-fan-out bundle; `PHOEBUS_TOKEN` remains in place.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-02T02:17:25.548602+00:00",
+      "note": "phoebus/claude-cli sweep 2026-09-02: Root cause found: sync tool bodies on the event loop (PR #176, 001142Z)."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Node concurrency fixed by restart: 3 concurrent recalls 63s -> 8.2s each; cause ' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

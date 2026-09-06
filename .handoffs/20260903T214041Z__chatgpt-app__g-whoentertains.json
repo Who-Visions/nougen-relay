@@ -1,0 +1,35 @@
+{
+  "id": "20260903T214041Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Wire Kimi K3 as a first-class NouGen reasoning/coding lane",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T21:40:41.381Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "## Kimi K3 integration handoff\n\nLive Kimi docs index verified 2026-09-03. K3 is now a materially different lane than the older Kimi/K2 assumptions.\n\n### Implement\n1. Add provider adapter for `https://api.moonshot.ai/v1` with `model=\"kimi-k3\"`.\n2. Preserve the COMPLETE assistant message object across every multi-turn and tool-call hop. Do not persist only `content`, because K3 needs its reasoning/tool-call state carried forward.\n3. Expose `reasoning_effort` as a routing knob: `low` for cheap/fast triage, `high` for serious implementation, `max` for deep architecture/debug/canon work. K3 always thinks.\n4. Add strict `json_schema` output support for machine-to-machine NouGen packets.\n5. Add Partial Mode support so interrupted streams or truncated long outputs can resume from an assistant prefix instead of restarting.\n6. Implement dynamic tool loading: inject only the complete definitions for tools needed at that point in the message history. This is especially important for NouGen because the fleet tool surface is large. It cuts schema-token load, improves tool selection, and helps preserve prefix-cache hits.\n7. Exploit Kimi automatic prefix caching. Keep stable system/canon/tool prefixes byte-for-byte unchanged whenever possible. Cache attempts require the previous request prompt to exceed 256 tokens.\n8. Support streaming with separate `reasoning_content` and final `content` handling. Reasoning stream is observability/UI data, while final structured parsing should use `content` only.\n9. Vision: use base64 or Kimi file IDs (`ms://...`) for K3 image/video inputs. Do not assume public image URLs are accepted by K3 vision.\n10. Keep NouGen's own search/retrieval lane as primary. Kimi currently says its web search is being updated and is not recommended for production.\n11. Investigate direct compatibility surfaces from current docs: OpenAI Chat Completions, Responses API, Anthropic Messages API, Codex integration, Claude Code integration, OpenCode, ModelScope MCP, and request-signature verification.\n12. Add signature verification where feasible so NouGen can prove a response was handled by Kimi for the requested model rather than silently rerouted.\n13. Add preflight token estimation and rate-limit/cost telemetry into Tracker.\n14. Batch API should become a background bulk lane for shard distillation, corpus classification, embedding-adjacent prep, benchmark sweeps, or other non-interactive work where lower-cost async inference is useful.\n\n### Architecture fit\nUse K3 as a deep long-horizon brain behind NouGen, not as the memory system. Shards remains durable context, Relay remains handoff, Tracker remains cost/usage truth, and provider routing remains NouGen-owned. K3's 1M context is workspace RAM, not canonical memory.\n\n### Done when\nA NouGen test can route a long-context coding task to K3, dynamically expose only required fleet tools, complete a real tool-call loop while preserving full assistant state, survive a simulated stream interruption via Partial Mode, record cache-hit usage in Tracker, and fail over cleanly to another provider without losing Shards/Relay continuity.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-09-03T22:23:52.177Z",
+      "note": "Owner ruling 18:25 EDT (blade super-65): K3 reaches NouGen through the Rhea Space bridge, shipping to main now on branch fix/rhea-brain-bridge. The direct Moonshot adapter is deferred until a Moonshot key exists in the Keymaker; none does today and only Dave's account can create one. When it lands, this leg's adapter gets built as a fleet-draft job."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Wire Kimi K3 as a first-class NouGen reasoning/coding lane' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

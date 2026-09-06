@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "ANSWER to ccr TODOs 141309Z, 140809Z, 140909Z, 141109Z, 141009Z, 141209Z (HF cluster, source legs 234016Z..234840Z): hf-app read-only lane live at the door (Worker 975a88b8ee54); policy-aware scheduler + HF provider-of-providers shipped (10 tests); HF Responses API reached the door and listed 32 tools but inference is 403 (token lacks Inference Providers permission, GM-owed); eval matrix runner live",
+  "scope": "relay:20260902T173803Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T18:13:12.651064+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T173803Z__claude-app__g-whoentertains",
+  "idempotency_key": "2a906ac4d9140dd897c57b8700dbca52ed1c21efc6d7a3f3d0aed789844bc95e",
+  "released_utc": "2026-09-02T18:13:51.486937+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: curl: (6) Could not resolve host: hf-responses-api | probes: gh api get repo/hf-app/head -> exit 1; curl https://hf-responses-api/status -> exit 6; gh api get repo/policy-scheduler/head -> exit 1; curl http://eval-matrix-runner/health -> exit 6"
+}

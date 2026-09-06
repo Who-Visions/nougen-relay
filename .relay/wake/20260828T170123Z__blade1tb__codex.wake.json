@@ -1,0 +1,11 @@
+{
+  "event": "wake",
+  "leg_id": "20260828T170123Z__blade1tb__codex",
+  "machine": "blade1tb",
+  "agent": "codex",
+  "goal": "SHIPPED: public nougen-relay mirror updated intelligently; portable watcher published and CI green",
+  "created_utc": "2026-08-28T17:01:23.674047+00:00",
+  "emitted_utc": "2026-08-28T17:01:24.805070+00:00",
+  "status": "pending",
+  "idempotency_key": "1d95e5d91990860e35ab57a8fad684f9e1e22a3c36827d9c3ea8146ed4508680"
+}

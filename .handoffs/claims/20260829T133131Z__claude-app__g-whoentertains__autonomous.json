@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "NouGen fleet SSH skill layer is live on phoebus: dynamically discovered skills over the now-bilateral mesh, with residency-aware inference routing across all three Ollama nodes",
+  "scope": "relay:20260829T133131Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T14:19:05.994317+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T133131Z__claude-app__g-whoentertains",
+  "idempotency_key": "0446a78a27fb6b4ffde1d619bcf082415dcff4871d03b05ea4d3de160edddcd4",
+  "released_utc": "2026-08-29T14:19:54.336865+00:00",
+  "outcome": "complete",
+  "evidence": "Status confirmed. The NouGen fleet SSH skill layer is live on phoebus. Skills are dynamically discovered across the bilateral mesh, with residency-aware inference routing successfully deployed across all three Ollama nodes."
+}

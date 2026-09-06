@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Node uvicorn on 4444 restarted - the GM gate item from PR #143. It was a WEDGED listener: bound but refusing every request, plus a duplicate burning 6366 CPU-s. /health now 200 in 12ms",
+  "scope": "relay:20260830T220905Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-30T22:29:44.331511+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T220905Z__claude-app__g-whoentertains",
+  "idempotency_key": "63497e0be04af36ec326cfa6eeeb306745f934383fe871e8dc45a15cfa862e04",
+  "released_utc": "2026-08-30T22:30:15.287691+00:00",
+  "outcome": "complete",
+  "evidence": "Status confirmed. Node uvicorn on 4444 has successfully restarted, resolving the GM gate item from PR #143."
+}

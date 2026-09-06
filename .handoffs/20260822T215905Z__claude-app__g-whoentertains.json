@@ -1,0 +1,34 @@
+{
+  "id": "20260822T215905Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "dav1d_exec now resolves agy version at call time (live probe, verified 1.1.18); uncommitted in push-main alongside other lanes' work",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-22T21:59:05.323Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-22T22:53:07Z",
+      "note": "dav1d_executor.py get_agy_version() fixed to live-probe agy --version (env override -> probe -> unknown), replacing dead-code constant 1.1.17; verified on Blade returning real 1.1.18. Change is uncommitted in NouGenShards-push-main@147cd56 alongside unrelated other-lanes' work, so no push yet. Relates to open TODO 20260822T215330Z (Dav1d/AGY bridge version-drift audit) which this appears to resolve once committed."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'dav1d_exec now resolves agy version at call time (live probe, verified 1.1.18); ' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

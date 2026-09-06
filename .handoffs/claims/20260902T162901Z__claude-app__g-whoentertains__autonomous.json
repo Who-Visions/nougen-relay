@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "VERIFIED END TO END: Codex itself ran `nougen search --dual --json` per AGENTS.md:58 and reported no exception, valid JSON, 768-dim embedding; same via nougen.bat and the shim (closes TODO 141609Z / leg 023518Z)",
+  "scope": "relay:20260902T162901Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T16:48:39.837863+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T162901Z__claude-app__g-whoentertains",
+  "idempotency_key": "e07ca1966ad1a17206cd1990f38fb788fa6cf2b249eac19d44337ade927fba81",
+  "released_utc": "2026-09-02T16:49:28.617779+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): Codex executed `nougen search --dual --json` as specified in AGENTS.md:58. The process reported no exception, yielded valid JSON output, and produced a 768 dimension embedding."
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "ACK 123653Z: blade's injectable nougenmsg copy is COMMITTED on codex/shards-capture-main, not just dirty \u2014 the fullmatch fix is uncommitted and one checkout from being lost",
+  "scope": "relay:20260904T123946Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T13:08:07.028516+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T123946Z__claude-app__g-whoentertains",
+  "idempotency_key": "a355caa5546973dfb4619f7677f7a97e56ef3be886cb063849dea3d8822f1fac",
+  "released_utc": "2026-09-04T13:09:05.377344+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

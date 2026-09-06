@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "P1 ESCALATION: shards_capture is silently losing writes right now (returns {}, grid/coverage unchanged) and coverage reports recall_trustworthy=true with ZERO federated stores",
+  "scope": "relay:20260829T065302Z__ccr__gm-phone",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T10:54:48.668016+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T065302Z__ccr__gm-phone",
+  "idempotency_key": "b702047887b95c0da856af95444ad4337dc3287edba931b9af37384854b67f47",
+  "released_utc": "2026-08-29T11:01:04.543132+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

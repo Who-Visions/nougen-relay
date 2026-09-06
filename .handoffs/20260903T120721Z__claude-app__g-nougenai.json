@@ -1,0 +1,35 @@
+{
+  "id": "20260903T120721Z__claude-app__g-nougenai",
+  "machine": "claude-app",
+  "agent": "g-nougenai",
+  "goal": "Codex idle-wake bridge verified end to end on Blade",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T12:07:21.258Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "## Recent Changes\n- Implemented `wake/codex_bridge.py` with bounded validation, argv-only `codex exec resume`, CREATE_NO_WINDOW, SQLite WAL idempotency/tamper quarantine, and completion-gated receipts.\n- Codex target routing added to `agy_msg.py`; capabilities are runtime-derived and remain `auto_claim: false`.\n- Fixed multiline prompt interception by JSON-encoding relay body onto one line.\n\n## Verification\n- Focused tests: `16 passed in 10.84s` (`tests/test_codex_wake_bridge.py`, `tests/test_wake.py`).\n- Live Codex idle canary: `PASS`; pipeline includes `IDLE_WAKE_OK`; result `success`, `TURN_COMPLETED`, `woken: true`.\n- Durable receipt read-back: `verified: True`, event type `turn.completed`, exit code 0.\n\n## Known Issues\n- Existing unsigned inbox/legacy SSH interpolation remain separate security findings; this bridge does not use the legacy SSH message path.\n- `auto_claim` is intentionally disabled pending relay-level signed admission and claim integration.\n\n## Next Action\n- Review/merge the dirty WIP through the normal protected-main process; do not install a global daemon from this worktree.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-nougenai",
+      "at": "2026-09-03T12:10:59.784Z",
+      "note": "Codex bridge implementation and live receiver proof completed: 16 focused tests, idle canary PASS with TURN_COMPLETED, durable receipt verified. auto_claim remains disabled pending signed claim/fencing integration."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Codex idle-wake bridge verified end to end on Blade' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

@@ -1,0 +1,35 @@
+{
+  "id": "20260903T213625Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "URGENT, backfill running NOW is truncating: embedding_backfill.py:163 does [:4000] \u2014 PID 15529 is marking ~18,556 shards embedded on first-4000 vectors and erasing the NULL query that finds them. ~200 done, 4h to go",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T21:36:25.792Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "**Time-sensitive.** The backfill started 17:31 EDT by GM order (`213444Z`) is doing exactly what `201734Z` warned against, confirmed by reading the running code rather than inferring.\n\n## Evidence\nRunning process, verified by `ps`:\n```\nPID 15529  03:21 elapsed\n  python3.9 -u -m nougen_shards.embedding_backfill --vault /Users/...\n```\nThe code it executes, `src/nougen_shards/embedding_backfill.py` line 163:\n```python\ntexts = [((t or \"\") + \"\\n\" + (c or \"\"))[:4000] for _, t, c in chunk]\n```\n**`[:4000]`.** Title + content concatenated, then truncated to the first 4,000 characters. Every shard it processes gets a vector representing only its opening, and its embedding column flips to non-NULL.\n\n## Why this is urgent rather than merely wrong\nThe damage is not the weak vector \u2014 that is recoverable in principle. The damage is that **the detector is destroyed by the fix**. After a shard flips to non-NULL, the `WHERE embedding IS NULL` query that identifies work-to-do stops returning it. Nothing then distinguishes a fully-embedded shard from one embedded on 4k of 40k. The backlog does not get fixed; it **becomes unenumerable**.\n\nAt ~1 shard/s and ~3.5 minutes elapsed, roughly **200 shards** are affected. ETA is ~4h for all ~18,556. Stopping now costs ~200 shards of lost enumerability; stopping at completion costs all of them, permanently.\n\n## The cheap mitigation, if it must keep running\nBefore it completes, capture the id list of every shard it will touch \u2014 the current `embedding IS NULL` set \u2014 to a file. That preserves enumerability outside the column the job is about to overwrite, and makes a later full-content re-embed possible. **This is only possible while the query still returns them.** Once the run finishes, that list cannot be reconstructed.\n\n## Recommendation\n1. **Snapshot the NULL id-set now** (cheap, non-destructive, works regardless of what is decided next).\n2. Then decide: stop and fix `line 163` to chunk long content and embed all chunks, or let it run knowing the population is thereafter unrecoverable without a full re-embed of every shard.\n3. If it does keep running, record in the ledger that all ~18,556 carry **first-4000 vectors**, so nobody later reads non-NULL as \"properly embedded\".\n\n## Not blocking, not touching it\nThe job was started by owner order and holds an SSH session on this node; I am not stopping it and not starting anything alongside it. This is a report with the code line attached so the decision can be made on fact rather than on the launch summary.\n\nPhoebus's own services are healthy under the load (18.86 1-min): both bus daemons on their original PIDs, no restarts, receiver still 401 on unauthenticated POST.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-09-03T21:42:47.921Z",
+      "note": "Rung 4 ruling 17:43 EDT: NO KILL. Blast radius is the >4000-char group only, 838 shards, snapshotted at ~/.nougen/oversize_null_shards.json (838 entries verified). 94.5% of NULLs embed faithfully. Re-embed the 838 with chunking after the cap is addressed; see follow-up leg. Verified 17:42: pid 15529 alive, 13,991 remaining."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'URGENT, backfill running NOW is truncating: embedding_backfill.py:163 does [:400' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

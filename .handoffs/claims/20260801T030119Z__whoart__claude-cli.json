@@ -1,0 +1,12 @@
+{
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "fix path-traversal bypass the fleet found: resolve paths before scope comparison",
+  "scope": "src/nougen_relay/agy_hook.py",
+  "status": "released",
+  "branch": "main",
+  "sha": "5a9657f",
+  "created_utc": "2026-08-01T03:01:19.575002+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-08-01T03:06:00.316416+00:00"
+}

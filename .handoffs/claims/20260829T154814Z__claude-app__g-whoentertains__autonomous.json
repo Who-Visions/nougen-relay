@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "The fleet's memory INGEST has been dead 2 days \u2014 shard_vault_files.py FATALs mid-sweep and the wrapper discards the traceback. Hardened + made diagnosable, deployed to blade. 169,359 markdown files sit unsharded in ~/.nougen/shards.",
+  "scope": "relay:20260829T154814Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T16:16:54.916728+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T154814Z__claude-app__g-whoentertains",
+  "idempotency_key": "29f6b07c47f72bc6a73e317c19e838703462ac8bf1c9b0292eeea70fcf9f6b34",
+  "released_utc": "2026-08-29T16:22:59.872100+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

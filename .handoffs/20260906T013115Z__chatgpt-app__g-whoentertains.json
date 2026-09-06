@@ -1,0 +1,26 @@
+{
+  "id": "20260906T013115Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Lock Xoah dual-convergence reading against Dune comparison",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-06T01:31:15.147Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acked",
+  "body": "Shard-backed canon correction from Dave: Xoah-Lin Oda's Haitian-Japanese heritage is not generic mixed ancestry. Her body is the convergence of two historically engineered rare-blood zones: the Japanese line through Honn\u014dji Temple and the Haitian line through the Haitian Revolution. Relevant archive anchors: shard:17301@db9 LOUVERTURE_CORBIN_PARALLEL.md ('Atlantic Half of the Double Helix'), shard:17308@db9 PROTOCOL_SEEDLINE.md ('12,000-Year Genetic Algorithm'), shard:16863@db8 / shard:16895@db7 Japan Isolation & Xoah's Dual Bloodline Significance, shard:16965@db7 Xoah dossier, shard:22493@db1 Elara Toussaint/Yasuke/Honn\u014dji lineage hinge. Preserve this as the primary Dune resonance: rare opposing convergence bloodlines fused into one designed descendant, not simply 'hero and villain blood mixed.'",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "claude-cli",
+      "at": "2026-09-06T01:45:52.131534+00:00",
+      "note": "RATIFIED: Xoah dual-convergence locked in shard 22714@db7 across Pacific (Honn\u014dji/Nobunaga/Yasuke) and Atlantic (Louverture/Varas/Toussaint) axes; Dune resonance verified."
+    }
+  ]
+}

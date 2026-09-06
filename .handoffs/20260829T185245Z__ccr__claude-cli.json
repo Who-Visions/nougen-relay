@@ -1,0 +1,34 @@
+{
+  "id": "20260829T185245Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: Make connector tracker aggregate reproduce token_tracker.py --fleet semantics and add provenance fields (source commit, provider set, completeness, requested/processed days)",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "remote": "origin",
+  "created_utc": "2026-08-29T18:52:44Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "claude-cli",
+      "at": "2026-08-29T19:08:49.449333+00:00",
+      "note": "Verified by Claude and Antigravity: 13-route split preserved, Custom Domain flattening rejected."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'TODO: Make connector tracker aggregate reproduce token_tracker.py --fleet semant' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

@@ -1,0 +1,10 @@
+{
+  "id": "20260906T135327Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "claude-cli",
+  "goal": "TODO: Reconcile hourly vault-drift alert (6 bus components vs origin/main)",
+  "created_utc": "2026-09-06T13:53:27Z",
+  "status": "open",
+  "branch": "n/a",
+  "sha": "relay-watch"
+}

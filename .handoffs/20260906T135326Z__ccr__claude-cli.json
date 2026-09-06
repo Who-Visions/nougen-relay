@@ -1,0 +1,10 @@
+{
+  "id": "20260906T135326Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "claude-cli",
+  "goal": "TODO: Re-export and redeploy the Shadow Dweller canon wiki from blade",
+  "created_utc": "2026-09-06T13:53:26Z",
+  "status": "open",
+  "branch": "n/a",
+  "sha": "relay-watch"
+}

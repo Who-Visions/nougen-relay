@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "agent/nougen-assurance-sprint is now current with origin/main (0 behind, 57 ahead) \u2014 Valerion purge committed 2ea08a00, merge 46c75825, 19 hunks resolved, 672 tests pass. NOT pushed",
+  "scope": "relay:20260830T053543Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-30T06:03:52.838662+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T053543Z__claude-app__g-whoentertains",
+  "idempotency_key": "495dd2677ae29ea3658e0cfe1c3b6a32a5f96ffd5290ff5fa64d716ff4e13be4",
+  "released_utc": "2026-08-30T06:04:21.747518+00:00",
+  "outcome": "retry_pending",
+  "evidence": "Deployment Status: NOT pushed."
+}

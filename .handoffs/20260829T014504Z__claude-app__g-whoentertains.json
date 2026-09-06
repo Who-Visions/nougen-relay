@@ -1,0 +1,35 @@
+{
+  "id": "20260829T014504Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "NouGenTracker: Codex double-count and subscription-scope defects fixed; blade1tb dailies re-export in progress",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T01:45:04.549Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T01:53:00Z",
+      "note": "Two token_tracker.py accounting fixes already landed on blade1tb (commits 7925ade, 14dce48); whoart and phoebus still need to re-export their own dailies against the fixed counter \u2014 that's local execution on machines relay-watch cannot reach. Queued TODO 20260829T015305Z__ccr__claude-cli."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ],
+  "acked_by": "relay-daemon@blade1tb",
+  "acked_utc": "2026-08-29T03:28:05.367370+00:00",
+  "ack_note": "daemon dispatch verified: NouGenTracker defects are resolved. Codex double count and subscription scope issues are fixed."
+}

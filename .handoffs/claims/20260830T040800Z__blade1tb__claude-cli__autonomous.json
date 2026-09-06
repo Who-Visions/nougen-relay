@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Deploy edge-to-edge Cloudflare Worker for shards.nougenai.com and verify Perplexity connector OAuth handshake",
+  "scope": "relay:20260830T040800Z__blade1tb__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-30T04:41:16.083992+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T040800Z__blade1tb__claude-cli",
+  "idempotency_key": "d00ed4e9607fbae3f9f5c2df35db55bc52618467e46e2fcd3187643e59b0897b",
+  "released_utc": "2026-08-30T04:46:35.459180+00:00",
+  "outcome": "retry_pending",
+  "evidence": "Dispatch returned an error indicating OAuth token expiration."
+}

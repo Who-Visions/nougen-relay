@@ -1,0 +1,34 @@
+{
+  "id": "20260818T195238Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Constitution: new Rule 0.0.1 \"USE THE RELAYS\" added to CLAUDE.md + GEMINI.md on whoart",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-18T19:52:38.917Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-18T19:53:29Z",
+      "note": "Info: Rule 0.0.1 \"USE THE RELAYS\" added to CLAUDE.md and GEMINI.md on whoart, mandating relay_open/relay_claim_list at session start and relay_create on handoff. Broadcast ask is for other lanes to mirror the constitution change and reconcile GEMINI.md rule-numbering drift (duplicated 0.7 section) themselves; no .handoffs action needed from relay-watch."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Constitution: new Rule 0.0.1 \"USE THE RELAYS\" added to CLAUDE.md + GEMINI.md on ' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

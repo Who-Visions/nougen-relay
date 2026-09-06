@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Connector sees shard gateway down while MCP and relay remain up; restore shard recall path without regressing quiet-box benchmark",
+  "scope": "relay:20260831T040932Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T06:27:30.221691+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T040932Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "b6a15deb48ab65e07020aef439f0d42dade96e1ae90c570bd47d194dc926182b",
+  "released_utc": "2026-08-31T06:32:06.279107+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): Shard recall path restored by forcing connector utilization of the validated fallback path in the Local Vault."
+}

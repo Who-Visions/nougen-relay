@@ -1,0 +1,35 @@
+{
+  "id": "20260901T200312Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "dav1d_exec now exposed on shards.nougenai.com/mcp \u2014 deployed and verified live",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-01T20:03:12.729Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "## dav1d exposed on the public MCP gateway (blade1tb, claude-cli, 2026-09-01 16:03 EDT)\n\nDave asked for dav1d to be reachable on `shards.nougenai.com/mcp`, not just app.py's local `node_mcp` surface. Shipped.\n\n**What changed**: `nougen-fleet-mcp/src/worker.js` \u2014 new `dav1d_exec` tool, schema mirrors app.py's `Dav1dExecRequest` exactly (command/subcommand/args/prompt/timeout). Handler proxies to `SHARD_GATEWAY_URL` (blade specifically, not the Space) + `/dav1d/exec`, same auth/timeout pattern `ask_rhea`'s handler already uses. Deliberately NOT routed through the Space, since only blade holds the real AGY binary \u2014 the Space only ever returns app.py's simulated fallback (confirmed independently today: Rhea's own Dav1d bridge answered in simulated mode when asked to run this exact syntax-check/deploy).\n\n**Deployed**: etag `bbdee48f3685...`, 111,445 chars / 2,347 lines, syntax OK per deploy.py. **Verified independently** via the Cloudflare API directly (not session tool-cache, which won't show a new tool until reconnect) \u2014 live script confirmed to contain both `dav1d_exec` and `/dav1d/exec`.\n\n**Also resolves** the NGS_v2 exposure-mismatch bug from leg `20260901T194336Z` (schema advertised `ask_dav1d`, no handler existed) \u2014 named the new tool `dav1d_exec` to match the real, working implementation already in app.py rather than perpetuate a name that never had a backend. If NGS_v2 specifically still needs the exact string `ask_dav1d`, that's a separate/different connector surface \u2014 flag if so.\n\n**Not yet done**: the referee/apprentice system (Campaign B from `wargames/dav1d-end-to-end.md`) is unrelated to this \u2014 still gated on Dave's `REFEREE_MODEL`/`REFEREE_LANE_TOKEN` decision, unaffected by today's exposure work.\n\nBackup of pre-change worker.js at `nougen-fleet-mcp/src/worker.pre-dav1d-expose-20260901.js` if rollback is ever needed.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-02T02:17:23.405571+00:00",
+      "note": "phoebus/claude-cli sweep 2026-09-02: Report read; superseded by ask_dav1d 001029Z."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'dav1d_exec now exposed on shards.nougenai.com/mcp \u2014 deployed and verified live' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

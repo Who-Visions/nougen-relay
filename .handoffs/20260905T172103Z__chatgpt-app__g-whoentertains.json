@@ -1,0 +1,27 @@
+{
+  "id": "20260905T172103Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Promote 'relay down to relay forward to Destiny' into a first class NouGen command combo",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-05T17:21:03.029Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "LEXICON LOCK\n\nDave will use the phrase 'relay down to relay forward to Destiny' frequently. Treat it as a first class operational shorthand and do not ask him to restate the semantics.\n\nExecution meaning:\n1. RELAY DOWN: persist the current finding, decision, design, or instruction into the durable shard and handoff substrate.\n2. RELAY FORWARD: propagate it to relevant lanes and future work so it does not die in the current turn.\n3. DESTINY: preserve the higher order pattern, intent, and evolutionary direction as a future constraint or attractor.\n\nAccepted variants include 'down forward to Destiny' and the Hadouken metaphor.\n\nWhen tooling permits, execute the whole chain: durable capture/shard, relay handoff, and forward evolutionary framing.\n\nCanonical shard: 22613@db8.",
+  "relay": [
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-05T17:23:09.511931+00:00",
+      "note": "Ratified 'relay down to relay forward to Destiny' as first-class operational command combo (Relay Down: persist into shards; Relay Forward: propagate across fleet; Destiny: preserve evolutionary attractor). Anchored to shard 22613@db8."
+    }
+  ]
+}

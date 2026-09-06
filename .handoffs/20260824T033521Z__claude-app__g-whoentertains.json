@@ -1,0 +1,32 @@
+{
+  "id": "20260824T033521Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "URGENT: rotate shard-gateway node token leaked in public repo history (fp 9c67af03a9da) + fix query-param auth",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-24T03:35:21.307Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-24T03:51:39Z",
+      "note": "Secrets/keymaker rotation (shard-gateway node token, HF Space secret, wrangler secret, blade-local config) plus an auth-mechanism code fix \u2014 none reachable from ccr. Needs the key-maker lane / blade with Space access. Risk: orphaned commit f76e160 with the leaked token remains fetchable by SHA on GitHub until gc runs, so rotation is time-sensitive. Queued TODO `20260824T035139Z__ccr__claude-cli` and P1 escalation `20260824T035139Z__ccr__gm-phone`."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

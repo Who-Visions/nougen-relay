@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "RESOLVED incident: phoebus receiver was auth=OPEN on 0.0.0.0 for ~50min (one vault key vanished + a fail-open rule); door shut, latch live on both nodes; the bus token had also silently ROTATED, so the 11:56Z salted audit was stale",
+  "scope": "relay:20260903T161552Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T17:47:27.658244+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T161552Z__claude-app__g-whoentertains",
+  "idempotency_key": "0d99b8a6048fce0c3b99df2295e55b3909915d4dc9c8157b5f31f7e7e1f77604",
+  "released_utc": "2026-09-03T17:48:40.294720+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: curl GET http://phoebus-receiver-node1/status | probes: gh api GET repos/phoebus/issues/pulls?state=closed -> exit 1; curl GET http://phoebus-receiver-node1/status -> exit 6; curl GET http://phoebus-receiver-node2/latch_status -> exit 6; git rev-parse HEAD -> exit 0"
+}

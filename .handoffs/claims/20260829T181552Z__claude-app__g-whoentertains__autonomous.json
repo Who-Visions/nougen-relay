@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "FIXED: whoart usage dailies recorded 36% of actual for August \u2014 whoart is the LARGEST fleet lane, not the smallest. Tracker dca74ee",
+  "scope": "relay:20260829T181552Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T18:21:25.071564+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T181552Z__claude-app__g-whoentertains",
+  "idempotency_key": "aa3773bcc2a72947d43d85757bec646cde9afbcf47c2c264a491158e31e4f3b9",
+  "released_utc": "2026-08-29T18:21:59.901883+00:00",
+  "outcome": "complete",
+  "evidence": "Whoart usage dailies recorded 36% of actual for August."
+}

@@ -1,0 +1,33 @@
+{
+  "id": "20260829T055341Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Fix Shards federation truth fragmentation and false-empty recall",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T05:53:41.038Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "Observed live from ChatGPT connector on 2026-08-29. This is a memory correctness defect, separate from the tracker aggregation leg already active.\n\nEVIDENCE\n1. Earlier, another NouGen connector surface successfully returned shard id 22388 titled `Usage window Sat 2026-08-22 -> Fri 2026-08-28 blade1tb...` containing a 1.166B blended token snapshot (734M exact + 432M estimated).\n2. On the current NouGenShards surface, `shards_search` for Saturday/token/1.5B/1.166B returned `(no matches)`.\n3. `shards_recall` for the same known evidence returned `(no recall results)`.\n4. `ask_griot` bounded 2026-08-22 through 2026-08-29 returned shown=0,total=0,held_back=0,failures=[] despite that known shard existing on another connector surface.\n5. Separately, tracker_spend on this surface reports 994,889,354 total_activity and complete=true while richer archived tracker evidence reports at least 1.166B blended tokens. This shows both retrieval federation and accounting semantics can diverge by surface.\n\nCORE FAILURE\nA negative recall currently cannot be interpreted as `memory does not exist`. The fleet can possess a fact while a provider/lane sees an empty archive. That breaks the central invariant of NouGenShards: one recoverable memory substrate across agents/providers.\n\nFIX REQUIREMENTS\n* Establish a canonical federated shard manifest/version visible to every connector lane. Expose node/store/db membership and index generation/version in status/coverage responses.\n* Make `shards_coverage` report which DBs/stores are mounted, expected vs reachable shard counts, last sync/index timestamp, stale/partial mounts, and federation generation.\n* Never return an unqualified empty result when coverage is incomplete or stale. Return explicit `partial`, `coverage_gap`, `stores_unreachable`, or equivalent metadata.\n* Make search/recall/Griot share the same federation membership contract. If Griot searches fewer stores than direct recall, disclose it.\n* Add cross-lane parity tests: insert/capture a sentinel shard, then require retrieval by exact search, semantic recall, bounded window, and Griot through every provider connector lane.\n* Add known-id diagnostic lookup or equivalent deterministic probe so fuzzy retrieval is not the only way to prove existence.\n* Add index reconciliation/self-healing when a DB contains a row absent from keyword/vector indexes.\n* Treat `complete=true` as query-execution completeness only unless global dataset completeness is proven. Prefer separate fields such as query_complete and federation_complete.\n* Instrument misses: query fingerprint, lane, mounted DB set, index generation, stores queried, stores skipped, and reason.\n* Regression case must include shard 22388 or an equivalent fixture where one connector previously found the record and another returned empty.\n\nDONE WHEN\nThe same known shard is discoverable through all connector/provider lanes with search, recall, window/Griot where applicable; false-empty responses are impossible without an explicit coverage warning; and operators can distinguish `no matching memory` from `this lane did not search the full memory universe`.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T06:52:59Z",
+      "note": "Requests a canonical federation manifest/version for shards_coverage, coverage-gap signaling, cross-lane parity tests, and index reconciliation on the NouGenShards gateway (shards.nougenai.com/mcp) -- not in NouGenRelay and beyond a repo-scoped edit. Queued to claude-cli as 20260829T065259Z__ccr__claude-cli. Reproduced with harder evidence (live write loss) by 20260829T060341Z, which is P1-escalated separately."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:35:09Z",
+      "note": "[E2B-Evaluated] This relay leg is not complete; the required canonical federated shard manifest and improved coverage reporting have not yet been verified against the September 1 fleet state."
+    }
+  ]
+}

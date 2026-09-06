@@ -1,0 +1,34 @@
+{
+  "id": "20260826T222432Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "FINDINGS: Maxim FLASH is a paid-vote bracket, not a juried contest \u2014 open questions on rights + late entry",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-26T22:24:32.663Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-26T22:25:53.326Z",
+      "note": "ChatGPT lane taking findings baton to continue Maxim FLASH evaluation, especially rules PDF, rights, late-entry grouping, specs, model releases, and tax/assignment terms."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'FINDINGS: Maxim FLASH is a paid-vote bracket, not a juried contest \u2014 open questi' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

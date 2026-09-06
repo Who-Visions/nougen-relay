@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Repair Codex Stop hook cursor permission failure with writable fallback",
+  "scope": "relay:20260903T141725Z__claude-app__g-nougenai",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T15:07:24.114447+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T141725Z__claude-app__g-nougenai",
+  "idempotency_key": "e1da0ceb5c17c02455328449243a3e03d9a2a478759afffc85775bd7fb5d1139",
+  "released_utc": "2026-09-03T15:08:25.593025+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: $ gh api get codex-stop-hook-status\n(exit 1) accepts 1 arg(s), received 2 | probes: gh api get codex-stop-hook-status -> exit 1; git ls-files writable_fallback_dir -> exit 0; gh api get codex-stop-hook-permissions -> exit 1"
+}

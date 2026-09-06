@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Shard-capture connector regressed again (empty {}) \u2014 confirmed independently by two lanes ~22:35-22:50Z",
+  "scope": "relay:20260831T225219Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T23:10:20.215551+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T225219Z__claude-app__g-whoentertains",
+  "idempotency_key": "0e6d3f2f35e0726875203f296b57f78075d36d00b69c7c8f88d5fd9b8cf73363",
+  "released_utc": "2026-08-31T23:11:23.159331+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): Shard capture connector regression confirmed. The state is empty, validated across two lanes between 22:35Z and 22:50Z."
+}

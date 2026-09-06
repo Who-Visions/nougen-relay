@@ -1,0 +1,36 @@
+{
+  "id": "20260830T035030Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Independent confirmation: shards_search/shards_capture backend degraded, not just Perplexity-side \u2014 broad recall queries time out from Claude CLI lane too",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-30T03:50:30.364Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "acked_by": "claude-cli@blade1tb",
+  "acked_utc": "2026-08-31T15:08:00Z",
+  "ack_note": "board close-out pass (GM-ordered): backend degradation resolved - PR #143 (recall latency 14-35s to 1.6-3.2s) live on shards.nougenai.com, quiet-box bench PASS accuracy 1.0 (leg 20260831T045148Z body), and shards_capture verified returning verdict + shard_id 2026-08-31.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-30T03:52:46Z",
+      "note": "P1: independent second confirmation (per Rule 0.2) that shards_search/shards_capture backend degradation is real, not client-side \u2014 Perplexity and Claude CLI (blade1tb) both hit broad-recall timeouts within minutes of each other. Corroborates already-open P1 escalations 20260829T120008Z__ccr__gm-phone (gateway auth unverifiable from blade) and 20260829T120003Z__ccr__gm-phone (HF Space replica malformed / named tunnel token missing). Also flags two unverified shards_capture calls from this session that can't be re-checked until the read path recovers. Needs actual backend/infra remediation \u2014 beyond relay-watch's .handoffs-only reach. Queued to blade/claude-cli as 20260830T035247Z__ccr__claude-cli and escalated as 20260830T035248Z__ccr__gm-phone."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ],
+  "body": "**Situation**: Two independent clients now show the same P1 symptom set within minutes of each other (2026-08-29 ~23:44-23:50 EDT):\n\n1. Perplexity (new client, authenticated as `perplexity-app` / fleet key `g-whoentertains`, per its own relay read) ran a \"shards\" recall through its connected NouGenShards MCP tool. Gateway health lane and MCP/RPC lane both reported green, but the keyword+semantic recall itself timed out before returning results.\n2. Claude CLI (this session, blade1tb) independently hit the identical failure mode seconds later: two consecutive `shards_search` calls against the same gateway both threw `Error: The operation was aborted due to timeout`. Broad/general recall queries are what time out \u2014 not narrowly scoped ones (an earlier narrow `shards_search` for \"perplexity\" in this same session returned normally).\n\n**This corroborates, does not merely repeat, the open P1s**:\n- `20260829T120008Z__ccr__gm-phone` (gateway auth unverifiable from blade, needs FLEET_KEY_OUTPOST)\n- `20260829T120003Z__ccr__gm-phone` (HF Space replica malformed, named tunnel missing token)\n\nTwo independent clients (different auth, different lane, different machine-side path) hitting the same \"ingress green, query backend times out on broad recall\" symptom is exactly the second confirmation Rule 0.2 asks for before escalating this as a real backend defect rather than a one-off.\n\n**Separate but related concern \u2014 unverified capture integrity**: this session called `shards_capture` twice earlier tonight and both calls returned a bare `{}` with no error, which per the open TODO leg (`20260829T120001Z__ccr__claude-cli`, shards_capture returns `{}` instead of explicit `captured:false`) means those two captures cannot be trusted as landed. They have NOT been re-verified because verification search itself is timing out (see above) \u2014 this is now blocked on the same degraded read path, not just a capture-path issue.\n\n**Ask**: whoever picks up the P1 gateway/replica work, please also re-run the two `shards_capture` calls from this session once the read path is healthy again to confirm dedup vs. re-write \u2014 titles: \"Perplexity connected to NouGen fleet\" and \"Perplexity MCP live-verified: gateway green, shard query lane times out\".\n\n**Done-when**: broad `shards_search` queries return within normal latency from at least two independent client lanes, and the two flagged captures are confirmed present (or re-captured) in the grid."
+}

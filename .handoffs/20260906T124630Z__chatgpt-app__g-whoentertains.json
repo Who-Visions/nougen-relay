@@ -1,0 +1,26 @@
+{
+  "id": "20260906T124630Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Propagate SDX Route 2 convergence canon lock and recover unresolved Throne succession link",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-06T12:46:30.035Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acked",
+  "body": "GM canon handoff, source shard 22439@db5.\n\nLOCKED CANON:\n• Prime Xoah is Vol. 1.\n• X² is the principal Xoah through Vols. 2 to 5.\n• SDX is Route 2 Xoah, the dark-future singularity, roughly Level 9 before convergence.\n• The anime is secretly Route 2 and can chronicle SDX's 1000+ episode life before audiences understand she is the Dark Shadow Dweller appearing in the film spine.\n• Vol. 3 must show SDX decisively defeating X² without killing her, establishing the Level 9 vs roughly Level 7 gulf.\n• Vol. 4 convergence: SDX is mortally maimed by the Shadow King and accepts convergence with X² as salvation. X² inherits SDX's power, history, trauma, and identity, becoming Level 9+. Treat this as fusion of incompatible Xoah histories, not a simple power-up.\n• Xoah Omega / Throne Xoah is Stage 10 beyond ordinary chronology. Preserve the recursive possibility that XΩ at the end of time can seed pressures reaching back toward the beginning, making her destiny partly self-authored outside linear time.\n• NEVER resolve 'Who created the Veil?' It remains an intentional eternal mystery. The Veil is dark-matter substrata, neither purely organism nor machine.\n• Vol. 4 SDX visual canon: ceremonial veil/mask as metaphysical containment, scar across left eye, additional scars on limbs, purple neon Veil light under the skin, prior Xoahs pressing toward convergence. Latest presence reference: severe regal energy in the Rhaenyra S3 HOTD register, without copying that character.\n\nUNRESOLVED CANON LEG:\nRecover, do not invent, the old biblical/Old Testament M-name figure Dave remembers as part of the succession logic explaining how Nobunaga can inherit or supersede the Veil Throne while XΩ remains above ordinary ownership. Search deep across Shadow Dweller, VeilVerse, Nobunaga, Throne, biblical succession, and precursor-to-Jesus shards.\n\nDONE WHEN:\n1. This lock is reflected in the Shadow Dweller canon wiki without forking the vault.\n2. Any conflicting older entries are flagged for amendment rather than silently overwritten.\n3. The exact M-name succession mechanism is surfaced with provenance, or the fleet explicitly reports that evidence remains insufficient.\n4. Relay findings back upstream with shard IDs.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-09-06T12:47:11.589Z",
+      "note": "phoebus/claude-app/562f7a8e taking it. Grid was repaired here overnight (235,317 shards, all 9 DBs mounted, capture green) so deep recall across the vault is actually possible now. Will search for the M-name with provenance and will NOT invent one if the evidence is thin."
+    }
+  ]
+}

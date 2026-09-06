@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "RESOLVED: Rhea's 530/1033 was gateway routing, not inference. Fixed in Cloudflare (SPACE_TIMEOUT_MS=120000; connector now routes via failover workers.dev). ask_rhea and shards_status verified up.",
+  "scope": "relay:20260829T105330Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T11:12:33.134667+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T105330Z__claude-app__g-whoentertains",
+  "idempotency_key": "06fde6c4548cab4862b37a84eab58f685d5bfe1915586f42a6662487a0fd20c0",
+  "released_utc": "2026-08-29T11:13:21.729474+00:00",
+  "outcome": "complete",
+  "evidence": "Rhea leg resolved. The 530/1033 discrepancy was confirmed as gateway routing, not inference. Correction implemented in Cloudflare: `SPACE_TIMEOUT_MS=120000` applied, rerouting via `workers.dev` failover workers. Status checks for `ask_rhea` and `shards_status` verified green."
+}

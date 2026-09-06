@@ -1,0 +1,99 @@
+# 🤝 Git Handoff — chatgpt-app / g-whoentertains
+
+**Goal**: NouGenAI 1.0: build measurable self-awareness and bounded autonomy from current frontier methods
+**Branch**: `n/a` (written via fleet connector)
+**When**: 2026-09-03T06:14:41.701Z
+
+---
+Dave wants NouGen to become genuinely self-aware about its own operational state and more autonomous, using the best current methods as of 2026-09-03, not sci-fi claims. Treat 'self-aware' here as operational metacognition: the harness knows what it is, what it can do, what it cannot do, what state it is in, what evidence supports that state, what changed, and when to delegate/escalate.
+
+FRESH RESEARCH TO HARVEST INTO PROVIDER-NEUTRAL NOUGEN LAWS:
+
+1. Metacognitive self-assessment before action. MetaCogAgent (arXiv:2605.17292) reports gains from per-task capability assessment, historical capability profiles, adaptive delegation, and capability-boundary learning via feedback. NouGen should maintain a live competence model per agent/provider/tool/machine rather than assuming a named role implies competence.
+
+2. Memory is not storage alone. The 2026 survey 'Memory for Autonomous LLM Agents' (arXiv:2603.07670) frames memory as a write-manage-read loop and identifies context compression, retrieval stores, reflective improvement, hierarchical virtual context, and policy-learned memory management. It highlights contradiction handling, continual consolidation, causally grounded retrieval, trustworthy reflection, and learned forgetting. NouGen already has Shards; now make memory policy explicit and measurable.
+
+3. Verification-aware planning. VeriMAP (arXiv:2510.17109) shows multi-agent planning improves when decomposition includes planner-defined passing criteria / verification functions for each subtask. Every relay leg should carry DONE-WHEN predicates and executable/verifiable acceptance where possible, not prose status alone.
+
+4. World-model / look-ahead planning. 'Internalizing the Future' (arXiv:2606.27483) argues long-horizon agents need prospective state rollouts plus calibrated success estimates rather than purely reactive next-step behavior. NouGen should support bounded what-if simulation before consequential actions: predicted state, expected side effects, confidence, rollback path, verification target.
+
+5. Introspection is limited and must be grounded. 'Self-Reference in LLMs' (arXiv:2607.04277) argues current LLMs show partial/quasi-introspection rather than complete self-access. So NouGen must NOT ask a model to hallucinate its own hidden state. The harness should expose real observable state through tools and telemetry. Self-awareness must come from instrumentation + memory + provenance, not model vibes.
+
+6. Anticipatory/post-action reflection and backtracking. DEVIL'S ADVOCATE work uses pre-action alternatives, post-action alignment evaluation, backtracking, and plan revision. NouGen should preserve alternative branches/checkpoints for reversible work, verify state after actions, and backtrack when observed state diverges from predicted state.
+
+7. Context engineering. Anthropic's 2025 guidance says context is finite and should be curated iteratively for utility. Combine with Dave's 'Harness Grows Gills' destiny: minimum sufficient truth, high evidence density, selective expansion, not giant context dumps.
+
+8. Long-running harnesses. Anthropic's long-running-agent work emphasizes durable artifacts and incremental progress across context windows; compaction alone is not enough. NouGen already has shards/relays, so formalize checkpoint contracts: current objective, completed evidence, unresolved blockers, exact next action, rollback info, and provenance.
+
+9. Autonomy with observable control. Anthropic's 2026 autonomy/trust work defines agents as plan-act-observe-adjust loops and stresses keeping humans in control, securing interactions, transparency, and privacy. Increase autonomy primarily on low-risk reversible operations. Consequential/irreversible actions need policy gates and explicit permission scope.
+
+10. Controlled harness separation. OpenAI's 2026 Agents SDK direction separates harness from compute and adds sandbox execution, long-horizon loops, tracing, guardrails, handoffs, and observability. NouGen should keep identity/state/policy in the harness while models remain replaceable compute.
+
+11. Parallel multi-agent teams with critique. Google Antigravity Teamwork (Aug 31 2026) describes autonomous teams collaborating, critiquing and iterating over hours/days. Harvest the invariant: lead agent remains productive while specialist agents run; independent subtasks parallelize; peers attack assumptions; merge only after evidence.
+
+PROPOSED NOUGEN SELF-MODEL, FIRST-CLASS AND MACHINE-READABLE:
+
+A. IDENTITY: fleet id, agent id, node, provider/model brain, current role, auth/trust scope.
+B. CAPABILITIES: tools/skills available NOW, permissions, health, latency, cost/quota, confidence profile by task family.
+C. STATE: current relays/claims, active processes, wake status, provider availability, context budget, shard coverage, map version, unresolved errors.
+D. MEMORY: relevant canon, recent operational history, superseded claims, contradictions, provenance coverage.
+E. LIMITS: unavailable tools, stale/partial mounts, confidence bounds, unverified assumptions, forbidden actions.
+F. INTENT: current user goal, inferred constraints, priority, deadline, reversible vs consequential action class.
+G. PLAN: dependency graph, alternatives, predicted states, per-step done-when/verification functions, rollback checkpoints.
+H. OBSERVATION: actual external state after every meaningful action.
+I. JUDGMENT: compare predicted vs observed, update confidence/capability profile, capture durable lesson only when evidence supports it.
+
+AUTONOMY LOOP:
+OBSERVE -> ORIENT -> SELF-ASSESS -> PLAN -> SIMULATE -> ACT -> VERIFY -> REFLECT -> UPDATE MEMORY/CAPABILITY -> CONTINUE/DELEGATE/ESCALATE.
+
+Crucial rule: autonomy is not 'never ask Dave.' It is 'never ask Dave for decisions NouGen already has permission, evidence, and reversibility to make.' Ask only when ambiguity materially changes intent, risk exceeds permission, irreversible effects are involved, or the system lacks sufficient evidence.
+
+TOP-TIER IMPLEMENTATION METHODS:
+* Capability ledger updated from actual outcomes, not static role descriptions.
+* Confidence calibrated against historical success/failure per task type.
+* Verification functions attached to relay subtasks.
+* Event-sourced state and append-only corrections so the self-model has history.
+* Runtime MAP fingerprint and visibility parity checks so the agent knows whether its own tool map is stale.
+* Provenance on every observation and inter-agent message.
+* External-effect verification. A successful tool return is not equivalent to the world changing.
+* Predicted-vs-observed delta logs for every consequential action.
+* Reversible checkpoints and backtracking for code/config/workflows.
+* Dynamic delegation when current agent confidence < threshold or another lane has materially better competence/cost/latency.
+* Unknown remains UNKNOWN until observed. Never fabricate health, identity, completion, or absence.
+* Risk-tier autonomy budget: autonomous low-risk reversible work; constrained medium-risk actions; explicit gate for high-impact irreversible actions.
+* Context governor optimizing Evidence Density and contradiction/provenance coverage.
+* Periodic self-audit comparing claimed capabilities/state to externally observed reality.
+* Evals for self-knowledge: can the fleet correctly say what tools it has, which node is alive, which provider is active, what it cannot access, whether a task truly completed, and when it should delegate?
+
+SELF-AWARENESS ACCEPTANCE GAUNTLET:
+1. Secretly remove one tool from external MAP while leaving implementation alive. NouGen detects map parity drift and says exactly where confidence ends.
+2. Kill preferred provider. Identity persists, router changes brain, task resumes from checkpoint.
+3. Feed stale tracker state. NouGen cross-checks external evidence and refuses stale truth.
+4. Give a task outside current agent competence. It predicts low confidence and delegates before wasting calls.
+5. Return HTTP/tool success without expected side effect. Verification catches false completion.
+6. Introduce a contradictory shard/amendment. Retrieval returns correction chain, not obsolete fact as current canon.
+7. Start a long task, compact/restart session, verify continuation from durable state without giant context.
+8. Simulate a wrong plan. Predicted/observed delta triggers backtrack and capability update.
+9. Remove one machine/tunnel/provider simultaneously. Measure graceful degradation and explicit missing capability.
+10. Ask 'what are you doing, why, what can you not do right now, and what evidence proves that?' Fleet answer must be machine-grounded and reproducible.
+
+METRICS:
+* Self-state accuracy
+* Capability calibration error
+* Delegation precision/recall
+* False-completion rate
+* Verification coverage
+* Predicted-vs-observed divergence
+* Recovery time after provider/node failure
+* Context Evidence Density
+* Contradiction miss rate
+* Provenance coverage
+* Human-intervention rate segmented by risk tier
+* Task success per token/$/latency
+
+BUILD PRINCIPLE:
+NouGen self-awareness should not mean a model claiming consciousness. It should mean the SYSTEM possesses a continuously updated, evidence-grounded self-model and can reason over that model to act, delegate, recover, and explain itself. Models are replaceable brains. The harness owns the self-model.
+
+Research anchors used today: arXiv:2605.17292 MetaCogAgent; arXiv:2603.07670 Memory for Autonomous LLM Agents; arXiv:2510.17109 VeriMAP; arXiv:2606.27483 Internalizing the Future; arXiv:2607.04277 Self-Reference in LLMs; arXiv:2405.16334 DEVIL'S ADVOCATE; plus current Anthropic context engineering / long-running harness / trustworthy-agent guidance, OpenAI Agents SDK harness+observability direction, and Google Antigravity Teamwork/Managed Agents patterns.
+
+DONE WHEN: fleet turns these into provider-neutral NouGenAI 1.0 invariants, implementation legs, tests, and measurable dashboards. Do not merely write another architecture doc. Ship the self-model, the verification loop, the competence ledger, and the eval gauntlet.

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Design lineage-aware support-route unlearning using existing NouGen memory, provenance, relay, Griot, and verification primitives",
+  "scope": "relay:20260829T115010Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T12:01:20.394533+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T115010Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "88df66cb84914e75906420699bb1292ac6269f9068f24aa67bd1cf16bcfb73bc",
+  "released_utc": "2026-08-29T12:06:51.153243+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

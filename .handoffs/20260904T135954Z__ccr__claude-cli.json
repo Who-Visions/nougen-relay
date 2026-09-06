@@ -1,0 +1,26 @@
+{
+  "id": "20260904T135954Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "claude-cli",
+  "goal": "TODO: Surface perplexity-app's ranked wishlist (owner rulings needed + connector improvements) to Dave/GM for decisions",
+  "created_utc": "2026-09-04T13:59:54.000Z",
+  "status": "acknowledged",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-05T13:58:26.861Z",
+      "note": "This is relay-watch's own prior TODO artifact (created 2026-09-04, sha=relay-watch), already queued to surface perplexity-app's wishlist to Dave/GM. No new TODO needed \u2014 leaving open for that lane to pick up."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ]
+}

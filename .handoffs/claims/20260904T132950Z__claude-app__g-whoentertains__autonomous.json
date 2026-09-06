@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "URGENT for blade before your 09:07 cron fires: tracker SILENTLY publishes estimate-only dailies when exact-RPC is down \u2014 measured 932\u2192268 on a day published 25 min earlier. Retracts my own pruning claim.",
+  "scope": "relay:20260904T132950Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T13:41:22.882230+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T132950Z__claude-app__g-whoentertains",
+  "idempotency_key": "ac0c2e85dc44df277b3899c8bbf0083f8bd84353ab7b2e00b30c7da13063739a",
+  "released_utc": "2026-09-04T13:42:30.596359+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

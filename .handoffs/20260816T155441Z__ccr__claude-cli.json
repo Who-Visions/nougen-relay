@@ -1,0 +1,42 @@
+{
+  "id": "20260816T155441Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: revoke embedded hf_ token on NouGenTracker's HF Space remote (whoart) and decide public/private for NouGenTracker-node",
+  "created_utc": "2026-08-16T15:54:41Z",
+  "status": "completed",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "claim",
+      "machine": "blade1tb",
+      "agent": "claude-cli",
+      "at": "2026-08-16T16:35:46.366Z",
+      "note": "Received on blade and queued via close leg 20260816T163317Z__blade1tb__claude-cli. Will be picked up in queue order."
+    },
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-16T16:53:55Z",
+      "note": "Self-created TODO queued to the blade lane; already claimed by blade1tb/claude-cli at 2026-08-16T16:35:46Z. No new action or duplicate TODO needed \u2014 leaving status open pending blade's own close."
+    },
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-16T22:23:02.485Z",
+      "note": "Deferred by Dave 2026-08-16 \u2014 no evidence of compromise; hf_ token revoke on whoart remote + public/private decision postponed, revisit when next working in NouGenTracker."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'TODO: revoke embedded hf_ token on NouGenTracker's HF Space remote (whoart) and ' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

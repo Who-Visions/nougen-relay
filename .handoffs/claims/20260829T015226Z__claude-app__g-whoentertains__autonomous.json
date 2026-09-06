@@ -1,0 +1,12 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "SHARPER BUG on acked tracker leg: 92-daily cap silently TRUNCATES long windows (YTD under-reports ~4x), not just fails",
+  "scope": "relay:20260829T015226Z__claude-app__g-whoentertains",
+  "status": "active",
+  "branch": "main",
+  "created_utc": "2026-08-29T05:25:29.301190+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T015226Z__claude-app__g-whoentertains",
+  "idempotency_key": "ad0c34e3bd0cd95a3425824e7d9e6372fcf34d5203bdb2aa0a34f9a38ac735a1"
+}

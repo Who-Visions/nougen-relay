@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "P1 ESCALATION: GRID INCIDENT: DB1+DB3 corrupt from power losses; originals deleted by parallel lane; salvage running - COORDINATE before touching the vault",
+  "scope": "relay:20260831T015318Z__ccr__gm-phone",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T14:05:20.158072+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T015318Z__ccr__gm-phone",
+  "idempotency_key": "0e0c8c3e557bc7ec6862c31dd098b00c5876f77c02bd243427e4459f12cbd1e7",
+  "released_utc": "2026-08-31T14:10:50.047633+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

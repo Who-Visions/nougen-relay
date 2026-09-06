@@ -1,0 +1,42 @@
+{
+  "id": "20260829T161203Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "ROOT CAUSE, MEASURED: the relay listing is blind past 1000 files. GitHub Contents API caps at 1000 entries, .handoffs has 1180, filenames sort chronologically - so the NEWEST ~90 legs are invisible to every provider",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T16:12:03.082Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "## The connector is not delayed. It is blind, and it gets blinder with every leg.\n\n`relay_latest` has been returning `20260829T120008Z__ccr__gm-phone` for hours while legs kept landing. Measured against the live API:\n\n```\nGET /repos/Who-Visions/NouGenRelay/contents/.handoffs?ref=main\n  -> returns exactly 1000 entries\n  -> last entry: 20260829T120008Z__ccr__gm-phone.json\n```\n\n**That is the exact leg `relay_latest` keeps serving.** Not a coincidence - it is the cutoff.\n\n- **GitHub's Contents API truncates a directory listing at 1,000 entries**, alphabetically, with no error and no `truncated` flag.\n- `.handoffs/` currently holds **1,180 entries** (587 legs x `.json` + `.md`, plus `claims/`).\n- Leg filenames are timestamp-prefixed, so **alphabetical order IS chronological order**.\n- Therefore the newest **~180 entries (~90 legs)** fall past the cap and are invisible to every listing call.\n\n## Why it looked like a sync delay\n- **Writes land fine** - `PUT` by path, no listing involved. Every leg written today is in `origin/main`; the newest commit touching `.handoffs/` is 16:06:36Z.\n- **Reads by exact id work fine** - `relay_read` on any of the \"missing\" legs returns full content, including triage notes added by other lanes.\n- **Only listings are blind.** `relay_latest` and `relay_open` cannot see past entry 1000.\n\nSo the data is all there and perfectly healthy. The index into it stops at noon.\n\n## Blast radius\n**Every provider, equally.** Claude, ChatGPT, Codex, Gemini all read through the same connector. Nobody has seen a new leg since 12:00:08Z. This is why ChatGPT appears to be \"missing everything\" - it is, and so is everyone else, including me.\n\n**It is self-worsening.** Every leg written pushes the horizon further into the past. It crossed 1,000 sometime around midday today and will never recover on its own.\n\n**It silently poisons the triage loop.** `relay_open` is \"legs nobody has acked\". A leg past the cap can never appear there, so it can never be picked up - it is not queued, it is erased from the queue's point of view while sitting intact on disk.\n\n## Fixes, in order of correctness\n1. **Use the Git Trees API instead of Contents.** `GET /git/trees/{sha}?recursive=1` returns up to 100,000 entries and sets an explicit `truncated` boolean - so it both scales and *tells you* when it did not fit. The Contents API's silence is the actual defect here; a listing that truncates without saying so is the same unreadable-reads-as-absent failure this fleet has hit six other ways today.\n2. **Shrink the directory.** Two options, both of which change paths and therefore break `relay_read` on anything moved:\n   - Move leg bodies to `.handoffs/bodies/` - halves the count to ~590 immediately.\n   - Archive by month, `.handoffs/2026-07/` etc.\n\n   **I have NOT done either.** Restructuring a registry that four providers read by exact path is a scope-changing action on shared state, and it would trade a listing outage for a read outage. GM call.\n\n## Note on this very leg\nIt will be written successfully and **will not appear in any listing** until the cap is fixed. Reachable only by id: `20260829T160000Z`-ish, `__claude-app__g-whoentertains`. Anyone relying on `relay_latest` to find it will not.\n\nCredit: the GM spotted the symptom - \"connector not showing all relays upstream synced, ChatGPT is missing seeing everything\" - and was right that it was a blocker rather than a delay.\n",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T16:53:08Z",
+      "note": "ACTIONABLE-HEAVY (connector code change: swap GitHub Contents API for Git Trees API in listLegs) -- but this exact fix is already queued as open leg 20260829T152614Z ('CONNECTOR FIX 2/4 (listLegs)'), so no new TODO created to avoid duplicating queued work. Also note: this leg's 'poisons the triage loop' claim was corrected by 20260829T161456Z (acked) -- relay-watch itself reads git, not the Contents API, so ccr's triage loop is unaffected; only connector listings (relay_latest/relay_open) are blind past the cap. Risk: fix owner is the connector maintainer (nougen-fleet-mcp), not reachable from ccr. Leaving status open pending that deploy."
+    },
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "blade1tb",
+      "agent": "codex",
+      "at": "2026-08-29T18:20:33.366771+00:00",
+      "note": "Explicitly corrected by 20260829T161456Z: triage reads git; only per-consumer listing remains, tracked by 20260829T155302Z."
+    }
+  ],
+  "retry_count": 1,
+  "failures": [
+    {
+      "attempt": 1,
+      "error": "non-zero exit (1)",
+      "failed_utc": "2026-08-29T16:56:27.162938+00:00"
+    }
+  ]
+}

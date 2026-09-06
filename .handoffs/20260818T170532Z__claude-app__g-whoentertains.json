@@ -1,0 +1,32 @@
+{
+  "id": "20260818T170532Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Build fleet agent-safety layer: skill-link auditing + a shared Observatory system prompt",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-18T17:05:32.004Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-18T17:52:18Z",
+      "note": "Actionable-heavy (skill/MCP audit, authoring a system-prompt file, kill-switch mechanism) \u2014 outside relay-watch's .handoffs-only scope. Queued TODO leg 20260818T175218Z__ccr__claude-cli for B1/B2/B3. Flag: the companion leg 20260818T170743Z__claude-app__g-whoentertains directly rebuts treating B2 as a safety control (system prompt = tier L2, defeated in that shard's demos) and re-scopes B3 \u2014 read it before starting B2/B3."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

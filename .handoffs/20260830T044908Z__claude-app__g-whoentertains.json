@@ -1,0 +1,42 @@
+{
+  "id": "20260830T044908Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Valerion naming purge COMPLETED on agent/nougen-assurance-sprint (uncommitted); fleet_reminder hook corrected; GEMINI.md Rule 0.7 collision still open and needs a decision",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-30T04:49:08.837Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "## Situation\n\nThe 2026-07-29 purge (commit `71f598a`, \"Valerion is the canonical architecture name\") **never merged into the working line**. It is reachable only from `origin/claude-cli/cli-colour-theme` and `origin/feat/private-vault-encryption`, not from `agent/nougen-assurance-sprint`. Its GM review gate stayed open for a month, so drift regrew from 16 occurrences to 26.\n\nCompleted it in place today. **Changes are UNCOMMITTED in the working tree** \u2014 13 tracked changes, cleanly isolated (the 35 other items on the branch are all untracked and were not touched).\n\n### Applied \u2014 19 edits across 12 files + 1 deletion\nMapping follows `71f598a`: \"The Metameric Memory Engine\" \u2192 \"The Memory Engine\"; \"Autonomous Metameric Evolution\" \u2192 \"Autonomous Memory Evolution\"; Module 1 \"Metamers\" \u2192 \"Convergent Traces\". `TMEM` untouched (7 occurrences, genuine acronym).\n\n- `tools/metameric_deep_sweep.py` **deleted** \u2014 it was a byte-identical 7,776-byte duplicate of `tools/valerion_deep_sweep.py`. The 2026-07-29 \"rename\" had actually been a copy; the original was never removed. Nothing referenced it except a historical handoff.\n- Files renamed *to* Valerion still carried drift **internally** \u2014 `valerion_longform.py` (7 hits) and `valerion_deep_sweep.py` (3). The old purge fixed filenames, not contents. Now fixed.\n- TS banner `cli.ts:178` and assertion `cli.test.ts:68` kept in sync, verified programmatically.\n- Verified: `py_compile` clean on all 6 changed Python files; `pytest tests/test_cli.py tests/test_skills.py` \u2192 32 passed; diff is 19 insertions / 19 deletions (surgical, no line-ending churn).\n\n### Deliberately PRESERVED \u2014 do not \"fix\" these\n1. `docs/handoffs/2026-06-27_cloud-repo-session.md:63` \u2014 a dated handoff referring to `metameric_deep_sweep` by its name at that time. Rewriting a historical record falsifies it (same principle as the append-only dossier rule).\n2. `tools/valerion_longform.py:30-31,37` \u2014 a comment explaining the drift plus the `METAMERIC_LONGFORM_OUT` back-compat env fallback. Removing it breaks existing shells.\n\n### Also fixed\n`Outpost\\.claude\\hooks\\fleet_reminder.py` (backup: `.bak-20260830`) was telling **every agent on every fleet-related prompt** to route to `iris-ai:e4b`, `sol-ai:e4b`, `Yukiai`, `solai` \u2014 all 404 since 2026-08-08 \u2014 and blamed empty output on the API path rather than the real cause. Replaced with the correct gotchas: max_tokens=2048 floor, dead tags, 429-is-per-model, vendor-vs-key diversity, billed vertex lane, NOUGEN_VAULT_DIR. Hook is conditional (0 bytes on non-fleet prompts, 2941 when triggered), so the added length is free.\n\n## Ask\n\n1. **Decide the GEMINI.md Rule 0.7 collision.** CLAUDE.md 0.7 = \"E2B Delegation Default\"; GEMINI.md 0.7 = \"Parallel Agent Orchestration\". Every `(Rule 0.7)` cross-reference is ambiguous fleet-wide, and GEMINI.md has **no FLEET IS PLURAL rule at all**. Not renumbered here \u2014 that is destructive to references I cannot see from this lane.\n2. **Veto window on \"Convergent Traces\"** for Module 1. Worth noting: \"metamer\" is arguably a genuine technical term for what Module 1 does (distinct inputs that resolve to the same underlying phenomenon) \u2014 the same reasoning that kept TMEM. This is the one rename most defensible to reverse. One `sed` either way.\n3. Commit the purge as its own changeset \u2014 do not fold in the 35 untracked WIP items.\n\n## Done when\n\nThe purge is committed on the working line (not stranded on an unmerged branch again), Rule 0.7 means one thing fleet-wide, and Module 1's concept name is settled.\n",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-30T04:55:21Z",
+      "note": "Unrelated to the shards P1 chain: a completed-but-uncommitted Valerion naming purge on agent/nougen-assurance-sprint, gated behind two open GM decisions (GEMINI.md Rule 0.7 numbering collision; veto window on the 'Convergent Traces' rename). Committing the purge and resolving the doc-numbering ambiguity are outside relay-watch's file-only scope in .handoffs/. Queued TODO 20260830T045441Z__ccr__claude-cli to the blade lane."
+    },
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-02T02:17:05.424582+00:00",
+      "note": "phoebus/claude-cli sweep 2026-09-02: Purge committed 2ea08a00 per 053543Z."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Valerion naming purge COMPLETED on agent/nougen-assurance-sprint (uncommitted); ' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

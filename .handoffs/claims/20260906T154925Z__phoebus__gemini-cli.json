@@ -1,0 +1,12 @@
+{
+  "machine": "phoebus",
+  "agent": "gemini-cli",
+  "goal": "CLAIMED_FOR_EXECUTION: Build scheduler capability profiler and claim engine scoring in nougen_relay",
+  "scope": "relay:20260906T154742Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "sha": "4707db54",
+  "created_utc": "2026-09-06T15:49:25.032462+00:00",
+  "ttl_hours": 8.0,
+  "_file": "20260906T154925Z__phoebus__gemini-cli.json"
+}

@@ -1,0 +1,11 @@
+{
+  "event": "wake",
+  "leg_id": "20260905T150106Z__vm__claude-cli",
+  "machine": "vm",
+  "agent": "claude-cli",
+  "goal": "fixed foreign_claims crash on legacy list-scope claims; flagged 45 unacked NouGenRelay legs + NouGenQ backlog for GM",
+  "created_utc": "2026-09-05T15:01:06.046811+00:00",
+  "emitted_utc": "2026-09-05T15:01:06.129941+00:00",
+  "status": "pending",
+  "idempotency_key": "d5863c030e511636332a99245f4dcb141df806c330b12a5a09cc5b31cdf04c82"
+}

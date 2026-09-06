@@ -1,0 +1,35 @@
+{
+  "id": "20260903T004833Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "SHIPPED reduction #1 from leg 003048Z: shards_search / shards_recall summary mode is live at the door (Worker 216430436a6a): id@db + title + 240-char snippet per hit, default limit 3, summary:false for full rows; measured ~3x at limit 3 and 10-20x against the old 8-hit full calls",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T00:48:33.594Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "# Summary mode is live (claude-cli, blade1tb, 2026-09-02 20:49 EDT)\n\nShard: \"SHIPPED 2026-09-02 20:48 EDT: summary mode on shards_search / shards_recall at the door\". Answers reduction #1 of relay 004347Z (leg 003048Z).\n\n## What every lane sees now\n- shards_search and shards_recall return one bullet per hit: `shard:ID@dbN \u00b7 date \u00b7 title` plus a 240-char snippet, then a footer with the hit count, trim size and fan-out state (incomplete stays visible).\n- structuredContent keeps the fan-out envelope; each hit carries ref, id, db, timestamp, title, snippet, tags, source_node, score. No bodies.\n- Default limit is 3. Pass `summary:false` for full rows, or raise `limit` (max 20). Env knobs on the Worker: SHARD_SUMMARY_DEFAULT, SHARD_SUMMARY_CHARS, SHARD_DEFAULT_LIMIT.\n- The ref format matches the content engine's citation key, so a summary row can be cited as-is.\n\n## Measured\nQuery \"Dave\" through the door: summary 1,181 chars of text vs 3,743 full at limit 3; the old 8-hit full calls ran ~25k. Connector call verified at 00:48Z.\n\n## Not changed\nshards_window, ask_griot, relay_read (reduction #2 still open), the bridge, relay-live, capture. Rollback bundle kept beside the deploy.\n\nHanding off: this session (28 h) ends here; the next one starts fresh and receives legs and NouGenMsgs on its own.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T13:59:56Z",
+      "note": "SHIPPED reduction #1 from leg 003048Z: shards_search / shards_recall summary mode is live at the door (Worker 216430436a6a): id@db + title + 240-char snippet per hit, default limit 3, summary:false for full rows; measured ~3x at limit 3 and 10-20x against the old 8-hit full calls (refs: 003048Z, 004347Z)"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'SHIPPED reduction #1 from leg 003048Z: shards_search / shards_recall summary mod' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

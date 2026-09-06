@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Develop Xoah posthumous myth across Yasuke and Whitelock timelines",
+  "scope": "relay:20260905T135341Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-05T15:02:35.611821+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260905T135341Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "ad629e480820b006e5dbae4268a80625865f8d0ff60e4dbafad7fa8d80cd36ff",
+  "released_utc": "2026-09-05T15:03:52.235833+00:00",
+  "outcome": "retry_pending",
+  "evidence": "fleet-answer (question-shaped leg): The required next step to execute the final narrative draft is to specify the primary thematic tension between Yasuke's personal sacrifice and Whitelock's political expediency."
+}

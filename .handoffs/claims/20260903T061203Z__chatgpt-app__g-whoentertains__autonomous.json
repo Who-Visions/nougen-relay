@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "REDISCOVERED Xoah: restore completed Shadow Xoah stack to MAP and finish tool/skill inventory",
+  "scope": "relay:20260903T061203Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T09:33:03.341450+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T061203Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "ecb1c5fe6d4f83f66a9f7917c962de83bd69c9ddac526330a5b03d83efaccd13",
+  "released_utc": "2026-09-03T09:38:29.616815+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

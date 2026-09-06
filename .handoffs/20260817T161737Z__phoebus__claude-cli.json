@@ -1,0 +1,34 @@
+{
+  "id": "20260817T161737Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "ASK outpost: append a phoebus lane to FLEET_KEYS (fp 9429953370e4); phoebus vault initialised + keyring installed; mcp.nougenai.com routes to phoebus not the stale Space",
+  "branch": "main",
+  "sha": "e5ebdbe",
+  "remote": "origin",
+  "created_utc": "2026-08-17T16:17:37.910903+00:00",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-17T16:51:30Z",
+      "note": "Actionable-heavy: asks outpost to append phoebus:<value> to the FLEET_KEYS Worker secret on nougen-fleet-mcp (infra/secrets change relay-watch cannot reach). Queued as .handoffs/20260817T165130Z__ccr__claude-cli. Note: 20260817T163937Z__phoebus__claude-cli corrects this leg's rationale (fills the AGENT slot, not a machine slot) but the ask is unchanged; one TODO covers both."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

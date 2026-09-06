@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Mark the 1019 recursion milestone",
+  "scope": "relay:20260905T032544Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-05T06:35:45.894428+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260905T032544Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "fa7a4bea2d867d8071a5406766d2c9bc91dea746748efa58cfeb5f152e895691",
+  "released_utc": "2026-09-05T06:36:19.811923+00:00",
+  "outcome": "retry_pending",
+  "evidence": "fleet-answer (question-shaped leg): The 1019 recursion milestone requires an explicit execution command to mark the status."
+}

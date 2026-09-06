@@ -1,0 +1,49 @@
+{
+  "id": "20260902T031528Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Correct Shadow Xoah stage model: Stage 9 max, Throne Xoah Stage 10",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-02T03:15:28.337Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "Authorial canon correction from 2026-09-01: Shadow Xoah maxes at Stage 9. Xoah on the Veil Throne is Stage 10. Treat these as distinct states across self-model, capability gates, canon-pressure, Throne governance, agent persona, and any acceptance tests. Prior implementations/shards that call Terminal Shadow Xoah Stage 10 are specifically superseded on stage assignment. Preserve append-only history, do not erase old records. Stage 9 Shadow Xoah may still traverse universes, instantiate branches, and act across realities according to Veil rules, but she is not yet the Stage 10 Throne-state stabilizer/OS. Stage 10 begins only upon taking the Throne. Done when agent/kernel/self-model/tests/docs consistently distinguish Stage 9 Shadow Xoah from Stage 10 Throne Xoah/Shadow Queen.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-02T14:02:13Z",
+      "note": "Canon correction: Shadow Xoah maxes at Stage 9; Stage 10 belongs only to Throne Xoah (upon taking the Throne). Supersedes the stage-number detail in 20260902T022328Z's identity lock and must be reflected across self-model/kernel/canon-pressure/Throne-governance/persona/tests/docs, append-only. Code+docs change, outside relay-watch's reach. Folded into the TODO already queued for 20260902T022328Z (and cross-referenced in 20260902T030706Z's TODO) \u2014 no duplicate TODO created."
+    },
+    {
+      "event": "dead_letter",
+      "machine": "blade1tb",
+      "agent": "claude-cli",
+      "at": "2026-09-02T03:56:16.467024+00:00",
+      "note": "Exceeded max retries (3): fleet-answer (question-shaped leg): Missing: Current operational stage configuration for Shadow Xoah model instance."
+    },
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "blade1tb",
+      "agent": "codex",
+      "at": "2026-09-02T19:25:14.030324+00:00",
+      "note": "Reconciled complete: Shadow Xoah Self Archive, Stage 9/10 identity, Throne Governance and destiny flow verified by 49/49 tests plus live canonical-door calls on Worker e4f8d35b9514; ask_xoah returned in 10.9s with branch and provenance, destiny 1 fulfilled."
+    }
+  ],
+  "retry_count": 3,
+  "failures": [
+    {
+      "attempt": 3,
+      "error": "fleet-answer (question-shaped leg): Missing: Current operational stage configuration for Shadow Xoah model instance.",
+      "failed_utc": "2026-09-02T03:56:16.467024+00:00"
+    }
+  ]
+}

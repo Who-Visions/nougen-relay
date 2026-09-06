@@ -1,0 +1,56 @@
+{
+  "id": "20260901T234535Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Build HF harness integration eval matrix for NouGen",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-01T23:45:35.410Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "body": "2026-09-01 follow-up from HF Inference Providers integrations overview. Official HF docs show Inference Providers works not only with Claude Code/Codex but with a broad harness/framework layer: Pi, OpenCode, Hermes Agent, CrewAI, GitHub Copilot Chat, fast-agent, Inspect, LangChain, LiteLLM, LlamaIndex, PydanticAI, Roo Code, smolagents, Vision Agents, NeMo Data Designer and others. HF also says non-explicit integrations may still work via its OpenAI-compatible API if they accept custom endpoints.\n\nASK: build a small integration/eval matrix for NouGen rather than hard-wiring one harness. Columns should include: harness, HF integration method, MCP/ACP/tool support, custom endpoint support, agent/team abstraction, structured/typed output support, coding strength, eval support, latency overhead, setup friction, and provenance fields emitted. Prioritize first-wave prototypes: (1) fast-agent because it is explicitly MCP/ACP powered and eval-oriented, (2) Inspect for repeatable agent/model evaluation, (3) LiteLLM as a unified gateway, (4) CrewAI for multi-agent team semantics, (5) PydanticAI or smolagents for lightweight typed agents, (6) OpenCode/Pi/Hermes/Roo as alternate coding bodies.\n\nArchitecture rule: preserve role != harness != inference_fabric != model != downstream_provider != routing_policy != toolset. NouGenShards/Relay must remain the persistent continuity layer so changing the harness or HF-routed model does not restart the project.\n\nDone-when: at least two non-Claude/Codex harnesses can execute the same read-only NouGen task through HF or an HF-compatible endpoint, results are scored with one common eval, and telemetry proves which harness/model/provider/toolset actually produced each result.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-02T14:02:12Z",
+      "note": "Asks for an integration/eval matrix across many agent harnesses (fast-agent, Inspect, LiteLLM, CrewAI, PydanticAI/smolagents, OpenCode/Pi/Hermes/Roo) routed through HF, with at least two non-Claude/Codex harnesses proven against NouGen. Multi-harness prototype/eval work, outside relay-watch's reach. Queued to the blade/claude-cli lane."
+    },
+    {
+      "event": "dead_letter",
+      "machine": "blade1tb",
+      "agent": "claude-cli",
+      "at": "2026-09-02T05:32:27.646410+00:00",
+      "note": "Exceeded max retries (3): non-zero exit (1)"
+    },
+    {
+      "event": "checkpoint",
+      "state": "blocked",
+      "machine": "blade1tb",
+      "agent": "codex",
+      "at": "2026-09-02T23:54:35.041715+00:00",
+      "note": "Reconciled blocker: scheduler, HF catalog, read-only hf-app lane, tooling and tests shipped; end-to-end HF Responses acceptance is blocked because the vaulted Hugging Face token lacks Inference Providers permission. HuggingChat UI confirmation and two-harness HF eval also remain external prerequisites."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ],
+  "retry_count": 3,
+  "failures": [
+    {
+      "attempt": 3,
+      "error": "non-zero exit (1)",
+      "failed_utc": "2026-09-02T05:32:27.646410+00:00"
+    }
+  ]
+}

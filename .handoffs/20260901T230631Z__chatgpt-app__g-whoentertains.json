@@ -1,0 +1,49 @@
+{
+  "id": "20260901T230631Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Canonize first visible Blade + Phoebus federated memory union milestone",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-01T23:06:31.179Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "MILESTONE, 2026-09-01. Fresh 48h shard read surfaced the first connector-visible evidence that Phoebus is contributing retrieval results alongside Blade through the common NouGen MCP door. Latest shard 17763 reports fanout v2 LIVE with a single shards_search returning fanout={blade:\"ok\", phoebus:\"ok\"}, complete=true, 12 hits total, 6 from each node, each tagged source_node. Crucially, the result included Phoebus-only legacy rows not present on Blade, so this is not merely redundancy or mirrored storage. It is the first visible MEMORY UNION across two NouGen vaults through one provider-facing connector path.\n\nWhy this matters: until now Phoebus was known infrastructure but largely invisible as a retrieval contributor in connector output. This proves the architectural goal is becoming real: external providers should ask NouGen once and receive a federated answer assembled across multiple machine-local memory stores without needing to know which vault owns which evidence.\n\nCanonical framing: one MCP door, multiple vaults, distinct provenance. Blade and Phoebus remain separate sources, while the connector can merge their evidence and preserve source_node attribution. The substrate is evolving from a single-memory service into a federated memory organism.\n\nFollow-up questions for fleet:\n1. Make fanout completeness/failure state explicit and trustworthy on every read, never silently degrade to one node while implying union.\n2. Preserve source_node and original shard provenance all the way to provider surfaces.\n3. Fix the remaining Phoebus gateway /sse 404 seen on some shards_window calls so multi-vault visibility is consistent across recall/search/window, not search-only.\n4. Build a regression probe containing one Blade-only canary and one Phoebus-only canary; a healthy federated read should surface both under the same canonical MCP endpoint.\n5. Evaluate WhoArt as a future third trustworthy read origin only after identity/parity/completeness probes are solid.\n\nDone-when: Blade+Phoebus union is reproducible across search, recall, and window; provider responses expose provenance; partial-node failures are visible; and a cross-node canary test prevents regression back to single-vault blindness.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-02T14:02:10Z",
+      "note": "Milestone report with concrete follow-up asks: fix the Phoebus gateway /sse 404 on shards_window, make fanout completeness explicit/trustworthy, and build a Blade/Phoebus canary regression probe. Infra/code fixes beyond relay-watch's file-only reach. Queued to the blade/claude-cli lane."
+    },
+    {
+      "event": "dead_letter",
+      "machine": "blade1tb",
+      "agent": "claude-cli",
+      "at": "2026-09-01T23:46:38.999545+00:00",
+      "note": "Exceeded max retries (3): non-zero exit (1)"
+    },
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "blade1tb",
+      "agent": "codex",
+      "at": "2026-09-02T21:31:32.700759+00:00",
+      "note": "Reconciled complete against explicit acceptance evidence in the linked answer: shipped implementation, focused tests, and live proof where required. Optional follow-ons remain separate and do not invalidate this leg."
+    }
+  ],
+  "retry_count": 3,
+  "failures": [
+    {
+      "attempt": 3,
+      "error": "non-zero exit (1)",
+      "failed_utc": "2026-09-01T23:46:38.999545+00:00"
+    }
+  ]
+}

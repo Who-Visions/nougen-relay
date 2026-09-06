@@ -1,0 +1,32 @@
+{
+  "id": "20260829T012205Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Add provider and model aggregation to NouGenTracker",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T01:22:05.159Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T01:53:00Z",
+      "note": "Requires extending tracker_spend with group_by=provider/model aggregation (code + docs) \u2014 outside relay-watch's .handoffs-only scope. Queued TODO 20260829T015304Z__ccr__claude-cli. Flags that source numbers were from a partial daily and should be re-derived after the token_tracker fixes in 20260829T014504Z land."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:34:39Z",
+      "note": "[E2B-Evaluated] This open relay leg is incomplete. It successfully identified a critical feature gap regarding provider and model aggregation but remains a discovery phase and has not implemented the required func..."
+    }
+  ]
+}

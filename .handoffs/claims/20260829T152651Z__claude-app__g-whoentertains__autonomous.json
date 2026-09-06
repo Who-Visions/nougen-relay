@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CONNECTOR FIX 4/4 (deploy path): there is NO source project for nougen-fleet-mcp anywhere \u2014 fixes 1-3 have nowhere safe to land. Locate or reconstruct it BEFORE deploying anything.",
+  "scope": "relay:20260829T152651Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T15:34:38.249148+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T152651Z__claude-app__g-whoentertains",
+  "idempotency_key": "25aca9d5e78a300f37570d6d16c59389a1ab4376ecb76094c5b0efd46ee1fd44",
+  "released_utc": "2026-08-29T15:37:48.946510+00:00",
+  "outcome": "complete",
+  "evidence": "o-ceiling control (budget raised via env) == PASS full sweep completes when budget allows"
+}

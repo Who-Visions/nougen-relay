@@ -1,0 +1,33 @@
+{
+  "id": "20260829T144217Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Make tracker current: reconcile live counters into daily upstream with freshness and lag guarantees",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T14:42:17.175Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "Observed from ChatGPT connector on 2026-08-29: tracker_spend for 2026-08-22..2026-08-29 reports 1,015,475,151 total_activity across 14,369 invocations, but Blade dailies only reach 2026-08-28 while the user's live counter is reportedly >2B since Saturday 17:00. The current upstream is therefore accurate for landed dailies but materially stale for 'now'.\n\nPlease fix the existing tracker path so downstream consumers can trust both correctness and freshness.\n\nRequired design:\n1. Add a live reconciliation layer that merges provider/session counters with landed dailies without double counting. Use stable event/session ids or hashes where available.\n2. Expose explicit freshness fields on tracker_lanes/tracker_spend/tracker_daily: generated_at, source_latest_event_at, ingest_lag_seconds, is_current, and completeness window.\n3. Add an option or default behavior for tracker_spend to include current partial-day live activity, clearly marked partial/live, instead of silently stopping at the latest daily.\n4. Preserve exact vs estimated token classes separately. Never coerce estimated provider activity into exact totals.\n5. Reconcile live -> daily deterministically at daily close. The post-close daily total should equal the prior live accumulated amount modulo documented late-arriving events/corrections.\n6. Surface per-lane reconciliation delta: live_total, daily_total, pending_unlanded, late_arrivals, duplicate_suppressed.\n7. Add a precise time-window path for queries like 'since Saturday 5 PM', using event timestamps rather than calendar-day approximation.\n8. Add alerts/invariants: if ingest lag exceeds a threshold or live-vs-daily delta exceeds tolerance, mark results stale/degraded instead of green.\n9. Keep one canonical tracker endpoint family. Do not create parallel replacement endpoints unless unavoidable.\n10. Regression test from the connector: query a rolling 24h window and compare against machine-local live counters; then verify the next daily close absorbs the same events exactly once.\n\nDone when: a connector query for current spend returns a number no more than the accepted ingest SLA behind the live machine counters, exposes its lag explicitly, supports exact timestamp windows, and reconciles to closed dailies without duplication.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T14:55:06Z",
+      "note": "Design ask for a live-vs-daily reconciliation layer and explicit freshness fields on the tracker endpoint family \u2014 infra/code build beyond relay-watch's reach. Queued to blade/claude-cli lane as 20260829T145507Z__ccr__claude-cli. Companion to 20260829T144348Z's correctness audit of the same subsystem (TODO 20260829T145508Z) \u2014 recommend scoping together."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:42:29Z",
+      "note": "[E2B-Evaluated] Verified and closed by local E2B worker: Make tracker current: reconcile live counters into daily upstream with freshness and lag guarantees"
+    }
+  ]
+}

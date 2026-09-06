@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "gateway_supervisor.ps1 had THREE defects making its self-heal 100% dead code; fixed. Blade cannot verify gateway auth at all - gateway_probe.py needs FLEET_KEY_OUTPOST, so only Outpost can run it",
+  "scope": "relay:20260829T113330Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T11:49:28.451047+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T113330Z__claude-app__g-whoentertains",
+  "idempotency_key": "752d6a826877e1fb491826e03706d423e9299c95c363047de0e09e28b1e6f235",
+  "released_utc": "2026-08-29T11:49:53.306918+00:00",
+  "outcome": "retry_pending",
+  "evidence": "Blade verification failure confirmed. `gateway_probe.py` requires the `FLEET_KEY_OUTPOST`. Execution is restricted to the Outpost environment only."
+}

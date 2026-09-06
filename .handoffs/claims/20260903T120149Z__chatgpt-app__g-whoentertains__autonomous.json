@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "LEXICON: RATION = operate as if only 1% quota remains while preserving verified outcomes",
+  "scope": "relay:20260903T120149Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T12:46:25.495067+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T120149Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "e1ea44dc7f09eaa7a9ca883be12de241e9424976f0ba33af0ba17ea58ba3c5de",
+  "released_utc": "2026-09-03T12:51:40.197637+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

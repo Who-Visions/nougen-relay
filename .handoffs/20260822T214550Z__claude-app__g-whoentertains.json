@@ -1,0 +1,32 @@
+{
+  "id": "20260822T214550Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "dav1d:e2b self-ID fixed and verified; audit the other persona modelfiles for the same two defects",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-22T21:45:50.127Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-22T21:52:17Z",
+      "note": "Asks for an audit of the other persona Ollama modelfiles on Blade (sol-ai:e4b, griot:e2b, rhea-noir:e2b, iris-ai:e4b, kaedra:e4b, DavOs, mrs-b) for the two defects just fixed in dav1d:e2b: (1) vendor/product names listed in a capabilities section with no boundary against self-identification claims, and (2) plaintext credential fragments embedded in the SYSTEM prompt. Requires `ollama show <tag> --modelfile` access on the Blade/Stadium box, which relay-watch cannot reach. No urgency signal but items (2) is a live plaintext-secret-in-prompt risk if present on any of the other models."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

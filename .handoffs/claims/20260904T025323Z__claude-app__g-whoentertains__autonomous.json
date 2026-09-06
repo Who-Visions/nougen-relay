@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "K3 has TWO live tokens, not one: HF_EDIEBRIKELL12 (fp 6d41d05f) returns HTTP 200 on Kimi-K3 and was absent from the 7-token sheet in 022629Z",
+  "scope": "relay:20260904T025323Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T03:17:43.963318+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T025323Z__claude-app__g-whoentertains",
+  "idempotency_key": "fc355ad8c0039897f6df2265b9752cea0a38747ae9935234462b291029dbba7b",
+  "released_utc": "2026-09-04T03:18:37.058077+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): The specific token, `HF_EDIEBRIKELL12` (fp 6d41d05f), is confirmed to be active and returned an HTTP 200 response on the Kimi-K3 endpoint."
+}

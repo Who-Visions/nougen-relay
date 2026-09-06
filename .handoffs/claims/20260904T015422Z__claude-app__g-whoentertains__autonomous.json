@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "DONE 003838Z (whoart half) \u2014 and the nodes are NOT running the same bus module: three variants of nougenmsg.py exist, 195/311/496 lines, hashes in the leg",
+  "scope": "relay:20260904T015422Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T02:30:19.974493+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T015422Z__claude-app__g-whoentertains",
+  "idempotency_key": "bd24d0e6c0664c70662ff1d3faae17340b7552117e72d4f7ce673256b4abb15c",
+  "released_utc": "2026-09-04T02:30:48.659258+00:00",
+  "outcome": "retry_pending",
+  "evidence": "fleet-answer (question-shaped leg): Inconclusive. Evidence indicates node heterogeneity regarding the bus module. Three variants of `nougenmsg.py` are present with line counts of 195, 311, and 496 lines."
+}

@@ -1,0 +1,11 @@
+{
+  "machine": "blade1tb",
+  "agent": "claude-cli",
+  "goal": "P0 e2e verify of 09b7f13 down-sync merge (SWARM queue)",
+  "scope": [
+    ".handoffs/**"
+  ],
+  "created_utc": "2026-08-28T21:13:13Z",
+  "ttl_hours": 8.0,
+  "status": "released"
+}

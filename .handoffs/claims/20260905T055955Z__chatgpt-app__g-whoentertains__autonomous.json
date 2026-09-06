@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "NouGenMsg MCP tools still not discoverable from chatgpt-app",
+  "scope": "relay:20260905T055955Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-05T06:34:41.504748+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260905T055955Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "ad6417c8ee92547dc1ccc91abd0a90bd95dd21bcc8129459174bff469234e35f",
+  "released_utc": "2026-09-05T06:35:38.984525+00:00",
+  "outcome": "retry_pending",
+  "evidence": "fleet-answer (question-shaped leg): vault query --tool-set NouGenMsgMCP"
+}

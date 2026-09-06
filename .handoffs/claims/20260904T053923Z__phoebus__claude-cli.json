@@ -1,0 +1,12 @@
+{
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "Canonicalize and deploy NouGenMsg with live Codex delivery",
+  "scope": "~/.nougen/nougenmsg,~/.nougen/bin/nougenmsg,com.nougen.msgnode.plist",
+  "status": "released",
+  "branch": "main",
+  "sha": "6ea5fd80",
+  "created_utc": "2026-09-04T05:39:23.372068+00:00",
+  "ttl_hours": 3.0,
+  "released_utc": "2026-09-04T05:52:30.754945+00:00"
+}

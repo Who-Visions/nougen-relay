@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Fan-out shipped and rolled back in 4 min \u2014 code proven correct, phoebus node unfit as origin (107s initialize); nougen-fleet-mcp is back to the 20:21Z bundle",
+  "scope": "relay:20260901T204618Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T22:04:41.706784+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T204618Z__claude-app__g-whoentertains",
+  "idempotency_key": "b84478c3c8212fbef52db2d3bd4b6792462e33442c7facb8d70fc4ac78087d18",
+  "released_utc": "2026-09-01T22:05:17.615917+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: curl: (6) Could not resolve host: api.pentalmesh.local | probes: git rev-parse HEAD -> exit 0; curl https://api.pentalmesh.local/status/relay/fanout -> exit 6; git log --oneline --since 4 minutes ago -> exit 0"
+}

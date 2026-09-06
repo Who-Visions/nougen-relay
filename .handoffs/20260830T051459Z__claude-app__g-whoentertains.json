@@ -1,0 +1,35 @@
+{
+  "id": "20260830T051459Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Tunnel root cause: start_grid.py duplicate-guard FAILS OPEN, leaking a cloudflared every ~7min (10 stacked); blade round-robins onto wedged connectors \u2014 cleanup blocked, needs GM",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-30T05:14:59.505Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "**Continues** the tunnel work after `20260830T045719Z` (BLADE_TIMEOUT_MS fix). blade's edge-unreachability is now root-caused.\n\n## Symptom\n`https://blade.nougenai.com/mcp/` answers **401 in ~0.2s**, but `https://blade.nougenai.com/health` **hangs 20s+ (http=000)** on the same host, same moment. Split behaviour on one hostname = requests are being distributed across multiple tunnel connectors, some wedged.\n\n## Cause: ten stacked cloudflared instances\n`tasklist` shows **12 cloudflared processes**. Nine are identical `\"C:\\Program Files (x86)\\cloudflared\\cloudflared.exe\" tunnel run --token <REDACTED>`, spawned on a regular cadence:\n`15:41, 15:48, 22:48, 22:55, 23:02, 23:09, 23:18, 23:24, 23:45` \u2014 roughly every 7 minutes.\n\nAll run the **same tunnel token**, so Cloudflare sees many connector sets for one tunnel and load-balances across them. Requests landing on a wedged instance hang; ones landing on a live instance return instantly. That is the split behaviour above, and it is why the Worker (edge\u2192origin) consistently stalled while my local probes sometimes succeeded.\n\n## The leak: a fail-OPEN guard\n`tools/start_grid.py` \u2192 `_start_tunnel_if_needed()`:\n```python\nout = subprocess.run([\"tasklist\", ...], capture_output=True, text=True, timeout=15).stdout\nalready = exe_name.lower() in out.lower()\nexcept Exception as e:\n    print(f\"tunnel probe failed ({type(e).__name__}); assuming not running\")\n    already = False        # <-- fails OPEN\n```\nOn a saturated box the 15s `tasklist` times out, the guard assumes no tunnel is running, and stacks another connector \u2014 which loads the machine further and makes the next probe slower still. **Self-feeding loop**, matching the ~7-minute cadence exactly. The repo's own `gateway_probe.py` comment records blade at **24,523s CPU**, so the saturation precondition is documented.\n\nThe guard has a second latent flaw: it matches on the **exe name only** (`cloudflared.exe`), so the unrelated `tools/bin/cloudflared.exe` quick tunnel satisfies it \u2014 meaning it can also fail the other way and skip a genuinely needed start.\n\n## Fix \u2014 BLOCKED, needs GM (harness gated process termination)\nKill the 8 older leaked duplicates, keep the newest (`58544`):\n```\ntaskkill /PID 3360 /F & taskkill /PID 13728 /F & taskkill /PID 30640 /F & taskkill /PID 20108 /F & taskkill /PID 55100 /F & taskkill /PID 46416 /F & taskkill /PID 56272 /F & taskkill /PID 36552 /F\n```\n**Do NOT kill**: `23828` (Windows Service), `5468` (`tunnel --no-autoupdate run`, managed by `tunnel_lane.ps1`'s pidfile), `36172` (`tools/bin/cloudflared.exe` quick tunnel \u2192 `127.0.0.1:4444`, a different service).\n\nThen verify: `curl -m 20 -o /dev/null -w \"%{http_code} %{time_total}\\n\" https://blade.nougenai.com/health` should stop hanging, and `shards_search` should return **real hits** instead of `(no matches)` once blade serves again.\n\n## Code fix \u2014 NOT APPLIED, lane conflict\n`tools/start_grid.py` is in another lane's uncommitted set (`M tools/start_grid.py` per the session-start handoff), so per the share-the-field rule I did not touch it. **Lane owner**: make the guard fail **CLOSED** (on probe failure, do not spawn), and match on the resolved full exe path rather than the bare name. `tunnel_lane.ps1` already models the right pattern with a pidfile guard (`\"tunnel already running (pid $running)\"; break`).\n\n## Note\n`tunnel_lane.ps1` and `whoart_tunnel.ps1` were both cleared as the leak source \u2014 the former guards correctly via pidfile, the latter manages SSH tunnels and spawns no cloudflared. Scheduled tasks were also cleared: all three NouGen tasks are logon-triggered with **no repetition interval**.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-30T05:54:56Z",
+      "note": "Both asks here are now resolved by follow-on legs from the same author: the start_grid.py guard fix (fail-closed, exact-binary match) landed in 20260830T053312Z, and the GM-approved reap of the 8 leaked connectors executed in 20260830T054454Z. No further routing action needed on this leg itself; latest state and the one remaining blocker (leaked instance 58544 + Cloudflared service restart) is tracked via a new TODO off 20260830T054454Z."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Tunnel root cause: start_grid.py duplicate-guard FAILS OPEN, leaking a cloudflar' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

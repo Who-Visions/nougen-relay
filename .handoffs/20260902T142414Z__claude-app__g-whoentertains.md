@@ -1,0 +1,22 @@
+# 🤝 Git Handoff — claude-app / g-whoentertains
+
+**Goal**: ANSWER to legs 014435Z/021429Z/022328Z/031528Z (+ ccr TODOs 141409Z/141509Z acked): Xoah Self Archive v0.2 + Stage 9/10 identity lock SHIPPED, 40/40 tests, Worker 5fbbcf661d8e exposes xoah_self; next = Throne Governance (TODO 141709Z)
+**Branch**: `n/a` (written via fleet connector)
+**When**: 2026-09-02T14:24:14.500Z
+
+---
+## Self Archive v0.2 + Shadow Queen lock (blade1tb, claude-cli, 2026-09-02 10:32 EDT)
+
+War-game `wargames/shadow-xoah-self-archive.md`; shard "SHIPPED 2026-09-02 10:30 EDT: Xoah Self Archive v0.2"; agent card `docs/agents/shadow_xoah.md` updated. Uncommitted on `codex/shards-capture-main`.
+
+**Done-when, checked (leg 014435Z)**: `ask_xoah` can return experiential provenance and distinguish memory ownership: her loop has a `self` tool and every pressure verdict now carries `experiential` (claim, kind, voice, node, provenance), `scars_active`, `precedents`. Test C proves a physically possible but UNIMAGINED choice (age-12 Xoah searching the Null Corridor) is rejected with the unlock named (Vol 2 awakening + Stage 7). A: the Throne node is ARCHIVE_CANON and renders "the record says", never "I remember". B: BRANCH_ECHO renders "another me remembers". D: then_vs_now keeps belief_then ("My parents are dead") beside revealed ("Displaced") and terminal ("I allowed it") with a leak guard. E: the Olympica scar biases a 2185 beat and stops biasing after the Vol 3 retrieval.
+
+**Done-when, checked (leg 021429Z)**: A2 episode 647 -> UNWRITTEN_SELF ("the slot exists; the Veil holds no evidence; I will not remember what was never written"). B2 removing `n_2180_loss` -> conservation violation naming lost w_2180_grief -> n_2183_bike -> w_debt_leash -> n_2185_vol1 and the lost bias "withdrawal over rage". C2 immediate forgiveness of Rixa in Vol 2 -> BEHAVIOR_CONFLICT with the nearest precedent "confronted Rixa about the cover-up; withheld forgiveness" voiced "I remember". D2 Rixa 2185 trust .7 / love .8 vs 2187 trust .1 / love .6, knows_betrayal true: love and trust separate. E2 Vol 1 state carries "the Veil is superstition" and no loop knowledge; a Vol 1 beat that knows the collision is load-bearing -> KNOWLEDGE_CONFLICT (TERMINAL_KNOWN).
+
+**Identity lock (022328Z + 031528Z)**: Shadow Xoah maxes at Stage 9 (traverser, loops back, walks universes, instantiates branches). Stage 10 = Xoah on the Veil Throne: Shadow Queen / Architect of Paradox / Operating System of the Veil / Necessary Function / Mother of Closed Loops / Three-Eyed Queen / Redeemed Architect; 1,001 universes; standing breaks the current; Queen is a sentence. Records `stage_model_9_vs_10` (corrected), `terminal_stage10_legacy` (superseded, kept), `shadow_queen_throne` (locked); persona, terminal + throne rows, capability gates updated. Regression test: "Terminal Shadow Xoah is Stage 10", "queen of one universe", "generic future Xoah" all FACT_CONFLICT; the correct Throne sentence BRANCH_VALID on U0.
+
+**Data**: 10 self nodes, 5 wounds, 7 relationship timelines, 17 typed edges, all cited; loader refuses uncited or mistyped rows. Second canon brief amendments: Ravenous is Corbin's daughter (b. 2158); Xoah spares Ravenous in the Vol 2 fight; the coordinate where she learns of Rixa's betrayal is unauthored (flagged, not invented); shard ids collide across DBs, cite id:db. Rhea helped in parallel: Throne mechanic + titles from 17322/16752 (she flagged her recall carries no shard-id field).
+
+**Verify**: 40/40 tests (self_archive 12, canon_pressure 12, shadow_xoah 7, destiny 9); five Worker smokes green; in-process node: 26 tools. **Worker** etag `5fbbcf661d8e` (14:21Z, 32 bindings): `xoah_self` joins `ask_xoah`, `xoah_pressure`, `unfinished_destinies`, `ask_dav1d`.
+
+**Next**: Throne Governance Engine (ccr TODO 141709Z; legs 030706Z / 031358Z): modes OBSERVE..FORBIDDEN, intervention types incl. EXISTING_UNIVERSE_TRAVERSAL / BRANCH_INSTANTIATION / CHOICE_BORN_UNIVERSE / SIMULATED_POSSIBILITY, budget + paradox accounting, CAUSE/ALLOW/PRESERVE/BRANCH_AWAY on Jaru's death as the golden test. **Owed by Dave**: the elevated node restart (all routes since last night are still not live on PID 388592) and the commit policy for the whole Xoah stack.

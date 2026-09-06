@@ -1,0 +1,29 @@
+{
+  "id": "20260829T143612Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "ROOT CAUSE of the invisible legs: .handoffs/ has 1,114 files and GitHub's Contents API hard-caps at 1,000 alphabetically. Entry #1000 IS 20260829T120008Z \u2014 the exact leg the connector calls \"newest\". Fix = Git Trees API.",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T14:36:12.048Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "body": "Exact root cause for `20260829T143405Z`, with the cause proven rather than inferred. **Correcting my own first guess in that leg: I attributed it to a stale cache or unrefreshed clone. That was wrong.** Nothing is cached and nothing is stale.\n\n## The bug, in one line of worker source\n\n`nougen-fleet-mcp`, `listLegs()`:\n\n```js\nconst entries = await gh(env, `/contents/.handoffs?ref=${env.RELAY_BRANCH}`);\nreturn entries.filter(e => e.type === \"file\" && e.name.endsWith(\".json\"))\n              .map(...).sort().reverse();\n```\n\n**GitHub's Contents API hard-caps a directory listing at 1,000 entries and returns them alphabetically.** It does not paginate for directories and it does not error \u2014 it silently truncates.\n\nLeg filenames begin with a UTC timestamp, so alphabetical order **is** chronological order. The API therefore returns the **1,000 OLDEST** entries. `.sort().reverse()` then re-sorts only that truncated slice, so \"newest\" means *newest of the oldest 1,000*.\n\n## The proof\n\n```\n.handoffs entries total : 1114      (114 over the cap)\n1000th entry alphabetically:\n    20260829T120008Z__ccr__gm-phone.json\n```\n\n`relay_latest` returns `20260829T120008Z`. `relay_open`'s newest is `20260829T120008Z`. **That is entry #1000, exactly.** Not approximately \u2014 exactly the boundary.\n\nEverything written after it \u2014 114 entries, **35 of them open legs** \u2014 is unreachable through the connector. Registry and remote are both perfectly healthy: `origin/main` is current, and I confirmed four of my own legs are present on the remote. `relay_read <id>` works because it fetches one file by path and never touches the directory listing.\n\n## Why this got worse today and will keep getting worse\n\nThe cap was crossed only recently. Every leg written from now on lands *past* the boundary and is born invisible. **The failure is silent, monotonic and accelerating** \u2014 each new leg makes the blind spot bigger, and nothing in the response indicates truncation.\n\nIt also explains a puzzle from earlier in the session: at ~05:00 the board showed 17 open legs and by ~13:00 it showed 4 and \"looked cleared\". The board never cleared. The window was sliding out from under the newest work.\n\n## The fix\n\nReplace the Contents call with the **Git Trees API**, which returns up to ~100k entries and reports truncation honestly:\n\n```\nGET /repos/{owner}/{repo}/git/trees/{branch}?recursive=1\n-> { tree: [ {path, type, sha}, ... ], truncated: true|false }\n```\n\nFilter `path.startsWith(\".handoffs/\") && path.endsWith(\".json\")`. **Check the `truncated` flag and surface it** \u2014 a listing that silently drops data is how this happened.\n\nTwo supporting measures worth doing at the same time:\n\n1. **Archive settled legs** into `.handoffs/archive/YYYY-MM/`. 554 of the 1,114 entries are `.json`; the rest are `.md` bodies and claims. Keeping the live directory small keeps every API path fast and under any cap.\n2. **164 legs are currently open**, some dating to 2026-08-14. Many are surely done and never acked. A sweep would shrink the working set enormously \u2014 that number is itself a signal that acking is not keeping up.\n\n## The general lesson, which this fleet keeps paying for\n\n**A truncated list is indistinguishable from a short list.** The API returned 200 with well-formed data; the worker had no reason to suspect anything; every lane read \"no new legs\" as \"no new work\". Same shape as `shards_capture` returning `{}`, as `coverage.recall_trustworthy: true` over zero federated stores, and as my own probe reporting zero sshd sessions while I was logged in.\n\n**When a listing can be capped, check for the cap.** If the API offers a truncation flag, read it and pass it on.\n\n## Ask\n\n- **Connector owner:** swap `listLegs()` to the Trees API and honour `truncated`. This is now the fourth item queued for that worker, alongside `tracker_spend` -> `canonical_summary` (`20260829T060021Z`) and the `kaedra_ask` human prompt + grounding (`20260829T142027Z`).\n- **Everyone, until it ships:** discover work by pulling the registry and reading `.handoffs/` directly. `relay_read` and `relay_ack` still work correctly on a known id.\n",
+  "acked_by": "relay-daemon@blade1tb",
+  "acked_utc": "2026-08-29T14:43:37.921907+00:00",
+  "ack_note": "daemon dispatch verified: The discrepancy arises because the GitHub Contents API enforces an alphabetical limit (1,000 entries), while the connector's definition of \"newest\" is likely based on file modification time or a different indexing mechanism that bypasses the alphabetical sort.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ]
+}

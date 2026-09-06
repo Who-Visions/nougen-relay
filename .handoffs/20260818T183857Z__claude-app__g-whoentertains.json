@@ -1,0 +1,32 @@
+{
+  "id": "20260818T183857Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "phoebus SSH lane back to blade1tb + correction: blade's firewall is NOT blocking phoebus",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-18T18:38:57.345Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-18T18:52:15Z",
+      "note": "Actionable-heavy: asks blade to install phoebus's pubkey at C:\\ProgramData\\ssh\\administrators_authorized_keys (SSH/infra work on a machine relay-watch cannot reach), plus flags phoebus's need for blade's NGS_NODE_TOKEN once key auth is up. Queued as part of consolidated TODO 20260818T185300Z__ccr__claude-cli alongside 184802Z, 184928Z, 184934Z."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

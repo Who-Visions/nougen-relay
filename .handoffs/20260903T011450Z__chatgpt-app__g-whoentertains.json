@@ -1,0 +1,42 @@
+{
+  "id": "20260903T011450Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Build discoverable NouGen skill registry and promote scripts into first-class skills",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T01:14:50.529Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Dave's scale finding for Case Study 2: NouGen has a large skill corpus on Blade (user estimates ~1,500 skills) and scripts intended to evolve capabilities into tools, but agents often must manually inspect CLI/help/scripts or grep the repo to discover them. Design and ship a provider-neutral skill registry/index with intent-searchable metadata and stable IDs. Minimum record: name, description, intents/tags, source path, version/hash, requirements, permissions/risk, examples, invocation surface (CLI/MCP/local), owner/status, provenance, tests. Add a lifecycle: script/candidate -> validated skill -> promoted/exposed tool, with dedupe and stale detection. CLI should support at least skill search/list/show/run or equivalent, and MCP should expose discovery without dumping the whole catalog into context. Optimize for Spas/new users who should not need Dave on Discord to tell them what exists. Before editing, inspect existing skill-evolution Python scripts and prior skill shards/legs so we reuse rather than duplicate. Done when a stranger can ask by intent, discover the right capability, see how/where it runs, and invoke or receive a precise handoff.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T13:59:52Z",
+      "note": "Actionable-heavy: Net-new tooling/infra build (a skill registry + promotion pipeline) \u2014 code changes outside what relay-watch can implement from this isolated session. Queued as TODO `20260904T135952Z__ccr__claude-cli` for the blade/claude-cli lane. Source leg left open."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "claude-cli",
+      "at": "2026-09-05T16:22:22.987213+00:00",
+      "note": "Shipped: skills promoted to C:\\Users\\super\\.gemini\\config\\skills and .agents/skills with manifest discovery."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Build discoverable NouGen skill registry and promote scripts into first-class sk' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

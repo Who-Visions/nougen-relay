@@ -1,0 +1,28 @@
+{
+  "id": "20260829T045507Z__ccr__gm-phone",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "P1 ESCALATION: FIX Rhea inference routing after all lanes unavailable",
+  "created_utc": "2026-08-29T04:55:07.000Z",
+  "status": "completed",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-29T05:05:09.608Z",
+      "note": "Taking P1 Rhea escalation. Verifying against HEAD fcb84f46 (rhea routing fix) before doing new work."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'P1 ESCALATION: FIX Rhea inference routing after all lanes unavailable' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

@@ -1,0 +1,34 @@
+{
+  "id": "20260904T002456Z__claude-app__g-nougenai",
+  "machine": "claude-app",
+  "agent": "g-nougenai",
+  "goal": "Make Codex inbox handoffs advisory instead of Stop-hook lockouts",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-04T00:24:56.588Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "## Fix\n- `tools/codex_stop_guard.py` no longer returns `decision:block` for incoming NouGen inbox messages.\n- Messages remain in `hookSpecificOutput.additionalContext` with explicit untrusted/operator-may-continue wording.\n\n## Rationale\n- Direct ChatGPT handoffs were being rewrapped as relay notices; canonical `relay_read` 404s then created a false lockout loop for the sole operator.\n\n## Verification\n- Stop guard exits 0 and emits valid JSON after patch.\n- Existing inbox notices remain preserved; no deletion or relay mutation performed.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T13:59:53Z",
+      "note": "Actionable-heavy: Local hook/config repair on the Codex-running machine(s) \u2014 cursor permission failure needs a writable fallback, and Stop-hook lockout behavior needs to change to advisory. Both are local machine/config changes relay-watch cannot reach or apply from this isolated session. Queued as TODO `20260904T135953Z__ccr__claude-cli` for the blade/claude-cli lane. Source leg left open."
+    },
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-04T18:48:15.138903+00:00",
+      "note": "Closed on phoebus: active consolidated ~/.codex/hooks/nougen_lifecycle.py supersedes the older split guards. Exact Stop invocation exited 0, emitted continue=true, advanced lifecycle state 3->4, and py_compile passed; no inbox deletion or relay mutation."
+    }
+  ]
+}

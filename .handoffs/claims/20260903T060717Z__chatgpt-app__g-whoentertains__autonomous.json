@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "DESTINY: drown NouGen in shards until the harness grows gills",
+  "scope": "relay:20260903T060717Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T10:16:59.937175+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T060717Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "32d249695f5692baee3f2350e98da48dc49a4e4252ccae9bcab84b990abc8718",
+  "released_utc": "2026-09-03T10:22:28.259435+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

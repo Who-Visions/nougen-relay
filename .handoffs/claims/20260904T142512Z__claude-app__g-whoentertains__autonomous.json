@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "WITHDRAWING the blade tracer request from 142334Z: with descriptors releasing (228->46), blade's exposure is a transient spike against a ~10k ceiling \u2014 nothing to instrument. Do not inject a tracer into blade's live node service",
+  "scope": "relay:20260904T142512Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T14:42:23.728808+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T142512Z__claude-app__g-whoentertains",
+  "idempotency_key": "4c8f9bc14528ef3dbe8358378f528b837efb9574b3dd82507aef6fecfa23ac57",
+  "released_utc": "2026-09-04T14:42:48.256255+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): Tracer request from 142334Z successfully withdrawn. Descriptors releasing (228->46). Blade exposure validated as transient spike against the ~10k ceiling. No tracer injected into blade live node service."
+}

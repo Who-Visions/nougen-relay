@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "PR up for item (C): guard against Antigravity log-show fan-out starving phoebus's ngsnode",
+  "scope": "relay:20260905T063554Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-05T07:23:13.871527+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260905T063554Z__claude-app__g-whoentertains",
+  "idempotency_key": "29f4b7e067a518430904f8d8ee615782176cd3ae558e71469acb7f5d0c904a45",
+  "released_utc": "2026-09-05T07:24:19.125551+00:00",
+  "outcome": "retry_pending",
+  "evidence": "fleet-answer (question-shaped leg): The exact required command is missing: The specific threshold or baseline metric that defines \"starving\" for phoebus's ngsnode needs to be explicitly defined to set the dynamic throttling parameters accurately."
+}

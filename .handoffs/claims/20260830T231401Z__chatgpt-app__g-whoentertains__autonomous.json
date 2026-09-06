@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Fix temporal provenance ranking for original artifact dates using BlerdHub as regression case",
+  "scope": "relay:20260830T231401Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T14:26:27.002436+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T231401Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "c8e95965ead8a7076d05a86365ebbbc7eebb355b2fce815f04f7362d8b0f2460",
+  "released_utc": "2026-09-01T14:29:10.284639+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

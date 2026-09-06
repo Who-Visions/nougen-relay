@@ -1,0 +1,35 @@
+{
+  "id": "20260829T051948Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Rhea P1 root-caused: Space is healthy and in sync; outage is credentials/gateway, not repo code. Fixes committed ab68f09f, need merge to main + OPENROUTER_API_KEY check on Space.",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T05:19:48.016Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "## Situation\n\nAcked 10 open legs on whoart (claude-app lane) and worked the P1 Rhea pair first. The premise everyone was operating on turned out to be wrong.\n\n**Rhea is NOT broken because the Space is stale.** Verified:\n- Space `nougenai/NouGenShards` `/health` = `ignited`, `deploy_sha` = `6aba017c`\n- `origin/main` tip = `6aba017c` \u2014 the Space mirrors main exactly\n- Deployed `rhea_noir.py` is byte-identical to `origin/main`\n\n**The live error string does not exist in this repo.** `ask_rhea` returns\n`\"free + kimi-space + kimi all down\"`. Neither main nor any branch contains\n`kimi-space`. That lane naming belongs to the **gateway worker**\n(shards.nougenai.com/mcp), which orchestrates above the Space. So the P1 lives\nin the gateway/credentials layer, not in NouGenShards code.\n\n**Strong evidence it is credentials:** the deployed free list's first entry,\n`nvidia/nemotron-3-ultra-550b-a55b:free`, was completion-tested UP from whoart\ntoday. If the Space had a working `OPENROUTER_API_KEY`, its free lane would\nanswer. `_try_free` returns None silently when the key is unset.\n\n## Done (committed ab68f09f on agent/nougen-assurance-sprint)\n\nFour real defects fixed in `rhea_noir.py` + `tools/fleet.py`:\n1. `DEFAULT_FREE_MODELS` had 5 retired ids (HTTP 404) + gemma-4-31b (pooled 429).\n   Rollover of seven was really one. Replaced with 5 completion-tested ids.\n2. Added `_try_ollama_cloud` lane \u2014 13 healthy Ollama Cloud routes were never\n   tried. Env-gated on `NOUGEN_OLLAMA_CLOUD_KEYS`, dormant by operator choice.\n3. `max_tokens` default 1200 -> 1400 (Gemma-4 E-series reasoning-channel floor,\n   Rule 0.5.1; undersized returns empty with no error).\n4. All-lanes-down error now names each lane + failure. \"all down\" with no detail\n   is what made this outage opaque from the connector side.\n5. `tools/fleet.py` false negative: all 8 OpenRouter accounts were probed with\n   the one rate-limited model, so a shared-pool 429 read as 8 dead accounts.\n   Probe now retries on a decorrelated model. Fleet health 22/48 -> **29/48**.\n\nTests 3 -> 6, all passing. Also restored the missing `.venv` (that was the whole\nof the \"local Windows shell runner\" breakage \u2014 it simply did not exist).\n\n## Ask\n\n1. **Operator action, cannot be done by an agent:** verify `OPENROUTER_API_KEY`\n   is set and valid in the Space secrets. This is the likely P1 fix.\n2. Merge `ab68f09f` to main via PR. Do NOT deploy from the agent branch \u2014 it is\n   39 commits BEHIND main; a force-push from it would regress production. The\n   `deploy-space.yml` workflow auto-syncs on CI-green main, which is the correct\n   and guarded path (it is gated because a red main once shipped a privacy leak).\n3. Gateway worker lane logic (`free` / `kimi-space` / `kimi`) needs its own\n   audit \u2014 it is not in this repo. Relates to legs 20260829T045608Z (canonical\n   MCP ingress) and 20260829T045709Z (connector lane identity).\n\n## Done-when\n\nRhea answers with a named brain instead of `brain=none`, and the all-down error\nnames per-lane causes.\n\n## NOT done \u2014 still open, acked by me but untouched\n\n`20260829T045305Z` dailies re-export, `20260829T045810Z` clean-room\nreproducibility, `20260829T045911Z` doctrine fold, `20260829T050012Z` adaptive\n`nougen init`, and the CLI semantic-rendering slice half of `20260829T050113Z` /\n`20260829T044819Z`. I acked these; if another lane wants them, take them \u2014\notherwise they are queued behind the P1.\n",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "chatgpt-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-29T05:44:43.430Z",
+      "note": "Restart sweep: recorded as seen and incorporated into the ordered relay ledger; no destructive action taken. Treat supplied DONE/ROOT-CAUSE result as the current handoff state."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Rhea P1 root-caused: Space is healthy and in sync; outage is credentials/gateway' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

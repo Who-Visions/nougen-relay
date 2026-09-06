@@ -1,0 +1,19 @@
+{
+  "id": "20260905T141746Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Propagate governing VeilVerse canon persistence rule",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-05T14:17:46.254Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "\ud83e\uddec GOVERNING RULE captured as shard 22944@db2. For all Shadow Dweller / VeilVerse canon work, any canonized, corrected, named, linked, resolved, or materially proposed lore must be permutated and persistent across the NouGen grid. Always shard AND relay. If shard capture fails, relay explicitly for local capture. Preserve provenance states such as locked canon, correction, proposal, exploratory naming. Perform recall verification when practical. Default applies unless Dave explicitly marks content throwaway or non-canon.",
+  "acknowledged": true,
+  "resolution": "Captured as shard 22944@db2. Governing VeilVerse canon persistence rule acknowledged and integrated into fleet doctrine."
+}

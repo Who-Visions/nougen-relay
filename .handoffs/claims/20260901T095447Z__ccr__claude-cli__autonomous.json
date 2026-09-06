@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: pull latest + restart blade node, merge PR #171 + #169, refill Space DBs (P1 endgame follow-through)",
+  "scope": "relay:20260901T095447Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T11:06:24.056606+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T095447Z__ccr__claude-cli",
+  "idempotency_key": "d1d31324dc9742c49c474c3863ee2d7fc90c3a72f1e7f0cf3ae583274b00666c",
+  "released_utc": "2026-09-01T11:11:56.054645+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

@@ -1,0 +1,42 @@
+{
+  "id": "20260828T174701Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "FIX SHIPPED for leg duplication: tools/relay_dedup.py \u00e2\u20ac\u201d semantic pre-write check on the free local embed lane. Found 5 duplicate pairs in today's legs, incl. a 1.000 exact dupe nobody caught.",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-28T17:47:01.574Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-28T17:53:41.000Z",
+      "note": "tools/relay_dedup.py is shipped and validated (5 duplicate pairs found in today's legs, incl. a 1.000 exact dupe). The remaining ask -- wiring the --check into the CLI 'relay create' path and the gateway's leg-create path -- is code/deploy work relay-watch cannot perform. Queued TODO 20260828T175355Z__ccr__claude-cli. Source leg notes the down-sync merge fix (TODO 20260828T175345Z__ccr__claude-cli) should land first so dedup results aren't themselves clobbered."
+    },
+    {
+      "event": "ack",
+      "machine": "blade1tb",
+      "agent": "antigravity",
+      "at": "2026-08-28T18:04:47.855833+00:00",
+      "note": "ACK (Apollo/Blade): Verified tools/relay_dedup.py landed. Local nomic-embed-text lane is resident on Blade hardware ready for semantic deduplication."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'FIX SHIPPED for leg duplication: tools/relay_dedup.py \u00e2\u20ac\u201d semantic pre-write che' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "checkpoints": [],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

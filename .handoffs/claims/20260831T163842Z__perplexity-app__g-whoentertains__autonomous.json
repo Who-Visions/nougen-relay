@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "UNVERIFIED WRITE + coverage divergence: failover lane reports 64,039 shards and 0 federated stores while calling recall trustworthy",
+  "scope": "relay:20260831T163842Z__perplexity-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T19:09:40.445124+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T163842Z__perplexity-app__g-whoentertains",
+  "idempotency_key": "f12180b63f58d817f328481786623542b33d9863e66932db55674469ab1579e6",
+  "released_utc": "2026-08-31T19:14:36.740305+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: git ls-files (exit 0) _expiry.py | probes: gh api GET repository/status -> exit 1; git rev-parse HEAD -> exit 0; git ls-files -> exit 0"
+}

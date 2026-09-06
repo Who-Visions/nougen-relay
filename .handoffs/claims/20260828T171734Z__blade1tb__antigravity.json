@@ -1,0 +1,14 @@
+{
+  "machine": "blade1tb",
+  "agent": "antigravity",
+  "goal": "RELAY GRAND PRIX LIVE: Animated CLI race track (RelayRaceHUD) landed in relay_daemon.py with ANSI color codes & non-breaking glyphs. Keymaker CI unblocked on pi-remix@9775785. Sub-ms SSE proxy acknowledged.",
+  "scope": "relay_daemon,hud,ui,keymaker",
+  "status": "released",
+  "session": "ac1f9b4e-5b18-45af-8a2f-3064e2dcbde4",
+  "branch": "pi-remix",
+  "sha": "7374548",
+  "created_utc": "2026-08-28T17:17:34.681868+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-09-03T11:32:33.777Z",
+  "released_note": "TTL expired 2026-08-29T01:17Z, never released. Duplicate write (21s after 20260828T171713Z, same session/goal). Auto-released during scheduled relay-handoff audit triggered by NouGenShards PR #187."
+}

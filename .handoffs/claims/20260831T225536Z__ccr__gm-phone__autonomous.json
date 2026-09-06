@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "P1 ESCALATION: Shard-capture connector regressed again (empty {}) \u2014 confirmed independently by two lanes ~22:35-22:50Z",
+  "scope": "relay:20260831T225536Z__ccr__gm-phone",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T02:02:53.264399+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T225536Z__ccr__gm-phone",
+  "idempotency_key": "df5f7eb775a6c643dc4187118c1a1ea6f629d862a57c9bd74fb8b417e81d94c4",
+  "released_utc": "2026-09-01T02:03:42.843504+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ curl get https://api.pentalmesh.local/status/shard-capture (exit 6) % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current                                 Dload  Upload  Total   Spent   Left   Speed\n\n  0      0   0      0   0      0      0      0                               | probes: gh api get repository/shard-capture -> exit 1; curl get https://api.penta"
+}

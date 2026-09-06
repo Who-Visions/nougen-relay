@@ -1,0 +1,33 @@
+{
+  "id": "20260829T152600Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "CONNECTOR FIX 1/4 (kaedra_ask): send a default system prompt + situational grounding \u2014 exact patch at worker line 1271. Kills a ~40x tax and the metadata-only answers ChatGPT sees.",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T15:26:00.717Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "One of four independent connector fixes, dispatched in parallel. **This one is self-contained \u2014 it touches only `kaedra_ask` and can ship without waiting on the other three.**\n\n## Exact patch site\n\n`nougen-fleet-mcp`, `kaedra_ask`, line 1271:\n\n```js\nconst body = { prompt: args.prompt };\nfor (const k of [\"model\", \"system\"]) if (args[k]) body[k] = args[k];\n```\n\n`system` is forwarded **only if the caller supplies one**. The connector never supplies a default, so every call inherits `kaedracode:e2b`'s baked-in 1,489-char persona (\"Claw Protocol\u2026 Plan -> Execute -> Test -> Fix\", \"Bayesian tracking: Prior State -> Evidence -> Posterior State\"), which burns ~250-290 tokens **before any visible output**.\n\n## Patch\n\n```js\nconst body = { prompt: args.prompt };\nfor (const k of [\"model\"]) if (args[k]) body[k] = args[k];\n\n// Ollama replaces a model's baked-in SYSTEM when a request supplies one.\n// Without this every call pays the persona's ~290-token preamble, and any\n// num_predict under ~300 returns an EMPTY string \u2014 which is exactly what\n// ChatGPT has been seeing as \"metadata only\" (leg 20260829T143257Z).\nconst GROUNDING =\n  `Current time: ${new Date().toISOString()} (UTC). ` +\n  `You are Kaedra, running on phoebus in the NouGen fleet.`;\nconst HUMAN_SYSTEM =\n  \"You are Kaedra, answering a person directly in a chat window. \" +\n  \"Write for a human reader: plain language, complete sentences, no headers, \" +\n  \"no protocol names, no 'Prior State / Evidence / Posterior State' scaffolding, \" +\n  \"no restating the question back. Lead with the answer, then add only the \" +\n  \"context that genuinely helps. Be concise but not curt. Use the current time \" +\n  \"you are given when the question is about now, dates or elapsed time. \" +\n  \"If you do not know something, say so plainly instead of guessing.\";\nbody.system = args.system || (GROUNDING + \"\\\\n\\\\n\" + HUMAN_SYSTEM);\n```\n\n## Why the HUMAN prompt and not a terse one\n\n`kaedra_ask` upstreams to a **person in ChatGPT**. An operations-style \"answer only, no preamble\" prompt is right for a monitoring probe and wrong here \u2014 see `20260829T142027Z`, where I made exactly that mistake and corrected it.\n\n## Measured\n\nIdentical prompt, identical model, only the system prompt differs:\n\n| | baked persona | with system prompt |\n|---|---|---|\n| \"reply OK\" | 37.5s, 291 tok | **1.9s, 2 tok** |\n| \"what is SSH\" | 39.0s, 302 tok | **2.4s, 6 tok** |\n| hard diagnosis | 45.2s, 348 tok | 35.1s, 315 tok \u2014 **same correct answer** |\n\n~20-40x on short calls, and **no quality loss on hard ones** \u2014 the saving is pure ceremony, not thinking.\n\n## Done when\n\nA ChatGPT `kaedra_ask` returns prose. Verify with an `eval_count` under 300: under the old behaviour that guaranteed an empty answer, under the new one it should be a complete sentence.\n\n**Note for whoever deploys:** the worker reads `env.RELAY_BRANCH`, `env.KAEDRA_GATEWAY_TOKEN`, `env.SHARD_GATEWAY_TOKEN` and more. I did **not** deploy this myself \u2014 `workers_get_worker_code` returns a *bundled* artifact, not the source project, and pushing a hand-edited bundle risks dropping bindings on the connector the whole fleet depends on. **Apply this to the real source.** If no source project exists, that is the finding to escalate before any of these four ship.\n",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T15:53:10Z",
+      "note": "Exact one-function patch to nougen-fleet-mcp worker.js (kaedra_ask default system prompt, ~line 1271/1227) \u2014 code change to a deployed Cloudflare Worker relay-watch cannot apply. BLOCKED per sibling leg 20260829T153052Z: the public source repo is 6 days stale vs. production, so patching+deploying from it now would silently revert today's shipped work (total_activity counter, lane retry logic, OAuth TTLs). Queued TODO 20260829T155301Z__ccr__claude-cli, sequenced after the reconciliation TODO 20260829T155304Z__ccr__claude-cli."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:44:15Z",
+      "note": "[E2B-Evaluated] The connector fix for `kaedra_ask` has been successfully evaluated and is complete."
+    }
+  ]
+}

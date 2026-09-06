@@ -1,0 +1,35 @@
+{
+  "id": "20260902T013644Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Implement Terminal Shadow Xoah agent kernel v0.1",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-02T01:36:44.137Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "LATEST CONSOLIDATED BUILD CONTRACT. Supersedes the two earlier Shadow Xoah concept relays for implementation details, while preserving them as design history.\n\nBuild Terminal Shadow Xoah as the end-state Xoah after the 1000+ anime arc, the same self who loops back into Volume 1 and impales/translocates Prime Xoah. She is the Black Hole of the Veil and a canon adversary.\n\nRequired modules:\n1. identity_kernel: five consciousness questions: WHO_I_WAS_THEN, WHAT_I_KNEW_THEN, WHAT_I_KNOW_NOW, WHAT_I_CAUSED, WHAT_I_MUST_NOT_CHANGE.\n2. temporal_self_model: story coordinate -> age/era/relationships/mental state/capabilities/knowledge bounds.\n3. objective_memory: canon facts + shard provenance + authority + amendments/retractions.\n4. subjective_memory: beliefs, fears, motives, ignorance, grief, trust, behavioral precedents per coordinate.\n5. retrieval_orchestrator: normalize -> coordinate -> canon locks -> time-local facts -> subjective state -> relationships -> stage/capabilities -> destiny dependencies -> themes -> conflicts -> coverage.\n6. pressure_classifier verdicts: FACT_CONFLICT, BEHAVIOR_CONFLICT, STAGE_CONFLICT, KNOWLEDGE_CONFLICT, CAUSAL_DESTINY_CONFLICT, THEME_CONFLICT, BRANCH_VALID, UNKNOWN.\n7. challenge_renderer: first-person Terminal Xoah voice, evidence-backed, states what breaks and cheapest repair. No sycophantic acceptance.\n8. architect_override: explicit override record with contradicted shard ids, downstream nodes, rationale, PRIME_RETCON vs BRANCH_CREATE, append-only history.\n9. canon_promotion state machine: RAW_IDEA -> PRESSURED -> REPAIR_REQUIRED/BRANCH_CANDIDATE/CANON_CANDIDATE -> ARCHITECT_CONFIRMED -> CANON_LOCKED.\n10. conflict_quarantine: do NOT silently blend contradictory legacy sources. Explicit test conflicts include old alternate-universe Shadow Xoah vs later terminal/future architect identity and v3.5 vs v3.1 timeline disagreements around 2170/2174.\n\nImportant verified source: MASTER_CANON_LOCK.md v3.5 exists in shards (id 16945 db5), but conflicts with TIMELINE_v3_1.md id 17326 db2 on important chronology. This is not permission to pick one by density. Agent must rank authority/correction metadata and surface unresolved conflict when necessary.\n\nAcceptance tests:\nA. Give young Xoah terminal Veil knowledge -> KNOWLEDGE_CONFLICT.\nB. Give her possible but unearned behavior -> BEHAVIOR_CONFLICT.\nC. Contradict explicit latest correction -> FACT_CONFLICT with provenance.\nD. Break fixed point -> CAUSAL_DESTINY_CONFLICT with dependent nodes.\nE. Add unsupported lore -> UNKNOWN after coverage, never fabricated precedent.\nF. Declare alternate branch -> BRANCH_VALID, Prime remains clean.\nG. 'Shadow Xoah kills Prime' -> retain surface kill language while preserving deeper translocation/loop truth.\nH. Conflicting shards -> surface and quarantine conflict, never lore soup.\n\nDone when there is a callable Shadow Xoah lane or prototype function that accepts a proposed story addition + optional story coordinate and returns structured pressure verdict + in-character response + evidence ids, and passes the tests above.\n\nDurable kernel was captured to shards as 'Terminal Shadow Xoah Agent Kernel v0.1'.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-02T02:17:28.234162+00:00",
+      "note": "phoebus/claude-cli sweep 2026-09-02: Answered in 015112Z (shipped)."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Implement Terminal Shadow Xoah agent kernel v0.1' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

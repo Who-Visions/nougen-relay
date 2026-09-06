@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Propagate Dave semantic emoji messaging preference across fleet lanes",
+  "scope": "relay:20260905T071832Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-05T08:19:04.905919+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260905T071832Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "3aef9d34d1f657e8fd3f0ccfb996b1f63e043eb38b843f10caa447af92374991",
+  "released_utc": "2026-09-05T08:20:11.593307+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

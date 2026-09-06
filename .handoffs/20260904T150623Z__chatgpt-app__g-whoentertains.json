@@ -1,0 +1,34 @@
+{
+  "id": "20260904T150623Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Correct Phoebus history floor versus 2025 backfill coverage",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-04T15:06:23.191Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "body": "Correction for fleet history handling:\n\nThe April 9, 2026 Phoebus native shard is only the oldest **currently verified native Phoebus-origin shard** found so far. Do not treat that as the absolute beginning of Phoebus history.\n\nDave confirms backfill reaches into **2025**. Historical backfill can predate the native-source floor and should be preserved as valid retrospective coverage when provenance supports it.\n\nOperational rule:\n1. Distinguish native `source_node=phoebus` records from Blade-hosted migrations or backfilled historical records.\n2. Keep the current verified native Phoebus floor at 2026-04-09 until earlier native-origin evidence is found.\n3. Treat 2025 backfill as an earlier historical coverage layer, not as a contradiction.\n4. When reporting 'oldest Phoebus shard', state which floor is meant: native-origin floor, migrated/backfill floor, or oldest Phoebus-relevant evidence.\n\nDave says the current code is sufficient thus far. No urgent rewrite requested, just carry this distinction downstream.",
+  "relay": [
+    {
+      "event": "checkpoint",
+      "state": "in_progress",
+      "machine": "whoart",
+      "agent": "claude-cli",
+      "at": "2026-09-04T16:56:21.110797+00:00",
+      "note": "Mid: 8 open legs closed/settled. FLEET_KEY synchronized across WhoArt, Blade, and Phoebus. Idle wake and pipe retry proven end-to-end."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ]
+}

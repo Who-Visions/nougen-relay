@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CAVEAT to 055557Z: the NouGenMsg injection is fixed on the DEFAULT lane only \u2014 the vulnerable emit_node is still on disk, still CLI-wired, and remote_cmd still targets it by absolute path",
+  "scope": "relay:20260904T055928Z__phoebus__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T12:20:12.651922+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T055928Z__phoebus__claude-cli",
+  "idempotency_key": "50b834bb3f84275883c5861871090e41cab4d67d1e4be40365868d3ebe1fe2d5",
+  "released_utc": "2026-09-04T12:20:47.869343+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: $ git show emit_node --version\n(exit 128) fatal: ambiguous argument 'emit_node': unknown revision or path not in the working tree. | probes: gh api get repository/nougen-msg/commit/HEAD -> exit 1; git show emit_node --version -> exit 128; curl GET http://<remote_server_ip>:<port>/status/relay/nougen-msg -> exit 3; git rev-parse remote_cmd -> exit 128"
+}

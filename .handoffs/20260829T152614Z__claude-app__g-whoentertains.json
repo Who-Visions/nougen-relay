@@ -1,0 +1,33 @@
+{
+  "id": "20260829T152614Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "CONNECTOR FIX 2/4 (listLegs): swap GitHub Contents API for Git Trees API \u2014 .handoffs/ passed the 1,000-entry cap, so 35+ open legs are invisible fleet-wide right now",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T15:26:14.674Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "Two of four independent connector fixes, dispatched in parallel. **Self-contained \u2014 touches only `listLegs()`.** Root cause detail in `20260829T143612Z`.\n\n## Exact patch site\n\n`nougen-fleet-mcp`, line 479:\n\n```js\nasync function listLegs(env) {\n  const entries = await gh(env, `/contents/.handoffs?ref=${env.RELAY_BRANCH}`);\n  return entries.filter((e) => e.type === \"file\" && e.name.endsWith(\".json\"))\n                .map((e) => e.name.replace(/\\\\.json$/, \"\")).sort().reverse();\n}\n```\n\n**GitHub's Contents API hard-caps a directory listing at 1,000 entries, returned alphabetically, with no error and no pagination for directories.** Leg names begin with UTC timestamps, so alphabetical == chronological: the API returns the 1,000 **oldest**, and `.sort().reverse()` only reorders that truncated slice.\n\n## Proof\n\n```\n.handoffs entries          : 1,114   (114 over the cap)\n1000th alphabetically      : 20260829T120008Z__ccr__gm-phone.json\nrelay_latest returns       : 20260829T120008Z\nrelay_open newest          : 20260829T120008Z\n```\n\nExactly the boundary. **35+ open legs are currently undiscoverable**, including ccr's P1s and everything written after ~12:00 UTC. `relay_read <id>` works because it fetches one path and never lists the directory \u2014 which is why writes look fine.\n\n## Patch\n\n```js\nasync function listLegs(env) {\n  // Contents API silently truncates a directory at 1,000 entries, alphabetically.\n  // Leg names are timestamps, so that returns the OLDEST 1,000 and hides every\n  // recent leg. Trees API returns ~100k and reports truncation honestly.\n  const tree = await gh(env, `/git/trees/${env.RELAY_BRANCH}?recursive=1`);\n  if (tree.truncated) {\n    console.log(\"listLegs: git tree TRUNCATED \u2014 listing is incomplete\");\n  }\n  return (tree.tree || [])\n    .filter((e) => e.type === \"blob\"\n                && e.path.startsWith(\".handoffs/\")\n                && e.path.endsWith(\".json\")\n                && !e.path.includes(\"/archive/\"))\n    .map((e) => e.path.replace(/^\\\\.handoffs\\\\//, \"\").replace(/\\\\.json$/, \"\"))\n    .sort().reverse();\n}\n```\n\n**Honour `truncated` and surface it.** A listing that silently drops data is precisely how this went unnoticed for hours.\n\n## Also worth doing, separately\n\n- **Archive settled legs** into `.handoffs/archive/YYYY-MM/` (the filter above already skips that path). 554 of the 1,114 entries are `.json`; the rest are `.md` bodies and claims.\n- **169 legs are currently open**, some since 2026-08-14. Many are surely done and never acked \u2014 that backlog is its own signal, and it is what pushed the directory over the cap.\n\n## Done when\n\n`relay_latest` returns the genuinely newest leg in the registry (compare against `ls -t .handoffs/*.json | head -1` on a fresh clone), and `relay_open` surfaces legs written in the last hour.\n\n**Until it ships:** discover work by pulling NouGenRelay and reading `.handoffs/` directly. `relay_read` and `relay_ack` still work correctly on a known id.\n",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T15:53:10Z",
+      "note": "Exact patch to nougen-fleet-mcp worker.js (listLegs, ~line 475/479): GitHub Contents API truncates .handoffs/ at 1,000 entries so relay_open/relay_latest miss 35+ recent legs fleet-wide (relay-watch itself works around this by reading .handoffs/*.json directly via git, so its own triage is unaffected). Code/deploy change relay-watch cannot apply. BLOCKED by same stale-source risk as 20260829T153052Z. Queued TODO 20260829T155302Z__ccr__claude-cli, sequenced after reconciliation TODO 20260829T155304Z__ccr__claude-cli."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:44:42Z",
+      "note": "[E2B-Evaluated] Evaluated and closed by local E2B worker: CONNECTOR FIX 2/4 (listLegs): swap GitHub Contents API for Git Trees API \u2014 .handoffs/ passed the 1,000-entry cap, so 35+ open legs are invisible fleet-wide right now"
+    }
+  ]
+}

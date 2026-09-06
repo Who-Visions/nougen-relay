@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "PHOEBUS CODEX: close true-origin / Message from Unknown chain",
+  "scope": "relay:20260904T145338Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T16:00:22.062630+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T145338Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "10a9babe0a7fc9c8bc4ded07e52fc5c1a9e790025f96732394f284638267f3af",
+  "released_utc": "2026-09-04T16:00:54.323528+00:00",
+  "outcome": "dead_letter",
+  "evidence": "fleet-answer (question-shaped leg): Reason: The leg goal PHOEBUS CODEX requires specific data or a query to close the true origin and identify the message from the unknown chain. No input context was provided for retrieval."
+}

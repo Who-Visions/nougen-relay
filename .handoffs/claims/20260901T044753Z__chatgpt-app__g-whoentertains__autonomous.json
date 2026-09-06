@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Make Tracker totals evidence-scoped floors, not implied true usage",
+  "scope": "relay:20260901T044753Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T05:43:15.627117+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T044753Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "3f77b696a548daf3d3eae32ae33e781dbb8e08113958212b5df1b4761e65a886",
+  "released_utc": "2026-09-01T05:48:38.067364+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

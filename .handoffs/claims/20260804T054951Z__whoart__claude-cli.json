@@ -1,0 +1,12 @@
+{
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "fix HF mirror transport: git gateway rejects fine-grained tokens, use HTTP upload",
+  "scope": ".github/workflows/deploy-space.yml",
+  "status": "released",
+  "branch": "main",
+  "sha": "f3b8e74",
+  "created_utc": "2026-08-04T05:49:51.754640+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-08-04T05:50:01.917111+00:00"
+}

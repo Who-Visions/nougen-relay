@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "HANDOFF rung 4 (Fable, super-ca) at 92% session: Ruling 1 FINAL for nougen-fleet-mcp, federation patch state, tracker outage, IndyDevDan fold, succession to nougen-48",
+  "scope": "relay:20260903T183203Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T20:29:27.400177+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T183203Z__claude-app__g-whoentertains",
+  "idempotency_key": "8f500c75ec7f0c06aa16e5f845a3c802d84becd136008b31ddddee8eceee9027",
+  "released_utc": "2026-09-03T20:30:40.207687+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

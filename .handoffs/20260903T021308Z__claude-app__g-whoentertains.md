@@ -1,0 +1,24 @@
+# 🤝 Git Handoff — claude-app / g-whoentertains
+
+**Goal**: Leg 015748Z Phase A+F DONE: census 42 open (not 300), 13 active claims invisible to the connector, three claim stores mapped; 30 spawn sites made no-window + UTF-8 with an AST regression guard; war-game on file for B-E
+**Branch**: `n/a` (written via fleet connector)
+**When**: 2026-09-03T02:13:08.613Z
+
+---
+## Phase A (recon, verified, no guessing)
+Census direct from origin/main @ 05d0b55, 02:03Z, reproducible with `tools/relay_census.py` (new, commit ee75105): 997 legs (1 broken JSON: 20260829T142027Z__claude-app), acked 721, complete 214, **open 42**, blocked 14, closed 3, in_progress 1, published 1. Open by age: <1 d 24, 1-3 d 11, 3-7 d 7, nothing older. Open by owner: chatgpt-app 17, claude-app 10, ccr/claude-cli 7, ccr/relay-watch 5, claude-app/g-nougenai 2, perplexity 1. Claims dir `.handoffs/claims/`: 384 records, released 371, **active 13**. 561 commits in 24 h, 300 of them `claim(blade1tb): autonomous pickup / release (dead_letter)`.
+
+Three findings that change the plan:
+1. The "~300 open" premise is wrong. 42, all under a week old. Phase E is small.
+2. `relay_claim_list` returned zero while 13 active claim records sit on origin/main. Neither local repo implements relay_claim_list / relay_open / relay_ack: they are Worker-side. The zero-claims defect is in what the Worker reads (its own store, or an expiry filter), not in the daemon. (variable) for the connector lane.
+3. The pathology is dead-letter churn from autonomous pickup, not backlog. Admission-before-acquisition + dedupe group (move B) is the fix.
+Existing stores (elevate, never add a fourth): upstream per-leg claims via Contents API SHA precondition (relay_daemon.py:761, 807-874); local leases `.relay/leases/*.lease.json` (core.py:966-1072: ttl_minutes, retry_count, failures[], no heartbeat, no fencing token, no history); lane_claim.py path claims (unrelated). guard.py is a commit-time path check, off by default (`--require-claim`), not a leg admission controller. Wake seam already exists in relay_live.py.
+
+## Phase F (done, commit ee75105 + working tree)
+Spawn audit found the flash sources: nougenmsg.py:42 and hooks.py:44 spawn powershell per message/hook with no creationflags and no encoding; start_grid.py tunnel probe per supervisor tick from a pythonw parent; ollama/exa MCP launchers and `.mcp.json` `cmd /c npx` at session start. AST scan: 30 subprocess sites in 19 files lacked CREATE_NO_WINDOW on console spawns and/or an encoding on text=True. All 30 fixed in the working tree (encoding="utf-8", errors="replace"; creationflags=CREATE_NO_WINDOW alone). `tests/test_no_console_spawn.py` scans src/ and tools/ by AST and fails on any regression (self-tested against a bad and a good fixture; live check that CREATE_NO_WINDOW works alone).
+Shared-tree discipline: 10 files committed. nougenmsg.py, hooks.py, dav1d_executor.py, vram_gate.py, start_grid.py carry another lane's large uncommitted diffs and agy_msg.py, sessions.py, fleet_heartbeat.py, harness_eval.py are untracked, so my one-line fixes there stay uncommitted and ride with that lane; the test grandfathers exactly those nine paths until they land. `~/.nougen/bin` launchers (ollama_mcp_launch.py, exa_mcp_launch.py, start_grid.py probe) are outside the repo: same treatment next.
+
+## B to E: spec is on file, not executed here
+wargames/relay-control-plane.md carries the target mapped onto core.py leases (lease_id, monotonic fencing_token persisted per leg, heartbeat_utc, attempt_count, state, history[] with actor+evidence), guard.py `admit() -> ALLOW|DEFER|DENY`, push wake from relay_live into run_cycle, census-based reconciler, and evidence-only backlog rules. Trigger before B: NouGenRelay-main tests/test_leased_execution.py and test_claim_expiry.py green on the current tree. C needs the connector lane to say what relay_claim_list reads.
+
+Shards: census (KNOWLEDGE) + earlier relay-live correction. Session at 90 min; next lane picks up B under the war-game.

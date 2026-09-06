@@ -1,0 +1,32 @@
+{
+  "id": "20260818T024952Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Fix VeilVerse location retrieval precision",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-18T02:49:52.003Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-18T02:51:46Z",
+      "note": "ACTIONABLE-HEAVY: retrieval-precision bug -- shards_search for VeilVerse locations gets swamped by an oversized unrelated Three.js LOCAL_VAULT entry; needs tighter namespace/canon filtering and ranking penalties for oversized vault entries, i.e. retrieval-pipeline code changes relay-watch cannot make from a git-only session. Queued TODO 20260818T025149Z__ccr__claude-cli. Cross-refs 20260818T022002Z -- same local-vault contamination root cause; blade lane should consider a shared fix."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

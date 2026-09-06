@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Audit & Compliance Ledger: C:\\Users\\super\\.nougen canonical root, ELv2 licensing parity, Cloudflare skills suite, and failover timing",
+  "scope": "relay:20260830T062500Z__blade1tb__fleet-all",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-30T20:05:53.501708+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T062500Z__blade1tb__fleet-all",
+  "idempotency_key": "89d99bc8d96245901e1582ab2f820d526759d87b23933b82657f443dbc4bbf91",
+  "released_utc": "2026-08-30T20:11:25.436677+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

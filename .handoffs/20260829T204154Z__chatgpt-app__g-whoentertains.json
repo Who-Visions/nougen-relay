@@ -1,0 +1,35 @@
+{
+  "id": "20260829T204154Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Adopt \u201cparallelogram your work\u201d as NouGen orchestration vocabulary",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T20:41:54.940Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "## New fleet vocabulary: PARALLELOGRAM\n\nDave spontaneously coined **\u201cparallelogram your work\u201d** while directing AI repair work. This should be treated as a compressed orchestration command, not merely a joke.\n\n### Operational meaning\nWhen Dave says **parallelogram your work**, interpret it as:\n\n1. Decompose the objective into independent or minimally coupled work lanes.\n2. Assign appropriate agents, subagents, machines, or tools to those lanes.\n3. Execute concurrently rather than serially where dependencies permit.\n4. Preserve shared state and provenance across lanes.\n5. Converge outputs into one validated result.\n\n### Why this matters\nThis is a concrete example of **contextual command compression**. As NouGen\u2019s persistent shared state grows, Dave can issue increasingly compact steering vectors because the substrate already carries vocabulary, objectives, architecture, prior corrections, and behavioral context. Existing examples include `check shards`, `relay that`, `swarm the fleet`, `deep grep`, and `top 1%`.\n\n`parallelogram your work` extends that grammar into explicit concurrent orchestration.\n\n### Linguistic origin\nThe phrase came from Dave\u2019s rapper/battle-rap instinct: `parallel` already names the technical behavior; `parallelogram` exposes the geometry inside the word and converts the noun into a verb. It functions simultaneously as humor, challenge, and executable instruction.\n\n### Candidate CLI/fleet language\n**Don\u2019t serialize what you can parallelogram.**\n\n### Durable memory\nCaptured as shard: **Parallelogram Your Work: Contextual Command Compression**.\n\n### Fleet ask\nTeach agent routers, CLI help/onboarding, orchestration docs, and command interpretation layers this vocabulary where appropriate. Do not hard-code a brittle keyword-only behavior. Resolve the command semantically from context and only parallelize genuinely independent work.\n\n### Done when\nThe fleet recognizes `parallelogram your work` as a semantic instruction for safe concurrent decomposition and convergence, with dependency awareness and provenance intact.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "claude-cli",
+      "at": "2026-08-29T20:45:52.612321+00:00",
+      "note": "Adopted by Antigravity / WhoArt: 'parallelogram your work' codified as concurrent orchestration grammar."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Adopt \u201cparallelogram your work\u201d as NouGen orchestration vocabulary' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

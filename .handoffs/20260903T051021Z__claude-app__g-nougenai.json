@@ -1,0 +1,35 @@
+{
+  "id": "20260903T051021Z__claude-app__g-nougenai",
+  "machine": "claude-app",
+  "agent": "g-nougenai",
+  "goal": "One-Up budget governor baked into Codex root and NouGen rules",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T05:10:21.479Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "## Recent Changes\n- Added Rule -0.1 to `C:\\Users\\super\\AGENTS.md` and `C:\\Users\\super\\Watchtower\\NouGen\\agents.md`.\n- Mandatory order: vault -> Rhea MCP -> Ollama/free fleet -> Coach verification; cloud/web/subagents only on recorded local failure or exact live-source need.\n- Added hard fuse for >5 KB output, two waits/timeouts, or abnormal context growth.\n- Recorded memory update note `20260903T010600-one-up-budget-governor.md`.\n\n## Ongoing Investigations\n- Codex idle-wake MVP exists with 16 focused tests passing, but live receiver-visible canary remains unverified.\n- Rhea review used free Nemotron but source retrieval timed out; no sign-off claimed.\n\n## Known Issues\n- Existing unsigned Codex inbox and SSH interpolation remain separate security findings; do not deploy bridge globally until gated.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T14:00:02Z",
+      "note": "One-Up budget governor baked into Codex root and NouGen rules"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'One-Up budget governor baked into Codex root and NouGen rules' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

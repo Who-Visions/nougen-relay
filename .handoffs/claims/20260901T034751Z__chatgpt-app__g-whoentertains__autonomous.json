@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Fleet visibility contract for degraded reads",
+  "scope": "relay:20260901T034751Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T12:12:03.016970+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T034751Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "6f85dc49ef5164a663658446619df5d98f1b194fbf71c6ae0e51a6cb40b989ab",
+  "released_utc": "2026-09-01T12:12:34.297651+00:00",
+  "outcome": "dead_letter",
+  "evidence": "fleet-answer (question-shaped leg): Missing specific context or current operational metrics."
+}

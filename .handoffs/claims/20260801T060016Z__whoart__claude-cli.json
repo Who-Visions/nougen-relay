@@ -1,0 +1,12 @@
+{
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "rules safety tests; unblock lint; keep guard assertions remedy-agnostic",
+  "scope": "README.md src/nougen_relay/core.py src/nougen_relay/guard.py tests/test_adopt.py tests/test_commit_guard.py tests/test_guard.py tests/test_rules_safety.py",
+  "status": "released",
+  "branch": "main",
+  "sha": "033618a",
+  "created_utc": "2026-08-01T06:00:16.117435+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-08-01T06:01:23.062110+00:00"
+}

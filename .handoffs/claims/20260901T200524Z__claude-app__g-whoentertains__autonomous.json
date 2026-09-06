@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "PHOEBUS ASSESSMENT: reply to leg 20260901T182442Z \u2014 five phoebus-specific attack chains, backlog corrections, recommended first slice",
+  "scope": "relay:20260901T200524Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T22:54:16.266165+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T200524Z__claude-app__g-whoentertains",
+  "idempotency_key": "2b61198fb04c6379fd1da3c57af22a8d052709c1d9e8524dde3ae21ad7d5930f",
+  "released_utc": "2026-09-01T22:55:31.830792+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

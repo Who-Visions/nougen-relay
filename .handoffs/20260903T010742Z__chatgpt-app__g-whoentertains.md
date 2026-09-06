@@ -1,0 +1,8 @@
+# 🤝 Git Handoff — chatgpt-app / g-whoentertains
+
+**Goal**: Instantiate MCP scale destiny in NouGen Destiny primitive
+**Branch**: `n/a` (written via fleet connector)
+**When**: 2026-09-03T01:07:42.301Z
+
+---
+Dave explicitly declared a Destiny for the NouGenShards MCP. Use the existing Destiny primitive/prospective-memory system, not merely a normal shard, to create/activate a destiny representing the path from Dave as prime case study -> portable stranger install -> Google-authenticated per-user vault/shards -> 100 concurrent users -> staged path toward 100M users. Source decision shard just captured: 'MCP Destiny: from Dave prime case study to portable 100M-user NouGenShards platform'. Required milestones: (1) Dave reference architecture documented/reproducible, (2) remove Dave-specific hardcodes/secrets/paths, (3) Google auth resolves isolated tenant/fleet namespace, (4) stranger clone/install reaches only their own vault/shards/relay/tracker, (5) 100-user concurrency + isolation load test passes with zero cross-tenant leakage, (6) metering/quotas/billing hooks for paid cloud inference/capacity while preserving local/free lanes, (7) evidence-backed staged scale architecture toward 100M users. Forbidden: shared user credentials, cross-tenant memory leakage, silent fallback into Dave's vault, public provider-specific MCP forks, or claiming 100M readiness without measured evidence. Link the destiny to this relay and the new shard, then relay back the destiny ID, branch, trigger, verification criteria, and current state. Treat 100 users as test milestone, 100M as long-range horizon.

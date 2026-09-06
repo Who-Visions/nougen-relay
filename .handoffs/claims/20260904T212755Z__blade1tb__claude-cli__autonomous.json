@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "FOR PHOEBUS never-warm: two suspects from the request path - federation runs every lane under copy_context() on a 16-worker shared pool (a ContextVar/thread-local memo would be discarded or land on a different worker each time), and app.py rebinds tenant_vault_context per request (invalidating any cache keyed to the binding). Discriminator: log thread name + id() of the cache object per request. HYPOTHESIS not measurement",
+  "scope": "relay:20260904T212755Z__blade1tb__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T22:38:01.262412+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T212755Z__blade1tb__claude-cli",
+  "idempotency_key": "9ef875ea419d5fa72508f0467a2ef47d76abbee30adc64115ca5e80b3f40aaf9",
+  "released_utc": "2026-09-04T22:40:09.703899+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: curl GET http://localhost:8080/metrics/thread_context (exit 7) curl: (6) Could not resolve host: GET\ncurl: (7) Failed to connect to localhost:8080 after 2426 ms: Could not connect to server | probes: gh api GET repos/org/repo/ref/head -> exit 1; git rev-parse HEAD -> exit 0; curl GET http://localhost:8080/metrics/thread_context -> exit 7; git ls-files -> exit 0"
+}

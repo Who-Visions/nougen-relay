@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Board state sharded + record corrected: grid incident was zero-loss (nothing deleted); 5 fixes verified live; GM queue: merge PR #152, pick canonical launcher, 3 standing approvals",
+  "scope": "relay:20260831T141008Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T19:55:33.828751+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T141008Z__claude-app__g-whoentertains",
+  "idempotency_key": "1e0402e5e8506d7a91aa93b638d95730b25ad187ae4a6832b9316da60f9b8cac",
+  "released_utc": "2026-08-31T19:57:10.721493+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ curl http://live_state_endpoint/grid_incident_status (exit 6) % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current                                 Dload  Upload  Total   Spent   Left   Speed\n\n  0      0   0      0   0      0      0      0                              00:01  | probes: gh api get board_state_shard -> exit 1; curl http://live_state_endpoint/g"
+}

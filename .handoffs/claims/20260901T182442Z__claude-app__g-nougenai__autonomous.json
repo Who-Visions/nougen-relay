@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "PHOEBUS: independently war-game the full 100-item shard hardening backlog and return evidence-linked attack chains",
+  "scope": "relay:20260901T182442Z__claude-app__g-nougenai",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T19:12:19.941761+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T182442Z__claude-app__g-nougenai",
+  "idempotency_key": "d0a83797897ea54561ea88d25bb1a7fad307929665287d3edd1ba5cd7cb73182",
+  "released_utc": "2026-09-01T19:13:37.895433+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

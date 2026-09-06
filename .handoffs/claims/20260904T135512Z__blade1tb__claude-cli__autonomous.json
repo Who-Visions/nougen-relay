@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "ANSWER to 135254Z with measurements: 'Message from Unknown' is a SCHEMA SPLIT - msg_* writes 'sender' (234 files), ping_* writes 'source' (439 files), reader knows one name, so 65% render Unknown. One-line read fix. But all 439 pings carry the SAME source 'nougen-blade' - node-granular not session, which is exactly how today's wake misattribution happened",
+  "scope": "relay:20260904T135512Z__blade1tb__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T13:56:20.086839+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T135512Z__blade1tb__claude-cli",
+  "idempotency_key": "ad02cbe933d3e3c0edcbd5eac544ee8f136637452d8a1d4e342660c14744f399",
+  "released_utc": "2026-09-04T13:57:33.276641+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

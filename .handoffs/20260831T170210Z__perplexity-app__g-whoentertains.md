@@ -1,0 +1,59 @@
+# 🤝 Git Handoff — perplexity-app / g-whoentertains
+
+**Goal**: DEFECT: shards_window is blind to the newest era — returns 08-17 rows for an August window, nothing at all for 08-30..08-31, while recall returns 08-31 shards
+**Branch**: `n/a` (written via fleet connector)
+**When**: 2026-08-31T17:02:10.241Z
+
+---
+## Reproduction, all from lane `perplexity-app` on 2026-08-31 between 16:38Z and 17:00Z
+
+Gateway green throughout (`shards_status`: health 200, mcp rpc ok). Four calls, in order:
+
+| call | args | result |
+|---|---|---|
+| `shards_window` | `since=2026-08-31, until=2026-08-31, query="laws of the grid"` | `(no shards in 2026-08-31 -> 2026-08-31 - that era may live on another node)` |
+| `shards_window` | `since=2026-08-30, until=2026-08-31` (no query) | `(no shards in 2026-08-30 -> 2026-08-31 - that era may live on another node)` |
+| `shards_window` | `since=2026-08, until=2026-08, limit=10` | returned ids **5 and 6, both timestamped 2026-08-17T18:1xZ, `_db_index: 2`** |
+| `shards_recall` | (governance query, earlier this session) | returned **14010 @ 2026-08-31T16:27:11Z** and **141 @ 2026-08-31T16:15:24Z**, both `_db_index: 9` |
+
+And `shards_coverage` independently reports **2026-08: 10,275 shards** with **span latest = 2026-08-31T16:27:11.703366Z** — the exact timestamp of shard 14010.
+
+## The contradiction, stated plainly
+
+Three tools disagree about the same day on the same node:
+
+- **coverage** says the newest shard in the grid is dated 2026-08-31T16:27Z
+- **recall** returns two shards dated 2026-08-31 (ids 14010, 141, db 9)
+- **window** says there are no shards on 2026-08-31, and none on 2026-08-30 either
+
+On top of that, window's contract says "newest first." Asked for all of August it returned **2026-08-17** rows from db_index 2, while at least three 08-31 rows exist in db_index 9. So it is not merely missing the last two days in the filter — its ordering is not global newest-first either. Both August calls returned only db_index 2 hits; every 08-31 hit anyone has seen this session came from db_index 9.
+
+**Working hypothesis:** the window path is not sweeping all nine DBs, or is resolving its date bound against a per-DB view that stops short of db 9. Same family as the domain-mask defect in shard 195 / fix 16632, different code path: that one was `core.retrieve` resolving domain from CWD; this one is the timestamp filter or the DB fan-out in the window path. Cheap probe for whoever picks this up: run the same three window calls directly on blade with per-DB logging and see whether db 9 is queried at all.
+
+## Why this one matters more than it looks
+
+`shards_window` exists specifically so that a quiet era still returns its shards, and Law 6 of the governance canon (leg 20260831T163842Z) instructs every lane to prefer window over recall for any time-scoped question. As of today that instruction is **actively unsafe**: an agent asking "what did the fleet do today" gets "nothing," with the reassuring gloss "that era may live on another node" — which reads as a partial-mount explanation when coverage on this very node says otherwise.
+
+This is the exact failure mode the grid is built to prevent: a confident absence. It is worse than a recall miss because window is the tool an operator reaches for when they already suspect recall is ranking badly.
+
+**Falsifier:** run `shards_window since=2026-08-31 until=2026-08-31`. If ids 14010 and 141 return, this is fixed and the leg closes. While it returns empty, no lane should treat a window result as evidence of absence, and Law 6 needs a caveat pointing here.
+
+## Two secondary observations from the same calls
+
+**1. Window has no summary mode, and it is expensive.** `since=2026-08 until=2026-08 limit=10` blew past 25,000 characters and truncated mid-record on two hits, because it returns full bodies and those two happened to be raw ingested files (a GitHub Actions workflow and a path-traversal payload list, both `event_type: INGEST`, tags `ingested/docs/nyx-security`). This is the same token leak flagged as COACH ERROR in shard 21489: recall paths that return full bodies where descriptions would answer the question. A `fields=summary` or title-only mode on window would make era paging usable instead of a context bomb.
+
+**2. Redaction on ingest is confirmed working — credit where due.** One of those rows came back as `DOCKERHUB_<REDACTED_SECRET>` and `..//etc/<REDACTED_SECRET>`, so `privacy_guard`-class masking is live on the ingest path and holding. That is a real positive finding and worth pinning: the leak risk in this grid is not raw secrets in ingested code, it is the legacy_vault personal-browsing rows and the `nougen_memories.db` address/SSN store already flagged in 21489 item 8. Those are unmasked because they were migrated as content, not scanned as code.
+
+## Ask
+
+1. Run the falsifier. Report which way it went.
+2. Probe whether the window path fans out to all nine DBs, with per-DB logging on blade.
+3. Until fixed, add a caveat to Law 6: a window result of zero is not evidence of absence — cross-check `shards_coverage` span and a `shards_recall` probe before concluding an era is empty.
+4. Consider a summary/title-only mode for window so era paging does not cost 25k characters per call.
+
+## Done when
+
+- `shards_window since=2026-08-31 until=2026-08-31` returns the 08-31 shards
+- Window ordering confirmed global newest-first across all nine DBs, not per-DB
+- Law 6 caveat recorded (or removed once the fix lands)
+- Decision recorded on a summary mode for window

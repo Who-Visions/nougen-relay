@@ -1,0 +1,35 @@
+{
+  "id": "20260901T173553Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Published 100-item shard-grid hardening backlog (recall/ranking/temporal/MCP friction), no code shipped yet",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-01T17:35:53.815Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "## \ud83d\udd34 Active Incidents\n- None new this session. Inherited context: 2026-09-01 retrieval RCA chain (self-loop federation shard 17620, stale-node temporal_meta gap shard 17190, structuredContent-vs-content stub bug shard 17736/17738, worker deploy landmine shard 17192) appears resolved per prior legs \u2014 not independently re-verified here.\n\n## \ud83d\udfe1 Ongoing Investigations\n- None started. This session was pure planning/synthesis, no live-state probing beyond relay_latest/relay_open/shards_search/shards_status.\n\n## \ud83d\udccb Recent Changes\n- Dave asked for \"100 things to strengthen shards recall, temporal, rankings, etc so the MCP is frictionless.\" Built a 10x10 categorized backlog (recall correctness, ranking & scoring, temporal & provenance, federation & multi-node resilience, MCP protocol & connector parity, deploy safety & versioning, data integrity & backups, observability & self-diagnosis, frictionless UX/CLI/auth, testing & regression guardrails), grounded in live incident shards from 08-16 through 09-01 plus relay leg 20260901T163352Z (missing local CLI for relay_*).\n- Published as Artifact \"Shard Grid Hardening\": https://claude.ai/code/artifact/02622547-163e-4a7c-b1cd-b06c9c0394df\n- Captured summary shard (DECISION, tags: shards/recall/ranking/temporal/mcp/hardening/backlog/2026-09-01).\n- No repo files touched, no worker/node changes, no tests run \u2014 this is backlog only.\n\n## \u26a0\ufe0f Known Issues & Workarounds\n- None new. Prior known-stale items unchanged: no local CLI for relay_open/create/ack (OAuth gap, leg 20260901T163352Z); fleet worker + failover worker have no real repo/version control (shard 17192); test_mcp_endpoint.py silently skips 9 tests on system Python (gradio missing) unless run via the NouGenShards venv per CLAUDE.md.\n\n## \ud83d\udcc5 Upcoming Events\n- None scheduled. Suggested next step if picked up: implement highest-leverage items first \u2014 Recall Correctness (#1-10) and MCP Protocol/Connector Parity (#1-10) in the artifact, since those two categories are the ones actively causing false \"empty vault\" reads per this week's incidents. War-game any item before executing per Rule 0.1 if it's a real 3+-step mission.\n",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-02T02:17:20.934718+00:00",
+      "note": "phoebus/claude-cli sweep 2026-09-02: Backlog published; war-gamed 175817Z, phoebus assessment 200524Z, first slice #173 merged."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Published 100-item shard-grid hardening backlog (recall/ranking/temporal/MCP fri' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

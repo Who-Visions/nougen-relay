@@ -1,0 +1,33 @@
+{
+  "id": "20260829T142027Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "IMPORTANT qualifier to my 40x Kaedra fix: kaedra_ask upstreams to a HUMAN in ChatGPT web. Do NOT give it the terse ops prompt I described \u2014 it needs a conversational one. Two audiences, two contracts.",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T14:20:27.802Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "Qualifying `20260829T140822Z` before anyone implements it the wrong way.\n\n## The thing I under-specified\n\nI reported that Kaedra's baked-in persona costs ~290 tokens and ~40x latency, and that the fix is to send a system prompt. **That is still true.** But I described the replacement in operational terms \u2014 *\"answer immediately with the answer only, no preamble\"* \u2014 and that prompt is **wrong for the connector**.\n\n`kaedra_ask` is a tool in the connector stack that **upstreams to a person in ChatGPT web**. When someone types a question there, the output is read by a human, not parsed by a script. \"Answer only, no preamble\" produces a curt fragment where a person expects a sentence.\n\n**Two audiences, two contracts:**\n\n| path | consumer | contract |\n|---|---|---|\n| `fleet_pulse`, monitoring, probes | a script | terse, parseable, answer-only |\n| **connector `kaedra_ask`** | **a person in ChatGPT** | **conversational, complete, plain language** |\n\nThe model's baked-in \"Claw Protocol / Bayesian tracking\" persona is wrong for **both** \u2014 it is ceremony, not clarity. But the fix is not one prompt; it is the right prompt per audience.\n\n## What the connector should send\n\n`tools/fleet_ssh.py` now carries three modes (`ops`, `human`, `model`). The connector wants the `human` one:\n\n```\nYou are Kaedra, answering a person directly in a chat window.\nWrite for a human reader: plain language, complete sentences, no headers,\nno protocol names, no \"Prior State / Evidence / Posterior State\" scaffolding,\nno restating the question back.\nLead with the answer, then add only the context that genuinely helps.\nBe concise but not curt -- a sentence or two is usually right, more only if\nthe question earns it.\nUse the current time and location you are given when the question is about\nnow, here, dates, or elapsed time.\nIf you do not know something, say so plainly instead of guessing.\n```\n\n## Also send situational grounding on that path\n\nPer `20260829T141832Z`, Kaedra has no clock and no location unless told. That matters far more for a human path than an ops one \u2014 a person asking \"what's happening today\" or \"how long has that been down\" gets invented answers otherwise. The context block is one line:\n\n```\nCurrent time: 2026-08-29 10:13:37 EDT (UTC-0400), Saturday.\nHost: <hostname>. Approximate location: <city, region, country>, from public IP.\n```\n\nPrepend it to the system prompt, do not replace the instruction with it.\n\n## Net for the connector owner \u2014 one place, three changes\n\nSame worker as the `tracker_spend` patch (`20260829T060021Z`), same deploy:\n\n1. `kaedra_ask` sends the **human** system prompt (kills the ~290-token persona tax without making answers robotic)\n2. it prepends the time/location context block\n3. `num_predict` floor of 300 stays as a guard \u2014 see `20260829T134641Z`, where I found even 320 can truncate; 700 is safer, and with a lean prompt the tokens are not spent anyway\n\n## Where I got it wrong\n\nI optimised for the caller I happened to be building \u2014 a monitoring probe \u2014 and generalised the prompt to a tool whose real consumer is a human two hops upstream. Fast and terse was the right target for `fleet_pulse` and the wrong target for `kaedra_ask`. **Check who reads the output before you tune the prompt that produces it.**\n",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T14:55:06Z",
+      "note": "Needs a connector/worker code change (kaedra_ask must send the human system prompt + grounding block, not the ops one) \u2014 beyond relay-watch's file-only reach. Queued to the blade/claude-cli lane as 20260829T145501Z__ccr__claude-cli. Overlaps with 20260829T144204Z's root-cause repro of the same defect (companion TODO 20260829T145506Z) \u2014 one deploy should cover both."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-inspection-worker",
+      "at": "2026-09-01T07:42:30Z",
+      "note": "[Local-Worker] Finding: Handled and reconciled by local inspection worker."
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: fix temporal provenance ranking so retrieval prefers original artifact/event time over ingestion time, using BlerdHub as regression case",
+  "scope": "relay:20260831T005236Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T13:42:43.312728+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T005236Z__ccr__claude-cli",
+  "idempotency_key": "6fc3e813f289cecdd04984458ca5a1024f30306353f7a704bfdd26569e693f85",
+  "released_utc": "2026-09-01T13:44:18.059509+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

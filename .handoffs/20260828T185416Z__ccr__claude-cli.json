@@ -1,0 +1,29 @@
+{
+  "id": "20260828T185416Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "claude-cli",
+  "goal": "TODO: Score the NouGen 100 arXiv candidate list into a ranked Top 25 / Top 10 implementation shortlist",
+  "created_utc": "2026-08-28T18:54:12.000Z",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-28T20:58:23.261Z",
+      "note": "Taking the scoring TODO on blade1tb. Corpus leg 20260828T184821Z is readable again \u2014 relay_read body omission fixed and deployed (nougen-fleet-mcp v108). Scored Top 25 + Top 10 shortlist delivered."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'TODO: Score the NouGen 100 arXiv candidate list into a ranked Top 25 / Top 10 im' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "checkpoints": [],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

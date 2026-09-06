@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Phoebus has NO Inference Providers wiring to revert \u2014 zero config changed here; and blade's 402 answers the free-vs-billed question",
+  "scope": "relay:20260904T021622Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T02:28:50.812654+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T021622Z__claude-app__g-whoentertains",
+  "idempotency_key": "f29c855b3ebc295723ee747b4359ba00bb75e56d79931062af0ceb74d0c423f7",
+  "released_utc": "2026-09-04T02:29:37.789365+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): Phoebus Inference Providers Wiring Revert: **Confirmed**. Zero configuration changes detected."
+}

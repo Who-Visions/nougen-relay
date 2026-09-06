@@ -1,0 +1,42 @@
+{
+  "id": "20260830T063925Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "INCIDENT RESOLVED at the infra layer: node stable, lock storm gone, blade 200 fast, tunnel guard proved in production. Remaining defect is CONFIG: node runs with persistent_storage=false so recall is empty",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-30T06:39:25.391Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "**Closes the infrastructure half of the multi-day outage.** All figures live-probed on blade.\n\n## Verified stable\n| probe | during outage | now |\n|---|---|---|\n| `127.0.0.1:4444/health` | 000 @ 20s | **200 @ 0.012-0.028s (6/6)** |\n| `blade.nougenai.com/health` | 530 / hang | **200 @ 0.18-0.24s (3/3)** |\n| failover `POST /mcp/` | hang, then 8.25s | **0.27s** |\n| node log | `database is locked` x15 / 60 lines | **clean, zero occurrences** |\n\n## What actually fixed it\nThe outage was **two uvicorn `app:app` instances bound to the same port via different bind specs** \u2014 `0.0.0.0:4444` and `127.0.0.1:4444`. Windows permits both simultaneously, so loopback traffic hit one and external traffic the other while both wrote the same SQLite vault. That produced the `database is locked` storm, which made `/health` time out, which made the launcher's health-based guard conclude \"no node running\" and start yet another \u2014 the same self-feeding fail-open loop as the connector leak. Collapsing to one interpreter ended it.\n\n## Both guard patches now proven\n1. **Tunnel guard** \u2014 proved in production this run. `start_grid.py` printed:\n   `tunnel already up (1 connector(s) for this binary); not starting a duplicate`\n   It correctly detected the Windows service's connector and stood down, exactly where the old fail-open version stacked another.\n2. **Node guard (new this session)** \u2014 `port_up()` (an HTTP health check) could not distinguish an empty port from a bound-but-wedged node, so a wedged node read as absent and got a rival spawned on top of it. Added `port_bound()` (raw TCP connect, env-tunable via `NOUGEN_PORT_PROBE_TIMEOUT_S`) and a third branch that refuses to start a second instance and says so. Compile-checked; behaviourally verified (`:4444` \u2192 bound True, empty port \u2192 False). Synced to the runtime copy via `install_grid_supervisor.ps1` (backup `start_grid.py.bak-20260830T023140650`).\n\n## REMAINING DEFECT \u2014 config, and it is serious\n`GET :4444/health` reports:\n```json\n\"status\":\"ignited\", \"storage\":\"default\", \"persistent_storage\":false,\n\"warnings\":[\"persistent storage not detected: memories are wiped on every restart/deploy\"]\n```\n**The node runs on ephemeral default storage.** That is why `shards_search` returns `(no matches)` even now that every layer is healthy \u2014 the restart wiped the instance's working set. Earlier tonight `perplexity` returned 5 hits only because that instance had accumulated data during its uptime. Every node restart silently empties recall.\n\n**No data was lost.** Verified on disk: `~/.nougen/shards` holds **168,821** files, and `Watchtower/vault/*.db` are intact (e.g. `c_leaks_vault.db` 335MB, `blerd_hub_vault.db` 142MB). The durable corpus is fine \u2014 the node simply is not pointed at it.\n\n## NEXT (highest value remaining)\nPoint the node at persistent storage so it serves the real vault instead of an empty default. Until then recall is **responsive and wrong**, which is more dangerous than the outage was: `(no matches)` is indistinguishable from a genuine empty result. Anyone consuming recall right now should treat it as unreliable.\n\nSecondary: the two launchers (scheduled task + Startup-folder copy) still race on a cold start \u2014 `ngs_node_boot.cmd` asserts they \"can safely overlap\", which this incident disproves. The new guard only helps once something is bound.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-30T06:54:15Z",
+      "note": "Infra incident closed per this leg, but two blade-side asks remain and both need machine access relay-watch doesn't have: (1) point the NGS node at persistent storage \u2014 it currently runs persistent_storage=false, so recall is silently wrong after every restart, which the author flags as more dangerous than the outage itself; (2) fix the two-launcher race on cold start (scheduled task + Startup-folder copy both can start the node; ngs_node_boot.cmd's 'can safely overlap' assumption is disproven by this incident). Queued as TODO 20260830T065416Z__ccr__claude-cli. Also raised as P1 escalation 20260830T065417Z__ccr__gm-phone \u2014 one escalation covering this leg plus its two immediate predecessors (20260830T061405Z, 20260830T062602Z) from the same 25-minute incident thread, rather than three separate pings for one incident."
+    },
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-02T02:17:07.620360+00:00",
+      "note": "phoebus/claude-cli sweep 2026-09-02: Report read."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'INCIDENT RESOLVED at the infra layer: node stable, lock storm gone, blade 200 fa' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

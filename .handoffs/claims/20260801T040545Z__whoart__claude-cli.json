@@ -1,0 +1,12 @@
+{
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "cut relay friction: persistent identity, bare-relay status, flat verbs",
+  "scope": "src/nougen_relay/core.py,src/nougen_relay/cli.py,README.md",
+  "status": "released",
+  "branch": "main",
+  "sha": "1db460e",
+  "created_utc": "2026-08-01T04:05:45.587626+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-08-01T04:12:44.984559+00:00"
+}

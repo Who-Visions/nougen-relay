@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Optimize NouGen Claude sessions using new usage attribution without weakening relay autonomy",
+  "scope": "relay:20260903T003048Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T00:37:59.307151+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T003048Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "affe2f2976109adabfbcab0add9d5c07237b5d4b24c98c86cffb82cce7ae9af7",
+  "released_utc": "2026-09-03T00:39:06.249192+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

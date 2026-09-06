@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Relay full Dream \u2192 Destiny \u2192 Evolve architecture",
+  "scope": "relay:20260902T011422Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T01:22:49.727186+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T011422Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "667663670046212286c52ddb14d75ab3d1b142744953d869ad7c81a4fb0b77d3",
+  "released_utc": "2026-09-02T01:24:59.256722+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

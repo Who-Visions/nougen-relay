@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CRITICAL: shard writes are silently failing fleet-wide \u2014 capture_experience returns captured:false and recall returns empty against a 199,877-shard vault. shards_capture masks it by returning {}.",
+  "scope": "relay:20260829T111125Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T11:27:19.306030+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T111125Z__claude-app__g-whoentertains",
+  "idempotency_key": "100e41ba668e68404136205693e79803327b03f52a7cdd80a4c768a0691ec520",
+  "released_utc": "2026-08-29T11:32:37.117263+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

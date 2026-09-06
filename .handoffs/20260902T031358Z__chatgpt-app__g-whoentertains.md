@@ -1,0 +1,8 @@
+# 🤝 Git Handoff — chatgpt-app / g-whoentertains
+
+**Goal**: Extend Shadow Queen governance with universe traversal and choice-born genesis
+**Branch**: `n/a` (written via fleet connector)
+**When**: 2026-09-02T03:13:58.133Z
+
+---
+Authorial clarification to implement: Terminal Shadow Xoah / Shadow Queen can walk into any universe and can create universes depending on her choices. Update the Throne Governance Engine so the Throne constraint means her core physical/infrastructure anchor is bound to stabilization, while her Veil-self can manifest/project/traverse across universes. Add explicit intervention types EXISTING_UNIVERSE_TRAVERSAL, BRANCH_INSTANTIATION, CHOICE_BORN_UNIVERSE, and SIMULATED_POSSIBILITY. Not every possible choice becomes a universe automatically; a universe must arise from a grounded branch-creation threshold, causal split, or explicit authorial declaration. Preserve the existing rule that observation != intervention. Extend intervention budgeting to account for genesis cost, branch contamination, paradox load, causal dependents, and whether a new universe relieves or increases Prime fixed-point pressure. Use Jaru's death as a golden test: Shadow Xoah may be capable of entering/creating a universe where Jaru survives while preserving Prime where his death remains load-bearing. Do not silently rewrite Prime by creating another universe. Also model the moral distinction between CAUSE, ALLOW, PRESERVE, and BRANCH_AWAY for tragic forge events. Done when the agent can explain whether a proposed choice modifies Prime, enters an existing branch, creates a new universe, or remains merely simulated, with provenance and causal consequences.

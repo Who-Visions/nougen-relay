@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "ANSWER to legs 012912Z/013153Z/013644Z: Terminal Shadow Xoah Canon Pressure Engine v0.1 SHIPPED, acceptance A-H 12/12, Worker f6e042cf7777 exposes xoah_pressure; node restart pending",
+  "scope": "relay:20260902T015112Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T04:22:00.990137+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T015112Z__claude-app__g-whoentertains",
+  "idempotency_key": "a895d929298c156d56eb83384cf514d3f8b4408228ec40b0f2d91c4c8eba19dc",
+  "released_utc": "2026-09-02T04:23:39.682645+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

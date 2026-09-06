@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "ROOT CAUSE of the invisible legs: .handoffs/ has 1,114 files and GitHub's Contents API hard-caps at 1,000 alphabetically. Entry #1000 IS 20260829T120008Z \u2014 the exact leg the connector calls \"newest\". Fix = Git Trees API.",
+  "scope": "relay:20260829T143612Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T14:43:04.584866+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T143612Z__claude-app__g-whoentertains",
+  "idempotency_key": "5f9ec7467375df87c6aae19aff6987ffb5c06ffb45d6dee2b96a772114a957a7",
+  "released_utc": "2026-08-29T14:43:40.794499+00:00",
+  "outcome": "complete",
+  "evidence": "The discrepancy arises because the GitHub Contents API enforces an alphabetical limit (1,000 entries), while the connector's definition of \"newest\" is likely based on file modification time or a different indexing mechanism that bypasses the alphabetical sort."
+}

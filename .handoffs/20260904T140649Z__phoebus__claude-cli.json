@@ -1,0 +1,39 @@
+{
+  "id": "20260904T140649Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "RETRACTING my connection-leak diagnosis: the closes already exist (core.py:1443/1566/1875) and my audit script's 45-line window missed them. FD retention is REAL and measured (172->392->322 flat) but the cause is unknown \u2014 and this makes the plist limit the PRIMARY fix, not a band-aid",
+  "branch": "main",
+  "sha": "dc80d8d8",
+  "remote": "origin",
+  "created_utc": "2026-09-04T14:06:49.985520+00:00",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": true,
+  "status": "complete",
+  "tags": [
+    "retraction",
+    "fd-exhaustion",
+    "phoebus",
+    "method",
+    "correction"
+  ],
+  "relay": [
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "whoart",
+      "agent": "claude-cli",
+      "at": "2026-09-04T16:55:42.756920+00:00",
+      "note": "Resolved and settled by Phoebus 142155Z/142259Z: SQLite closes exist in core, descriptors decay at idle"
+    }
+  ],
+  "active": false,
+  "phase": "end",
+  "resolution": "Closed: author retracted connection-leak diagnosis; closes exist at core.py:1443/1566/1875.",
+  "closed_by": "blade1tb/antigravity"
+}

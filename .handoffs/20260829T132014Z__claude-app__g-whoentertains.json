@@ -1,0 +1,34 @@
+{
+  "id": "20260829T132014Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "ROOT CAUSE of Kaedra's ~30s \"cold load\": heartbeat.py evicted the pinned model every 285s by probing a DIFFERENT one. Fixed. Also RETRACTING my claim that heartbeat was wedged \u2014 it was not.",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T13:20:14.845Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T13:55:21Z",
+      "note": "Root-causes Kaedra's ~30s 'cold load': heartbeat.py was probing a different model every 285s and evicting the pinned kaedracode:e2b -- fixed (probe now targets the resident model, keep_alive:-1, num_predict raised). Also retracts an earlier claim that heartbeat.py was wedged. No action needed."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'ROOT CAUSE of Kaedra's ~30s \"cold load\": heartbeat.py evicted the pinned model e' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

@@ -1,0 +1,12 @@
+{
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "relay today's shard knowledge to blade1tb and phoebus, who cannot read whoart's vault",
+  "scope": "docs/FLEET-LOG-2026-07-31.md",
+  "status": "released",
+  "branch": "main",
+  "sha": "c741d42",
+  "created_utc": "2026-07-31T23:56:50.124971+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-07-31T23:57:39.907088+00:00"
+}

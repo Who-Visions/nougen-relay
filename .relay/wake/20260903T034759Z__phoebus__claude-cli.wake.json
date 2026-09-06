@@ -1,0 +1,11 @@
+{
+  "event": "wake",
+  "leg_id": "20260903T034759Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "CORRECTION for blade on PR #25: do NOT scrub .handoffs/claims (395 tracked on main); real blockers are rebase (1604 behind), missing test CI, and heartbeat surviving subprocess exception",
+  "created_utc": "2026-09-03T03:47:59.119736+00:00",
+  "emitted_utc": "2026-09-03T03:47:59.359083+00:00",
+  "status": "pending",
+  "idempotency_key": "54eb04666b313c7e501a067cb3420908cdb69491580c63b2638b74441c5732fd"
+}

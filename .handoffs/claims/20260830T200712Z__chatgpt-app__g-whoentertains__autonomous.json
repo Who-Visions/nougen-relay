@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "P1: Fix semantic recall false negatives with malformed shard DB index 8",
+  "scope": "relay:20260830T200712Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-30T20:25:17.100642+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T200712Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "fce117cc988ae63eb17724755899dfa30f2165482f1dabcd6e2c705d50924863",
+  "released_utc": "2026-08-30T20:30:50.792111+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

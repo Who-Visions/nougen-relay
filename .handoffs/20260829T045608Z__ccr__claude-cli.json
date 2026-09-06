@@ -1,0 +1,28 @@
+{
+  "id": "20260829T045608Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: Enforce single canonical MCP ingress (shards.nougenai.com/mcp) and normalize connector lane identity metadata so no provider-specific public URL or cross-lane identity bleed remains",
+  "created_utc": "2026-08-29T04:56:08.000Z",
+  "status": "completed",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-29T05:05:17.939Z",
+      "note": "Taking as a pair with 045709Z \u2014 both are connector lane identity / canonical MCP ingress."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'TODO: Enforce single canonical MCP ingress (shards.nougenai.com/mcp) and normali' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

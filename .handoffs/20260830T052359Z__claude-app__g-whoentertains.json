@@ -1,0 +1,29 @@
+{
+  "id": "20260830T052359Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "ROOT CAUSE FIXED: NouGen/.mcp.json set NOUGEN_VAULT_DIR=\".vault\" (relative), routing every project-scoped capture incl. nightly dream-lane into a stray vault. 154 shards recovered; 5 stale worktrees pruned",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-30T05:23:59.895Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "body": "## Root cause \u2014 it was never the cwd trap\n\n`Outpost\\NouGen\\.mcp.json` **explicitly** set `\"NOUGEN_VAULT_DIR\": \".vault\"` \u2014 a *relative* path. The project-scoped `nougen-shards` MCP server therefore wrote every capture into `Outpost\\NouGen\\.vault` instead of `~\\.nougen\\shards`. This was not an accidental cwd fallback; it was configuration.\n\nThe nightly **`dream-lane` scheduled task** (cron `0 3 * * *`) captures via that MCP server, so every night's findings landed in the stray vault, invisible fleet-wide. Confirmed by timestamps: task `lastRunAt` `2026-08-30T03:02:07`, newest stray shard `2026-08-30T03:01:12`.\n\nThe stray vault was **live and growing** \u2014 16 MB, 9 shard DBs, last written yesterday 23:01. Not a leftover.\n\n## Fixed\n\n- **`.mcp.json`** now uses absolute paths for both `NOUGEN_VAULT_DIR` (`C:\\Users\\super\\.nougen\\shards`) and `PYTHONPATH`. Backup: `.mcp.json.bak-20260830`. Valid JSON verified.\n- **154 orphaned shards recovered**: 149 newly written to the real vault (185,827 \u2192 185,976), and 5 confirmed **already present by content hash** \u2014 the `return False` at `core.py:637` is the dedup guard, not a failure. Nothing was lost. Migrated shards carry tag `migrated-from-stray-vault` and preserve their original timestamps.\n  Recovered material includes: gateway 502/524 root cause (08-18), several dream-lane runs, the corrected multi-source fleet token ledger, blade + WhoArt disk recoveries, voice-to-NouGen parity fix, the 36% generator-ratio root cause.\n- **Stray vault retired** to `.vault.orphaned-20260830` (16 MB preserved, not deleted). With it gone, `core.py`'s fallback now resolves correctly: running from `Outpost\\NouGen` with **no** env var resolves to `~\\.nougen\\shards` \u2014 verified live. The trap is closed at the source.\n- **Real vault backed up** first to `~\\.nougen\\shards.bak-20260830` (**4.2 GB** \u2014 delete once satisfied; the box has disk pressure).\n- **5 stale worktrees pruned**: `busy-euclid-e483a6`, `busy-sanderson-6defde`, `gracious-shirley-fd2f39` (all clean, HEAD `bc73a539` contained in 40 refs) plus two already-prunable registrations. This removed the last `metameric_*.py` files on the box \u2014 **zero drift filenames remain in NouGen**.\n- CLAUDE.md Rule 0.6 updated: the old note claimed `.vault` exists, which is no longer true.\n\n## Note for whoever audits vaults next\n\n`src/nougen_shards/connectors/local_vault.py:155-158` already carried a comment describing exactly this failure \u2014 a relative `.vault` shadowing the canonical substrate. The knowledge existed; the config still had the bug. Worth checking whether other repos' `.mcp.json` files carry the same relative setting.\n\n## Still open\n\n1. **GEMINI.md Rule 0.7 collision** \u2014 CLAUDE.md 0.7 = E2B Delegation, GEMINI.md 0.7 = Parallel Agent Orchestration. Cross-references are ambiguous fleet-wide and GEMINI.md still has no FLEET IS PLURAL rule. Needs a decision on which file renumbers.\n2. **Valerion purge is still uncommitted** on `agent/nougen-assurance-sprint` \u2014 commit it as its own changeset so it does not strand like `71f598a` did.\n3. Embedding backfill: a few migrated shards were written without vectors (`nomic-embed-text` misses during the run) and will not surface in semantic recall until `embedding_backfill.py` runs.\n",
+  "acked_by": "relay-daemon@blade1tb",
+  "acked_utc": "2026-08-30T05:38:41.893746+00:00",
+  "ack_note": "daemon dispatch verified: Root cause successfully mitigated. The configuration error in NouGen/.mcp.json setting NOUGEN_VAULT_DIR=\".vault\" has been corrected, resolving the stray vault routing issue for project scoped captures and nightly dream lane entries.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ]
+}

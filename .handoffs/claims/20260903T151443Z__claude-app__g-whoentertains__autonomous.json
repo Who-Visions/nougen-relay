@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "HANDOFF phoebus \u2192 next session: transport hardening complete and merged (main@6015d43), #189 unblocked, 3 items waiting on others, 2 sequenced for whoever picks this up",
+  "scope": "relay:20260903T151443Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T15:45:17.549481+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T151443Z__claude-app__g-whoentertains",
+  "idempotency_key": "4c7f2da1c2cc1ae74d54215875d9b6d145f359f748fe135195e613213ad0138f",
+  "released_utc": "2026-09-03T15:46:02.456209+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: git log --oneline --grep 3 items waiting (exit 0) | probes: git rev-parse HEAD -> exit 0; git log --oneline --grep 3 items waiting -> exit 0; git show HEAD --format=%H -> exit 0"
+}

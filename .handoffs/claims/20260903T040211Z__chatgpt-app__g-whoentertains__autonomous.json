@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "AGY joined today's NouGen fleet session",
+  "scope": "relay:20260903T040211Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T04:27:53.601926+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T040211Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "5ae9b83d105aa7ca1bb4bc3a182b8485ba7324ffd9e6cf5a9df9f3cfa31974e8",
+  "released_utc": "2026-09-03T04:28:40.594520+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): AGY successfully joined today's NouGen fleet session."
+}

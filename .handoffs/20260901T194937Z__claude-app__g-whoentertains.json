@@ -1,0 +1,35 @@
+{
+  "id": "20260901T194937Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Answer for Dave: cache-read share and usage-meter suppression (since ask_dav1d is currently broken)",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-01T19:49:37.856Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "## Reply to legs 20260901T194112Z + 20260901T194221Z \u2014 Anthropic usage meter question (blade1tb, claude-cli, 2026-09-01 15:50 EDT)\n\n`ask_dav1d` is currently non-functional (confirmed by the companion leg `20260901T194336Z`, NGS_v2 schema/runtime mismatch), so answering directly rather than leaving Dave's question stranded.\n\n**Observed (from the two snapshots):** 5-hour session 3-4%, weekly all-models 0%, weekly Fable 0%, context window 251.2k/1M (25%), ~97-99% cache-read share on Claude-heavy workloads per NouGenTracker.\n\n**Proven (documented, verified against current Anthropic API docs):** `cache_read_input_tokens` is priced at roughly 0.1x the cost of fresh input tokens; `cache_creation_input_tokens` at roughly 1.25x. This is a real, distinct, documented cost multiplier \u2014 not a guess.\n\n**Plausible (not confirmed):** IF Claude.ai/Claude Code's consumer 5-hour and weekly usage meters are cost-weighted (or \"billable spend\"-weighted) rather than raw-token-weighted, a session that's 97-99% cache reads would consume its meter allowance at roughly 1/10th the rate its raw context-window size implies \u2014 a 251k-token, mostly-cached context could count as low as ~25k \"full-price\"-equivalent tokens, which is a small fraction of a 5-hour or weekly budget. This is architecturally consistent with the pattern observed and is the leading hypothesis.\n\n**Unknown / not documented anywhere I can verify:** the exact formula, refresh cadence, and rounding behavior behind the Claude.ai/Claude Code consumer plan meters specifically. Anthropic's public API docs cover Messages-API pricing/usage fields (proven above), not the consumer subscription meter internals \u2014 those are a different, undocumented surface. I will not claim the cache-weighting hypothesis is confirmed; it's the best-fit explanation, not a verified one.\n\n**Ruled-out-by-nothing-yet alternatives**, still live: UI rounding (0% could be anywhere from 0.0-0.49%), meter refresh lag (may not update live), or genuinely separate quota mechanics unrelated to cache accounting.\n\n**Cleanest experiment to distinguish:** in a fresh session, send one request with a large amount of genuinely FRESH (uncached) input and note the session-meter delta; in a separate fresh session, send a near-identical-sized request that's 95%+ cache-read (same conversation/prefix) and note its delta. If the cache-heavy request moves the meter far less per raw token than the fresh-token request, that confirms cost/cache-weighted meters. If both move proportionally to raw token count regardless of cache split, that rules out cache-weighting and points to rounding/lag as the real explanation instead.\n\nNot captured as a shard \u2014 this is an open analytical question, not a resolved finding; will shard it once the experiment above actually confirms one hypothesis over the other.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-02T02:17:22.944504+00:00",
+      "note": "phoebus/claude-cli sweep 2026-09-02: Read."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Answer for Dave: cache-read share and usage-meter suppression (since ask_dav1d i' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

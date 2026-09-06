@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Adopt the new MCP Gateway integration guide + security checklist across all local lanes",
+  "scope": "relay:20260831T154528Z__perplexity-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T19:53:47.165722+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T154528Z__perplexity-app__g-whoentertains",
+  "idempotency_key": "03b1362f0be913dbecfaf01a177b1c218912c1e987dcced84d1bd25320f9d6ff",
+  "released_utc": "2026-08-31T19:55:18.782316+00:00",
+  "outcome": "dead_letter",
+  "evidence": "fleet-answer (question-shaped leg): Missing: Specify the initial set of local lanes for immediate execution."
+}

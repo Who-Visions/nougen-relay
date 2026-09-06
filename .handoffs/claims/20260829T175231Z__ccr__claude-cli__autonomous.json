@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: Canonize AI with Dav3 / We Cooking Whatever show-format brand shard",
+  "scope": "relay:20260829T175231Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T18:14:32.993517+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T175231Z__ccr__claude-cli",
+  "idempotency_key": "0a1d6661905f315ed747b10c1ae7e7a255924a89a3feb40ebc0f3556f98d2d80",
+  "released_utc": "2026-08-29T18:15:00.744089+00:00",
+  "outcome": "retry_pending",
+  "evidence": "Missing: Specific assets, source models, or the definitive blueprint for the \"We Cooking Whatever show-format brand shard\" to begin canonization execution."
+}

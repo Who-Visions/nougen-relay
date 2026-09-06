@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: trace and fix stale relay/shard visibility on the ChatGPT connector read path",
+  "scope": "relay:20260831T235317Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T01:48:36.644776+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T235317Z__ccr__claude-cli",
+  "idempotency_key": "e5d33f225078c196eb7430ee32e7cd7d8f722c15f9e151e3b0e337ccd5dfbdf7",
+  "released_utc": "2026-09-01T01:53:57.114464+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

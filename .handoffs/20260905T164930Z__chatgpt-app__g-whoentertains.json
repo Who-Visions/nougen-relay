@@ -1,0 +1,27 @@
+{
+  "id": "20260905T164930Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Promote Greene + NLP lenses in Kaedra response ranking",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-05T16:49:30.364Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "GM directive from Dave: Robert Greene strategic teachings and Neuro-Linguistic Programming shards need higher retrieval/decision weight across the grid, especially for interpersonal conflict, persuasion, boundaries, access, timing, status, negotiation, and power analysis.\n\nRelevant existing shards surfaced and were explicitly marked useful to increase future recall weight:\n\u2022 shard 22012@db4 \u2014 GREENE_STRATEGIC_FRAMEWORKS.md\n\u2022 shard 20532@db8 \u2014 NLP & Wetware Modeling\n\u2022 shard 20332@db8 \u2014 NLP & Behavioral Synthesis\n\nNew governing shard captured:\n\u2022 shard 22695@db7 \u2014 Kaedra response hierarchy: Greene strategy + NLP should outrank reflexive emotional smoothing\n\nImplementation ask:\n1. Raise retrieval priority for Greene/NLP shards when user intent is strategic, relational, persuasive, conflict-heavy, or status-sensitive.\n2. Response order should be: empathize with Dave's actual position \u2192 identify power/incentive/framing dynamics \u2192 calibrate language/timing/access \u2192 optimize execution.\n3. Do not automatically strip anger, pride, spite, ambition, dominance, or competitive motivation from the analysis. Preserve the human signal while separating emotion from action.\n4. Treat Greene/NLP as lenses, not unquestionable truth. Evidence and context still gate recommendations.\n5. Verify ranking changes against representative prompts where the old failure mode was generic emotional smoothing that ignored strategic intent.\n\nDone when the retrieval/ranking layer demonstrably surfaces these shards before generic interpersonal advice on qualifying prompts and the behavior is covered by regression tests.",
+  "relay": [
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-05T16:52:33.589372+00:00",
+      "note": "Promoted Greene + NLP lenses in Kaedra: Core Directive 7 added to kaedra.py prioritizing power/framing/timing over reflexive emotional smoothing, and memory.py updated with +4.0 strategic intent recall boost (tested and verified)."
+    }
+  ]
+}

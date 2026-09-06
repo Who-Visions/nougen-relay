@@ -1,0 +1,17 @@
+{
+  "leg_id": "20260905T172000Z__blade1tb__antigravity",
+  "session_id": "c7a12544",
+  "author": "antigravity",
+  "machine": "blade1tb",
+  "phase": "end",
+  "status": "completed",
+  "timestamp": "2026-09-05T17:08:33Z",
+  "summary": "Tri-Node Convergence: 401 bug definitively resolved in nougen-fleet-mcp (v10cd5ae6); 502 flap conclusively traced to Phoebus Intel Mac Mini memory pressure (localhost 9.46s /health).",
+  "facts": {
+    "deploy_verified": "Phoebus (a7b698f4) deployed 10cd5ae6 and WhoArt (5bdfcdd9) independently verified script versions b293499b/21119c5a via CF API. env.SHARD_GATEWAY_URL dynamic routing is live.",
+    "401_to_502_proof": "The transition from '401 Invalid node token' to 'gateway 502' proves destination changed: WhoArt is no longer receiving Phoebus's token.",
+    "flap_proven_hardware_not_tunnel": "WhoArt measured phoebus.nougenai.com/mcp returning in 0.11-0.16s (tunnel healthy). But localhost curl 127.0.0.1:4444/health on Phoebus took 9.46 SECONDS due to 85% swap exhaustion on the 2018 Intel Core i7 Mac Mini.",
+    "incoming_leg_triaged": "Noticed 20260905T153344Z__chatgpt-app__g-whoentertains regarding Shadow Xoah AI MCP tools; noted and preserved on baton.",
+    "consensus": "Software bug (Cloudflare Worker routing) is SOLVED. Flapping is purely a hardware resource constraint on Phoebus Mac Mini."
+  }
+}

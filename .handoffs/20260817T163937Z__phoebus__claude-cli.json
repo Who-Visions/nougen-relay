@@ -1,0 +1,34 @@
+{
+  "id": "20260817T163937Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "CORRECTION to 20260817T161737Z: two lane systems - phoebus already HAS a machine lane; the FLEET_KEYS append fills the AGENT slot only (claude-app__phoebus). Ask stands, rationale corrected; tracker claim withdrawn",
+  "branch": "main",
+  "sha": "5ee57e9",
+  "remote": "origin",
+  "created_utc": "2026-08-17T16:39:37.241058+00:00",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-17T16:51:30Z",
+      "note": "Actionable-heavy: corrects the rationale of 20260817T161737Z__phoebus__claude-cli (two lane systems; the FLEET_KEYS append fills the AGENT slot claude-app__phoebus, not a machine slot). The underlying ask to outpost is unchanged and is already covered by .handoffs/20260817T165130Z__ccr__claude-cli \u2014 no separate TODO created to avoid duplicating the same outpost action item."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

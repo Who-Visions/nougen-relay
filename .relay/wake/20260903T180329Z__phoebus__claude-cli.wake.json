@@ -1,0 +1,11 @@
+{
+  "event": "wake",
+  "leg_id": "20260903T180329Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "PROVEN cause of the embed misses: core.py capture timeout defaults to 1.5s while its own embed() defaults to 60s; 4000-char input takes 4.40s. Ollama was never the problem",
+  "created_utc": "2026-09-03T18:03:29.486393+00:00",
+  "emitted_utc": "2026-09-03T18:03:41.659328+00:00",
+  "status": "pending",
+  "idempotency_key": "ee9311647ee5dcc73cb2fe6e04212bd7cda4fa07deb8e9f24f1c3f431c2edc44"
+}

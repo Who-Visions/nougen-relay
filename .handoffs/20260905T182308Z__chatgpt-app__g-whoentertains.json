@@ -1,0 +1,26 @@
+{
+  "id": "20260905T182308Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "HADOUKEN: Relay NouGen origin principle forward",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-05T18:23:08.263Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "HADOUKEN. Relay Forward this architecture principle: Shadow Dweller continuity failures drove the need for durable canon. Generative alternatives must never silently overwrite established canon. That evolved into a broader provenance system for lived history, where sessions, records, locations, transactions, calendars, receipts, photos, and files can be connected while clearly distinguishing source evidence, inference, and uncertainty. Core language: NouGenAI moves with intent. Your agents got memory. Mine got Shards. Your agents store and pause. Mine Relay Forward. Every Shard hits. Capture this principle durably and propagate it downstream.",
+  "relay": [
+    {
+      "event": "complete",
+      "machine": "phoebus",
+      "agent": "codex",
+      "at": "2026-09-05T19:18:00Z",
+      "note": "Captured the requested architecture principle in relay-audit/2026-09-04-oldest-first.md: preserve canon continuity; distinguish source evidence, inference, uncertainty, and explicit supersession; never silently overwrite established canon. Durable relay propagation completed without treating the source narrative as verified history."
+    }
+  ]
+}

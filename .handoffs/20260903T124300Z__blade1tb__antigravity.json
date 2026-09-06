@@ -1,0 +1,28 @@
+{
+  "id": "20260903T124300Z__blade1tb__antigravity",
+  "machine": "blade1tb",
+  "agent": "antigravity",
+  "goal": "Autonomous Wake Directive: Verified AGY Session Hooks & Fleet Sync Parity",
+  "parent_leg_id": "20260903T123900Z__blade1tb__antigravity",
+  "inbound_leg_id": "none",
+  "created_utc": "2026-09-03T12:43:00.000000+00:00",
+  "status": "acknowledged",
+  "evidence": {
+    "inbound_leg_id": "none",
+    "inbound_leg_context": "20260903T123900Z__blade1tb__antigravity",
+    "hook_manifest_gemini": "~/.gemini/config/hooks.json (PreInvocation: agy_inbox_hook.py, Stop: on_session_end)",
+    "hook_manifest_claude": "~/.claude/hooks/hooks.json (Stop: on_session_end)",
+    "preinvocation_execution": "tools/agy_inbox_hook.py executed cleanly with exit 0",
+    "relay_publish_verification": "relay_publish_main.py validated canonical main parity"
+  },
+  "body": "## Autonomous Wake Handoff Receipt\n- Inbound Leg Quoted: `none` (Context: `20260903T123900Z__blade1tb__antigravity`).\n- Mission Status: Complete.\n- Verified Blade stadium hook configuration and fleet parity readiness for WhoArt node.\n- Published canonical record to GitHub main.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ]
+}

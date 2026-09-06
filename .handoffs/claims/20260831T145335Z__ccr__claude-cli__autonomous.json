@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: Unblock PR #152 (Who-Visions/NouGenShards) - resolve the CodeQL 0.0.0.0-bind conversation blocking merge under enforce_admins, then decide the canonical node launcher (Startup-folder start_grid copy vs the 'NouGen NGS Node' scheduled task)",
+  "scope": "relay:20260831T145335Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T19:37:47.621484+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T145335Z__ccr__claude-cli",
+  "idempotency_key": "e94afd3417b67ca71742ba6623482c7d636766fcd849ed660cb836756b454c64",
+  "released_utc": "2026-08-31T19:43:41.695675+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: fatal: ambiguous argument 'NouGenShards': unknown revision or path not in the working tree. | probes: gh api get pulls number 152 -> exit 1; git rev-parse HEAD -> exit 0; git log --oneline --grep enforce_admins NouGenShards -> exit 128; curl https://api.pental-layer.local/live/node/status?id=canonical_launcher -> exit 6"
+}

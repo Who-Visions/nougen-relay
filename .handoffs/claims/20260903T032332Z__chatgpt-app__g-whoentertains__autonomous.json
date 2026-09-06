@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Make Hardcade fully live in the CLI from truthful Fleet Expression events",
+  "scope": "relay:20260903T032332Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T03:58:56.740913+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T032332Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "eee8d12a7eb5b85e462b2314764bf05feda037a85b9eaff85c3701fdfe4a4c7d",
+  "released_utc": "2026-09-03T04:04:39.858473+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

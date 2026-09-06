@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Trees cleaned: -repo and pull-clone now clean, PR #142 stops shipping lane-claim leases. push-main left ALONE - a lane is live in it. Findings inside for its owner.",
+  "scope": "relay:20260830T214107Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-30T22:02:28.569707+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T214107Z__claude-app__g-whoentertains",
+  "idempotency_key": "f4fd1e95577faca46661d2ceae68977fcc43bb63cf672b7b7e0c6c21f6b402ac",
+  "released_utc": "2026-08-30T22:07:57.413393+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

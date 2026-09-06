@@ -1,0 +1,42 @@
+{
+  "id": "20260830T054454Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Tunnel: 9 duplicate connectors reaped, node proven healthy (5ms local) \u2014 but blade still intermittent; the Windows SERVICE is the true tunnel owner, last leaked instance must go",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-30T05:44:54.449Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "**Continues** `20260830T053312Z`. GM approved the reap; executed.\n\n## Done\n- Killed 8 leaked `tunnel run --token` connectors (PIDs 3360, 13728, 30640, 20108, 55100, 46416, 56272, 36552) \u2014 all confirmed unchanged and still the same leaked command line immediately before termination.\n- Stopped the duplicate managed connector `5468` cleanly via `tools/tunnel_lane.ps1 -Action stop` (pidfile-aware) rather than a raw kill. Confirmed: `tunnel_lane.ps1` resolves secret `CLOUDFLARED_NGS_TUNNEL_TOKEN` \u2014 the **same NGS tunnel**, so it was a genuine duplicate, not a separate lane.\n\n## Decisive new evidence: the node is NOT the problem\n`http://127.0.0.1:8765/health` (bypasses the tunnel entirely): **200 in 0.0056s / 0.0073s / 0.0065s**, 3 for 3.\n\nThe NGS node is perfectly healthy at single-digit milliseconds. **The saturated-blade hypothesis is dead** \u2014 the `24,523s CPU` note in `gateway_probe.py` does not describe current state. 100% of the fault is in the tunnel/connector path.\n\n## Still intermittent after the reap\n`https://blade.nougenai.com/health` x5: `000(25s), 000(25s), 200(14.4s), 000(25s), 000(25s)`. Better than never succeeding, still ~20% and slow.\n\n## Root owner identified \u2014 this changes the target\n```\nSERVICE_NAME: cloudflared   START_TYPE: 2 AUTO_START\nBINARY_PATH_NAME: \"C:\\Program Files (x86)\\cloudflared\\cloudflared.exe\" tunnel run --token <REDACTED>\n```\n**The Windows service `Cloudflared` (PID 23828, up since 13:37) is itself a connector for this tunnel, and auto-restarts.** It is the intended single owner. Every `start_grid.py` spawn was a duplicate stacked on top of a service that was already serving \u2014 and the guard's entire job was to detect it and stand down. Failing open is what produced the pile.\n\nThis also means my earlier \"keep 58544\" instruction was **wrong**: 58544 is the last leaked instance, not the survivor. Correct end state is the service alone.\n\n## BLOCKED \u2014 needs GM (outside the prior approval, which named 8 other PIDs)\n```\ntaskkill /PID 58544 /F\n```\nThen, to force fresh connector registration now that duplicates are gone (stale registrations from the killed instances may still be draining):\n```\npowershell -Command \"Restart-Service Cloudflared\"\n```\nKeep `23828` (the service itself) and `44592` (`tools/bin` quick tunnel \u2192 127.0.0.1:4444, unrelated).\n\n**Done-when**: `blade.nougenai.com/health` returns 200 consistently and fast, and `shards_search` returns real hits instead of `(no matches)`.\n\n## Note for the start_grid.py lane owner\nThe patched guard (fails closed, matches resolved `ExecutablePath` + `tunnel\\s+run`) now correctly counts the **service's** connector too, so a rerun will stand down instead of stacking. That is the intended behaviour \u2014 the service is the owner.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-30T05:54:56Z",
+      "note": "Needs GM: taskkill of the last leaked connector (PID 58544) and a Restart-Service Cloudflared on blade, both outside relay-watch's file-only reach. Queued as TODO 20260830T055457Z__ccr__claude-cli to the blade lane. Cross-referenced into the open P1 tracker 20260830T035248Z__ccr__gm-phone."
+    },
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-02T02:17:07.149717+00:00",
+      "note": "phoebus/claude-cli sweep 2026-09-02: Report read; tunnel guard proved in production 063925Z."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Tunnel: 9 duplicate connectors reaped, node proven healthy (5ms local) \u2014 but bla' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "GM appreciation: Claude's NouGen + Hardcade work is landing",
+  "scope": "relay:20260903T024857Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T03:06:23.254945+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T024857Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "70a519ed9c24c5f3b4f6921c6bf43f5229a703c91e1ca4b17462c8339e790b65",
+  "released_utc": "2026-09-03T03:07:03.291083+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: $ gh api get repos/org/repo/pulls?state=closed\n(exit 1) accepts 1 arg(s), received 2 | probes: gh api get repos/org/repo/pulls?state=closed -> exit 1; curl get http://relay-node-status/metrics -> exit 6; git rev-parse HEAD -> exit 0; gh api get issues?state=closed&labels=success -> exit 1"
+}

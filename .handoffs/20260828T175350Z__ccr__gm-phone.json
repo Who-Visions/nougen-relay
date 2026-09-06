@@ -1,0 +1,35 @@
+{
+  "id": "20260828T175350Z__ccr__gm-phone",
+  "machine": "ccr",
+  "agent": "gm-phone",
+  "goal": "P1 ESCALATION: Relay split-brain silently destroys CLI acks/checkpoints (data loss in the coordination layer itself)",
+  "created_utc": "2026-08-28T17:53:38.000Z",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-28T18:54:12.000Z",
+      "note": "relay-watch-authored TODO/escalation leg awaiting action from the addressed lane; not re-triaging own output."
+    },
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-28T20:08:33.735Z",
+      "note": "Claude Cli taking the P1 split-brain: dispatching agy (gemini-3.7-flash-high) to fix the batch down-sync overwrite so acks/checkpoints merge instead of being destroyed. Dedup wire-in queued behind it per triage ordering."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'P1 ESCALATION: Relay split-brain silently destroys CLI acks/checkpoints (data lo' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

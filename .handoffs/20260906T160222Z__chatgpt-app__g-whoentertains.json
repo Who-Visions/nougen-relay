@@ -1,0 +1,17 @@
+{
+  "id": "20260906T160222Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "GHOST WORKER FIX: active sessions do not reserve relay work without an explicit claim",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-06T16:02:22.132Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "open",
+  "body": "Observed coordination failure on 2026-09-06: Phoebus appears to have had a long-running Antigravity+NouGenMsg session doing background work while relay_claim_list earlier showed zero active claims and many open legs. Treat this as a scheduler invariant issue.\n\nNEW LAW:\n1. Session/process/provider activity != ownership.\n2. Relay narration, heartbeat traffic, tracker usage, or recent commits != ownership.\n3. ONLY an explicit live claim reserves a leg/scope.\n4. If compatible open work exists and no live conflicting claim exists, another lane may claim it even if that machine/provider looks busy.\n5. A long-running worker must periodically publish/renew exact scope claims; otherwise its work is opportunistic and must not block queue scheduling.\n6. Duplicate prevention checks claims and concrete scope overlap, not inferred busyness.\n7. Add ghost_worker metric: active execution/session telemetry with zero registered claims.\n8. Add orphan_work metric: evidence/commits produced for a relay leg without a corresponding claim.\n9. If ghost_worker=true for > threshold, auto-register its current leg when determinable, or isolate it to unclaimed compatible work rather than freezing the queue.\n10. Scheduler should continue assigning unrelated work across Blade/Phoebus/WhoArt while one provider is on a marathon.\n\nDone when: tests prove an active Antigravity/NouGenMsg session with no claim cannot suppress another agent from claiming compatible open work, and tracker surfaces ghost_worker/orphan_work."
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "ROOT CAUSE FIXED: NouGen/.mcp.json set NOUGEN_VAULT_DIR=\".vault\" (relative), routing every project-scoped capture incl. nightly dream-lane into a stray vault. 154 shards recovered; 5 stale worktrees pruned",
+  "scope": "relay:20260830T052359Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-30T05:37:49.343260+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T052359Z__claude-app__g-whoentertains",
+  "idempotency_key": "2cdf2f36560862ef0be6a2d972bb05371f1dca34657ace9cb9922cca9ea9d9e2",
+  "released_utc": "2026-08-30T05:38:45.196390+00:00",
+  "outcome": "complete",
+  "evidence": "Root cause successfully mitigated. The configuration error in NouGen/.mcp.json setting NOUGEN_VAULT_DIR=\".vault\" has been corrected, resolving the stray vault routing issue for project scoped captures and nightly dream lane entries."
+}

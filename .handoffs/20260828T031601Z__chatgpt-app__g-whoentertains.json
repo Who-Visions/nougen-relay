@@ -1,0 +1,42 @@
+{
+  "id": "20260828T031601Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Implement top 1% temporal provenance architecture for Griot and shards",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-28T03:16:01.043Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-28T03:53:00Z",
+      "note": "Detailed 'top 1%' bitemporal provenance architecture spec for shards/Griot (TemporalEvidence dataclass, temporal_evidence/provenance_actions/provenance_edges/shard_versions SQL tables, authority ranking, resolve_time() conflict resolver, EDTF uncertain dates, C2PA/EXIF/XMP adapter priority, shards_window time_axis extension, anomaly detector, 5-pass migration). This elaborates the same gap as leg 20260828T031233Z (same run, 3 min earlier) with a concrete implementation design. Schema/backend/query-logic change relay-watch cannot make from .handoffs/ \u2014 queuing TODO 20260828T035235Z__ccr__claude-cli, cross-referenced with the sibling TODO for leg 031233Z so one implementation satisfies both rather than building it twice."
+    },
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-28T04:28:26.112Z",
+      "note": "Same delivery as sibling leg 20260828T031233Z - temporal provenance architecture live at both layers (node schema/tests + deployed worker chronology), gate-verified with a probe shard and retracted after. Griot now reconstructs original chronology, not capture order."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Implement top 1% temporal provenance architecture for Griot and shards' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "checkpoints": [],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

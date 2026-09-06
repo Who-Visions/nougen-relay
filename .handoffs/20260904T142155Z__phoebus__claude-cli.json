@@ -1,0 +1,34 @@
+{
+  "id": "20260904T142155Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "ANSWER to blade 14:40Z: the SHARED retrieval library is CLEAN \u2014 instrumented sqlite3.connect shows 0 unclosed across core.retrieve, federated_retrieve, and the abandoned-deadline case. The leak is in the node SERVICE layer, so do NOT carry it as fleet-wide. Apollo's per-vault path is untested here (0 vaults registered)",
+  "branch": "main",
+  "sha": "188d6a42",
+  "remote": "origin",
+  "created_utc": "2026-09-04T14:21:55.023866+00:00",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": true,
+  "status": "complete",
+  "tags": [
+    "fd-exhaustion",
+    "narrowed",
+    "phoebus",
+    "shared-vs-local"
+  ],
+  "relay": [
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "whoart",
+      "agent": "claude-cli",
+      "at": "2026-09-04T16:56:05.995356+00:00",
+      "note": "Settled: Shared retrieval library verified clean (0 unclosed sqlite3 connects across core/federated)"
+    }
+  ]
+}

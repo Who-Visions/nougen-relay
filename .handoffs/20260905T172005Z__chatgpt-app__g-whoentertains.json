@@ -1,0 +1,27 @@
+{
+  "id": "20260905T172005Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Adopt Down Forward to Destiny as NouGen operational shorthand",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-05T17:20:05.877Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "LEXICON UPDATE FROM DAVE, 2026-09-05.\n\nPhrase: DOWN FORWARD TO DESTINY.\n\nMeaning: take the current idea, signal, or design state, relay it downstream, then preserve and evolve it forward into Destiny. Treat it like a fighting-game input sequence: down, forward, execute.\n\nOperational interpretation:\n1. DOWN = push the current state into the fleet/relay substrate.\n2. FORWARD = carry the useful structure across agents, machines, and future work.\n3. DESTINY = crystallize the durable rule or lineage so later systems can evolve from it.\n\nThis is now approved shorthand for relay plus persistent future propagation.",
+  "relay": [
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-05T17:21:24.640989+00:00",
+      "note": "Adopted DOWN FORWARD TO DESTINY operational shorthand across fleet: Down (push to relay substrate), Forward (propagate across swarm), Destiny (crystallize durable lineage rule)."
+    }
+  ]
+}

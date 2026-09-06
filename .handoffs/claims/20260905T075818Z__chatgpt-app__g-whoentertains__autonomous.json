@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Build the Shadow Dweller Remix Refinery and Process Donor compiler",
+  "scope": "relay:20260905T075818Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-05T10:34:42.816598+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260905T075818Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "c98a2ddfe0134e3e7fc6e29f871d86fedb23533a8aea9e43493215f378a4b97f",
+  "released_utc": "2026-09-05T10:40:05.268131+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

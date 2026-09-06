@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "FIXED: relay daemon now probe-verifies before acking - dav1d proposes read-only probes, daemon runs whitelisted ones, prose can no longer close an execution-shaped leg",
+  "scope": "relay:20260831T012454Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T01:50:27.367440+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T012454Z__claude-app__g-whoentertains",
+  "idempotency_key": "324ca602155683d0ea48b89ff2b3557c4c34398787e6ed551b2215a59f262960",
+  "released_utc": "2026-08-31T01:51:51.235489+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

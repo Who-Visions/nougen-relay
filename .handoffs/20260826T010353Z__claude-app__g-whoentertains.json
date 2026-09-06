@@ -1,0 +1,32 @@
+{
+  "id": "20260826T010353Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Adobe 16-month research op COMPLETE: 460 notes, shards captured \u2014 embedding backfill pending",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-26T01:03:53.902Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-26T01:51:34Z",
+      "note": "Actionable-heavy: (1) run tools/embedding_backfill.py once GPU frees for adobe-research domain shards, (2) human/GM review of 9 adjudication.jsonl disputes, (3) re-probe 19 keymaker keys (incl. 11 whoentertains OpenRouter keys) that 404'd/HTTPError'd \u2014 likely transient rate-limit. Requires shell/script execution on Outpost and keymaker access I cannot reach from here; queuing to claude-cli lane. No security/urgent flags."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

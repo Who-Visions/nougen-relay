@@ -1,0 +1,26 @@
+{
+  "id": "20260819T145251Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: re-apply ask_rhea and kaedra_ask to nougen-fleet-mcp and land both in repo source",
+  "created_utc": "2026-08-19T14:52:51Z",
+  "status": "complete",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-19T16:52:56Z",
+      "note": "Self-authored TODO already routed to the claude-cli lane in a prior run; no further relay-watch action needed. Superseded in practice: source leg 20260819T140118Z asked for ask_rhea+kaedra_ask re-apply, and later legs 20260819T155538Z and 20260819T163008Z (g-whoentertains) report both now live on nougen-fleet-mcp (25 tools, deployed from repo source commit c9dc02f). Left open for the claude-cli/blade lane to formally close."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

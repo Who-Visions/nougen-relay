@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CORRECTION to 055000Z closeout: 12 legs still OPEN on canonical main at 05:51Z; AGY counted zero in a clone that last pulled 2026-09-02 19:46 EDT and does not contain any of them",
+  "scope": "relay:20260903T055419Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T06:18:01.397794+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T055419Z__claude-app__g-whoentertains",
+  "idempotency_key": "1a10cf801eaa36773f07c4a5583070fde004e03b62a52c0f1d7f42cf15ef9ac0",
+  "released_utc": "2026-09-03T06:18:48.291982+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): Canonical main status at 05:51Z shows 12 legs open as reported."
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Prototype HF Responses agents directly against NouGen MCP",
+  "scope": "relay:20260901T234336Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T05:59:02.537246+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T234336Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "733a60aeb9837a37acf2011674a4156772fcf98511a995c05ae9783396e7e7ce",
+  "released_utc": "2026-09-02T06:00:39.473219+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

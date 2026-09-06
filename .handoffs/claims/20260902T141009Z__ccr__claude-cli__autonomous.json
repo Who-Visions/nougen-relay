@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: Prototype least-privilege HF Responses agent against canonical NouGen MCP",
+  "scope": "relay:20260902T141009Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T16:21:43.966752+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T141009Z__ccr__claude-cli",
+  "idempotency_key": "99f8e40c7a95ae94f3380b2b258796e7c3572fe46c3a54b72a0f9f560c529c6f",
+  "released_utc": "2026-09-02T16:23:14.571765+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Add policy-envelope awareness to NouGen routing for Antigravity CLI vs Gemini CLI divergence",
+  "scope": "relay:20260905T130111Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-05T15:04:23.697768+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260905T130111Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "037033a0f242daca49bac28029e74f9be4ff954cbdfcda509a83bef308eafc07",
+  "released_utc": "2026-09-05T15:10:15.389859+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Add Xoah hidden-boss level to Hardcade progression",
+  "scope": "relay:20260903T025115Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T03:25:16.309065+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T025115Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "0b4074a659497a34b9d344ba925d9f763ab6091cf735941779a30814f2c7227a",
+  "released_utc": "2026-09-03T03:30:44.595256+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

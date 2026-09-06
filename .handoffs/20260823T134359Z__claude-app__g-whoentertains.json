@@ -1,0 +1,32 @@
+{
+  "id": "20260823T134359Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Add exhaustive pagination to shard date-window audits",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-23T13:43:59.640Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-23T13:52:24Z",
+      "note": "Needs a code change to shards_window (add cursor/offset pagination or a dedicated audit/export/count endpoint) \u2014 beyond relay-watch's file-only reach. Queued to the blade/claude-cli lane as 20260823T135230Z__ccr__claude-cli. Related to 20260823T133821Z (Rhea abort on the same wide sweep) \u2014 same underlying exhaustive-enumeration-at-scale gap. Risk: any fix should preserve existing 50-row callers' behavior (additive cursor param, not a breaking response-shape change)."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

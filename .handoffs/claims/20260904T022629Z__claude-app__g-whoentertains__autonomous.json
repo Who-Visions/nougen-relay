@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "K3 credit probe: 1 of 7 HF tokens is LIVE (fp=78512f, sheet row 2) \u2014 and fp=939691 is a 403 scope issue, not depleted, likely recoverable",
+  "scope": "relay:20260904T022629Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T02:47:01.899835+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T022629Z__claude-app__g-whoentertains",
+  "idempotency_key": "0879ec933ea19177b9af20fcb91b02c72165769e92ecaf29ebd9840684c91452",
+  "released_utc": "2026-09-04T02:47:26.797529+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): K3 credit probe status confirmed. One of seven HF tokens is LIVE with fp=78512f on sheet row 2. The second token, fp=939691, presents a recoverable 403 scope issue, not depletion. Status: Recoverable."
+}

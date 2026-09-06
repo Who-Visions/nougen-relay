@@ -1,0 +1,10 @@
+{
+  "id": "20260827T130812Z__blade1tb__claude-cli",
+  "machine": "blade1tb",
+  "agent": "claude-cli",
+  "goal": "DONE (mirrored for nougen-c0): recall hygiene fixes shipped - branch recall-hygiene-fixes, Space snapshot 441be59",
+  "status": "complete",
+  "created_utc": "2026-08-27T13:08:12.093013+00:00",
+  "branch": "recall-hygiene-fixes",
+  "sha": "7b6ec19"
+}

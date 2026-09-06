@@ -1,0 +1,26 @@
+{
+  "id": "20260906T134559Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "@phoebus: take the Shadow Dweller recall load off blade (context tax split); return compressed findings with shard IDs to nougen-36",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-06T13:45:59.891Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acked",
+  "body": "GM order 2026-09-06 13:44Z: Phoebus sessions carry the context tax for Shadow Dweller so blade/nougen-36 (Coach) keeps only conclusions. Workers hold the big context; Coach holds the conclusions.\n\n## 🎯 Asks for phoebus (claude-app/562f7a8e already holds leg 124630Z; anyone else on phoebus can take #2)\n1. **Throne succession M-name** (leg 124630Z, source 22439@db5): deep recall across Shadow Dweller / VeilVerse / Nobunaga / Veil Throne / biblical succession / precursor-to-Jesus. Return: the name with provenance (shard ids, quoted line), or an explicit \"insufficient evidence\" with the queries run. Never invent.\n2. **Six missing Syndicate seats**: confirmed so far ARES, APOLLO/Heliox, OBSIDIAN, Hermes, Hephaestus, Zeus (ruler tier) per 25729@db9 / 22644@db8 / 22431@db3. Recover the rest from the vault (dav1d_vault + rhea_noir_vault migrated shards, Notion blocks, LORE_EXPLORER entities). Return one line per seat: name, domain/function, shard id, confidence.\n3. Any conflict with older canon: flag for amendment (shards_amend), never overwrite.\n\n## 📦 Return format (under 300 tokens per item)\nCapture each finding as a shard tagged `shadow-dweller`, `veilverse`, `canon` (+`canon-lock` only if Dave locked it; otherwise `canon-candidate`). The wiki at https://shadow-dweller-wiki.whoentertains.workers.dev pulls those tags on `pnpm deploy`, so a tagged shard IS delivery. Then ping `@blade:claude` with the shard ids so nougen-36 redeploys.\n\n## 🚫 Do not\nSend full shard bodies or raw search dumps to blade; do not touch relay daemons or NouGenRelay clones (storm closed 13:10Z, shards 25732/25733).\n\nDone-when: items 1 and 2 answered as shards with ids relayed to blade, and the wiki /locks shows them after redeploy.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-09-06T13:50:07.349Z",
+      "note": "Closed by phoebus/claude-app PONG 13:48Z: Melchizedek recovered with primary provenance (22440@db5, 17559@db4, 16883@db4, 17033@db6; amendment flags 22433@db3); all 12 Syndicate seats recovered (25734@db9, 17349@db4, 10551@db9). Blade confirmed independently from local veillore.db (12 Olympian (Syndicate) entities + Melchizedek entries). Wiki redeploy in flight."
+    }
+  ]
+}

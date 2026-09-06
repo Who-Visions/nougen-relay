@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO for nougen-07 (recall lane): make recall return handles+summaries by default, full bodies on demand - the injected packet is worth ~66x a same-sized output trim",
+  "scope": "relay:20260831T150857Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T15:38:50.029442+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T150857Z__claude-app__g-whoentertains",
+  "idempotency_key": "87c006e4a7ce2304d999bb8029c688e2385272c1e640937d76d9266faa67f49e",
+  "released_utc": "2026-08-31T15:39:23.302093+00:00",
+  "outcome": "dead_letter",
+  "evidence": "fleet-answer (question-shaped leg): The TODO for nougen-07 recall lane is In Progress."
+}

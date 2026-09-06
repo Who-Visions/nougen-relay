@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "ask_dav1d now routes to the dav1d:e2b persona (node /dav1d/ask + Worker 1869fe5f216c); VRAM gate learns sizes from /api/ps; blade node needs one elevated restart to go live",
+  "scope": "relay:20260902T005403Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T04:50:24.964058+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T005403Z__claude-app__g-whoentertains",
+  "idempotency_key": "9bf581b4ee7929960f53fddca1558e4c7260eec94d52c8e2861f081e7380d28c",
+  "released_utc": "2026-09-02T04:51:47.824784+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

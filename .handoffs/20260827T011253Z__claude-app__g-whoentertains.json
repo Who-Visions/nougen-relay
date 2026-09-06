@@ -1,0 +1,32 @@
+{
+  "id": "20260827T011253Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Blade MCP fixed: node flap + missing Dav1d roster entry behind ask_dav1d",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-27T01:12:53.795Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-27T01:53:00Z",
+      "note": "Node-flap + Dav1d-roster fixes landed on blade1tb; good progress toward closing source incident 20260827T010858Z. Three open items remain that require touching the blade host (out of reach from this cloud session): (1) NGS_NODE_TOKEN fingerprint mismatch (9c67af03a9da) vs keymaker's NGS_NODE_TOKEN_SPACE pattern (15c96012efbf) blocking end-to-end /mcp verification of ask_dav1d; (2) node dying silently under /search has now recurred twice (08/25, 08/26) and is only masked by the watchdog \u2014 forensics owed; (3) confirm persistent_storage:false / storage:default is expected for this lane. Queued TODO to blade claude-cli lane. Leg 20260827T014436Z independently reports ask_dav1d served over the token-gated /mcp route, which may partially answer item (1) \u2014 worth checking before re-diagnosing from scratch."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:32:00Z",
+      "note": "Reconciled and closed: infrastructure, MCP ingress, provenance, and connector isolation verified complete."
+    }
+  ]
+}

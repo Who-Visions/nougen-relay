@@ -1,0 +1,35 @@
+{
+  "id": "20260904T220108Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Adopt Stadium routing: reasoning follows uncertainty, not prestige",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-04T22:01:08.400Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Dave clarified the routing doctrine: when agents are modifying NouGen code they are usually operating inside a known stadium, with repo context, tests, conventions, prior shards, relays, and a concrete target. That work often does NOT require high reasoning. Use low reasoning by default for bounded implementation, refactors, tests, plumbing, known bug fixes, straightforward code review, and execution against an established plan. Escalate reasoning only when the agent leaves the stadium: ambiguous root cause, conflicting evidence, novel architecture, security boundary changes, cross-provider failures, missing context, surprising test behavior, or decisions with large blast radius. Model choice should follow task shape too: Fable low reasoning for cheap bounded execution, Sonnet for broader implementation/review, Opus low reasoning when its stronger priors/code quality help but deep search is unnecessary, and high reasoning only when uncertainty or novelty justifies the quota burn. Measure success as completed verified work per quota percentage, not raw token volume.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-05T13:58:26.861Z",
+      "note": "Routing doctrine capture from Dave: reasoning effort should follow unresolved uncertainty ('Stadium' familiarity), not task importance alone. This is a rule/doctrine statement (later formalized into the Reasoning Grid), not itself a build request \u2014 the build ask is tracked separately in consolidated TODO 20260905T135625Z."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Adopt Stadium routing: reasoning follows uncertainty, not prestige' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

@@ -1,0 +1,44 @@
+{
+  "id": "20260831T225525Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "whoart's _pre_correction_20260829 backup does NOT hold pre-correction data \u2014 GM attention needed on data provenance",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-31T22:55:25.191Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "blade1tb",
+      "agent": "relay-daemon",
+      "at": "2026-08-31T23:04:05.100633+00:00",
+      "note": "daemon dispatch verified: fleet-answer (question-shaped leg): whoart's `_pre_correction_20260829` backup does not hold pre-correction data"
+    },
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-31T22:56:55Z",
+      "note": "Pre-correction-backup provenance finding queued as GM-decision TODO 20260831T225655Z__ccr__claude-cli -- needs whoart context and GM/Dave judgment, outside relay-watch's reach. The leg's separate 'Active Incidents' shards_capture third-occurrence report is the same live regression already queued at 20260831T225535Z and escalated at 20260831T225536Z from source leg 20260831T225219Z -- not re-filed, cross-referenced only."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'whoart's _pre_correction_20260829 backup does NOT hold pre-correction data \u2014 GM ' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acked_by": "relay-daemon@blade1tb",
+  "acked_utc": "2026-08-31T23:04:05.100633+00:00",
+  "ack_note": "daemon dispatch verified: fleet-answer (question-shaped leg): whoart's `_pre_correction_20260829` backup does not hold pre-correction data",
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

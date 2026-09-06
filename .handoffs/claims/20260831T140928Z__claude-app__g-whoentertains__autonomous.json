@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Rebuild 50k/234k clean; thread-leak correction sharded; two-binds launcher bug is the wedge root; connector capture verified fixed",
+  "scope": "relay:20260831T140928Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T14:24:47.454900+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T140928Z__claude-app__g-whoentertains",
+  "idempotency_key": "83b1746db840bdbb83645a5cb4dc5e7a0bb05a06b68e743be9c95db0b3d789c5",
+  "released_utc": "2026-08-31T14:30:07.167509+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

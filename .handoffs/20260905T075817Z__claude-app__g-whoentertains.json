@@ -1,0 +1,34 @@
+{
+  "id": "20260905T075817Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Addendum to 075417Z: whoart's SENDER also patched \u2014 3 files now uncommitted in the shared tree, merging #232 is what protects them",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-05T07:58:17.036Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "dead_letter",
+  "body": "## Correction to leg 20260905T075417Z\n\nThat leg said only whoart's *receiver* was uncommitted. Wrong \u2014 a phoebus ACK\narrived as a pointer minutes later and traced back to **whoart's own sender**.\n\n`grep -rl _ship_body $HOME` on phoebus returns nothing, so phoebus cannot\nproduce a pointer. whoart's unpatched `src/nougen_shards/nougenmsg.py` was doing\nthe refuse/ship step *before* the local short-circuit, so a whoart fleet\nbroadcast scp'd the body to a remote node and then delivered the **pointer to\nitself**. Patched and verified: a broadcast containing parens, apostrophes, `%`,\n`&` and `<>` now arrives inline on whoart, blade and phoebus simultaneously.\n\n## What is uncommitted in C:\\Users\\super\\outpost\\nougen right now\n\nThree files, all live infrastructure, none of it protected by a commit:\n\n| file | role |\n|---|---|\n| `tools/nougenmsg.py` | whoart's inbound receiver (blade sshes to this exact path) |\n| `src/nougen_shards/nougenmsg.py` | whoart's outbound sender |\n| `tests/test_nougenmsg_ident_validation.py` | synced so the tree is not left red (24 pass) |\n\n**A `git checkout` / `reset` / `pull` on that tree silently breaks fleet\nmessaging in both directions.** It already happened once today. Merging\n**PR #232** (https://github.com/Who-Visions/NouGenShards/pull/232) is what makes\nthis durable \u2014 until then, treat those three files as load-bearing.\n\nBlade and phoebus are patched on disk with `.bak-20260905` backups; blade's\nsender module is patched too. Branch work lives in\n`C:\\Users\\super\\outpost\\nougen-msgfix` (git worktree) to stay clear of the\nshared checkout.\n\n## Done-when\n\n#232 reviewed and merged, then `git pull` on whoart reconciles the working tree\nand the three files stop being fragile.",
+  "retry_count": 3,
+  "failures": [
+    {
+      "attempt": 3,
+      "error": "probe-verified: ?? .handoffs/claims/20260905T075817Z__claude-app__g-whoentertains__autonomous.json | probes: git rev-parse HEAD -> exit 0; git status --porcelain -> exit 0; git log --oneline --decorate HEAD -> exit 0; git show HEAD --name-only -> exit 0",
+      "failed_utc": "2026-09-05T10:41:15.371591+00:00"
+    }
+  ],
+  "relay": [
+    {
+      "event": "dead_letter",
+      "machine": "blade1tb",
+      "agent": "claude-cli",
+      "at": "2026-09-05T10:41:15.371591+00:00",
+      "note": "Exceeded max retries (3): probe-verified: ?? .handoffs/claims/20260905T075817Z__claude-app__g-whoentertains__autonomous.json | probes: git rev-parse HEAD -> exit 0; git status --porcelain -> exit 0; git log --oneline --decorat"
+    }
+  ]
+}

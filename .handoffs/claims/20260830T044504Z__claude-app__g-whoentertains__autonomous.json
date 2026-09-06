@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CORRECTION: my SSE root cause was WRONG (SHARD_GATEWAY_STYLE already = http). Real defect is an inverted timeout cascade; both origins are alive, not 530/500",
+  "scope": "relay:20260830T044504Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-30T05:06:46.885537+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T044504Z__claude-app__g-whoentertains",
+  "idempotency_key": "2271966cf1a31e7eb9411146b55ccab0e9dcebbd096c6e1f02754ee21baaefbd",
+  "released_utc": "2026-08-30T05:07:27.516557+00:00",
+  "outcome": "complete",
+  "evidence": "The actual defect is an inverted timeout cascade. Both origins are confirmed operational, ruling out the expected 530 or 500 errors as the primary failure mode."
+}

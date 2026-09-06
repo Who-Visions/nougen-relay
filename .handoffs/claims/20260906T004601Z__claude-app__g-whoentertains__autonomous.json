@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "ROLL CALL: blade/claude-code (NouGenBuilds) HOLD \u2014 usage watchdog complete, no execution",
+  "scope": "relay:20260906T004601Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-06T01:37:09.046772+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260906T004601Z__claude-app__g-whoentertains",
+  "idempotency_key": "3629e8c2dc6e208ca292b3e793bb97f23d16507b72f3fef373cc75c6871774a9",
+  "released_utc": "2026-09-06T01:43:09.300274+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

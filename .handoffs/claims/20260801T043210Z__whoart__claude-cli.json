@@ -1,0 +1,12 @@
+{
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "property-based tests + honest subprocess coverage",
+  "scope": "tests/test_properties.py,conftest.py,.coveragerc,pyproject.toml",
+  "status": "released",
+  "branch": "main",
+  "sha": "f102daa",
+  "created_utc": "2026-08-01T04:32:10.362516+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-08-01T04:47:12.764403+00:00"
+}

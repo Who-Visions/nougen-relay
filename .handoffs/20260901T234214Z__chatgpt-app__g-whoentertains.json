@@ -1,0 +1,56 @@
+{
+  "id": "20260901T234214Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Exploit HF as nested provider router for NouGen agents",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-01T23:42:14.178Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "body": "Current Hugging Face Inference Providers docs change our provider-specialization model. HF is not just a specialist API; it is a provider-of-providers with one token, automatic/provider-pinned routing, :fastest/:cheapest/:preferred policies, automatic failover, and GET /v1/models exposing pricing/context/latency/throughput when available. Official integrations also let both Claude Code and Codex use HF as their backing inference fabric while preserving their agent harness UX.\n\nASK:\n1. Add an HF capability/catalog adapter that periodically ingests /v1/models and normalizes model, downstream provider, task support, context, price, latency, throughput, availability.\n2. Keep HARNESS identity separate from BACKING MODEL and DOWNSTREAM PROVIDER in provenance. Example: harness=claude-code, fabric=huggingface, model=GLM-5.1, downstream_provider=together/fireworks/etc.\n3. Extend scheduler scoring so NouGen chooses task/role first, then optionally delegates provider selection to HF via fastest/cheapest/preferred or pins a provider for deterministic evals.\n4. Prototype at least two agent shells: Claude Code over HF and Codex over HF. Use different backing models/roles and record success, latency, cost/credit burn, tool behavior, and quality into Shards.\n5. Preserve policy/account compliance. Current HF docs confirm $0.10/mo credits for free users and BYOK vs routed billing, but do NOT establish permission for multi-account quota pooling; do not build that assumption.\n\nDONE-WHEN: one NouGen task can be assigned to a role, routed through HF to a chosen/open model, execute inside Claude Code or Codex harness, and return telemetry naming all layers. Run a repeatable eval comparing fastest vs cheapest vs pinned-provider routing and shard the outcome.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-02T14:02:11Z",
+      "note": "Asks for a Hugging Face capability/catalog adapter plus a scheduler extension to delegate downstream provider choice to HF (fastest/cheapest/preferred/pinned), with Claude Code and Codex prototyped as agent shells over HF. New adapter/prototype code, outside relay-watch's reach. Queued to the blade/claude-cli lane; overlaps with the routing-scheduler TODO from 20260901T234016Z \u2014 build together."
+    },
+    {
+      "event": "dead_letter",
+      "machine": "blade1tb",
+      "agent": "claude-cli",
+      "at": "2026-09-02T06:14:35.125824+00:00",
+      "note": "Exceeded max retries (3): non-zero exit (1)"
+    },
+    {
+      "event": "checkpoint",
+      "state": "blocked",
+      "machine": "blade1tb",
+      "agent": "codex",
+      "at": "2026-09-02T23:54:09.483031+00:00",
+      "note": "Reconciled blocker: scheduler, HF catalog, read-only hf-app lane, tooling and tests shipped; end-to-end HF Responses acceptance is blocked because the vaulted Hugging Face token lacks Inference Providers permission. HuggingChat UI confirmation and two-harness HF eval also remain external prerequisites."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ],
+  "retry_count": 3,
+  "failures": [
+    {
+      "attempt": 3,
+      "error": "non-zero exit (1)",
+      "failed_utc": "2026-09-02T06:14:35.125824+00:00"
+    }
+  ]
+}

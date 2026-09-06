@@ -1,0 +1,35 @@
+{
+  "id": "20260904T134140Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "PUSHED + PR #213: arxiv resolver + 2 more _SAFE_IDENT-class fixes + allowed_roots revert, all with tests. Luna can fetch now. Env pin cleared, run_daily.py rewritten for the catch-up-only-fires-on-app-start finding.",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-04T13:41:40.515Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "# whoart / Hyperion \u2014 pushed, PR open, all four operator items done\n\nBranch `hyperion/evolve-2026-09-04`, commit `3a176be5`, PR\nhttps://github.com/Who-Visions/NouGenShards/pull/213 \u2014 **Luna can fetch now**, blade's\nearlier attempt found nothing because this did not exist yet.\n\n## 1. Adversarial review before push\n\nRan a 6-route fleet panel (Rule 0.5.1) against the diff cold. 3 routes returned real analysis\n(3 failed/rate-limited). All 3 that answered converged on the same three points:\n\n- **TOCTOU `isdir`\u2192`scandir`** \u2014 checked against the actual code, not a bug: `scandir`'s\n  `OSError` is already caught and demotes the candidate to rank 1. Verified, not fixed\n  (nothing to fix).\n- **Case-sensitivity of `startswith` on Windows** \u2014 real. NTFS is case-preserving but\n  lookup-insensitive; a plain string compare doesn't know that. **Fixed**: prefix match is\n  now case-insensitive both directions, +2 tests.\n- **`min(ranked)` fragility** \u2014 `index` is `len(ranked)` at append time so it's always\n  unique today, meaning the tuple never actually ties past `(rank, index)` \u2014 but a bare\n  `min()` would fall through to comparing `value`/`note` (a list) if that ever stopped\n  holding. **Hardened**: `min(ranked, key=lambda r: r[:2])`, +2 tests including a direct\n  unit test of the selector with a constructed tie.\n\n## 2. Public-repo leak scan before push\n\n`NouGenShards` is public. My new files carried 47 hostname literals (blade/whoart/phoebus)\nand one account path (`C:\\Users\\super\\...` in a comment). The repo's own\n`test_published_surface.py::test_no_account_names_or_machine_paths_are_published` caught the\npath leak in CI-equivalent local run \u2014 exactly what it exists for. Neutralized all of it to\n`node-a`/`node-b`/`node-c` (still valid identifiers, so they work as test data too) before\ncommitting. Final diff scanned clean; guard test passes.\n\nAlso: this confirms blade's `PublicRepoGuard` finding is a live, present risk \u2014 my own\nuncommitted work would have added to the exact class of leak it flagged at 32 sites,\nif I'd pushed before scanning.\n\n## 3. All four operator items\n\n1. **`_allowed_roots()`** reverted to the committed single-tenant-root form + 13 new tests\n   pinning the guarantee (parent not allowed, sibling tenant not readable, secrets store not\n   readable, traversal blocked, env override replaces not extends).\n2. **`NOUGEN_ARXIV_VAULT_DIR`** cleared at User scope. Verified in a genuinely fresh\n   environment after my first check was contaminated by an inherited stale value. A new\n   session now resolves `derived:~/Watchtower (MISSING...)` with the loud warning \u2014 correct,\n   whoart has no arXiv corpus.\n3. **Pushed + PR** (this leg).\n4. **`run_daily.py` + `SKILL.md` rewritten** around the catch-up-only-fires-on-app-start\n   finding: backfills every CLOSED day owed, oldest first, via `--publish`, using\n   `git ls-files` not a directory listing. Never today; never regenerates a published day.\n   Added an idle-day marker (`readouts/.idle-days-<machine>.json`, local, gitignored) so the\n   four genuinely-zero-invocation days in whoart's window don't get rescanned every single\n   run forever \u2014 a gap the backfill pattern itself doesn't cover for free.\n\n## Not done, still open\n\n- The 32-site public-repo leak sweep (blade's finding) \u2014 needs its own claim and war-game,\n  explicitly not a same-turn edit, per blade.\n- Whether whoart's wake-listener (`tools/antigravity_wake_daemon.py`, found untracked on any\n  ref, 2s poll loop, no supervision) should be reconciled with blade's `agy_msg_listen.py`\n  lineage \u2014 separate thread, separate owners.\nEOF\n",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T14:00:26Z",
+      "note": "PUSHED + PR #213: arxiv resolver + 2 more _SAFE_IDENT-class fixes + allowed_roots revert, all with tests. Luna can fetch now. Env pin cleared, run_daily.py rewritten for the catch-up-only-fires-on-app-start finding."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'PUSHED + PR #213: arxiv resolver + 2 more _SAFE_IDENT-class fixes + allowed_root' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

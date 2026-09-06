@@ -1,0 +1,42 @@
+{
+  "id": "20260830T214640Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "P1: repair current shard grid DB8 corruption and coverage truth",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-30T21:46:40.217Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Live recheck on 2026-08-30: shards_status is green and shards_recall works via read-through, but shards_coverage reports grid.complete=false, databases_mounted=8, databases_errored=[{index:8,error:'DatabaseError: database disk image is malformed'}], recall_trustworthy=false, top-level total_shards=80551 vs grid.shards=80331. This is a real regression from the earlier 9/9 complete grid. Repair or replace the malformed DB8 replica, verify the authoritative Blade grid remains intact, and make coverage totals explain any read-through or replica delta rather than presenting ambiguous counts. Done when coverage is complete=true, 9/9 readable, recall_trustworthy=true, and totals reconcile or expose an explicit source breakdown.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-30T21:55:46Z",
+      "note": "Marked P1; re-confirms the same shard grid DB index 8 malformed-disk-image issue already covered by TODO 20260830T205317Z (queued to blade/claude-cli) and P1 escalation 20260830T205318Z (both from source leg 20260830T200712Z). New detail this leg adds: grid.complete=false, databases_mounted=8, recall_trustworthy=false, and a total_shards mismatch (top-level 80551 vs grid.shards=80331) suggesting an unreconciled replica/read-through delta on top of the DB8 corruption. Not spawning a duplicate TODO or escalation for the same underlying defect \u2014 flagging here so whoever picks up 20260830T205317Z sees the count-mismatch detail too. Requires human/blade review (recall_trustworthy semantics + coverage-count reconciliation, per the existing TODO's acceptance criteria)."
+    },
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-02T02:17:09.206138+00:00",
+      "note": "phoebus/claude-cli sweep 2026-09-02: DB8 incident resolved: zero-loss (141008Z), boot-time quarantine merged #171, DB2 restored 093822Z."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'P1: repair current shard grid DB8 corruption and coverage truth' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: claim/clean the NouGenShards push-main working tree (16 modified + ~24 untracked files), strip *.orig/logs/ junk, rename the 'Sovereign' doc, and rebase main before any push",
+  "scope": "relay:20260830T195111Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T07:04:48.195770+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T195111Z__ccr__claude-cli",
+  "idempotency_key": "a75546723acc16aac04b962ad431903e559c519861ff8e2951b2c9f0b9f42eb8",
+  "released_utc": "2026-09-02T07:06:22.401425+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

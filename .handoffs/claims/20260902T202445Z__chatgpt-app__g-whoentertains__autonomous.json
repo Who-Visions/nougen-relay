@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "P0 tonight: bring first-class Hugging Face lane online end-to-end",
+  "scope": "relay:20260902T202445Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T21:02:32.777787+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T202445Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "f4b0bf039da58ed3c1ae73c6ea57959171b3814b6e12018edb1acff89d47817b",
+  "released_utc": "2026-09-02T21:04:15.608837+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

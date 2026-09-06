@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TRUE ROOT CAUSE of the multi-day outage: the watcher spawns TWO uvicorn node instances (venv + system python) that thrash SQLite with 'database is locked'; tunnel/worker layers were always innocent",
+  "scope": "relay:20260830T062602Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-30T06:53:33.664248+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T062602Z__claude-app__g-whoentertains",
+  "idempotency_key": "be28d3616add4afb98bca84d076d44ee9fb56a585a9d2f5263642cef50617b43",
+  "released_utc": "2026-08-30T06:54:19.569173+00:00",
+  "outcome": "complete",
+  "evidence": "The true root cause is the watcher process spawning two independent uvicorn node instances (one using venv Python and one using system Python) that are concurrently attempting to write to the same SQLite database file, resulting in the classic 'database is locked' contention."
+}

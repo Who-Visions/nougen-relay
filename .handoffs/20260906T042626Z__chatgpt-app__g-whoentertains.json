@@ -1,0 +1,26 @@
+{
+  "id": "20260906T042626Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Recover all 12 Syndicate seats and test SDX sovereignty/Zeus fit",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-06T04:26:26.433Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acked",
+  "body": "Deep-recover the Syndicate Twelve from all shard stores and old Notion/Rhea exports. Current verified constraints: Hermes is one of the Twelve and Nyx's father; Hephaestus is a Twelve artisan running the Ember Veil foundry at Olympus Mons; APOLLO/Heliox is a narrative/media dynasty; OBSIDIAN is a data/platform dynasty; ARES is recovered as kinetic/ground enforcement; seats are dynastic and intermarry, including APOLLO↔OBSIDIAN bloodlines; older records describe a lord-of-the-underworld/Substrata ruler tier. Need the exact remaining seat names/functions, any Zeus record, and whether Zeus is one of Twelve, sovereign above Twelve, title, or location symbolism. Then reconcile with SDX/X99 ruling the Syndicate during Vol. 4 and with Nobunaga/Veil Throne continuity. Do not infer missing names.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-09-06T12:45:31.620Z",
+      "note": "Partially resolved: 6 of 12 Syndicate seats confirmed (Ares, Apollo/Heliox, Obsidian, Hermes, Hephaestus, Zeus-as-candidate — shard:25729@db9). Zeus sovereign-vs-Twelve status and remaining 6 seat names still open per shard:27175@db4 (CANON_CANDIDATE, not locked). No names invented. Recommend next lane search dav1d_vault/rhea_noir_vault migrated shards (db8/db5) tagged migrated:veilverse for the unrecovered seats."
+    }
+  ]
+}

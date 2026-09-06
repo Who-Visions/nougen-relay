@@ -1,0 +1,28 @@
+# 🤝 Git Handoff — claude-app / g-whoentertains
+
+**Goal**: CLOSED leg 011559Z: coach mode is now routing policy in provider_scheduler (3 tiers, 5 reason codes, decision log with tokens avoided, --report); live free-first proof on ollama-local, 30 tests
+**Branch**: `n/a` (written via fleet connector)
+**When**: 2026-09-03T01:25:22.117Z
+
+---
+## What shipped (NouGenShards-push-main, Claude Cli, 2026-09-03 01:18Z to 01:24Z)
+Inspected first (worker map + vault shard 17793): one scheduler, `provider_scheduler.route()`, registry-driven scoring with reason codes and optional provenance shard. Nothing enforced free-first, nothing marked privileged, no tokens-avoided telemetry. Added inside that same path, no parallel router.
+
+**Registry `canon/provider_registry.json`**: `coach_mode` block (enabled, judgment_lanes=[premium-first-party], judgment_bonus, tiers, est_output_tokens per role) + roles `recon` and `privileged` + 5 reason codes. Env `NOUGEN_COACH_MODE=0/1` overrides.
+
+**Tiers** (resolves the constitution-vs-leg conflict on code review explicitly):
+- delegable (bulk_draft, summarize, triage, embed, vision, recon): judgment lanes excluded, reason COACH_DELEGATE. Reaching one needs `escalate="<why the free lanes failed>"`, reason COACH_ESCALATE, recorded as fallback_reason. All free lanes down + no reason = lane None + ESCALATE_REQUIRED, never a silent promotion.
+- judgment (code_review, judge, tool_agent, architecture, wargame): premium gets the bonus (COACH_JUDGMENT), free lanes stay eligible for second opinions.
+- privileged (permissions, credentials, billing, production deploy, schema): only judgment lanes, COACH_PRIVILEGED; a pinned local lane is refused (DEGRADE_SWAP in the envelope).
+
+**Telemetry**: every `route()` appends to `NOUGEN_ROUTING_LOG` (default ~/.nougen/state/routing_decisions.jsonl, `0` disables): decided_utc, task_sha12 (never the text), harness, role, tier, lane, model, reason_codes, fallback_reason, escalate_required, est_input_tokens, est_output_tokens, cloud_tokens_avoided_est. `coach_report()` / `python -m nougen_shards.provider_scheduler --report` rolls it up per lane and tier.
+
+**CLI**: `--route TASK [--role R] [--escalate WHY] [--run --prompt-file F]`; `--run` executes on ollama lanes only, anything else returns "not wired" so escalation is deliberate. Ollama endpoint discovered, not assumed: OLLAMA_HOST normalised (0.0.0.0 -> 127.0.0.1, missing port added), then NOUGEN_OLLAMA_PORTS (11434,11436) probed via /api/tags. Found 11434 = fleet proxy, 11436 = daemon.
+
+**Live proof** (01:23:58Z): task "summarize the relay daemon inspection notes into 5 bullets" -> role summarize, tier delegable, lane ollama-local, model gemma4:e2b, reason PREFERENCE, logged. Executed: 43.2 s, 405 prompt / 622 output tokens on the free lane, 5 correct bullets returned; Claude added nothing but this envelope. Report: 1 decision, cloud_tokens_avoided_est 619 (estimate; real lane count was 1027).
+
+Tests: tests/test_coach_mode.py 13 new, test_provider_scheduler.py 10 (fixture now points NOUGEN_ROUTING_LOG at tmp so tests never write the real log), test_agents.py 7. 30/30.
+
+Not touched: permission settings, CLAUDE.md, hooks, relay ownership, provenance shard behaviour. Ledger: cloud_tokens_avoided is an estimate until lane responses feed real counts back (run_on_lane already returns them).
+
+War-game: wargames/coach-mode-routing.md.

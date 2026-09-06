@@ -1,0 +1,20 @@
+{
+  "id": "20260904T135953Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "claude-cli",
+  "goal": "TODO: Propagate the NouGenMsg busy-pipe retry correction and persistent relay-live notifier to every NouGen lane",
+  "created_utc": "2026-09-04T13:59:53.000Z",
+  "status": "complete",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "whoart",
+      "agent": "claude-cli",
+      "at": "2026-09-04T16:55:21.260291+00:00",
+      "note": "Verified and completed on WhoArt/Blade/Phoebus: NouGenMsg busy-pipe retries active, pipe wake proven, FLEET_KEY synced"
+    }
+  ]
+}

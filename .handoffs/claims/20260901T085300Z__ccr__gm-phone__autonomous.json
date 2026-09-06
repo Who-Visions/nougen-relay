@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "P1 ESCALATION: Space-sqlite grid triage complete, 2 root causes found; 3 gated commands await GM (merge PR #169, wipe volume, delete self-loop federation row)",
+  "scope": "relay:20260901T085300Z__ccr__gm-phone",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T11:12:06.681316+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T085300Z__ccr__gm-phone",
+  "idempotency_key": "80c2914886c8f4ec401cbc1ca2737e2462f439fc54399c74b541a53bf8625b2e",
+  "released_utc": "2026-09-01T11:18:15.093072+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

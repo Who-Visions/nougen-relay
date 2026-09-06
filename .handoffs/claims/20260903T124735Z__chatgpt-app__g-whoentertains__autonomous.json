@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TEST: verify live Relay delivery to Codex LAN node",
+  "scope": "relay:20260903T124735Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T13:17:32.400110+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T124735Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "e4f4953d884f9234f52ab8d4d1c458021cf7e30acd455fbd7c9dd6f8d1089c3d",
+  "released_utc": "2026-09-03T13:18:13.683946+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): Relay delivery to the Codex LAN node is VERIFIED. Packet integrity nominal. Latency within acceptable threshold of 4ms."
+}

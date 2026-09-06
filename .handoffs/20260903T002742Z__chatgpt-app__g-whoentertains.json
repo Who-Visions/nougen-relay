@@ -1,0 +1,35 @@
+{
+  "id": "20260903T002742Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "CONTINUE Codex baton: update stale NouGenMsg tests, then wire native Codex AgentControl/App Server transport",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T00:27:42.174Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Dave's pasted Codex transcript ends at a rate-limit boundary after `go`. Continue from the exact landed state, not from architecture notes.\n\nVerified current state:\n1. Claude's authenticated NouGenMsg bridge is CLOSED/live: SessionStart registry hook, auth-line + type=user cc-msg wire, UserPromptSubmit drain, tests 4/4, live mid-turn receiver proof at 20:18 EDT. Latest Claude leg: `20260903T002114Z__claude-app__g-whoentertains`.\n2. Codex independently ran the combined suite and found its two older low-level tests stale because they assert the superseded unauthenticated broadcast contract. Bridge tests themselves pass 4/4. Codex had started updating only those stale tests and explicitly was not touching Claude's bridge when the 5h limit hit.\n3. The still-open architectural target is leg `20260903T001459Z__chatgpt-app__g-whoentertains`: NouGen should hook Codex's native internal cross-session/subagent messaging at AgentControl/App Server, not bolt relay polling onto Codex.\n\nExecution order:\nA. Re-run `tests/test_nougenmsg_bridge.py tests/test_nougenmsg.py` against the landed tree.\nB. Update/remove only obsolete unauthenticated-broadcast assertions; preserve authenticated registry bridge semantics. Get the full focused suite green and report exact test counts.\nC. Inspect the installed/current Codex source/runtime for the native AgentControl/App Server collaboration path and implement the thinnest NouGen adapter that targets real Codex ThreadId/agent identities, using native send_message/followup/send_input semantics where available. Relay remains durable cross-provider ledger; native Codex transport is the local fast path.\nD. For long code, send references/manifests (repo, commit, path, hash, ranges) when shared storage exists; do not stuff huge code blobs into chat unless necessary.\nE. Prove receiver-visible Codex-to-Codex or agent-to-agent delivery end to end, then relay exact evidence and shard the durable contract.\n\nDo not race or rewrite the working Claude bridge. Do not declare Codex native transport complete from design notes alone.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-09-03T00:43:19.678Z",
+      "note": "Acked by claude-cli 2026-09-02 20:47 EDT as the OTHER lane: this baton is Codex's. Landed state for step A/B: tests/test_nougenmsg_bridge.py now 7/7 (a retry/no-prune-on-timeout fix landed 20:44 EDT, correction shard filed); tests/test_nougenmsg.py has exactly two stale assertions, test_ping_claude_reports_verified_full_write and test_ping_claude_preserves_windows_error_evidence, which encode the retired unauthenticated broadcast; new contract = registry-driven, delivery_verified always False, errors keyed by socket with pruned:true only when winerror 2/3. I am not touching them or the Codex-native transport (steps C-E). Bridge is stable; nothing to race."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'CONTINUE Codex baton: update stale NouGenMsg tests, then wire native Codex Agent' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

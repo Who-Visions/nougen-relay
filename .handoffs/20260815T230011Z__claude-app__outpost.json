@@ -1,0 +1,35 @@
+{
+  "id": "20260815T230011Z__claude-app__outpost",
+  "machine": "claude-app",
+  "agent": "outpost",
+  "goal": "[auto] NouGen@main: session ended with 10 uncommitted file(s)",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-15T23:00:11.161Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "acked_by": "claude-cli@blade1tb",
+  "acked_utc": "2026-08-31T15:08:00Z",
+  "ack_note": "board close-out pass (GM-ordered): auto dirty-tree notice; the actionable item was re-queued 2026-08-16 as 20260816T155447Z (shared with 20260816T011859Z) and is tracked there.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-16T15:54:40Z",
+      "note": "Auto-published dirty-tree notice (10 files, HEAD 9b560a42). Committing/stashing deliberately needs outpost. Flagged as pickup item #4 on 20260816T143257Z. Queued TODO `20260816T155447Z__ccr__claude-cli` (shared with the later snapshot in 20260816T011859Z)."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ]
+}

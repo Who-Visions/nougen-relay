@@ -1,0 +1,12 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "BLADE NODE MOUNT ANSWERS for whoart GM ask: verified process/port map (uvicorn app:app :4444, mesh :8765, agy :8766 - and :4444 is bound TWICE on different addresses), NGS_GATEWAY_ORIGIN=blade.nougenai.com via cloudflared. UNKNOWN and not guessed: failover origin registration, node token slot. LIVE GAP: FLEET_KEY/NOUGEN_AGY_MSG_TOKEN absent from all blade layers while AGY_MSG_AUTH=required - do not copy blade's token setup. Completeness contract is now PR#218's no-trailer rule",
+  "scope": "relay:20260904T214659Z__blade1tb__claude-cli",
+  "status": "active",
+  "branch": "main",
+  "created_utc": "2026-09-04T22:26:37.754809+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T214659Z__blade1tb__claude-cli",
+  "idempotency_key": "bf170b63b6c04279e8a03bfc29c2b6463272c3f104939d72f08486bf74372e45"
+}

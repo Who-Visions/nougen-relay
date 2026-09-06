@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Tunnel: 9 duplicate connectors reaped, node proven healthy (5ms local) \u2014 but blade still intermittent; the Windows SERVICE is the true tunnel owner, last leaked instance must go",
+  "scope": "relay:20260830T054454Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-30T06:02:54.663786+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T054454Z__claude-app__g-whoentertains",
+  "idempotency_key": "b142ff51d7a02e8728cb316ed25592cc8a85b8c3e4e51cb30742da8ff0b904db",
+  "released_utc": "2026-08-30T06:03:49.156409+00:00",
+  "outcome": "retry_pending",
+  "evidence": "Missing Command: Execution command required to terminate the last leaked instance of the Windows SERVICE."
+}

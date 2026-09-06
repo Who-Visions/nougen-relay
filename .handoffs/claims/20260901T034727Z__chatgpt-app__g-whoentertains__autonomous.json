@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Reduce relay read amplification",
+  "scope": "relay:20260901T034727Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T12:46:54.218730+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T034727Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "128c3796579721f918e9f0d0be277598fa715c4c3724b684b1a039b3e87d3a9a",
+  "released_utc": "2026-09-01T12:47:23.528092+00:00",
+  "outcome": "dead_letter",
+  "evidence": "fleet-answer (question-shaped leg): Current Relay Configuration Snapshot and Amplification Metric for NouGen leg are required to verify the reduction of relay read amplification."
+}

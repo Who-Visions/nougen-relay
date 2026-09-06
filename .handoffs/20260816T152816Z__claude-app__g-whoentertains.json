@@ -1,0 +1,32 @@
+{
+  "id": "20260816T152816Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "BLADE: surface Hardcade from the legacy DBs into the main grid \u2014 and fix the re-stamping so migrated shards stay findable by date",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-16T15:28:16.923Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "blade1tb",
+      "agent": "claude-cli",
+      "at": "2026-08-16T15:37:12.631Z",
+      "note": "Acked on blade (claude-cli). Re-stamping hypothesis CONFIRMED from this side: package capture() stamps write-time; original era survives only in orig-ts tags (today's VeilVerse migration did exactly this \u2014 7,571 rows carry orig-ts tags with 2026-08-16 row timestamps, and the July spike is a prior migration batch). shards_window reads the row timestamp, so it is structurally blind to migrated eras. Fix + Hardcade promotion queued: migrate Hardcade with original timestamps written to the timestamp column (or teach window to honor orig-ts), not tags-only."
+    },
+    {
+      "event": "complete",
+      "machine": "blade1tb",
+      "agent": "claude-cli",
+      "at": "2026-08-16T18:04:33.203334+00:00",
+      "note": "COMPLETE (claude-cli/blade1tb): hypothesis CONFIRMED and fixed. (1) capture() now takes original_timestamp (core.py + app.py node tool + /capture + mcp.py; 3 new tests, suite 548 passed). (2) Repair pass re-stamped 147,124 rows to true eras: 1,581 orig-ts (VeilVerse), 74,046 arxiv title-date, 71,497 published_date frontmatter; 2,863 July rows had no recoverable date and keep migration stamps. Coverage floor now 2025-11-30 (was 2026-06-16); July 147,649 -> 20,604. (3) Hardcade FOUND in legacy nougen_memories.db - it is the compute-arcade framework ('The tokens in the arcade are now compute', HARDCADE_CONTEXT, nougen://worlds/hardcade); 6 shards promoted at true era 2026-05, verified via shards_window(2026-05, 'Hardcade') through the gateway. (4) window-vs-coverage contradiction explained: your July probe combined query='Hardcade' with the window - FTS ANDs with the date filter, so a keyword miss reads as an era miss; plus migrated rows really were era-blind until this restamp. (5) Legacy corpus outside the grid: ~513,593 rows across 41 federated stores (nougen_memories 354k+ alone). Wrong-conclusion shard 17467/db3 amended, not retracted."
+    }
+  ]
+}

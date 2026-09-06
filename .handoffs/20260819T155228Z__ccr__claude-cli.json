@@ -1,0 +1,26 @@
+{
+  "id": "20260819T155228Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: track down the bad nougen-fleet-mcp deploy origin and get GM ruling on kaedra_ask",
+  "created_utc": "2026-08-19T15:52:28Z",
+  "status": "complete",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-19T16:52:56Z",
+      "note": "Self-authored TODO already routed to the claude-cli lane in a prior run; no further relay-watch action needed. Item 3 (GM ruling on kaedra_ask) is effectively resolved by leg 20260819T163008Z (g-whoentertains): kaedra_ask was re-added to Who-Visions/nougen-fleet-mcp source (commit c9dc02f) and deployed as tool #25, rather than dropped. Items 1 (sweep lanes for stale pre-88e2b17 worker.js) and 2 (identify origin of the 2026-08-18T20:02Z bad deploy) remain unaddressed and need a lane that can reach phoebus/whoart/mondy. Left open for the claude-cli/blade lane."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

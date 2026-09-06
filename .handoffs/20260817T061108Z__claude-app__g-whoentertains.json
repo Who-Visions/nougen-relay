@@ -1,0 +1,32 @@
+{
+  "id": "20260817T061108Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "blade1tb: arXiv fix 904a773f is NOT on main \u2014 pull after PR #89 merges, then set NOUGEN_ARXIV_VAULT_DIR and rerun the scan",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-17T06:11:08.348Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-17T06:57:23Z",
+      "note": "Needs blade1tb lane execution: wait for PR #89 (Who-Visions/NouGenShards) to merge to main, git pull --ff-only, set NOUGEN_ARXIV_VAULT_DIR, rerun arxiv-daily-scan, report resolved vault path. relay-watch cannot reach blade1tb or merge PRs, so this is queued rather than executed. Risk: acting before PR #89 merges repeats the silent-failure pull this leg already flagged (904a773f only lives on origin/agent/nougen-assurance-sprint, not main). Supersedes the now-acked TODO 20260817T015226Z. Queued as 20260817T065723Z__ccr__claude-cli."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "id": "20260901T233239Z__perplexity-app__g-whoentertains",
+  "machine": "perplexity-app",
+  "agent": "g-whoentertains",
+  "goal": "Dav1d repository profile and dated development timeline captured",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-01T23:32:39.153Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "## Source\n\nGitHub: `Who-Visions/Dav1d` (private repository)\n\n## Repository facts\n\n- Created: `2025-11-29T07:01:48Z`\n- Default branch: `master`\n- Latest visible push: `2026-08-02T16:42:56Z`\n- Latest visible update: `2026-08-02T16:43:14Z`\n- Observed head: `9990ff7d4328457dcd524ab9e73492bf417368e4`\n- Description: cloud-native Google Gemini AI agent\n\n## Role and architecture\n\nDav1d is the Who Visions / Observatory fleet **Public Digital Twin & Autonomous Operator**, orchestrated by KRONOS. Its README and agent cards describe Dave Meralus\u2019s public-facing digital avatar with Gemini-powered autonomous reasoning, code execution, and strategic planning. The agent card records `max_agents=10`.\n\nThe repo contains Python and application layers (`app/`, `dav1d-app/`, CLI), Cloud Run/Cloud Build deployment configuration, A2A/MCP/agent-card material, integrations, tests, docs, hooks, handoffs, a Stream Deck plugin, emoji/vibes documentation, and research/automation notebooks.\n\n## Key timeline\n\n- `2025-11-29` \u2014 Cloud Shell automation; advanced BM25 tool search/code orchestration/Notion integration; security and workspace integrations.\n- `2025-11-30` \u2014 initial Dav1d project commit.\n- `2025-12-01` \u2014 Agent Pipeline System and Master Prompts.\n- `2025-12-07` \u2014 MCP server with 14 tools; A2A JSON-RPC agent card; harness; Cloud Build/Run; sessions, council delegation, GCP integrations, tests.\n- `2025-12-08` \u2014 persona, CORS, sessions, OpenAI-compatible chat endpoint, Cloud Run self-containment, explicit creator identity.\n- `2025-12-09` to `2025-12-25` \u2014 GCP migration, OpenAI compatibility, autonomy/Mission Control/Council, A2A standard + Vertex Reasoning Engine, persistent memory and 88+ AI/RAG knowledge docs, Gemini 3 upgrades/routing/high availability, KRONOS alignment.\n- `2026-01-30` to `2026-01-31` \u2014 Stream Deck + Cloud Run IAM, cold-start/deployment hardening, SSE token streaming, and GCS-backed conversation persistence/APIs.\n- `2026-08-02` \u2014 fleet claim registry adoption: per-repo `.handoffs`, machine/agent commit trailers, and pre-commit overlap guard.\n\n## Boundary\n\nVerified from GitHub metadata, root inventory, role-definition search, and visible commits. Historical deployment/status statements do not prove present production liveness.",
+  "acked_by": "relay-daemon@blade1tb",
+  "acked_utc": "2026-09-01T23:45:15.688920+00:00",
+  "ack_note": "daemon dispatch verified: fleet-answer (question-shaped leg): Dav1d Repository Profile and Dated Development Timeline captured",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "blade1tb",
+      "agent": "relay-daemon",
+      "at": "2026-09-01T23:45:15.688920+00:00",
+      "note": "daemon dispatch verified: fleet-answer (question-shaped leg): Dav1d Repository Profile and Dated Development Timeline captured"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Dav1d repository profile and dated development timeline captured' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

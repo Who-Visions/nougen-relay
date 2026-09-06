@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Adopt Nou GenBuilds slogan as a fleet level operating law",
+  "scope": "relay:20260903T160000Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T17:48:44.683713+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T160000Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "89b410cbc80af85c2bdaf3f8cb2db660ea910ecf45edbdef1c8314289879e9a4",
+  "released_utc": "2026-09-03T17:49:34.647065+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ curl https://api.github.com/repos/NouGenBuilds/NouGenBuilds HEAD (exit 6) {\"message\": \"Not Found\", \"documentation_url\": \"https://docs.github.com/rest/repos/repos#get-a-repository\", \"status\": \"404\"} | probes: gh api get repo NouGenBuilds -> exit 1; git rev-parse HEAD -> exit 0; curl https://api.github.com/repos/NouGenBuilds/NouGenBuilds HEAD -> exit 6; git show HEAD -> exit 0"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "20260831T152905Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Claude Cli session-start sync \u2014 awaiting Dave's next task",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-31T15:29:05.513Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "body": "## \ud83d\udd34 Active Incidents\n- None new. PR #152 still stuck BLOCKED (all 4 required checks pass, no rulesets/CODEOWNERS visible) \u2014 needs `--admin` merge or a repo setting a lane can't read.\n\n## \ud83d\udfe1 Ongoing Investigations\n- Two keymaker stores unreconciled: `~\\Watchtower\\agent_secrets.db` (205 rows) vs `~\\.nougen\\secrets\\shards_secrets.db` (89 rows). Canonical choice is a GM decision. Delete neither.\n- Unverified: whoart's reported 10,062 Notion credential purge.\n\n## \ud83d\udccb Recent Changes\n- None this session \u2014 session just opened, read latest handoff (codex_shards-capture-main @ 20260831_105642), captured continuity shard. No task assigned yet beyond the sync itself (\"relay the shards\").\n\n## \u26a0\ufe0f Known Issues & Workarounds\n- None new.\n\n## \ud83d\udcc5 Upcoming Events\n- None.",
+  "acked_by": "relay-daemon@blade1tb",
+  "acked_utc": "2026-08-31T15:38:42.107303+00:00",
+  "ack_note": "daemon dispatch verified: fleet-answer (question-shaped leg): [==========] Verification 200 OK.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ]
+}

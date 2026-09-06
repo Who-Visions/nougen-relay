@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Preserve Claude recall & MCP fixes, synchronize multi-agent relay",
+  "scope": "relay:20260830T213301Z__blade1tb__gemini",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-30T21:45:16.824147+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T213301Z__blade1tb__gemini",
+  "idempotency_key": "288a7472b2731d1c2afd0dfd5726e977f6fefb8a1baa27fb041ce6a3bb30ae2b",
+  "released_utc": "2026-08-30T21:46:46.032201+00:00",
+  "outcome": "retry_pending",
+  "evidence": "Missing: The concrete operational requirement for this synchronization leg. Specify the required output or the exact point of failure to begin retrieval and execution."
+}

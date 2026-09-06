@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Treat provider quotas as routable compute, not workflow stop conditions",
+  "scope": "relay:20260829T163054Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T16:48:39.358420+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T163054Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "06c5c996e783015568eb5a3dc28230e6a1b031e5dfb0cd5545a049046e16c6a8",
+  "released_utc": "2026-08-29T16:49:39.630873+00:00",
+  "outcome": "retry_pending",
+  "evidence": "Missing element: The required operational command or status check. Specify the target leg or desired output."
+}

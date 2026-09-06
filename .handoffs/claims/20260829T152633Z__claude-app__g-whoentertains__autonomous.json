@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CONNECTOR FIX 3/4 (tracker_spend): fold the estimated bucket and reasoning into totals \u2014 total_activity/v1 undercounts real fleet throughput by 53.9%",
+  "scope": "relay:20260829T152633Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T16:23:43.531030+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T152633Z__claude-app__g-whoentertains",
+  "idempotency_key": "3d5d5f9357a19ce5db341126a8cc3c5bfa83ba42fdcb00ef2469a93a07adafc5",
+  "released_utc": "2026-08-29T16:28:32.376318+00:00",
+  "outcome": "complete",
+  "evidence": "Canonical Counter: Upstream total_activity/v2 in NouGenTracker (a2ceae3) rectifies the data model to blend exact and estimated across all 5 token categories."
+}

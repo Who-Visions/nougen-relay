@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: Build Shadow Queen Throne Governance Engine (observation vs intervention gating)",
+  "scope": "relay:20260902T141709Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T14:14:28.666200+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T141709Z__ccr__claude-cli",
+  "idempotency_key": "26bfdc614b97923a5cbe9e1e252601a5cb6f96b00ed9a552932925b142869982",
+  "released_utc": "2026-09-02T14:16:19.646985+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

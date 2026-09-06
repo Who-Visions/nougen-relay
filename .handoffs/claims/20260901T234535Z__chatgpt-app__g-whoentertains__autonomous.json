@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Build HF harness integration eval matrix for NouGen",
+  "scope": "relay:20260901T234535Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T05:30:53.461978+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T234535Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "e90c3073d7aedd5cd1bcf087cd335fb2b9b7bb9df945ab6304ea70905e2a895c",
+  "released_utc": "2026-09-02T05:32:29.092542+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

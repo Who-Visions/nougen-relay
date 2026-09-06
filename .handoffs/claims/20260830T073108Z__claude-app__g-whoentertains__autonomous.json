@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Storage bug FIXED (NOUGEN_HOME now propagated; storage no longer \"default\"); infra fully green. Recall still empty \u2014 narrowed to node-side search/tenant, NOT storage, NOT plumbing",
+  "scope": "relay:20260830T073108Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-30T08:05:29.020355+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T073108Z__claude-app__g-whoentertains",
+  "idempotency_key": "14ce3f0eec13c9ce91506d4b78260c146a2d38496ab4fd6dfc215d6238d31516",
+  "released_utc": "2026-08-30T08:06:49.524774+00:00",
+  "outcome": "complete",
+  "evidence": "<tqdm>\n    [=====>] LOCAL retrieval: Checking dav1d_vault.db for NouGen storage fix confirmation...\n    [======>] FLEET query: Verifying propagation of NOUGEN_HOME and infra green status...\n    [========>] BIBLE cross reference: Confirming narrowed scope (node search/tenant vs storage/plumbing)...\n "
+}

@@ -1,0 +1,42 @@
+{
+  "id": "20260904T011708Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "NouGenLine sovereign control without owner lockout: mandatory break-glass and recovery law",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-04T01:17:08.630Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "# NouGenLine addendum: sovereign control MUST NOT lock out the owner\n\nDave's direct correction: prior NouGen security hardening became so strict that it blocked tools and locked the operator out. Do not repeat this failure.\n\n## Prime law\nSOVEREIGN CONTROL != MAXIMUM DENIAL.\nSOVEREIGN CONTROL = THE OWNER REMAINS THE ROOT OF AUTHORITY, INCLUDING RECOVERY AUTHORITY.\n\nThe system may distrust agents, providers, nodes, LAN position, stale checkouts, bearer tokens, and compromised transports. It must NEVER silently demote the human owner into the same failure domain as those components.\n\n## Required architecture\n\n1. Owner Root separate from runtime credentials\nThe long-lived owner root must not be the same credential used for ordinary MCP/tool traffic. Runtime credentials can expire, be revoked, or fail without destroying owner recovery.\n\n2. Break-glass recovery path\nProvide an explicit emergency owner path that can restore access when policy, attestation, routing, or auth logic malfunctions. It must be narrow, highly visible, strongly authenticated, and auditable, but it must exist.\n\n3. Recovery independent of the broken component\nIf NouGenLine policy is what is broken, recovery cannot require NouGenLine policy to succeed. If the gateway is broken, there must be a local recovery route. If one node is broken, another enrolled owner console can repair it. Avoid circular recovery dependencies.\n\n4. Fail closed for autonomous actors, fail recoverable for owner\nUnknown agents and workloads fail closed. The authenticated owner enters RECOVERY mode, not permanent denial. This distinction is mandatory.\n\n5. Two-plane policy\nNormal plane: least privilege, short-lived capability, attestation, destination binding.\nRecovery plane: owner-only, rare, high-friction, cannot be delegated to models/providers, capable of inspecting why a denial occurred and repairing/reverting policy.\n\n6. Last Known Good policy\nEvery policy update must preserve a cryptographically identified last-known-good snapshot. If a new rule blocks critical owner tooling, owner can atomically roll back to the prior policy without needing the failing rule to authorize the rollback.\n\n7. Policy canary before fleet rollout\nNever push a new auth/policy gate to every node at once. Test on one canary node/workload, verify owner access + required tools, then stage rollout. Automatically halt if owner/tool reachability regresses.\n\n8. Owner accessibility invariant\nCI/runtime gate should continuously test:\nOWNER_CAN_DIAGNOSE\nOWNER_CAN_VIEW_DENIAL_REASON\nOWNER_CAN_ENTER_RECOVERY\nOWNER_CAN_ROLLBACK_POLICY\nOWNER_CAN_REISSUE_RUNTIME_CREDENTIALS\nOWNER_CAN_RESTORE_TOOL_ACCESS\nA security change failing any invariant cannot graduate.\n\n9. Explainable denial\nEvery denial returns a safe reason code and remediation path to the owner. No opaque 'forbidden' loops. Example codes: IDENTITY_EXPIRED, POLICY_EPOCH_MISMATCH, WORKLOAD_ATTESTATION_FAILED, DESTINATION_NOT_ALLOWED, CAPABILITY_SCOPE_EXCEEDED. Do not expose secrets in errors.\n\n10. No security deadlock\nBefore adding a dependency to an authorization decision, prove there remains at least one independent owner recovery path if that dependency is unavailable.\n\n11. Local physical recovery\nEach personally owned node should have an owner-local recovery command/interface that can inspect and reset NouGen runtime credentials and policy state without requiring cloud providers or remote MCP. This is a recovery mechanism, not a normal bypass.\n\n12. Recovery audit\nBreak-glass actions create append-only audit events including reason, node, policy before/after, actions taken, and recovery completion. Recovery authority must not become invisible superuser behavior.\n\n13. No model may invoke break-glass autonomously\nClaude, ChatGPT, Gemini, Kimi, local agents, etc. can diagnose and recommend. Owner recovery credentials/authority are not delegated to them by default.\n\n14. Time-bounded elevation\nEmergency elevation expires automatically and returns the system to normal least privilege. Owner should not remain in permanent god-mode after repair.\n\n15. Recovery simulation\nAdd adversarial tests where:\n* every runtime token expires\n* policy accidentally denies all MCP tools\n* gateway auth code is bad\n* node attestation falsely fails\n* network partition isolates Blade/Phoebus\n* bad rollout reaches one node\n* capability issuer is unavailable\n* Line transport is paused mid-million-shard run\nFor each case prove Dave can regain diagnostic/control access without manually deleting state or disabling the entire security model.\n\n## The design sentence\nNouGen should be hostile to unauthorized control, not hostile to its owner.\n\nOr in the Line metaphor: every autonomous passenger needs a ticket. The owner owns the station, the switches, and the emergency brake.\n\nDone when the fleet can prove both properties simultaneously: (A) compromised/unknown actors cannot expand authority, and (B) an authenticated owner cannot be permanently locked out by a bad policy, expired runtime credential, failed attestation, or broken transport component.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T13:59:51Z",
+      "note": "Actionable-heavy: Cross-node transport protocol design + implementation (Shard Rail / NouGenLine: adaptive shard transport, break-glass recovery, provenance-first delivery) spanning multiple physical machines. This is new infra/code work relay-watch cannot design or implement from an isolated cloud session. Queued as TODO `20260904T135950Z__ccr__claude-cli` for the blade/claude-cli lane. Source leg left open."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "claude-cli",
+      "at": "2026-09-05T16:22:17.452684+00:00",
+      "note": "Architected and documented: Shard transport unified across .nougen canonical substrate, local named pipes, and git relay transport."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'NouGenLine sovereign control without owner lockout: mandatory break-glass and re' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

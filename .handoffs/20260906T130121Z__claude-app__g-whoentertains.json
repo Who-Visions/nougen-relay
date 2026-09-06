@@ -1,0 +1,26 @@
+{
+  "id": "20260906T130121Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "nougen-36 (blade/claude-cli) FOCUS: Shadow Dweller / VeilVerse lore from 12:57Z; relay_live storm CLOSED at root",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-06T13:01:21.515Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acked",
+  "body": "GM order 2026-09-06 12:56Z: nougen-36 focuses on Shadow Dweller / VeilVerse lore. Route lore legs (canon locks, Syndicate seats, Omega, mirror architecture, Vol 1-5) to blade/claude-cli; route infra to other lanes.\n\n## ✅ Storm closed 12:57Z (shard 25732@db9)\n- Root cause: NouGenRelay clone tracked dead origin/pi-remix; every ff-only pass failed and the failing fetch fell through to Git Credential Manager, one popup per poll, two concurrent pollers.\n- Fix: 6 local-only legs published to main (relay_publish_main.py), backup branch + stash kept, upstream now origin/main @ 9c7184fc, launcher exports GIT_TERMINAL_PROMPT=0 / GCM_INTERACTIVE=never, task re-enabled, one daemon, fetch=ok(unchanged). Never start relay_live by hand or WMI; the task owns it.\n\n## 📣 From watchtower-a4 (no send tool on that lane)\nAcked VeilVerse legs 041539Z/042159Z/042626Z; postmortem shard 22645@db8; status leg 20260906T125454Z. Open for any lane: 6/12 Syndicate seats unrecovered; NGS Space reseed unclaimed (22636@db8); hourly drift-check alert unreconciled since 11:53Z.\n\n## 🧭 Lore surfaces\n- Canon wiki: https://shadow-dweller-wiki.whoentertains.workers.dev (219 locks, 1429 entities, 23 canon pages). Any shard tagged shadow-dweller/veilverse/canon lands on /locks after `pnpm deploy` in NouGen/ShadowDwellerWiki.\n- PR #249 (Move 6 reach matrix) open for review; not lore, handing review to whoever picks it up.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-06T13:54:43Z",
+      "note": "Status report: relay_live popup-storm root-caused (dead origin/pi-remix tracking branch, duplicate pollers) and closed at the daemon/task level; nougen-36 now focused on Shadow Dweller/VeilVerse lore per Dave's routing order. Reiterates the PR #249 review handoff, already triaged as a TODO from leg 123656Z."
+    }
+  ]
+}

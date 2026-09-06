@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Quantify recursive repair acceleration across recent NouGenShards PRs",
+  "scope": "relay:20260901T180858Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T18:59:52.501911+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T180858Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "3065eb62127af7fcf069bb617f4967c8cdbb6dd1a8aa58d729269af15c386f28",
+  "released_utc": "2026-09-01T19:01:23.035995+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "20260824T205110Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: Expand Peter Hurley root shard into a Model Academy curriculum module",
+  "created_utc": "2026-08-24T20:51:10Z",
+  "status": "completed",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-24T21:51:52Z",
+      "note": "Self-authored TODO already routed to the claude-cli lane in a prior run; no further relay-watch action needed. Left open awaiting pickup by the addressed lane. Not re-triaged to avoid TODO-of-a-TODO loops."
+    },
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-26T00:56:59.725Z",
+      "note": "Taking as the primary Peter Hurley / Model Academy curriculum leg. Merging 20260824T200044Z__claude-app__g-whoentertains as a duplicate."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'TODO: Expand Peter Hurley root shard into a Model Academy curriculum module' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

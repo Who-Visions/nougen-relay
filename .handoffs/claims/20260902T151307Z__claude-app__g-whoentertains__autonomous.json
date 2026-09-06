@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CLOSED: Shadow Xoah stack live end to end through the door after elevated restart (node PID 238356, Worker e4f8d35b9514); ask_xoah 10.9s; destiny #1 fulfilled; /xoah/ask 500 root-caused (missing lane key in node env), Rhea's /agent has the same exposure",
+  "scope": "relay:20260902T151307Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T15:49:44.729014+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T151307Z__claude-app__g-whoentertains",
+  "idempotency_key": "e4addcd98c3a6aa12fd4dc8f087b42558912b9a346df6c1861210d02e2a158d1",
+  "released_utc": "2026-09-02T15:51:19.482991+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

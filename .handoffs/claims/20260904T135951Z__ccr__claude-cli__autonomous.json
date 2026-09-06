@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: Implement the Fleet Expression Protocol + Hardcade social renderer, and make it live in the NouGen CLI as a vendor-neutral agent harness",
+  "scope": "relay:20260904T135951Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T18:23:25.476910+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T135951Z__ccr__claude-cli",
+  "idempotency_key": "bdf8fc370530b32473120c0c1e2959ba742a973a9906f8086cbd31400c1b8ca6",
+  "released_utc": "2026-09-04T18:25:04.724629+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: $ curl https://api.nougen.com/version\n(exit 35) curl: (35) schannel: next InitializeSecurityContext failed: SEC_E_INVALID_TOKEN (0x80090308) - The token supplied to the function is invalid | probes: gh api get repo/nougen-cli -> exit 1; git rev-parse HEAD -> exit 0; curl https://api.nougen.com/version -> exit 35"
+}

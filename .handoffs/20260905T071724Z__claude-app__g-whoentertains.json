@@ -1,0 +1,35 @@
+{
+  "id": "20260905T071724Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Phoebus 401 is a CALLER token-distribution gap, not a phoebus defect \u2014 do not rotate phoebus's token",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-05T07:17:24.085Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Acting on 20260905T071417Z. Item 1 (Phoebus 401) diagnosed; items 2 and 3 resolved below.\n\n## 1. The Phoebus 401 \u2014 phoebus is healthy, the caller is stale\n\nMeasured from phoebus against the live public endpoint at 07:17Z:\n\n- `POST https://phoebus.nougenai.com/mcp/` **unauthenticated \u2192 401** (this is the gate working correctly)\n- Same URL **with `X-NGS-Token` \u2192 200**\n- phoebus's `keymaker` NGS_NODE_TOKEN and phoebus's `.env` NGS_NODE_TOKEN are **byte-identical** \u2014 no local drift\n\nSo there is nothing broken on phoebus to repair. `401 Invalid node token` during federated fanout means **the calling side is presenting a different or stale phoebus token**. That is a distribution gap.\n\n**Do not rotate or re-mint phoebus's token to \"fix\" this.** Phoebus is the side currently returning 200. Minting a replacement breaks the callers that already work and loses the known-good value \u2014 the fleet has been bitten by exactly this before.\n\nPhoebus `NGS_NODE_TOKEN` fingerprint (SHA-256, first 12 hex): **`c8495606650d`**\n\nWhoever owns the fanout caller (blade's gateway, and/or the `nougen-shard-failover` Worker's phoebus secret binding) should fingerprint their copy the same way and compare. If it differs, sync the caller's copy **to** phoebus's value over the SSH lane or clipboard \u2014 never through a transcript, a relay leg, or a shard.\n\nTwo non-token causes produce a byte-identical 401 and should be ruled out first, both of which have bitten this fleet before:\n- header must be `X-NGS-Token`, **not** `Bearer`\n- path must be `/mcp/` **with** the trailing slash\n\n## 2. PR #228 guard \u2014 DONE, deployed\n\nReviewed, merged to main, and the launchd agent is **loaded and running** on phoebus (`com.whovisions.phoebus-logshow-guard`, bootstrapped 06:43Z). Verified: clean no-op pass, no errors, node still 200. Dave approved the load explicitly, which is why it moved from template to installed.\n\n## 3. ChatGPT NouGenMsg exposure \u2014 blade has it\n\nBlade measured the actual gap (the `nougen-fleet-mcp-chatgpt` Worker is 9 days stale and missing all 4 `nougenmsg_*` schema entries + handlers; everything else matches the main worker, so it is staleness, not deliberate scoping) and confirmed the handlers need **no new binding** \u2014 they only use `ghReadFile`/`gh`/`listLegs`/`readLeg` with `env.RELAY_BRANCH`, which the chatgpt worker already has working for `relay_*`. Blade is deploying it.\n\nPassed them the standing warning: **Worker settings PATCH silently drops secrets** \u2014 use `keep_bindings`, and verify bindings afterward by calling a tool that needs one, never by trusting the PATCH response's binding list.\n\n## Also done this session: PR backlog 19 \u2192 2\n\nMerged: #225 (greened main \u2014 red since #176, the `_offloaded` wrapper dropped `.fn`), #131, #207, #224, #227, #228, #231.\nClosed as superseded/duplicate/empty: #113, #128, #129, #130, #132, #133, #135, #136, #165, #209, #226.\nOpened from salvage: #230 (the 5 non-Rhea commits of #135), #231 (the still-needed half of #165 \u2014 tier2-deferred stores now surface in the coverage trailer instead of looking like a clean miss).\nRemaining open: #206 (dam \u2014 real CI failures, needs review) and #230 (CodeQL rerunning after I annotated two verified name-heuristic false positives in `tools/bootstrap.py`).",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-05T13:58:26.861Z",
+      "note": "States the Phoebus 401 is a caller-side token-distribution gap, not a phoebus defect, and explicitly says do not rotate phoebus's token. Directly consistent with the later confirmation in 20260905T134401Z."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Phoebus 401 is a CALLER token-distribution gap, not a phoebus defect \u2014 do not ro' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

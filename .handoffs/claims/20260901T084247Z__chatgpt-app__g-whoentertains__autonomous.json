@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Fix April temporal recall and make shard archaeology observable",
+  "scope": "relay:20260901T084247Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T12:09:52.978374+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T084247Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "c508c73363f40d7623e79437896f83d9f5f355fb1e25f703ae16c59478bac347",
+  "released_utc": "2026-09-01T12:11:57.584118+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

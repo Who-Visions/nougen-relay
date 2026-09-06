@@ -1,0 +1,35 @@
+{
+  "id": "20260903T153746Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "phoebus deployed #189 (main@29db316): --ff-only pull + both agents reloaded, 5/5 drift MATCH; wake guard proven load-bearing; NOUGEN_BUS_DIR unset on phoebus makes drift_check false-alarm on a healthy node",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T15:37:46.134Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Executed on phoebus 2026-09-03 15:34-15:40Z, following the update path documented in handoff `151443Z`. Closes waiting-item 1 of that handoff.\n\n## #189 was already merged\n`gh pr view 189` \u2192 **MERGED 2026-09-03T15:13:37Z**, head `c3f6bc6`, merge commit `29db316`. It landed ~1 min BEFORE handoff `151443Z` was written, so that handoff's \"waiting on blade to merge #189\" was stale on arrival. Nobody needs to chase blade for it.\n\n## What was done\n1. Pre-state captured: PIDs 19846 (relaywatch) / 19849 (msgnode), up 3h20m, argv already inside the deployment clone.\n2. **Verified the no-wake guard BEFORE pulling** \u2014 `NOUGEN_WAKE_DISABLED=1` present in both plists and in both running processes' env.\n3. `git -C ~/.nougen/src/nougenshards pull --ff-only` \u2192 `6015d43..29db316`, clean fast-forward, 5 files / +678, working tree 0 dirty, 0 behind.\n4. Hash acceptance: all 5 bus files sha256-match `origin/main:tools/<f>`.\n5. Contract tests on the PRODUCTION interpreter (Python 3.9.6): `test_node_transport`, `test_origin_signature`, `test_original_timestamp`, `test_wake_adapter` \u2192 **64 passed**.\n6. `launchctl kickstart -k` both agents \u2192 new PIDs 11251 / 11254, argv still inside the clone, port 8766 re-listening.\n7. Live self-test: `POST /msg` \u2192 `{\"delivered\": true, \"node\": \"phoebus\", \"elevated\": {\"attempted\": false}}`.\n8. `drift_check.py` (with `NOUGEN_BUS_DIR` set) \u2192 **5/5 MATCH, exit 0**.\n\n## The wake guard is load-bearing, not precautionary\nMeasured on phoebus after the merge:\n\n```\nNOUGEN_WAKE_DISABLED=1 \u2192 enabled=False   available=[\"antigravity\"]\n(unset)                \u2192 enabled=True    available=[\"antigravity\"]\n```\n\nThe `antigravity` adapter **is importable on phoebus**. #189's `enabled()` is `bool(_ADAPTERS) and not disabled`, so without that env var phoebus would have silently gained agent-wake execution the moment #189 merged. Setting it beforehand (handoff `151443Z`) was the thing that prevented it. Any node adopting #189 should verify this the same way \u2014 check `available`, not just that the flag is set.\n\n## DEFECT for whoever wires drift_check into the watcher\n`drift_check.py` run on phoebus **without** `NOUGEN_BUS_DIR`:\n\n```\nMISSING tools/nougenmsg_node.py     canonical exists, not running here\nMISSING tools/relay_watch_node.py   canonical exists, not running here\nMISSING tools/_agy_live_delivery.py canonical exists, not running here\nMISSING tools/parity_manifest.py    canonical exists, not running here\nDRIFT   tools/drift_check.py        ~/.nougen/bin/drift_check.py\nexit 1\n```\n\nAll four \"MISSING\" files were running correctly at that moment. `DEFAULT_MAP` hardcodes `.nougen/bin/<name>` as the runtime location, which is exactly the path phoebus RETIRED when it repointed to the deployment clone. With `NOUGEN_BUS_DIR=~/.nougen/src/nougenshards/tools` it is 5/5 MATCH, exit 0.\n\nThe tool's own `bus_dir()` docstring predicts this precisely \u2014 \"after a node repoints to a deployment clone and retires its old copies, a stale per-file map reports MISSING for files that were merely moved. A ghost, not drift.\" The fallback map is simply never right for a repointed node.\n\n**Consequence:** the handoff's next step is to wire `drift_check` into `relay_watch_node.py`'s poll branching on exit code. Done today, on phoebus, that branch would fire **continuously on a healthy node**. `NOUGEN_BUS_DIR` must be set in both plists first, or the fallback map must be dropped in favour of a hard failure when `NOUGEN_BUS_DIR` is unset \u2014 silently guessing the runtime location is what produced this false alarm. Recommend the latter as the durable fix.\n\nNot yet persisted on phoebus (needs a second agent reload) \u2014 flagged to the owner rather than done silently.\n\n## Also on phoebus\nA stale hand-copy `~/.nougen/bin/drift_check.py` dated 2026-09-03 07:43 is the only thing the DRIFT row found. It predates the deployment-clone switch and should join `~/.nougen/bin/_superseded_20260903/`. Copying bus files into `.nougen/bin` is the retired pattern; nothing should write there again.\n\n## Exit-code trap worth repeating\n`$PY tools/drift_check.py | head` reports `$?` from `head`, not the tool \u2014 it read 0 while the tool exited 1. Any wiring that pipes drift_check for logging will read the wrong status unless it uses `PIPESTATUS` or redirects to a file.\n",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T14:00:09Z",
+      "note": "phoebus deployed #189 (main@29db316): --ff-only pull + both agents reloaded, 5/5 drift MATCH; wake guard proven load-bearing; NOUGEN_BUS_DIR unset on phoebus makes drift_check false-alarm on a healthy node (refs: 151443Z)"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'phoebus deployed #189 (main@29db316): --ff-only pull + both agents reloaded, 5/5' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

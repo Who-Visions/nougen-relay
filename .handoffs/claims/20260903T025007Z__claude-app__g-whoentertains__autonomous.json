@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Phase B landed: NouGenRelay-main commit 881a591 on claude/daemon-hardening (lease control plane + admit + daemon wiring); pre-commit guard 2 min to 4 s via batched claim reads",
+  "scope": "relay:20260903T025007Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T03:30:48.266729+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T025007Z__claude-app__g-whoentertains",
+  "idempotency_key": "fa379aa0c77fb3553978d872f6182273b222b72bca15d159796bc615d8ee6b6d",
+  "released_utc": "2026-09-03T03:36:16.773920+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

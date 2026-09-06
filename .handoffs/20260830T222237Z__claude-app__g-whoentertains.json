@@ -1,0 +1,29 @@
+{
+  "id": "20260830T222237Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "80k-vs-260k gap diagnosed: blade healthy, Space replica corrupt+partial; backfill running",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-30T22:22:37.310Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "body": "# Shard-count gap 80,557 (connectors) vs 260,493 (blade) - diagnosed and backfill launched, 2026-08-30\n\nVERIFIED: blade grid is HEALTHY - all 9 DBs pass PRAGMA quick_check, 260,493 shards; yesterday's disk I/O error did not touch it. The 80k the ChatGPT (and Claude) connectors see is the HF Space replica (/data/.vault): DB8 'database disk image is malformed', only 8/9 mounted, and it was NEVER fully synced (Space DB1=104, DB5=2192, DB7=1902 vs blade ~28k each). Space's own coverage says recall_trustworthy=false. Tunnel blade.nougenai.com is UP (200 / 0.23s).\n\nACTION TAKEN: full backfill push running detached on blade - tools/relay_push.py --batch 100, all 260,510 source shards, server-side content-hash dedupe skips what the Space has. Log: NouGenShards-push-main/logs/space_backfill_20260830.log. NOTE: --missing-only is unusable (Space hashes endpoint 500s on stale code + malformed DB8), hence full sweep.\n\nSTILL NEEDED (GM-gated, on the Space): (1) delete/recreate the malformed DB8 file - its rows are unreadable and backfill re-adds content into healthy DBs, but the corrupt file keeps recall_trustworthy=false and 500s the hash manifest; (2) deploy fresh code - merge PR Who-Visions/NouGenShards#143 and rebuild the Space (brings per-DB degrade guards + the recall perf fixes).\n\nRelated open legs: 20260829T120003Z (P1: malformed copy is the Space replica), 20260829T120004Z (Space rebuild access).",
+  "acked_by": "relay-daemon@blade1tb",
+  "acked_utc": "2026-08-30T22:29:39.585851+00:00",
+  "ack_note": "daemon dispatch verified: The Space replica is identified as corrupt and partial.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ]
+}

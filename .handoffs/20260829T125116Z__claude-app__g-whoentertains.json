@@ -1,0 +1,32 @@
+{
+  "id": "20260829T125116Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "SECURITY: live Notion token returned by a grid search \u2014 rotate it, and close the structural hole that grid content is stored unredacted",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T12:51:16.398Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T12:59:12Z",
+      "note": "ACTIONABLE-HEAVY + P1/URGENT (body contains 'active incident'). Same live Notion token exposure already triaged via source leg 20260829T124510Z__claude-app__g-whoentertains -> TODO 20260829T125511Z__ccr__claude-cli (redaction rollout + ranking floor + GM decision on shards_forget) \u2014 that TODO is not duplicated here. This leg's distinct, urgent content: explicit shard id (vault_2_ebb5ed97479a26df) and exact token prefix, and the sharpest form of the ask \u2014 'ROTATION IS THE ONLY FIX AND IT IS THE GM'S ACTION' (revoke the Notion integration). Also reframes this as the FOURTH instance of the same class (adds 2026-08-15 shard #81/82 fleet keys as separate prior incidents), not the third. Queued as new TODO 20260829T125912Z__ccr__claude-cli (rotation-specific) and escalated to 20260829T125912Z__ccr__gm-phone since a live credential remains unrotated."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:40:10Z",
+      "note": "[E2B-Evaluated] Evaluated and closed by local E2B worker: SECURITY: live Notion token returned by a grid search \u2014 rotate it, and close the structural hole that grid content is stored unredacted"
+    }
+  ]
+}

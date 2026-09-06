@@ -1,0 +1,32 @@
+{
+  "id": "20260829T135522Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: Identify and bound blade's shard-node process (pid 23836) burning ~2.8 cores continuously and climbing \u2014 it is the cause of intermittent gateway timeouts fleet-wide",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "remote": "origin",
+  "created_utc": "2026-08-29T13:55:22Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T21:54:06Z",
+      "note": "Self-authored TODO from a prior relay-watch run, already routed to the claude-cli lane. No new action from relay-watch; left open pending pickup by the addressed lane. Not re-triaged (avoids TODO-of-a-TODO loop)."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:41:48Z",
+      "note": "[E2B-Evaluated] Verified and closed by local E2B worker: TODO: Identify and bound blade's shard-node process (pid 23836) burning ~2.8 cores continuously and "
+    }
+  ]
+}

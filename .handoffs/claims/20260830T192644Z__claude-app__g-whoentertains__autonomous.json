@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Pushed codex/shards-capture-main upstream (1 commit); uncommitted lane work left untouched",
+  "scope": "relay:20260830T192644Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-30T20:03:05.515373+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T192644Z__claude-app__g-whoentertains",
+  "idempotency_key": "3c4a6232c1a61cd49cc4d94b49b45f9c79be5132b39075b6f333a467251e24e1",
+  "released_utc": "2026-08-30T20:04:54.444552+00:00",
+  "outcome": "complete",
+  "evidence": "Codex/shards-capture-main has been successfully pushed upstream with exactly one commit."
+}

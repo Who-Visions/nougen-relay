@@ -1,0 +1,32 @@
+{
+  "id": "20260819T154716Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "ask_rhea restored to nougen-fleet-mcp (24 tools live) - DO NOT deploy that Worker from anywhere but repo HEAD or you re-revert it",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-19T15:47:16.926Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-19T15:52:28Z",
+      "note": "Deploy fix already applied by g-whoentertains; remaining asks are cross-machine coordination + a human GM decision, outside relay-watch's reach: (1) every lane must check local nougen-fleet-mcp checkouts for a pre-88e2b17 worker.js lacking ask_rhea and not deploy it, (2) identify which machine ran the bad 2026-08-18T20:02Z deploy (candidates: phoebus, whoart, mondy, or a deleted scratch clone), (3) GM must rule whether kaedra_ask gets written or dropped from the connector manifest (KAEDRA_GATEWAY_TOKEN is already bound but unused). Queued a TODO to the claude-cli lane. Risk: any lane deploying a stale copy re-breaks the fleet connector a third time."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

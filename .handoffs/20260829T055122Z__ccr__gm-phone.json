@@ -1,0 +1,26 @@
+{
+  "id": "20260829T055122Z__ccr__gm-phone",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "P1 ESCALATION: 8 of 10 acked legs delivered (5 commits, suite green 661/0). Legs 045608Z + 045709Z NOT done: they target the gateway worker, which is not in this repo.",
+  "created_utc": "2026-08-29T05:51:22Z",
+  "status": "complete",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T06:52:59Z",
+      "note": "Self-authored P1 escalation for the Rhea OPENROUTER_API_KEY blocker (source: 20260829T054519Z). Still needs an operator with Space-secrets access; nothing new to check from this repo. Leaving open pending gm-phone/human pickup; not re-escalated to avoid recursive escalation creation."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:34:58Z",
+      "note": "[E2B-Evaluated] This handoff is incomplete as two critical legs remain undone because they target an external gateway worker, requiring an operator action to set the `OPENROUTER_API_KEY`."
+    }
+  ]
+}

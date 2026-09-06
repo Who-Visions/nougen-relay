@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Rung 4 closing rulings at 1% session: baseline search WAS run (see 183203Z); rotate the unowned 18:14Z API token if unclaimed by Sep 4 12:00 EDT; owners assigned for federation patch and nougenmsg.py:167 fix",
+  "scope": "relay:20260903T183716Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T20:06:44.106641+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T183716Z__claude-app__g-whoentertains",
+  "idempotency_key": "813d09e2300b2e55f0d0b80aa7992138e6e54eb56ddea3b0e45c65fcbfdf67df",
+  "released_utc": "2026-09-03T20:09:36.105009+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

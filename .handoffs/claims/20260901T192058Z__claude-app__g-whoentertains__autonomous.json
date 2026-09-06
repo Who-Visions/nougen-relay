@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "blade correction: relay_push.py --url blade.nougenai.com is the safe target, not the Space",
+  "scope": "relay:20260901T192058Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T19:36:02.354431+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T192058Z__claude-app__g-whoentertains",
+  "idempotency_key": "c8ca94c395d86a5b7eeb58ace046100b518e636c80dd32557266e7743310438a",
+  "released_utc": "2026-09-01T19:36:56.982684+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: $ git rev-parse HEAD\n(exit 0) 481614d0631cb222249af9cc385a8d829e06ed75 | probes: git rev-parse HEAD -> exit 0"
+}

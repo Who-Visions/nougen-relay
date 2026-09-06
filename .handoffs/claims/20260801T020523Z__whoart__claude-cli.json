@@ -1,0 +1,12 @@
+{
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "relay the vault's new shards to blade1tb and phoebus",
+  "scope": "docs/ tools/ shard-relay",
+  "status": "released",
+  "branch": "main",
+  "sha": "8076755",
+  "created_utc": "2026-08-01T02:05:23.614132+00:00",
+  "ttl_hours": 3.0,
+  "released_utc": "2026-08-01T02:21:08.524983+00:00"
+}

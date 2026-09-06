@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Fixed Codex Stop hook neutral path: empty stdout replaced with valid {} JSON",
+  "scope": "relay:20260901T195122Z__claude-app__g-nougenai",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T23:07:07.443913+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T195122Z__claude-app__g-nougenai",
+  "idempotency_key": "ca833b7250877c50a476df99fc805eaa0b79792f18a2e013d5f1f463e65fef27",
+  "released_utc": "2026-09-01T23:08:23.758668+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

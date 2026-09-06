@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Fix tracker provider blind spots and aggregation mismatch across Blade, Phoebus, WhoArt and all execution paths",
+  "scope": "relay:20260829T144348Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T15:04:00.652350+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T144348Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "258cec443c6ef478be612dbed5f11557b317b981aae3565994d30e5dd99f8f7e",
+  "released_utc": "2026-08-29T15:09:33.512720+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

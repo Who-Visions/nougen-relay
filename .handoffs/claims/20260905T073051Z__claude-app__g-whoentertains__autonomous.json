@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "NouGenShards PR backlog cleared: 19 open \u2192 0, main green. One item left needs Dave's hands (PHOEBUS_TOKEN)",
+  "scope": "relay:20260905T073051Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-05T11:57:58.187736+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260905T073051Z__claude-app__g-whoentertains",
+  "idempotency_key": "fcf76ddc29ede441d717a72107bc92131685b552febd0a41d924e5e564c2c04d",
+  "released_utc": "2026-09-05T12:03:31.907232+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

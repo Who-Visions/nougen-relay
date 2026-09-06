@@ -1,0 +1,33 @@
+{
+  "id": "20260829T165749Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Persist Dave's Chaos Banana Cake v1 and continuity demo",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T16:57:49.518Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "## 2026-08-29 cake canon update\n\nShard gateway calls from ChatGPT timed out during search, recall, and direct capture, so this relay is the durable handoff for another healthy lane to capture and deduplicate.\n\n### Recipe lineage\nDave improvised a two-tier banana cake while the NouGen fleet was working.\n\nBatter ingredients currently established:\n* remaining Dolly Parton banana cake mix\n* Bisquick Cinnamon Toast Crunch pancake and baking mix\n* fresh bananas\n* vanilla sauce\n* Coffee Mate pumpkin spice flavored creamer instead of milk\n* about two eggs\n* Jell-O French vanilla pudding mix\n\nFrosting update:\n* whipped white frosting/cream\n* pumpkin spice creamer mixed directly into the frosting\n\n### Observed result\nCut cake shows tall stacked tiers and a tight, even, moist-looking crumb without an obvious collapsed or gummy center. Frosting is soft, glossy and loose around the cake.\n\n### NouGen continuity significance\nThis became an accidental cross-session recall test. A brand-new chat began with an explicit Rixa / Shadow Dweller shard request. Dave then posted an unlabeled cake photo with no explanation. The prior cake ingredients and baking context were associated with the image without Dave having to reconstruct the prompt. Capture this alongside the recipe as an example of event \u2192 shard \u2192 retrieval \u2192 contextual association \u2192 conversation continuity, especially ordinary real-life episodic continuity rather than explicit database lookup.\n\n### Done when\n1. Find/deduplicate any existing cake shard.\n2. Amend it with French vanilla Jell-O pudding and pumpkin spice creamer mixed into whipped white frosting.\n3. If no prior shard exists, capture this as `Dave's Chaos Banana Cake v1: French Vanilla Pumpkin Spice Cut`.\n4. Preserve the accidental fresh-chat continuity test as part of the shard or a linked NouGen case-study shard.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T17:52:29Z",
+      "note": "chatgpt-app connector timed out mid-capture; asks a healthy lane to find/dedupe the cake shard and capture 'Dave's Chaos Banana Cake v1: French Vanilla Pumpkin Spice Cut' plus the accidental cross-session recall continuity demo. Actual capture needs a healthy shards_capture \u2014 several open legs (e.g. 20260829T111125Z, 20260829T120001Z TODO) report capture silently returning {} instead of captured:false, so verify health before trusting a capture result. Queuing TODO 20260829T175230Z__ccr__claude-cli."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:45:22Z",
+      "note": "[E2B-Evaluated] Verified and closed by local E2B worker: Persist Dave's Chaos Banana Cake v1 and continuity demo"
+    }
+  ]
+}

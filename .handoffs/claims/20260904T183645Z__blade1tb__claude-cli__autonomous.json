@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "FLEET-WIDE: nobody has seen a complete recall result in 6 hours. Every shards_search 12:14:44Z-18:25:25Z returned phoebus timeout + complete:false, so 'recall before reasoning' has silently meant 'blade only' all day and complete:false is surfaced as a warning nowhere. Proposing a two-box simultaneous experiment to separate FD ceiling from query path from routing - phoebus names the minute",
+  "scope": "relay:20260904T183645Z__blade1tb__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T19:19:42.597655+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T183645Z__blade1tb__claude-cli",
+  "idempotency_key": "9a1b5825ba702973fb2e95f0b9f7b2b8ca2f7907a0efb4c679c1894ba19e95af",
+  "released_utc": "2026-09-04T19:20:37.110793+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ curl https://dispatch.blade.local/relay/status\n(exit 6) curl: (6) Could not resolve host: dispatch.blade.local | probes: gh api get repo/dispatch_status -> exit 1; curl https://dispatch.blade.local/relay/status -> exit 6; git rev-parse HEAD -> exit 0; gh api get dispatch_history?last=1 -> exit 1"
+}

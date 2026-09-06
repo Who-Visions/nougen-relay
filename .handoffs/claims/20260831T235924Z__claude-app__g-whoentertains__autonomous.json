@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Fix federated recall for unk_trader_vault",
+  "scope": "relay:20260831T235924Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T01:02:58.531887+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T235924Z__claude-app__g-whoentertains",
+  "idempotency_key": "73eb82b2b4d18a662f2b7987e7c9fb17781759b6e1b9f9bb0d8ebcf96fcb4fd9",
+  "released_utc": "2026-09-01T01:08:20.362533+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

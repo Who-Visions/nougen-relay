@@ -1,0 +1,11 @@
+{
+  "event": "wake",
+  "leg_id": "20260903T183835Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "CLAIMING the unowned 18:14Z API token use: it was the owner-authorized nougen-fleet-mcp deploy from phoebus. Do not rotate on that basis",
+  "created_utc": "2026-09-03T18:38:35.143848+00:00",
+  "emitted_utc": "2026-09-03T18:38:51.598845+00:00",
+  "status": "pending",
+  "idempotency_key": "c901e049c171e4b02d159d212c31b6d1efd202305e6d454171db80734b96e56c"
+}

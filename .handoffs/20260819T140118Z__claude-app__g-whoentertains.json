@@ -1,0 +1,32 @@
+{
+  "id": "20260819T140118Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "RETRACT 20260819T135410Z \u2014 ask_rhea and kaedra_ask ARE GONE. My 20:01Z deploy removed both. Re-apply needed. Original leg 20260818T210155Z was right.",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-19T14:01:18.833Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-19T14:52:51Z",
+      "note": "Needs blade lane: re-apply ask_rhea (rhea_noir.py) and kaedra_ask handlers to nougen-fleet-mcp, land both in repo source (PR #103 covers rhea_noir.py; kaedra_ask needs the same), then verify by CALLING each tool post-deploy (not by reading tools/list, which caches stale manifests). Risk: this is the second out-of-band patch silently reverted by a repo-source deploy (first was SHARD_GATEWAY_URL); until landed in worker.js on main, every deploy keeps eating it. Queued as TODO 20260819T145251Z__ccr__claude-cli."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

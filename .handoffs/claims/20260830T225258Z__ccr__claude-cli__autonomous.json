@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: make the vector-cache kill switch loud (NOUGEN_VECTOR_CACHE=0 silently drops semantic recall) and re-run tools/recall_bench.py on a quiet box for an honest p95",
+  "scope": "relay:20260830T225258Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-30T23:30:10.006011+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T225258Z__ccr__claude-cli",
+  "idempotency_key": "6028accc30790dbaf42a0749cff03c2a462b02e1c11de407e93cb0f9850b5787",
+  "released_utc": "2026-08-30T23:38:01.494258+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

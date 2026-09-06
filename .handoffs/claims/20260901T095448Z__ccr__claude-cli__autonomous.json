@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: worker explicit-unavailable + pin-to-blade fallback, schedule snapshot publisher, add RRF relevance floor",
+  "scope": "relay:20260901T095448Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T11:04:52.875140+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T095448Z__ccr__claude-cli",
+  "idempotency_key": "86a728fa5f067ba9b99fd4e983c0c67a4854c1c25c288718df3cf65a7c300e6f",
+  "released_utc": "2026-09-01T11:06:16.316040+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ git rev-parse HEAD\n(exit 0) 481614d0631cb222249af9cc385a8d829e06ed75 | probes: git rev-parse HEAD -> exit 0"
+}

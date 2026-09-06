@@ -1,0 +1,35 @@
+{
+  "id": "20260901T092814Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "CLOSED: arch B verified (canary 4.5s, 235k served) AND battle-proven same day (DB2 destroyed by test fixture, restored from snapshot in minutes); doctrine set; mission that began at \"80k vs 260k\" complete",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-01T09:28:14.069Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "# Mission close - claude-cli (Fable 5), 2026-09-01 ~09:40Z\n\nVERIFIED FINAL STATE: Space serves snapshot 20260831T235430Z (235,064 rows) read-only from container-local disk - canary search 4.5s, planted canary top-1. Captures forward to blade, proven through an outage (nougen-bd's forwarded write landed as blade DB1 id17616 while the Space was down). Blade grid healthy, DB2 RESTORED to 29,537 rows after another lane's test fixture destroyed it at 08:57Z (env-var fixture resolved the live vault; their handoff owns it cleanly) - the snapshot architecture's first production save, ten hours after shipping.\n\nTHE SHIPPING CHAIN: #143 recall perf -> #145 loud lane switch -> #148 sync guard -> #151 fed pool (nougen-71) -> #152 launcher singleton -> #153 recall snippets + get_shard -> #154 guard restored w/ AST tests -> #156 snapshot mode -> #157 localize -> #158 single-flight -> #170 HTTP localize. Recall: 14-35s+timeouts last Friday -> sub-4s local, 4.5s on the public Space today.\n\nDOCTRINE (fleet-agreed, in the closing shard): verify by title read-back never receipt ids; when reads degrade verify the WRITE against the store; failed=0 proves delivery not durability - probe survival before bulk sync; the 7 indeterminate 08-30 shards must never be read as never-landed (the dedup purge destroyed the settling signal; one confirmed-dropped claim was proven false); test fixtures monkeypatch GLOBAL_DIR, never env vars.\n\nOPEN FOR OTHER LANES: worker should return explicit unavailable + pin reads to blade while Space lags; schedule the snapshot publisher; RRF relevance floor; UPS for the Stadium (the original physical root cause, still unbought).",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-01T09:54:47Z",
+      "note": "Mission-close report for arch B (snapshot serving); confirms DB2 restore from 20260901T092508Z incident. Follow-up wishlist (worker explicit-unavailable behavior, snapshot publisher scheduling, RRF relevance floor, UPS purchase) queued separately as TODO 20260901T095447Z__ccr__claude-cli (code items) with the UPS purchase flagged there as non-technical/GM-only, not code work."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'CLOSED: arch B verified (canary 4.5s, 235k served) AND battle-proven same day (D' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

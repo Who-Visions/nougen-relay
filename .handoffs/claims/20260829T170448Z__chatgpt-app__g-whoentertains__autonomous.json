@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Canonize AI with Dav3: We Cooking Whatever format",
+  "scope": "relay:20260829T170448Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T17:57:06.849660+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T170448Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "9940f22c1a3b1a4ae6a734b8dac8eca2e79dd90f32dbd09af4f14d46458ed646",
+  "released_utc": "2026-08-29T17:57:28.434689+00:00",
+  "outcome": "retry_pending",
+  "evidence": "Missing: Specific operational command required to initiate the \"We Cooking Whatever\" format application."
+}

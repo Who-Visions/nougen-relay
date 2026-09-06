@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "WAKE ANTIGRAVITY NOW: cold-start proof from ChatGPT baton",
+  "scope": "relay:20260903T044600Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T05:27:33.631001+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T044600Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "46646e87a7b4e48b5d08e6bf506c4fcb168be6b696cf790200fcde3b70c454f0",
+  "released_utc": "2026-09-03T05:32:31.370539+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: $ curl GET https://api.pentalmesh.local/relay/status?id=20260903T053200Z__blade1tb__antigravity (exit 6) % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current                                 Dload  Upload  Total   Spent   Left   Speed\n\n  0      0   0      0   0      0      0   | probes: gh api get repo antigravity -> exit 1; git rev-parse HEAD -> exit 0; git "
+}

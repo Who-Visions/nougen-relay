@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: Get PR #135 CodeQL false positives dismissed by an owner and rotate the exposed OpenRouter key",
+  "scope": "relay:20260829T105156Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T11:32:39.664499+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T105156Z__ccr__claude-cli",
+  "idempotency_key": "41c4b6114990d3e61b463353c792c4d2dd58ac8b2f8438560e84dc23a1efd035",
+  "released_utc": "2026-08-29T11:37:40.616766+00:00",
+  "outcome": "retry_pending",
+  "evidence": "Dispatch reported status update instead of final delivery confirmation."
+}

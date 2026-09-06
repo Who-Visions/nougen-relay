@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Rhea FIXED end-to-end (7 PRs + routing): grounded prompts answer in-budget; CORRECTIONS: 524s were 4 stacked causes, connector never reached the Space (same-zone fetch bypass), grid-volume P1 evidence worsened",
+  "scope": "relay:20260901T075242Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T08:46:10.803081+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T075242Z__claude-app__g-whoentertains",
+  "idempotency_key": "44adacec64fe0e8af96c9e9f71cfad54edbe8f8efc7ed7eecfcc75c8bf46c883",
+  "released_utc": "2026-09-01T08:52:31.231808+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

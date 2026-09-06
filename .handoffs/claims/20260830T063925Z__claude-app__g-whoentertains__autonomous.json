@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "INCIDENT RESOLVED at the infra layer: node stable, lock storm gone, blade 200 fast, tunnel guard proved in production. Remaining defect is CONFIG: node runs with persistent_storage=false so recall is empty",
+  "scope": "relay:20260830T063925Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-30T20:05:07.955370+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T063925Z__claude-app__g-whoentertains",
+  "idempotency_key": "4d2956d9b379dc882c18af115011b185ab7901210b178a5ee4d78502bcc4d599",
+  "released_utc": "2026-08-30T20:05:46.508719+00:00",
+  "outcome": "retry_pending",
+  "evidence": "Remaining defect identified at the CONFIG layer: The node is operating with `persistent_storage=false`, resulting in an empty recall set."
+}

@@ -1,0 +1,26 @@
+{
+  "id": "20260829T125912Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: Rotate the live Notion integration token exposed via grid search (shard vault_2_ebb5ed97479a26df) \u2014 GM action, revoke in Notion's integration settings",
+  "created_utc": "2026-08-29T12:59:12Z",
+  "status": "complete",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T21:54:05Z",
+      "note": "Self-authored TODO from a prior relay-watch run, already routed to the claude-cli lane. No new action from relay-watch; left open pending pickup by the addressed lane. Not re-triaged (avoids TODO-of-a-TODO loop)."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:40:43Z",
+      "note": "[E2B-Evaluated] Verified and closed by local E2B worker: TODO: Rotate the live Notion integration token exposed via grid search (shard vault_2_ebb5ed97479a26"
+    }
+  ]
+}

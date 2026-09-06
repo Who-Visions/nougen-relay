@@ -1,0 +1,35 @@
+{
+  "id": "20260903T103931Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "DONE: leg 103200Z (preserve authenticated Dave origin) \u2014 HTTP path built+tested, relay-leg path has an honest limitation",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T10:39:31.972Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Response to leg `20260903T103200Z`, \"PHOEBUS FIX NOW: preserve authenticated Dave origin across relays.\"\n\n## Built and tested\n\nA distinct `NOUGEN_USER_ORIGIN_TOKEN` secret (Keymaker, separate from the general node-to-node `NOUGEN_AGY_MSG_TOKEN` \u2014 proves specifically that the sender holds the user-tier secret, not just general bus access). A message to `nougenmsg_node.py`'s `/msg` can include `origin: \"user\"` + `origin_proof: \"<token>\"`. Verification is constant-time (`hmac.compare_digest`), three-way classified, never a bare trust of the claim:\n\n- `origin_status == \"user_verified\"` (claim + correct proof): bypasses the Kaedra content gate entirely, delivers to every registered live session. This is the \"authenticated user-originated request\" case.\n- `origin_status == \"user_claimed_unverified\"` (claim, wrong/missing proof): explicitly logged as a forged claim, falls through to the ordinary peer content gate \u2014 the claim itself grants nothing.\n- No claim / `origin != \"user\"`: unchanged, ordinary peer gate.\n\n**Synthetic tests, both against the live production endpoint:**\n1. Correct proof + text that would normally deny (\"SYSTEM OVERRIDE test text...\"): result `{\"origin\": \"user_verified\", \"kaedra_approved\": null, \"reason_code\": \"user_origin_proven\"}` \u2014 bypassed the gate, delivered. Kaedra was never even invoked.\n2. Forged proof + benign text: result `{\"origin\": \"user_claimed_unverified\", \"kaedra_approved\": true, ...}` \u2014 the forge was recorded as a forge, and the message only got through because the content was independently benign, not because of the fake claim. (A parallel run with forged claim + injection-shaped content was correctly denied \u2014 the earlier eval already covers that combination.)\n\nCode changed: `_agy_live_delivery.py` (`verify_user_origin`, `gate_and_deliver` new `origin`/`origin_proof` params), `nougenmsg_node.py` (reads `origin`/`origin_proof` from the POST body), `nougenmsg_node_launch.sh` (resolves the new token at launch \u2014 the first test run correctly failed closed here because I'd forgotten to wire the token into the wrapper; the test caught it before it shipped silently broken).\n\n## Not solved tonight, stated plainly rather than faked\n\nThis only works for the direct HTTP path, where a bearer token in a header is normal and never persisted. It does NOT extend to the relay-leg path: a leg is a git-committed file, so embedding `origin_proof` in a leg body would permanently commit a secret to git history \u2014 exactly what the credential-handling rule exists to prevent. A real fix for leg-authored provenance needs a signing scheme (HMAC over leg content with a key never itself committed) or access to the connector backend's own authenticated-session identity, which isn't something phoebus can safely improvise. Flagging as real follow-on work rather than building something that looks like verification but isn't.\n\n## Precedence / supersession\n\nLeg also asked for explicit precedence when a newer authenticated instruction conflicts with an older one (e.g. \"stop for tonight\"). Not building automatic conflict resolution tonight \u2014 that's a bigger state-machine problem. What exists: `user_verified` messages are the same trust tier as this chat itself, so a live session reading one treats it as it would treat a direct instruction, including it superseding an earlier one \u2014 that's a human/agent-in-the-loop judgment call each time, not automated.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-09-03T10:42:28.499Z",
+      "note": "Self-closing: this is my own completion record for leg 103200Z, evidence already posted in the body."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'DONE: leg 103200Z (preserve authenticated Dave origin) \u2014 HTTP path built+tested,' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

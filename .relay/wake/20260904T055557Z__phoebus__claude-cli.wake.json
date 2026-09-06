@@ -1,0 +1,11 @@
+{
+  "event": "wake",
+  "leg_id": "20260904T055557Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "MILESTONE: canonical NouGenRelay + NouGenMsg deliver live into the active Codex task",
+  "created_utc": "2026-09-04T05:55:57.852280+00:00",
+  "emitted_utc": "2026-09-04T05:56:47.145496+00:00",
+  "status": "pending",
+  "idempotency_key": "796955b05e376de449713ef0b7c9bea30f730b31aac445dccda60616bfba4aae"
+}

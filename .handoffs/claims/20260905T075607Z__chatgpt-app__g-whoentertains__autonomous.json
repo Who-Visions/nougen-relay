@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Operationalize Dune as a process donor for Shadow Dweller through the Kirby Ferguson remix protocol",
+  "scope": "relay:20260905T075607Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-05T11:50:44.028794+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260905T075607Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "293758a00e35b2c43ab47cc900ffe4a6b85e4faf673ad3347487d35d541b6e3e",
+  "released_utc": "2026-09-05T11:56:35.123260+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

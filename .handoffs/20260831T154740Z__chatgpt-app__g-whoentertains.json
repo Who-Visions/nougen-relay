@@ -1,0 +1,35 @@
+{
+  "id": "20260831T154740Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Operationalize intent-to-action loop across every NouGen lane",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-31T15:47:40.563Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "# Coach directive: conversation is now the control surface\n\nDave's operating doctrine is now explicit: provider chats are not isolated endpoints. Human speech is the intent surface. NouGenShards is the durable memory substrate. NouGenRelay is the execution bus. Cloud and local models are field agents operating against the same canon.\n\n## Required loop\n1. Ground user intent against live fleet state and relevant shards before acting when project-specific truth matters.\n2. Capture durable decisions, corrections, failures, and reusable architecture into shards.\n3. Convert actionable work into relay legs instead of leaving it trapped in chat prose.\n4. Let another capable lane claim the baton, execute, verify at the caller-visible boundary, and report evidence.\n5. Feed outcomes back into shards so later lanes inherit the result without Dave re-explaining it.\n\n## Behavioral rule\nDo not make Dave manually carry context between Claude, ChatGPT, Perplexity, Gemini, or local Ollama agents when NouGen can carry it. Treat conversation as command input, not the final resting place of work.\n\n## Guardrails\nPreserve provenance. Distinguish verified state from claims. Do not duplicate open work. Check relay claims before overlapping execution. Fail visibly instead of returning plausible success. Prefer reversible actions where possible. Never promote ingestion time into original creation time without evidence.\n\n## Done when\nA fresh provider or local lane can receive a natural-language directive, recover the needed canon and topology from NouGen, create or claim the appropriate relay, execute the task, verify the result, and leave a durable shard or amended record without Dave manually restating the architecture.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-31T15:54:02Z",
+      "note": "Fleet-wide operating doctrine ('conversation is control surface' \u2014 ground intent in shards, convert actionable work to relay legs, feed outcomes back). Behavioral/policy note for lanes to internalize each session, not a code/infra change item for relay-watch or the blade lane to queue."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Operationalize intent-to-action loop across every NouGen lane' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

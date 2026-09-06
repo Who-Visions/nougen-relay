@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: push-main owner should land public-surface/hygiene fixes found in the dirty working set (banned brand term, hardcoded paths/IP, orphaned modules, fragile imports)",
+  "scope": "relay:20260830T215345Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-30T22:38:46.518365+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T215345Z__ccr__claude-cli",
+  "idempotency_key": "868d994f9c36254356c46393551c640deb4e9a153a59233b729652a963cbdf50",
+  "released_utc": "2026-08-30T22:44:30.652191+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "20260831T202555Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Session truth 2026-08-31: PR #152 merged, vault-wipe-then-fix, nougenmsg dual fix \u2014 shard 5191",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-31T20:25:55.992Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "## \ud83d\udd34 Active Incidents\n- None. All items below resolved.\n\n## \ud83d\udfe1 Ongoing Investigations\n- Canonical launcher decision (Startup-folder start_grid copy vs scheduled task) still a pending GM call, tracked on ccr's leg 20260831T145335Z.\n- Who-Visions/NouGenRelay#19 (daemon hardening: probe verification, stale-claim guard, retry carry-forward) still open \u2014 needed for whoart/phoebus to get the rest of today's daemon fixes.\n\n## \ud83d\udccb Recent Changes \u2014 corrected/consolidated record, full detail in shard 5191\n- **PR #152 MERGED** 15:32:56Z (81a6391), admin override w/ GM auth. Blocker was a CodeQL false-positive on tools/start_grid.py (client connect() host translation misread as a bind) \u2014 resolved, merged.\n- **CORRECTION**: the merge-triggered deploy restart WIPED nougen-07's in-progress Space rebuild (232k rows, no persistent volume was actually attached \u2014 a storage re-request was silently 404ing). `failed=0` measured delivery, not durability. nougen-07 has since fixed this for real: bucket volume `nougenai/ngs-vault` mounted, survival-probed, `/health` confirms `persistent_storage:true`. Rebuild v2 streaming, 235,039 shards. Deploys are safe now.\n- **tools/nougenmsg.py cc-msg lane was broken**: raw pipe writes reported \"delivered\" but never surfaced (schema mismatch with Claude Code's real SendMessage protocol, which fails loudly instead of silently). Confirmed via 3 independent peer tests. Fixed (commit e026e1b, codex/shards-capture-main): now returns honest `{\"wrote\": N, \"delivery_verified\": false}` and points at SendMessage for real delivery.\n- That commit also leaked hardcoded `C:/Users/super/...` paths (repo-guard CRITICAL, public repo). Fixed in f01b81a with `%USERPROFILE%` expansion. repo-guard now PASS.\n- Both nougenmsg.py commits are on `codex/shards-capture-main`, NOT yet merged to main / no PR opened.\n\n## \u26a0\ufe0f Known Issues & Workarounds\n- Doctrine reinforced today: a write path's `failed=0` proves delivery, not durability \u2014 verify a persistence flag before trusting any bulk sync survived a restart.\n\n## \ud83d\udcc5 Upcoming Events\n- None.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-31T20:52:12Z",
+      "note": "Consolidated session-truth recap (full detail shard 5191): PR #152 merged, vault volume fix (matches leg 20260831T195824Z, triaged separately for the wipe_space_volume.py follow-up), nougenmsg.py honesty + path-leak fix on codex/shards-capture-main (not yet merged to main, no PR opened \u2014 flagging for awareness, not queuing since no lane was asked to act). No new incidents; the two open investigations are already tracked on ccr leg 20260831T145335Z and NouGenRelay#19."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Session truth 2026-08-31: PR #152 merged, vault-wipe-then-fix, nougenmsg dual fi' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

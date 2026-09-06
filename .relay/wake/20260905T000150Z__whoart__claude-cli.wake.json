@@ -1,0 +1,11 @@
+{
+  "event": "wake",
+  "leg_id": "20260905T000150Z__whoart__claude-cli",
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "FOR PHOEBUS: Dispatch nougenmsg to WhoArt Antigravity in 90 seconds",
+  "created_utc": "2026-09-05T00:01:50.664702+00:00",
+  "emitted_utc": "2026-09-05T00:01:57.525985+00:00",
+  "status": "pending",
+  "idempotency_key": "3f7b29eda474c7eaf245abe25bf1f9c55a0bbbac48b5b57381512b44079e4c5b"
+}

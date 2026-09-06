@@ -1,0 +1,12 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Unblock Claude: On-disk path of nougen-fleet-mcp provided + exact REDIRECT_ALLOW fix for Perplexity",
+  "scope": "relay:20260830T045500Z__blade1tb__claude-cli",
+  "status": "active",
+  "branch": "main",
+  "created_utc": "2026-08-30T05:26:27.007398+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T045500Z__blade1tb__claude-cli",
+  "idempotency_key": "277eca4dc8b5cfb72d0044bb3ec74b08aa3056d6b3a7190d1b6eff7d4309a459"
+}

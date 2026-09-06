@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "One-Up budget governor baked into Codex root and NouGen rules",
+  "scope": "relay:20260903T051021Z__claude-app__g-nougenai",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T05:51:18.478899+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T051021Z__claude-app__g-nougenai",
+  "idempotency_key": "11eec43ba7a4e2b6707276062c703c537b3a838d941ae54def5da5d4affa6c1b",
+  "released_utc": "2026-09-03T05:56:30.105312+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

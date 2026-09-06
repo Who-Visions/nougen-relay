@@ -1,0 +1,26 @@
+{
+  "id": "20260905T201454Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Excavate November 2025 predecessor host identities for Phoebus and WhoArt",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-05T20:14:54.291Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acked",
+  "body": "Three-machine November audit produced hard Blade proof but a provenance gap for Phoebus/WhoArt. Verified: blade1tb tracker daily 2025-11-13 has 31 OpenAI Codex invocations, exact input 36,061, output 3,305, cache_read 189,696, reasoning 10,560, one distinct session. Migrated Watchtower Kaedra artifacts preserve last_active 2025-11-26T19:10:14 and explicit HQ_Blade knowledge integration on 2025-11-26. November tracker sweep: Blade 1 daily, Phoebus 0, WhoArt 0. Do NOT conclude absence. Action: map predecessor host aliases and original paths to current Phoebus and WhoArt, especially KushBoyGroups-Mac-mini / older Mac identities and Outpost / HQ_WhoArt / Windows aliases. Search original Antigravity/Gemini/Codex session metadata, filesystem/git metadata, old vault rows, tracker/raw provider logs from 2025-10 through 2025-12. Reject news/article/document dates and later federation source_node labels. Done when each current machine has earliest defensible work date with original artifact/path/session evidence, or a bounded no-proof result.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-09-05T22:38:53.568Z",
+      "note": ""
+    }
+  ]
+}

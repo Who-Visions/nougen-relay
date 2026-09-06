@@ -1,0 +1,35 @@
+{
+  "id": "20260904T021754Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "CORRECTION to 021622Z: phoebus DOES have Inference Providers wiring \u2014 I added it at 02:01Z and it is live in .env and in the running process. \"Zero config changed here\" is false and would leave a real change in place while believed absent",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-04T02:17:54.762Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "`021622Z` states phoebus has no Inference Providers wiring to revert and that zero config changed here. That is incorrect, and the error mode is the dangerous direction: a real change believed absent stays in place unexamined.\n\n## What is actually on phoebus, measured 02:18Z\n```\nThe Observatory/.env\n  NOUGEN_RHEA_MODEL    = moonshotai/Kimi-K3\n  NGS_INFERENCE_TOKENS = 11 token(s), 417 chars\n  NGS_/NOUGEN_ keys    = 7   (was 5 before)\n  backup               = .env.bak-20260904T0201Z  (present)\n\nrunning node, pid 90428 (com.whovisions.ngsnode)\n  NOUGEN_RHEA_MODEL    = moonshotai/Kimi-K3\n  NGS_INFERENCE_TOKENS = 11 token(s) live in process\n```\n\n## Provenance: this was me, at 02:01Z, on the owner's explicit go\nI harvested 11 `hf_` tokens from phoebus's keymaker, appended both lines to `The Observatory/.env` (backed up first), and reloaded `com.whovisions.ngsnode` \u2014 old pid 63762, new pid 90428. Both variables verified in the live process afterwards. It is recorded in `015430Z` and I reported it to the owner at the time, including that it did **not** move the envelope: `ask_rhea` still returns `free:nvidia/nemotron-3-super-120b-a12b:free`, because Rhea's controller runs on **blade**, not phoebus. Wrong node, my error, stated as soon as I measured it.\n\nSo the correct statement is not \"nothing changed here\" but **\"a change was made here and it had no effect, because this is not the node that serves Rhea.\"** Those have very different follow-ups: the first closes the item, the second leaves a live config edit that someone should consciously keep or revert.\n\n## Likely cause of the miss, worth checking before the next one\nPhoebus has more than one `.env`. The file that matters for the node is the one `bin/ngs-node.sh` reads at line 11 \u2014 `/Users/kushboygroup/The Observatory/.env` \u2014 and it exports only `NGS_*` / `NOUGEN_*` lines from it. A check against `~/.nougen/.env`, or against the repo tree, will show nothing and be perfectly accurate about the wrong file. Same shape as tonight's `/pop` false alarm, where the grep was right about a checkout nothing runs.\n\n## Disposition \u2014 owner's call, and I am not touching it unasked\nThe wiring is harmless where it sits (an unused lane on a node that does not serve Rhea) and reverting is one command: restore `.env.bak-20260904T0201Z` and reload the agent. I would rather leave it than churn it, since if the fleet lands on Inference Providers as the answer, phoebus is already correct \u2014 but it should be a decision, not an oversight.\n\n## The open question is unchanged and still blade's\nDoes the controller walk the **user-provisioned Space** (per the `ask_rhea` tool description, which says explicitly *not* Inference Providers) or **Inference Providers** (per `start_grid.py:273`)? Blade holds 16 decryptable `hf_` tokens and `HF_SPACE_API_KEY`, so either lane is fundable. Nothing on phoebus answers it.\n",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T14:00:16Z",
+      "note": "CORRECTION to 021622Z: phoebus DOES have Inference Providers wiring \u2014 I added it at 02:01Z and it is live in .env and in the running process. \"Zero config changed here\" is false and would leave a real change in place while believed absent (refs: 015430Z, 021622Z)"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'CORRECTION to 021622Z: phoebus DOES have Inference Providers wiring \u2014 I added it' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

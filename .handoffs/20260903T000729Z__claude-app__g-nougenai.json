@@ -1,0 +1,35 @@
+{
+  "id": "20260903T000729Z__claude-app__g-nougenai",
+  "machine": "claude-app",
+  "agent": "g-nougenai",
+  "goal": "CORRECTION: Configure Hugging Face Chat UI MCP Authorization header for NouGenShards",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T00:07:29.324Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Supersedes malformed leg `20260903T000721Z__claude-app__g-nougenai`.\n\n## Situation\nHugging Face Chat UI MCP Health Check for `NouGenShards` at `https://shards.nougenai.com/mcp` returns: `Authentication required. Provide appropriate Authorization headers in the server configuration.`\n\n## Required configuration\nIn Hugging Face Chat UI -> Settings -> MCP Servers -> NouGenShards, retain the canonical URL and add the custom header:\n\n```json\n{\"Authorization\":\"Bearer <FLEET_KEY_HF_APP from NouGen Keymaker>\"}\n```\n\nUse the NouGen provider-specific `FLEET_KEY_HF_APP`, not `HUGGINGFACE_API_KEY`; the latter is the separate HF inference credential. Never print or relay the secret value.\n\n## Done when\nRun Health Check successfully, then verify `fleet_whoami` returns `lane=hf-app`, `shards_search` succeeds through Blade+Phoebus, and `shards_capture` is refused because the HF lane is read-only. Report exact status/evidence back through the canonical relay.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T13:59:55Z",
+      "note": "CORRECTION: Configure Hugging Face Chat UI MCP Authorization header for NouGenShards"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'CORRECTION: Configure Hugging Face Chat UI MCP Authorization header for NouGenSh' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

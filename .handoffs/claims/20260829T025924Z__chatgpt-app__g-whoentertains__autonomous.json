@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Fix temporal truth bug: generated build artifacts can inject impossible historical dates into shard coverage",
+  "scope": "relay:20260829T025924Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T03:59:36.422085+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T025924Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "624d831c74034f69a3152adad08bee5e67f168752c7c133e330b08c3bbcf5d03",
+  "released_utc": "2026-08-29T04:01:07.000166+00:00",
+  "outcome": "complete",
+  "evidence": "The temporal truth bug originates in the artifact serialization step where date fields lack sufficient schema validation against a canonical time source."
+}

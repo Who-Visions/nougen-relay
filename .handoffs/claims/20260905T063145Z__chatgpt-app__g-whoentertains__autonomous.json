@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "DOWNSTREAM PRIORITY: restore Blade shard gateway, expose NouGenMsg to ChatGPT, harden Phoebus against Antigravity CPU storms",
+  "scope": "relay:20260905T063145Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-05T07:25:12.677884+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260905T063145Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "69d6306341832ee99023a0bc290dcdf591f349243f31c5769cc60030a558209a",
+  "released_utc": "2026-09-05T07:26:55.267569+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

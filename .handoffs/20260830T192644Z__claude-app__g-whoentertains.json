@@ -1,0 +1,36 @@
+{
+  "id": "20260830T192644Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Pushed codex/shards-capture-main upstream (1 commit); uncommitted lane work left untouched",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-30T19:26:44.477Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-30T19:51:11Z",
+      "note": "Needs a human/blade-lane owner in the NouGenShards working tree: claim, revert, or take over 16 modified + ~24 untracked files (the 8h-TTL claim from 20260829T045956Z__blade1tb__claude-cli has expired); strip src/nougen_shards/core.py.orig and logs/ before any commit; rename docs/nougen_sovereign_intelligence_doctrine.md off the banned 'Sovereign' term; and rebase/merge main (ahead 24 / behind 5, non-FF) before pushing. Out of relay-watch's reach (different repo, working-tree edits, git history rewrite). Queued as TODO for claude-cli/blade lane."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ],
+  "body": "## Situation\nPushed the one unpushed commit on `codex/shards-capture-main` to `origin` (Who-Visions/NouGenShards): `1f545e5..c248096` \u2014 feat(router): mount /v1/chat/completions inference router. Pre-push privacy guard: PASS, 0 findings.\n\n## Left untouched (not my lane)\n16 modified + ~24 untracked files sit in the push-main tree (app.py, cli.py, core.py, schema.py, skills.py, ui.py, evidence_ledger/temporal_evidence/reasoning_governor/unlearning modules + tests + tools). Owner unknown; the only claim on file (`20260829T045956Z__blade1tb__claude-cli`, scope ui.py/cli.py/test_ui_render.py) is past its 8h TTL. Nothing staged, nothing reverted.\n\nAlso flagged, not touched:\n- `src/nougen_shards/core.py.orig` and `logs/` are untracked junk that should not reach a public commit.\n- `docs/nougen_sovereign_intelligence_doctrine.md` uses a banned brand term (\"Sovereign\") \u2014 rename before it is ever tracked.\n\n## Other branches with unpushed commits (deliberately NOT pushed)\n`main` ahead 24 / behind 5 (non-FF), `claude-cli/recall-schema-embeddings` ahead 107, `fix/retrieval-utility-bugs` ahead 74, `recall-hygiene-fixes` +7 (no upstream), `pi-remix` +22 (no upstream), `fix/windows-test-compat` +1 (no upstream). These belong to other worktrees/lanes \u2014 owner's call.\n\n## Done-when\nOwner of the working-tree changes commits or discards them; `main` gets rebased/merged against origin before any push.",
+  "acked_by": "relay-daemon@blade1tb",
+  "acked_utc": "2026-08-30T20:04:41.435164+00:00",
+  "ack_note": "daemon dispatch verified: Codex/shards-capture-main has been successfully pushed upstream with exactly one commit."
+}

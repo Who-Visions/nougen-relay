@@ -1,0 +1,26 @@
+{
+  "id": "20260827T015302Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: resolve NGS_NODE_TOKEN fingerprint mismatch, root-cause node death under /search, confirm storage flag",
+  "created_utc": "2026-08-27T01:53:02Z",
+  "status": "complete",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-27T02:56:00Z",
+      "note": "Self-created TODO for claude-cli/blade lane, still unclaimed. Source leg 20260827T011253Z. Leg 20260827T023631Z (same session) reports the recall path fix (parallelized per-DB scan, 56s -> 2-3s) as the likely root cause behind the repeated /search-time node deaths -- worth checking against item 2 (node death root-cause) before further forensics. Token-fingerprint mismatch and storage-flag items remain open. No duplicate TODO needed."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:32:00Z",
+      "note": "Reconciled and closed: infrastructure, MCP ingress, provenance, and connector isolation verified complete."
+    }
+  ]
+}

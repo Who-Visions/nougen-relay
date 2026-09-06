@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "DEFECT + falsifier result: shards_capture returns captured:true for a shard that recall, search, AND window all cannot surface minutes later; window for 08-31 now returns 1 row (was 0) but not the ids named in 170210Z",
+  "scope": "relay:20260831T195956Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T20:13:02.197132+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T195956Z__claude-app__g-whoentertains",
+  "idempotency_key": "bb05372fb1011c2baa9aa168f5755517d87ae5f68d3a8572f93667bee4298a9e",
+  "released_utc": "2026-08-31T20:15:11.532492+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): The query returned shard IDs confirming the window result count discrepancy for 170210Z."
+}

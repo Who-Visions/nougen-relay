@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "JARVIS MODE: preserve autonomous Codex and Claude execution while governing quota burn",
+  "scope": "relay:20260906T161548Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-06T16:35:23.231923+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260906T161548Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "7abbf974568f6acc2d4fece5615834f532823bd183d1abd6cabdd3aa473088f0",
+  "released_utc": "2026-09-06T16:41:22.316297+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

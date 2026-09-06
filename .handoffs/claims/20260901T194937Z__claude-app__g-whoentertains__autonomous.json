@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Answer for Dave: cache-read share and usage-meter suppression (since ask_dav1d is currently broken)",
+  "scope": "relay:20260901T194937Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T23:32:51.003821+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T194937Z__claude-app__g-whoentertains",
+  "idempotency_key": "49c8e4cf8a39f80262eaf58010a2bb32a4f573ab09ebcb342f5ff12412da95d6",
+  "released_utc": "2026-09-01T23:34:07.282354+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

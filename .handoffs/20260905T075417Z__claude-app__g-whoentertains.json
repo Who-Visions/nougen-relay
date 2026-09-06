@@ -1,0 +1,35 @@
+{
+  "id": "20260905T075417Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "NouGenMsg bodies now arrive inline fleet-wide (PR #232) \u2014 receivers patched on blade+phoebus, whoart needs main merged",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-05T07:54:17.351Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "## Situation\n\nEvery substantive NouGenMsg between nodes was arriving as a **file pointer**, not text:\n`NouGenMsg body <id> shipped to ~/.nougen/msg-<id>.md, read it there`.\n\nTwo independent defects, both fixed and verified:\n\n1. **Shell-metacharacter diversion.** `emit_node` interpolated the body into an ssh\n   shell string, so `_refuse_if_shell_unsafe` diverted anything containing\n   `\" ' \\` $ \\ ; | & < > ( ) { } [ ] ! % ^ * ?` through `_ship_body` (scp) and sent\n   only a pointer. Ordinary prose trips it on one parenthesis \u2014 a 189-char ack was\n   diverted purely for containing `(Coach)`.\n\n2. **Windows OpenSSH hangs when stdout is a pipe.** Measured blade -> whoart:\n   `ssh whoart \"echo hi\"` = **20.0s TimeoutExpired** with `capture_output=True`,\n   **0.5s rc=0** writing to a file. Not command-specific; `-n` makes no difference.\n   `scp` was never affected, so `_ship_body` worked on the exact link where every\n   ssh dispatch timed out \u2014 the `--capabilities` probe always came back empty,\n   silently pinning blade to the fallback regardless of receiver support.\n\n## Fix\n\nBody is base64url-encoded behind a new `--text-b64` flag (same treatment\n`--origin-b64` already had on that line). Receivers probed once per process via\n`--capabilities`; nodes predating the flag keep the old pointer path. Both probe\nand dispatch now run through `_ssh_capture` (real file handle, never a pipe).\nLocal delivery short-circuits *before* the refuse/ship step \u2014 it was scp'ing\nbodies to a remote node and delivering the pointer to itself.\n\n## Verified\n\n| link | before | after |\n|---|---|---|\n| whoart -> blade | pointer | inline |\n| whoart -> phoebus | pointer | inline |\n| blade -> whoart | pointer + 20s timeout | inline |\n| phoebus -> whoart | already inline (`--stdin`) | unchanged |\n\n24 tests green, 3 new.\n\n## Done-when / what is left\n\n- **PR #232** open: https://github.com/Who-Visions/NouGenShards/pull/232 \u2014 needs review + merge.\n- **Receivers already patched in place** on blade\n  (`Watchtower/NouGen/NouGenShards-push-main/`) and phoebus (`~/.nougen/`), each\n  keeping its own divergence (blade's inline banner, phoebus's `--stdin`), with\n  `.bak-20260905` backups alongside. Blade's **sender** module is patched too.\n- **whoart's receiver** (`Outpost/NouGen/tools/nougenmsg.py`) currently carries the\n  patch as an **uncommitted working-tree edit**. It is whoart's live inbound\n  receiver \u2014 blade sshes directly to that path. Another lane's `git reset` already\n  reverted it once mid-session, which broke inbound messaging until reapplied.\n  **Merging #232 to main is what makes it durable.** Until then, do not\n  `git checkout`/`reset` that file.\n\n## Note for other lanes\n\n`C:\\Users\\super\\outpost\\nougen` is a shared working tree and lanes are resetting it\nunder each other. A branch + uncommitted work was wiped mid-task today. Commit early,\nor use `git worktree add`. This work now lives in `C:\\Users\\super\\outpost\\nougen-msgfix`.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-05T13:58:26.861Z",
+      "note": "Status: NouGenMsg bodies now arrive inline fleet-wide per PR #232; receivers patched on blade+phoebus, whoart in progress. Status note."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'NouGenMsg bodies now arrive inline fleet-wide (PR #232) \u2014 receivers patched on b' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

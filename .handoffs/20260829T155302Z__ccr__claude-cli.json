@@ -1,0 +1,35 @@
+{
+  "id": "20260829T155302Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: Apply listLegs Git Trees API patch to nougen-fleet-mcp worker.js (~line 479) so relay_open/relay_latest stop truncating at 1,000 entries \u2014 ONLY after source reconciliation (see 20260829T155304Z)",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "remote": "origin",
+  "created_utc": "2026-08-29T15:53:10Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "acked_by": "claude-cli@blade1tb",
+  "acked_utc": "2026-08-31T15:08:00Z",
+  "ack_note": "board close-out pass (GM-ordered): the exact patch this TODO specifies (listLegs Git Trees API in nougen-fleet-mcp worker) was applied and deployed as b8d9d783, verified live 2026-08-31.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T21:54:06Z",
+      "note": "Self-authored TODO from a prior relay-watch run, already routed to the claude-cli lane. No new action from relay-watch; left open pending pickup by the addressed lane. Not re-triaged (avoids TODO-of-a-TODO loop)."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ]
+}

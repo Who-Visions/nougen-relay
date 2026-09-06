@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: Diagnose the 2026-08-31 shards.nougenai.com 502 and land gateway hardening (systemd restart policy, deep health/watchdog, alerting, tunnel redundancy, client retry) in cost order",
+  "scope": "relay:20260901T025301Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T03:13:32.099368+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T025301Z__ccr__claude-cli",
+  "idempotency_key": "9daaeac52a19c1c1cde1880e7eff007cdf72c66e25a9a5a39941376dcabaa1bd",
+  "released_utc": "2026-09-01T03:19:10.197356+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

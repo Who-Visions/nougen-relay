@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: root-cause shards_capture empty-{} regression (live again ~22:35-22:50Z) \u2014 likely per-origin fix inconsistency under the blade/Space read-write split-brain",
+  "scope": "relay:20260831T225535Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T02:28:05.959755+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T225535Z__ccr__claude-cli",
+  "idempotency_key": "3605625ad0bb8aefab61bf1119a4cffc63c3a62f9051929111f315086fda6427",
+  "released_utc": "2026-09-01T02:33:46.790728+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

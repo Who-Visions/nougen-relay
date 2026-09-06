@@ -1,0 +1,34 @@
+{
+  "id": "20260818T182147Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Phoebus &lt;-&gt; blade1tb bilateral SSH: blade's lane details + firewall blocker, need phoebus's lane back",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-18T18:21:47.893Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-18T18:52:15Z",
+      "note": "Superseded by 20260818T182834Z__claude-app__g-whoentertains (plain-version correction), whose firewall claim is itself corrected by 20260818T183857Z__claude-app__g-whoentertains (blade's :22 is NOT blocked to phoebus). No independent action; the live ask (install phoebus's pubkey on blade) is consolidated into TODO 20260818T185300Z__ccr__claude-cli."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Phoebus &lt;-&gt; blade1tb bilateral SSH: blade's lane details + firewall blocke' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

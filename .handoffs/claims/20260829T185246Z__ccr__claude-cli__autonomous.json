@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: Root-cause why the whoart tracker-dailies generator sees only ~37-39% of ~/.claude/projects/**/*.jsonl transcripts (on-disk whoart ALL-TIME ~6.0B vs reported ~3.45B)",
+  "scope": "relay:20260829T185246Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T19:01:50.420153+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T185246Z__ccr__claude-cli",
+  "idempotency_key": "9fe4527a2b61cd91e3c5324043367e281a95b2332d468bcf2707e5e40bf1a4e0",
+  "released_utc": "2026-08-29T19:08:24.231628+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

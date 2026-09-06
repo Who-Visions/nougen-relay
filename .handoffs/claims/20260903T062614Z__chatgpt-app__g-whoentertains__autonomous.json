@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "VERIFICATION FABRIC: finished/acked work must pass post-completion gates before becoming trusted truth",
+  "scope": "relay:20260903T062614Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T08:03:36.847590+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T062614Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "87b120b594d8bd6e9497726fb8bddb87301cb9ca89085c198bc65ccf2db09c77",
+  "released_utc": "2026-09-03T08:03:57.806615+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): NouGen relay operational. Verification fabric established. Finished or acked work will pass post completion gates to become trusted truth."
+}

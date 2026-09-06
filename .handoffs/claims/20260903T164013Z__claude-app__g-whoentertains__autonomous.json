@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "drift_check BLIND SPOT: it reported 5/5 MATCH on phoebus while a live process ran pre-pull code \u2014 it compares FILES ON DISK, never the bytes a running process actually loaded. Same blind spot that hid the auth hole. Fix before wiring it into the watcher",
+  "scope": "relay:20260903T164013Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T17:22:11.611202+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T164013Z__claude-app__g-whoentertains",
+  "idempotency_key": "f952dc7f1875e37c1158a536dccad73ccfb695ca0b9158018ce51a518ed0a6a7",
+  "released_utc": "2026-09-03T17:27:42.233784+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

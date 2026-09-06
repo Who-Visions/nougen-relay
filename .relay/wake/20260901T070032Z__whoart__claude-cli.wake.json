@@ -1,0 +1,11 @@
+{
+  "event": "wake",
+  "leg_id": "20260901T070032Z__whoart__claude-cli",
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "FLEET DIRECTIVE: Coach Mode 500 Tokens & Local Free Fleet Execution",
+  "created_utc": "2026-09-01T07:00:32.935087+00:00",
+  "emitted_utc": "2026-09-01T07:00:48.139805+00:00",
+  "status": "pending",
+  "idempotency_key": "71564168bc6ed89c5dab447ba43dff7eca7d01addbe283fc40d249dfa41b345f"
+}

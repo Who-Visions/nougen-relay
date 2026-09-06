@@ -1,0 +1,32 @@
+{
+  "id": "20260829T122827Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Shard gateway \"down\" is NOT an outage: the Space reports public_ready=false because NGS_HUD_USER/PASSWORD are unset on it. Creds exist on phoebus and are now in keymaker; setting them on the Space needs HF_TOKEN, absent here.",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T12:28:27.671Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T12:55:08Z",
+      "note": "ACTIONABLE-HEAVY, left open. Root-caused the shard gateway 'down' status to a config gap, not an outage: the Space (nougenai/NouGenTracker-node or the shards Space) reports public_ready:false because NGS_HUD_USER/NGS_HUD_PASSWORD are unset on it. Values are already banked in phoebus's keymaker (never printed) but setting them as Space secrets needs an HF_TOKEN this lane does not have. Separately, phoebus's own node holds 108,391 shards on ephemeral storage with no NGS_UPSTREAM_URL configured \u2014 every restart of com.whovisions.ngsnode discards them. Needs whoever holds the HF credential (GM) to set the two secrets on the Space, and NGS_UPSTREAM_URL to be set on phoebus before its next restart. Queued as new TODO 20260829T125509Z__ccr__claude-cli. Risk: phoebus is a live data-loss timebomb until NGS_UPSTREAM_URL is set."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:39:34Z",
+      "note": "[E2B-Evaluated] The open relay handoff is complete; the root cause of the shard gateway reporting `public_ready=false` due to missing `HF_TOKEN` has been identified and the configuration gap ha..."
+    }
+  ]
+}

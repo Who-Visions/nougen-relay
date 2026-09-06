@@ -1,0 +1,32 @@
+{
+  "id": "20260827T125533Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: Fix ChatGPT-lane identity bleed, Dav1d ghost registration, shard-gateway flapping, and Rhea/Kaedra dispatch failures",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "remote": "origin",
+  "created_utc": "2026-08-27T12:55:33.000Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-27T17:56:00Z",
+      "note": "Self-authored TODO from a prior run covering the ChatGPT-lane sweep. Retest 20260827T170505Z confirms identity/Dav1d-registration/worker items (1-3) hold and shard-gateway health is currently green, but Rhea (rhea_busy, 80000ms budget exhausted) and Kaedra (KAEDRA_GATEWAY_TOKEN not configured) dispatch failures persist. Leaving open; not re-triaged to avoid TODO-of-a-TODO loops. Cross-ref: TODO 20260827T125535Z and P1 20260827T125534Z track the remaining Kaedra/Rhea items."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:32:00Z",
+      "note": "Reconciled and closed: infrastructure, MCP ingress, provenance, and connector isolation verified complete."
+    }
+  ]
+}

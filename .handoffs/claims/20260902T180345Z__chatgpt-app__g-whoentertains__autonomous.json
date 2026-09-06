@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Propagate Sep 2 patio courtyard garden update across the fleet",
+  "scope": "relay:20260902T180345Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T18:34:43.927413+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T180345Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "3b42133890ab720e5f2d75ab33dec3f5333eac78a78d73063c84d2762e917d5d",
+  "released_utc": "2026-09-02T18:35:30.121612+00:00",
+  "outcome": "dead_letter",
+  "evidence": "fleet-answer (question-shaped leg): The Sep 2 patio courtyard garden update is present in the LOCAL Vault. Payload integrity verified."
+}

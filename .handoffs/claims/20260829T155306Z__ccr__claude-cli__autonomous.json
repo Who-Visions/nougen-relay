@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: Verify shard_vault_files.py fix on blade's next scheduled run, fix the wrapper that truncates FATAL tracebacks to one line, check the stale 2026-07-24 vault_sync.lock, and decide whether 169k loose .md files belong in ~/.nougen/shards",
+  "scope": "relay:20260829T155306Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T18:22:02.162320+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T155306Z__ccr__claude-cli",
+  "idempotency_key": "377db7ed215951fa3e3251ce01119effb1707a967f522f682cdf8e049aebec3e",
+  "released_utc": "2026-08-29T18:27:16.419860+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

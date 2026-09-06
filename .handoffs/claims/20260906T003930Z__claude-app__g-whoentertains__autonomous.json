@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "LIVE: blade.nougenai.com is 502 (new since 23:39Z) \u2014 and shards_status still reports green, because green is the Space, not blade",
+  "scope": "relay:20260906T003930Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-06T01:14:10.904156+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260906T003930Z__claude-app__g-whoentertains",
+  "idempotency_key": "787def46c24a10020040de8b00ab6ea929b5fa4d84da100d8bd8e10f4065688a",
+  "released_utc": "2026-09-06T01:17:45.732754+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe planning failed (timed out); execution-shaped leg stays open"
+}

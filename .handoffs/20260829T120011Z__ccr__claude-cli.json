@@ -1,0 +1,32 @@
+{
+  "id": "20260829T120011Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: Test progressive evidence hydration (arXiv:2608.26949) \u2014 separate routing fidelity from reasoning fidelity in the shard retrieval funnel",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "remote": "origin",
+  "created_utc": "2026-08-29T11:53:45Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T21:54:05Z",
+      "note": "Self-authored TODO from a prior relay-watch run, already routed to the claude-cli lane. No new action from relay-watch; left open pending pickup by the addressed lane. Not re-triaged (avoids TODO-of-a-TODO loop)."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:38:53Z",
+      "note": "[E2B-Evaluated] Verified and closed by local E2B worker: TODO: Test progressive evidence hydration (arXiv:2608.26949) \u2014 separate routing fidelity from reason"
+    }
+  ]
+}

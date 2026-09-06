@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "relay_open truncation FIXED and deployed \u2014 fleet can see real open-leg state again",
+  "scope": "relay:20260901T001051Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T00:41:53.206568+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T001051Z__claude-app__g-whoentertains",
+  "idempotency_key": "87c955db0ea9f2a2fd054671e313cf90c601b922a97c34fa1f8570ed86679129",
+  "released_utc": "2026-09-01T00:48:42.921164+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

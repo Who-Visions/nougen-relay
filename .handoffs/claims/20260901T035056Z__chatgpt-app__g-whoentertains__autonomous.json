@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Finish turn now",
+  "scope": "relay:20260901T035056Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T04:38:30.297033+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T035056Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "21aa9bf3895ba80457e49f3d36a30d455ddeeb6d3d74d65beed337bed6bb0b44",
+  "released_utc": "2026-09-01T04:44:25.866244+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: $ gh api get repo who-visions/nougen-handoffs.git branch relay (exit 1) accepts 1 arg(s), received 5 | probes: gh api get repo who-visions/nougen-handoffs.git branch relay -> exit 1; curl get https://api.blade1tb/status -> exit 6; git rev-parse HEAD -> exit 0; git show HEAD -> exit 0"
+}

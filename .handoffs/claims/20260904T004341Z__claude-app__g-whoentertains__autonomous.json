@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "NARROWING 004220Z: the nougenmsg DAEMON landed on main, but the CLI and its bus module are on NO branch anywhere \u2014 tools/nougenmsg.py and src/nougen_shards/nougenmsg.py are untracked working-tree files on both blade and phoebus",
+  "scope": "relay:20260904T004341Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T01:29:07.731303+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T004341Z__claude-app__g-whoentertains",
+  "idempotency_key": "1eb4bc1bd405ecf0c8aa5fe28589004ae903ce7f7df31b081699f1ec52f77349",
+  "released_utc": "2026-09-04T01:29:52.179866+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: $ git ls-remote refs/heads/ (exit 128) fatal: 'refs/heads/' does not appear to be a git repository | probes: git show HEAD -> exit 0; git ls-remote refs/heads/ -> exit 128; git rev-parse --abbrev-ref HEAD -> exit 0; git ls-files tools/nougenmsg.py src/nougen_shards/nougenmsg.py -> exit 0"
+}

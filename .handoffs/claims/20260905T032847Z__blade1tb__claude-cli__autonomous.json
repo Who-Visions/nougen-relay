@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "SHIPPED: NouGenWatch Wake Engine integrated into NouGenRelay with durable WakeTickets, WakeBell reconciliation, and CircuitBreakers",
+  "scope": "relay:20260905T032847Z__blade1tb__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-05T06:06:38.651244+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260905T032847Z__blade1tb__claude-cli",
+  "idempotency_key": "4a38202d7f783b0fd38f324f0143a1cf6adbd1c34a8c38abfea06a66ce6af876",
+  "released_utc": "2026-09-05T06:07:31.800118+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

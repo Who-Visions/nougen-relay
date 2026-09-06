@@ -1,0 +1,35 @@
+{
+  "id": "20260904T202803Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Blade console cleanup: 8 WT windows -> 4; relay_live.cmd now detaches; ngs_node_boot.cmd needs same start /b change (repo lane, not touched)",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-04T20:28:03.810Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "## Situation\nDave asked to merge the pile of terminal windows on blade. All 8 were Windows Terminal default-terminal windows in one WT process. `windowingBehavior: useExistingWindow` does not apply to default-terminal launches (tested), so that is not the fix.\n\n## Done\n- Killed the cmd holders for relay_live.cmd (21572) and ngs_node_boot.cmd (21588). Their pythonw workers (23996, 4112) survived, verified.\n- Patched `~/.nougen/relay_live.cmd`: `start \"\" /b pythonw ... >> relay_live.log 2>&1`. `/b` matters: plain `start` drops the redirect and relay_live.log is written only through it. Backup at relay_live.cmd.bak-20260904.\n- WT settings backup: settings.json.bak-20260904.\n\n## Ask (owner of tools/ngs_node_boot.cmd)\nSame one-line change: prefix the `\"%PYTHONW%\" ... start_grid.py --watch` line with `start \"\" /b`. Not done here because it is a shared repo file.\n\n## Left running, untouched\nngs_node_serve.py, local_mesh_service.py, elevation_audit_daemon.py, ollama_upstream.cmd, space_sync, relay_daemon. Real merge = launch them via `wt -w nougen nt --title X -- <cmd>` from their scheduled tasks. Deferred: not restarting the recall node during today's fanout incident.\n\n## Done when\nNext logon shows one window (or zero) for NouGen daemons.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-09-04T21:52:15.667Z",
+      "note": "nougen-1e: ngs_node_boot.cmd now start /b (lane claimed 214338Z); relay_live.cmd already detached; WT windowingBehavior corrected to useExisting. Remaining daemon windows deferred by design."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Blade console cleanup: 8 WT windows -> 4; relay_live.cmd now detaches; ngs_node_' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

@@ -1,0 +1,42 @@
+{
+  "id": "20260904T134734Z__blade1tb__claude-cli",
+  "machine": "blade1tb",
+  "agent": "claude-cli",
+  "goal": "SECURITY, verified from source: the ssh injection is STILL LIVE in nougenmsg.ping_ollama (:311-316) - only double quotes escaped, so prompt+model reach the remote login shell. Same file we hardened all day. Patch included (--data-binary @- on stdin). NOT applied: codex lane's in-flight file",
+  "branch": "pi-remix",
+  "sha": "d08f2655",
+  "remote": "origin",
+  "created_utc": "2026-09-04T13:47:34.970874+00:00",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": true,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T14:00:27Z",
+      "note": "SECURITY, verified from source: the ssh injection is STILL LIVE in nougenmsg.ping_ollama (:311-316) - only double quotes escaped, so prompt+model reach the remote login shell. Same file we hardened all day. Patch included (--data-binary @- on stdin). NOT applied: codex lane's in-flight file"
+    },
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-04T14:52:38.670563+00:00",
+      "note": "Taking security verification and scoped remediation review."
+    },
+    {
+      "event": "checkpoint",
+      "state": "complete",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-04T14:56:11.478837+00:00",
+      "note": "Verified vulnerable remote ping_ollama interpolation from source. Fixed in isolated branch by passing JSON only through SSH stdin to constant curl --data-binary @- command; hostile prompt/model regression test passes (18 targeted). Published PR #215: https://github.com/Who-Visions/NouGenShards/pull/215. Full suite has pre-existing rescue-branch failures."
+    }
+  ]
+}

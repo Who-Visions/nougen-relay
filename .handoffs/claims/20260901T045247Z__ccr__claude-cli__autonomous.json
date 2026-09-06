@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: Fix UNK Trader vault targeted recall blind spot (literal UNK alias not indexed/discoverable via targeted Griot gather)",
+  "scope": "relay:20260901T045247Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T06:03:33.030667+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T045247Z__ccr__claude-cli",
+  "idempotency_key": "b3ba37e2f4700f98b5fa6004a3b376ff287f81eeb7585dbc3f9330d0d3ca7a01",
+  "released_utc": "2026-09-01T06:06:12.008078+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ gh api get repo UNK_Trader (exit 1) accepts 1 arg(s), received 3 | probes: gh api get repo UNK_Trader -> exit 1; curl get https://api.pentalmesh.local/vault/metadata/UNK_Trader -> exit 6; git ls-files UNK_Trader_Vault_Schema -> exit 0; gh api get issue UNK_Trader --json number -> exit 1"
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "RESOLVED (WhoArt): Disk recovery complete (+14.47 GB freed, now 24.04 GB free) via safe cache flush",
+  "scope": "relay:20260829T153012Z__whoart__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T15:47:16.744227+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T153012Z__whoart__claude-cli",
+  "idempotency_key": "42399be9244ee5044a1e4ca862db96c93c312a1211bd8c3534df03441924367f",
+  "released_utc": "2026-08-29T15:47:44.688105+00:00",
+  "outcome": "complete",
+  "evidence": "Status confirmed. LEG GOAL RESOLVED. Disk recovery complete via safe cache flush. +14.47 GB freed. Current free space is 24.04 GB."
+}

@@ -1,0 +1,26 @@
+{
+  "id": "20260906T082442Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Shadow Dweller canon wiki live at NouGen/ShadowDwellerWiki (port 3111); relayed ideas persist via shard -> pnpm sync",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-06T08:24:42.672Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acked",
+  "body": "## 📋 What landed (2026-09-06 08:30Z, Claude Cli @ Blade1TB)\n- Next.js 16 wiki at `C:\\Users\\super\\Watchtower\\NouGen\\ShadowDwellerWiki`, build green, verified in browser on http://localhost:3111 (launch.json entry `shadow-dweller-wiki`).\n- Reads veillore.db (1429 entities, relationships, 45 codex tables) + vault canon-lock shards (160) + VeilVerse Canon pages (23). `pnpm sync` refreshes from live sources; the wiki stores no canon of its own.\n\n## 🔁 Persistence contract for every lane\n- Any Shadow Dweller / VeilVerse idea Dave relays: `shards_capture` with tags `shadow-dweller` (+`canon-lock`, event_type DECISION when authorial). It shows under /locks on the next sync. Governing rule shard 22944 still binds.\n\n## ⚠️ Open\n- Blade `NouGenShards-push-main` is 10+ commits behind origin/main and lacks whoart's per-session inbox cursor fix (ae9f95e); `src/nougen_shards/nougenmsg.py` has another lane's uncommitted edits so no pull was made.\n- Wiki is local only; no deploy target chosen yet.\n\nDone-when: another lane captures a shadow-dweller shard, runs `pnpm sync` in the wiki dir, and sees it on /locks.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-09-06T12:30:37.133Z",
+      "note": "Closing own announcement leg: wiki deployed to https://shadow-dweller-wiki.whoentertains.workers.dev (shard 27178), persistence loop proven with fleet shards (17536, 22432 etc.). Superseded by the elevation relay-up leg."
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "MEASURED ROOT CAUSE for both boxes: scheduled tasks fire on CLAUDE APP START, not on cron \u2014 whoart was powered on the whole time, and blade's post-boot theory does not fit its own timestamps",
+  "scope": "relay:20260904T132749Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T13:43:24.597737+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T132749Z__claude-app__g-whoentertains",
+  "idempotency_key": "0b1c5c1ad1cf9f85fac7f7b8c276a8eb68684f655458a6644d12886d47962d6c",
+  "released_utc": "2026-09-04T13:44:03.386999+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: curl get http://whoart.ip/status (exit 6) curl: (6) Could not resolve host: whoart.ip | probes: gh api get repos/org/repo/actions/runs?per_page=5 -> exit 1; curl get http://whoart.ip/status -> exit 6; git show HEAD -> exit 0; gh api get repos/org/repo/issues?state=all&per_page=10 -> exit 1"
+}

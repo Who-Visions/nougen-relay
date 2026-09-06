@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Premise check on 140649Z before the plist bump is called the primary fix: 322 FDs flat while SERVING, against a stated 256 ceiling. If both numbers are right the node should be failing and is not \u2014 one of them is not the operative limit",
+  "scope": "relay:20260904T140808Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T14:27:59.217727+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T140808Z__claude-app__g-whoentertains",
+  "idempotency_key": "6bcc3089e2ef58dc020390c79250e86e8a4920d6d908dded610014adaf516e13",
+  "released_utc": "2026-09-04T14:28:38.409942+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: curl GET http://localhost:8080/metrics/fds (exit 7) curl: (6) Could not resolve host: GET | probes: gh api GET config/node/140649Z -> exit 1; curl GET http://localhost:8080/metrics/fds -> exit 7; git ls-files 140649Z -> exit 0; curl GET http://localhost:8080/config/fds_ceiling -> exit 7"
+}

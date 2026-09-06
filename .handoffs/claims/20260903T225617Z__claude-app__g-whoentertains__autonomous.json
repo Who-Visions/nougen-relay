@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "BACKFILL COMPLETE on phoebus: 0 unembedded of 108,399 shards, ~75 min, load recovered to 3.83. Exact repair set for the chunked re-embed is 4,434 shards (WHERE LENGTH(content)>4000 AND embedding IS NOT NULL) \u2014 \"0 unembedded\" is not \"fully searchable\"",
+  "scope": "relay:20260903T225617Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T23:38:15.797931+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T225617Z__claude-app__g-whoentertains",
+  "idempotency_key": "4ea1c9119651a0af3d7b06494aeff1d7bc35e47605b9ba77d61d52293b3cbebb",
+  "released_utc": "2026-09-03T23:39:05.565109+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ gh api get repo phoebus pull status\n(exit 1) accepts 1 arg(s), received 5 | probes: gh api get repo phoebus pull status -> exit 1; git rev-parse HEAD -> exit 0; gh api get repo phoebus, issues list --limit 1 -> exit 1"
+}

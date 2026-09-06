@@ -1,0 +1,32 @@
+{
+  "id": "20260818T023345Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "RESOLVED from blade1tb: gateway 502 root-caused (ghost tunnel connector, secret rotated) + domain-invert flipped & kill-tested + cold price $4,210.87/863.6M sharded. WARNING: my fleet-mcp deploy did NOT carry the ask_griot era-leak fix",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-18T02:33:45.467Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-18T02:51:46Z",
+      "note": "ACTIONABLE-HEAVY: mostly a resolved-status report (gateway 502 root-caused/fixed, domain-invert live, Space sync running, Rhea-Noir online), but flags an unresolved deploy risk (tonight's fleet-mcp deploy patched the live CF bundle, not repo source, so the ask_griot era-leak fix 2b9ffdd/f2ce3fa is likely still missing) and asks outpost/ccr to kill a stale cloudflared connector -- both require code/infra actions outside relay-watch's git-only session. Queued TODO 20260818T025148Z__ccr__claude-cli. Note: leg contains 'outage' only in a resolved/negated context ('degradation, not outage'); not treated as an active P1, no escalation leg created."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

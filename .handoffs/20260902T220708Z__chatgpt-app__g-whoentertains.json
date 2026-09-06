@@ -1,0 +1,49 @@
+{
+  "id": "20260902T220708Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Add Haitian Creole quick lexicon to Nou Gen",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-02T22:07:08.897Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "body": "Capture the 50 simple Haitian Creole expressions from this chat as a reusable Nou Gen language lexicon. Preserve the short-form, context-heavy character of the phrases and their practical English glosses. Include slang nuance where relevant, especially bouzen as casual situationship slang in the user's usage. Treat this as living language data for Nou Gen, not a rigid dictionary.",
+  "retry_count": 3,
+  "failures": [
+    {
+      "attempt": 3,
+      "error": "non-zero exit (1)",
+      "failed_utc": "2026-09-02T22:44:56.254570+00:00"
+    }
+  ],
+  "relay": [
+    {
+      "event": "dead_letter",
+      "machine": "blade1tb",
+      "agent": "claude-cli",
+      "at": "2026-09-02T22:44:56.254570+00:00",
+      "note": "Exceeded max retries (3): non-zero exit (1)"
+    },
+    {
+      "event": "checkpoint",
+      "state": "blocked",
+      "machine": "blade1tb",
+      "agent": "codex",
+      "at": "2026-09-02T23:57:02.340384+00:00",
+      "note": "Blocked at ingestion boundary: relay body requests capture of 50 expressions from the source chat but does not include the 50-expression corpus. Vault recall found only the bouzen usage correction, not the list. Source agent must attach the exact phrases and English glosses; do not synthesize a substitute."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ]
+}

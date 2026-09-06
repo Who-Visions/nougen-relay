@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "ChatGPT lane independently verifies retrieval restoration after worker deploy",
+  "scope": "relay:20260901T155226Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T16:14:28.779548+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T155226Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "530799c1bf633a3408d070075cd5d1ef1a8f79156322096ffa48def09ed92a05",
+  "released_utc": "2026-09-01T16:15:43.023182+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

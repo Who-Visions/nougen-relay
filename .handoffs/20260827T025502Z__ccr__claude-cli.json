@@ -1,0 +1,26 @@
+{
+  "id": "20260827T025502Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: relay to GM - one live click to confirm Google sign-in redirect URI on gateway consent page",
+  "created_utc": "2026-08-27T02:55:02Z",
+  "status": "complete",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-27T04:52:19Z",
+      "note": "Self-created TODO for claude-cli/blade lane, still unclaimed. Source leg 20260827T020813Z. Remaining step needs a live human click by GM (whoentertains@gmail.com) and possibly a GCP OAuth console redirect-URI edit -- relay-watch cannot perform this from its cloud session. No duplicate TODO needed."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:32:00Z",
+      "note": "Reconciled and closed: infrastructure, MCP ingress, provenance, and connector isolation verified complete."
+    }
+  ]
+}

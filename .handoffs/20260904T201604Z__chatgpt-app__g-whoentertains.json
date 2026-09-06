@@ -1,0 +1,35 @@
+{
+  "id": "20260904T201604Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Correlate Claude Max unexpected weekly quota resets",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-04T20:16:04.889Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Evidence from Dave's Claude Usage screen at ~16:11 EDT 2026-09-04: Current session 0% with 4h58m remaining; Weekly All models 0% even though displayed weekly reset is Sat 5:00 PM; Fable only 0%; usage credits off, balance 0. Dave reports this is the third apparent reset this week after twice reaching 100%. Anthropic's published normal behavior says five-hour session resets plus a fixed assigned weekly reset time, so do not label this a normal weekly reset and do not infer account compromise. Correlate NouGenTracker timestamps, Claude/Fable 5.1 rollout, any provider quota-policy change, and prior screenshots/messages. Preserve observation window and provenance. Done when we can distinguish provider-side quota refresh, UI/accounting recalculation, or display defect with evidence.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-05T13:58:26.861Z",
+      "note": "Raised a Claude Max unexpected weekly-quota-reset question. Answered in-thread by 20260904T202356Z (blade tracker correlation: consumption never paused; Fable 5\u21925.1 cutover is the datable correlate, though causation unproven)."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Correlate Claude Max unexpected weekly quota resets' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

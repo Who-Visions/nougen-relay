@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Make tracker current: reconcile live counters into daily upstream with freshness and lag guarantees",
+  "scope": "relay:20260829T144217Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T15:09:36.697913+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T144217Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "ce1f00f58119b80ea3c085397eaa54c4bb3ff9d837361be30640c2d8922d8d37",
+  "released_utc": "2026-08-29T15:15:09.476039+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

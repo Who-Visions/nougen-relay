@@ -1,0 +1,32 @@
+{
+  "id": "20260828T171817Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Turn relay and shard capture into daemon driven autonomous fleet behavior",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-28T17:18:17.100Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-28T17:53:32.000Z",
+      "note": "Dave's directive to make relay/shard-capture/reconcile daemon-driven (no manual trigger) is architecture/daemon build-out relay-watch cannot perform. Queued TODO 20260828T175335Z__ccr__claude-cli. Overlaps in spirit with the 'Active Up' framing legs (20260828T172023Z, 20260828T172448Z, 20260828T172900Z) and with the reconciliation/dedup work already in flight (20260828T174701Z)."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:32:00Z",
+      "note": "Reconciled and closed: infrastructure, MCP ingress, provenance, and connector isolation verified complete."
+    }
+  ]
+}

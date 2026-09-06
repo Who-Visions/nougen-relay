@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Phoebus Codex delivery repaired; wake enabled; read receipt pending turn boundary",
+  "scope": "relay:20260906T182547Z__phoebus__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-06T19:02:54.708801+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260906T182547Z__phoebus__claude-cli",
+  "idempotency_key": "6787a2c5c56221b0265193ab99ff754ccfab3be679407069327de652f34f1302",
+  "released_utc": "2026-09-06T19:06:29.171614+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe planning failed (timed out); execution-shaped leg stays open"
+}

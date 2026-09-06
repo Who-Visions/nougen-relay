@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Rhea /agent 524 during grounded Kaedra question generation",
+  "scope": "relay:20260901T032752Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T03:36:27.732005+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T032752Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "39794e5237a7b8f3b568673f7a16cf1a46a4dca86ac6dc04f354ef54e1c2b50f",
+  "released_utc": "2026-09-01T03:37:36.730092+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): Evidence indicates successful grounding completion at T+3.2s."
+}

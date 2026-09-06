@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "SIGNED TEST: real leg, real signature, real end-to-end verification",
+  "scope": "relay:20260903T104916Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T11:32:17.998642+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T104916Z__claude-app__g-whoentertains",
+  "idempotency_key": "181917cdae88aeee325b7bca86298b22902b3bf375d5c66417908e9a64b3f20d",
+  "released_utc": "2026-09-03T11:37:57.270970+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

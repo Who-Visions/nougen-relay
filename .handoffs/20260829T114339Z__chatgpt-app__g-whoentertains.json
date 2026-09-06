@@ -1,0 +1,33 @@
+{
+  "id": "20260829T114339Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Test metameric architecture as NouGen's topology simplification and cross-provider identity doctrine",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T11:43:39.274Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "## Metameric Architecture Doctrine\n\nTreat architecture search as equivalence-class discovery rather than feature accumulation. For implementation state x and observation function Phi, distinct implementations A and B are metamers only when Phi(A)=Phi(B) across the complete operational invariant vector. Equivalence is test-surface dependent. Matching benchmark accuracy alone is insufficient.\n\n### Why this matters to NouGen\nNouGen is heterogeneous by design: models, providers, machines, gateways, routes, memory stores, retrieval methods, cache states, and agent harnesses can change. The durable identity should live in verified behavioral contracts and invariants rather than any particular implementation. This creates a route for aggressive simplification: if two topologies remain functionally equivalent across every required invariant, select the cheaper, faster, simpler, more resilient representative.\n\n### False metamer problem\nA and B may look equivalent under Phi1=[accuracy] but diverge under Phi2=[accuracy, provenance fidelity, temporal fidelity, contradiction retention, epistemic justification, latency, cost, failure recovery, provider resilience, machine resilience, security boundaries]. Never promote equivalence until the observation function contains every invariant relevant to the production contract.\n\n### Proposed lifecycle\n1. Generate or identify structural variants.\n2. Define explicit invariant vector and thresholds before comparison.\n3. Execute candidates under matched conditions.\n4. Project outcomes into invariant space.\n5. Cluster candidates that appear behaviorally equivalent.\n6. Attack equivalence using metamorphic transformations.\n7. Eliminate false metamers.\n8. Identify robust metamer classes.\n9. Choose the minimum-complexity representative satisfying all thresholds.\n10. Verify again before promotion.\n11. Capture the decision, evidence, transformations, regressions, and provenance as durable memory.\n\n### Metamorphic stress family\nTest claimed equivalence under provider swap, model swap/downgrade, machine swap, prompt paraphrase, context compression, shard deletion, contradictory evidence injection, amendment/retraction injection, temporal displacement, stale context, network degradation, tool failure, gateway failover, cache cold start, token-budget reduction, multimodal evidence loss, duplicated evidence, fabricated authoritative evidence, and high-load concurrency.\n\nFor each transformation T_i, compare Phi(T_i(A)) and Phi(T_i(B)). Robust equivalence requires remaining inside defined tolerance across the transformation family, not merely scoring similarly on one static benchmark.\n\n### Connect to current research doctrine\nGraphMemix: WHAT evidence should be assembled?\nEpistemic Action Gate: DOES that evidence justify action?\nHarnessLens: HOW should behavior evolve from trajectory evidence?\nMetameric Architecture: WHICH distinct implementations preserve the required behavior?\nMetamorphic Testing: DOES the claimed equivalence survive meaningful transformations?\nRecursive Convergence: WHICH robust representative achieves the contract with minimum unnecessary complexity?\n\n### Architecture implication\nDo not equate sophistication with component count. If a 14-component architecture and a 5-component architecture are robust metamers across the full invariant vector, remove the nine unnecessary components. Simplification is safe only after equivalence survives adversarial and environmental transformations.\n\n### Candidate Metamer Record\nConsider whether existing relay/shard/verification primitives can represent:\n- candidate_a_version\n- candidate_b_version\n- observation_function / invariant_vector\n- invariant_thresholds\n- matched_test_set\n- transformation_family\n- baseline_metrics\n- transformed_metrics\n- divergence_points\n- provenance\n- regression_results\n- cost\n- latency\n- complexity_score\n- resilience_score\n- equivalence_status: candidate | false_metamer | robust_metamer\n- selected_representative\n- selection_reason\n\nDo not create a new service or URL merely to hold this. Compose existing verification, relay, shard, tracker, Griot provenance, gateway, and routing primitives first.\n\n### Core identity principle\nMODEL may change.\nPROVIDER may change.\nMACHINE may change.\nROUTE may change.\nMEMORY TOPOLOGY may change.\nHARNESS may change.\n\nVerified behavioral contracts and required invariants must survive.\n\n### Convergence rule\nEvery recursive cycle should do at least one of four things: increase verified information, reduce uncertainty, eliminate unnecessary complexity, or terminate. Iteration that does none of these is computational thrashing, not learning.\n\n### Done when\nFleet reports which current NouGen primitives already support this lifecycle, identifies the smallest missing pieces, proposes a minimal experiment comparing at least two genuinely different topologies, defines the invariant vector before testing, runs metamorphic stress probes, and determines whether the pair is a true robust metamer or merely a false equivalence.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T11:53:45Z",
+      "note": "Research-derived proposal asking for a metameric-architecture invariant-vector experiment: define an observation function across ~11 invariants (accuracy, provenance fidelity, latency, cost, resilience, etc.), compare two genuinely different NouGen topologies under a metamorphic stress family, and remove unnecessary complexity only after equivalence survives. Design+experiment work \u2014 queuing TODO 20260829T120010Z__ccr__claude-cli."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:36:58Z",
+      "note": "[E2B-Evaluated] This leg is considered a successful doctrinal definition and architectural test, establishing the framework for metameric equivalence within NouGen. It is not a completed operational task, but the ..."
+    }
+  ]
+}

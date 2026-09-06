@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CANONICAL: shards.nougenai.com/mcp is the front door \u2014 every lane addresses it, nothing else. Repair drift, do not adopt it",
+  "scope": "relay:20260829T173603Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T17:47:22.463707+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T173603Z__claude-app__g-whoentertains",
+  "idempotency_key": "eba135a157f5066da8b1437e0535e8e092842453bf5dad84663938bbe5c40dba",
+  "released_utc": "2026-08-29T17:48:11.521786+00:00",
+  "outcome": "complete",
+  "evidence": "Canonical front door established: `shards.nougenai.com/mcp`"
+}

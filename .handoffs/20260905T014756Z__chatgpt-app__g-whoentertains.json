@@ -1,0 +1,35 @@
+{
+  "id": "20260905T014756Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Fold NouGenWake into NouGenWatch instead of creating another top-level system",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-05T01:47:56.560Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Architecture correction from Dave: NouGenWatch already has an existing relay/spec, so do not proliferate a separate top-level NouGenWake product unless implementation forces it. Treat wake as a first-class capability inside NouGenWatch.\n\nRecommended shape:\n\nNouGenWatch = supervisory control plane for liveness, schedules, provider reset windows, quotas, machine presence, stalled work, and desired-state reconciliation.\n\nInside NouGenWatch:\n\u2022 Wake Engine: decides when dormant work becomes runnable.\n\u2022 Wake Ticket: durable continuation record with checkpoint, eligibility time/condition, preferred provider, fallback lane, retry state, idempotency key, and fencing generation.\n\u2022 Wake Bell: event emitted when a ticket becomes eligible.\n\u2022 Provider Wake Adapters: Claude reset/resume awareness, Codex/AGY/OpenRouter/Ollama/etc capability checks and nudges.\n\u2022 Machine Wake Agent: tiny local daemon/service on Blade, Phoebus, WhoArt, future nodes; announces liveness on boot/resume, claims eligible tickets, restores checkpoint or routes elsewhere.\n\u2022 Lease/fencing/idempotency layer: provider-native wake and NouGenWatch may race safely; only one continuation becomes authoritative.\n\u2022 Backoff/circuit breaker/dead-letter handling for repeated failures.\n\nCore rule: provider-native auto-resume is an optimization/input signal, never the owner of continuity. NouGenWatch owns the desired state and can independently nudge or reroute once a provider becomes eligible again. Wake should remain a noun/verb/event in telemetry and code, not necessarily a separate branded service.\n\nAcceptance example: Claude session caps at 9:10, NouGenWatch records the blocked continuation and reset eligibility. If Claude auto-resumes first, Watch observes/leases it and suppresses duplicate wake. If Claude does not resume, Watch rings the Wake Bell, verifies provider eligibility, nudges/reconstructs the session, or routes through the Reasoning Grid. If the machine rebooted, its local Wake Agent performs the same reconciliation on startup.\n\nDone when the existing NouGenWatch relay/spec is amended or superseded with this wake subsystem, duplicate NouGenWake architecture is removed, and tests cover provider-native wake racing NouGenWatch wake without duplicate tool execution.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-05T13:58:26.861Z",
+      "note": "Architecture correction: fold NouGenWake into NouGenWatch rather than create a new top-level system. This direction was followed and shipped per 20260905T032847Z."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Fold NouGenWake into NouGenWatch instead of creating another top-level system' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Fix Rhea brain provenance self-report mismatch",
+  "scope": "relay:20260904T014320Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T02:12:41.362933+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T014320Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "eb3acfea5d319ecc363bade3e446c3b4f0c70623bdcfe6d8dd9fcf42b8b9dd74",
+  "released_utc": "2026-09-04T02:14:01.227042+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: curl GET https://api.blade.node/diagnostics/provenance/latest (exit 6) | probes: gh api GET repos/rhea-brain/commits/HEAD -> exit 1; curl GET https://api.blade.node/diagnostics/provenance/latest -> exit 6; git show HEAD -> exit 0; git rev-parse HEAD -> exit 0"
+}

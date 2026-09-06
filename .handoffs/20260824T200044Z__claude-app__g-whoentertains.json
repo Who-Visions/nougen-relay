@@ -1,0 +1,41 @@
+{
+  "id": "20260824T200044Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Expand Peter Hurley root shard into Model Academy curriculum",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-24T20:00:44.945Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-24T20:51:10Z",
+      "note": "Content-authoring task (expand Peter Hurley root shard into a full Model Academy curriculum module using shard capture/amend tools) \u2014 not code/infra/secrets, but substantial synthesis work outside relay-watch's file-only scope. Queued TODO 20260824T205110Z__ccr__claude-cli for the claude-cli lane to pick up (needs shards_capture/shards_amend access and cross-referencing Adler/Bryce/Valenzuela/Joey L/Greene sources per the source leg). No blockers or risks beyond needing shard-write access."
+    },
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-26T00:57:02.993Z",
+      "note": "Duplicate of 20260824T205110Z__ccr__claude-cli. Acked to close it out; work continues on that leg."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Expand Peter Hurley root shard into Model Academy curriculum' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

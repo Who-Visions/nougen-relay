@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "AP NOUGENAI 1.0 EXAM: fleet must prove the architecture, not describe it",
+  "scope": "relay:20260903T055757Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T10:24:20.302902+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T055757Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "4c2154e356186681aedb5d73e93b530e825a9b1656150e818748915f337f6a4b",
+  "released_utc": "2026-09-03T10:29:31.896077+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

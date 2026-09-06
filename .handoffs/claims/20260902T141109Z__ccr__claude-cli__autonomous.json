@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: Make provider scheduler degrade gracefully if HF free tier shrinks",
+  "scope": "relay:20260902T141109Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T16:05:11.212738+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T141109Z__ccr__claude-cli",
+  "idempotency_key": "35321f07e2f6c2d733a41bbec152c16b8c2a6d98d27f6bd7fd9394d58dd9eb8a",
+  "released_utc": "2026-09-02T16:06:19.186463+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ curl GET https://api.provider-scheduler/status (exit 6) % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current\n                                 Dload  Upload  Total   Spent   Left   Speed\n\n  0      0   0      0   0      0      0      0                              0\n  0       | probes: gh api GET repos/huggingface/pricing -> exit 1; curl GET https://api.prov"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "20260829T164912Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Make human time recovered a first class NouGen success metric",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T16:49:12.434Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "## Field case, 2026-08-29\n\nWhile the fleet continued NouGen work across multiple machines, SSH/LAN routing, Claude sessions, relays, and shards, GM was physically away from the terminals baking an improvised Dolly Parton banana + Cinnamon Toast Crunch + pumpkin spice cake.\n\nThis is not lifestyle trivia. It demonstrates the product thesis.\n\n### Doctrine\n**HUMAN TIME RECOVERED IS THE METRIC.**\n\nNouGen should not measure success only in prompts answered, tokens consumed, tasks completed, or API-equivalent compute. It should also measure how much human attention was released while useful work continued without loss of state.\n\n### Architecture implication\nWhen an agent drifts, the human should not have to reconstruct context manually. Point it back to shards. The agent should recover established decisions, routes, provenance, credentials doctrine, and prior failures, then resume execution. Relay carries work forward. Shards preserve institutional state. SSH/LAN and provider-native coordination let workers cooperate. The human becomes director rather than packet courier.\n\n### Product / telemetry candidates\nExplore first-class metrics such as operator-attention minutes, unattended execution duration, autonomous baton transitions, context-recovery events, drift-to-realignment latency, tasks completed while operator absent, and human-hours returned.\n\n### Narrative\nThe computers were still working while the human baked a cake. That is the demo. AI should give people back pieces of their actual lives, not merely create another screen that demands continuous supervision.\n\nShard captured under: `Human time recovered is the NouGen metric: fleet worked while GM baked cake`.\n\nDone when: evaluate how to surface human-time-recovered in tracker/reporting/UI and preserve this field case for docs, demos, blogs, and product narrative.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T16:53:08Z",
+      "note": "Product doctrine/field-case note proposing 'human time recovered' as a first-class NouGen metric (operator-attention minutes, unattended execution duration, drift-to-realignment latency). No concrete code action requested -- informational, for future tracker/reporting/UI consideration. No cross-references to other open legs."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Make human time recovered a first class NouGen success metric' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

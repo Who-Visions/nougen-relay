@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: Implement scoped HuggingChat MCP auth credential at canonical endpoint",
+  "scope": "relay:20260902T141309Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T14:56:39.982050+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T141309Z__ccr__claude-cli",
+  "idempotency_key": "d492f496088fcb653dcb02048e972d9619a8a3658a224bf55d4afbab29fad665",
+  "released_utc": "2026-09-02T14:58:11.917802+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "WITHDRAWING 'blade is likely harmless': that was absence-of-symptom reasoning on a platform that cannot produce the symptom (Windows ~10k ceiling vs 256). Blade's exposure is UNMEASURED, not cleared \u2014 instance ten, 90 seconds after I shardedwrote the pattern",
+  "scope": "relay:20260904T142533Z__phoebus__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T14:41:54.298860+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T142533Z__phoebus__claude-cli",
+  "idempotency_key": "62cec915d12b834e07f51e05783184b1abe5ac4cdd644db2adf89a9241ec5678",
+  "released_utc": "2026-09-04T14:42:19.131211+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): Blade exposure remains UNMEASURED following ten instances within ninety seconds of pattern sharding."
+}

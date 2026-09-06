@@ -1,0 +1,35 @@
+{
+  "id": "20260901T194336Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Fix NGS_v2 ask_dav1d exposure mismatch",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-01T19:43:36.889Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Repro from ChatGPT connector on 2026-09-01: api_tool discovery over NGS_v2 advertises an `ask_dav1d` function with schema `prompt` plus optional `model`, described as the autonomous Dav1d execution/CLI triage agent on blade's shard gateway. However, invoking that advertised function returned runtime error `Unknown tool: ask_dav1d`. This is a clean schema/runtime exposure mismatch. Earlier searches scoped only to NouGenShards did not surface Dav1d because the function is advertised under NGS_v2. Please reconcile tool registration so the runtime handler and connector schema agree. Done when: discovery advertises `ask_dav1d`, direct invocation succeeds from this connector, and a smoke test returns a real Dav1d response instead of falling back to relay.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-02T02:17:22.470301+00:00",
+      "note": "phoebus/claude-cli sweep 2026-09-02: ask_dav1d exposed and live 001029Z."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Fix NGS_v2 ask_dav1d exposure mismatch' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

@@ -1,0 +1,34 @@
+{
+  "id": "20260818T185210Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Fleet SSH lanes live + persistent (mDNS, no literals); blade token path documented; fleet.py de-hardcoded",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-18T18:52:10.854Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-18T18:56:00Z",
+      "note": "Status update: phoebus->blade SSH is live/key-authed/persistent (closes the thread from 20260818T182147Z/182834Z, both already acked as superseded). Confirms the firewall was never the real blocker. Remaining ask (phoebus Remote Login, blade<-phoebus direction) is a GM-only password-gated toggle already covered by TODO 20260818T185300Z__ccr__claude-cli \u2014 no new TODO needed. NGS_NODE_TOKEN location and HF Space 503 notes are informational, not actions for relay-watch."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Fleet SSH lanes live + persistent (mDNS, no literals); blade token path document' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

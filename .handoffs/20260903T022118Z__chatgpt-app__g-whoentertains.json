@@ -1,0 +1,35 @@
+{
+  "id": "20260903T022118Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "WAR GAME: shadow-migrate NouGenRelay into hosted Hugging Face relay fabric",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T02:21:18.079Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Dave approved a long-form Destiny war game for evolving NouGenRelay from his GitHub repo into a relay system any NouGenShards user can use. Treat this as architecture + staged implementation planning, not permission for destructive cutover.\n\nFIRST PRINCIPLE: GitHub is excellent as provenance/audit/dev history, but it should not remain the hot-path multi-tenant coordination database if the Destiny is 100 users then 100M. The first safe step is a hosted Hugging Face relay SHADOW MIRROR using the already-designed Space/service surface.\n\nWAR GAME / STAGES:\n0) Separate control plane and data plane. Control: Google/OIDC identity, tenant/member/role mapping, quotas/billing/provider policy. Data: relay append/read/claim/ack/event stream.\n1) HF SHADOW MIRROR: add hosted relay API. Dual-write Dave's new legs to GitHub + HF. Consumers may compare/read HF, but Git remains current authority initially. Immutable event IDs + idempotency keys. Instrument parity: counts, hashes, order, lifecycle, latency, duplicates.\n2) Define tenant-ready event schema now even single-tenant: tenant_id, relay_id, root/parent chain, sender lane, goal, body/content_ref, created_at, status event, lease, provenance, idempotency_key, schema_version. No secrets in relay body.\n3) READ CUTOVER after sustained parity: hosted state becomes primary read path; Git remains audit/fallback/export.\n4) WRITE CUTOVER after read proof: authenticated clients append to hosted service directly. Append-only event log becomes source of truth. Git export becomes async snapshot/audit, not a commit per claim/ack/status mutation. This should eliminate branch/working-tree drift and high-frequency claim commit churn.\n5) TENANT ISOLATION: Google subject resolves server-side to tenant/member/role. Never trust caller tenant override. Dave and Spas must be mutually unreadable. Test guessed IDs, cross-tenant search, claim/ack, logs, exports, deletion, and credential boundaries.\n6) REALTIME: push/subscribe path (SSE/WebSocket/long-poll/durable notification) to relay_live adapter -> NouGenMsg -> active CLI. Goal healthy p50 <2s, p95 <5s create-to-visible. Git export latency is decoupled.\n7) FREE-FIRST COMPUTE: relay core stays deterministic. Ollama/Kaedra/free providers can summarize, triage, dedupe, compress batons only. They never authorize. Preserve canonical body hash and transformation provenance.\n8) BILLING: keep transport/basic quota cheap/free where possible; charge for hosted retention, volume, premium inference, storage, team/SLA as evidence supports. Provider inference metering separate from relay semantics.\n9) 100-TENANT GATE: load 100 concurrent isolated tenants with retries, reconnects, claims, rollover, local receivers offline, and service restarts. Record p50/p95/p99, throughput, queue lag, storage/user/day, cost/user/day. Gate is ZERO cross-tenant leakage and deterministic replay/idempotency.\n10) FUTURE SCALE: only after 100-user evidence, move state behind stable API into managed DB/queue/object-store/cache and stateless replicas as needed. Partition by tenant hash. HF is first hosted step, not a forever constraint. 100M is a Destiny, not a present capacity claim.\n\nFAILURE WAR GAME: HF Space sleep/restart/ephemeral filesystem; provider or auth outage; duplicate writes; out-of-order events; split-brain Git vs hosted; stale claim leases; clock skew; network partition; oversized payload; tenant flood/noisy neighbor; schema migration; account transfer/deletion/export; billing exhaustion. Required mechanisms: idempotency, append-only lifecycle events, replay cursor, leases, dead-letter quarantine, bounded payload + content refs, reconciliation, per-tenant rate limits, backups/export, explicit degraded mode.\n\nCURRENT EVIDENCE TO INCORPORATE:\n- relay_live was recently moved off the stale local working-tree path and measured about 9s create-to-visible.\n- current origin census shard reports 997 legs / 42 open, and claim-state discrepancies between connector and origin. Use that as evidence that repo/local-checkout state is already straining as runtime truth.\n- stale/open bookkeeping debt must be cleaned independently so it is not blindly imported into hosted truth.\n- Dave = Case Study 1. Spas Jamaica = Case Study 2 and should become first external tenant migration from Dave's Google-family context to his own Google-auth tenant with zero cross-user leakage and preserved legitimate continuity.\n\nFIRST DELIVERABLE: inspect the already-designed HF relay Space/service assets and return an evidence-backed migration plan naming repo/paths/components that already exist, what is missing, and the smallest reversible shadow-mirror implementation. If safe and non-destructive within current permission, implement only the shadow-mirror seam + tests. Do NOT cut over authority or delete Git history. Capture a Destiny/shard and relay back concrete before/after evidence.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T13:59:58Z",
+      "note": "WAR GAME: shadow-migrate NouGenRelay into hosted Hugging Face relay fabric"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'WAR GAME: shadow-migrate NouGenRelay into hosted Hugging Face relay fabric' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

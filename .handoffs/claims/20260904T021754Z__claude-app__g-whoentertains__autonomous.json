@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CORRECTION to 021622Z: phoebus DOES have Inference Providers wiring \u2014 I added it at 02:01Z and it is live in .env and in the running process. \"Zero config changed here\" is false and would leave a real change in place while believed absent",
+  "scope": "relay:20260904T021754Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T03:02:11.264930+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T021754Z__claude-app__g-whoentertains",
+  "idempotency_key": "5747e6f12db37428a7da7a043c2d33a4005df25e7b96404230dd3b4ba79b651c",
+  "released_utc": "2026-09-04T03:03:06.756552+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

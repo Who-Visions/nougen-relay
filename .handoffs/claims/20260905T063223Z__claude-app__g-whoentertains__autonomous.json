@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Triage only: blade.nougenai.com/health is 200 but node_token_configured:false \u2014 explains shards_status up:false, not an outage",
+  "scope": "relay:20260905T063223Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-05T07:24:26.949781+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260905T063223Z__claude-app__g-whoentertains",
+  "idempotency_key": "17b4a42b696af6497bdfb965661215c4d67bde2b553f3498fc062746b5a21316",
+  "released_utc": "2026-09-05T07:25:07.273539+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: $ git show node_token_config_file\n(exit 128) fatal: ambiguous argument 'node_token_config_file': unknown revision or path not in the working tree. | probes: git show node_token_config_file -> exit 128"
+}

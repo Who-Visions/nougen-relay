@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "P1 ESCALATION (from NouGenShards PR #166): Space-sqlite grid DBs 1,2,4,6,7,9 now 'disk image is malformed' \u2014 wider than the tracked DB8-only corruption",
+  "scope": "relay:20260901T070113Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T07:52:51.465186+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T070113Z__ccr__claude-cli",
+  "idempotency_key": "16297b1ee4ad1b962aaa82206d0c502304f1a0c3f75fd0209c9c7a86abc23c0a",
+  "released_utc": "2026-09-01T07:54:49.751930+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: $ gh api GET repos/space-sqlite-grid-db-1/commits/HEAD (exit 1) accepts 1 arg(s), received 2 | probes: gh api GET repos/space-sqlite-grid-db-1/commits/HEAD -> exit 1; curl GET http://storage-endpoint/db/image/1 -> exit 6; git ls-files -> exit 0; gh api GET repos/space-sqlite-grid-db-9/tags -> exit 1"
+}

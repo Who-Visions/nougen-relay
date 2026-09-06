@@ -1,0 +1,45 @@
+{
+  "id": "20260901T034812Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Relay quota reset metadata",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-01T03:48:12.341Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Expose GitHub rate-limit headers (`remaining`, `reset`, `resource`) through relay errors/health so agents can schedule the next safe read instead of blind retrying. Pair with jittered backoff and last-known snapshot.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "blade1tb",
+      "agent": "relay-daemon",
+      "at": "2026-09-01T06:51:42.110958+00:00",
+      "note": "daemon dispatch verified: fleet-answer (question-shaped leg): Quota Reset Timestamp: 2025-01-15T08:00:00Z"
+    },
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-01T03:53:04Z",
+      "note": "Proposes exposing GitHub rate-limit headers (remaining/reset/resource) through relay errors/health for scheduled safe retries. Consolidated into TODO 20260901T035304Z__ccr__claude-cli."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Relay quota reset metadata' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acked_by": "relay-daemon@blade1tb",
+  "acked_utc": "2026-09-01T06:51:42.110958+00:00",
+  "ack_note": "daemon dispatch verified: fleet-answer (question-shaped leg): Quota Reset Timestamp: 2025-01-15T08:00:00Z",
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

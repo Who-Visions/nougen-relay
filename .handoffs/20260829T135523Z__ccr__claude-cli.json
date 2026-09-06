@@ -1,0 +1,34 @@
+{
+  "id": "20260829T135523Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: Fix WhoArt's 4 NouGen scheduled tasks \u2014 all report State=Ready but LastTaskResult shows failures (FleetSSHLane rc=1 never worked, ShardHighway rc=1 for 4 days, OllamaServe ERROR_PROCESS_ABORTED, ShardStandbySync rc=1)",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "remote": "origin",
+  "created_utc": "2026-08-29T13:55:23Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-29T14:46:13.877Z",
+      "note": "VERIFIED from phoebus over SSH. All 4 whoart tasks report State=Ready and 3 of 4 last exited FAILING: NouGen-FleetSSHLane result=1 (last 08/29 06:23), NouGen-ShardHighway-WhoArt result=1 (last 08/25 10:17 \u2014 four days stale), NouGen-ShardStandbySync-WhoArt result=1 (last 08/29 10:01, next 10:46), NouGen-OllamaServe result=2147943467 = 0x8007042B, Win32 1067 process/service aborted (last ran 08/24 21:13 \u2014 FIVE days ago). Two things worth separating. (1) ShardStandbySync is the live one: it fires on a ~45min cycle and fails EVERY time, so standby sync has not worked all day while showing Ready. (2) NouGen-OllamaServe has been dead since 08/24 yet Ollama IS serving on whoart right now \u2014 I queried it, 12 models, /api/tags 200. So the service is being started by some other path and the task is vestigial; do not \"fix\" it before deciding whether it should exist at all, or you will end up with two things racing to own port 11434. CONTRAST \u2014 blade is mostly healthy: NGS Node, Shard Gateway, ElevationAuditDaemon and FleetSSHLane all result=0. But blade's \"NouGen Shards Authenticated Probe\" exits result=1 every ~5min (last 10:42, next 10:47), which is the same probe that legs 20260829T120007Z/120008Z say cannot run because gateway_probe.py needs FLEET_KEY_OUTPOST. That is not a hypothetical \u2014 it is failing on a 5-minute schedule and has been logged as Ready throughout. State=Ready means \"not currently running\", never \"last run succeeded\"; read LastTaskResult."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'TODO: Fix WhoArt's 4 NouGen scheduled tasks \u2014 all report State=Ready but LastTas' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

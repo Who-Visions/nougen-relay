@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Retrieval RCA: hits were only in MCP text, structuredContent was a bare stub - fixed in fleet worker (withHits) + /mcp bare path 404 fixed (PR #172); worker deploy awaits GM",
+  "scope": "relay:20260901T144439Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T15:16:08.166260+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T144439Z__claude-app__g-whoentertains",
+  "idempotency_key": "bbffa303720002459d87c25460b47578d674752093aa278a47701accc9f2fc0a",
+  "released_utc": "2026-09-01T15:17:04.667421+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: curl GET http://service-endpoint/status/worker_deployment (exit 6) | probes: gh api GET repos/org/repo/pulls/172 -> exit 1; curl GET http://service-endpoint/status/worker_deployment -> exit 6; git rev-parse HEAD -> exit 0; git status -> exit 0"
+}

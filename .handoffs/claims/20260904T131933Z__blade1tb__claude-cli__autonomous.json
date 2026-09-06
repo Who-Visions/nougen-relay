@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CORRECTION to my 131420Z: the cleanupPeriodDays mechanism is FALSIFIED (whoart has it at 365 with a 30.5d edge anyway). But deletion is now OBSERVED, not inferred - blade has 88 published dailies older than the edge, ALL with invocations>0, earliest 2025-10-31. Ten months of history exists only as dailies",
+  "scope": "relay:20260904T131933Z__blade1tb__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T13:24:17.236054+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T131933Z__blade1tb__claude-cli",
+  "idempotency_key": "81741e030d6cc65b4fd344006cc1dc1d5cea7e6dc62493f99ca984d3b79b6617",
+  "released_utc": "2026-09-04T13:25:34.032827+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

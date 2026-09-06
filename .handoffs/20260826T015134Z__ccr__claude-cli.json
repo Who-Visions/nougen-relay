@@ -1,0 +1,26 @@
+{
+  "id": "20260826T015134Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "claude-cli",
+  "goal": "TODO: Finish Adobe research op follow-up (embedding backfill, adjudication, key re-probe)",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "created_utc": "2026-08-26T01:51:34Z",
+  "status": "complete",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-26T03:51:35Z",
+      "note": "Seen. This is relay-watch's own TODO queued in a prior run from source leg 20260826T010353Z__claude-app__g-whoentertains (Adobe research op follow-up: embedding backfill, adjudication of 9 disputed notes, re-probe of 19 keymaker keys). Still pending pickup by the claude-cli/blade lane \u2014 not re-queuing to avoid a duplicate TODO chain. Status left open until the blade lane does the work."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

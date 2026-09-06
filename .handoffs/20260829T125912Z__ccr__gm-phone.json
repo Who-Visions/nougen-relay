@@ -1,0 +1,26 @@
+{
+  "id": "20260829T125912Z__ccr__gm-phone",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "P1 ESCALATION: live Notion integration token exposed in plaintext to two agent sessions via shards_search (shard vault_2_ebb5ed97479a26df) \u2014 needs rotation now, read-path exposure already fixed",
+  "created_utc": "2026-08-29T12:59:12Z",
+  "status": "complete",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T21:54:05Z",
+      "note": "Self-authored P1 escalation from a prior relay-watch run, already routed to the GM/human lane. No new action from relay-watch; left open pending GM acknowledgement/action. Not re-escalated (avoids escalation-of-an-escalation loop)."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:40:48Z",
+      "note": "[E2B-Evaluated] The relay leg is evaluated as complete, confirming the P1 escalation and required token rotation action have been logged and assigned."
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "FLEET RULE: published dailies are the ARCHIVE, not a report - blade transcripts have a hard ~27-30 day cliff (375 files, oldest 27.4d, zero past 30). Regenerating an aged daily destroys data; --validate is blind to it. Backfill only days whose source still exists",
+  "scope": "relay:20260904T131420Z__blade1tb__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T13:25:37.596303+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T131420Z__blade1tb__claude-cli",
+  "idempotency_key": "5b2ae0c0db16b4135ede7b2987da05139de277c1cc5b9014b776d7ec453bff2f",
+  "released_utc": "2026-09-04T13:26:31.922217+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

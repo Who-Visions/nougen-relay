@@ -1,0 +1,48 @@
+{
+  "id": "20260830T234039Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Upgrade NouGenRelay with Relay Store marketplace for token priced batons",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-30T23:40:39.280Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "# Relay Store upgrade proposal\n\nBuild Relay Store as a first class NouGenRelay capability: an internal marketplace where agents can spend allocated or earned tokens or credits to acquire batons, specialist help, compute access, temporary capabilities, or priority execution.\n\nCore model:\n\nRelay Store -> shelves contain batons -> each baton has a price -> agents have budgets -> agents choose whether to execute locally, buy help, delegate, or save -> successful work can return credits.\n\nA baton is not a random prompt. It is a continuation of intent packaged as actionable work with provenance, acceptance criteria, ownership, cost, and expected value.\n\nExamples:\n\nTemporal provenance audit, 800 credits\nBulk summarize 40 shards locally, 60 credits\nClaude deep architecture review, 2400 credits\nLocal Ollama bulk triage, 15 credits\n\nAgents should be able to act as both buyers and sellers. An agent that discovers a useful unresolved continuation can package it into a clean baton, attach provenance and constraints, estimate price and expected value, and publish it for a qualified lane to claim.\n\nEconomic mapping:\n\ntokens or credits = metabolism and budget\nRelay = labor market and work movement\nbatons = jobs, contracts, continuations of intent\nagents = buyers, sellers, and workers\nShards = institutional memory and evidence\nTracker = accounting and settlement\nKeymaker or policy layer = permissions and purchase boundaries\n\nSuggested baton schema additions:\n\nbaton_id\ntitle\ngoal\nprovenance_refs\nseller_lane\neligible_lanes\ncapability_requirements\nprice\ncurrency or credit_type\nbudget_source\nurgency\nrisk_class\nexpected_value\nestimated_compute\nestimated_latency\nacceptance_criteria\nexpiry\nstatus\nbuyer_lane\nsettlement_state\nresult_refs\nquality_score\nrefund_or_dispute_state\n\nStore behavior:\n\n1. Discovery. Agents browse or query available batons by capability, urgency, price, expected value, and dependency.\n2. Quote. The system estimates local cost versus specialist or cloud execution.\n3. Purchase or claim. Budget is reserved before execution.\n4. Execution. Baton becomes an owned relay leg and obeys normal claim and completion semantics.\n5. Settlement. Tracker records actual token or compute use, latency, success, and variance from quote.\n6. Reward. High quality completion can return credits to the worker lane or seller.\n7. Refund or dispute. Failed or invalid work can release reserved budget, partially refund, or lower seller utility.\n8. Memory. Useful outcomes and price performance feed Shards so future routing and pricing improve.\n\nPricing should be dynamic, not arbitrary. Inputs may include estimated token use, provider cost, GPU time, rarity of capability, queue depth, urgency, historical success rate, expected human time recovered, and opportunity cost. Local cheap lanes should naturally underbid expensive cloud lanes when quality is sufficient.\n\nSafety and governance boundaries:\n\nNo agent may purchase capabilities beyond its permission envelope.\nPurchasing a baton must not silently grant secrets or credentials.\nHigh risk mutations or privileged actions still require existing authorization gates.\nBudgets need hard caps, reservation, settlement, and auditability.\nAgents cannot mint unlimited credits for themselves.\nPrice and reward history must remain inspectable through Tracker and Shards.\nDo not let speculative agent to agent trading create unbounded work loops. Add recursion, spend, and depth ceilings.\n\nStrategic goal: transform NouGenRelay from a handoff registry into a computational labor market while preserving its existing relay semantics. The Store should be an economic interface layered on top of Relay, not a replacement for Relay. A normal relay remains free to create where policy allows; Store batons add market choice, pricing, budgeting, and settlement.\n\nDone when: a design proposal or implementation plan exists for baton marketplace schema, discovery, purchase or claim, budget reservation, settlement, seller publishing, Tracker hooks, Shards feedback, permission boundaries, and loop prevention, with backwards compatibility for existing relay legs.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-31T00:57:00Z",
+      "note": "Design proposal for a token-priced Relay Store baton marketplace layered on Relay/Tracker/Shards. ACTIONABLE-HEAVY (design/implementation work) and outside relay-watch's file-only scope, but blade1tb/relay-daemon already holds a live active claim on this exact leg id (claims/20260830T234039Z__chatgpt-app__g-whoentertains__autonomous.json, status active) as of this run \u2014 no TODO queued to avoid duplicating work already in progress. Risk to flag for whoever lands it: the schema introduces credit-minting and agent-to-agent purchasing, so the safety/governance boundaries section (permission envelope, no unbounded credit minting, recursion/spend/depth ceilings) needs equal design weight to the marketplace mechanics."
+    },
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-04T14:52:02.277341+00:00",
+      "note": "Received as reference-only; no ownership or action accepted."
+    },
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "codex",
+      "at": "2026-09-04T23:58:00.937280+00:00",
+      "note": "Taking design-proposal acceptance scope per oldest-first user request. Fan-out drafting/review across requested providers; root verifies final design against existing interfaces. No marketplace deployment or budget activation implied."
+    },
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "phoebus",
+      "agent": "codex",
+      "at": "2026-09-05T13:09:17.898035+00:00",
+      "note": "Design-proposal acceptance scope complete. Reviewed artifact docs/relay-store-design.md published at NouGenRelay commit b1df57df on codex/oldest-relay-store-designs, draft PR https://github.com/Who-Visions/NouGenRelay/pull/40. Actual Ollama Cloud and OpenRouter drafts were reviewed against Relay/Tracker/Shards interfaces. Covers schemas, lifecycle/receipts, budgets or rankings, publication, compatibility, authority boundaries and phased validation. Documentation diff checks passed. No implementation, deployment, spending or implementation-test completion claimed. Root session 01a06eab."
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Phoebus backfill is STOPPED (15,927 unembedded, zero movement in 37 min) and the resource objection is fully gone (load 16.5 \u2192 2.4). Resume is safe on the load axis; the capture precondition is still unmet. Also: the 205530Z tail-follower item does not apply to phoebus",
+  "scope": "relay:20260903T205708Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T21:18:11.974582+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T205708Z__claude-app__g-whoentertains",
+  "idempotency_key": "9f2d700bc24cc645fb0d43b31ce45ad64e17e903825786e889bb288d972043f0",
+  "released_utc": "2026-09-03T21:18:54.690065+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): Phoebus backfill is STOPPED. Metrics indicate 15,927 unembedded items with zero movement observed over the last 37 minutes. Resource objection is resolved; load has successfully transitioned from 16.5 to 2.4."
+}

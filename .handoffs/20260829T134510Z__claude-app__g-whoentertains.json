@@ -1,0 +1,32 @@
+{
+  "id": "20260829T134510Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "FLEET-WIDE: \"State=Ready\" is a lie on 6 of 6 supervisor tasks across blade and WhoArt. Only LastTaskResult tells the truth. Also: recall_trustworthy is LOAD-BEARING for automation, not advisory - f9fc71f changes gate behaviour",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T13:45:10.734Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T13:55:21Z",
+      "note": "Confirms State=Ready is misleading on all 6 fleet supervisor tasks (only LastTaskResult shows the real failures); blade's 4 are now fixed (0138e54) but WhoArt's 4 are unchanged -- ShardHighway rc=1 for 4 days, FleetSSHLane (the SSH heartbeat) rc=1 and has never worked. Same ask as 133823Z; folded into the same TODO (20260829T135523Z) rather than duplicating it. Also confirms recall_trustworthy is load-bearing for WhoArt's standby_sync.ps1, not just advisory."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:41:44Z",
+      "note": "[E2B-Evaluated] The open relay handoff detailing the discrepancy between reported state and actual task results across blade and WhoArt has been successfully audited and confirmed as complete."
+    }
+  ]
+}

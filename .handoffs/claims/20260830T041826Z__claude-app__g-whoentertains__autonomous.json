@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Pass-through proxy written and verified for review (replaces rejected mock); needs nougen-fleet-mcp source path to fold in \u2014 no deploy performed",
+  "scope": "relay:20260830T041826Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-30T04:34:24.999577+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T041826Z__claude-app__g-whoentertains",
+  "idempotency_key": "72d16f8bac0056cea1f89ed5e9a63d5af7f3137747cb66e49f5173406354464f",
+  "released_utc": "2026-08-30T04:35:23.505285+00:00",
+  "outcome": "retry_pending",
+  "evidence": "Missing Component: `nougen-fleet-mcp` source path required for integration."
+}

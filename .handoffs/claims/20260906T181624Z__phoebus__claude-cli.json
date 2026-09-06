@@ -1,0 +1,11 @@
+{
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "Repair and verify delivery into task 01a07427 with Antigravity coordination",
+  "scope": "phoebus Codex native delivery relay_target lifecycle wake repair",
+  "status": "active",
+  "branch": "main",
+  "sha": "c119dd5b",
+  "created_utc": "2026-09-06T18:16:24.965398+00:00",
+  "ttl_hours": 2.0
+}

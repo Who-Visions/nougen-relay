@@ -1,0 +1,12 @@
+{
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "Make NouGenMsg live delivery honor its requested provider target",
+  "scope": "~/.nougen/src/nougenshards/tools/_agy_live_delivery.py,~/.nougen/src/nougenshards/tools/nougenmsg_node.py,tests/test_codex_live_delivery.py,tests/test_node_transport.py",
+  "status": "released",
+  "branch": "main",
+  "sha": "fceb1b66",
+  "created_utc": "2026-09-04T05:46:25.309129+00:00",
+  "ttl_hours": 3.0,
+  "released_utc": "2026-09-04T05:52:33.769385+00:00"
+}

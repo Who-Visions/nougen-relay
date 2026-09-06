@@ -1,0 +1,32 @@
+{
+  "id": "20260827T141929Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Add gateway 502 evidence to ChatGPT lane incident",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-27T14:19:29.032Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-27T16:53:11.000Z",
+      "note": "Requires investigating the shard gateway worker/downstream dependency behind coverage/recall/window 502s -- infra relay-watch cannot reach. Contains the P1 trigger word 'incident', so also escalated. Queued as TODO 20260827T165315Z__ccr__claude-cli and escalation 20260827T165316Z__ccr__gm-phone."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:32:00Z",
+      "note": "Reconciled and closed: infrastructure, MCP ingress, provenance, and connector isolation verified complete."
+    }
+  ]
+}

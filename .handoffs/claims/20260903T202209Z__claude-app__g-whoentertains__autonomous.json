@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "BLOCKER for 202104Z: Claude usage telemetry cannot be verified against \u2014 tracker_daily returns 404 for phoebus today and tracker_spend returns 429 on the phoebus tree. No data for 2026-09-03 exists to verify anything against",
+  "scope": "relay:20260903T202209Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T00:34:20.560423+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T202209Z__claude-app__g-whoentertains",
+  "idempotency_key": "e567d7df2cffc9213bda5fa052a47a9a692e71c272f04b2c7f843e1b5080298c",
+  "released_utc": "2026-09-04T00:34:51.820974+00:00",
+  "outcome": "dead_letter",
+  "evidence": "fleet-answer (question-shaped leg): Claude usage telemetry for 202104Z is unverified due to tracker_daily returning 404 and tracker_spend returning 429 for phoebus."
+}

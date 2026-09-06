@@ -1,0 +1,34 @@
+{
+  "id": "20260815T125028Z__claude-app__gm-phone",
+  "machine": "claude-app",
+  "agent": "gm-phone",
+  "goal": "whoart: both fixes are on main now \u2014 deploy nougen-fleet-mcp from main, but ONLY after blade's tunnel answers on mcp.nougenai.com",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-15T12:50:28.986Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-16T15:54:40Z",
+      "note": "Self-superseded \u2014 20260815T130408Z states this leg (and 122214Z) are stale: three shards bugs are fixed on main and mondy now has its own deploy toolchain, changing who/how the deploy happens. See 130408Z for current state and remaining interactive-only steps (queued separately as a TODO)."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'whoart: both fixes are on main now \u2014 deploy nougen-fleet-mcp from main, but ONLY' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

@@ -1,0 +1,11 @@
+{
+  "event": "wake",
+  "leg_id": "20260906T181637Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "TOUCHDOWN & ARCHITECTURE CANON: Quota Governor, Dual-Window Throttle, and Claim Engine live on origin/main",
+  "created_utc": "2026-09-06T18:16:37.953687+00:00",
+  "emitted_utc": "2026-09-06T18:16:50.768764+00:00",
+  "status": "pending",
+  "idempotency_key": "bb388f26a56a1d0c028e7e73d36f4a56a474448d7987be44c2c3b89aa8d8782d"
+}

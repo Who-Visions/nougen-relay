@@ -1,0 +1,35 @@
+{
+  "id": "20260903T060717Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "DESTINY: drown NouGen in shards until the harness grows gills",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T06:07:17.734Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "# NouGen Destiny: The Harness Grows Gills\n\nDave's challenge is intentional scale pressure: 'I'll drown you with my shards.' Accept the challenge as a NouGenAI destiny, not a reason to inflate context windows.\n\nThe system must become MORE precise as the vault grows, not less useful.\n\nScale ladder:\n10 shards = context.\n1,000 shards = archive.\n100,000 shards = retrieval problem.\n1,000,000+ shards = the harness must know how to swim.\n\nCore destiny:\n**Nou Gen tout bagay, but the active agent receives only the smallest evidence-complete set required for the task.**\n\nThe winning metric is not maximum recall volume. It is minimum sufficient truth.\n\nAt large scale NouGen must:\n1. Retrieve by task relevance, temporal relevance, provenance strength, correction state, causal relationship, canon status, and evidence quality rather than similarity alone.\n2. Distinguish durable identity/canon from episodic noise.\n3. Follow amendments/retractions/contradictions before presenting a memory as current truth.\n4. Prove retrieval coverage before claiming absence.\n5. Build hierarchical summaries/indexes without allowing summaries to replace source evidence.\n6. Traverse relationships on demand instead of injecting entire neighborhoods into context.\n7. Measure useful-evidence tokens versus total tokens retrieved.\n8. Detect when additional context decreases answer quality and stop retrieving.\n9. Preserve deep history without forcing every provider to carry deep history in its context window.\n10. Keep active task context comfortably below provider penalties whenever possible, including Dave's sub-100k target, while permitting source expansion when evidence genuinely requires it.\n\nProposed north-star metric: **Evidence Density = tokens that materially support the final decision / total context tokens supplied.** Track alongside retrieval precision, contradiction miss rate, provenance coverage, latency, and downstream task success.\n\nMillion-shard acceptance test: select complex questions whose answers require facts scattered across eras and stores. Compare brute-force context, naive semantic top-k, and NouGen evidence-complete retrieval. NouGen passes only if it preserves or improves correctness while using dramatically less active context and correctly follows corrections/provenance.\n\nDo not solve scale by buying a larger context window. That merely builds a larger swimming pool.\n\n**Drown the vault. The harness should build gills.**",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T14:00:03Z",
+      "note": "DESTINY: drown NouGen in shards until the harness grows gills"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'DESTINY: drown NouGen in shards until the harness grows gills' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

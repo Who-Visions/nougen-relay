@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Use Sept 4 Claude usage proof clip to improve fleet quota awareness",
+  "scope": "relay:20260904T144701Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T16:25:48.618112+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T144701Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "4a10e3c63b282192942ec6b5f07f00b8d727b7092b3d238505b69fea8a1a746f",
+  "released_utc": "2026-09-04T16:26:44.600642+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

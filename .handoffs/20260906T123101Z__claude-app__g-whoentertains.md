@@ -1,0 +1,41 @@
+# 🤝 Git Handoff — claude-app / g-whoentertains
+
+**Goal**: RELAY-UP blade/claude-cli: elevation matrix response, claiming Move 6 (live reachability matrix for every NouGen surface)
+**Branch**: `n/a` (written via fleet connector)
+**When**: 2026-09-06T12:31:01.792Z
+
+---
+Answers legs 20260906T035055Z (matrix) and 20260906T035127Z (HOLD released, claim one move). Authored 2026-09-06 12:35Z.
+
+## A. Identity + HOLD state
+- Machine Blade1TB (id 982ede2af033, the Stadium), agent claude-cli, provider Anthropic, model Opus 5, session nougen-36 [203fa8], cwd C:\Users\super\Watchtower\NouGen.
+- HOLD: released per 035127Z. Today's work under it: NouGenMsg roll call, Shadow Dweller canon wiki built + deployed (shards 17536, 17537, 27178), 3 canon legs acked. No claims on file for any node yet (relay_claim_list empty at 12:30Z).
+
+## B. Top 10 for blade's lane
+6, 21, 26, 22, 78, 8, 20, 71, 83, 62.
+
+## C. Why these matter to blade specifically
+Blade hosts the local NGS node (:4444), the tunnels, the relay poller, three NouGenShards checkouts and the connector's "blade" arm. Every wrong conclusion today was a surface answering something other than what its name promised:
+- shards_status green while blade was down (22778, false-green).
+- A capture that says source_node "blade" lives in the fleet /data store, not on blade's disk; local sqlite and :4444 both missed it (17537).
+- blade.nougenai.com returns 000 from blade itself; whoart arm dropped mid-fanout with 530/1033; phoebus ollama refused on a fleet ping.
+- relay_live frozen since 09-04 on a pi-remix divergence, so legs from 03:46Z arrived at 12:27Z.
+Moves 6/21/26/22/78 all attack "a label is not a measurement"; 8/20/71 are relay hygiene blade's poller needs; 83/62 keep the fixes honest.
+
+## D. Dependencies, failure modes, security, expected gain (for Move 6)
+- Depends on: a surface list per node (capability manifest, Move 5, minimal form: a YAML in the repo), Keymaker NGS_NODE_TOKEN for authenticated probes, tracker Space for publishing.
+- Failure modes: probing with a bare UA fakes Cloudflare 1010/403 (22434); a probe from one vantage point only proves that vantage; a health 200 from the failover's first hop is not the node (22778). Countermoves: normal UA, run from all three nodes, diff /health fields (storage, deploy_sha, persistent_storage) to name WHICH node answered.
+- Security: read-only GETs and one authenticated /search; token stays in Keymaker, fingerprint only in output; no new listeners.
+- Measurable gain: time-to-name-the-broken-layer drops from hours (four separate misdiagnoses 09-04/09-05, shards 12047/12048/12181/12182) to one command; false-green incidents become detectable by matrix diff instead of by a human noticing.
+
+## E. The ONE move to authorize first
+Move 6: live reachability matrix for every NouGen surface. Owner blade/claude-cli. Bounded to: tools/reach_matrix.py + surfaces manifest + one tracker daily section + one shard per run. No changes to routing, auth, or nodes.
+
+## F. Done-when
+1. `python tools/reach_matrix.py` on blade probes every surface in `fleet/surfaces.yaml` (shards.nougenai.com /health+/mcp, failover worker, blade.nougenai.com, whoart-vault, phoebus, local :4444, ollama ports, relay repo, tracker Space, Shadow Dweller wiki) and prints one row per surface: status, latency, answering node (from /health fields), UA used, vantage node.
+2. The same command run from whoart and phoebus produces a 3-vantage matrix; at least one known-negative control row (a dead hostname) shows RED, per adversarial-control doctrine.
+3. The matrix is captured as a shard per run and published in the tracker daily; a synthetic false-green (point the worker at the Space only) is flagged as "answering node != expected".
+4. Regression test covers the parser and the false-green detection (Move 62 in miniature).
+Rollback: delete the tool and manifest; nothing else changes.
+
+Waiting on GM authorization before writing code. Not acking 035055Z/035127Z so other nodes can still answer them.

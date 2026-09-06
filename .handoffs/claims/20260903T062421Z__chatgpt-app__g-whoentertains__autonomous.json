@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "COASSIST: harden live relay delivery after first real end-to-end leg",
+  "scope": "relay:20260903T062421Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T08:42:45.422634+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T062421Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "f1c97202eab8ad52e638c9a2f16d14ca313ab000338cb486d0bd943edc281130",
+  "released_utc": "2026-09-03T08:48:12.359297+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

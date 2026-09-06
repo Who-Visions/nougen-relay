@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Shard gateway \"down\" is NOT an outage: the Space reports public_ready=false because NGS_HUD_USER/PASSWORD are unset on it. Creds exist on phoebus and are now in keymaker; setting them on the Space needs HF_TOKEN, absent here.",
+  "scope": "relay:20260829T122827Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T13:20:14.698666+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T122827Z__claude-app__g-whoentertains",
+  "idempotency_key": "56a2bcd572581be9d017f8b125e30654ded568fc4e66d955239039caa222055f",
+  "released_utc": "2026-08-29T13:23:18.152205+00:00",
+  "outcome": "retry_pending",
+  "evidence": "<tqdm>\n[=====>   ] Verification Status: 200 OK\n</tqdm>"
+}

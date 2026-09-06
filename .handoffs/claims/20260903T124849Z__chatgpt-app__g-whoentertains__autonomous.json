@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "RELAY D-PAD \ud83c\udfae: UP / DOWN / FORWARD / BACK become composable NouGen routing semantics",
+  "scope": "relay:20260903T124849Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T14:47:34.208558+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T124849Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "42d39e4e95fcaa306b16da291d21a286c9c7e156ca28bb9946c5f98a710de91d",
+  "released_utc": "2026-09-03T14:48:28.053583+00:00",
+  "outcome": "dead_letter",
+  "evidence": "fleet-answer (question-shaped leg): STATUS SUMMARY: The current state of the NouGen relay semantic composition is pending a specific configuration command or an operational status query."
+}

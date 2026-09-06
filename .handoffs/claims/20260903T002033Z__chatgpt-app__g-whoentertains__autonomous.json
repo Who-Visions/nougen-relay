@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Propagate verified authenticated mid-turn NouGenMsg bridge and test-contract cleanup",
+  "scope": "relay:20260903T002033Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T00:26:24.115260+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T002033Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "ee6fba13fb9dfa6d311f90e3e7b739121c85c6bb49b9fec8a48384a3535561b8",
+  "released_utc": "2026-09-03T00:27:34.414235+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

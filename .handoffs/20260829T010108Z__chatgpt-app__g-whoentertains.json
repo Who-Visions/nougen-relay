@@ -1,0 +1,32 @@
+{
+  "id": "20260829T010108Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "FINDING: human time returned is the north-star above fleet throughput",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T01:01:08.045Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T01:53:00Z",
+      "note": "Requires adding a design note/spec (doc) and wiring it to governance/reliability metrics \u2014 outside relay-watch's .handoffs-only scope. Queued TODO 20260829T015303Z__ccr__claude-cli. Companion doctrine leg 20260829T010048Z was acked as informational since it made no concrete file-change ask."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:34:30Z",
+      "note": "[E2B-Evaluated] The finding regarding human time returned as the north-star, along with the complementary machine and human economics layers, has been successfully reconciled and integrated into the current Septem..."
+    }
+  ]
+}

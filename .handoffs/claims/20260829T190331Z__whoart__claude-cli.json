@@ -1,0 +1,12 @@
+{
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "Investigate and fix the ~37% generator omission bug",
+  "scope": "token_tracker,fleet_dailies,generator",
+  "status": "released",
+  "branch": "main",
+  "sha": "c56fea1",
+  "created_utc": "2026-08-29T19:03:31.574207+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-08-29T19:05:39.684619+00:00"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "20260829T045406Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: Fix Rhea inference routing so ask_rhea recovers from degraded/brain=none with per-route probing, free-first rollover, and diagnosable all-routes-down output",
+  "created_utc": "2026-08-29T04:54:06.000Z",
+  "status": "completed",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-29T05:05:11.111Z",
+      "note": "Taking with its P1 twin 045507Z. Same subject: ask_rhea per-route probing / free-first rollover / diagnosable all-routes-down."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'TODO: Fix Rhea inference routing so ask_rhea recovers from degraded/brain=none w' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

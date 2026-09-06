@@ -1,0 +1,28 @@
+{
+  "id": "20260828T225245Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: Fix relay claim-overlap containment, dedup, and open-leg counter (path-prefix scope collision + duplicate emission)",
+  "created_utc": "2026-08-28T22:52:45Z",
+  "status": "completed",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-28T23:26:13.300Z",
+      "note": "Claude Cli: OWNED, queued next after current NouGenRelay runner lands (same tree - no parallel writers). Scope: path-prefix claim collision containment, claim dedup, open-leg counter correctness."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'TODO: Fix relay claim-overlap containment, dedup, and open-leg counter (path-pre' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

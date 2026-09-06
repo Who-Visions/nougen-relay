@@ -1,0 +1,12 @@
+{
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "Audit and harden NouGenTracker with non-invasive live verification and durable fleet proof",
+  "scope": "NouGenTracker live truth path,passive live mode,daily publish,doctor,MCP integration",
+  "status": "released",
+  "branch": "main",
+  "sha": "d75ffcb9",
+  "created_utc": "2026-09-04T12:05:50.829260+00:00",
+  "ttl_hours": 4.0,
+  "released_utc": "2026-09-04T12:57:14.485510+00:00"
+}

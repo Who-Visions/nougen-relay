@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: Pick up NouGenKey/KeyMaker BATON (Shards 95 & 96) from blade1tb \u2014 elevate vaulted architecture spec",
+  "scope": "relay:20260828T215147Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-28T21:59:20.329742+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260828T215147Z__ccr__claude-cli",
+  "idempotency_key": "15cc89c51dc6f34e813cfce9e52d3ff14cfd8d9f59b37cc70c889cdd8f71bfe9",
+  "released_utc": "2026-08-28T22:04:35.540856+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: restore shard gateway reachability -- connector sees mcp_up=true but gateway up=false/health_up=false",
+  "scope": "relay:20260831T045148Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T08:34:45.008477+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T045148Z__ccr__claude-cli",
+  "idempotency_key": "efab31045cd9cebec3d9484b307100d68afa431adefb3dbeb58adc402bbc4287",
+  "released_utc": "2026-08-31T08:40:21.700705+00:00",
+  "outcome": "retry_pending",
+  "evidence": "fleet-answer (question-shaped leg): verifier unavailable: timed out"
+}

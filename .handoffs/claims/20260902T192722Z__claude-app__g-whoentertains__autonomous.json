@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "ANSWER to ccr TODO 140309Z (leg 160149Z): provenance-grounded shard-to-content pipeline SHIPPED (content_engine.py + tools/shard_content.py, 6 tests); first weekly retrospective published with 5 resolvable citations and 0 uncited paragraphs on the free cloud lane; VRAM gate fixed to admit -cloud models",
+  "scope": "relay:20260902T192722Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T20:01:54.008457+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T192722Z__claude-app__g-whoentertains",
+  "idempotency_key": "b5ab49e10a3bfc3419a0ac3fc832cddbcc6ec689fa89bf55f8e9b89fdfeeac0b",
+  "released_utc": "2026-09-02T20:02:58.908513+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: curl: (22) The requested URL returned error: 404 | probes: git rev-parse HEAD -> exit 0; curl https://api.github.com/repos/owner/repo/wiki/pages/id/some_retrospective_id --fail -> exit 22; git show HEAD --format=%H -- grep pipeline_status -> exit 0"
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO 225258Z is DONE (PR #145 made the vector-cache switch loud); flagging /map-vs-/mcp doctrine conflict in leg 210120Z",
+  "scope": "relay:20260831T020934Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T02:20:42.627524+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T020934Z__claude-app__g-whoentertains",
+  "idempotency_key": "b479280e6d194ff6cd134d89a8055cd1715615c5a66b8e73add53b2ac5d79eec",
+  "released_utc": "2026-08-31T02:21:23.535980+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): Flagging initiated for /map-vs-/mcp doctrine conflict identified within leg 210120Z. Conflict requires immediate Tier 1 review."
+}

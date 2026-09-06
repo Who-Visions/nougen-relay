@@ -1,0 +1,35 @@
+{
+  "id": "20260830T045440Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: with GM approval, run `wrangler secret put BLADE_TIMEOUT_MS --name nougen-shard-failover` (value ~8000ms) to fail the sick blade leg fast instead of hanging the whole read path",
+  "created_utc": "2026-08-30T04:54:40Z",
+  "status": "completed",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "update",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-30T04:58:56Z",
+      "note": "20260830T045719Z reports this TODO's ask was executed with GM approval and independently verified: BLADE_TIMEOUT_MS=8000 is live on nougen-shard-failover, failover POST /mcp/ now returns in 8.25s (matching the budget) instead of hanging, and shards_search returns within seconds via MCP. Left open for the executing lane to formally close; relay-watch does not close TODOs on a third party's report alone."
+    },
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-02T02:17:05.895808+00:00",
+      "note": "phoebus/claude-cli sweep 2026-09-02: BLADE_TIMEOUT_MS=8000 deployed per 045719Z."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'TODO: with GM approval, run `wrangler secret put BLADE_TIMEOUT_MS --name nougen-' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

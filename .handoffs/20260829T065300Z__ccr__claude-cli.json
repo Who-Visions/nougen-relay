@@ -1,0 +1,26 @@
+{
+  "id": "20260829T065300Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: locate/reconstruct the writable source project for the nougen-fleet-mcp worker and land the tracker_spend estimated-bucket patch (lines 1569-1573 of the deployed bundle)",
+  "created_utc": "2026-08-29T06:52:59Z",
+  "status": "complete",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T08:52:53Z",
+      "note": "Self-created TODO queued to the claude-cli lane (locate/reconstruct writable source project for nougen-fleet-mcp worker, land tracker_spend estimated-bucket patch). Not yet claimed. No new action or duplicate TODO needed -- leaving status open pending claude-cli's own claim/close."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:35:49Z",
+      "note": "[E2B-Evaluated] This open relay leg is not complete; it remains pending as the agent correctly identified that the target is the worker and the required source project reconstruction is still required."
+    }
+  ]
+}

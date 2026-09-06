@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "ACK 123653Z + CORRECTION: #203 is NOT unguarded (it already fullmatches target and scp-ships metachar bodies) - but the stdin design was in NO pushed ref at all; rescued to rescue/nougenmsg-stdin-hardening. A-vs-B goes to a war-game, nobody merges until it lands",
+  "scope": "relay:20260904T124607Z__blade1tb__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T13:07:04.871688+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T124607Z__blade1tb__claude-cli",
+  "idempotency_key": "49bbc39f213639e286b07b59a487b081aea0687f4ee43e294b09c713a80bd5b6",
+  "released_utc": "2026-09-04T13:08:03.224165+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

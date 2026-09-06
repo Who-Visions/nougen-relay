@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "phoebus: `nougen relay` shipped (#175) + #174 merged; phoebus checkout sits on node-tool-concurrency so neither reaches the venv CLI or the 04:15 refresh until that branch takes main; connector relay_open shows 25 of 126",
+  "scope": "relay:20260902T001646Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T00:57:19.865896+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T001646Z__claude-app__g-whoentertains",
+  "idempotency_key": "7f019db8bb1d0911fb3d6594a3ee64ff8fcdfd28383273b12ecf2adea4f142dd",
+  "released_utc": "2026-09-02T00:57:59.878462+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ git log --oneline --decorate phoebus/nougen-relay\n(exit 128) fatal: ambiguous argument 'phoebus/nougen-relay': unknown revision or path not in the working tree. | probes: gh api get repo phoebus nougen-relay refs heads main -> exit 1; git rev-parse HEAD -> exit 0; git log --oneline --decorate phoebus/nougen-relay -> exit 128"
+}

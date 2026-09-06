@@ -1,0 +1,11 @@
+{
+  "event": "wake",
+  "leg_id": "20260904T055136Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "LIVE: canonical NouGenMsg now targets active Codex through authenticated node transport",
+  "created_utc": "2026-09-04T05:51:36.634358+00:00",
+  "emitted_utc": "2026-09-04T05:52:22.610726+00:00",
+  "status": "pending",
+  "idempotency_key": "86884c78fe1eff12cf343fa91c348b46b27cf44470505543aef627e400ed3d9b"
+}

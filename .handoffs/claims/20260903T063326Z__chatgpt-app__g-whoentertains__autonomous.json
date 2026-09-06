@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "FLEET POSITION REPORT: every active machine/provider relay its exact current position now",
+  "scope": "relay:20260903T063326Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T07:32:59.396174+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T063326Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "bc2511d83e12074c736a3bb18641b79fcdf25ab917fad78567d44572c668b357",
+  "released_utc": "2026-09-03T07:37:23.332759+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

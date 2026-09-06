@@ -1,0 +1,12 @@
+{
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "relay commits must never absorb the operator's staged work",
+  "scope": "src/nougen_relay/core.py",
+  "status": "released",
+  "branch": "main",
+  "sha": "00d2e25",
+  "created_utc": "2026-08-01T03:07:18.829971+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-08-01T03:10:58.076136+00:00"
+}

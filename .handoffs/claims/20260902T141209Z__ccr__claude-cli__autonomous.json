@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: Build multi-harness HF integration eval matrix for NouGen",
+  "scope": "relay:20260902T141209Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T15:37:47.094871+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T141209Z__ccr__claude-cli",
+  "idempotency_key": "081c722b9deca535b8b2165c99a1dc05c8c83db6f7aee7bf3185376119a3e51c",
+  "released_utc": "2026-09-02T15:39:05.212972+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

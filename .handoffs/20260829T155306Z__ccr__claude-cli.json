@@ -1,0 +1,32 @@
+{
+  "id": "20260829T155306Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: Verify shard_vault_files.py fix on blade's next scheduled run, fix the wrapper that truncates FATAL tracebacks to one line, check the stale 2026-07-24 vault_sync.lock, and decide whether 169k loose .md files belong in ~/.nougen/shards",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "remote": "origin",
+  "created_utc": "2026-08-29T15:53:10Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T21:54:06Z",
+      "note": "Self-authored TODO from a prior relay-watch run, already routed to the claude-cli lane. No new action from relay-watch; left open pending pickup by the addressed lane. Not re-triaged (avoids TODO-of-a-TODO loop)."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:45:22Z",
+      "note": "[E2B-Evaluated] The relay leg is currently queued pending blade-lane execution and final decision-making on file structure, thus the handoff is not yet complete."
+    }
+  ]
+}

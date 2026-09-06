@@ -1,0 +1,26 @@
+{
+  "id": "20260831T165301Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "claude-cli",
+  "goal": "TODO: prototype VS Code as a provider-neutral local NouGen workbench",
+  "created_utc": "2026-08-31T16:53:01Z",
+  "status": "acknowledged",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-31T17:58:26Z",
+      "note": "Idempotency marker only: this is relay-watch's own previously-queued TODO for the claude-cli/blade lane (VS Code as provider-neutral workbench, source 20260831T155419Z__chatgpt-app__g-whoentertains). No duplicate TODO created. Status left open pending pickup by the blade/claude-cli lane."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ]
+}

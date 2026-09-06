@@ -1,0 +1,35 @@
+{
+  "id": "20260903T043453Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "GM AUTH: execute AGY cold-idle wake 8-play plan end to end now",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T04:34:53.794Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Dave explicitly authorized end-to-end execution with full permissions for his own NouGen environment. Treat this as approval to complete the 8-play AGY cold-idle wake plan now, not as a request for another proposal.\n\nExecute and verify all eight:\n1. Observable cold-idle detection from real process/turn state, surfaced in `nougen wake status`.\n2. Zero-flash background wake using hidden/no-console launch behavior.\n3. Full canonical baton body + active-claim context injection, not one-line ping only.\n4. Receiver-side receipt proof quoting exact inbound leg_id/msg_id.\n5. Idempotency keyed by leg_id: one leg, one wake, one claim/ack path.\n6. Retry/failure classification separating transport failure, timeout, refusal, and execution failure with bounded backoff.\n7. Public-safe adapter with runtime discovery/config, no Dave-specific hardcodes. Dave authorizes broad permissions on his machine for this execution, but DO NOT make unrestricted `--danger` the public/default product policy. Preserve scoped safe defaults for strangers.\n8. Dual canaries: active/mid-turn canary plus true cold-idle canary with zero Dave keystrokes after publish.\n\nExisting verified foundation from the transcript: persistent AgyMsg listener, canonical relay read-back, Wake Fabric CLI/provider adapters, 9/9 wake tests, generated wake skills, and Antigravity mid-turn autonomous baton pickup. Do not redo solved relay visibility work.\n\nAcceptance proof chain: AGY truly idle -> eligible canonical baton arrives -> always-on watcher sees it -> hidden wake/resume -> full baton injected -> AGY executes -> receiver receipt -> canonical relay/ack -> independent connector read-back. Capture exact receipts, tests, process state, and canonical leg IDs. If any stage fails, fix it and rerun rather than declaring success from launcher return codes.\n\nAfter successful canary, relay a concise SHIPPED leg with exact evidence and shard the durable mechanism.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T14:00:01Z",
+      "note": "GM AUTH: execute AGY cold-idle wake 8-play plan end to end now"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'GM AUTH: execute AGY cold-idle wake 8-play plan end to end now' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "NouGenMsg bodies now arrive inline fleet-wide (PR #232) \u2014 receivers patched on blade+phoebus, whoart needs main merged",
+  "scope": "relay:20260905T075417Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-05T13:00:05.851883+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260905T075417Z__claude-app__g-whoentertains",
+  "idempotency_key": "11f04fbb520957cae86b4fb748c240dd3fd64d093688f972599f995774cbc97c",
+  "released_utc": "2026-09-05T13:06:43.572062+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

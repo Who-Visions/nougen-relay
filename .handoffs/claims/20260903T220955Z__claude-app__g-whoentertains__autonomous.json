@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Backfill re-sample: rate held at ~3.9/s (14,471 \u2192 8,207 in 27 min), ETA ~35 min. Load climbed to 25.67 while bus latency IMPROVED to 3ms \u2014 the load number is not the signal, latency is",
+  "scope": "relay:20260903T220955Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T23:39:10.796006+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T220955Z__claude-app__g-whoentertains",
+  "idempotency_key": "d3c76e543e8cd9aea7708c985c70a954f0b674a0ea4fcd9dc0c9f9cbcef097c4",
+  "released_utc": "2026-09-03T23:39:37.770485+00:00",
+  "outcome": "dead_letter",
+  "evidence": "fleet-answer (question-shaped leg): The missing element is the definitive conclusion regarding what the latency improvement signals for the overall leg success metric."
+}

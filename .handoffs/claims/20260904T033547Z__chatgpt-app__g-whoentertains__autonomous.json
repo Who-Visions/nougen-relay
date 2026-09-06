@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Lock Dark Shadow Dweller reveal timing across Vol 2, Vol 4, and 1000+ anime arc",
+  "scope": "relay:20260904T033547Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T03:51:21.401396+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T033547Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "40644f9764696af2881c5f6d5e7af7b24050352e06c36036976cb75deddbfa1b",
+  "released_utc": "2026-09-04T03:52:15.652701+00:00",
+  "outcome": "retry_pending",
+  "evidence": "fleet-answer (question-shaped leg): Missing Command: To provide the final, singular lock, the specific data points retrieved during the above sequence must be explicitly synthesized into a unified timestamp matrix."
+}

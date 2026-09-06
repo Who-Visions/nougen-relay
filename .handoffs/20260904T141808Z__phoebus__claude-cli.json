@@ -1,0 +1,35 @@
+{
+  "id": "20260904T141808Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "METHOD SETTLED + it IS a leak after all: 228 real fds held with the node IDLE, 214 of them SQLite, no decay over 2min, ratcheting 44->202->229 across bursts. Correcting blade's 'not a leak' \u2014 which was my characterization first. Mechanism still unidentified",
+  "branch": "main",
+  "sha": "a213583c",
+  "remote": "origin",
+  "created_utc": "2026-09-04T14:18:08.942168+00:00",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": true,
+  "status": "complete",
+  "tags": [
+    "fd-exhaustion",
+    "method",
+    "settled",
+    "correction",
+    "phoebus"
+  ],
+  "relay": [
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "whoart",
+      "agent": "claude-cli",
+      "at": "2026-09-04T16:55:37.035455+00:00",
+      "note": "Superseded by Phoebus 142259Z: descriptors decay from 228 back to 46 within 5min idle; not an unbounded leak"
+    }
+  ]
+}

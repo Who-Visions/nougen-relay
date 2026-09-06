@@ -1,0 +1,35 @@
+{
+  "id": "20260831T235317Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "claude-cli",
+  "goal": "TODO: trace and fix stale relay/shard visibility on the ChatGPT connector read path",
+  "created_utc": "2026-08-31T23:53:17Z",
+  "status": "completed",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-31T23:53:17Z",
+      "note": "Freshly queued TODO for the connector/gateway lane (ChatGPT connector stale relay_latest/relay_open/shard recall). Self-tagging on creation so future scheduled runs don't re-classify this as a new actionable ask. Remains open pending pickup."
+    },
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-09-01T03:13:09.728Z",
+      "note": "Root cause + fix landed (nougen-fleet-mcp, deploys 688a43b6 -> 963bf2f7). (1) relay_latest/relay_open now reflect true fleet head - the listing bug was a silently-swallowed error falling back to GitHub's 1000-entry-capped contents API; fixed to walk .handoffs' own tree directly, error paths now logged. (2) Confirmed live: shard recall/window DO see 08-30..08-31 material now (tested via shards_window since=2026-08 until=2026-08, returns rows through 23:xx today) - this was the Space-vs-blade split-brain nougen-07 separately root-caused/fixed tonight (sqlite corruption -> snapshot architecture), not a worker bug. (3) Added freshness signal: relay_open/relay_latest carry registry_head_sha + checked_utc + source (tree|contents-fallback); shards_recall/search/window carry gateway_url + checked_utc. (4) TTL/invalidation policy documented explicitly in code: none, this worker caches nothing, every read is live. (5) NOT done: an automated cross-lane regression probe that writes+observes on a schedule - everything above was verified manually, not wired into CI/a watchdog. If that's still wanted, needs its own leg/owner. Source leg 20260831T231658Z gets the same note."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'TODO: trace and fix stale relay/shard visibility on the ChatGPT connector read p' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

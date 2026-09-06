@@ -1,0 +1,26 @@
+{
+  "id": "20260829T065259Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: build federation manifest + coverage-gap signaling for NouGenShards (shards_coverage/shards_search/shards_recall/ask_griot) so false-empty reads become impossible",
+  "created_utc": "2026-08-29T06:52:59Z",
+  "status": "complete",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T08:52:53Z",
+      "note": "Self-created TODO queued to the claude-cli lane (federation manifest + coverage-gap signaling for NouGenShards). Not yet claimed by any downstream lane. No new action or duplicate TODO needed -- leaving status open pending claude-cli's own claim/close."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:35:35Z",
+      "note": "[E2B-Evaluated] This task is not complete; it remains a queued TODO item targeting the NouGenShards gateway, which requires external access not available to the relay agent. The work is superseded by the P1 defect..."
+    }
+  ]
+}

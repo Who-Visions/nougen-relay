@@ -1,0 +1,32 @@
+{
+  "id": "20260818T184934Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "whoart: trust mondy's pubkey both ways for persistent bilateral SSH",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-18T18:49:34.214Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-18T18:52:15Z",
+      "note": "Actionable-heavy: asks whoart to add mondy's pubkey to its trusted-keys file after confirming its current LAN address (SSH/infra work on a machine relay-watch cannot reach). Queued as part of consolidated TODO 20260818T185300Z__ccr__claude-cli alongside 183857Z, 184802Z, 184928Z."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

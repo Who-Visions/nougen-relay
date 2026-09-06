@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "NouGenShards dependabot backlog cleared: 6 bumps merged to main, PRs #197 (React 19) and #199 (mcp 2.x migration) open superseding #181/#123/#180",
+  "scope": "relay:20260903T225352Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T23:09:23.691256+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T225352Z__claude-app__g-whoentertains",
+  "idempotency_key": "eaa5a5b0487e35934fc3dd9495369772bf6be616183c9b6c88147fe48866bd63",
+  "released_utc": "2026-09-03T23:09:59.571691+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: $ git rev-parse HEAD --verify ref:refs/heads/main\n(exit 128) | probes: git rev-parse HEAD --verify ref:refs/heads/main -> exit 128; git log --oneline --grep dependabot --count --decorate main -> exit 0"
+}

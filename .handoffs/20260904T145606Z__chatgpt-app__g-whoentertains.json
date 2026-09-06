@@ -1,0 +1,35 @@
+{
+  "id": "20260904T145606Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "PHOEBUS CODEX: 12-leg closure queue for relay debt and fleet hardening",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-04T14:56:06.913Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Dave wants Phoebus Mac mini Codex fed a list of 10+ concrete open legs it can close. Treat this as an ordered closure queue. Before starting each item, check relay_claim_list and current correction lineage so stale legs are not resurrected.\n\n1. Supersession-aware daemon auto-sharding: before promoting a relay into a daemon shard, detect later correction, withdrawal, amendment, or superseding relay. Mark stale lineage instead of minting newer-timestamp old truth.\n\n2. True-origin / Message from Unknown chain: unify legacy sender/source parsing, preserve backwards compatibility, and emit non-optional per-session identity at source rather than node-only provenance.\n\n3. Timeout failure taxonomy beyond PR #214: distinguish timeout, auth failure, downstream unavailable, local resource exhaustion, partial fanout, and unknown. Do not infer root cause merely from timeout.\n\n4. Close the corrected Phoebus descriptor thread: encode the surviving truth only. Concurrent recall drives ~44 -> 202 -> 229 descriptors, then reclamation to ~46 within several minutes idle. Sustained bursts can hit EMFILE/503; not an unbounded leak. Mark superseded leak/not-leak relay legs stale where appropriate.\n\n5. Add observation-window metadata to diagnostics: measurements that depend on time/window must carry the observed interval in structured output so 'flat for 120s' cannot silently become 'no decay'.\n\n6. Add independent-measure cross-check hooks for resource diagnostics: for FD counting, require numeric FD rows and compare against max FD number / process RLIMIT. Reject or warn on proxy counts such as raw lsof line count.\n\n7. Round Robin + Roll Call identity recovery: implement the standardized pattern from leg 135955Z so live sessions can announce who/where/provider/session and stale Unknown identities can be repaired without guessing.\n\n8. Busy-pipe retry + persistent relay-live notifier propagation: take 135953Z and make retry/backoff and durable notifier behavior consistent across supported NouGen lanes. Verify no terminal-focus stealing or flashing foreground windows.\n\n9. NouGenLine transport preflight: do not build the whole protocol yet. First codify the measured constraints into executable tests/spec checks: identity at emit, delivery-path-specific success, causal receipt binding, truthful entrypoint, failure taxonomy, break-glass queue semantics, and no single-node provenance dependency.\n\n10. Provider continuity state model: encode provider quota/reset as lane state, not fleet state. Preserve resumable handoff metadata so Claude/Codex/Antigravity/local lanes can rotate without reconstructing context.\n\n11. Quota/context telemetry schema: create a provider-neutral representation separating context used/capacity, quota state, reset time, confidence/source, and semantics_verified. Use the Sept 4 Claude proof clip as a fixture but do not hardcode Claude semantics.\n\n12. Relay debt closer: after items above land, scan open relay legs for ones made obsolete by their fixes or by later corrections. Produce a closure report with: leg id, reason safe to close, superseding commit/test/relay, and any leg that must remain open. Do not ack/close ambiguous historical legs merely because they are old.\n\nExecution rule: prefer small PRs or atomic commits, tests before closure claims, exact observed evidence, and no destructive cleanup of provenance. Done when each completed item has code/tests or an explicit verified closure artifact, and the final debt report names which historical legs can now be retired.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-05T13:58:26.861Z",
+      "note": "12-item closure queue explicitly handed to Phoebus/Codex by its author (Dave-requested). Tracking as a status/routing note; Phoebus/Codex owns execution, not relay-watch."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'PHOEBUS CODEX: 12-leg closure queue for relay debt and fleet hardening' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

@@ -1,0 +1,13 @@
+{
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "fix decisions.jsonl -> one-file-per-record before merging claim-self-dedup",
+  "scope": "src/nougen_relay/core.py,tests/test_claim_self_dedup.py",
+  "status": "released",
+  "session": "3348bb46-0cec-4a33-9e5e-3be64370bf4d",
+  "branch": "main",
+  "sha": "cf733e1",
+  "created_utc": "2026-08-29T03:18:11.098527+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-08-29T11:27:12.152375+00:00"
+}

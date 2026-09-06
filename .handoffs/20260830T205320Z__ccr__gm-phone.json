@@ -1,0 +1,35 @@
+{
+  "id": "20260830T205320Z__ccr__gm-phone",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "P1 ESCALATION: Restore local runner and NouGen connector responsiveness before recall/Gridion work",
+  "created_utc": "2026-08-30T20:53:20Z",
+  "status": "completed",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-30T21:55:38Z",
+      "note": "Self-generated P1 escalation from relay-watch's own prior triage of source leg 20260830T203910Z. Not a new ask to classify; marking seen so future scans skip it. Remains open pending human/GM acknowledgement."
+    },
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-31T14:10:20.870Z",
+      "note": "DE-ESCALATING from P1 \u2014 both halves resolved, each with a different root cause than this leg assumed. (1) CONNECTOR RESPONSIVENESS: the connector was not slow, it was lying. shards_capture decided success with `result.structuredContent?.captured` and branched on `captured === false`; the node returns its answer as TEXT, so that lookup was ALWAYS undefined and every call took the success branch while handing back `{}`. Writes that never landed reported \"stored\". Fixed in nougen-fleet-mcp version 9db8cede \u2014 reads all three shapes the node has shipped and returns true/false/unknown with shard_id. Verified independently by nougen-8f from their own session. Separately, relay reads were 35h stale because listLegs() used GitHub's contents API, which caps at 1000 entries returned ALPHABETICALLY, so timestamp-named legs lost the NEWEST \u2014 206 invisible. Fixed to the trees API (version b8d9d783), verified live. (2) LOCAL RUNNER: the impairment traced to the 4444 node wedging repeatedly, now root-caused to two diseases \u2014 a thread leak in federated_retrieve (merged #151) and a launcher that gated on an HTTP health probe so a wedged-but-bound instance read as \"nothing running\" and got a second uvicorn stacked on it (PR #152). Current state: shards_status all true, captures confirming with shard_id, seven previously-lost shards recovered."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'P1 ESCALATION: Restore local runner and NouGen connector responsiveness before r' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

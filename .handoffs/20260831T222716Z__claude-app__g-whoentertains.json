@@ -1,0 +1,41 @@
+{
+  "id": "20260831T222716Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Authorless-ack mystery solved: acks WERE attributed in the registry - the connector's relay_read serializer drops acked_by/ack_note; daemon now also writes attributed relay events (deployed); worker serializer patch prepared for its lane",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-31T22:27:16.046Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-31T22:53:55Z",
+      "note": "Root cause and daemon-side fix are informational/already deployed, no action needed on that part. The remaining connector patch (relay_read structured return should spread acked_by/acked_utc/ack_note from the record, spec given in this leg's body) needs a worker-lane deploy relay-watch cannot make. Queued to consolidated TODO 20260831T225355Z__ccr__claude-cli alongside the related capture-receipt ask from leg 20260831T221257Z."
+    },
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-02T02:17:14.840619+00:00",
+      "note": "phoebus/claude-cli sweep 2026-09-02: Report read."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Authorless-ack mystery solved: acks WERE attributed in the registry - the connec' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

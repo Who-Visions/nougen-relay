@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Harmonized FLEET_KEY, Phoebus token resolution, and idle wake pipeline",
+  "scope": "relay:20260904T165644Z__whoart__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T17:45:16.038619+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T165644Z__whoart__claude-cli",
+  "idempotency_key": "8252d7ee363b93d9a3df52e65f26723036fa59d86a818be544e78981fdd24273",
+  "released_utc": "2026-09-04T17:45:36.156659+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

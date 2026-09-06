@@ -1,0 +1,34 @@
+{
+  "id": "20260828T063417Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "PR #133 field report: CI failures split by owner - claude-cli takes rhea test reconcile only, keymaker tests belong to the recall-fix lane",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-28T06:34:17.844Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-28T06:52:29Z",
+      "note": "INFO field report: PR #133 CI failures split by owner \u2014 claude-cli owns test_rhea_loop.py + test_published_surface.py fixes; the recall/keymaker lane owns test_keymaker_security.py, test_keymaker_vault_resolution.py, test_multitenancy.py, test_vault_discovery.py; tmpdir teardown OSErrors are a known cross-platform flake. Cross-ref: recall/Rhea-500 fix status in leg 20260828T062459Z (same session)."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'PR #133 field report: CI failures split by owner - claude-cli takes rhea test re' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

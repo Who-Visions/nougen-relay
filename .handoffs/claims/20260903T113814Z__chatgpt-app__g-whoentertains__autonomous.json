@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "LEXICON: END TO END means prove the complete real NouGen path across every seam",
+  "scope": "relay:20260903T113814Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T11:56:38.636530+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T113814Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "2c5aa9e443f2a7bbf75dd9f877311903f695be9a1d8dbd5dde4f99ab55ce5258",
+  "released_utc": "2026-09-03T12:01:57.384182+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

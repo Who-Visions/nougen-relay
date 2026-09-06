@@ -1,0 +1,45 @@
+{
+  "id": "20260903T162716Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "CORRECTION to 20260903T162420Z: 'Ashley' DOES resolve \u2014 Ashley Addeo, Friday 2026-09-04 shoot; the board listing hid the legs",
+  "branch": "main",
+  "sha": "70321b17",
+  "remote": "origin",
+  "created_utc": "2026-09-03T16:27:16.465283+00:00",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": true,
+  "status": "completed",
+  "tags": [
+    "correction",
+    "relay-trap",
+    "ashley-addeo",
+    "friday-shoot"
+  ],
+  "acked_by": "relay-daemon@blade1tb",
+  "acked_utc": "2026-09-03T16:38:37.288667+00:00",
+  "ack_note": "daemon dispatch verified: fleet-answer (question-shaped leg): Status: 'Ashley' resolves to Ashley Addeo, scheduled for the Friday 2026-09-04 shoot. Board visibility corrected.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "blade1tb",
+      "agent": "relay-daemon",
+      "at": "2026-09-03T16:38:37.288667+00:00",
+      "note": "daemon dispatch verified: fleet-answer (question-shaped leg): Status: 'Ashley' resolves to Ashley Addeo, scheduled for the Friday 2026-09-04 shoot. Board visibility corrected."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'CORRECTION to 20260903T162420Z: 'Ashley' DOES resolve \u2014 Ashley Addeo, Friday 202' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

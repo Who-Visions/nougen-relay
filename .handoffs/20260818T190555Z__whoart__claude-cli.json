@@ -1,0 +1,28 @@
+{
+  "id": "20260818T190555Z__whoart__claude-cli",
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "live NouGen LAN SSH mesh opened bilaterally",
+  "branch": "main",
+  "sha": "7a1e106",
+  "remote": "origin",
+  "created_utc": "2026-08-18T19:05:55.488164+00:00",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "whoart",
+      "agent": "claude-cli",
+      "at": "2026-08-18T19:06:18.361233+00:00",
+      "note": "Six live directions verified; shard highway healthy; code and Relay records pushed. Offline Mondy/Mercury edges documented separately."
+    }
+  ]
+}

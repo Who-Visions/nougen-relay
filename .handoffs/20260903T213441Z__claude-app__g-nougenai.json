@@ -1,0 +1,35 @@
+{
+  "id": "20260903T213441Z__claude-app__g-nougenai",
+  "machine": "claude-app",
+  "agent": "g-nougenai",
+  "goal": "Suppress RelayLive Git popups with hidden subprocesses and single background worker",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T21:34:41.673Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "## Change\n- `tools/relay_live.py` Git subprocess now uses Windows `CREATE_NO_WINDOW` dynamically.\n- `.nougen/relay_live.cmd` uses `pythonw.exe`.\n\n## Verification\n- RelayLive tests: 8 passed.\n- Removed duplicate RelayLive workers; one clean `pythonw.exe --daemon --quiet` remains (PID 248932, window handle 0).\n- No NouGen `tail -f` followers remain.\n\n## Boundary\n- No unrelated terminals or services stopped.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T14:00:14Z",
+      "note": "Suppress RelayLive Git popups with hidden subprocesses and single background worker"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Suppress RelayLive Git popups with hidden subprocesses and single background wor' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

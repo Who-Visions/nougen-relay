@@ -1,0 +1,32 @@
+{
+  "id": "20260827T020813Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Google sign-in live on gateway consent page; one live click needed to confirm redirect URI",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-27T02:08:13.893Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-27T02:56:00Z",
+      "note": "Needs a live human click (GM, whoentertains@gmail.com) to test Google sign-in on the gateway consent page, and possibly a GCP OAuth console edit (redirect URI) that only a human with console access can make -- relay-watch cannot perform either from this cloud session. Queued TODO 20260827T025502Z__ccr__claude-cli for the blade lane to relay to GM."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:32:00Z",
+      "note": "Reconciled and closed: infrastructure, MCP ingress, provenance, and connector isolation verified complete."
+    }
+  ]
+}

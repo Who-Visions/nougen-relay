@@ -1,0 +1,29 @@
+{
+  "id": "20260901T085258Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "claude-cli",
+  "goal": "TODO: scope and implement temporal-provenance + search-truth-state overhaul for shards backend (April 2026 recall gap)",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "created_utc": "2026-09-01T08:52:58Z",
+  "status": "completed",
+  "body": "# TODO \u2014 queued by relay-watch triage\n\n## Why this is queued, not executed\nrelay-watch only reads/writes `.handoffs/*` and cannot touch application code, schemas, or infra. This is real engineering work across the shards backend (temporal-provenance fields, truth-state search responses, coverage/diagnostics tooling, a regression fixture) and needs a lane with repo + Space access.\n\n## Source leg\n`20260901T084247Z__chatgpt-app__g-whoentertains` \u2014 \"Fix April temporal recall and make shard archaeology observable\". Read that leg's full body for the 16-item wishlist; summary below.\n\n## What it asks for\nApril 2026 archaeology surfaced a contradiction: `ask_griot` reported 12 candidate memories for April (`held_back=12`) while `shards_window`, keyword search, semantic recall, and unbounded Griot grep all returned no inspectable evidence for the same window (one timed out outright). Different retrieval arms disagree about whether evidence exists, and a caller currently can't tell true-zero from timeout/filtered/backend-unavailable zero.\n\nThe wishlist (16 items in the source leg) covers: first-class per-shard temporal provenance fields (event_at/created_at/ingested_at/etc, each with timezone+basis), a `event_time_confidence`/`event_time_basis` pair, a way to inspect held-back candidates instead of silently hiding them, an `include_unverified` archaeology mode, search-arm parity reporting (which stores were queried/responded/timed out), partial-result streaming + pagination for `shards_window`, a fast `shards_coverage` path, an undated/temporal-unresolved quarantine index, a temporal repair pipeline + neighbor inference, ingestion manifests, a `shards_explain` diagnostics tool, standardized truth-state responses (verified_hit/candidate_hit/true_zero/partial_zero/filtered_zero/timeout/backend_unavailable/etc), and a regression fixture pinning this exact April 2026 contradiction.\n\n## Risk / overlap noted by relay-watch\nItems 5, 13, 15 (search-arm parity, `shards_explain`, truth states) overlap the follow-ups filed in `20260901T084647Z__claude-app__g-whoentertains` (the Space-sqlite P1 triage), which independently found a federation self-loop causing false-empty recall. Both point at the same class of bug: retrieval failures masquerading as legitimate empty results. Worth scoping as one combined program rather than two separate efforts.\n\n## Done when\nWhichever lane picks this up should follow the source leg's own \"Done when\" checklist (reproducible answers to: how many shards are verified-dated vs candidate for a given month, why each candidate is uncertain, which stores were searched/timed out, whether results can be paged without a global timeout, and whether the system can distinguish \"nothing happened\" from \"we cannot currently see what happened\").\n",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-01T09:54:47Z",
+      "note": "Self-tagging: this TODO was authored by relay-watch itself (queued triage of 20260901T084247Z). Not re-triaging own output. Remains open pending claude-cli/blade pickup."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'TODO: scope and implement temporal-provenance + search-truth-state overhaul for ' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

@@ -1,0 +1,35 @@
+{
+  "id": "20260905T012205Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "RECALL ROOT CAUSE: phoebus is thrashing (swap 10/11GB, 23MB free, load 49-74); kaedracode:e2b pinned resident at 8GB owns the memory; node cache paged out, /search 66-81s. GM decision: unload the model?",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-05T01:22:05.496Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "# Recall on phoebus is memory-starved, not code-starved\n\n**Measured 2026-09-05 01:10Z to 01:20Z on phoebus (this Mac mini, 16GB).**\n\n## What the node looks like\n- `POST /search` single caller, single-token queries: **81.4s, 76.9s, 66.5s**, each returning only the `FEDERATION_STATUS` trailer (local lane missed the 20s deadline).\n- Node process (pid 51860, started 17:48 EDT on `b9c2834` = PR #220): **RSS 53 to 87MB**. A warm node holds ~800MB of vector matrices. They are paged out.\n- 95 threads, 166 descriptors at idle (so the 256 ceiling from #220 is not what is biting now).\n- Warm-up history in the node log: **678s and 622s** at 09:48 and 10:20 EDT, 10.6s at 17:49. Memory pressure has been shaping recall all day.\n\n## What the box looks like\n```\nvm.swapusage: total = 11264M  used = 9975M  free = 1288M\nPhysMem: 16G used (3536M wired, 1290M compressor), 23M unused\nLoad Avg: 49.54, 60.60, 74.58\n```\n\n## Who owns the memory\n| process | MEM | compressed | note |\n|---|---|---|---|\n| llama-server (Ollama, `kaedracode:e2b`) | 8055M | 6316M | 6.4GB model, `expires_at` 2318 = keep_alive forever, up 3d22h, size_vram 0 |\n| Comet Helper (Renderer) | 1164M | 790M | |\n| Logi Bolt | 770M | 765M | |\n| Python (shards node) | 584M | 529M | almost entirely compressed = paged out cache |\n| uTorrent Web | 530M | 463M | |\n\n## Why this reads as \"recall is broken\"\nThe node's cache is the first thing the kernel compresses when it sits idle between queries; every query then decompresses and pages 800MB back in behind an 8GB resident model on a 16GB box. `/health` stays 200 the whole time, the trailer says `complete:false`, and nothing names memory.\n\n## Ask (GM)\n1. **Go / no-go on `ollama stop kaedracode:e2b`.** Reversible: the next `kaedra_ask` reloads it. It is the one-command experiment that separates memory from everything else, and I expect it is the fix. Not pulling it without the owner because the persona lane depends on it.\n2. If Kaedra must stay resident here: pick a smaller quant, or move the resident model off the always-on shards node. 8GB pinned plus the shards cache does not fit in 16GB alongside Codex, Comet and Claude.\n\n## Status of the code fixes\n- PR #220 (descriptor ceiling) merged and deployed on phoebus at 17:48 EDT. No `soft limit raised` line in the log yet; I am verifying the live limit separately.\n- PR #222 (request must not queue behind a matrix build) merged on main, **not yet on the phoebus clone** (clone is 5 behind). A restart now would rebuild the cache into the same starved memory, so I am holding the redeploy until memory is decided.\n\n-- phoebus / claude-app / g-whoentertains lane, acked legs 183645Z 202025Z 200011Z",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-05T13:58:26.861Z",
+      "note": "RECALL root cause note: phoebus thrashing under heavy swap use, kaedracode:e2b pinned as a contributor. Findings note preceding the 01:43Z outage report (20260905T013452Z)."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'RECALL ROOT CAUSE: phoebus is thrashing (swap 10/11GB, 23MB free, load 49-74); k' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

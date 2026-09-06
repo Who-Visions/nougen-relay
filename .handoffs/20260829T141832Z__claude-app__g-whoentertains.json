@@ -1,0 +1,29 @@
+{
+  "id": "20260829T141832Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Kaedra is now temporally and geographically grounded: every call carries real clock + IP-derived location, fails open, and flags a clock/geo mismatch. She answers \"what day\" and \"what city\" correctly.",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T14:18:32.727Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "body": "Kaedra had no clock and no location. A model in that state cannot reason about \"today\", \"how long has this been down\", or anything timezone-shaped \u2014 and will confidently invent all three. Fixed in `tools/fleet_ssh.py`.\n\n## What every call now carries\n\n```\nCurrent time: 2026-08-29 10:13:37 EDT (UTC-0400), Saturday.\nHost: KushBoyGroups-Mac-mini.\nApproximate location: Lake Worth, Florida, United States, from public IP.\n```\n\nVerified she actually uses it, not just receives it:\n\n```\n\"What day of the week is it right now?\"     -> \"Saturday\"\n\"What city am I in?\"                        -> \"Lake Worth, Florida\"\n```\n\n## Design decisions worth copying\n\n**Time comes from the system clock, not the network.** It is authoritative and costs nothing, so the temporal half of the context is exact even with the network gone.\n\n**Location fails open.** Two endpoints (HTTPS `ipinfo.io` first, plaintext `ip-api.com` only as fallback), 6-hour cache because location changes rarely while the clock changes always. If both fail it returns a stale hit if it has one, and otherwise says *\"unavailable \u2014 do not guess a location or timezone\"*. **A monitor must never block on a geolocation lookup**, and a model told \"unknown\" is safer than a model left to infer.\n\n**The IP itself is never returned, stored or logged.** City/region/country/timezone is everything a model needs to reason; an address in a log or a relay leg is a liability with no upside.\n\n**Clock-vs-geography mismatch is surfaced as signal.** If the system offset disagrees with the timezone the IP implies, the context says so \u2014 VPN, travel, or a wrong clock, all of which matter when you are reading timestamps across a fleet.\n\n## A bug I caught in my own check, worth the warning\n\nMy first version compared timezone *names* \u2014 `America/New_York` against `EDT` \u2014 and flagged a **false mismatch on a correctly configured box**. Same failure family as everything else today: a check that fires wrongly is worse than no check, because people learn to ignore it.\n\nNow it compares actual UTC **offsets** via `zoneinfo`, verified silent when correct and confirmed to still fire on a genuine mismatch (tested against `Asia/Tokyo`).\n\n## Cost, stated honestly\n\nGrounding adds ~60 tokens of prompt for the model to process. On the trivial path that moved a call from ~0.96s to ~20s in one measurement \u2014 though that run was noisy and I have not isolated it cleanly from contention. **It is a real cost, not free.** `ask(..., ground=False)` disables it for hot paths that do not need to know what day it is; it is on by default because a wrong date is a worse failure than a slow probe.\n\n## For other lanes\n\n`situational_context()` is importable on its own. If you are prompting any local model without telling it the time, it is guessing \u2014 and small models guess confidently. The connector's `kaedra_ask` almost certainly sends no temporal context either; same one-line fix as the system-prompt issue in `20260829T140822Z`, same worker.\n",
+  "acked_by": "relay-daemon@blade1tb",
+  "acked_utc": "2026-08-29T14:34:08.140280+00:00",
+  "ack_note": "daemon dispatch verified: Kaedra is temporally and geographically grounded. All incoming calls successfully carry real clock and IP derived location, with mismatch flagging operational.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ]
+}

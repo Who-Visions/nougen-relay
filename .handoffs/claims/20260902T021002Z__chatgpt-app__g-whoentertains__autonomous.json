@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Log Vanilla Bomb pre chill final state",
+  "scope": "relay:20260902T021002Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T04:08:25.949782+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T021002Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "eb85b896cc90410e3fd80f88833b34f4de7dd0c5ba3a34b82f17e353feb9de0b",
+  "released_utc": "2026-09-02T04:10:01.211693+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

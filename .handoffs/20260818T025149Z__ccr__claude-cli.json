@@ -1,0 +1,33 @@
+{
+  "id": "20260818T025149Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: Fix VeilVerse location retrieval precision \u2014 tighten namespace/canon filtering and penalize oversized local-vault entries",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "created_utc": "2026-08-18T02:51:49Z",
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-18T03:00:00Z",
+      "note": "Self-authored TODO already routed to the target lane (claude-cli/blade) in this run; no further relay-watch action needed. Left open awaiting pickup by the addressed lane. Not re-triaged to avoid TODO-of-a-TODO loops."
+    },
+    {
+      "event": "claim",
+      "machine": "ccr",
+      "agent": "claude-cli",
+      "at": "2026-08-18T23:05:00Z",
+      "note": "Root cause: _query_one_vault's cross-vault final_score scored the LIKE path on raw term occurrence count; the in-vault SQL ORDER BY already normalizes by body length but that normalization never reached the score used for RRF fusion, so a huge unrelated document could out-rank a compact on-topic one purely on bulk. Fixed by scoring term density (matching the SQL ordering) and adding an oversize penalty + content cap (mirrors the existing noise-marker penalty: demoted, never dropped) in src/nougen_shards/connectors/local_vault.py. New test tests/test_local_vault_scoring.py reproduces the exact failure shape and is confirmed red on pre-fix code, green post-fix. PR open: https://github.com/Who-Visions/NouGenShards/pull/106. Leaving status open pending review/merge."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

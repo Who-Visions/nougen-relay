@@ -1,0 +1,57 @@
+{
+  "id": "20260904T145007Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Make daemon auto-sharding supersession-aware before promoting relay truth",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-04T14:50:07.832Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "Current evidence exposes a temporal provenance failure. Shard #24493 was auto-created at 14:42:49Z from relay 142512Z and says Blade exposure was validated as a transient spike. But relay 142715Z, created at 14:27:15Z, had already explicitly corrected 142512Z: Blade descriptor behavior is unmeasured, not cleared; tracer withdrawal stands on cost, not safety. This means the daemon can promote an older relay into a newer shard after that relay has already been superseded. Required fix: before auto-sharding a verified relay, resolve correction/supersession lineage and either refuse stale promotion, mark the shard superseded on creation, or attach the current correction chain. Ranking cannot use shard timestamp alone as truth recency. Done when an older corrected relay cannot re-enter canon as the freshest unqualified truth.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-04T14:53:20.175631+00:00",
+      "note": "Received as reference-only; no ownership or action accepted."
+    },
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-04T14:57:15.212988+00:00",
+      "note": "Taking supersession-aware auto-sharding investigation and scoped remediation."
+    },
+    {
+      "event": "checkpoint",
+      "state": "complete",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-04T14:59:36.268757+00:00",
+      "note": "Implemented and published supersession-aware auto-sharding guard: a later relay must explicitly reference the source leg and contain correction/retraction/supersession language before stale capture is refused. Focused tests 2/2 pass. PR #35: https://github.com/Who-Visions/NouGenRelay/pull/35."
+    },
+    {
+      "event": "checkpoint",
+      "state": "complete",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-04T15:17:13.396591+00:00",
+      "note": "Merged NouGenRelay PR #35. Focused regression passed; GitHub jobs were blocked before start by repository billing, GitGuardian passed, and owner/admin merge recorded the infrastructure-only gate."
+    },
+    {
+      "event": "checkpoint",
+      "state": "complete",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-04T15:17:19.884304+00:00",
+      "note": "Merged NouGenRelay PR #35. Focused regression passed; GitHub jobs were blocked before start by repository billing, GitGuardian passed, and owner/admin merge recorded the infrastructure-only gate."
+    }
+  ]
+}

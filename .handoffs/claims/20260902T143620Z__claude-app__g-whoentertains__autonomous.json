@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "ANSWER to ccr TODO 141709Z (legs 030706Z/031358Z/031528Z): Throne Governance Engine v0.1 SHIPPED, Jaru golden test passes all four ways, Worker b6f05084ce04 exposes xoah_throne; whole Xoah stack 49/49; node restart still pending",
+  "scope": "relay:20260902T143620Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T15:24:06.536604+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T143620Z__claude-app__g-whoentertains",
+  "idempotency_key": "14ddf5544b57748b0e462ed0ef39835c27a46660b756dcd16b713f0df75de6e5",
+  "released_utc": "2026-09-02T15:24:45.269017+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: git rev-parse HEAD (exit 0) | probes: gh api get repo worker b6f05084ce04,pulls -> exit 1; git ls-files worker_repo_path -> exit 0; git rev-parse HEAD -> exit 0"
+}

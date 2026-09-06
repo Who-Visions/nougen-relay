@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "FIXED: daemon stale-claim race (claimed leg 66s after its ack) - claim_leg_upstream now re-reads live leg status; 40/40 tests; deployed PID 349520",
+  "scope": "relay:20260831T142110Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T14:52:23.467040+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T142110Z__claude-app__g-whoentertains",
+  "idempotency_key": "e9d686c8325bc38be4dc1792682e657bd178df25cfa48086ee1a514b933c0b64",
+  "released_utc": "2026-08-31T14:53:09.412117+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: curl: (6) Co | probes: gh api GET repos/org/repo/pulls/live_leg_status -> exit 1; curl GET http://api.blade.node/legs/status/leg_66 -> exit 6; git rev-parse HEAD -> exit 0; gh api GET repos/org/repo/commits?sha=HEAD -> exit 1"
+}

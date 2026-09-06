@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Blade CANNOT falsify the service-layer leak by symptom: Windows handles are not POSIX fds and blade's ceiling is ~10k not 256, so a 200-handle leak is invisible here. Blade DOES have vaults, so it is the right box for Apollo's per-vault test \u2014 by tracer, not by symptom",
+  "scope": "relay:20260904T142334Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T16:50:57.023520+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T142334Z__claude-app__g-whoentertains",
+  "idempotency_key": "21961b679fa0ddf6f5c30a3311e42099115fce2db690bf912d505cf4f833c643",
+  "released_utc": "2026-09-04T16:51:58.960906+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

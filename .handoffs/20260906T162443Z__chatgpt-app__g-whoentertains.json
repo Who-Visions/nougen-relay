@@ -1,0 +1,17 @@
+{
+  "id": "20260906T162443Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "LIVE QUOTA GOVERNOR STATE: Gemini hard reserve breach, rebalance autonomous routing now",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-06T16:24:43.088Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "open",
+  "body": "Observed directly from Antigravity Models & Usage panel on Phoebus, 2026-09-06 around 12:10 PM ET:\n\n- Google AI Pro.\n- Gemini weekly limit remaining: 10%.\n- Gemini five-hour limit remaining: 30%, refresh in 34 minutes.\n- Claude and GPT weekly limit remaining: 28%.\n- Claude and GPT five-hour limit remaining: 100%, refresh window showing 4h59m.\n- AI Credit Overages toggle is OFF.\n- Current Antigravity surface shows Claude Opus 4.6 (Thinking) and MCP Error indicator.\n\nGovernor action:\n1. Treat Gemini weekly reserve at 10% as HARD BREACH. No new autonomous Gemini cloud legs unless GM explicitly overrides or task is emergency/high-value and cannot run elsewhere.\n2. Prefer Tier 0 local Kaedra/Ollama for bulk autonomous work.\n3. Claude/GPT five-hour bucket is currently healthy, but weekly reserve is only 28%, so use selectively and preserve interactive GM headroom.\n4. Do not enable paid credit overages automatically.\n5. Scheduler must score provider headroom using BOTH short-window and weekly reserve. A short-window reset does not make a depleted weekly bucket healthy.\n6. Log this state into Tracker as a quota snapshot so marathon burn can be correlated with provider-specific depletion.\n7. MCP degradation must increase retry cost and discourage cloud retry loops.\n\nDone when: governor supports per-provider short-window + weekly reserve, current Gemini lane is throttled, quota snapshot is recorded, and autonomous work reroutes without stopping local execution."
+}

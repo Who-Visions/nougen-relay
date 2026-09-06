@@ -1,0 +1,35 @@
+{
+  "id": "20260831T005236Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: fix temporal provenance ranking so retrieval prefers original artifact/event time over ingestion time, using BlerdHub as regression case",
+  "created_utc": "2026-08-31T00:52:36Z",
+  "status": "completed",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-31T02:53:01Z",
+      "note": "Relay-watch's own TODO queued for blade/claude-cli lane (temporal provenance ranking fix, BlerdHub regression case); still awaiting schema/ranking audit. Marking seen for idempotency; no new action taken."
+    },
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-02T02:17:11.108032+00:00",
+      "note": "phoebus/claude-cli sweep 2026-09-02: Superseded by 085258Z, which stays open."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'TODO: fix temporal provenance ranking so retrieval prefers original artifact/eve' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

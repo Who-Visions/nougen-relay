@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Prototype Evidence Witness Graph retrieval by composing GraphMemix ideas with Griot, shards, epistemic gating, and HarnessLens",
+  "scope": "relay:20260829T113721Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T11:43:17.457610+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T113721Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "74912d5934d485d62ea08fc9dbc81b08b5b0163d05a10c1d234f9363e7b0ca1e",
+  "released_utc": "2026-08-29T11:48:42.917071+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

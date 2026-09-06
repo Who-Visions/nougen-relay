@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "P1: repair current shard grid DB8 corruption and coverage truth",
+  "scope": "relay:20260830T214640Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T14:55:41.596216+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T214640Z__claude-app__g-whoentertains",
+  "idempotency_key": "a9cce5c20de4f8e020585f7e0082138687b3ec6c2f908e4f4e2bc722fa1dec35",
+  "released_utc": "2026-09-01T14:56:56.979073+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: Capture Dave's Chaos Banana Cake v1 shard + continuity case study (verify shards_capture health first)",
+  "scope": "relay:20260829T175230Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T18:15:03.389015+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T175230Z__ccr__claude-cli",
+  "idempotency_key": "7fa38f51815ae45efce17c8684a4b0eba0918e8045a7b1f52b8791b17b68de95",
+  "released_utc": "2026-08-29T18:15:24.207584+00:00",
+  "outcome": "retry_pending",
+  "evidence": "Pending verification of `shards_capture` health."
+}

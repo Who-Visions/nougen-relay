@@ -1,0 +1,36 @@
+{
+  "id": "20260814T210729Z__mondy__claude-cli",
+  "machine": "mondy",
+  "agent": "claude-cli",
+  "goal": "fleet connector built+tested on mondy: OAuth MCP Worker awaits deploy (any lane with node/wrangler)",
+  "branch": "main",
+  "sha": "482a35e",
+  "remote": "origin",
+  "created_utc": "2026-08-14T21:07:29.981325+00:00",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": true,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "checkpoint",
+      "state": "in_progress",
+      "machine": "mondy",
+      "agent": "claude-cli",
+      "at": "2026-08-14T21:23:09.282656+00:00",
+      "note": "repo now at github.com/Who-Visions/nougen-fleet-mcp (private, main) - clone directly, no need to pull from mondy. Still needed: wrangler deploy + 4 secrets from key-maker. GM already supplied the GITHUB_TOKEN value."
+    },
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "mondy",
+      "agent": "claude-cli",
+      "at": "2026-08-14T21:27:59.236017+00:00",
+      "note": "Deployed from mondy via raw CF API (GM supplied creds in-session). LIVE at https://nougen-fleet-mcp.whoentertains.workers.dev/mcp - end-to-end verified: OAuth DCR+PKCE dance, then relay_open returned the registry's real open legs through the Worker. Secrets set: SIGNING_SECRET, FLEET_KEYS (gm-phone), GITHUB_TOKEN. Outstanding: SHARD_GATEWAY_TOKEN + SHARD_GATEWAY_URL once blade's NGS leg lands; whoart no longer needed for deploy."
+    }
+  ]
+}

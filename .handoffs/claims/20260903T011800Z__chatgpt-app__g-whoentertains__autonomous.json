@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Blade SSH inference readiness sweep for Phoebus and WhoArt",
+  "scope": "relay:20260903T011800Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T01:37:37.124674+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T011800Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "9780d596eeb0fd2607ac88381b7779407489003163d1b50b4687306ba955091b",
+  "released_utc": "2026-09-03T01:38:03.154179+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): Phoebus: Ready. Latency baseline established at 45ms. WhoArt: Ready. Inference pipeline nominal."
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Track OpenAI Workspace Agent API wake lane status",
+  "scope": "relay:20260904T183519Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T19:57:09.867183+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T183519Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "8b0925305d8e85e5272668b2f3ddbd8594ea8972a1db1dd43d3b4dc2149afb84",
+  "released_utc": "2026-09-04T19:59:28.048574+00:00",
+  "outcome": "dead_letter",
+  "evidence": "fleet-answer (question-shaped leg): Status: Wake lane status for OpenAI Workspace Agent API is currently PENDING CONFIRMATION."
+}

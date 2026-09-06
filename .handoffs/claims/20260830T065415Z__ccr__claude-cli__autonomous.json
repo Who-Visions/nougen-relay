@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: raise the NGS node's 2.0s vault-sweep timeout (vaults 8/19/43 dropped from sweep) and make a dropped vault fail loudly instead of silently shrinking the shards_search result set",
+  "scope": "relay:20260830T065415Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-30T10:00:10.794290+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T065415Z__ccr__claude-cli",
+  "idempotency_key": "e59c5eed33e069e106668254438733c7c27124314defa0627152a2dfba1b5151",
+  "released_utc": "2026-08-30T10:05:56.759813+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

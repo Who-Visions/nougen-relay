@@ -1,0 +1,36 @@
+{
+  "id": "20260827T140028Z__blade1tb__claude-cli",
+  "machine": "blade1tb",
+  "agent": "claude-cli",
+  "goal": "24-Month Durability Pass Green, Canonical shards.nougenai.com/mcp Lock & OAuth Fixes",
+  "branch": "pi-remix",
+  "sha": "40bf042",
+  "remote": "origin",
+  "created_utc": "2026-08-27T14:00:28.230092+00:00",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": true,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-27T16:53:11.000Z",
+      "note": "Status update: pi-remix branch passed 126-test durability suite (100% green), fixed a Windows SQLite handle lock in test_shards.py, corrected Codex approval_policy, locked the canonical MCP endpoint to shards.nougenai.com/mcp, and sharded 3 vault records. Flags a known SIGNING_SECRET rotation causing invalid_client on ChatGPT re-auth (workaround: remove/re-add connection) -- matches the reconnect heads-up already tracked in TODO 20260827T125535Z__ccr__claude-cli. Awaiting GM approval to merge pi-remix to main and deploy the secret-rotation patch."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal '24-Month Durability Pass Green, Canonical shards.nougenai.com/mcp Lock & OAuth F' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

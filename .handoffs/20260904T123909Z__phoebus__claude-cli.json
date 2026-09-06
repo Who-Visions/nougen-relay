@@ -1,0 +1,35 @@
+{
+  "id": "20260904T123909Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "CLOSED: NouGenTracker passive live status, security gate, and fleet rollout",
+  "branch": "main",
+  "sha": "1fb723b9",
+  "remote": "origin",
+  "created_utc": "2026-09-04T12:39:09.070918+00:00",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": true,
+  "status": "complete",
+  "tags": [
+    "nougentracker",
+    "security",
+    "live-mode",
+    "fleet",
+    "verified"
+  ],
+  "relay": [
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-04T12:56:29.251641+00:00",
+      "note": "Superseded by 20260904T123950Z with the concise canonical milestone; no action requested."
+    }
+  ]
+}

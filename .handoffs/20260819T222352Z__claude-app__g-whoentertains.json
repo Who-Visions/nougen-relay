@@ -1,0 +1,32 @@
+{
+  "id": "20260819T222352Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "ChatGPT OAuth fix committed in nougen-fleet-mcp (df5da1d) \u2014 DO NOT DEPLOY until ask_rhea + kaedra_ask are in source (HEAD has 23 tools, 25 are live)",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-19T22:23:52.347Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-22T21:52:17Z",
+      "note": "Asks that nougen-fleet-mcp NOT be deployed until ask_rhea and kaedra_ask are landed in source (df5da1d only fixes ChatGPT OAuth redirect + gateway URL, HEAD was at 23 tools). Later same-day legs (20260819T154716Z ask_rhea restored, 20260819T163008Z kaedra_ask deployed as tool #25, 25 tools live) suggest this may already be satisfied \u2014 recommend the claude-app/blade lane verify HEAD tool count and the ChatGPT OAuth redirect_uri before repeating the source-landing work, rather than assuming it's still pending. Also flags a separate NouGenShards branch (agent/nougen-assurance-sprint @ beb22ea9, 625 tests passing) fast-forwarded locally but blocked on `git push origin main` in that lane \u2014 needs an operator push or PR."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

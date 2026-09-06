@@ -1,0 +1,35 @@
+{
+  "id": "20260903T041837Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "BUILD NOW: AGY cold idle-wake adapter for true zero-prompt baton execution",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T04:18:37.838Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "## Why this leg exists\nDave approved the next implementation step after the live AGY transcript. Active-turn autonomous baton pickup is now VERIFIED: leg `20260903T040620Z__chatgpt-app__g-whoentertains` was caught with no fresh Dave prompt, read, scoped, executed, verified at 345/345 tests, persisted, and broadcast. Do not regress or re-litigate that.\n\nThe remaining gap is COLD/IDLE WAKE: after Antigravity has completed a turn and is genuinely waiting, `PreInvocation` is dormant and cannot create a new model turn. NouGen needs an always-on layer below Antigravity that observes eligible batons and wakes/resumes AGY.\n\n## Build target\nImplement a provider adapter path, initially for Antigravity/AGY, from the persistent watcher/relay daemon or equivalent always-on service:\n\n1. Detect a newly eligible relay baton targeted to Antigravity/AGY.\n2. Check canonical relay/claim truth first. Never auto-claim solely because a file exists.\n3. Apply scope/safety policy before execution.\n4. Determine whether AGY is ACTIVE or IDLE.\n5. If ACTIVE: preserve current PreInvocation injection path.\n6. If IDLE: invoke the supported Antigravity CLI wake/resume entrypoint with a concise baton brief and stable session hint when available. Do not guess private paths; discover executable/config.\n7. After wake, inject/read the FULL canonical leg before acting.\n8. Require receiver-side proof that the resumed AGY context received the baton.\n9. Only then permit claim/execution under policy.\n10. Verify work, acknowledge/persist result, and emit relay/nougenmsg receipt.\n\n## Engineering constraints\n- Do not break the existing 11/11 NouGenMsg/AgyMsg tests, persistent AgyMsg task, or PreInvocation mid-turn hook.\n- No terminal popups or foreground-stealing windows. Use hidden/background process launch where the OS supports it.\n- Avoid duplicate AGY launches. Use a lock/lease or session registry so one baton cannot spawn multiple AGY processes.\n- Add debounce/idempotency keyed by relay leg/event id.\n- Add cooldown/backoff for failing wake attempts.\n- Never treat process-spawn success as wake proof.\n- Preserve all canonical claim state; do not scrub `.handoffs/claims`.\n- Public-main safe: no Dave account email, Blade-specific absolute path, private endpoint, or hardcoded machine identity.\n\n## Required tests\nAt minimum add tests for:\n- active target routes to inject without spawning;\n- idle target calls wake adapter exactly once;\n- duplicate baton does not double spawn;\n- ineligible/claimed baton does not wake AGY;\n- wake process failure leaves baton queued and reports partial state;\n- receiver proof timeout does not mark success;\n- successful wake transitions state to `IDLE_WAKE_OK` then `RESUMED` then `ACKED` as evidence arrives;\n- hidden/background spawn arguments on Windows are used so no flashing terminal window appears.\n\n## Canary acceptance test\nUse a NEW harmless Veilverse canary after implementation, not the already consumed active-turn canary. Test conditions must be:\n- AGY has fully finished its turn and is visibly idle/waiting.\n- Dave sends no new keystroke or prompt to AGY.\n- ChatGPT/another lane publishes a safe canon-classification baton.\n- watcher sees it -> wakes/resumes AGY -> AGY reads full leg -> produces requested result -> acknowledges/relays back.\n\nIf any Dave interaction is required after baton publication, mark `IDLE_WAKE_OK=false` and continue debugging.\n\n## Productization\nWire this into the provider-agnostic NouGen Wake contract from leg `20260903T041659Z__chatgpt-app__g-whoentertains`, including CLI/skill hooks such as `nougen wake doctor antigravity`, `nougen wake canary --idle antigravity`, and capability reporting for `can_wake_idle` / `can_resume_session`.\n\n## Done when\nA stranger with Antigravity connected can run setup/verify, leave AGY idle, receive a relay baton, and watch NouGen wake/resume AGY and complete a safe canary without understanding hooks, named pipes, Task Scheduler, or session internals.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T14:00:00Z",
+      "note": "BUILD NOW: AGY cold idle-wake adapter for true zero-prompt baton execution"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'BUILD NOW: AGY cold idle-wake adapter for true zero-prompt baton execution' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

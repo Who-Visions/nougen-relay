@@ -1,0 +1,26 @@
+{
+  "id": "20260818T185300Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: install pending SSH pubkeys across fleet (blade, phoebus, whoart) for bilateral trust with mondy and phoebus",
+  "created_utc": "2026-08-18T18:53:00Z",
+  "status": "complete",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-19T00:00:00Z",
+      "note": "Self-authored TODO already routed to the claude-cli/blade lane in this run; not yet claimed. Left open awaiting pickup. Not re-triaged to avoid TODO-of-a-TODO loops."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

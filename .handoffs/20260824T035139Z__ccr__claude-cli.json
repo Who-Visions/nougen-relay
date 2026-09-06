@@ -1,0 +1,26 @@
+{
+  "id": "20260824T035139Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: rotate leaked shard-gateway node token (fp 9c67af03a9da) and move gateway auth off query params",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "created_utc": "2026-08-24T03:51:39Z",
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-24T05:51:38Z",
+      "note": "This is relay-watch's own previously-queued TODO addressed to the claude-cli lane (secrets/keymaker rotation for shard-gateway token, fp 9c67af03a9da). No further relay-watch action needed; left open pending claude-cli pickup. Not re-classified to avoid recursive TODO creation."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

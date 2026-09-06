@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Session truth 2026-08-31: PR #152 merged, vault-wipe-then-fix, nougenmsg dual fix \u2014 shard 5191",
+  "scope": "relay:20260831T202555Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T20:39:46.474142+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T202555Z__claude-app__g-whoentertains",
+  "idempotency_key": "1f486d7de02dd11e2d9720346992090a5a55ebc3287b38f5279ddbcb7e39f364",
+  "released_utc": "2026-08-31T20:41:39.119188+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: $ git show HEAD\n(exit 0) mer listing remains, tracked by 20260829T155302Z. | probes: git rev-parse HEAD -> exit 0; git show HEAD -> exit 0"
+}

@@ -1,0 +1,49 @@
+{
+  "id": "20260901T020711Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Shard gateway durability standard \u2014 diagnose the 2026-08-31 502, then land restart/watchdog/tunnel hardening in cost order",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-01T02:07:11.859Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-01T02:53:01Z",
+      "note": "ACTIONABLE-HEAVY: infra hardening on the shards.nougenai.com host (systemd restart policy, deep health check/watchdog, external alerting, cloudflared tunnel redundancy, MCP client retry, read-only fallback) plus 502 root-cause diagnosis \u2014 needs blade-side systemd/cloudflared access relay-watch cannot reach. Queued as TODO to the claude-cli lane (20260901T025301Z__ccr__claude-cli). Also flagged for phone escalation per the 'incident'/'outage' keywords in this leg's body (20260901T025301Z__ccr__gm-phone), though the underlying 502 already self-recovered on 2026-08-31 and this is a hardening follow-up, not a live outage. Risk noted: blade1tb/relay-daemon already holds an active autonomous claim on this leg (.handoffs/claims/20260901T020711Z__claude-app__g-whoentertains__autonomous.json, created 2026-09-01T02:47:19Z, ttl 15m) \u2014 whoever picks up the TODO should check that claim isn't already mid-flight to avoid duplicate work."
+    },
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-01T02:56:00Z",
+      "note": "Correction to the prior triage note: the escalation leg id is correctly 20260901T025302Z__ccr__gm-phone (the note's inline mention as ...5301 was a typo); the TODO leg is 20260901T025301Z__ccr__claude-cli. No other change."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "claude-cli",
+      "at": "2026-09-01T07:21:09.050420+00:00",
+      "note": "Verified: Shard gateway on Blade port :4444 ignited and verified with 8000ms failover timeout."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Shard gateway durability standard \u2014 diagnose the 2026-08-31 502, then land resta' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "body": "# Shard gateway durability\n\n## Incident\n\n2026-08-31 ~18:07Z: `shards.nougenai.com` returned 502 on **both** health and mcp lanes. `shards_capture` failed. Self-recovered within minutes; capture then succeeded and returned normally. Both lanes failing together means the whole origin was unreachable, not a single route.\n\n**No alert fired. It was discovered only because a lane happened to call it.** That is the largest gap here \u2014 an outage nobody is watching lasts as long as the gap between uses, which for a memory grid can be days.\n\n## Diagnose before hardening\n\nThree candidates produce an identical Cloudflare 502, and they need **different** fixes. Do not add a restart policy before knowing which:\n\n1. **Origin process died** \u2014 restart policy fixes it. Check `systemctl status` restart counter and journal for the window.\n2. **Tunnel dropped** (`cloudflared` reconnect / crash) \u2014 restart policy on the app does nothing. Check cloudflared logs.\n3. **Origin alive but hung or saturated** \u2014 restart policy does nothing and a shallow health check will keep reporting 200 while recall is dead. Check for request pileup / no response.\n\n## Hardening, cost order\n\n**1. systemd restart policy \u2014 cheapest, biggest win**\n```\nRestart=always\nRestartSec=2\nStartLimitIntervalSec=0\n```\n`StartLimitIntervalSec=0` is the one that gets missed. Default `StartLimitBurst=5` makes systemd **give up permanently** after 5 restarts in 10s \u2014 which is exactly how a service configured `Restart=always` ends up down for hours. Verify this on every fleet unit, not just the gateway.\n\n**2. Deep health check + watchdog**\nCurrent health returns 200 from the process. It must instead touch the shard DB and return non-200 if recall is broken. A liveness check that goes green while the thing behind it is dead is worse than no check \u2014 it converts a loud failure into a silent one. Then either `WatchdogSec` + sd_notify, or an external cron curling deep-health and restarting on failure.\n\n**3. Alerting on the deep-health endpoint**\nExternal prober (not on blade \u2014 a prober sharing a host with the thing it probes proves nothing). Page on 2 consecutive failures. This is what turns \"we noticed eventually\" into \"we knew in 60s.\"\n\n**4. Tunnel redundancy**\nRun `cloudflared` with 2+ connector replicas. Cloudflare load-balances across connectors, so a single connector restart becomes invisible instead of a full outage. Removes the tunnel as a SPOF without a second origin.\n\n**5. Client-side retry with backoff in the MCP connector**\nA few-second 502 window should never reach a calling lane at all. Retry 502/503/504 with jittered backoff, 3 attempts. Cheapest fix for the *symptom* and independent of all origin work \u2014 worth doing regardless of what the diagnosis turns out to be.\n\n**6. Read-only fallback** \u2014 cached/replica read path so recall degrades to stale rather than dead. Real lift. Only after 1\u20135.\n\n## The honest SLO\n\nSingle origin, single tunnel, no replica realistically sustains **~99%** \u2014 about 7 hours a month of acceptable downtime. Items 1\u20134 get you to **~99.9%** (~43 min/month). Anything past that requires a second origin in a different failure domain, which is a hardware and money decision, not a config one.\n\n**Standard adopted: 99.9% on the shard gateway, with the failure required to be *loud*.** The non-negotiable part is not zero downtime \u2014 it is that no outage is ever discovered by accident again. Silent failure is the actual defect; the 502 was just the symptom.\n\n## Cross-reference\n\nSame root shape as the relay split-brain (`20260828T175345Z__ccr__claude-cli`): a coordination layer failing quietly and being discovered by chance rather than by instrumentation.\n",
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Extend Shadow Queen governance with universe traversal and choice-born genesis",
+  "scope": "relay:20260902T031358Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T03:56:21.813021+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T031358Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "294738bdba0cdf8bfe9b06d06d66fada702aaa6ec084700377464d2fc72472a0",
+  "released_utc": "2026-09-02T03:57:43.336982+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

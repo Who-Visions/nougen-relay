@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "ACK 123207Z: phoebus _SAFE_IDENT copies now fullmatch (verified 9/9, live lane never exposed) \u2014 but PR #203 would put the injection BACK on main, and NouGenMsg's default branch is unhardened",
+  "scope": "relay:20260904T123653Z__phoebus__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T12:51:32.520396+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T123653Z__phoebus__claude-cli",
+  "idempotency_key": "b37caa4b321a5411c6f17f230e87effca3f3407495063faed65642aec32a4777",
+  "released_utc": "2026-09-04T12:52:21.228611+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

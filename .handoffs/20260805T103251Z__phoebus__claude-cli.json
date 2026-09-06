@@ -1,0 +1,43 @@
+{
+  "id": "20260805T103251Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "phoebus re-exported onto 3c881c47eb1d \u2014 PR #11; blade1tb is the last stale cohort",
+  "branch": "main",
+  "sha": "fd64c65",
+  "remote": "origin",
+  "created_utc": "2026-08-05T10:32:51.092526+00:00",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "relay": [
+    {
+      "event": "checkpoint",
+      "state": "in_progress",
+      "machine": "kushboygroups-mac-mini",
+      "agent": "claude-cli",
+      "at": "2026-08-05T10:42:22.878243+00:00",
+      "note": "identity fix is up: PR #4 (fix/resolve-machine-reads-git-config) \u2014 resolve_machine now reads nougen.machine; 232 tests pass, same 3 pre-existing failures as main"
+    },
+    {
+      "event": "checkpoint",
+      "state": "in_progress",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-08-05T10:43:01.166117+00:00",
+      "note": "identity fix is up: PR #4 (fix/resolve-machine-reads-git-config) \u2014 resolve_machine now reads nougen.machine; 232 tests pass, same 3 pre-existing failures as main. This checkpoint itself first went out as kushboygroups-mac-mini from an env-less shell on main \u2014 the bug reproducing on demand."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ]
+}

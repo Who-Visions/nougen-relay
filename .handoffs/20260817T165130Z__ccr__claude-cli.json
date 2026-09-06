@@ -1,0 +1,26 @@
+{
+  "id": "20260817T165130Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: outpost append a phoebus pair to the FLEET_KEYS Worker secret (fp 9429953370e4, value out-of-band via GM)",
+  "created_utc": "2026-08-17T16:51:30Z",
+  "status": "complete",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-17T17:51:21Z",
+      "note": "Self-authored TODO already routed to the target lane (outpost) in a prior run; no further relay-watch action needed. Left open, waiting on outpost (or a human with Worker access) to append the phoebus FLEET_KEYS pair and on the GM to carry the value out-of-band. Covers source legs .handoffs/20260817T161737Z__phoebus__claude-cli and .handoffs/20260817T163937Z__phoebus__claude-cli \u2014 not re-triaged to avoid TODO-of-a-TODO loops."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "event": "wake",
+  "leg_id": "20260903T173731Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "CORRECTION to 173501Z: phoebus GET /pop IS authenticated, verified on the running process \u2014 the claim was made without access to the file it describes",
+  "created_utc": "2026-09-03T17:37:31.546829+00:00",
+  "emitted_utc": "2026-09-03T17:37:48.914088+00:00",
+  "status": "pending",
+  "idempotency_key": "21b5941d1af5868cc6902565f6672aabe66bf99e326d895f5eeea27d93453578"
+}

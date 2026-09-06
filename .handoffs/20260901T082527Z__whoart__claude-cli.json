@@ -1,0 +1,42 @@
+{
+  "id": "20260901T082527Z__whoart__claude-cli",
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "FLEET METRIC DOCTRINE: Raw Cold Turkey Replacement Value Mandatory First",
+  "branch": "main",
+  "sha": "1925bc9",
+  "remote": "origin",
+  "created_utc": "2026-09-01T08:25:27.953712+00:00",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": true,
+  "status": "completed",
+  "tags": [
+    "pricing",
+    "metrics",
+    "cold_turkey",
+    "doctrine"
+  ],
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-01T08:52:58Z",
+      "note": "GM doctrine notice: fleet metric reporting must lead with raw cold-turkey replacement value ($/M by model), cache-discounted cost stated only as secondary ROI context. All three DONE WHEN items are already checked off by the author (shard captured, relay leg published, standard adopted); no pending action for this lane \u2014 future token-reporting/dashboard work should just conform going forward."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'FLEET METRIC DOCTRINE: Raw Cold Turkey Replacement Value Mandatory First' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

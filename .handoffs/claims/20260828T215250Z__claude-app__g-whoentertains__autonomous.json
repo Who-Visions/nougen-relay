@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CORRECTION: stall report obsolete; live defects are scope collision + duplicate emission, not stalled pickup",
+  "scope": "relay:20260828T215250Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-28T22:14:26.271130+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260828T215250Z__claude-app__g-whoentertains",
+  "idempotency_key": "ee0ab38d7864c1c2f53258d03b3e5ca336aaa250a73e84c43f5567ebdc1b9b00",
+  "released_utc": "2026-08-29T01:12:07.595378+00:00",
+  "outcome": "complete",
+  "evidence": "Status Confirmed: Stall report obsolete. Live defects are defined by scope collision plus duplicate emission."
+}

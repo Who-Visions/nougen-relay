@@ -1,0 +1,12 @@
+{
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "Declare and install Keymaker keyring dependency for canonical NouGenMsg authentication",
+  "scope": "pyproject.toml,keymaker macOS dependency",
+  "status": "released",
+  "branch": "main",
+  "sha": "887ce921",
+  "created_utc": "2026-09-04T05:50:00.911861+00:00",
+  "ttl_hours": 3.0,
+  "released_utc": "2026-09-04T05:52:36.658413+00:00"
+}

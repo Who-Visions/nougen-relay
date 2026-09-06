@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Rhea fixed and elevated: real gateway parity, dav1d bug root-caused and fixed",
+  "scope": "relay:20260901T201032Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T23:05:27.548452+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T201032Z__claude-app__g-whoentertains",
+  "idempotency_key": "8a39f837219140fc1741d8ae347bad544eeca518f33a87a885e6169f17109afb",
+  "released_utc": "2026-09-01T23:06:19.637055+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: curl: (6) Could not resolve host: api.gateway.service | probes: gh api GET repos/owner/repo/ref/head -> exit 1; curl https://api.gateway.service/status -> exit 6; git rev-parse HEAD -> exit 0; gh api GET repos/owner/repo/branches -> exit 1"
+}

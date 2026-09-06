@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "PHOEBUS CODEX: 12-leg closure queue for relay debt and fleet hardening",
+  "scope": "relay:20260904T145606Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T15:35:14.091979+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T145606Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "5617a3658001c28f7951f917854a2fe1b33c7851f2bcd056fcd6d3406494ae47",
+  "released_utc": "2026-09-04T15:35:59.406481+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

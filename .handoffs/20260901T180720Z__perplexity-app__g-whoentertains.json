@@ -1,0 +1,38 @@
+{
+  "id": "20260901T180720Z__perplexity-app__g-whoentertains",
+  "machine": "perplexity-app",
+  "agent": "g-whoentertains",
+  "goal": "UNK repository profile and dated development timeline captured",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-01T18:07:20.662Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "## Source\n\nGitHub: `Who-Visions/unk-app-ai` (public Python repository)\n\n## Repository facts\n\n- Created: `2025-12-03T03:47:49Z`\n- Default branch: `main`\n- Latest visible push: `2026-01-18T18:20:54Z`\n- Latest visible update: `2026-01-18T18:20:59Z`\n- Current observed head: `6b253c091516071fbca9c384c980c5c402ce248b`\n\n## Identity and architecture\n\nUNK identifies as the Who Visions Fleet **Cognitive Orchestrator**. It has an A2A identity card and six routing tiers: `cost_saver`, `default`, `flash_thinking`, `unk_mode`, `ultrathink`, and `code_specialist`. The repo includes FastAPI/Cloud Run deployment material, Gemini/agent components, routers/services, a reasoning engine, A2A docs, skills, lore/vector memory artifacts, validation suites, CLI/chat tools, Antigravity configuration, and trading/backtest modules.\n\n## Timeline\n\n- `2025-12-03T03:52:35Z` \u2014 initial multi-model cognitive system (`de5d307`)\n- `2025-12-03T05:36:59Z` \u2014 Cloud Build and auto-deploy configuration (`d0de3d9`)\n- `2025-12-03T08:27:51Z` \u2014 YN mode, YouTube analysis, auto-routing, retry logic (`72b3592`)\n- `2025-12-03T08:40:24Z` \u2014 Cloud Run startup/dependency/import repairs (`ccd6487`)\n- `2025-12-15T01:08:13Z` \u2014 A2A identity card, 11 capabilities, eight API endpoints, public discovery, six-tier metadata (`2018c88`)\n- `2025-12-15T01:16:56Z` \u2014 Vertex AI Reasoning Engine with routing, cost-aware model selection, A2A discovery, tier prompts (`84be720`)\n- `2025-12-15T01:59:50Z` \u2014 Reasoning Engine recorded in A2A card/docs (`9ff0724`)\n- `2025-12-15T07:03:54Z` \u2014 FastAPI CORS documentation/testing and middleware detail (`0849681`)\n- `2026-01-12T21:22:46Z` \u2014 service refactor, Thread-Based Engineering/Ralph loop, Slack/Notion skill work, telemetry, credential cleanup (`f1f86f1`)\n- `2026-01-12T22:53:08Z` \u2014 loredb sync across SQLite, Firestore, BigQuery, and Notion (`e949507`)\n- `2026-01-13T07:09:46Z` \u2014 enterprise voice upgrade and Gemini 3 integration (`d67ad02`)\n- `2026-01-15T04:32:22Z` \u2014 micro-scalping bot with env-secret handling, Rich CLI, 500 ms web updates (`985309b`)\n- `2026-01-18T18:20:54Z` \u2014 root cleanup and verification-import repair (`6b253c0`)\n\n## Boundary\n\nThis is verified from GitHub metadata, root inventory, code-role hits, and the first 20 visible main-branch commits. It does not establish that any deployment or trading process is currently live.",
+  "acked_by": "relay-daemon@blade1tb",
+  "acked_utc": "2026-09-01T19:25:25.385906+00:00",
+  "ack_note": "daemon dispatch verified: fleet-answer (question-shaped leg): Repository profile and dated development timeline captured.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "blade1tb",
+      "agent": "relay-daemon",
+      "at": "2026-09-01T19:25:25.385906+00:00",
+      "note": "daemon dispatch verified: fleet-answer (question-shaped leg): Repository profile and dated development timeline captured."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'UNK repository profile and dated development timeline captured' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

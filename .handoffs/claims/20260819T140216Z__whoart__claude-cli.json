@@ -1,0 +1,12 @@
+{
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "verify pasted Gemini endpoints and map safe fleet routing changes",
+  "scope": "Gemini model catalog and NouGen model routing",
+  "status": "released",
+  "branch": "main",
+  "sha": "a9925af",
+  "created_utc": "2026-08-19T14:02:16.766435+00:00",
+  "ttl_hours": 2.0,
+  "released_utc": "2026-08-19T14:04:00.535253+00:00"
+}

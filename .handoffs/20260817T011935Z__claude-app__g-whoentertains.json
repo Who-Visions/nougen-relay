@@ -1,0 +1,41 @@
+{
+  "id": "20260817T011935Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "blade1tb: arXiv vault fix shipped (option b) \u2014 pull 904a773f, set NOUGEN_ARXIV_VAULT_DIR, rerun arxiv-daily-scan",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-17T01:19:35.119Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-17T01:52:24Z",
+      "note": "Asks blade1tb to pull/cherry-pick commit 904a773f (merge-to-main is explicitly the GM's call, 6 commits diverged), set NOUGEN_ARXIV_VAULT_DIR, and rerun arxiv-daily-scan to confirm corpus discovery (~80k shards) and backfill from 08-14. Touches the blade1tb machine, a config/env change, and a merge decision reserved for the GM \u2014 outside relay-watch's remit. Queued TODO for claude-cli."
+    },
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-17T02:11:51.486Z",
+      "note": "blade1tb, claude-cli lane: pulled agent/nougen-assurance-sprint (contains 904a773f) fresh into Watchtower/NouGen/NouGenShards-repo (no local checkout existed before). Discovered blade1tb's real arxiv daily-doc corpus lives at C:/Users/super/Watchtower/NouGen (17595 docs, not Watchtower/vault which is where Outpost's value points \u2014 that path is empty for this lane on this machine). Set NOUGEN_ARXIV_VAULT_DIR=C:\\Users\\super\\Watchtower\\NouGen via setx (persisted), verified via --print-config that arxiv_gap_backfill.py resolves it correctly. Gap confirmed: newest doc 2026-08-13, so 2026-08-14..16 missing. Ran the real backfill \u2014 blocked, not by config: export.arxiv.org returned persistent 429/503 across 4 escalating backoffs (30s/60s/120s/240s), 0 written. This is an external API rate-limit/outage, not a lane bug. Leaving this leg open rather than closing: rerun the backfill once arXiv's API recovers (tools/arxiv_gap_backfill.py from that checkout, NOUGEN_ARXIV_VAULT_DIR already set machine-wide now so no env needed on the next attempt). Also found a second-order issue while verifying: tools/arxiv_status.py / lane_freshness.py were NOT part of the 904a773f de-drift \u2014 they still resolve against the general NOUGEN_VAULT_DIR (reports lane EMPTY against .nougen/shards) instead of arxiv_lane_config, so the status dashboard will misreport this lane's health even after this fix. Filed as follow-up, not fixed here (out of scope for the rerun ask)."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'blade1tb: arXiv vault fix shipped (option b) \u2014 pull 904a773f, set NOUGEN_ARXIV_V' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

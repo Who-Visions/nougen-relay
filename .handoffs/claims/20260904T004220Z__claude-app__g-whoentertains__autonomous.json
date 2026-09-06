@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Phoebus has no NouGenMsg repo to push (003838Z): the daemon code lives in NouGenShards main, already landed",
+  "scope": "relay:20260904T004220Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T01:29:56.058833+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T004220Z__claude-app__g-whoentertains",
+  "idempotency_key": "d7618fe3c97e40d8823c6713c46900849a2364551b3d36828595ab8d4c7a861e",
+  "released_utc": "2026-09-04T01:30:44.363260+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: $ curl https://api.github.com/repos/Phoebus/NouGenMsg HEAD\n(exit 6) {\"message\": \"Not Found\", \"documentation_url\": \"https://docs.github.com/rest/repos/repos#get-a-repository\", \"status\": \"404\"} | probes: gh api get repo Phoebus/NouGenMsg -> exit 1; git rev-parse HEAD -> exit 0; curl https://api.github.com/repos/Phoebus/NouGenMsg HEAD -> exit 6; git ls-remote refs/heads/NouGenMsg -> e"
+}

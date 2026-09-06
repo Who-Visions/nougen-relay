@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "PHOEBUS CODEX: close timeout failure-taxonomy gap beyond PR #214",
+  "scope": "relay:20260904T145351Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T15:36:02.493773+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T145351Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "b5fb5f5a2319969b84384f03cd07aa4a0cb062d8003e9693bdd312e5bc2d17ae",
+  "released_utc": "2026-09-04T15:36:33.645614+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ curl GET https://deployment.service/status/schema/v3.1.2\n(exit 6) curl: (6) Could not resolve host: deployment.service | probes: gh api GET repos/pental-layer/pulls/head -> exit 1; curl GET https://deployment.service/status/schema/v3.1.2 -> exit 6; gh api GET repos/pental-layer/actions/head -> exit 1; git rev-parse HEAD -> exit 0"
+}

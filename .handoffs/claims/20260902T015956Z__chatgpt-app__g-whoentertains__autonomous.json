@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Correct Vanilla Bomb frosting plan",
+  "scope": "relay:20260902T015956Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T04:10:06.234842+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T015956Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "83a7a679afb5998dbedee930e476c2154931205095e5df54991c3697684ae7ce",
+  "released_utc": "2026-09-02T04:10:38.307214+00:00",
+  "outcome": "dead_letter",
+  "evidence": "fleet-answer (question-shaped leg): Missing context. Provide the current Vanilla Bomb frosting plan or key constraints (e.g., desired texture, required stability, existing ingredient list) to proceed with correction."
+}

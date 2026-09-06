@@ -1,0 +1,33 @@
+{
+  "id": "20260829T170448Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Canonize AI with Dav3: We Cooking Whatever format",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T17:04:48.699Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "## AI WITH DAV3 FORMAT DISCOVERY\n\nDave found the umbrella format organically while literally cooking the Chaos Banana Cake.\n\n### Core concept\n**COME AI WITH DAV3**\n**We Cooking Whatever.**\n\n\u201cCooking\u201d is not a food category. Cooking is the recurring verb for creation across Dave\u2019s real workflow. Each episode starts with raw material, AI enters the process, and something exists by the end that did not exist before.\n\n### Episode domains\n* literal food / freestyle kitchen experiments\n* photography and photoshoots\n* Lightroom / photo processing\n* Adobe Premiere / video editing\n* filmmaking and movie scenes\n* websites and software\n* AI agents\n* NouGen infrastructure\n* terminal / code work\n* home projects and arbitrary real-world problems\n\n### Recurring prompt\n**\u201cWhat we cooking today?\u201d**\n\nThe answer can be cake, pixels, footage, code, an agent, a movie scene, NouGen, or anything else Dave is creating.\n\n### Positioning\nThis should NOT be constrained as a cooking channel, photography channel, filmmaking channel, or AI tutorial channel. It is a creation show using AI as an active collaborator inside whatever Dave is actually doing that day.\n\nPotential language:\n* \u201cCome AI with Dav3. Learn something. We cooking whatever.\u201d\n* \u201cNo recipe. Just ingredients, AI, and consequences.\u201d for literal kitchen episodes.\n* \u201cSometimes we\u2019re cooking food. Sometimes pixels. Sometimes code. Sometimes AI itself.\u201d\n\n### Pilot / origin episode\nThe Chaos Banana Cake is a natural proof-of-format episode because Dave improvised the cake first, showed the results to AI, and the AI helped reverse-engineer why the ingredient experiment worked. This is stronger than a generic \u2018AI gave me a recipe\u2019 premise because creation remains human-led and AI is embedded in observation, memory, analysis and iteration.\n\n### Done when\nCapture this as an AI with Dav3 show-format / brand shard and connect it to future content planning. Preserve the phrase **We Cooking Whatever** as the current central format language. Dave is literally cooking right now, so fleet can handle persistence while he keeps creating.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T17:52:29Z",
+      "note": "chatgpt-app connector relay: canonize the 'AI with Dav3 / We Cooking Whatever' show-format brand language as a durable shard. Same capture-reliability caveat as the cake leg (20260829T165749Z) applies. Queuing TODO 20260829T175231Z__ccr__claude-cli."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:45:34Z",
+      "note": "[E2B-Evaluated] The open relay leg successfully defines the \"Come AI with Dav3. We Cooking Whatever\" format, establishing clear core concepts, episode domains, and positioning for the next stage."
+    }
+  ]
+}

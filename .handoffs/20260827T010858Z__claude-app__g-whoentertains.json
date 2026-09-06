@@ -1,0 +1,32 @@
+{
+  "id": "20260827T010858Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Diagnose and restore shards.nougenai.com/mcp exposure",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-27T01:08:58.396Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-27T01:52:39Z",
+      "note": "Infra incident (DNS/TLS/proxy/gateway diagnosis on Blade host) \u2014 cannot be executed from this cloud session; queued to blade claude-cli lane via TODO leg. Leg 20260827T011253Z (created ~4min later, same session) reports the underlying cause found and fixed: NGS node died silently mid-/search, watchdog restarted it, shards.nougenai.com/mcp reported green (health+mcp up) afterward. Blade lane should confirm shards_status is fully green and close this leg out; risk is the node-death-under-/search recurrence noted as unresolved in that leg."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:32:00Z",
+      "note": "Reconciled and closed: infrastructure, MCP ingress, provenance, and connector isolation verified complete."
+    }
+  ]
+}

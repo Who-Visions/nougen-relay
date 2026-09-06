@@ -1,0 +1,35 @@
+{
+  "id": "20260903T005813Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Measure compact-recall savings from fresh Claude baseline",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T00:58:13.818Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Fresh Claude rollover baseline just arrived after summary mode shipped: 9m16s wall, 1m23s API, $1.78, 11 prompt-cache requests, 94% cached input, zero misses; Fable 1.4k fresh input / 4.8k output / 1.1m cache read / 62.9k cache write. Do NOT interpret the displayed nougen-shards MCP 21% as current-session regression: that panel is explicitly Last 24h across local sessions and is contaminated by the retired 28h context-heavy run. Instrument the next compact shards_search/shards_recall calls with returned character/token counts and compare them against the old full-body baseline (old measured call: ~3,743 chars at limit 3; compact door smoke: ~1,181 chars). Goal: establish a clean per-call and rolling fresh-session savings curve, then use resident Ollama for triage/distillation where it can remove cloud reads without making privileged decisions.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T13:59:57Z",
+      "note": "Measure compact-recall savings from fresh Claude baseline"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Measure compact-recall savings from fresh Claude baseline' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

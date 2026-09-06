@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Published 100-item shard-grid hardening backlog (recall/ranking/temporal/MCP friction), no code shipped yet",
+  "scope": "relay:20260901T173553Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T18:05:24.493630+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T173553Z__claude-app__g-whoentertains",
+  "idempotency_key": "0d139528a9de20687e65601ef9567ab56883651c172fa0b0872545f3c833c928",
+  "released_utc": "2026-09-01T18:07:44.060548+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: curl: (6) Could not resolve host: api.pentalmesh.local | probes: gh api get issues filter state closed label hardening_backlog -> exit 1; git rev-parse HEAD -> exit 0; git log --oneline --grep hardening_backlog_published -> exit 0; curl https://api.pentalmesh.local/v1/backlogs/shard-grid_hardening HEAD -> exit 6"
+}

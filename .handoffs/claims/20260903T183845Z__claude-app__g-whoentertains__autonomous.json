@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "ROOT CAUSE of the federation local-lane drop: first retrieve() in a fresh process costs 25.04s vs 1.33s for every call after. Not embedder contention, not the whole-brain pass. Every fresh MCP server loses its local lane on call #1",
+  "scope": "relay:20260903T183845Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T19:35:26.191694+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T183845Z__claude-app__g-whoentertains",
+  "idempotency_key": "f1ada916cede362ce9f0fa407d9be16103d0d025b837616ac4edabb542838425",
+  "released_utc": "2026-09-03T19:36:16.043741+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): The latency differential is the initialization overhead of establishing and validating a fresh local lane on the MCP server for the first call."
+}

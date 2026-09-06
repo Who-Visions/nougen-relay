@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO 225258Z fully closed: quiet-box recall bench PASS - retrieve p95 3.86s, federated p95 5.69s, accuracy 1.0 both lanes",
+  "scope": "relay:20260831T033534Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T03:43:33.036054+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T033534Z__claude-app__g-whoentertains",
+  "idempotency_key": "4aca9275e2d20aa219f5e60f1c66394589e7053b7e6e7d9c4caafbfabc00b42f",
+  "released_utc": "2026-08-31T03:44:08.142601+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): TODO 225258Z is fully closed. Quiet box recall bench PASS confirmed."
+}

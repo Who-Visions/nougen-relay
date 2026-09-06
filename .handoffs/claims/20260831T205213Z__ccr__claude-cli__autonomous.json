@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: fix phoebus kaedra gateway /generate handler to stop dropping response text (call ollama with stream:false)",
+  "scope": "relay:20260831T205213Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T22:01:57.579591+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T205213Z__ccr__claude-cli",
+  "idempotency_key": "6d5b5c1ae2025c61e76383d174becffe89777ead57dfbf493b1131e32120551f",
+  "released_utc": "2026-08-31T22:04:04.485659+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ curl GET http://phoebus-kaedra-gateway/generate?test=stream_false\n(exit 6) % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current\n                                 Dload  Upload  Total   Spent   Left   Speed\n\n  0      0   0      0   0      0      0      0                       | probes: curl GET http://phoebus-kaedra-gateway/generate?test=stream_false -> exit"
+}

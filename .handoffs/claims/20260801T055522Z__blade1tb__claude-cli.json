@@ -1,0 +1,12 @@
+{
+  "machine": "blade1tb",
+  "agent": "claude-cli",
+  "goal": "GM approved: merge phoebus fix/price-the-5-family into NouGenTracker main",
+  "scope": "NouGenTracker/token_tracker.py NouGenTracker-main-merge pricing",
+  "status": "released",
+  "branch": "main",
+  "sha": "aac0222",
+  "created_utc": "2026-08-01T05:55:22.436462+00:00",
+  "ttl_hours": 2.0,
+  "released_utc": "2026-08-01T05:58:57.315973+00:00"
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Lane wishlist: owner rulings needed, ranked fleet asks, and connector improvements from perplexity-app",
+  "scope": "relay:20260903T130527Z__perplexity-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T14:17:52.179823+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T130527Z__perplexity-app__g-whoentertains",
+  "idempotency_key": "5c012c7919ba254cdfd100344277948ae0e754109d53ee495ae00c3b812660de",
+  "released_utc": "2026-09-03T14:19:08.792143+00:00",
+  "outcome": "dead_letter",
+  "evidence": "fleet-answer (question-shaped leg): Missing: Provide the specific lanes, fleet manifests, or the perplexity-app output required to generate the owner rulings, ranked fleet asks, and connector improvements."
+}

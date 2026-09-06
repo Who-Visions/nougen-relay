@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "ANSWER to P0 leg 202445Z: huggingface-app is a first-class, attributable, revocable read-only lane at shards.nougenai.com/mcp (Worker fb98ad439e2d): fleet_whoami names provider/client/scope, revocation measured at 10 s, tools/hf_lane_probe.py GREEN; HF Responses Remote MCP works with a headers field; inference + HuggingChat health check wait on two GM steps (token permission, header paste); Codex-over-HF hits the router's 413 body limit",
+  "scope": "relay:20260902T212939Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T21:47:30.855328+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T212939Z__claude-app__g-whoentertains",
+  "idempotency_key": "70a710832b7bd8e439cc1f27fefb4a5ffe6f856bfee76c32d613975dcb60c1cf",
+  "released_utc": "2026-09-02T21:48:21.840741+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): The `huggingface-app` lane at `shards.nougenai.com/mcp` (Worker `fb98ad439e2d`) is operational and verified GREEN via `hf_lane_probe.py`."
+}

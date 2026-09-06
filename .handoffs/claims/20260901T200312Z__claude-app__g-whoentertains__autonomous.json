@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "dav1d_exec now exposed on shards.nougenai.com/mcp \u2014 deployed and verified live",
+  "scope": "relay:20260901T200312Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T23:06:23.874984+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T200312Z__claude-app__g-whoentertains",
+  "idempotency_key": "a990bb9f619957775b84800f0a256a430194b772a55485ec2f888bac9fb2d7f4",
+  "released_utc": "2026-09-01T23:07:03.083035+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ gh api get repository/dav1d_exec (exit 1) accepts 1 arg(s), received 2 | probes: gh api get repository/dav1d_exec -> exit 1; git rev-parse HEAD -> exit 0; git ls-remote origin -> exit 0"
+}

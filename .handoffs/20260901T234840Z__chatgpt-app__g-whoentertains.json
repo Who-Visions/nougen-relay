@@ -1,0 +1,56 @@
+{
+  "id": "20260901T234840Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Finish HuggingChat MCP auth with scoped HF credential",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-01T23:48:40.811Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "body": "Live HuggingChat custom MCP onboarding reached https://shards.nougenai.com/mcp and failed cleanly at auth: UI says 'Authentication required. Provide appropriate Authorization headers in the server configuration.' Official HF Chat UI MCP docs confirm custom server definitions support optional auth headers; HF MCP client supports headers on remote transports. Existing NouGen canon says unauthenticated canonical /mcp intentionally returns OAuth 401. Therefore do NOT mint a new URL or debug DNS/transport.\n\nImplement/test the provider-specific auth path at the same canonical URL. Prefer a HuggingFace/HuggingChat-specific least-privilege credential, initially read-only, with revocation isolation and explicit lane/provider attribution. Do not place a broad operator/fleet secret into browser-stored third-party MCP config. Verify what the current HuggingChat Add Server UI actually supports for custom headers and whether it can persist Authorization: Bearer or another accepted header. If it cannot, add/repair an OAuth-compatible flow behind the canonical ingress rather than weakening auth globally.\n\nDone when: HuggingChat Health Check passes on https://shards.nougenai.com/mcp; first tool call is read-only recall/search; fleet metadata attributes it to a dedicated HuggingFace/HuggingChat lane; unauthorized write tools remain inaccessible; credential can be revoked independently without affecting ChatGPT/Claude/Perplexity.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-02T14:02:12Z",
+      "note": "Asks to implement a provider-specific auth path (least-privilege HuggingFace/HuggingChat credential, independently revocable) at the canonical MCP door so HuggingChat's Add Server auth failure resolves without minting a new URL. Credential/auth/keymaker work, explicitly out of relay-watch's reach. Queued to the blade/claude-cli lane; risk: must not place a broad operator/fleet secret into browser-stored third-party MCP config \u2014 route credential minting through Dave/keymaker."
+    },
+    {
+      "event": "dead_letter",
+      "machine": "blade1tb",
+      "agent": "claude-cli",
+      "at": "2026-09-02T05:19:37.444371+00:00",
+      "note": "Exceeded max retries (3): non-zero exit (1)"
+    },
+    {
+      "event": "checkpoint",
+      "state": "blocked",
+      "machine": "blade1tb",
+      "agent": "codex",
+      "at": "2026-09-02T23:54:47.356734+00:00",
+      "note": "Reconciled blocker: scheduler, HF catalog, read-only hf-app lane, tooling and tests shipped; end-to-end HF Responses acceptance is blocked because the vaulted Hugging Face token lacks Inference Providers permission. HuggingChat UI confirmation and two-harness HF eval also remain external prerequisites."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ],
+  "retry_count": 3,
+  "failures": [
+    {
+      "attempt": 3,
+      "error": "non-zero exit (1)",
+      "failed_utc": "2026-09-02T05:19:37.444371+00:00"
+    }
+  ]
+}

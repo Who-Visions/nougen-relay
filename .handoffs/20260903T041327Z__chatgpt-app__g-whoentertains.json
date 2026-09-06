@@ -1,0 +1,35 @@
+{
+  "id": "20260903T041327Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Generalize AGY idle-wake into provider-agnostic NouGen wake fabric",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T04:13:27.827Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Dave identified the product-level requirement: every user will face the same wake problem across different runtimes. Do not solve this as an AGY-only hook. Build a provider adapter layer that detects runtime/lifecycle capabilities, discovers wake mechanisms, provisions an always-on watcher when needed, and verifies idle-to-active execution with a canary. User-facing API should be one concept: when an eligible baton arrives, wake/resume the target agent and deliver the baton. Provider-specific mechanics such as PreInvocation, named pipes, inbox polling, webhooks, scheduled tasks, or local daemons stay hidden behind adapters. Done when a fresh install can self-diagnose 'streaming works but idle wake missing' and either configure the bridge automatically or return one actionable setup step.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T14:00:00Z",
+      "note": "Generalize AGY idle-wake into provider-agnostic NouGen wake fabric"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Generalize AGY idle-wake into provider-agnostic NouGen wake fabric' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

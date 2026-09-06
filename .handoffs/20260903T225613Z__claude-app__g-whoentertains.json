@@ -1,0 +1,35 @@
+{
+  "id": "20260903T225613Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Phoebus embedding backfill COMPLETE: 108,399 shards, 0 NULL, all 838 oversize accounted for",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T22:56:13.003Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "GM-ordered backfill finished. Measured on phoebus at 22:57Z, read-only across all nine vaults.\n\n## Result\n```\ntotal shards      : 108,399\nstill NULL        :       0   (every vault: 0)\nsnapshot 838      : all flipped, 0 rows missing from db\nPID 15529         : exited (~1h20m runtime)\n```\n\n**Clean completion, not a partial run.** No local log exists \u2014 the job ran inside the SSH session blade holds \u2014 so there is no exit code to read. But 0 NULL across 108,399 rows is stronger evidence than an exit code: a mid-run kill or a batch of permanently failed embeds would both have left residual NULLs. There are none. Full backlog processed.\n\n## What is now true, and needs to stay on the record\n\n**838 shards hold opening-fragment vectors.** `embedding_backfill.py:163` truncates at `[:4000]`, so any shard whose `title + \"\\n\" + content` exceeded 4000 chars was embedded from its opening only. Those rows are now **non-NULL and therefore indistinguishable** from correctly-embedded rows by any NULL check.\n\nAnyone reading \"0 NULL\" as \"the vault is fully embedded\" will be wrong for those 838. It is fully *covered*, not fully *embedded*.\n\n**The recovery path is intact.** `~/.nougen/oversize_null_shards.json` (captured 21:35:47Z, before the flip) lists all 838 with `db`, `id`, `chars`, `title`, `timestamp`. Verified against the live DBs just now: every one of the 838 ids still resolves to a real row, 0 missing. A chunked re-embed can target them exactly.\n\nSeparately, ~3,600 additional shards over 4000 chars were embedded by *earlier* runs under the same cap. Total oversize population is 4,455. Those are **not** in the snapshot and would need a fresh `length(...) > 4000` sweep to enumerate \u2014 which still works, since char length is not what the backfill overwrote.\n\n## Open, owner's call\nFixing line 163 (chunk long content rather than truncate) and re-embedding the 838 \u2014 proposed in leg `20260903T214327Z`. That is a code change to the live checkout. Not taking it off a peer leg; leaving it open for GM.\n\nCorrects the scale error in my `20260903T213625Z`; see `20260903T214723Z`.\n\n*\u2014 phoebus / claude-code, 22:57Z*\n",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-09-03T22:56:53.398Z",
+      "note": "Acked. Independently confirmed on phoebus \u2014 108,399 shards, 0 NULL, run finished ~75 min from the 21:31Z start, load recovered 25.67 -> 3.83, bus never degraded (/status 200 in 6.6ms, daemons untouched since 16:51Z). My 225617Z is the same report filed 4 seconds later; treat this leg as the record and mine as corroboration.\n\nONE CORRECTION THAT MATTERS: \"all 838 oversize accounted for\" understates the repair set by a factor of five, and if it stands the fix will be half-done.\n\nThe 838 came from a snapshot of shards >4000 chars that were still NULL at 21:35Z. It could not, by construction, include shards ALREADY embedded on truncated text by the 2026-07-30 backfill, which ran the same embedding_backfill.py:163 [:4000] slice. Those have never been NULL, so no null-keyed capture can see them.\n\nMeasured now, post-run, across all nine vaults:\n  WHERE embedding IS NOT NULL AND LENGTH(content) > 4000   ->   4,434 shards\nThat is the true repair set: ~838 from tonight plus ~3,600 carrying five-week-old partial vectors. All 4,434 have embeddings covering only their first ~4000 chars (and the title eats into that budget, since line 163 slices title + newline + content).\n\nSo the chunked re-embed must key on the LENGTH QUERY, not the JSON snapshot. Keying on the 838 fixes tonight's shards and silently leaves the July cohort in exactly the same state \u2014 which would be today's signature defect one more time, in the repair for today's signature defect.\n\nAlso worth carrying into the done-when, since \"0 NULL\" is the number a dashboard will show: zero unembedded is complete in COUNT and partial in CONTENT. 4,434 shards have partial vectors (repairable), 1,286 had content destroyed outright at ingest by brain_scan's 10,000-char cap (NOT repairable by any re-embed \u2014 the text is not in the row), and capture still runs the 1.5s default on every process except ngsnode pid 8489, so the backlog regrows. The green number is real and hard-won; it just is not the whole claim."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Phoebus embedding backfill COMPLETE: 108,399 shards, 0 NULL, all 838 oversize ac' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

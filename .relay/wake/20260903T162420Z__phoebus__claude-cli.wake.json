@@ -1,0 +1,11 @@
+{
+  "event": "wake",
+  "leg_id": "20260903T162420Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "Ingested harsh-midday-light ladder into Visions-ai knowledge_base + shards; no 'Ashley Vip' record exists anywhere in the fleet",
+  "created_utc": "2026-09-03T16:24:20.813810+00:00",
+  "emitted_utc": "2026-09-03T16:24:36.188288+00:00",
+  "status": "pending",
+  "idempotency_key": "6e5d819ec2a8068d3fa8879a82fb61b51f7cf9aafa27414a4b3bc80686b625af"
+}

@@ -1,0 +1,42 @@
+{
+  "id": "20260829T153052Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "CORRECTION to my FIX 4/4 + STOP: the source DOES exist (who-visions/nougen-fleet-mcp) but it is 6 DAYS STALE vs production. Patching and deploying from it would silently REVERT today's deployed work, including the tracker_spend subrequest fix.",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T15:30:52.741Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "Retracting the central claim of `20260829T152651Z` and replacing it with something more urgent.\n\n## I was wrong: the source exists\n\nI said no source project existed anywhere. **It does \u2014 `who-visions/nougen-fleet-mcp`, pushed today.** I searched phoebus, searched blade and whoart over SSH, and grepped for wrangler projects, but never listed the org's repos. One `gh repo list` would have found it. My conclusion outran my search.\n\nIt is a proper project: `worker.js` (1,899 lines, hand-written with comments), `wrangler.jsonc`, `tests/`, `tools/deploy.sh`, and `npm run check`.\n\n## But do NOT patch and deploy from it yet\n\n```\nrepo HEAD  : 78accd7   2026-08-23 23:17   (6 days old)\ndeployed   : modified 2026-08-29 05:11, deployment 10:50 today\n\"total_activity\" occurrences   repo: 0    deployed bundle: 8\n```\n\n**Production is ahead of source.** I diffed the deployed bundle against `worker.js` by identifier:\n\n```\nin DEPLOYED but NOT in repo : 22\nin REPO but NOT in deployed :  0\n```\n\nThe repo is a strict subset. Everything it has, production has; production has 22 things it does not. Uncommitted production work includes:\n\n- `TOTAL_ACTIVITY_DEF`, `TOTAL_ACTIVITY_VERSION`, `totalActivity` \u2014 the entire counter contract\n- `mapPooled`, `trackerLimits` \u2014 consistent with the `tracker_spend` subrequest fix **deployed and verified this morning** (`20260829T051519Z`)\n- `shardCallOnce`, `shardCallRetryable`, `laneEnv`, `laneForRedirect`, `FALLBACK_LANE_MAP` \u2014 lane identity / retry work\n- `KAEDRA_TIMEOUT_FALLBACK_MS`, `KAEDRA_URL_FALLBACK` \u2014 matches `fix(kaedra): validate KAEDRA_TIMEOUT_MS`\n- `ACCESS_TTL_S`, `CODE_TTL_S`, `REFRESH_TTL_S` \u2014 OAuth token lifetimes\n- `griotEffectiveTs`, `CHARACTER_LIMIT`, `MCP_PATH`, `PROTOCOL_VERSIONS`\n\nSome of those may be bundler artifacts. `TOTAL_ACTIVITY_*`, `mapPooled` and `trackerLimits` are not \u2014 they are features that exist only in the running worker.\n\n**So anyone who applies my three patches to this repo and runs `tools/deploy.sh` silently reverts all of it**, including a fix that was deployed, verified and relayed today. That is a far worse outcome than the three bugs the patches fix.\n\n## Correct sequence\n\n1. **Whoever deployed at 2026-08-29T10:50:41Z** (`whoentertains@gmail.com`) commits their working source to `who-visions/nougen-fleet-mcp` and pushes. Reconciliation must come from the real source \u2014 **not** from the bundle I pulled, which is built output with `__name()` wrappers and would replace hand-written commented source with machine output.\n2. Confirm the repo then matches production (identifier diff back to zero-in-both-directions).\n3. **Then** land fixes 1-3 as normal PRs: `20260829T152600Z` (kaedra_ask system + grounding), `20260829T152614Z` (listLegs Trees API), `20260829T152633Z` (tracker_spend estimated + reasoning). All three are one-function changes with exact patches and measured before/after numbers, and all three are independent.\n\nI can do step 3 from phoebus the moment step 1 lands \u2014 the repo clones clean, `npm run check` exists, and the patch sites are `worker.js:475` (listLegs), `:1227` (kaedra body), `:1465` (tracker sum).\n\n## The general finding\n\n**A production worker was six days ahead of its repo, and nothing surfaced that.** The deploy path (`tools/deploy.sh`) does not appear to require a clean tree or a matching commit. That is how this happens silently, and it will happen again on the next hotfix. Worth adding a deploy-time guard that refuses to publish when `git status` is dirty or `HEAD` is not what was built \u2014 the same class of protection as the claim guard in NouGenTracker.\n",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T15:53:10Z",
+      "note": "Retraction/correction: who-visions/nougen-fleet-mcp source repo DOES exist but is 6 days stale vs. deployed worker (22 identifiers live in production, absent from repo \u2014 total_activity counter, lane retry/fallback logic, OAuth TTLs). Applying fixes 1-3 (legs 20260829T152600Z/152614Z/152633Z) against the stale repo would silently revert shipped production work. Requires the person who deployed at 2026-08-29T10:50:41Z (whoentertains@gmail.com per the leg) to push their working source before any of fixes 1-3 land, plus a deploy-time dirty/HEAD guard going forward \u2014 both outside relay-watch's reach. Queued TODO 20260829T155304Z__ccr__claude-cli and escalated as P1 20260829T155305Z__ccr__gm-phone given the silent-revert risk to already-deployed, verified fixes."
+    },
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "blade1tb",
+      "agent": "codex",
+      "at": "2026-08-29T18:15:17.088053+00:00",
+      "note": "Superseded by source-reconciliation execution leg 20260829T155304Z and escalation 20260829T155305Z."
+    }
+  ],
+  "retry_count": 1,
+  "failures": [
+    {
+      "attempt": 1,
+      "error": "Missing context required for definitive action.",
+      "failed_utc": "2026-08-29T16:23:39.826640+00:00"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Touched an untracked WIP file (nougenmsg.py) fixing a real bug \u2014 owner please review, not committed",
+  "scope": "relay:20260831T171109Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T17:58:15.858460+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T171109Z__claude-app__g-whoentertains",
+  "idempotency_key": "bf32f5c6535f400ca2612e7c0cefaf01c140b9776ef62e0d27689e4bdd1b11ba",
+  "released_utc": "2026-08-31T17:59:05.736728+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ git show nougenmsg.py\n(exit 128) fatal: ambiguous argument 'nougenmsg.py': unknown revision or path not in the working tree. | probes: git show nougenmsg.py -> exit 128; git ls-files nougenmsg.py -> exit 0; git rev-parse HEAD -> exit 0"
+}

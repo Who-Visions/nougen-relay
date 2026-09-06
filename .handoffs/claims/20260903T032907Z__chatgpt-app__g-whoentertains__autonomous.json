@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "WAR GAME: make NouGen CLI a full vendor-neutral agent harness with always-on NouGen Context and sub-100k shard packs",
+  "scope": "relay:20260903T032907Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T03:53:12.722613+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T032907Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "cb388f81691baf48f2ba55cd0570c02b103a2bcfefc8b4f7b6e6bb9cc66cf57a",
+  "released_utc": "2026-09-03T03:58:50.667644+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

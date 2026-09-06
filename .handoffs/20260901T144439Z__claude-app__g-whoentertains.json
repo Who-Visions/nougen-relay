@@ -1,0 +1,35 @@
+{
+  "id": "20260901T144439Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Retrieval RCA: hits were only in MCP text, structuredContent was a bare stub - fixed in fleet worker (withHits) + /mcp bare path 404 fixed (PR #172); worker deploy awaits GM",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-01T14:44:39.863Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "# Retrieval fix - blade1tb / Claude Cli, 2026-09-01 14:5xZ\n\n## Verified: the grid is innocent\nAll 9 blade DBs: 235,203 rows, `temporal_meta` present on every one, FTS indexes 1:1 with rows. Direct MCP calls to blade answer correctly and fast: `recall_memory` 2.2s with real hits, `recall_window since=2026-04 until=2026-04` returns a 2026-04-30 shard in 4.6s. **The node is fine. The code around it was not.**\n\n## Root cause of \"shards refuse to be retrieved\"\nThe node's shard tools answer in MCP `content` **text**; they return no `structuredContent`. The fleet worker published `withFreshness(result.structuredContent, env)` - i.e. a bare `{gateway_url, checked_utc}` stub. Connectors that render structuredContent therefore showed **\"gateway metadata with no hit payload\"** (ChatGPT's exact words, leg 20260901T084247Z) for queries that DID return shards. Indistinguishable from an empty vault.\n\n## Fixes made\n1. **fleet worker** `C:\\Users\\super\\Watchtower\\NouGen\\nougen-fleet-mcp\\src\\worker.js`:\n   - new `withHits()` carries the rows in BOTH fields (`hits[]` + `count`, `raw` only when nothing parsed). The node concatenates JSON objects with no separator (`}{`), so it uses a string-aware brace-depth scanner, not a whitespace split. Validated against a real 3-hit blade body: count=3, correct ids/titles; braces-inside-strings safe; true-empty stays a stub.\n   - `shards_recall`/`shards_search` now check `result.isError` (they laundered node errors into \"(no matches)\") and fall back to `recall_memory` when `SHARD_TOOL_RECALL`/`SEARCH` are unset. `shards_coverage` already had both guards - which is exactly why coverage was the ONE shard tool that kept working.\n2. **node** PR #172: `/mcp` answered **404** while `/mcp/` served fine - Starlette's Mount hands the inner app an empty path. Fixed with a pre-router middleware rewrite (normalizing inside the token gate cannot work; routing 404s first). Bad token still 401 on both paths. 3 tests.\n\n## Deploy state\n- Worker: patched, `node --check` clean, `deploy.py --dry-run` OK (2,288 lines, account resolved). **PUT is gated for agent lanes - GM runs `python deploy.py` in `nougen-fleet-mcp`.** New `deploy.py` ships only that dir's `src/worker.js`; note `NouGenShards-push-main\\fleet\\worker\\worker.js` is a STALE 1,922-line duplicate and its `deploy_worker.py` would REVERT production - do not use it.\n- Backup of the pre-patch bundle is in this session's scratchpad.\n- PRs open: #169 (sync guards), #171 (boot quarantine), #172 (/mcp bare path).\n\n## Also observed\n`state/gateway_probe.json` has been timing out at 45s every 5 min, and a grid_watch tick runs ~80s - that is phoebus's \"something rescans the grid every ~90s\". Unresolved; separate from this fix.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-02T02:17:18.475442+00:00",
+      "note": "phoebus/claude-cli sweep 2026-09-02: Report read; #172 merged."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Retrieval RCA: hits were only in MCP text, structuredContent was a bare stub - f' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

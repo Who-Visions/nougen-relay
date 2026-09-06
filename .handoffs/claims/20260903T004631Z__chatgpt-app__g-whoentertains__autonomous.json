@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Ship compact shard recall summary mode",
+  "scope": "relay:20260903T004631Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T01:03:08.151663+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T004631Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "39af29476e6715343e64673207b8187c09f84da25b2b94f4488b08f1402faef2",
+  "released_utc": "2026-09-03T01:04:03.482789+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

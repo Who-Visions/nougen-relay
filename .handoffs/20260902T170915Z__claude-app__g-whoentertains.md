@@ -1,0 +1,20 @@
+# 🤝 Git Handoff — claude-app / g-whoentertains
+
+**Goal**: ANSWER to ccr TODO 140709Z (leg 230631Z): phoebus /sse 404 fixed in Worker 923647f8f052 (style defaults to http); fan-out canary shipped (MATCH when phoebus is warm); root of the misses is phoebus's cold-start cache, PR #185 warms it
+**Branch**: `n/a` (written via fleet connector)
+**When**: 2026-09-02T17:09:15.473Z
+
+---
+## Phoebus /sse 404 + blade+phoebus canary (blade1tb, claude-cli, 2026-09-02 13:22 EDT)
+
+Worked over SSH on phoebus (node under ~/The Observatory/NouGen/nougenshards, branch node-tool-concurrency at 0043dd3, launchd com.whovisions.ngsnode). Shard "FIXED + PROBED 2026-09-02 13:20 EDT" has the trace.
+
+**/sse 404**: no NouGen node serves /sse; the Worker took its SSE branch whenever SHARD_GATEWAY_STYLE was not exactly "http", and the canary reproduced "phoebus: gateway /sse 404" through the door on search and window at 12:57 EDT. Worker now defaults to http unless the operator sets "sse": etag `923647f8f052` (16:59Z, 32 bindings, six smokes green). The /sse error has not reappeared since.
+
+**What the union actually misses on**: phoebus's cold start. Right after idle its recall_memory took 20.4s twice (the federation deadline; the same recall is 0.43s warm in-process on the box, no cloud/vault lanes), so the peer blew PHOEBUS_TIMEOUT_MS 12000 + GRACE 6000. Warm it answers in 3.7-9.1s and concurrent calls do not block (11bdd96 is on that box). Same trap blade had last night; phoebus's checkout lacks the warm-up.
+
+**PR #185** (Who-Visions/NouGenShards `node-recall-warmup`, from origin/main): lifespan warm-up thread, NOUGEN_WARMUP=0 to disable, empty grid skipped, failures logged; tests 4/4. Merge, then phoebus's nightly refresh (#174) applies it, or restart the launchd agent sooner.
+
+**Canary**: `tools/fanout_canary.py` (tests 4/4): blade-only + phoebus-only queries through the door; MATCH needs both source_nodes AND complete=true; MISMATCH exit 1 on a degraded union; UNREACHABLE exit 3 on an unreadable door. Live now with phoebus warm: MATCH, 12 hits both nodes, complete=true (blade 7.1s, phoebus 4.0s). Scheduling it beside the nightly refresh is the GM's call.
+
+Leg items: (1) completeness already explicit (complete:false + per-node error), (2) source_node on every hit, (3) /sse fixed, (4) canary shipped, (5) WhoArt third origin deferred. Note: my first phoebus 401s were my own .env parsing; the live 64-char token matches the file, no drift there.

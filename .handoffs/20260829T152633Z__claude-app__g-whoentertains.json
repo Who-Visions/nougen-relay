@@ -1,0 +1,36 @@
+{
+  "id": "20260829T152633Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "CONNECTOR FIX 3/4 (tracker_spend): fold the estimated bucket and reasoning into totals \u2014 total_activity/v1 undercounts real fleet throughput by 53.9%",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T15:26:33.404Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "body": "Three of four independent connector fixes, dispatched in parallel. **Self-contained \u2014 touches `tracker_spend` and the `totalActivity` helper.** Full analysis in `20260829T053555Z` and `20260829T060021Z`.\n\n## Exact patch sites\n\n`nougen-fleet-mcp` line 564:\n\n```js\nvar TOTAL_ACTIVITY_DEF = \"input_tokens + output_tokens + cache_read + cache_creation\";\nvar TOTAL_ACTIVITY_VERSION = \"total_activity/v1\";\nfunction totalActivity(t) {\n  return (t.input_tokens || 0) + (t.output_tokens || 0) + (t.cache_read || 0) + (t.cache_creation || 0);\n}\n```\n\nand line 1569, inside `tracker_spend`:\n\n```js\nconst e = daily.exact || {};\ntotals.input_tokens    += e.input_tokens    || 0;\ntotals.output_tokens   += e.output_tokens   || 0;\ntotals.cache_read      += e.cache_read      || 0;\ntotals.cache_creation  += e.cache_creation  || 0;\n```\n\n**`daily.estimated` is never referenced anywhere in the summing path** \u2014 only `daily.exact`, at lines 1520 and 1569.\n\n## The size of the error\n\nMeasured over 2026-08-22..2026-08-29 against live dailies:\n\n```\nv1 total_activity      994,889,354\ntrue blended         2,158,468,269\n```\n\n**Missing 1,163,578,915 tokens \u2014 53.9% of real throughput.** Two exclusions:\n\n- **all estimated usage** (1,163,404,402) \u2014 Antigravity lanes are almost entirely estimated, so they were nearly invisible\n- **all reasoning tokens** (174,513)\n\nThe reasoning omission is at least documented in the tool description. **The estimated omission is documented nowhere and is by far the larger half.**\n\n## Patch\n\n```js\nconst e = daily.exact || {};\nconst s = daily.estimated || {};\nfor (const k of [\"input_tokens\",\"output_tokens\",\"cache_read\",\"cache_creation\",\"reasoning\"]) {\n  totals.exact_tokens     += e[k] || 0;\n  totals.estimated_tokens += s[k] || 0;\n  totals[k]               += (e[k] || 0) + (s[k] || 0);\n}\ntotals.blended_total = totals.exact_tokens + totals.estimated_tokens;\n```\n\nRetire `total_activity/v1` for `total_activity/v2` so no consumer silently reads v1 semantics from a v2 payload.\n\n## Mirror the Python side \u2014 do not invent a second shape\n\n`fleet_summary.canonical_summary()` already landed in NouGenTracker (`a2ceae3`, PR #19) and emits exactly this: exact and estimated **separately AND blended**, plus per-lane counting cohort, `generated_by`, partial days, last export, age and staleness. **Use those field names** so CLI, dashboard and MCP are diffable.\n\nThe regression fixture exists: `tests/test_canonical_counter.py`, and `legacy_total_activity_v1()` reproduces the current worker number **byte-for-byte** \u2014 so the patch can be proven against the real value rather than a guess.\n\n## Done when\n\n`tracker_spend`, the CLI and the dashboard return the same `blended_total` and the same exact/estimated split for an identical window. Right now the fleet crossed **2.1B** in that window and the connector reports **1.0B**.\n",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T15:53:10Z",
+      "note": "Exact patch to nougen-fleet-mcp worker.js (tracker_spend/totalActivity, ~lines 564/1569): total_activity/v1 excludes daily.estimated entirely, undercounting real fleet throughput by 53.9% (994M reported vs 2.16B actual over 2026-08-22..29). Code/deploy change relay-watch cannot apply. BLOCKED by same stale-source risk as 20260829T153052Z. Queued TODO 20260829T155303Z__ccr__claude-cli, sequenced after reconciliation TODO 20260829T155304Z__ccr__claude-cli."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ],
+  "acked_by": "relay-daemon@blade1tb",
+  "acked_utc": "2026-08-29T16:28:30.312890+00:00",
+  "ack_note": "daemon dispatch verified: Canonical Counter: Upstream total_activity/v2 in NouGenTracker (a2ceae3) rectifies the data model to blend exact and estimated across all 5 token categories."
+}

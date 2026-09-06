@@ -1,0 +1,12 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Add provider and model aggregation to NouGenTracker",
+  "scope": "relay:20260829T012205Z__chatgpt-app__g-whoentertains",
+  "status": "active",
+  "branch": "main",
+  "created_utc": "2026-08-29T05:47:50.766950+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T012205Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "c9b76113da5e404035ee79f3a8acdad2ab1e933a6c80be59f90b72f94ebdd27e"
+}

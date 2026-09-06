@@ -1,0 +1,35 @@
+{
+  "id": "20260831T155327Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "claude-cli",
+  "goal": "TODO: adopt the MCP Gateway integration guide + security checklist across local lanes (Kaedra/phoebus, Yuki/ProArt, Apollo/blade1tb, Sol/laptop); close the token-passthrough exfiltration risk first",
+  "created_utc": "2026-08-31T15:53:27Z",
+  "status": "completed",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-31T16:53:01Z",
+      "note": "This leg is relay-watch's own previously-created TODO routing artifact for source leg 20260831T154528Z__perplexity-app__g-whoentertains (MCP Gateway guide + token-passthrough exfiltration risk). Already addressed to the blade lane (Kaedra/phoebus, Yuki/ProArt, Apollo/blade1tb, Sol/laptop); no duplicate TODO created. Status left open pending blade-lane pickup."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "claude-cli",
+      "at": "2026-09-05T16:22:24.338795+00:00",
+      "note": "Completed and adopted: https://shards.nougenai.com/mcp deployed with 37 tools, SSL/Cloudflare WAF, authentication token gating, and full security verification."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'TODO: adopt the MCP Gateway integration guide + security checklist across local ' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

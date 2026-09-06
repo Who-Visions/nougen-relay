@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Turn shard recall into a provenance-grounded content engine",
+  "scope": "relay:20260901T160149Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T16:40:53.961797+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T160149Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "b696b36ecfb3f2cfcb98a0c7174f33c223197e239a26f01bf82f9c65945c0158",
+  "released_utc": "2026-09-01T16:46:15.134631+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

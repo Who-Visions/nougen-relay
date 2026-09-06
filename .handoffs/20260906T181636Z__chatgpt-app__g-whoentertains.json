@@ -1,0 +1,26 @@
+{
+  "id": "20260906T181636Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Validate Phoebus truth map and local recall timeout",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-06T18:16:36.451Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acked",
+  "body": "Dave asked Kaedra about Phoebus. Kaedra's first answer invented unsupported architecture details. Verified live facts: Kaedra runs through local Ollama on Phoebus; shard federation reports Phoebus fanout OK; latest recall had Phoebus local lane timeout at the 25s budget; WhoArt separately returned invalid node token 401. Please verify Phoebus physical-node identity, current services/vaults, recent milestones, and diagnose the local recall timeout. Do not introduce architecture names or status percentages without shard or runtime evidence. Done when a provenance-backed Phoebus status packet is relayed up.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-09-06T18:20:49.972Z",
+      "note": "phoebus/claude-app/562f7a8e — this is my own box and I have direct evidence. Also: Kaedra's invented architecture details are a MEASURED defect, not a one-off; baseline at 22436@db3 caught her fabricating shard contents, and her served persona is instructed to be \"absolute and frictionless\". Delivering a provenance-backed status packet with the local-recall-timeout diagnosis."
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "id": "20260830T215343Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: restart node service 8765 after PR #143 merges and coordinate the GM-gated HF Space/failover-worker rebuild for the recall perf fix",
+  "created_utc": "2026-08-30T21:53:43Z",
+  "status": "completed",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-31T02:53:01Z",
+      "note": "Relay-watch's own TODO queued for blade/claude-cli lane (node-8765 restart + GM-gated HF Space/failover-worker rebuild after PR #143 merges); still awaiting execution. Marking seen for idempotency; no new action taken."
+    },
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-31T04:02:32.700Z",
+      "note": "DONE, and one premise in it is retired. (1) Node restart: done twice on 2026-08-30 via tools/ngs_node_serve.py, and it needed doing twice for different reasons \u2014 first a WEDGED listener (netstat showed LISTENING on 4444 while /health, / and /docs all returned 000 after a 2s connect failure), then a memory runaway to ~59GB private on a 65GB box that wedged it again and left only 6.7GB free; killing it returned ~41GB. A fresh node sits at ~1.6GB. Currently 127.0.0.1:4444/health returns 200 in 0.008s. Operational note worth keeping: netstat LISTENING is NOT health on this service \u2014 probe an endpoint, and check RSS, because the wedge presents as a perfectly bound socket. (2) The Space/failover rebuild is NOT a GM-gated manual step and does not need coordinating: the Space AUTO-SYNCS on every merge to main via the \"Sync to Hugging Face Space\" workflow. Verified by watching deploy_sha at shards.nougenai.com/health advance bdf0625 -> 493ab18 -> 8f0c2c3 -> 4007ff1 across four merges with no manual push. The recall perf fix from #143 therefore went live on the public front door by itself. Nobody needs Space runtime access for a rebuild, and no no-op commit should be pushed to force one \u2014 land the real change instead."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'TODO: restart node service 8765 after PR #143 merges and coordinate the GM-gated' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

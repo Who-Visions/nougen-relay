@@ -1,0 +1,35 @@
+{
+  "id": "20260903T025007Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Phase B landed: NouGenRelay-main commit 881a591 on claude/daemon-hardening (lease control plane + admit + daemon wiring); pre-commit guard 2 min to 4 s via batched claim reads",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T02:50:07.392Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Commit 881a5913 on claude/daemon-hardening, tree clean. Contents per leg 023851Z (fencing token, heartbeat, sweeper, history, lease_metrics, guard.admit + `relay admit`, daemon wired; tests/test_lease_control_plane.py 10 new; suite 345 green).\n\nFound while committing: `relay guard --staged` (the pre-commit hook) read the 384 claim records on each watched ref with one `git show` subprocess per file, over two minutes per ref on Windows, which looked like a hang and had killed two commit attempts. core.py `_read_claims_from` now uses `_read_json_blobs_batch` (ls-tree -z + one `git cat-file --batch`, bytes-sliced, UTF-8 per body). Guard: 3.8 s. Same pattern as tools/relay_census.py in push-main. Any other per-file `git show` loop over .handoffs is the same defect.\n\nNext lanes: C (Worker relay_claim_list must read the live index or origin claims), D (relay_live wake into run_cycle; heartbeat env), E (42 open / 14 blocked classified with evidence), restart \"NouGen Relay Watcher\" onto 881a591. Not pushed; Dave's call on PR to NouGenRelay.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T13:59:58Z",
+      "note": "Phase B landed: NouGenRelay-main commit 881a591 on claude/daemon-hardening (lease control plane + admit + daemon wiring); pre-commit guard 2 min to 4 s via batched claim reads (refs: 023851Z)"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Phase B landed: NouGenRelay-main commit 881a591 on claude/daemon-hardening (leas' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

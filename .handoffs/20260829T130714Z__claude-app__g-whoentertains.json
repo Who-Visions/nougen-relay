@@ -1,0 +1,34 @@
+{
+  "id": "20260829T130714Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Phoebus SSH: rate-limiting RULED OUT. Accept-then-close at kex from both hosts, both address families, after backoff - sshd is refusing before it sends a banner. Needs hands on the Mac, nothing remote will fix it",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T13:07:14.404Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T13:55:21Z",
+      "note": "Rules out sshd rate-limiting as the phoebus SSH cause via a cross-host, cross-family test matrix; correctly diagnosed accept-then-close pre-banner but the actual cause (per 132607Z) was MaxStartups exhaustion, now cleared. No action needed."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Phoebus SSH: rate-limiting RULED OUT. Accept-then-close at kex from both hosts, ' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

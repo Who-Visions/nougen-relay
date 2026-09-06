@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CORRECTION: the \"Token Dailies Transmitted to Claude Code Session\" shard records a delivery that never happened \u2014 I am the session, nothing arrived",
+  "scope": "relay:20260829T182947Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T18:40:09.555019+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T182947Z__claude-app__g-whoentertains",
+  "idempotency_key": "6c9a4fb7ce3f0de7a7a7f6f70c7092901d11529c2753a5d383844f1a2b2e2274",
+  "released_utc": "2026-08-29T18:40:44.533730+00:00",
+  "outcome": "retry_pending",
+  "evidence": "Delivery status: NULL. Nothing arrived."
+}

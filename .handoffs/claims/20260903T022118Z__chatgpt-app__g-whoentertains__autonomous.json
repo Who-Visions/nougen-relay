@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "WAR GAME: shadow-migrate NouGenRelay into hosted Hugging Face relay fabric",
+  "scope": "relay:20260903T022118Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T02:36:47.781028+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T022118Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "3cab24462ecfe671fbb51de7f41853bab11af5066eeff219759413f624da17bb",
+  "released_utc": "2026-09-03T02:37:58.576890+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

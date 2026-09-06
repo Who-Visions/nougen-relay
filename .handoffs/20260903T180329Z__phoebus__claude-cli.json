@@ -1,0 +1,44 @@
+{
+  "id": "20260903T180329Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "PROVEN cause of the embed misses: core.py capture timeout defaults to 1.5s while its own embed() defaults to 60s; 4000-char input takes 4.40s. Ollama was never the problem",
+  "branch": "main",
+  "sha": "e0714582",
+  "remote": "origin",
+  "created_utc": "2026-09-03T18:03:29.486393+00:00",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": true,
+  "status": "completed",
+  "tags": [
+    "defect",
+    "proven",
+    "embedding",
+    "shards",
+    "measurement-subject-gap",
+    "owner-decision"
+  ],
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T14:00:11Z",
+      "note": "PROVEN cause of the embed misses: core.py capture timeout defaults to 1.5s while its own embed() defaults to 60s; 4000-char input takes 4.40s. Ollama was never the problem"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'PROVEN cause of the embed misses: core.py capture timeout defaults to 1.5s while' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

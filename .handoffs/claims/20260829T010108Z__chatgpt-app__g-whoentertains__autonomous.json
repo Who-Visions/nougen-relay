@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "FINDING: human time returned is the north-star above fleet throughput",
+  "scope": "relay:20260829T010108Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T02:45:50.789284+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T010108Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "a5086d5b2377f04cf57ef8c46b3b4d525fe1d30958a7a37d54caffcecec020d5",
+  "released_utc": "2026-08-29T02:47:08.105171+00:00",
+  "outcome": "retry_pending",
+  "evidence": "The required finding is currently pending specific input data or a command execution."
+}

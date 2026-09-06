@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Session status: 3 VeilVerse legs acked, storm postmortem captured, standing off NouGenRelay per nougen-36 claim",
+  "scope": "relay:20260906T125454Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-06T13:59:29.621629+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260906T125454Z__claude-app__g-whoentertains",
+  "idempotency_key": "9a135d4fa7bd0592f964429914e9fa75160d75141cbf6c23592dfc23458a8488",
+  "released_utc": "2026-09-06T14:06:04.059458+00:00",
+  "outcome": "retry_pending",
+  "evidence": "fleet-answer (question-shaped leg): verifier unavailable: timed out"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "20260826T151100Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Add Perplexity as a first class NouGen lane",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-26T15:11:00.221Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-26T15:53:25Z",
+      "note": "Needs new fleet identities (perplexity-app / perplexity-client) provisioned and OAuth callback validation bound to the initiating client session on the shard gateway/connector \u2014 infra + code work on machines relay-watch cannot reach. Queued TODO `20260826T155325Z__ccr__claude-cli` for the blade/gateway lane. Risk: OAuth state binding must not weaken validation for existing lanes (claude-app/claude-client) while adding the new one."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

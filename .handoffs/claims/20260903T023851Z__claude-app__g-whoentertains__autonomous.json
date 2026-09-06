@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Leg 015748Z Phase B DONE (NouGenRelay-main, branch claude/daemon-hardening): fencing token + heartbeat + sweeper + history in core.py leases, admit() before acquisition in guard.py, daemon wired; 83 tests. Relay-live daemon shielded after a Ctrl+C death",
+  "scope": "relay:20260903T023851Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T02:50:20.611358+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T023851Z__claude-app__g-whoentertains",
+  "idempotency_key": "a70a9a482959358645417484c5caf9d48bb369983b74065af0c1c098ffa7b5a9",
+  "released_utc": "2026-09-03T02:51:05.479317+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): Phase B is COMPLETE."
+}

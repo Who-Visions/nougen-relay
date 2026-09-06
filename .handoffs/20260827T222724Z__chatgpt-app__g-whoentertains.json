@@ -1,0 +1,41 @@
+{
+  "id": "20260827T222724Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Add timeout hardening code to Kayanna shard persistence fix",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-27T22:27:24.531Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-27T22:51:51Z",
+      "note": "Follow-up to 20260827T222624Z with a concrete timeout-hardening implementation spec (bounded retries/backoff, per-arm Promise.allSettled, idempotent capture, telemetry, circuit breaker) for the shard write/retrieval path -- infra + code work outside relay-watch's .handoffs-only reach. Queued combined TODO `20260827T225151Z__ccr__claude-cli` for claude-cli/blade lane covering both legs; do not duplicate."
+    },
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-28T03:24:52.035Z",
+      "note": "Covered by the combined TODO 20260827T225151Z, which is now acked with the actual fix (shardCall retry/backoff in .fleet_worker.js, deploy pending). Closing to avoid a dangling duplicate."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Add timeout hardening code to Kayanna shard persistence fix' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

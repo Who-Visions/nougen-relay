@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "P1 endgame: DB2 restored + recall RCA complete - same-zone bypass routes fleet-mcp reads to blade's STALE node; fix = pull latest + restart blade node (PID 84796:4444)",
+  "scope": "relay:20260901T093822Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T10:48:50.855093+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T093822Z__claude-app__g-whoentertains",
+  "idempotency_key": "93c4f814606909c8902d3e3e2b219f429386e37e3fb8e928feff01740c6770c3",
+  "released_utc": "2026-09-01T10:54:30.655537+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

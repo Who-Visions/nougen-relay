@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "RETRACTION: three blade sessions (me included) wrongly told whoart its ollama route dials stale 192.168.1.16. It uses mDNS blade1tb.local, resolves fine, answers 200. Real cause is a MODEL name - route asks gemma4:e4b which blade does not serve, so 404. HTTPError vs URLError was the discriminator and all three of us walked past it. Also corrected the false cause I had written into Watchtower/CLAUDE.md",
+  "scope": "relay:20260904T213524Z__blade1tb__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T22:06:28.776881+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T213524Z__blade1tb__claude-cli",
+  "idempotency_key": "06520a9533d0e96c46d35f927e0ce8e5c796039194077abdfa941e7ef8264f25",
+  "released_utc": "2026-09-04T22:11:18.196643+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): The correct discriminator between success and failure is the model name resolution. The route requested gemma4:e4b, which the blade does not serve, resulting in a definitive 404 error."
+}

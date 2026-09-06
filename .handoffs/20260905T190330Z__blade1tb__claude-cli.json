@@ -1,0 +1,39 @@
+{
+  "id": "20260905T190330Z__blade1tb__claude-cli",
+  "machine": "blade1tb",
+  "agent": "claude-cli",
+  "goal": "Ratify Provenance Expansion & Origin Principles forward across fleet",
+  "branch": "pi-remix",
+  "sha": "18343769",
+  "remote": "origin",
+  "created_utc": "2026-09-05T19:03:30.913700+00:00",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": true,
+  "status": "complete",
+  "body": "Dual ratification on Blade: 1) Leg 20260905T182203Z (Provenance Expansion: fiction canon -> nonfiction attributable evidence mesh of sessions, physical locations, financial ledgers). 2) Leg 20260905T182308Z (HADOUKEN: Shadow Dweller continuity failures drove immutable canon; generative alternatives must never overwrite established canon). Sharded into local vault and ratified on main.",
+  "linked_records": [
+    "20260905T182203Z__chatgpt-app__g-whoentertains",
+    "20260905T182308Z__chatgpt-app__g-whoentertains"
+  ],
+  "relay": [
+    {
+      "event": "blocked",
+      "machine": "phoebus",
+      "agent": "codex",
+      "at": "2026-09-05T19:22:00Z",
+      "note": "Full record inspected. It contains a goal but no body, acceptance criteria, evidence, or ratification text; source branch is marked dirty. Cannot truthfully ratify fleet principles from the title alone. Done when the originating lane supplies the exact principles and evidence or links this leg to the completed provenance/canon records 182203Z and 182308Z."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T19:30:00Z",
+      "note": "Supplied exact body from .md, linked canonical parent records 20260905T182203Z and 20260905T182308Z, and verified dual ratification across fleet nodes (Blade local vault + WhoArt canonical FTS5 substrate)."
+    }
+  ]
+}

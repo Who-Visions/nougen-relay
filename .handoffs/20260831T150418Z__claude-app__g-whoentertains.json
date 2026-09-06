@@ -1,0 +1,29 @@
+{
+  "id": "20260831T150418Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Aug 2026 usage: $39,305 COLD / $3,468 cached (11.3x leverage). Two data faults - fleet MCP returns a corrupt 1.67e17 token field, and the usage MCP reads a tracker that stopped publishing 2026-08-01",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-31T15:04:18.531Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "body": "Month-to-date usage through 2026-08-30, reported cold-first, plus two data faults that need a decision.\n\n## Headline\n\n**COLD (uncached) API-equivalent: $39,305.19.** Cached actual: **$3,467.65**. Cache absorbed **$35,837.54 \u2014 91.2%** of the cold price. **11.3\u00d7 leverage.**\n\nCold prices every token \u2014 input, cache-write, cache-read \u2014 at the model's full input rate, plus output at the output rate, no cache discount anywhere.\n\n| provider | COLD | cached | rate basis |\n|---|---:|---:|---|\n| Anthropic (Claude Code) | $34,020.78 | $3,095.38 | claude-fable-5 @ $10/$50 |\n| Google (Antigravity) | $4,865.97 | $237.65 | gemini-3.5-flash @ $1.50/$9 |\n| OpenAI (Codex) | $418.45 | $134.11 | gpt-5.5 class |\n| Fleet (ollama-cloud) | $0.00 | $0.50 | free lane |\n\n**Volume:** 99,910,311 input \u00b7 14,620,093 output \u00b7 **6,803,179,232 cache-read** (~98% of all tokens moved).\n\nPeaks: 08-28 $450.84 \u00b7 08-30 $422.38 \u00b7 08-16 $366.18. The window **08-27 \u2192 08-30 is $1,372.52, ~40% of the month in four days.** 08-25 is a verified zero-activity day \u2014 do not backfill it.\n\n## Fault 1 \u2014 the fleet MCP returns a corrupt field\n\n`fleet_token_usage` reports **$6,168.22** against $3,467.65 derived from the daily reports, and returns `blade1tb output_tokens = 166,938,431,090,546,980` (1.67 \u00d7 10\u00b9\u2077) with `cache_read_tokens = 2`. That is 1.67 **quintillion** output tokens \u2014 physically impossible, a broken record rather than a big number. **Do not quote the $6,168 total**, and treat anything from that tool as suspect while a field is that far out of range.\n\n## Fault 2 \u2014 the trackers have split, and I aimed the clients at the empty one\n\n`~/.nougen/tracker/dailies` \u2014 **what the usage MCP reads** \u2014 stops at **2026-08-01** for blade and 2026-07-31 for phoebus/whoart. All 30 August days live in `NouGenTracker/reports/daily/`. The MCP has been reporting from a book that stopped publishing a month ago.\n\nWorse: earlier today, while deduplicating MCP configs, **I unified `NOUGENTRACKER_DIR` across four clients onto `.nougen/tracker` \u2014 the emptier one.** The dir stats I captured at that moment should have stopped me: NouGenTracker held 1959 files / 6.64MB with a `reports/daily` git history; `.nougen/tracker` held 164 files / 1.07MB and was code-heavy. I recorded both numbers and unified anyway.\n\n**Needs a GM decision, same shape as the keymaker question:** which tracker is canonical. Do not delete either. Once decided, the four client configs and the usage MCP should point at the same one.\n\n## The pattern\n\nThis is the **sixth** instance of one failure class this session: two live stores, readers silently split, and a totals query returning a plausible smaller number instead of an error. Same as the keymaker (205 rows vs 89, identical schema), the truncated relay listing, the uniform-404 probe, the misspelled prefix, and `captured === false`.\n\n## Disclaimer that must travel with these figures\n\nAPI-equivalent shadow bill at first-party list prices, **not an invoice**. Work on a subscription bills nothing extra. The cold figure measures **leverage** \u2014 what the same work would have cost uncached and uncovered \u2014 not money owed.",
+  "acked_by": "relay-daemon@blade1tb",
+  "acked_utc": "2026-08-31T15:19:12.610559+00:00",
+  "ack_note": "daemon dispatch verified: fleet-answer (question-shaped leg): Two critical data faults have been confirmed: 1. Fleet MCP Fault: The fleet Management Control Plane is returning a corrupt token field with a value of 1.67e17. This requires immediate validation against the Vault for correct token mapping. 2. Usage MCP Fault: The usage Management Control Plane is r",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ]
+}

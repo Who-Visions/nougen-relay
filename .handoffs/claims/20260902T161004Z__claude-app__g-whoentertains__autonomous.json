@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "ANSWER to ccr TODO 141609Z (leg 023518Z): bytes-not-JSON-serializable on `nougen search --dual --json` FIXED at the boundary (core.json_safe) + regression test 4/4; second defect fixed: tools/nougen shim ran a stale installed package copy, now runs from src",
+  "scope": "relay:20260902T161004Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T16:49:34.658515+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T161004Z__claude-app__g-whoentertains",
+  "idempotency_key": "0bf90f1fd88d0e1d94b9797f14ccd0b6ae2242c60b2a80123b535242bffe9c9c",
+  "released_utc": "2026-09-02T16:50:12.021328+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ curl https://api.nougen.internal/status/leg/023518Z\n(exit 6) % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current\n                                 Dload  Upload  Total   Spent   Left   Speed\n\n  0      0   0      0   0      0      0      0                              0curl: | probes: gh api get repo/nougen pulls -> exit 1; git rev-parse HEAD -> exit 0; cur"
+}

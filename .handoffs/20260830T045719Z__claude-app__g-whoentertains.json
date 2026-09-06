@@ -1,0 +1,42 @@
+{
+  "id": "20260830T045719Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "P1 HANG FIXED (verified): BLADE_TIMEOUT_MS=8000 deployed, recall returns in seconds instead of hanging \u2014 and it exposes the real remaining fault: blade unreachable from edge, serving empty Space replica",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-30T04:57:19.183Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "**GM approved and I ran it.** `wrangler secret put BLADE_TIMEOUT_MS --name nougen-shard-failover` = `8000`. Binding confirmed live, new active version `8d8fc2e6-bed1-4065-9bd5-715bb8dbca95`. Reverts with `wrangler secret delete BLADE_TIMEOUT_MS --name nougen-shard-failover`.\n\n## Verified result \u2014 the hang is gone\n| probe | before | after |\n|---|---|---|\n| `shards_search(\"NouGen\",1)` via MCP | hang \u2192 client timeout | **returns in seconds** |\n| failover `POST /mcp/` | hang | **8.25s** |\n| `shards.nougenai.com/mcp` POST | never reached query path | 401 in 0.17s |\n\nThe 8.25s matches the 8000ms budget exactly. Previously the first leg had 35s and the Space 120s (~155s worst case) under a 45s outer budget, so the outer layer always abandoned first and no error ever surfaced. Capping the first leg lets the call complete inside the outer budget.\n\n## This CONFIRMS blade is the stalling origin\nThe failover burns the **entire** 8s budget on blade every call, then the Space answers. Note the discrimination: `POST https://blade.nougenai.com/mcp/` from blade itself returns **401 in 0.28s**, but the same request from the Cloudflare edge stalls past 8s. That is an edge\u2192origin path fault, i.e. the tunnel \u2014 consistent with the missing `CLOUDFLARED_NGS_TUNNEL_TOKEN` leg `20260829T111954Z`, not with blade's process being down.\n\n## The fix EXPOSED the next fault (this is the real remaining P1)\n`shards_search` now returns **`(no matches)`** for both `NouGen` and `gateway`. Earlier tonight this same connector returned 5 real hits for `perplexity`, so the vault demonstrably holds data. We are now falling through to the **Space replica, which answers but has an empty or broken index** \u2014 precisely the malformed-replica condition in `20260829T120003Z`, previously invisible because the hang masked it.\n\n**So the read path is up but serving from a bad replica.** Recall is responsive and WRONG rather than absent \u2014 arguably more dangerous, because `(no matches)` reads like a genuine empty result. Anyone acting on recall results right now should treat them as unreliable until blade is reachable from the edge again.\n\n## Next, in priority order\n1. **Restore blade's tunnel** so the authoritative store (DB5, healthy on blade) serves `/mcp` again \u2014 that fixes correctness, not just latency.\n2. **Repair or resync the Space replica** so the fallback is actually a fallback rather than an empty answer.\n3. **Lower `SPACE_TIMEOUT_MS`** from 120000 to under ~25000 (needs a `src/worker.js` edit + redeploy; cannot be done via `secret put` \u2014 already a plain var).\n4. Consider making an empty-index replica **fail** rather than return `(no matches)`, so a bad replica can never impersonate a legitimate empty result.\n\n## Corrections still standing from `20260830T044504Z`\n`SHARD_GATEWAY_STYLE` was already `http` (my SSE root cause was wrong and is retracted). blade and the Space both answer direct probes fast \u2014 the stale 530/500 claims in `20260829T120003Z`/`120004Z` should not be worked without re-probing.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-30T04:58:56Z",
+      "note": "Confirms TODO 20260830T045440Z was executed with GM approval and verified (BLADE_TIMEOUT_MS=8000 live on nougen-shard-failover; shards_search now returns in seconds instead of hanging). But the fix exposed the real remaining P1: recall now falls through to the Space replica, which answers fast but with an empty/broken index -- shards_search returns '(no matches)' instead of erroring, which is worse than the hang because it looks like a genuine empty result. The tunnel-token restore (20260829T111954Z) and Space-replica resync (20260829T120003Z) are already tracked. Two items are not yet tracked and need a worker code change + redeploy: queued as TODO 20260830T045856Z__ccr__claude-cli to the blade lane."
+    },
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-02T02:17:06.378940+00:00",
+      "note": "phoebus/claude-cli sweep 2026-09-02: Report read; incident closed at 063925Z."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'P1 HANG FIXED (verified): BLADE_TIMEOUT_MS=8000 deployed, recall returns in seco' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

@@ -1,0 +1,8 @@
+# 🤝 Git Handoff — chatgpt-app / g-whoentertains
+
+**Goal**: Build NouGen 100 arXiv research queue ranked by memory, agency, orchestration, reliability, cognition, and human factors
+**Branch**: `n/a` (written via fleet connector)
+**When**: 2026-08-28T18:45:33.782Z
+
+---
+Create a ranked ~100-paper research queue from current/recent arXiv. Prioritize papers that can translate into NouGen primitives, not generic AI news. Score each paper on: (1) memory architecture, (2) agent orchestration/activation, (3) reliability/observability/security, (4) cognitive architecture/metacognition/human factors, (5) direct implementation potential. Seed papers include WikiSkill; GraphMemix; Agent Mesh; PILOT in the Loop; ProgRouter; LivingRAG; CaSKG; SKILL.state; Safety Does Not Compose; When Tool Outputs Become Commands; A Contract-Centered Architecture for Scalable and Manageable Agentic Runtimes; BekchiAI; Invocation-Level Reliability of Tool-Using Agents; Approved Too Late; Same Model, Different Harness; MemToC; Learning What to Share and What to Personalize: Hierarchical Strategy Co-Evolution for Agent Memory; Co-Evolving Structured Knowledge and Reasoning in Language Models; Trace Integrity for LLM Data Agents; SwarmWorld; Accurate and Efficient Long-Term Memory for LLM Agents (MOSAIC); Is Agent Memory a Database?; Infini Memory; Agentic Memory (AgeMem); Agent Memory: Characterization and System Implications of Stateful Long-Horizon Workloads; When Continual Learning Moves to Memory; MetaCogAgent. Output should include arXiv id, title, date, category, why NouGen cares, proposed experiment, and disposition: READ_NOW / IMPLEMENT / WATCH / SKIP. Done when at least 100 unique, deduped, provenance-linked candidates are ranked.

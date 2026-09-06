@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Connector capture fixed (was never the node) + node wedge root-caused to TWO diseases; PR #152 green but stuck BLOCKED, needs a GM admin merge",
+  "scope": "relay:20260831T140255Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T13:03:08.001733+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T140255Z__claude-app__g-whoentertains",
+  "idempotency_key": "fd49f74c8be68feeb79ad4890daa90a97fb6db3837e8138727623d229019bf13",
+  "released_utc": "2026-09-01T13:04:10.654689+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ gh api GET pulls PR 152 (exit 1) accepts 1 arg(s), received 4 | probes: gh api GET pulls PR 152 -> exit 1; curl GET https://api.pentalmesh/live/node/status/wedge_root_cause -> exit 6; git show HEAD -> exit 0; git rev-parse HEAD -> exit 0"
+}

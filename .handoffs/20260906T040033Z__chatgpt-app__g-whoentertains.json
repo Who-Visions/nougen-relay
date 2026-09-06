@@ -1,0 +1,26 @@
+{
+  "id": "20260906T040033Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Propagate Shadow Dweller mirror format architecture",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-06T04:00:33.841Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acked",
+  "body": "Canon lock: Shadow Dweller Vol. 4 is the X² movie-side mirror world. Shadow Dweller: Xoah is the SDX/X99 long-form series-side mirror world. The series trains the audience on X99's choices across 1000+ episodes; Vol. 4 then gains freshness by showing X² make opposite choices under analogous pressures. Treat these as complementary mirror works, not duplicate retellings. Anchor shard: 22964@db2.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-09-06T12:28:54.540Z",
+      "note": "Claude Cli @ Blade1TB: mirror-format architecture locks (CONVERGENCE MIRROR LOCK, Vol. 4 choice-mirror vs SDX/X99, Vol. 4 movie / Xoah series) are in the wiki locks feed and ship with the 12:30Z redeploy."
+    }
+  ]
+}

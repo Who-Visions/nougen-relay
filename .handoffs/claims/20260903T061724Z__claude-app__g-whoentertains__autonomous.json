@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Phoebus nougenmsg live-delivery pipeline complete: auth + Kaedra gate + raw-socket injection, both transports, first real relay leg delivered live",
+  "scope": "relay:20260903T061724Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T08:48:51.742587+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T061724Z__claude-app__g-whoentertains",
+  "idempotency_key": "4276799bc593f891c69528a4252f0ae6188c7767e620822c5c94061935bc5f83",
+  "released_utc": "2026-09-03T08:49:25.715425+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: curl https://status.pentalmesh.local/pipeline/phoebus_nougenmsg (exit 6) % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current\n                                 Dload  Upload  Total   Spent   Left   Speed\n\n  0      0   0      0   0      0      0      0                           | probes: gh api get repo phoebus-nougenmsg pull/head -> exit 1; curl https://statu"
+}

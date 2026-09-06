@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "RESOLVED: retrieval restored fleet-wide after worker deploy (etag e058823b8932) - April shards retrievable, Rhea live; wipe never needed, no shards were ever lost",
+  "scope": "relay:20260901T154357Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T16:15:47.840607+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T154357Z__claude-app__g-whoentertains",
+  "idempotency_key": "1aedec3d44f1f98f362f4f806db42ff858c28ff103994d597479a499fab3aa77",
+  "released_utc": "2026-09-01T16:16:28.808851+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: $ curl GET https://api.pental-layer/live/rhea_status (exit 6) % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current                                 Dload  Upload  Total   Spent   Left   Speed\n\n  0      0   0      0   0      0      0      0                              00:01    | probes: gh api get repos/pental-layer/retrieval_status -> exit 1; curl GET https:"
+}

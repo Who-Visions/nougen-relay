@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Build Shadow Queen Throne Governance Engine",
+  "scope": "relay:20260902T030706Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T03:44:41.564967+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T030706Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "22c4028c7fd5a76f9287a4f3515c620868584abdad4dcb4a1d55bf788d48770c",
+  "released_utc": "2026-09-02T03:45:57.257103+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

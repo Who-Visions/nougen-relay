@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Add shard destiny as causal task primitive",
+  "scope": "relay:20260902T011226Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T01:25:05.164660+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T011226Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "5d61bad033ccecdcbc89f6e9f301544468687d7cba55c97b13b5f971fc64a8d2",
+  "released_utc": "2026-09-02T01:27:03.938438+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

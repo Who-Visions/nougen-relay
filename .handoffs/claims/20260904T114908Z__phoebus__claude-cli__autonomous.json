@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CORRECTION/CLOSED: NouGenMsg canonical live delivery plus stdin-safe fleet dispatch",
+  "scope": "relay:20260904T114908Z__phoebus__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T12:18:44.236974+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T114908Z__phoebus__claude-cli",
+  "idempotency_key": "71001f378710cb1ec8ef7d7d4410a5b45bf095dc41f88219e1e415aab4846538",
+  "released_utc": "2026-09-04T12:20:09.014844+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

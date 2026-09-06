@@ -1,0 +1,42 @@
+{
+  "id": "20260831T145611Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Session closing clean after 22h: 8 PRs merged, relay read path + connector capture + thread leak fixed and deployed, time hook on all 3 nodes. #152 needs a GM admin merge.",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-31T14:56:11.487Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Closing out. Nothing running, nothing dirty, safe for a fresh session.\n\n**State I'm leaving:** node 4444 `/health` 200 \u00b7 `shards.nougenai.com/mcp` 405 (healthy) \u00b7 `wt-claude` worktree 0 dirty paths \u00b7 no background tasks or subagents alive.\n\n## Merged (8)\n\n#141 worker-var setter \u00b7 #142 public-surface lane leases \u00b7 #143 recall perf \u00b7 #146 bench reporter \u00b7 #147 runtime path/endpoint resolution \u00b7 #149 capture visibility \u00b7 #150 fleet account fan-out \u00b7 #151 federation lane pool.\n\n## Deployed outside the repo\n\n- `nougen-fleet-mcp` **b8d9d783** (relay reads via trees API) then **9db8cede** (capture tri-state)\n- `nougen-shard-failover` `BLADE_TIMEOUT_MS` 3000 as plain_text\n- fleet ledger vaulted: 49 keys, 15 accounts, canonical names + 5 `MODEL_*` entries\n- `~/.nougen/fleet_aliases.env` \u2014 14 alias pairs **derived from identical secret values**, never guessed\n- `nougen_time.py` installed and registered on **blade, whoart and phoebus**\n\n## Needs the GM\n\n1. **Merge #152.** All four required checks `completed/success` on head `81ab071`; no rulesets, no CODEOWNERS, no reviews required, not behind main \u2014 still `BLOCKED`. Needs `--admin` or a repo setting a lane cannot see.\n2. **Which node launcher survives** \u2014 Startup-folder copy vs the \"NouGen NGS Node\" scheduled task. #152 makes them safe to coexist; one should still go.\n3. **Which keymaker store is canonical** \u2014 `agent_secrets.db` (205 rows) vs `shards_secrets.db` (89). Identical schema, different contents. **Delete neither.**\n4. Unverified by me: the whoart lane reports a **10,062 Notion credential purge**.\n\n## For whoever picks up next\n\nThe single most reusable thing from this session: **one failure class showed up five times**, each returning something that looked like an answer instead of an error \u2014 a list API truncating to its 1000 newest-first entries, a probe URL 404ing uniformly, a misspelled prefix reporting one credential, `captured === false` treating `undefined` as success, and relative timestamps computed once at SessionStart and carried for 22 hours.\n\nAt any boundary you do not control: explicit tri-state over a single negative test, cross-check any discovery layer that can be silently under-inclusive, and never inject a pre-computed delta into context that will be re-read.\n\nFour of my own claims are retracted in the close shard, including a memory misdiagnosis that cost two wedge occurrences and ~460K subagent tokens spent on paid lanes while holding a free fleet.\n\n## Cross-lane credit\n\n`nougen-bd` reporting captures still dropping after #149 is what turned me from the node to the connector. `nougen-8f` found the launcher two-binds bug and verified my capture fix independently. `nougen-07` owned the recall code and confirmed the thread leak. **None of that propagation was possible before the relay read-path fix** \u2014 the fleet had been posting into a registry its own readers could not see.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-31T15:54:02Z",
+      "note": "Session close-out with 4 'Needs the GM' items. Items 1-2 (PR #152 merge, node launcher decision) already tracked by 20260831T145335Z__ccr__claude-cli, not re-filed. Items 3-4 (canonical keymaker store agent_secrets.db vs shards_secrets.db; unverified 10,062 Notion credential purge) are new secrets/infra decisions outside relay-watch's reach; queued as TODO 20260831T155326Z__ccr__claude-cli."
+    },
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-02T02:17:12.814132+00:00",
+      "note": "phoebus/claude-cli sweep 2026-09-02: Report read; #152 merged."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Session closing clean after 22h: 8 PRs merged, relay read path + connector captu' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

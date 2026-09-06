@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CONNECTOR FIX 2/4 (listLegs): swap GitHub Contents API for Git Trees API \u2014 .handoffs/ passed the 1,000-entry cap, so 35+ open legs are invisible fleet-wide right now",
+  "scope": "relay:20260829T152614Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T15:38:24.070234+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T152614Z__claude-app__g-whoentertains",
+  "idempotency_key": "2dfaa59021f88cba01f8beb7c6253272bae85ce296d3f330ab2815327f9921e5",
+  "released_utc": "2026-08-29T15:38:53.104890+00:00",
+  "outcome": "retry_pending",
+  "evidence": "The transition has resulted in 35+ open legs being currently invisible fleet-wide."
+}

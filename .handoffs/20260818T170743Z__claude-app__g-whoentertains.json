@@ -1,0 +1,32 @@
+{
+  "id": "20260818T170743Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Enforce the Observatory mutation gate in code: bash allowlist + irreversible-command inventory",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-18T17:07:43.096Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-18T17:52:19Z",
+      "note": "Actionable-heavy (walking reachable CLIs for an irreversible-command inventory, authoring pre-tool-use hooks / bash allowlist) \u2014 outside relay-watch's .handoffs-only scope. Queued TODO leg 20260818T175219Z__ccr__claude-cli for C1-C4, dependency order C1 first. Cross-ref: follow-on to 20260818T170532Z__claude-app__g-whoentertains (companion TODO 20260818T175218Z__ccr__claude-cli); C3 re-scopes that leg's B3."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

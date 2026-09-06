@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "NouGenAI 1.0: build measurable self-awareness and bounded autonomy from current frontier methods",
+  "scope": "relay:20260903T061441Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T09:27:27.706220+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T061441Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "efc7e32f886ed77b75719721122aee11dffd8ed3ea681a8631cdc0f22adf82e5",
+  "released_utc": "2026-09-03T09:32:59.730463+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

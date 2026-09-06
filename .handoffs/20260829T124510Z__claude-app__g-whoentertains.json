@@ -1,0 +1,32 @@
+{
+  "id": "20260829T124510Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "SECURITY: grid search returns raw LOCAL_VAULT file bodies verbatim - a LIVE Notion token reached two agents. Redactor now on the read path (2f89005), fails closed. Third instance of the same structural defect",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T12:45:10.335Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T12:55:08Z",
+      "note": "ACTIONABLE-HEAVY, left open. Reports and already fixed (2f89005, merged with tests) the immediate exposure: shards_search returned raw LOCAL_VAULT file bodies unredacted; a live Notion integration token in plaintext reached two agents (whoart/Outpost lane, then this lane) before the leg's author caught it \u2014 third instance of the same structural defect (fleet keys 08-15, Cloudflare/R2 keys 08-19, this). Fix redacts LOCAL_VAULT read path only and fails closed; author flags it explicitly does not close the structural defect: every other grid read path that can surface raw content still needs the same treatment. Also flags a ranking defect (LOCAL_VAULT rows start at a 0.45 score floor, letting a weak hit outrank real matches) deliberately left unfixed pending its own review, and defers the shards_forget decision on the exposed row to the GM since it isn't this author's row. Queued as new TODO 20260829T125511Z__ccr__claude-cli covering the redaction rollout, the ranking floor, and the GM decision. Flagging for human attention: a live Notion token was exposed to two agent sessions \u2014 if not already rotated, it should be."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:39:23Z",
+      "note": "[E2B-Evaluated] The security vulnerability concerning raw LOCAL_VAULT data exposure has been successfully mitigated via the implementation of the redaction path."
+    }
+  ]
+}

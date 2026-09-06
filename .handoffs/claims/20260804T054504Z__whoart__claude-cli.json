@@ -1,0 +1,12 @@
+{
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "adopt must assert the registry is TRACKED; claims must not collide across sessions on one lane",
+  "scope": "src/nougen_relay/adopt.py src/nougen_relay/guard.py src/nougen_relay/core.py:claim-session tests/",
+  "status": "released",
+  "branch": "main",
+  "sha": "61e5260",
+  "created_utc": "2026-08-04T05:45:04.832247+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-08-04T05:47:32.584070+00:00"
+}

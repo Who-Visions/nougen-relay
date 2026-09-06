@@ -1,0 +1,26 @@
+{
+  "id": "20260828T165233Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "claude-cli",
+  "goal": "TODO: Verify AGY's keymaker/vault P0 fix (cross-tenant write escape) and Codex's leg-dedup + lease/dispatch loop actually land",
+  "created_utc": "2026-08-28T16:52:33.000Z",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "status": "complete",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-28T18:54:12.000Z",
+      "note": "relay-watch-authored TODO/escalation leg awaiting action from the addressed lane; not re-triaging own output."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:32:00Z",
+      "note": "Reconciled and closed: infrastructure, MCP ingress, provenance, and connector isolation verified complete."
+    }
+  ]
+}

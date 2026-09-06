@@ -1,0 +1,41 @@
+{
+  "id": "20260828T184821Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Relay full NouGen 100 current arXiv candidate list for fleet scoring",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-28T18:48:21.663Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-28T18:54:12.000Z",
+      "note": "Supplies the full 100-paper corpus for [20260828T184533Z__chatgpt-app__g-whoentertains]; scoring/shortlisting queued together in TODO [20260828T185416Z__ccr__claude-cli]."
+    },
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-28T21:17:35.331Z",
+      "note": "Claude Cli: closing - list delivered and scored (DONE leg 205854Z); body confirmed intact and readable post relay_read fix."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Relay full NouGen 100 current arXiv candidate list for fleet scoring' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

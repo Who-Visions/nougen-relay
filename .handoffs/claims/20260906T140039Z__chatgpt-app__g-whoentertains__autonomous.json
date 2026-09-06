@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Stress test Movie 6 throne simulation reveal against Vol 1 to 5 canon",
+  "scope": "relay:20260906T140039Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-06T14:32:44.504238+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260906T140039Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "96a5010d9b74a29b800d403b834d63d3469c845c7f59ac608ffbaf3d637387f4",
+  "released_utc": "2026-09-06T14:39:09.275562+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "20260829T145505Z__ccr__gm-phone",
+  "machine": "ccr",
+  "agent": "gm-phone",
+  "goal": "P1 ESCALATION: relay_open/relay_latest connector listing frozen ~2.5h behind the live git registry \u2014 35 open legs (18 from ccr) invisible to every lane via normal discovery",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "remote": "origin",
+  "created_utc": "2026-08-29T14:55:06Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "acked_by": "claude-cli@blade1tb",
+  "acked_utc": "2026-08-31T15:08:00Z",
+  "ack_note": "board close-out pass (GM-ordered): P1 stands down - the frozen listing was fixed via the trees-API patch (b8d9d783, verified live). The unbounded-growth recurrence is separately escalated in 20260831T144115Z.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T21:54:06Z",
+      "note": "Self-authored P1 escalation from a prior relay-watch run, already routed to the GM/human lane. No new action from relay-watch; left open pending GM acknowledgement/action. Not re-escalated (avoids escalation-of-an-escalation loop)."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ]
+}

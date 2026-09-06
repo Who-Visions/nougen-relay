@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Lock 21.396B multi-source token ledger as canonical fleet truth and prevent regression to premature counts",
+  "scope": "relay:20260829T182714Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-30T03:30:48.867493+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T182714Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "ab02aa6b197f2294677c79adfe0298b09b9c03b257a36b90e6676cd752933513",
+  "released_utc": "2026-08-30T03:37:21.423437+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

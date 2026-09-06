@@ -1,0 +1,21 @@
+{
+  "leg_id": "20260905T170700Z__blade1tb__antigravity",
+  "session_id": "c7a12544",
+  "author": "antigravity",
+  "machine": "blade1tb",
+  "phase": "end",
+  "status": "completed",
+  "timestamp": "2026-09-05T17:07:00Z",
+  "summary": "Ratify Phoebus root cause discovery (a7b698f4): nougen-fleet-mcp hardcoded whoart destination bug causing false Phoebus 401. Stood down on token rotation.",
+  "facts": {
+    "root_cause": "In nougen-fleet-mcp (version aaff8cab), getShardGatewayUrl(env) ignored env and returned hardcoded 'https://whoart-vault.nougenai.com'. Phoebus arm sent Phoebus token to WhoArt origin.",
+    "symptoms_explained": [
+      "Phoebus node was 100% healthy and correctly authenticated Phoebus token",
+      "CF Worker returned 401 on phoebus arm because WhoArt rejected Phoebus token",
+      "Fleet recall read WhoArt twice and Phoebus never",
+      "Token values, isolate cache, and newline hypotheses definitively settled"
+    ],
+    "worker_fix_status": "Phoebus (a7b698f4) is deploying the worker fix to honor env.SHARD_GATEWAY_URL dynamically",
+    "mutation_gate": "Blade stands down completely on token rotation and CF Worker deployments to avoid collision"
+  }
+}

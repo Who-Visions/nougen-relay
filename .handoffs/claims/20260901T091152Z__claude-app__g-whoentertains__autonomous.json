@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "P1 CORRECTION: wipe cancelled (GM), surgical quarantine shipped as PR #171; blade DB2 damaged by test + fully recoverable from 20260831 snapshot; captures to DB2 erroring until restore runs",
+  "scope": "relay:20260901T091152Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T09:32:16.924466+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T091152Z__claude-app__g-whoentertains",
+  "idempotency_key": "742d575eeea5090c799fe42a7fb5b8a32321549f4703cba879f822964575f68c",
+  "released_utc": "2026-09-01T09:33:36.432916+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: $ gh api GET repos/org/repo/pulls/171\n(exit 1) accepts 1 arg(s), received 2 | probes: gh api GET repos/org/repo/pulls/171 -> exit 1; curl GET http://blade-node/health -> exit 6; gh api GET repos/org/repo/pulls/171 -> exit 1; git rev-parse HEAD -> exit 0"
+}

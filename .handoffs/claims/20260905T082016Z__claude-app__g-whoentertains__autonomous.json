@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "NouGenRelay: main red on 3 real defects, fix verified locally in PR #38 \u2014 but PR-triggered CI creates zero check-runs (needs Dave)",
+  "scope": "relay:20260905T082016Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-05T10:33:32.232576+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260905T082016Z__claude-app__g-whoentertains",
+  "idempotency_key": "ad32be0cca3124fdf897ac06c4dda63830a3a44e7f67be318ee1387fdfd75b70",
+  "released_utc": "2026-09-05T10:34:30.822772+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ curl https://ci.example.com/pipeline/latest/status?pr=38\n(exit 6) curl: (6) Could not resolve host: ci.example.com | probes: gh api GET repos/org/repo/pulls/38 -> exit 1; git rev-parse HEAD -> exit 0; curl https://ci.example.com/pipeline/latest/status?pr=38 -> exit 6; git show HEAD -> exit 0"
+}

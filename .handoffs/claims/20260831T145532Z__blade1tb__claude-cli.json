@@ -1,0 +1,14 @@
+{
+  "machine": "blade1tb",
+  "agent": "claude-cli",
+  "goal": "daemon hardening PR #19 in review",
+  "scope": "src/nougen_relay/core.py tools/relay_daemon.py tests/test_daemon_verify.py tests/test_relay_daemon.py tests/test_retry_carryforward.py",
+  "status": "released",
+  "session": "4db07bcf-61d0-447e-bc70-212093fc6d37",
+  "branch": "claude/daemon-hardening",
+  "sha": "346c2e9",
+  "created_utc": "2026-08-31T14:55:32.178154+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-09-03T11:32:33.777Z",
+  "released_note": "TTL expired 2026-08-31T22:55Z, never released by original claimant. Auto-released during scheduled relay-handoff audit triggered by NouGenShards PR #187."
+}

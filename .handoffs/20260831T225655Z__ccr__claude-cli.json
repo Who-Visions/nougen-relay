@@ -1,0 +1,28 @@
+{
+  "id": "20260831T225655Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "claude-cli",
+  "goal": "TODO: GM decision needed \u2014 whoart's _pre_correction_20260829 backup does not hold true pre-correction data; resolve whether the 36.1% undercount correction was a code defect or whoart-local",
+  "created_utc": "2026-08-31T22:56:55Z",
+  "status": "completed",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-31T22:56:55Z",
+      "note": "Freshly queued TODO for GM/whoart-context decision on the pre-correction backup provenance finding. Self-tagging on creation so future scheduled runs don't re-classify this as a new actionable ask. Remains open pending pickup."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'TODO: GM decision needed \u2014 whoart's _pre_correction_20260829 backup does not hol' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

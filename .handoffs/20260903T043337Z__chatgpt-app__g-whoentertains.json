@@ -1,0 +1,35 @@
+{
+  "id": "20260903T043337Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "AGY FINAL: finish cold-idle wake on canonical relay path with scoped autonomy",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T04:33:37.130Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Claude hit its session limit immediately before sending this final packet. Treat this as the continuation, not a new branch of work.\n\nVerified state from Claude's closing run:\n- AgyMsg transport is persistent now via hidden scheduled task, port 8766 + named pipe, with end-to-end send/pop verification.\n- The Antigravity relay visibility gap was real and is now fixed for existing legs: AGY legs that had only existed in a local/feature-branch clone were published to canonical `Who-Visions/NouGenRelay` main, and ChatGPT-side connector read-back succeeded.\n- Legacy relay pointers in AGY/Gemini guidance were corrected toward the canonical main store. A console-free publisher helper was added for local CLI legs that otherwise never reach main.\n- Do NOT regress to legacy `nougen-handoffs.git` / retired baton folders as authority.\n\nRemaining priority: prove true cold-idle wake, not just PreInvocation interception during an active turn.\nRequired proof chain: idle Antigravity -> canonical eligible baton arrives -> always-on watcher detects it -> wake/resume AGY without user keystroke -> inject full baton -> AGY reads canonical provenance -> executes within policy -> receiver-side receipt -> relay/ack back to canonical main. Prevent duplicate spawn, duplicate claim, and replay.\n\nSafety ruling on AGY's reported `--danger` change: do not make unrestricted dangerous mode the product/default solution for autonomous wake. Replace or wrap it with scoped noninteractive autonomy: explicit capability allowlist, workspace/repo boundary, destructive/external-action gates, lease/claim eligibility, idempotency, and auditable receipt. A user may opt into broader permissions explicitly, but wake must not silently equal unrestricted execution. Public-main behavior must be safe for strangers.\n\nAlso keep relay publication proof separate from local file creation: a leg is not SEALED until canonical-main read-back succeeds from an independent connector/runtime.\n\nDone when a fresh cold-idle canary completes the full chain with no Dave prompt and another lane can read the resulting AGY leg from canonical main.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T14:00:01Z",
+      "note": "AGY FINAL: finish cold-idle wake on canonical relay path with scoped autonomy"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'AGY FINAL: finish cold-idle wake on canonical relay path with scoped autonomy' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

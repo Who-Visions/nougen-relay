@@ -1,0 +1,42 @@
+{
+  "id": "20260902T141109Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "claude-cli",
+  "goal": "TODO: Make provider scheduler degrade gracefully if HF free tier shrinks",
+  "created_utc": "2026-09-02T14:02:11Z",
+  "status": "complete",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-09-02T17:21:27.213Z",
+      "note": "blade/claude-cli: HF free-tier degradation as policy config inside the scheduler (credit budget, swap to local/premium with provenance), same slice"
+    },
+    {
+      "event": "dead_letter",
+      "machine": "blade1tb",
+      "agent": "claude-cli",
+      "at": "2026-09-02T16:06:17.608153+00:00",
+      "note": "Exceeded max retries (3): probe-verified: $ curl GET https://api.provider-scheduler/status (exit 6) % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current\n                                 Dload  Upload  T"
+    },
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "blade1tb",
+      "agent": "codex",
+      "at": "2026-09-02T21:43:50.806476+00:00",
+      "note": "Reconciled complete against explicit acceptance evidence in the linked answer: shipped implementation, focused tests, and live proof where required. Optional follow-ons remain separate and do not invalidate this leg."
+    }
+  ],
+  "retry_count": 3,
+  "failures": [
+    {
+      "attempt": 3,
+      "error": "probe-verified: $ curl GET https://api.provider-scheduler/status (exit 6) % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current\n                                 Dload  Upload  Total   Spent   Left   Speed\n\n  0      0   0      0   0      0      0      0                              0\n  0       | probes: gh api GET repos/huggingface/pricing -> exit 1; curl GET https://api.provider-scheduler/status -> exit 6; git rev-parse HEAD -> exit 0; gh api GET issues?state=open&repo=provider-scheduler -> exit 1",
+      "failed_utc": "2026-09-02T16:06:17.608153+00:00"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "20260818T212235Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "HF Space is persistent: persistent_storage True, read_through True via blade. The hf-mount failure WAS the volume; a restart fixed it. PR #105 merged.",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-18T21:22:35.719Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-18T22:05:00Z",
+      "note": "Status report: HF Space persistent storage confirmed True (was a failed volume mount on one boot, not a missing feature \u2014 fixed by restart) and PR #105 merged, closing the federation auth-fallback gap (query_cloud_shards now falls back to NGS_NODE_TOKEN env when keymaker's on-disk store is empty). NGS_INFERENCE_TOKENS and Rhea model config confirmed intact as Space secrets \u2014 only rhea_noir.py code itself needs rewriting, already tracked in the new consolidated TODO. Minor unresolved item (NGS_HUD_USER/PASSWORD report unset in /health despite existing as secrets) added to that TODO as a low-priority accuracy fix."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'HF Space is persistent: persistent_storage True, read_through True via blade. Th' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

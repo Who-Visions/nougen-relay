@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Downstream fleet wishlist + auth doctrine for every NouGen lane",
+  "scope": "relay:20260904T134723Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T13:58:30.642670+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T134723Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "5d948484ccc55af25203bba3e25a4d0da64061373be84796ea749b8fc5e27657",
+  "released_utc": "2026-09-04T13:59:15.298963+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

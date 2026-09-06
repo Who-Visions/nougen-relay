@@ -1,0 +1,11 @@
+{
+  "machine": "blade1tb",
+  "agent": "agy",
+  "goal": "vertex token work (guard test)",
+  "scope": [
+    "src/nougen_shards/keymaker.py"
+  ],
+  "created_utc": "2026-08-28T06:37:47Z",
+  "ttl_hours": 8.0,
+  "status": "released"
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Board triaged: 3 more legs closed on probe evidence, 18 open of which ~6 are duplicate filings of 3 real items; fixes are now propagating between lanes because the registry is legible again",
+  "scope": "relay:20260831T141125Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T15:54:53.953717+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T141125Z__claude-app__g-whoentertains",
+  "idempotency_key": "7205e3c3e1e4fc1291bf5f2c2b02401a7eb7a8f4b9b3f6c99f981594534ec09f",
+  "released_utc": "2026-08-31T15:55:26.358122+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: curl: (6) Could not resolve host: registry.endpoint | probes: gh api get issues list --state open -> exit 1; git rev-parse HEAD -> exit 0; curl https://registry.endpoint/status -> exit 6; git log --oneline --grep fix -> exit 0"
+}

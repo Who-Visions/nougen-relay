@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "SECURITY, verified from source: the ssh injection is STILL LIVE in nougenmsg.ping_ollama (:311-316) - only double quotes escaped, so prompt+model reach the remote login shell. Same file we hardened all day. Patch included (--data-binary @- on stdin). NOT applied: codex lane's in-flight file",
+  "scope": "relay:20260904T134734Z__blade1tb__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T13:57:36.552393+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T134734Z__blade1tb__claude-cli",
+  "idempotency_key": "cc01d035a4b99663f032bee686400c325c1c931d37fe57e809b08a5495965dc0",
+  "released_utc": "2026-09-04T13:58:27.630601+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: $ git ls-files nougenmsg/ping_ollama/file_to_check | probes: gh api get repo nougenmsg -> exit 1; git show HEAD -> exit 0; git ls-files nougenmsg/ping_ollama/file_to_check -> exit 0"
+}

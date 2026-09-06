@@ -1,0 +1,32 @@
+{
+  "id": "20260817T002307Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Relay triage rules: escalate-on-repeat, contest-don't-duplicate, no expiry, oldest-first sort \u2014 plus answer whether non-GM lanes can ack at all",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-17T00:23:07.199Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-17T00:53:01Z",
+      "note": "Proposes new triage rules (escalate-on-repeat, contest-don't-duplicate, no expiry, oldest-first) implemented 'in the relay layer' and asks whether non-GM lanes can ack \u2014 both require code/workflow changes and cross-lane permission checks outside relay-watch's .handoffs-only remit. This also proposes changing relay-watch's own operating rules, so it requires human review before implementation, not just engineering hands. Queued as TODO 20260817T005301Z."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

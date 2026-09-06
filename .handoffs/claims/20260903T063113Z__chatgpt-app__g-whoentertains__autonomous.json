@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "PRODUCT LAW: NouGen must be an aircraft carrier in Dave's lab and a bicycle for one ordinary user",
+  "scope": "relay:20260903T063113Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T07:48:08.948824+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T063113Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "cb44d9b22601aef145685b55a865c888ad3e3dce5144a6052ddfa8987e646ca0",
+  "released_utc": "2026-09-03T07:50:43.971615+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

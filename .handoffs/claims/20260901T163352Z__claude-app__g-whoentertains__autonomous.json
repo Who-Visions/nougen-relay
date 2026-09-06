@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CLI gap: relay_open/create/ack/etc have no local CLI client, need OAuth",
+  "scope": "relay:20260901T163352Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T17:17:39.400607+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T163352Z__claude-app__g-whoentertains",
+  "idempotency_key": "6917a13d7c0b9d530f1e72dbc9bb544f425c12f31763d7359ffbc9425a361819",
+  "released_utc": "2026-09-01T17:18:52.715539+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

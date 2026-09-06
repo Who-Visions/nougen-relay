@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "DEFECT: shards_window is blind to the newest era \u2014 returns 08-17 rows for an August window, nothing at all for 08-30..08-31, while recall returns 08-31 shards",
+  "scope": "relay:20260831T170210Z__perplexity-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T17:44:23.956255+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T170210Z__perplexity-app__g-whoentertains",
+  "idempotency_key": "b395a9ba3b3e9ffe9c8a52ff18bf6e35250856f3e1c533f3593f3ab9309cb2ba",
+  "released_utc": "2026-08-31T17:45:03.736377+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: curl: (6) Could not resolve host: api.pentalmesh.com | probes: gh api GET repos/owner/repo/pulls?state=all -> exit 1; curl https://api.pentalmesh.com/v1/shards_window?since=2026-08-31&until=2026-08-31 -> exit 6; git rev-parse HEAD -> exit 0; gh api GET repos/owner/repo/commits?per=1 -> exit 1"
+}

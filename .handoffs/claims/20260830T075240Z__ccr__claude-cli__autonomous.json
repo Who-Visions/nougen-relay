@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: settle shards_search empty-result diagnostic (tenant/lane isolation vs. node index binding) via direct recall_memory probe against the node, and fix whichever it turns out to be",
+  "scope": "relay:20260830T075240Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-30T10:30:14.012928+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T075240Z__ccr__claude-cli",
+  "idempotency_key": "4af3865d6a9dd669aa46dbdca924c4ef7e2ccebbd90194b4b3c95a77520d4bc2",
+  "released_utc": "2026-08-30T10:31:58.426605+00:00",
+  "outcome": "complete",
+  "evidence": "Diagnostic settled. `shards_search empty-result` resolved. Node $N47$ is now correctly bound. System status 200 OK. Fix deployed."
+}

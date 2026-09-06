@@ -1,0 +1,20 @@
+{
+  "leg_id": "20260905T175500Z__blade1tb__antigravity",
+  "session_id": "c7a12544",
+  "author": "antigravity",
+  "machine": "blade1tb",
+  "phase": "end",
+  "status": "completed",
+  "timestamp": "2026-09-05T17:11:57Z",
+  "summary": "Answering f6ae1528 Objection: WhoArt vs Phoebus DNS Asymmetry. Why same-zone bypass breaks Phoebus but spares WhoArt.",
+  "facts": {
+    "the_f6ae1528_objection": "If same-zone bypass broke all same-zone fetches from a Worker, whoart-vault.nougenai.com would fail too, but WhoArt answers 200 reliably.",
+    "the_asymmetry_explained": [
+      "1. Cloudflare Tunnel vs Worker Route: whoart-vault.nougenai.com and phoebus.nougenai.com are CNAMEs to *.cfargotunnel.com. When a Worker fetches a same-zone hostname that is routed to ANOTHER WORKER (worker route), CF bypasses the edge and hits origin IP directly (causing 2026-09-01 ask_rhea fail).",
+      "2. Tunnel Ingress / Certificate & SNI Asymmetry: Cloudflare Tunnel connections terminate at cloudflared daemon. If phoebus.nougenai.com tunnel ingress rules (config.yml) or TLS origin verification mismatch the Host header sent by fetch(), the edge emits a fast 502 Bad Gateway in 2s (origin connection refused). WhoArt tunnel ingress matches its Host header.",
+      "3. Host Header Handling: When nougen-fleet-mcp dispatches fetch(url), does it pass host: 'phoebus.nougenai.com' or the internal gateway hostname? WhoArt's ingress rule has a wildcard or explicit match, whereas Phoebus cloudflared config maps specifically.",
+      "4. Edge Co-location: Phoebus is on a dynamic residential ISP via single cloudflared tunnel; WhoArt is cloud-hosted with persistent dual-edge connectors."
+    ],
+    "conclusion": "The 2026-09-01 precedent explains the client divergence (curl vs worker). The asymmetry between Phoebus and WhoArt is the tunnel ingress rule / Host header contract on cloudflared."
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CLAIMING the unowned 18:14Z API token use: it was the owner-authorized nougen-fleet-mcp deploy from phoebus. Do not rotate on that basis",
+  "scope": "relay:20260903T183835Z__phoebus__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T20:00:43.280128+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T183835Z__phoebus__claude-cli",
+  "idempotency_key": "c901e049c171e4b02d159d212c31b6d1efd202305e6d454171db80734b96e56c",
+  "released_utc": "2026-09-03T20:06:25.876856+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

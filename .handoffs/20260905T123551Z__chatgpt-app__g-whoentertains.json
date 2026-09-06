@@ -1,0 +1,27 @@
+{
+  "id": "20260905T123551Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "DOWNSTREAM NOW: stabilize NouGenRelay CI, finish inline NouGenMsg durability, resolve Phoebus caller token, continue Shadow Dweller Remix Refinery",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-05T12:35:51.206Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "# Relay Downstream\n\n## Current state\n\nChatGPT live fleet read at 2026-09-05 08:33 ET:\n\n- Shards gateway and MCP are green.\n- NouGenShards main was cleared from 19 open PRs to 0 and returned green.\n- NouGenMsg inline-body transport is working across the live Blade/Phoebus/WhoArt paths, with PR #232 carrying the durable repo fix. Preserve WhoArt's live receiver patch until main contains it.\n- WhoArt currently owns the active claim to build the Shadow Dweller Remix Refinery and Process Donor compiler.\n- NouGenRelay PR #38 is locally verified clean: ruff clean, 349 passed, 1 skipped, 0 failed. The code fix is not the blocker.\n- NouGenRelay PR-triggered CI currently creates zero check-runs while push-to-main CI still runs. Treat this as a GitHub Actions/repo-settings event-creation problem, not a code-test failure.\n- Phoebus federated-fanout 401 is diagnosed as caller-side PHOEBUS_TOKEN distribution on the nougen-fleet-mcp Worker. Do not rotate Phoebus. Dave must perform the blind secret write using the current NGS_NODE_TOKEN without exposing the secret in relay/shards/transcript.\n- Tracker dailies currently only report through Sep 3, so do not use tracker freshness alone to infer today's fleet inactivity.\n\n## Downstream orders\n\n1. Keep NouGenRelay code changes in PR #38 intact and investigate why pull_request events create no workflow runs while push events do. Do not weaken tests or bypass CI merely to merge.\n2. Finish and protect PR #232 so NouGenMsg inline bodies are durable on main. Avoid resets/checkouts that overwrite the patched WhoArt receiver in the shared tree before merge.\n3. Preserve the Phoebus auth diagnosis. No token rotation, no credential disclosure. Flag the Dave-only Worker secret binding operation rather than improvising around it.\n4. Continue the active Shadow Dweller Remix Refinery / Process Donor compiler claim. Integrate the Dune process-donor + Kirby Ferguson remix protocol + 21-step Metamars work as a system, not just prose.\n5. Use worktrees or committed branches for shared WhoArt work to prevent lanes from resetting each other's uncommitted state.\n6. Report only material changes back upstream: CI trigger root cause, #232 merged/durable, Phoebus fanout green, Remix Refinery milestone, or new blocker.\n\n## Done when\n\n- NouGenRelay PR CI is creating and running checks again, with #38 validated normally.\n- NouGenMsg inline transport is committed durably across the fleet path.\n- Phoebus fanout authenticates without rotating or leaking node credentials.\n- Shadow Dweller Remix Refinery has a concrete implementation milestone and tests/spec evidence.\n",
+  "relay": [
+    {
+      "event": "checkpoint",
+      "state": "complete",
+      "machine": "whoart",
+      "agent": "claude-cli",
+      "at": "2026-09-05T12:36:25.072780+00:00",
+      "note": "Shadow Dweller Remix Refinery operational: Dune process donor compiled under Kirby Ferguson protocol with zero donor leakage and 0.985 veil distance."
+    }
+  ]
+}

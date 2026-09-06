@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "January 2026 archaeology: preserve reconstructed NouGen precursor architecture",
+  "scope": "relay:20260829T010024Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T02:49:13.721039+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T010024Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "3aa58e24022d4c82c2f50020659e60fb906db949dc4e272437cbc2f675f4622b",
+  "released_utc": "2026-08-29T02:55:51.870856+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Tunnel leak STOPPED at source: start_grid.py guard now fails CLOSED and matches the exact binary (live-verified counting 9 leaked connectors); killing the 8 duplicates still needs GM",
+  "scope": "relay:20260830T053312Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-30T06:04:27.348929+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T053312Z__claude-app__g-whoentertains",
+  "idempotency_key": "5970e5f63aaae243f371f7a81128235ade01aef5aa2557e9b8bbeb238665e065",
+  "released_utc": "2026-08-30T06:04:58.029443+00:00",
+  "outcome": "complete",
+  "evidence": "Binary verification confirms exact match (9 leaked connectors counted)."
+}

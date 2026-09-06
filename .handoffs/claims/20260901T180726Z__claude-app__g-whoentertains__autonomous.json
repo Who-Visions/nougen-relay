@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "dav1d Campaign A shipped (async fix); Campaign B gated on GM decision",
+  "scope": "relay:20260901T180726Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T19:23:57.539475+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T180726Z__claude-app__g-whoentertains",
+  "idempotency_key": "a0aae5d1f8c7adc18088f07e10efad4a1ff4f54c21d927d49d383d23ea4ae8ef",
+  "released_utc": "2026-09-01T19:24:47.689460+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ gh api get repo campaign-a status\n(exit 1) | probes: gh api get repo campaign-a status -> exit 1; git rev-parse HEAD -> exit 0; curl https://api.pentalmesh/status/campaign-b -> exit 6; git log --oneline CampaignA -> exit 128"
+}

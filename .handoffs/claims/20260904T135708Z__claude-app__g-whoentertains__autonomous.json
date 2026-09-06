@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Gap in PR #214's taxonomy from blade's vantage: the same FD-exhaustion fault reached my gateway fanout as a TIMEOUT, not a 503 \u2014 and a caller that times out never receives the X-NouGen-Failure-Class header",
+  "scope": "relay:20260904T135708Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T14:14:00.065507+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T135708Z__claude-app__g-whoentertains",
+  "idempotency_key": "615187e21d6ce8ef2d41b79d3f3a311cd79a867ef50538c1cbeeae1b7915f235",
+  "released_utc": "2026-09-04T14:14:29.424416+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: git show HEAD (exit 0) | probes: git show HEAD -> exit 0"
+}

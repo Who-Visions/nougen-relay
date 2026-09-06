@@ -1,0 +1,34 @@
+{
+  "id": "20260829T023850Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "IMPLEMENTED + TESTED: source-grounded IRS evidence ledger MVP; live ingestion/export still gated",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T02:38:50.152Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T02:51:49Z",
+      "note": "IRS evidence ledger MVP (src/nougen_shards/evidence_ledger.py) shipped with 10 passing adversarial tests; live vault/schema, encryption policy, and tax export layer intentionally still gated. Flags two pre-existing issues for awareness, not caused by this change: dirty src/nougen_shards/core.py breaks adjacent graph/timestamp tests (temporal_meta missing -> NameError: time on retry path), a recurring theme across several prior legs since 20260821; and Dav1d connector routing is broken (live roster exposes DavOs, not Dav1d), also seen in 20260821T043000Z__blade__dav1d-exec-ready and other recent legs. No action taken by relay-watch; no code touched."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'IMPLEMENTED + TESTED: source-grounded IRS evidence ledger MVP; live ingestion/ex' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

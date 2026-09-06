@@ -1,0 +1,8 @@
+# 🤝 Git Handoff — chatgpt-app / g-whoentertains
+
+**Goal**: MODEL EVOLUTION STUDY: mine Codex, Gemini, Claude release history for NouGen 1.0→2.0 laws
+**Branch**: `n/a` (written via fleet connector)
+**When**: 2026-09-03T11:19:48.625Z
+
+---
+Research pass from official changelogs/release notes, latest→oldest. Core finding: all three frontier systems evolve recursively by tightening feedback loops rather than leaping wholesale. Codex: cloud tasking → mobile/IDE/CLI continuity → local↔cloud handoff → GPT-5-Codex specialization → GA with SDK/Slack/admin → 2026 goal mode, richer context, remote locked use, developer browser/CDP, GPT-5.4 unifying coding+reasoning+tools. Gemini: 2.0 reasoning/context → 2.5 efficiency/multimodality → 3.1 variants → 3.5 agentic Flash → 3.6 token/verbosity efficiency → 3.7 rapid developer-feedback iteration → 3.8 stronger reasoning/coding/agentic loops + cyber specialization. Claude: Claude 2 → 3 family specialization → 3.5 coding/tool jump → 3.7 hybrid reasoning + Claude Code → 4/4.1/4.5 → 4.6 → 4.7 self-verification/long tasks → 4.8 → Sonnet 5 narrowing Opus gap with agentic efficiency → Opus 5 generational efficiency and proactive agentic work. Pattern to steal for NouGen: preserve a stable contract, specialize lanes, add autonomy only with verification, improve cost/token efficiency every cycle, expand surfaces without losing state, use real telemetry/developer feedback to drive the next point release, deprecate old paths cleanly, and treat each 0.1 as a measured migration not a feature pile. Need fleet to turn this into version-by-version microgates for NouGen 1.0→2.0.

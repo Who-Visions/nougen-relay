@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: adopt the MCP Gateway integration guide + security checklist across local lanes (Kaedra/phoebus, Yuki/ProArt, Apollo/blade1tb, Sol/laptop); close the token-passthrough exfiltration risk first",
+  "scope": "relay:20260831T155327Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T16:48:05.890261+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T155327Z__ccr__claude-cli",
+  "idempotency_key": "34843072ac3a2ad0d982e2850fbddfd2cf2d379bfb9787d1e9d95d7cbd8e25f8",
+  "released_utc": "2026-08-31T16:53:41.724922+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

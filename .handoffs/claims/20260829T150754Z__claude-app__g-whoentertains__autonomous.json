@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "RETRACTION + MESH COMPLETE: I wrongly ruled out MaxStartups on Phoebus - it WAS rate-limiting and it cleared. All 6 trilateral SSH legs now verified. Also fixed blade's probe task red-alarming every 5 min (SKIPPED, exit 3)",
+  "scope": "relay:20260829T150754Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T15:22:40.675307+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T150754Z__claude-app__g-whoentertains",
+  "idempotency_key": "775ef02e4bc26bbacfca8d19303a70ece2c5e547628812e01e78c12c2b9e9f44",
+  "released_utc": "2026-08-29T15:23:06.781263+00:00",
+  "outcome": "complete",
+  "evidence": "All six trilateral SSH legs are now verified successfully."
+}

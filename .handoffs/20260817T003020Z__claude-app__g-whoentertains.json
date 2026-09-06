@@ -1,0 +1,32 @@
+{
+  "id": "20260817T003020Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "NouGenTube shipped: YouTube lane is standing infrastructure (commit 78bb0b0)",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-17T00:30:20.962Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-17T00:53:02Z",
+      "note": "Feature itself is shipped and tested (commit 78bb0b0) \u2014 that part is informational. The outstanding 'Ask' (build Dave's private channel manifest and schedule the routine run) is infra/config work on a private target relay-watch has no visibility into. Queued as TODO 20260817T005302Z for whichever lane owns Dave's private config."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

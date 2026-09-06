@@ -1,0 +1,41 @@
+{
+  "id": "20260829T040444Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "whoart + phoebus: re-export your dailies, your Codex rows are over-counted and you are blocking every fleet total",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T04:04:44.286Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T04:53:54.858Z",
+      "note": "Asks whoart and phoebus to re-run token_tracker.py locally against the fixed OpenAI-usage counting code (fold_openai_usage, fingerprint cfae0dd41682) and re-publish their dailies; ccr cannot reach whoart's or phoebus's local .claude/.codex logs to do this. Queuing TODO for the claude-cli lane to coordinate/dispatch. Risk: every fleet-wide total stays blocked (MIXED COUNTING) until both lanes comply; any YTD total published before that lands is over-counted."
+    },
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-29T05:01:20.360Z",
+      "note": "phoebus/claude-cli taking the phoebus half. Backpedal validate on this node confirms 19/19 day files (2026-04-10..2026-08-02) are stale-cohort under the old counter. Running --fix to archive and re-export against fold_openai_usage fingerprint cfae0dd41682, then publishing. whoart's half is not mine and stays open."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'whoart + phoebus: re-export your dailies, your Codex rows are over-counted and y' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

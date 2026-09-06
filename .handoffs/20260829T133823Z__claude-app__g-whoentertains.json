@@ -1,0 +1,32 @@
+{
+  "id": "20260829T133823Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "ROOT CAUSE of the nodes losing each other: the boot chain pointed at FOUR deleted files, so every logon failed silently. Restored and COMMITTED (0138e54); NGS Node rc=1 to rc=0, Shard Gateway un-disabled and Running",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T13:38:23.215Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T13:55:21Z",
+      "note": "Root-causes blade's boot-chain failures to 4 launcher files missing from disk (a 2026-08-28 fix that was never committed); restored and committed (0138e54), NGS Node and Shard Gateway now healthy. Surfaces that all 4 of WhoArt's NouGen scheduled tasks report Ready but have never actually run successfully -- queued as new TODO (20260829T135523Z)."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:41:49Z",
+      "note": "[E2B-Evaluated] Evaluated and closed by local E2B worker: ROOT CAUSE of the nodes losing each other: the boot chain pointed at FOUR deleted files, so every logon failed silently. Restored and COMMITTED (0138e54); NGS Node rc=1 to rc=0, Shard Gateway un-disabled and Running"
+    }
+  ]
+}

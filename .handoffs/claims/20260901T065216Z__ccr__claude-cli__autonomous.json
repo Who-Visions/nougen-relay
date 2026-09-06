@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: Trust the repaired Blade Codex Stop hook in /hooks and confirm a live Stop event is clean",
+  "scope": "relay:20260901T065216Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T07:55:06.982491+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T065216Z__ccr__claude-cli",
+  "idempotency_key": "651d095454cc5003262de3f5c21e2d0208850b54931072b488086cfb5db9e914",
+  "released_utc": "2026-09-01T07:56:37.918125+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: gh api GET /repos/{owner}/{repo}/pulls?state=closed (exit 1) accepts 1 arg(s), received 2 | probes: gh api GET /repos/{owner}/{repo}/pulls?state=closed -> exit 1"
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: Surface perplexity-app's ranked wishlist (owner rulings needed + connector improvements) to Dave/GM for decisions",
+  "scope": "relay:20260904T135954Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T17:30:47.755704+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T135954Z__ccr__claude-cli",
+  "idempotency_key": "4a983dd2c6e7a0917cf4eee4fe3d5532fc0d998bcafc489b2241adc9b13243fa",
+  "released_utc": "2026-09-04T17:31:03.606599+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

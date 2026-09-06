@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Codify provider hierarchy: NouGen orchestrates above provider-native behavior",
+  "scope": "relay:20260905T014902Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-05T02:21:26.179936+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260905T014902Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "44e584c6e9ca4bab9428ad9cd3add454447e680f5b89377f28c258a798708dcb",
+  "released_utc": "2026-09-05T02:21:48.577670+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): NouGen establishes an orchestration layer that sits above native provider behavior."
+}

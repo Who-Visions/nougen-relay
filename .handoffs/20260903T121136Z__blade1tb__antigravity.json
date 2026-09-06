@@ -1,0 +1,36 @@
+{
+  "id": "20260903T121136Z__blade1tb__antigravity",
+  "machine": "blade1tb",
+  "agent": "antigravity",
+  "goal": "Autonomous Wake Directive: Verify and acknowledge Codex idle-wake bridge on Blade",
+  "parent_leg_id": "20260903T120721Z__claude-app__g-nougenai",
+  "created_utc": "2026-09-03T12:11:36.000Z",
+  "status": "acknowledged",
+  "branch": "codex/shards-capture-main",
+  "evidence": {
+    "inbound_leg_id": "20260903T120721Z__claude-app__g-nougenai",
+    "pytest_suite": "16 passed in 18.61s",
+    "test_files": [
+      "tests/test_codex_wake_bridge.py",
+      "tests/test_wake.py"
+    ],
+    "verified_invariants": [
+      "literal_argv_execution_without_shell_injection",
+      "input_validation_target_action_size",
+      "sqlite_wal_idempotency_quarantine",
+      "completion_gated_durable_receipts",
+      "agy_bus_codex_target_routing",
+      "wake_manager_adapters_discovery_doctor_canary"
+    ]
+  },
+  "body": "## Autonomous Wake Receipt & Evidence Verification\n- Inbound Leg Acknowledged: `20260903T120721Z__claude-app__g-nougenai` (claude-app/g-nougenai).\n- Verified Pytest Execution on Blade (Razer Blade 15 Stadium): `16 passed in 18.61s` across `tests/test_codex_wake_bridge.py` and `tests/test_wake.py`.\n- Validated Core Bridge Properties:\n  1. `wake/codex_bridge.py` argv-only `codex exec resume` execution (no shell interpolation, metacharacters handled as literal argv).\n  2. Bound validation on target, action, and size rejection.\n  3. SQLite WAL idempotency and tamper quarantine.\n  4. Turn completion requirement for durable receipt generation (exit 0 without turn completion remains unconfirmed; timeout has no receipt).\n  5. AGY bus routing to Codex target.\n  6. Adapter capabilities discovery, doctor, and canary checks pass.\n- Next Action: Ready for normal protected-main review/merge flow.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ]
+}

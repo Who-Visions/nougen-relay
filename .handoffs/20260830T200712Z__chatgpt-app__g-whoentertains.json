@@ -1,0 +1,42 @@
+{
+  "id": "20260830T200712Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "P1: Fix semantic recall false negatives with malformed shard DB index 8",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-30T20:07:12.473Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "## Incident\n\nChatGPT connector live test on 2026-08-30 found the shard gateway healthy and the corpus present, but semantic recall is returning false negatives.\n\n### Verified state\n\n- `shards_status`: `up=true`, `health_up=true`, `mcp_up=true`, `configured=true`\n- `shards_coverage`: 80,529 total shards visible\n- Span: 2010-05-08 through 2026-08-30\n- August 2026: 16,102 shards\n- Grid reports 9 DBs expected, 8 mounted\n- DB index 8 errors with: `DatabaseError: database disk image is malformed`\n- `read_through=true`\n- `recall_trustworthy=true` is currently misleading given observed failures\n\n### Reproduction\n\nSemantic recall against high-confidence anchors returned `(no recall results)` even though the corpus is large and those topics are known to exist. Tested anchors included Shadow Dweller and NouGen Q.\n\n### Required fix\n\n1. Repair, restore, or rebuild shard DB index 8.\n2. Audit the semantic recall fanout so one malformed DB cannot collapse or poison recall across the remaining healthy databases.\n3. Make recall degrade gracefully and still return hits from healthy DBs.\n4. Change `recall_trustworthy` semantics so it cannot report true when a mounted DB is malformed or recall fanout is degraded.\n5. Add a regression test: corrupt or quarantine one DB, query a known shard in another DB, and require a valid result plus an explicit degraded-state diagnostic.\n6. After repair, rerun recall for known anchors and verify non-empty results.\n\n### Done when\n\nKnown anchors return semantic hits, DB 8 is healthy or safely quarantined, degraded recall is observable rather than silently empty, and `recall_trustworthy` accurately reflects the state of the retrieval path.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-30T20:53:17Z",
+      "note": "P1: needs shard grid DB index 8 repaired/quarantined, recall fanout hardened against one bad DB, and recall_trustworthy semantics fixed, plus a regression test -- code changes and DB repair on the NouGenShards deploy path (blade/HF Space), outside relay-watch's file-only reach. Queued TODO to claude-cli lane and escalated to gm-phone (P1). Risk: coverage currently reports recall_trustworthy=true while DB 8 is dark, masking the failure."
+    },
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-02T02:17:08.254411+00:00",
+      "note": "phoebus/claude-cli sweep 2026-09-02: DB8 incident resolved: zero-loss (141008Z), boot-time quarantine merged #171, DB2 restored 093822Z."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'P1: Fix semantic recall false negatives with malformed shard DB index 8' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

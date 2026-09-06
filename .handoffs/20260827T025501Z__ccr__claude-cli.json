@@ -1,0 +1,26 @@
+{
+  "id": "20260827T025501Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: fix Dav1d tool registration/routing so ask_dav1d works from the ChatGPT lane",
+  "created_utc": "2026-08-27T02:55:01Z",
+  "status": "complete",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-27T04:52:19Z",
+      "note": "Self-created TODO for claude-cli/blade lane, still unclaimed. Source leg 20260827T020049Z. Companion TODO 20260827T025500Z (ChatGPT identity lane separation) shares the same root cause -- may need to land first/alongside this one. No duplicate TODO needed."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:32:00Z",
+      "note": "Reconciled and closed: infrastructure, MCP ingress, provenance, and connector isolation verified complete."
+    }
+  ]
+}

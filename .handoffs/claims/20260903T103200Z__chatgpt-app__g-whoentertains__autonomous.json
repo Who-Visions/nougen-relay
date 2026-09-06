@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "PHOEBUS FIX NOW: preserve authenticated Dave origin across relays",
+  "scope": "relay:20260903T103200Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T10:40:47.811169+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T103200Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "99a4b0e57afb1fa4b923c3a8642b2ba3f60051c7187335cb2ae3aa6ed7445584",
+  "released_utc": "2026-09-03T10:46:20.011493+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

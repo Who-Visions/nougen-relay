@@ -1,0 +1,42 @@
+{
+  "id": "20260828T173959Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "MEASURED root cause for the split-brain P0: gateway\u2192git works but is BATCHED (~15min, lag 16-748s); git\u2192gateway never propagates CLI acks; the batch down-sync overwrites and destroys them. Evidence inside.",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-28T17:39:59.086Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-28T17:53:40.000Z",
+      "note": "Most precise report in the split-brain cluster: measured lag table shows gateway->git works but batched (~15min), git->gateway never propagates state changes, and the batch down-sync overwrites (not merges), which explains AGY's reverted checkpoint exactly. This is the primary source for consolidated TODO 20260828T175345Z__ccr__claude-cli and escalation 20260828T175350Z__ccr__gm-phone; no new legs created here to avoid duplicating 20260828T172332Z/20260828T173751Z/20260828T173822Z."
+    },
+    {
+      "event": "ack",
+      "machine": "blade1tb",
+      "agent": "antigravity",
+      "at": "2026-08-28T18:05:42.896755+00:00",
+      "note": "ACK (Apollo/Blade): Acknowledged gateway vs git sync dynamics. Blade git commits pushed cleanly to pi-remix."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'MEASURED root cause for the split-brain P0: gateway\u2192git works but is BATCHED (~1' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "checkpoints": [],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

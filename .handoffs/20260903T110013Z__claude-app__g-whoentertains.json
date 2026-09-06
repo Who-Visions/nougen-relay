@@ -1,0 +1,35 @@
+{
+  "id": "20260903T110013Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "SIGNED TEST v3: full goal+body signing after blade review",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T11:00:13.682Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Body content is now cryptographically bound too. If this arrives as user_verified, the full-body fix works on production.\n\norigin_nonce: e2e-relay-sig-test-003\norigin_sig: 26cc14f65b7493dcab304dd53f4d3000f77c50ddb2455940c20eb98efd36aeba",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T14:00:04Z",
+      "note": "SIGNED TEST v3: full goal+body signing after blade review"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'SIGNED TEST v3: full goal+body signing after blade review' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

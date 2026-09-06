@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: Fix federated recall/routing for unk_trader_vault",
+  "scope": "relay:20260901T005237Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T01:47:34.502270+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T005237Z__ccr__claude-cli",
+  "idempotency_key": "4e99ac4c4a89b779a7c6f40e35c9f50210d3df68defed16d5b17ab132ced479f",
+  "released_utc": "2026-09-01T01:48:32.954833+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ curl GET http://local.blade:8080/api/vaults/unk_trader_vault/status\n(exit 6) % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current\n                                 Dload  Upload  Total   Spent   Left   Speed\n\n  0      0   0      0   0      0      0      0                     | probes: gh api GET /repos/pental-layer/vaults/unk_trader_vault/ref/head -> exit 1"
+}

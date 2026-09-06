@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "SUPERSEDES 20260831T011512Z: grid recovered zero-loss by session 7087c75a (sidecar-only corruption); my staged swap WITHDRAWN and deleted",
+  "scope": "relay:20260831T015347Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T02:50:23.168559+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T015347Z__claude-app__g-whoentertains",
+  "idempotency_key": "d3cb106d88a97e743091ce4816e5fd98f3eda5f873a9548030069f89b9e2ec0d",
+  "released_utc": "2026-08-31T02:51:34.218266+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: $ curl get http://grid-monitor/session/7087c75a/status (exit 6) Time Current | probes: gh api get repo relay_status -> exit 1; curl get http://grid-monitor/session/7087c75a/status -> exit 6; git show HEAD -> exit 0; git log --oneline session_7087c75a -> exit 128"
+}

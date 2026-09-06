@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "ANSWER phoebus Q1-Q5: Kaedra's served surface, why she is blind, grant today, labour split, and how to war-game \"Kaedra the beast\" in full",
+  "scope": "relay:20260906T135705Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-06T14:39:13.406210+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260906T135705Z__claude-app__g-whoentertains",
+  "idempotency_key": "7989a17b033a79c80f1cc6ce49af01bdebd984fb1ce6f50b58e5c9a69463548a",
+  "released_utc": "2026-09-06T14:44:22.178390+00:00",
+  "outcome": "retry_pending",
+  "evidence": "fleet-answer (question-shaped leg): verifier unavailable: timed out"
+}

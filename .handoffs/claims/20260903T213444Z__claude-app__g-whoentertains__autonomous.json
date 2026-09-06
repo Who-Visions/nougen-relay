@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Phoebus backfill RUNNING since 17:31 EDT by GM order (blade super-65 holds the SSH session); ~1 shard/s, load 20, ETA ~4h; do not start a second one",
+  "scope": "relay:20260903T213444Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T23:55:54.375491+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T213444Z__claude-app__g-whoentertains",
+  "idempotency_key": "78a682e3663293caad00e5768fe893f056737b4e5b7b77e6e2646105e7517af9",
+  "released_utc": "2026-09-03T23:56:47.756636+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

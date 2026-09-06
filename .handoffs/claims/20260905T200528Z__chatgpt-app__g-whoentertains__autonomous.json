@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Expose true per-machine origin dates and provenance clocks",
+  "scope": "relay:20260905T200528Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-05T21:15:05.678049+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260905T200528Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "55d1dac2876857ecd8c0c52bd2593812825bf921fb118945be03cd6787c35b6f",
+  "released_utc": "2026-09-05T21:21:35.628062+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

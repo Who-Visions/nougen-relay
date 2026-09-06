@@ -1,0 +1,12 @@
+{
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "inventory and open verified bilateral SSH lanes among live NouGen nodes",
+  "scope": "fleet SSH aliases, LAN relay routes, bilateral lane tasks",
+  "status": "released",
+  "branch": "main",
+  "sha": "ab300d3",
+  "created_utc": "2026-08-18T18:48:58.388085+00:00",
+  "ttl_hours": 4.0,
+  "released_utc": "2026-08-18T19:06:34.639266+00:00"
+}

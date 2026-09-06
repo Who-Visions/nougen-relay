@@ -1,0 +1,12 @@
+{
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "colour + pretty print the CLI, stdlib only, invisible when piped",
+  "scope": "src/nougen_relay/ui.py,src/nougen_relay/core.py",
+  "status": "released",
+  "branch": "main",
+  "sha": "dda3245",
+  "created_utc": "2026-08-01T04:15:47.199268+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-08-01T04:19:40.717932+00:00"
+}

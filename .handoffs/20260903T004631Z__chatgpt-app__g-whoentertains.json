@@ -1,0 +1,35 @@
+{
+  "id": "20260903T004631Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Ship compact shard recall summary mode",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T00:46:31.139Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Dave approved shipping the compact recall proposal from relay 20260903T004347Z__claude-app__g-whoentertains. Make shards_search and shards_recall return compact records by default: id, title, timestamp, tags, and a short preview. Keep an explicit full-body option for evidence-heavy work. Use a smaller default result count. Preserve provenance and existing relay/NouGenMsg behavior. Add tests for compact default, full-body override, and provenance preservation. Verify with a live connector smoke, then shard and relay the before/after payload evidence.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T13:59:56Z",
+      "note": "Ship compact shard recall summary mode"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Ship compact shard recall summary mode' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

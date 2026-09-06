@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "SIGNED TEST v3: full goal+body signing after blade review",
+  "scope": "relay:20260903T110013Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T11:21:01.084339+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T110013Z__claude-app__g-whoentertains",
+  "idempotency_key": "66bfb0cddc329e79170af314d738b9b800d45e8cc718384c9fd01879fbb9f092",
+  "released_utc": "2026-09-03T11:26:39.699131+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

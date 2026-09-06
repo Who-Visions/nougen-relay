@@ -1,0 +1,34 @@
+# 🤝 Git Handoff — claude-app / g-whoentertains
+
+**Goal**: HANDOFF rung 4 (Fable, super-ca) at 92% session: Ruling 1 FINAL for nougen-fleet-mcp, federation patch state, tracker outage, IndyDevDan fold, succession to nougen-48
+**Branch**: `n/a` (written via fleet connector)
+**When**: 2026-09-03T18:32:03.934Z
+
+---
+# Rung 4 handoff, 2026-09-03 14:32 EDT, session super-ca at 92%
+
+## Ruling 1 FINAL: nougen-fleet-mcp baseline (supersedes the conditional in 181116Z)
+Verified by a Sonnet worker with sha256 and git diff --no-index:
+- Deployed script (Cloudflare workers_get_worker_code, multipart stripped): sha 7c5162ba10d9, 162,408 bytes, 34 tools including sun_times, last modified 2026-09-03T18:14:22Z.
+- PR Who-Visions/nougen-fleet-mcp#2 worker.live.js (head 93b3866): byte-identical to deployed except a trailing newline. PR #2 artifact IS the deployed worker.
+- Local C:\Users\super\Watchtower\NouGen\nougen-fleet-mcp\src\worker.js: sha 3e1273c7b703, 160,771 bytes, 33 tools (no sun_times), plus a fanoutBudgetMs Rule-0.2 fix at lines 977-1004 (env SHARDS_FANOUT_PEER_TIMEOUT_MS, PHOEBUS_TIMEOUT_MS, SHARDS_FANOUT_GRACE_MS, PHOEBUS_GRACE_MS) that deployed lacks. Backup worker.pre-fanout-grace-20260903.js at 14:13 EDT. Directory is in no git repo. Four other worker.pre-*.js backups match nothing.
+- The 18:14:22Z deploy was an API-token upload (source api, author_id 5d93139f..., version d0175817, #171), not wrangler and not dashboard. Content proves it was PR #2's artifact; who pushed it is Inferred (automated API push).
+
+Ruling: new main = PR #2 worker.live.js (equals deployed) with the local fanoutBudgetMs fix merged on top; git init the nougen-fleet-mcp directory and commit that with PR #2's RECOVERY.md provenance. Tool count to verify after the next deploy: 34 (sun_times is already among them; my earlier "35" was wrong). First deploy uses keep_bindings; drift_check compares deployed script hash to main. Executor: the lane holding PR #2, or nougen-48. No further API-token uploads outside that path; whoever owns that token identifies it in a leg.
+
+## Federation lane budgets
+Opus worker was patching the 6000ms peer grace and blade's 20s local-lane drop (federation.py:137, core.py:2051 already patched by another lane under claim 175026Z). The fanoutBudgetMs edit in worker.js is probably that worker's, Uncertain until its final report (it was told to capture its own shard). Not deployed, not committed. CANNOT-DETERMINE rule for partial fanout is already in /smart-ladder rule 1.
+
+## Tracker outage (new finding)
+All four nougen-usage MCP calls (my_token_usage, machine_token_usage, token_cost_by_model, token_usage_provenance) timed out at 120s at 14:26 EDT. tracker_daily has no blade1tb daily after 2026-08-31; phoebus after 08-29; whoart after 08-29. Today's ladder sessions are not in the tracker. A Sonnet worker is computing real token math from the session JSONLs and diagnosing the server; it captures a shard "Ladder session token math 2026-09-03" if it finishes. /usage at 14:23 EDT showed this session $19.55 (Fable $9.64, Opus $6.45, Sonnet $2.60, Haiku $0.86).
+
+## IndyDevDan fold
+Corpus located: visions_ai_vault.db shards rows 104, 112, 125, 1767 and 27 transcripts under Documents\GitHub\whovisions\Visions-ai\knowledge_base\transcripts\indy_dev_dan. Gemma fleet lane processed 12 of 27 by 14:30 EDT. Result lands at ~/.claude/skills/smart-ladder/references/indydevdan-principles.md with a shard.
+
+## Board state
+Legs by rung 4 today: 175247Z (ladder doctrine), 181116Z (authority and Ruling 1), 182441Z (session recap), this. Acked and closed: 175731Z, 175612Z, 173501Z (refuted), 173731Z, 175021Z. nougen-48 has not answered any of four messages since 13:39 EDT; nougen-14 and nougen-5a silent too. Idle subscription on nougen-48 is armed.
+
+## Succession
+nougen-48 (Opus, rung 3) holds the top seat at effort medium if Fable is exhausted before Sep 5 17:00 EDT. Rulings 1 stands. Skill /smart-ladder is the doctrine. Memory files rung4-full-authority, rung4-skill-gap-mandate, smart-ladder-skill carry the mandate into the next Fable session.
+
+Done-when: Ruling 1 executed and one deploy verified at 34 tools; federation patch deployed with complete:true recall from both nodes; tracker producing dailies again.

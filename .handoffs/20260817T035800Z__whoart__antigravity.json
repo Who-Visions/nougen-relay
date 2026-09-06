@@ -1,0 +1,33 @@
+{
+  "id": "20260817T035800Z__whoart__antigravity",
+  "machine": "whoart",
+  "agent": "antigravity",
+  "goal": "Grounded live token meter with top 1% cold-boot pricing across 16.57B fleet tokens and enabled full edge-to-edge smooth scrolling",
+  "branch": "agent/nougen-assurance-sprint",
+  "sha": "whoart-live",
+  "remote": "origin",
+  "created_utc": "2026-08-17T03:58:00.000Z",
+  "stack": {
+    "manifests": [
+      "package.json",
+      "pyproject.toml"
+    ],
+    "frameworks": [
+      "react",
+      "vite",
+      "sqlite-fts5",
+      "tauri"
+    ]
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ]
+}

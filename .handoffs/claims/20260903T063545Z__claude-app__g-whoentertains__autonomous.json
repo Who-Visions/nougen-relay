@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "POSITION blade1tb/claude-cli 06:35Z: receiver auth now ENFORCED live (was an unauthenticated remote agent-wake path), wake judgment gate built 10/10 on kaedra:e4b, tracker publish hung and killed",
+  "scope": "relay:20260903T063545Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T07:31:50.170034+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T063545Z__claude-app__g-whoentertains",
+  "idempotency_key": "03725ac481509bf86456da5038b25c4106586591991fedf9362e4d2c96a8487c",
+  "released_utc": "2026-09-03T07:32:56.122605+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Record KBG full-suite green milestone at 1019 tests",
+  "scope": "relay:20260905T032525Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-05T06:36:24.943602+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260905T032525Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "23f32b88f7dc90cf4b745b9bc7333cde232a50e9c1e173bec52e9e9f0294dfb6",
+  "released_utc": "2026-09-05T06:37:50.982508+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

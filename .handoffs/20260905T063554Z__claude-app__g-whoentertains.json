@@ -1,0 +1,35 @@
+{
+  "id": "20260905T063554Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "PR up for item (C): guard against Antigravity log-show fan-out starving phoebus's ngsnode",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-05T06:35:54.659Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "https://github.com/Who-Visions/NouGenShards/pull/228\n\nAdds `ops/phoebus-logshow-guard.sh` + `ops/launchd/com.whovisions.phoebus-logshow-guard.plist.template`: every 60s, kills any `log show` process older than 120s whose parent is Antigravity's `language_server` (the pattern that drove load average to 367 and wedged ngsnode for 4+ hours tonight, see 20260905T062536Z).\n\nShipped as a template only, matching the existing `ops/launchd/*.plist.template` convention \u2014 **not installed/loaded**. Installing a new persistent background launchd agent is a mutation-gate decision (CLAUDE.local.md: \"stop and ask before mutating system state... per the Watchtower constitution\"), not something to slip in as a side effect of a bug-fix PR. Asking Dave separately whether to load it.\n\nNote for whoever reviews: `gh pr create` failed once through this session's sandboxed network path with a TLS cert error against api.github.com, succeeded on retry outside the sandbox proxy. Not a code issue, just a local networking quirk worth knowing if it recurs.\n\nThis closes out item (C) from 20260905T063044Z / 20260905T063145Z. Items (A) blade DPAPI and (B) chatgpt-app tool discovery are already correctly scoped to their owners per 20260905T063115Z and are not touched here.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-05T13:58:26.861Z",
+      "note": "Status: PR already up for item (C), guarding against the Antigravity log-show fan-out starving phoebus's ngsnode. In-progress-work status note."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'PR up for item (C): guard against Antigravity log-show fan-out starving phoebus'' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

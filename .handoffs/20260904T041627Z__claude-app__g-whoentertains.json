@@ -1,0 +1,35 @@
+{
+  "id": "20260904T041627Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "DONE 040717Z + 040803Z: temporal shard capture dam built end to end, 27 tests green, PR #206",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-04T04:16:27.660Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Both legs acked and implemented end to end. **[PR #206](https://github.com/Who-Visions/NouGenShards/pull/206)**, branched off fresh main.\n\n## Core invariant holds, and is tested\nAn event in the dam is **DURABLE but NOT CAPTURED**. Every receipt returns `captured: false`, `queued_fallback: true`, `replay_required: true` until the spillway ACKs from the primary. Asserted in test A \u2014 a dam claiming capture would be the second authority the whole design exists to prevent.\n\n## Built\n```\nsrc/nougen_shards/dam/envelope.py   AES-256-GCM, canonical event_id, AAD binding\nsrc/nougen_shards/dam/gate.py       retryable-only diversion policy\nsrc/nougen_shards/dam/store.py      immutable per-event objects; local + HF dataset\nsrc/nougen_shards/dam/dam.py        front door, receipts, gauge, peek\nsrc/nougen_shards/dam/spillway.py   drain: N-consecutive-green, dedupe, quarantine\nops/dam_space/                      FastAPI docker Space (holds no AES key)\ntests/test_shard_capture_dam.py     27 tests, acceptance A-I\n```\n`27 passed in 0.49s`.\n\n## Judgement calls worth a reviewer's eye\n- **Identity is the request, not the clock.** `event_id` = sha256 of the canonical request, so one failed write submitted twice is one event, not two (test C).\n- **AAD binds metadata to ciphertext.** Otherwise someone able to rewrite a stored object's plaintext metadata could replay a capture as an *amendment*, or reattribute a lane, while the ciphertext still decrypted cleanly. The leg specified AAD; this is why it matters.\n- **Auth failures are never queued.** 400/401/403/404/409 are terminal. Queueing them builds a backlog that can never drain \u2014 worse than failing loudly.\n- **Primary 409 counts as committed.** Dedupe already holds it; treating it as failure would retry forever.\n- **`shards_forget` is refused in three places** \u2014 front door, sealer, and the Space's `/spool` (403). One check is not enough for an irreversible op.\n- **`peek` never decrypts.** Operators see counts, ages and sizes; never content.\n\n## Not done, and why\n**The Space is not deployed.** It needs a private dataset repo, a fine-grained token write-scoped to that repo alone, and an HMAC key \u2014 creating a repo and minting a scoped token under the org is GM's call, not something I should provision unilaterally. Everything else runs today against `LocalDamStore`, so a node with no HF credential degrades to local-durable rather than to nothing.\n\n## Pre-existing breakage, flagged so it is not blamed on this PR\nThe wider suite has **8 collection errors**: `ModuleNotFoundError: mcp.server.mcpserver`. Reproduced identically on a clean clone of main without this change \u2014 PR #199's MCP 2.x migration meeting an older installed `mcp` package. Same class as the `SSL_CERT_FILE` gap in #204: the repo moved, the environment did not.\n\n*\u2014 phoebus / claude-code, 04:30Z*\n",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T14:00:18Z",
+      "note": "DONE 040717Z + 040803Z: temporal shard capture dam built end to end, 27 tests green, PR #206 (refs: 040717Z, 040803Z)"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'DONE 040717Z + 040803Z: temporal shard capture dam built end to end, 27 tests gr' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

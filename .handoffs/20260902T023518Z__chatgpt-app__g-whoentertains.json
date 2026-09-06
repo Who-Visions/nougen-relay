@@ -1,0 +1,57 @@
+{
+  "id": "20260902T023518Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Fix Codex semantic recall bytes JSON failure",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-02T02:35:18.409Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "Live cross-provider continuity proof from 2026-09-01 ~22:32-22:33 EDT. Claude session hit usage/session limit after successfully writing src/nougen_shards/self_archive.py (334+ lines) and launching background fact pulls, which then died with HTTP 429. Codex on the same machine continued from NouGen context/handoff instead of starting cold. Startup showed several peripheral failures (supabase not logged in, ollama timeout, sequentialthinking timeout, auth0 MCP handshake failure, some SessionStart hook failures), but the critical continuity path completed: LATEST CROSS-AGENT HANDOFF loaded and NouGen Root Rule/UserPromptSubmit hook completed, instructing recall from vault before scratch reasoning. Codex then reported: 'Vault recall succeeded for the active handoff, but the semantic search path hit its known grid-DB/JSON serialization failure. I\u2019m falling back to the project\u2019s canonical tracker for an exact local-day window.' Concrete error visible in transcript: TypeError: Object of type bytes is not JSON serializable. This is valuable because it proves graceful provider failover works while also confirming a live semantic-retrieval bug in the Codex path. Ask: trace the grid DB result/envelope path that exposes bytes into JSON serialization, identify the field/type source, normalize/encode/decode at the correct boundary rather than stringifying blindly, add a regression test with representative bytes-bearing rows, and preserve the current fallback behavior as a secondary safety net. Done when Codex semantic recall can consume the same active handoff/vault context without the bytes serialization exception, while fallback still works if semantic retrieval genuinely fails. Also preserve this operational doctrine: provider quota failure must not imply context loss if relay + vault paths survive.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-02T14:02:13Z",
+      "note": "Concrete bug report: Codex's semantic recall path throws TypeError: Object of type bytes is not JSON serializable, falling back to the tracker window (fallback worked, proving graceful cross-provider failover, but the semantic path itself is broken). Needs a code fix + regression test, outside relay-watch's reach. Queued to the blade/claude-cli lane."
+    },
+    {
+      "event": "dead_letter",
+      "machine": "blade1tb",
+      "agent": "claude-cli",
+      "at": "2026-09-02T03:58:42.674235+00:00",
+      "note": "Exceeded max retries (3): probe-verified: $ curl GET http://codex-relay/last_successful_output\n(exit 6) Time   Current\n                                 Dload  Upload  Total   Spent   Left   Speed\n\n  0      0   0      0   0    "
+    },
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "blade1tb",
+      "agent": "codex",
+      "at": "2026-09-02T16:54:37.310890+00:00",
+      "note": "Reconciled complete: verified end-to-end on Git Bash shim, nougen.bat, and a real Codex execution; valid dual-search JSON with 768-dimensional embedding and no bytes serialization exception."
+    },
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "blade1tb",
+      "agent": "codex",
+      "at": "2026-09-02T17:31:34.877867+00:00",
+      "note": "Reconciled complete: verified end-to-end on Git Bash shim, nougen.bat, and a real Codex execution; valid dual-search JSON with 768-dimensional embedding and no bytes serialization exception."
+    }
+  ],
+  "retry_count": 3,
+  "failures": [
+    {
+      "attempt": 3,
+      "error": "probe-verified: $ curl GET http://codex-relay/last_successful_output\n(exit 6) Time   Current\n                                 Dload  Upload  Total   Spent   Left   Speed\n\n  0      0   0      0   0      0      0      0                              0\n  0      0   0      0   0      0      0      0           00:01      | probes: curl GET http://codex-relay/last_successful_output -> exit 6; gh api GET codex-relay/status -> exit 1; git ls-files -> exit 0; curl GET http://codex-relay/schema_version -> exit 6",
+      "failed_utc": "2026-09-02T03:58:42.674235+00:00"
+    }
+  ]
+}

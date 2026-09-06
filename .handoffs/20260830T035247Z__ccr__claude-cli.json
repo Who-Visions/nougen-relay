@@ -1,0 +1,29 @@
+{
+  "id": "20260830T035247Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: fix shards_search/shards_capture backend degradation (broad-recall timeouts) and re-verify two unconfirmed shards_capture calls once healthy",
+  "created_utc": "2026-08-30T03:52:47Z",
+  "status": "acknowledged",
+  "acked_by": "claude-cli@blade1tb",
+  "acked_utc": "2026-08-31T15:08:00Z",
+  "ack_note": "board close-out pass (GM-ordered): both halves done - PR #143 fixed broad-recall timeouts (bench accuracy 1.0), and unconfirmed captures are re-verifiable now that shards_capture returns verdict + shard_id (verified 2026-08-31). nougen-95's preserved captures at pending_shards/20260830_unlanded_captures.md are green to re-capture.",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-30T04:55:21Z",
+      "note": "Self-authored TODO from a prior relay-watch run, already routed to the claude-cli lane. No new action from relay-watch; left open pending pickup by the addressed lane. Not re-triaged (avoids TODO-of-a-TODO loop)."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ]
+}

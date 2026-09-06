@@ -1,0 +1,34 @@
+{
+  "id": "20260905T075818Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Build the Shadow Dweller Remix Refinery and Process Donor compiler",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-05T07:58:18.784Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "dead_letter",
+  "body": "# \ud83e\uddec Shadow Dweller Remix Refinery, Ultra Code Directive\n\nEvolve shard `22489@db1` from a rule into an executable creative compiler.\n\n## Core law\nA donor is admitted only as a PROCESS DONOR. The system extracts mechanism, strips source identity, transforms through Shadow Dweller canon, combines with independent influences, runs collision and leakage gates, then records provenance.\n\nKirby Ferguson remains the root grammar: COPY \u2192 TRANSFORM \u2192 COMBINE. Shadow Dweller adds enforcement stages around it.\n\n## Pipeline\n`HARVEST \u2192 ATOMIZE \u2192 STRIP \u2192 ANCHOR \u2192 MUTATE \u2192 BRAID \u2192 COLLIDE \u2192 SCORE \u2192 PROVE \u2192 SHARD`\n\n### HARVEST\nRecord the creative problem the donor solved, not the scene/story content.\n\n### ATOMIZE\nConvert the donor process into technique atoms: function, conditions, mechanism, emotional effect, visual effect, narrative cost.\n\n### STRIP\nRemove names, terminology, lore, iconography, scene order, signature dialogue, proprietary objects, and recognizable plot architecture. Produce a source-neutral process statement.\n\n### ANCHOR\nBind each atom to existing Shadow Dweller canon shards, character wounds, Haitian-Japanese history, Veil physics, factions, rituals, symbols, and current volume goals.\n\n### MUTATE\nApply multiple mutation operators. Minimum recommended depth = 3 distinct operators. Operators: invert, transpose, temporal shift, POV shift, cultural grounding, physics rewrite, symbolic substitution, scale shift, consequence inversion, ritualization, compression, fragmentation.\n\n### BRAID\nCombine with at least one independent donor process or native Shadow Dweller mechanism. Prefer 2+ independent sources before canon graduation.\n\n### COLLIDE\nRun hard canon governance. Existing canon outranks donor logic. Reject contradictions or quarantine into EXPERIMENTAL/Alt Layer.\n\n### SCORE\nCalculate:\n1. `veil_distance` = how natively Shadow Dweller the result has become. Higher is better.\n2. `donor_leakage` = recognizable residue of a donor. Lower is better.\n3. `canon_fit`.\n4. `emotional_fit`.\n5. `symbolic_native_density`.\n6. `independent_source_diversity`.\n7. `transformation_depth`.\n\nSuggested gates:\n- donor_leakage > 0.30 => REJECT\n- donor_leakage 0.15..0.30 => QUARANTINE and mutate again\n- veil_distance < 0.70 => EXPERIMENTAL only\n- canon_fit < 0.85 => COLLISION REVIEW\n- fewer than 2 independent source processes => no automatic canon graduation\n\n### PROVE\nPersist a transformation ledger proving what was abstracted and how it changed. Never merely assert originality.\n\n### SHARD\nCapture the surviving native mechanism, not copyrighted donor content. Store donor refs separately as `process_reference:*` provenance metadata.\n\n## Data model\nCreate `ProcessDonorCard`, `TechniqueAtom`, `CanonAnchor`, `MutationTrace`, `CandidateMechanism`, `CollisionReport`, `TransformationScore`, `ProvenanceLedger`.\n\n`ProcessDonorCard` must include:\n- donor_id\n- source_title\n- donor_type = PROCESS_ONLY\n- creative_problem\n- extracted_techniques[]\n- forbidden_surface_elements[]\n- abstraction_notes\n- process_reference tag\n\n`TechniqueAtom`:\n- atom_id\n- function\n- preconditions\n- mechanism\n- intended_effect\n- narrative_cost\n- abstraction_level\n\n`CandidateMechanism`:\n- candidate_id\n- atoms[]\n- canon_anchors[]\n- mutations[]\n- independent_donors[]\n- native_expression\n- scene_applications[]\n- status = experimental|quarantined|review|canon_candidate\n\n## Scoring proposal\n`donor_leakage = .30*surface_similarity + .25*plot_similarity + .20*terminology_similarity + .15*staging_similarity + .10*iconography_similarity`\n\n`veil_distance = .25*(1-donor_leakage) + .20*canon_fit + .15*cultural_grounding + .15*veil_physics_rewrite + .10*symbolic_transformation + .15*source_diversity`\n\nDo not pretend these scores are objective truth. They are governance heuristics and review triggers.\n\n## Dune first donor card\nUse Dune only to benchmark high-level process techniques such as selective exposition, ritual density, faction readability, mythic scale anchored to immediate POV, strategic omission, visualized systems, and compression of deep history. Do not import names, distinctive plot beats, proprietary lore, dialogue, scene structures, or iconic worldbuilding objects.\n\n## Architecture target\nImplement as a provider-neutral NouGen module so Rhea, Kaedra, Dav1d, Codex, Claude, Gemini, OpenRouter, and local lanes can all submit donor cards and receive the same governance result.\n\nSuggested module path:\n`nougen/remix_refinery/`\n- `models.py`\n- `pipeline.py`\n- `mutations.py`\n- `scoring.py`\n- `canon_gate.py`\n- `provenance.py`\n- `adapters/shards.py`\n- `examples/dune_process.yaml`\n- `tests/test_donor_leakage.py`\n- `tests/test_canon_collision.py`\n\n## Non-negotiable invariant\n**The donor must become unrecognizable before canon can recognize it.**\n\nDone when: a donor card can pass through the full pipeline, emit a scored native mechanism plus provenance ledger, quarantine source-contaminated candidates, and capture only canon-safe output to NouGenShards.",
+  "retry_count": 3,
+  "failures": [
+    {
+      "attempt": 3,
+      "error": "non-zero exit (1)",
+      "failed_utc": "2026-09-05T10:39:58.104800+00:00"
+    }
+  ],
+  "relay": [
+    {
+      "event": "dead_letter",
+      "machine": "blade1tb",
+      "agent": "claude-cli",
+      "at": "2026-09-05T10:39:58.104800+00:00",
+      "note": "Exceeded max retries (3): non-zero exit (1)"
+    }
+  ]
+}

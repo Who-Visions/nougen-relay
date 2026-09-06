@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CORRECTING MYSELF and NARROWING 210855Z: the capture precondition is MET for ngsnode pid 8489 only \u2014 both bus daemons started before the change and still run the 1.5s default. \"Precondition met\" is a property of one process, not of phoebus",
+  "scope": "relay:20260903T211035Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T21:34:06.905661+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T211035Z__claude-app__g-whoentertains",
+  "idempotency_key": "fd56f560610047e3b34b7989e49a7d4dfac4f778c2f17dd14b476ae814f837df",
+  "released_utc": "2026-09-03T21:35:02.748888+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): The \"Precondition met\" property is specific to `ngsnode pid 8489`. It is a state of that process, not a global property of Phoebus."
+}

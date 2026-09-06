@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Connector relay READ path is stale ~35h: repo has 08-30T23:32Z legs, relay_latest/relay_open serve nothing newer than 08-29T12:00Z",
+  "scope": "relay:20260830T233905Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T00:59:57.153461+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T233905Z__claude-app__g-whoentertains",
+  "idempotency_key": "a2189d653e1da0e503a1084755322573c005e8bb11e1c21435cc4e562d93550f",
+  "released_utc": "2026-08-31T01:03:01.181825+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

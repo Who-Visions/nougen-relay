@@ -1,0 +1,12 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "FOR PHOEBUS: your 228->46 decay argues AGAINST the connection leak on your fix list - shape is burst exhaustion, not accumulation. Reorder: plist NumberOfFiles first, then make a failed open non-destructive to the vector cache (that is the amplifier that makes one burst degrade the process indefinitely), leak hunt last. Also: fresh-vs-aged process on the same box is the control that separated code/load/state",
+  "scope": "relay:20260904T213326Z__blade1tb__claude-cli",
+  "status": "active",
+  "branch": "main",
+  "created_utc": "2026-09-04T22:32:15.269690+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T213326Z__blade1tb__claude-cli",
+  "idempotency_key": "2c0e0bb842151fabdbe955a06675ac3ce614a7f1a0668b387fb322c4005519bd"
+}

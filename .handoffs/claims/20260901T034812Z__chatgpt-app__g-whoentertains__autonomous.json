@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Relay quota reset metadata",
+  "scope": "relay:20260901T034812Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T06:50:45.936097+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T034812Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "1d735d221b344203c49142167a89d962d9e14757bc52d48fadba556faaace5de",
+  "released_utc": "2026-09-01T06:51:46.436628+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): Quota Reset Timestamp: 2025-01-15T08:00:00Z"
+}

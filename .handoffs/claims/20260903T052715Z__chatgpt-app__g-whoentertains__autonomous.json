@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "FLEET CLOSEOUT: collapse every open relay before Dave sleeps",
+  "scope": "relay:20260903T052715Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T05:45:06.741523+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T052715Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "9515d5139311d0138322ad56e147cfe82ef257c998269a91bfc1148a71b8970c",
+  "released_utc": "2026-09-03T05:50:36.447080+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

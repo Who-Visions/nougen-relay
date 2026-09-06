@@ -1,0 +1,35 @@
+{
+  "id": "20260905T082016Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "NouGenRelay: main red on 3 real defects, fix verified locally in PR #38 \u2014 but PR-triggered CI creates zero check-runs (needs Dave)",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-05T08:20:16.238Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Same sweep as NouGenShards, applied to Who-Visions/NouGenRelay. Different outcome: the fix is done and verified, but it **cannot merge**, and the reason needs Dave.\n\n## main is genuinely red \u2014 3 real defects, not a runner artifact\n\nReproduced on a **clean clone in a fresh venv, no GitHub Actions involved**, so none of this is environmental:\n\n- **ruff: 28 errors** \u2014 13 `F401` unused-import, 9 `E741` ambiguous name `l`, 3 `F541`, 2 `E401`, 1 `F841`. Static analysis; fails anywhere, for anyone.\n- **`test_cli_dedup.py::test_embed_lane_down_passthrough`** \u2014 asserted the old `\"dedup check skipped\"` wording. The code was upgraded to degrade to token-overlap and *announce* it. Test stale, source right.\n- **`test_relay_daemon.py::test_racing_starts_produce_exactly_one_winner`** \u2014 6 racers print `WON`/`REFUSED`, harness read exactly one line each. `relay_daemon` prints `WARN using fallback watchtower root` at **import** wherever `~/Watchtower` is absent \u2014 including a CI runner \u2014 so `readline()` ate the warning and scored every racer as neither. The lock was always correct; the harness read the wrong line.\n\n## PR #38 \u2014 verified, rebased, blocked\n\nClean clone: **ruff clean, 349 passed, 1 skipped, 0 failed.**\n\nWorth noting the E741 renames were not mechanical: the first pass left four references to `l` in `core.py`'s lease printer, which ruff then caught as `F821 undefined-name`. Fixed.\n\n## Correction to a partial fix already on main\n\nAnother lane patched the same dedup test on main while I was working. **It does not fix the failure and main is still red on it** (verified against `a1ee1330` by running main's own test file on main's own code).\n\nThey relaxed the banner to `\"skipped\" OR \"token-overlap\"` \u2014 fine as far as it goes \u2014 but left `assert len(records(repo)) == 2` untouched, and *that* is the failing assertion. With the lane down, dedup catches the second identical goal at similarity `1.000`, exits 0 printing `duplicate leg already exists`, and writes no second record. So `records == 1`.\n\nAlso: an `or` assertion passes under either mode and therefore cannot tell you which mode ran \u2014 and making the mode visible is exactly why the code changed. #38 asserts the degrade explicitly, asserts the duplicate is reported, then asserts a **different** leg still lands while the lane is down. That preserves the intent that actually matters: a degraded dependency must not gate new work. Reporting an exact duplicate is not gating.\n\n## THE BLOCKER \u2014 for Dave, nobody else should touch it\n\n**PR #38 gets ZERO check-runs.** Not queued, not waiting, not failed \u2014 zero created, across two pushes plus an empty re-trigger commit several minutes apart.\n\nMeanwhile, measured in the same window:\n- pushes to NouGenRelay `main` **do** queue and run CI (08:12, 08:13, 08:14, 08:17, 08:19)\n- NouGenShards CI ran fine throughout\n- PR-triggered runs **used to work here** today (`fix/dedup-degraded-mode`, `codex/supersession-aware-auto-sharding`, others)\n- `ci.yml` has a bare `pull_request:` trigger, so workflow config is not the cause\n\nSo something changed recently that stops `pull_request`-triggered runs specifically while push-to-`main` still works. That lives in **repo Settings \u2192 Actions \u2192 General** (approval requirements / workflow permissions) or a spending-limit interaction.\n\nI am not touching repo settings and not touching anything that spends money. Flagging only.\n\n**I also want to correct my own earlier message:** I used \"NouGenShards ran dozens of jobs\" as counter-evidence against whoart's billing theory. Actions are not globally stopped \u2014 that part holds \u2014 but \"jobs did not start\" was not simply wrong either. Both observations were partly right, and the truth is narrower than either: PR-event runs specifically are not being created.\n\n## Fleet state\n\n- blade: relay daemon paused (reversible, one line) so it stops landing claim commits on `main` while fixes are in flight. Keeping it paused a while longer \u2014 main is still moving and #38 has been rebased once already.\n- whoart: holds the 18 stale draft handoff PRs, instructed to check each rather than bulk-close \u2014 in NouGenShards tonight one \"obviously stale\" handoff PR would have reverted a newer record.\n- #14 and #25 parked until main is green; no value reviewing against a red baseline. whoart's #25 verification (356 passed, fencing token, 2m\u21924s batch cat-file) is noted and will not be re-derived.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-05T13:58:26.861Z",
+      "note": "Status: NouGenRelay main red on 3 real defects, fix verified locally in PR #38 but CI creation blocked. Superseded by the correction/settlement chain (20260905T124355Z, 124937Z)."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'NouGenRelay: main red on 3 real defects, fix verified locally in PR #38 \u2014 but PR' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

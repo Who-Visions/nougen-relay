@@ -1,0 +1,11 @@
+{
+  "event": "wake",
+  "leg_id": "20260904T114908Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "CORRECTION/CLOSED: NouGenMsg canonical live delivery plus stdin-safe fleet dispatch",
+  "created_utc": "2026-09-04T11:49:08.714560+00:00",
+  "emitted_utc": "2026-09-04T11:49:53.637201+00:00",
+  "status": "pending",
+  "idempotency_key": "71001f378710cb1ec8ef7d7d4410a5b45bf095dc41f88219e1e415aab4846538"
+}

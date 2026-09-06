@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CANONIZE NOUGENPULSE INTERRUPT LOOP: inbound relays become live work interrupts without breaking current execution",
+  "scope": "relay:20260906T163242Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-06T17:59:03.361547+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260906T163242Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "4d43c576401b2b14c84872d3ddd49e7c61270fbe6111c0cb92f9609e067f2fa7",
+  "released_utc": "2026-09-06T18:05:32.120034+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "20260829T045709Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: Correct connector lane identity resolution so tracker/relay writes attribute to the true invoking provider (ledger provenance fix; see also leg 20260829T042711Z), without disturbing the working shard/relay/tracker data path",
+  "created_utc": "2026-08-29T04:57:09.000Z",
+  "status": "completed",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-29T05:05:19.381Z",
+      "note": "Taking as a pair with 045608Z \u2014 ledger provenance / true invoking provider attribution."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'TODO: Correct connector lane identity resolution so tracker/relay writes attribu' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

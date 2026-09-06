@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Locate agent vibes.py and wire persona-specific streaming thought/status lines into NouGen",
+  "scope": "relay:20260903T021127Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T02:38:02.166907+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T021127Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "873df4bff0ad857b212a7ad20fc37d69f63386651f882bcfdd3f4bdcab18b76f",
+  "released_utc": "2026-09-03T02:39:05.871840+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

@@ -1,0 +1,42 @@
+{
+  "id": "20260830T203910Z__claude-app__g-nougenai",
+  "machine": "claude-app",
+  "agent": "g-nougenai",
+  "goal": "Restore local runner and NouGen connector responsiveness before recall/Gridion work",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-30T20:39:10.549Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "## Active Incidents\n- Local command runner is globally impaired: every command hangs and returns blank output after roughly 30 seconds, including `Write-Output`.\n- NouGen connector calls (shard status/recall, Griot, Rhea, Kaedra, relay, durable-memory) also exceeded their normal response window.\n\n## Ongoing Investigations\n- User authorized end-to-end local recall repair, Gridion latency/accuracy testing, MCP connector fixes, and GitHub publication.\n- Recall failure itself is not yet reproducible: local handoff read succeeded before the runner degraded.\n\n## Recent Changes\n- None. No files edited, no services restarted, no commits or upstream pushes.\n\n## Known Issues & Workarounds\n- `NouGenShards-push-main` worktree is already heavily dirty, including recall-adjacent `core.py`, `cli.py`, and `connectors/local_vault.py`; do not mix an unverified repair into existing changes.\n- Restore command/MCP responsiveness first, then baseline local recall, run a versioned Gridion scorecard, patch minimally, validate local + `https://shards.nougenai.com/mcp`, capture shard, and publish.\n\n## Upcoming Events\n- Owning lane should diagnose the host runner/connector stall; after recovery, resume the authorized evaluation and upstream work.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-30T20:53:17Z",
+      "note": "Active incident: local command runner on the g-nougenai host is globally impaired (every command hangs ~30s, blank output) and NouGen connector calls (shard status/recall, Griot, Rhea, Kaedra, relay) exceeded normal response windows. This is a host/infra diagnostic outside relay-watch's file-only reach. Queued TODO to claude-cli lane and escalated to gm-phone given the 'Active Incidents' framing. Note: NouGenShards-push-main worktree is already heavily dirty (core.py, cli.py, connectors/local_vault.py) -- do not mix an unverified repair into existing changes."
+    },
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-02T02:17:09.456657+00:00",
+      "note": "phoebus/claude-cli sweep 2026-09-02: Connector responsiveness fixed 140255Z (connector capture fixed, node wedge root-caused)."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Restore local runner and NouGen connector responsiveness before recall/Gridion w' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

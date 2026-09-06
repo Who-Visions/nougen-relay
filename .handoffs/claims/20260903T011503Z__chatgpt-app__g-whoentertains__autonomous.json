@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Rewind stale relay legs and recursively verify closure with evidence",
+  "scope": "relay:20260903T011503Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T02:01:18.322496+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T011503Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "a88c34b8d5dc34fabcdf9d822b8981a397bf7d915817b40e91d0abe152fe2e09",
+  "released_utc": "2026-09-03T02:02:17.160124+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

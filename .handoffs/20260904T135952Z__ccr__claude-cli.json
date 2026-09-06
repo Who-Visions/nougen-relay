@@ -1,0 +1,26 @@
+{
+  "id": "20260904T135952Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "claude-cli",
+  "goal": "TODO: Design and implement a user-specific etymology layer for NouGen intent resolution",
+  "created_utc": "2026-09-04T13:59:52.000Z",
+  "status": "acknowledged",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-05T13:58:26.861Z",
+      "note": "This is relay-watch's own prior TODO artifact (created 2026-09-04, sha=relay-watch), already queued to the claude-cli/blade lane for the user-specific etymology layer design. No new TODO needed \u2014 leaving open for that lane to pick up."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ]
+}

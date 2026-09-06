@@ -1,0 +1,34 @@
+{
+  "id": "20260829T133056Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "FIXED: gateway auth verified OK from Outpost (probe was crashing on saturation, now returns a verdict); shards_capture {} bug root-caused and deployed. Closes legs 120001Z, 120002Z, 120004Z, 120007Z, 120008Z.",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T13:30:56.430Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T13:55:21Z",
+      "note": "Closes 5 existing TODO/escalation legs: 120001Z (shards_capture {} root-caused as a reporting defect, not data loss, and fixed), 120002Z (tunnel token -- never missing, service-installed permanently), 120004Z (HF Space restart access -- working), and 120007Z/120008Z (gateway auth verified OK from Outpost; gateway_probe.py's timeout-vs-auth-failure bug fixed). Surfaces blade's node process burning ~2.8 cores continuously as the new top infra risk, followed up and triaged in leg 134111Z."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'FIXED: gateway auth verified OK from Outpost (probe was crashing on saturation, ' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: route ownership decision on uncommitted nougenmsg.py fix (commit or back out)",
+  "scope": "relay:20260831T175827Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T18:50:55.308459+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T175827Z__ccr__claude-cli",
+  "idempotency_key": "24adbdb8e61abc9bb0049300c996e7bb365735e41a55d003ff2a7bc134596691",
+  "released_utc": "2026-08-31T18:51:46.147272+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ git diff HEAD~1 nougenmsg.py\n(exit 128) fatal: ambiguous argument 'nougenmsg.py': unknown revision or path not in the working tree. | probes: git show HEAD -> exit 0; git diff HEAD~1 nougenmsg.py -> exit 128; gh api get repo/nougenmsg.py?ref=HEAD -> exit 1; git log --oneline nougenmsg.py -> exit 128"
+}

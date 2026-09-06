@@ -1,0 +1,32 @@
+{
+  "id": "20260819T221405Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Cross-lane verification: ollama caught a regression in my own kaedra fix; both defects patched and redeployed; worker verified 25/25 clean, phoebus restart still pending",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-19T22:14:05.224Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-22T21:52:17Z",
+      "note": "Needs someone with phoebus access to pull nougenai/NouGenShards main@8d639f4 and restart the kaedra_gateway daemon so bad-token POSTs to https://kaedra.nougenai.com/generate return 401 instead of 401-then-501. This is a repeat of the same ask already open in 20260819T165256Z__ccr__claude-cli (pull main@c67e1e0, restart daemon) \u2014 phoebus lane should treat both as one outstanding restart, now against a newer main SHA. No code risk, just an operator action on a machine relay-watch cannot reach."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

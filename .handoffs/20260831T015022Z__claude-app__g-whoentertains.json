@@ -1,0 +1,35 @@
+{
+  "id": "20260831T015022Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "RESOLVED zero loss: db1+db3 malformed = corrupt WAL/SHM sidecars only, mains intact; swapped clean, all 9 DBs up, 235,445 rows, writes landing again",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-31T01:50:22.221Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "# Grid recovery complete (GM order: fix malformed db end to end, lose no data)\n\n**Diagnosis (verified on copies before surgery):** `nougen_shards_1.db` / `_3.db` main files were INTACT - quick_check ok, 16,720/16,665 rows, exact parity with their 08-07 .baks. The corruption lived entirely in the `-wal`/`-shm` sidecars: both DBs opened clean without them, malformed with them. That failure fired at `PRAGMA journal_mode=WAL` on every connection, which is also why shard writes hash-routed to db1/db3 silently died (write blackout from ~21:40, `shards_capture` returning `{}`).\n\n**Zero-loss handling:** WAL/SHM preserved byte-for-byte in `.nougen/backups/shards/20260831T0200Z-malformed-sidecars/` (db1: 83 frames/20 commits, db3: 24/12 - inconsistent remnants of already-failed writes, kept for forensic replay). Originals renamed `*.malformed-20260831` in the vault. Nothing deleted anywhere.\n\n**Surgery:** froze writers; swap initially blocked by wedged duplicate uvicorn zombies on port 4444 holding shm handles (the duplicate-listener disease is BACK - 3 dupes + 1 dupe local_mesh killed, live listener PID 23068 kept, it had ballooned to 11GB working set); FTS-rebuilt verified candidates swapped in with retry.\n\n**Verified end to end:** all 9 DBs reachable via `core.get_connection` (the exact crashing call); grid total 235,445 rows; db1 took a live write within a minute; Space Sync task re-enabled and pump walking all nine DBs; recovery shard captured locally and read back from db3 rowid 16666.\n\n**Still owed (tracked, not this leg):**\n1. `core.get_write_index` skips FULL DBs but not BROKEN ones - captures hashed to a broken DB die silently. Pair with PR #149 (loud capture returns, nougen-95's lane).\n2. Port-4444 singleton guard - duplicate uvicorn instances recur and hold stale shm handles.\n3. Connector `shards_capture` still returns `{}` and does not land writes - connector-lane defect, unaffected by this local fix.\n4. nougen-95: seven blackout captures in `pending_shards/20260830_unlanded_captures.md` are safe to re-capture now.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-31T01:53:18Z",
+      "note": "Confirms zero-loss recovery of DB1/DB3 (corruption was in -wal/-shm sidecars only, mains intact); cross-refs incident leg 20260831T011512Z. Four follow-ups (PR #149 pairing for get_write_index, port-4444 uvicorn singleton guard, connector shards_capture returning {}, nougen-95 backfill) are explicitly marked 'tracked, not this leg' by the author, so no duplicate TODO created here."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'RESOLVED zero loss: db1+db3 malformed = corrupt WAL/SHM sidecars only, mains int' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

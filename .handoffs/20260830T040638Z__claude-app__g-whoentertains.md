@@ -1,0 +1,20 @@
+# 🤝 Git Handoff — claude-app / g-whoentertains
+
+**Goal**: P1 gateway-auth leg progress: gateway_probe.py now key-agnostic, blade can run it once ANY fleet key is provisioned; supervisor classifier updated to match
+**Branch**: `n/a` (written via fleet connector)
+**When**: 2026-08-30T04:06:38.560Z
+
+---
+**Continues acked leg** `20260829T120008Z__ccr__gm-phone` (Claude CLI, blade, 2026-08-30).
+
+**What changed** (uncommitted in `NouGenShards-push-main`, on top of the ccr session's in-flight supervisor fixes — nothing of theirs reverted):
+- `tools/gateway_probe.py`: `main()` no longer hardcodes `FLEET_KEY_OUTPOST`. New `resolve_fleet_key()` resolves env `NOUGEN_FLEET_KEY` first, then iterates vault names from env `NOUGEN_FLEET_KEY_NAMES` (default `FLEET_KEY_OUTPOST,FLEET_KEY_BLADE,FLEET_KEY`). Failure message now names every source tried. Compile-checked, runs on blade: `FAIL no fleet key on this node (tried env NOUGEN_FLEET_KEY, vault names: ...)` exit 1 — honest, instead of impossible-to-satisfy.
+- `tools/gateway_supervisor.ps1` line ~164: unverified-branch regex extended to match the new `no fleet key on this node` message (old `FLEET_KEY_OUTPOST missing` string kept for un-updated probes), so a keyless host still classifies as `unverified`, never as a real auth failure that would touch `SHARD_GATEWAY_TOKEN`. PS parser check: PS_SYNTAX_OK. Regex-vs-message unit-verified: True.
+
+**Verified fact from blade's ledger** (metadata only): 86 secrets in keymaker, ZERO named anything FLEET/GATEWAY/SHARD/MESH-shaped — `FLEET_KEY_OUTPOST` absence is genuine, not DPAPI multi-wrap false-stale.
+
+**Remaining to close the leg — GM action**: provision a fleet key on blade so the probe can complete end-to-end. Either ingest one into keymaker under `FLEET_KEY_BLADE` (Dave enters the value himself, per Atibon doctrine), or export `NOUGEN_FLEET_KEY` for the supervisor's environment. The `g-whoentertains` key already works via the claude.ai connector, so a blade-side copy of a valid fleet key is all that's missing.
+
+**Coordination**: agy (Antigravity) has independently root-caused the recall timeouts — `shards.nougenai.com` was routing to the decommissioned `WhoVisions/nga_hgf_Space` (404), worker hangs till client timeout — and is deploying `WhoVisions/nougen-shards-gateway` + repointing the Cloudflare Worker. That covers legs `20260829T120003Z`/`20260829T120004Z`. Once agy's Space is live AND a blade fleet key exists, run `PYTHONPATH=src .venv/Scripts/python.exe tools/gateway_probe.py` on blade for the end-to-end authenticated-recall proof.
+
+**Done-when**: probe prints `OK authenticated recall returned content` from blade.

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "SHIPPED reduction #1 from leg 003048Z: shards_search / shards_recall summary mode is live at the door (Worker 216430436a6a): id@db + title + 240-char snippet per hit, default limit 3, summary:false for full rows; measured ~3x at limit 3 and 10-20x against the old 8-hit full calls",
+  "scope": "relay:20260903T004833Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T01:15:22.629887+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T004833Z__claude-app__g-whoentertains",
+  "idempotency_key": "82b9fe6d3103f43ff443e3df3d7a8f5f0411ebe27078322ebcd4f7cc78c81147",
+  "released_utc": "2026-09-03T01:16:25.694349+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

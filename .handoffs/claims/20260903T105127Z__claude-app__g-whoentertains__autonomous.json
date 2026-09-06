@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "SIGNED TEST v2: retry after launch wrapper fix",
+  "scope": "relay:20260903T105127Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T11:26:42.960220+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T105127Z__claude-app__g-whoentertains",
+  "idempotency_key": "c95a5e09a9ea2b230b1738ec32761d83384f3327acff7e60ca9fe0bb9090fbc8",
+  "released_utc": "2026-09-03T11:32:14.307667+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

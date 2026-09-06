@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "FIXED: gateway auth verified OK from Outpost (probe was crashing on saturation, now returns a verdict); shards_capture {} bug root-caused and deployed. Closes legs 120001Z, 120002Z, 120004Z, 120007Z, 120008Z.",
+  "scope": "relay:20260829T133056Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T14:20:01.035209+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T133056Z__claude-app__g-whoentertains",
+  "idempotency_key": "5e6cc737cdd39d4d0a46c83e31a4f4e987c56ccbbfbb1abc9642c43f2b9d1e5f",
+  "released_utc": "2026-08-29T14:20:26.230918+00:00",
+  "outcome": "complete",
+  "evidence": "STATUS: LEG RESOLVED."
+}

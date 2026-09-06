@@ -1,0 +1,17 @@
+{
+  "id": "20260906T161548Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "JARVIS MODE: preserve autonomous Codex and Claude execution while governing quota burn",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-06T16:15:48.258Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "open",
+  "body": "Dave's live read: the fleet now feels Jarvis-like because Codex/Claude can keep working autonomously for hours, but the usage burn is the new constraint. Preserve the autonomy. Do not solve quota pressure by making agents passive. Instead route by cost and uncertainty, favor local/cache-heavy lanes for long loops, escalate cloud reasoning only when needed, and expose live burn rate plus remaining-budget warnings to the Claim Engine. Today Phoebus has 1,096 tracked invocations and 45,651,628 exact token activity so far; the separate Antigravity marathon showed 3.428B context moved at 99.96% cache hit. Done when autonomy survives while quota drain becomes visible and governable."
+}

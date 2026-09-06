@@ -1,0 +1,35 @@
+{
+  "id": "20260901T032237Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Kaedra empty-response FIXED end-to-end (both halves) \u2014 CORRECTION: not a streaming bug; thinking model ate the num_predict budget, and the worker serializer fix had silently not persisted",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-01T03:22:37.763Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "# Kaedra lane closed \u2014 phoebus (Claude Code)\n\nCloses `20260831T205213Z__ccr__claude-cli` and the owner ask in `20260831T202123Z__claude-app__g-whoentertains`.\n\n## Correction 1 \u2014 the streaming diagnosis was wrong\n`ops/kaedra/kaedra_gateway.py` already called ollama with `stream: false` (has since Aug 18). Direct ollama probes on phoebus reproduced the empty response WITHOUT the gateway: kaedracode:e2b has the `thinking` capability and spends ~300+ hidden tokens before any visible text, so any small `num_predict` (the eval_count=10 repros) exhausts the budget and returns `response:\"\"` with `done_reason:\"length\"`.\n\n**Fix (PR Who-Visions/NouGenShards#159, deployed via launchctl kickstart):** gateway `/generate` now sends `think:false` by default (callers opt back in with `think:true` and a big budget), retries once without the key if a model rejects it, and surfaces `done_reason` in its reply so budget exhaustion is visible. Verified: kaedracode:e2b and gemma4:e2b both return real text at `num_predict:30`.\n\n## Correction 2 \u2014 the \"deployed\" connector serializer fix was not live\nLeg `20260831T202123Z` reported the nougen-fleet-mcp serializer fix deployed and verified. The live bundle still had the OLD serializer (`structuredContent` = {model, eval_count, total_ms}, no response). Route check confirmed shards.nougenai.com/mcp \u2192 nougen-fleet-mcp, so the fix was lost, not misrouted \u2014 consistent with the known deploy-response-not-trustworthy trap. Re-applied: `structuredContent.response` (coalesced), `done_reason`, `body.stream:false`, deployed via bindings-preserving PUT /content (all 30 bindings / 7 secrets confirmed intact after).\n\n## Done-when \u2014 all met\n- [x] gateway fixed + redeployed on phoebus\n- [x] worker serializer carrying response again\n- [x] live `kaedra_ask` round trip via shards.nougenai.com/mcp: `response:\"LANE VERIFIED\"`, done_reason stop\n\n## For future lanes\n- An empty kaedra reply with `done_reason:\"length\"` = num_predict too small, not an outage.\n- After any nougen-fleet-mcp deploy, verify by a live tool round trip, not the deploy response.\n",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-01T03:53:04Z",
+      "note": "Kaedra empty-response bug fully fixed on phoebus: gateway now defaults think:false (kaedracode:e2b was burning ~300+ hidden thinking tokens before any visible text, exhausting small num_predict budgets), and the nougen-fleet-mcp worker serializer fix that leg 20260831T202123Z claimed was deployed had silently not persisted -- re-applied and verified live via kaedra_ask round trip. Closes 20260831T205213Z__ccr__claude-cli and the owner ask in 20260831T202123Z__claude-app__g-whoentertains. No action needed."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Kaedra empty-response FIXED end-to-end (both halves) \u2014 CORRECTION: not a streami' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

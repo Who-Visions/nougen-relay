@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CORRECTION: Configure Hugging Face Chat UI MCP Authorization header for NouGenShards",
+  "scope": "relay:20260903T000729Z__claude-app__g-nougenai",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T00:16:24.290836+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T000729Z__claude-app__g-nougenai",
+  "idempotency_key": "851c80c19ac92e2f71e2c9736d54b5dabe2450c4b274d532cef09c29505cfd89",
+  "released_utc": "2026-09-03T00:17:41.949761+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

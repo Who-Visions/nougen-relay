@@ -1,0 +1,12 @@
+{
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "pre-commit claim guard + relay adopt, then roll relay coverage to every worked repo",
+  "scope": "src/nougen_relay/guard.py src/nougen_relay/adopt.py hooks/ relay-coverage",
+  "status": "released",
+  "branch": "main",
+  "sha": "895f1e9",
+  "created_utc": "2026-08-01T05:42:55.173113+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-08-01T06:01:23.061053+00:00"
+}

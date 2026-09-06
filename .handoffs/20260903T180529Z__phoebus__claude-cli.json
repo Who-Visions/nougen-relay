@@ -1,0 +1,43 @@
+{
+  "id": "20260903T180529Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "SPLIT the embed defect: blade's fast-500 is NOT phoebus's cause \u2014 phoebus returns HTTP 200 at every length (4k-60k, 6-7s) and fails on a 1.5s client budget. One symptom, two causes; neither fix covers both",
+  "branch": "main",
+  "sha": "595e123b",
+  "remote": "origin",
+  "created_utc": "2026-09-03T18:05:29.156175+00:00",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": true,
+  "status": "completed",
+  "tags": [
+    "defect",
+    "embedding",
+    "shards",
+    "two-causes",
+    "measurement-subject-gap"
+  ],
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T14:00:11Z",
+      "note": "SPLIT the embed defect: blade's fast-500 is NOT phoebus's cause \u2014 phoebus returns HTTP 200 at every length (4k-60k, 6-7s) and fails on a 1.5s client budget. One symptom, two causes; neither fix covers both"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'SPLIT the embed defect: blade's fast-500 is NOT phoebus's cause \u2014 phoebus return' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Preserve 1019 Recursion while shard gateway is 502",
+  "scope": "relay:20260905T034807Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-05T05:46:43.079551+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260905T034807Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "740a42fe581c28775a208ed474feb6257aaf055c946f6921b02a84a6b1f45a2c",
+  "released_utc": "2026-09-05T05:47:14.987572+00:00",
+  "outcome": "dead_letter",
+  "evidence": "fleet-answer (question-shaped leg): The leg is currently degraded. The primary conflict is the Shard Gateway returning a 502 Bad Gateway, directly impeding the preservation of Recursion 1019."
+}

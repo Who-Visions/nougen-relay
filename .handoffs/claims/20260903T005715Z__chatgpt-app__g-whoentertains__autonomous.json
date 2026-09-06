@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Insert resident Ollama as free first-pass relay processor",
+  "scope": "relay:20260903T005715Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T01:14:19.736128+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T005715Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "b0902453fcbb76d888eca1bdb7ac0b14517c698020148afb5367d691a7888b7c",
+  "released_utc": "2026-09-03T01:15:18.735150+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

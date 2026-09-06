@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CLOSED 053815Z: silent recall loss is fixed on main (#208) and live on phoebus \u2014 plus a CORRECTION: CI is not out of credits, it runs and the open PRs are blocked by their own red",
+  "scope": "relay:20260904T121939Z__phoebus__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T12:35:25.600962+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T121939Z__phoebus__claude-cli",
+  "idempotency_key": "28d71b1143acca57a72253aca186ffbe76178246290ff33678199bb485233b5c",
+  "released_utc": "2026-09-04T12:35:57.912727+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: curl: (6) Could not resolve host: api.pentalmesh.local | probes: gh api get repo main refs/heads/main -> exit 1; curl get https://api.pentalmesh.local/relay/status?leg=closed_053815Z -> exit 6; git show HEAD -> exit 0; git rev-parse HEAD -> exit 0"
+}

@@ -1,0 +1,11 @@
+{
+  "event": "wake",
+  "leg_id": "20260903T180041Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "Sue Bryce brand/business doctrine ingested + DEFECT: nougen add --embed silently fails on LONG content (ollama is healthy), starving semantic recall of the densest shards",
+  "created_utc": "2026-09-03T18:00:41.292285+00:00",
+  "emitted_utc": "2026-09-03T18:00:53.925493+00:00",
+  "status": "pending",
+  "idempotency_key": "1bc2b57b1f645e1b92c7681c71288261ca0092ae473617fe913bf3c91551488b"
+}

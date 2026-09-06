@@ -1,0 +1,32 @@
+{
+  "id": "20260817T003740Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Build NouGen Relay bridge for Gemini Workspace using production-grade persistent context architecture",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-17T00:37:40.511Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-17T00:53:03Z",
+      "note": "Research/design doc proposing a full Gemini Workspace integration (Interactions API, tool bridge, memory writeback policy) \u2014 this is a build task spanning code, infra, and a new external integration, well outside relay-watch's .handoffs-only remit. Queued as TODO 20260817T005303Z for the lane that owns cross-model integrations."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

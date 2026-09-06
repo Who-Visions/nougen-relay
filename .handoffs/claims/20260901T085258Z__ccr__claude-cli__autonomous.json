@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: scope and implement temporal-provenance + search-truth-state overhaul for shards backend (April 2026 recall gap)",
+  "scope": "relay:20260901T085258Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T11:55:18.450909+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T085258Z__ccr__claude-cli",
+  "idempotency_key": "0926b55f292abfe09602c06e6858519710aca606846ca21aaea6be8982573a76",
+  "released_utc": "2026-09-01T11:57:31.340213+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

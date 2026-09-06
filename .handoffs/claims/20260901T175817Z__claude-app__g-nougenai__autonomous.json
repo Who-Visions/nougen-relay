@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "War-gamed shard hardening backlog: correct shipped/superseded items and execute truth gates before recall tuning",
+  "scope": "relay:20260901T175817Z__claude-app__g-nougenai",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T19:38:32.746701+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T175817Z__claude-app__g-nougenai",
+  "idempotency_key": "cad0a60741bb4f3831d28724538b77871cc8f4bf00fd0e1f440c05af4b54ec9d",
+  "released_utc": "2026-09-01T19:39:49.920718+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

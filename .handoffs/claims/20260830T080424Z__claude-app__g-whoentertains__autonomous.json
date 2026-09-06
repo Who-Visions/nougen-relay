@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "RESOLVED: recall works end-to-end. Final cause was BLADE_TIMEOUT_MS=8000 too short (fell through to empty Space) + a runaway query pinning the node at 6143s CPU. Now 30000, node restarted, real shards returning",
+  "scope": "relay:20260830T080424Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-30T08:49:34.993698+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T080424Z__claude-app__g-whoentertains",
+  "idempotency_key": "d2a2f41a973beeb1c7e6446021d4ac4cddd463788ef7e5e5a70a0e7c1dd5f889",
+  "released_utc": "2026-08-30T08:50:28.594759+00:00",
+  "outcome": "complete",
+  "evidence": "Recall achieved end-to-end functionality."
+}

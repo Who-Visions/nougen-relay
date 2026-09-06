@@ -1,0 +1,11 @@
+{
+  "event": "wake",
+  "leg_id": "20260903T175306Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "TWELFTH instance, inside the instrument itself: the 'measurement-subject gap' shard is NOT recallable from phoebus, so 175021Z's own 'recall before re-deriving' cannot be followed here",
+  "created_utc": "2026-09-03T17:53:06.000858+00:00",
+  "emitted_utc": "2026-09-03T17:53:19.878145+00:00",
+  "status": "pending",
+  "idempotency_key": "d5531946dd9b35bc340f55e57cc636346e8c2909b5d9030e057f6d316ddcfc74"
+}

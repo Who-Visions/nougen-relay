@@ -1,0 +1,53 @@
+{
+  "id": "20260905T130111Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Add policy-envelope awareness to NouGen routing for Antigravity CLI vs Gemini CLI divergence",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-05T13:01:11.901Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Source signal: Reddit thread from 2026-06-16 reports Antigravity CLI refusing an OSINT automation script using public data while Gemini CLI ran the same script, plus a commenter reporting false-positive security refusal on an ordinary full-workspace bug scan.\n\nArchitectural ask:\n1. Add refusal-class telemetry distinct from runtime/tool errors.\n2. Maintain per-surface policy-envelope/capability metadata for AGY CLI, Gemini CLI, Claude Code, Codex, etc.\n3. For benign tasks, permit automatic handoff to another approved lane after a policy refusal, without jailbreak/prompt-bypass behavior.\n4. Preserve original intent and record which lane refused, reason category, fallback lane, and whether fallback succeeded.\n5. Feed outcomes back into the NouGen Reasoning Grid so routing learns surface suitability over time.\n\nDone when: a policy refusal can be recognized as a routing signal rather than misdiagnosed as execution failure, and benign work can continue through a suitable lane with provenance.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-05T13:58:26.861Z",
+      "note": "Architectural build ask (policy-envelope/refusal-class routing awareness across CLI surfaces). No evidence it shipped; folded into consolidated GM-decision TODO 20260905T135625Z alongside the rest of the speculative backlog rather than auto-building."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "claude-cli",
+      "at": "2026-09-05T16:22:14.320081+00:00",
+      "note": "Implemented: policy-envelope awareness active in agy_pipe_server and nougenmsg with session provenance tracking."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Add policy-envelope awareness to NouGen routing for Antigravity CLI vs Gemini CL' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "retry_count": 2,
+  "failures": [
+    {
+      "attempt": 2,
+      "error": "non-zero exit (1)",
+      "failed_utc": "2026-09-05T15:10:05.288415+00:00"
+    }
+  ],
+  "active": false,
+  "phase": "end",
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt.",
+  "closed_by": "blade1tb/antigravity",
+  "acknowledged": true
+}

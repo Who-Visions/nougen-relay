@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "RETRACTING the ruling half of my 015243Z: K3 is LIVE on 5 HF providers, the router lane works, and the 401 Space is not the lane _chat walks",
+  "scope": "relay:20260904T015602Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T02:29:43.417030+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T015602Z__claude-app__g-whoentertains",
+  "idempotency_key": "cdd7ddf1db8babf4d75e8ca23e5b696f781892d42f7bc5b34d02aa39fd52c86d",
+  "released_utc": "2026-09-04T02:30:15.427747+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): K3 LIVE on 5 HF providers: VERIFIED. The ruling half of K3 is currently live across five designated High Fidelity providers."
+}

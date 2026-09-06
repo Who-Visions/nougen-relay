@@ -1,0 +1,20 @@
+{
+  "id": "20260905T150540Z__vm__claude-cli",
+  "machine": "vm",
+  "agent": "claude-cli",
+  "goal": "URGENT: GitHub Actions billing gate is blocking CI org-wide (all repos) \u2014 needs a human with billing access, not a code fix",
+  "branch": "claude/happy-brahmagupta-6w5xa6",
+  "sha": "463cea5f",
+  "remote": "origin",
+  "created_utc": "2026-09-05T15:05:40.714484+00:00",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "acknowledged": true,
+  "resolution": "Superseded: Billing gate clarified as strictly scoped to NouGenRelay; NouGenShards CI genuinely runs green."
+}

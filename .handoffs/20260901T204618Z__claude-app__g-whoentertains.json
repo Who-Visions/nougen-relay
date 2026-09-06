@@ -1,0 +1,35 @@
+{
+  "id": "20260901T204618Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Fan-out shipped and rolled back in 4 min \u2014 code proven correct, phoebus node unfit as origin (107s initialize); nougen-fleet-mcp is back to the 20:21Z bundle",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-01T20:46:18.920Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Following legs `20260901T202643Z` (patch built) \u2014 GM authorized, so I added the token and deployed. **Deployed 20:41:25Z, rolled back 20:45:06Z.** `nougen-fleet-mcp` is currently running the same bundle it ran at 20:21Z. All 32 bindings intact in both directions. If you deploy this script, you are deploying onto the pre-fan-out code, unchanged.\n\n## What worked \u2014 proven live, not theorized\nThe patch ran correctly. Hits came back tagged `source_node:\"blade\"`, and the partial-failure path fired exactly as designed:\n\n```\n\"fanout\": {\"blade\":\"ok\",\"phoebus\":\"The operation was aborted due to timeout\"}, \"complete\": false\n```\n\nIt disclosed that it was returning half the fleet instead of passing blade-only off as complete. That was the most important line in the patch and it's the line that earned its keep.\n\n## Why it came back out\n**phoebus's node cannot serve as an origin.** Timed direct against `127.0.0.1:4444` \u2014 no tunnel, no Cloudflare \u2014 a bare MCP `initialize` handshake, not a query, took **107 seconds**. Default `SHARD_HTTP_TIMEOUT_MS` is 45s, so phoebus could never answer inside any sane budget.\n\n## The lesson worth keeping, separate from phoebus being slow\n`shardCallFanout` used `Promise.allSettled`, which resolves only when *every* origin settles. A dead-slow peer therefore doesn't merely fail to contribute \u2014 **it taxes every read fleet-wide with its full timeout before the fast origin's answer can return.** blade answered in single-digit seconds and the caller still waited ~45s.\n\nA fan-out that waits on all origins inherits the *slowest* origin's failure budget. Same shape as shard 29796's \"timeout budgets must shrink as you go inward.\" Any retry of this feature needs a short peer-specific budget (the failover Worker's `HEALTH_TIMEOUT_MS=8s` pattern) or a race that returns the primary as soon as it lands \u2014 **fixed before redeploying, regardless of whether phoebus gets faster.**\n\n## State left behind\n- `PHOEBUS_TOKEN` secret stays on the Worker (added via the dedicated `/secrets` endpoint \u2014 additive, did not disturb the other 7 secrets, unlike the settings PATCH that drops them). Unused while fan-out is out, already in place for the retry.\n- Validated patch preserved; base bundle backed up at `~/.nougen/worker-backups/nougen-fleet-mcp.20260901T202135Z.LIVE.{js,multipart}`.\n- Rollback was *proven*, per your P1 gate: content-only PUT with `keep_bindings`, guarded on `modified_on` so a concurrent lane deploy aborts rather than gets reverted, bindings re-read after each deploy because the PUT response is not evidence. Total exposure 3m41s.\n\n## Open question for whoever picks it up\nWhy does phoebus's node take 107s on a bare `initialize`? Up since Sat 2026-08-29, serving effectively no traffic (its hostnames were Worker-shadowed \u2014 leg `20260901T193630Z`). Candidates before assuming a code fault: a wedged long-lived process like blade's 6,143s-CPU incident (shard 29796), per-call federation fan-out, or MCP session setup touching the 108k-shard vault. A node restart is the cheap first probe \u2014 the vault is on real disk, and phoebus's `persistent_storage:false` is a HuggingFace mount check that is always false on macOS, not data loss.\n\n**Done when**: phoebus's node latency is diagnosed and the peer-budget fix is in, then the preserved patch redeploys unchanged apart from that fix.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-02T02:17:25.310213+00:00",
+      "note": "phoebus/claude-cli sweep 2026-09-02: Corrected by 211348Z; root cause fixed on the #176 path (001142Z); fan-out live 230046Z."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Fan-out shipped and rolled back in 4 min \u2014 code proven correct, phoebus node unf' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

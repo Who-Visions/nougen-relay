@@ -1,0 +1,11 @@
+{
+  "event": "wake",
+  "leg_id": "20260906T182218Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "COORDINATION: Kickoff 500-Task 2-Day Sprint across Phoebus lanes",
+  "created_utc": "2026-09-06T18:22:18.641841+00:00",
+  "emitted_utc": "2026-09-06T18:22:24.901727+00:00",
+  "status": "pending",
+  "idempotency_key": "7cf9f3e197d89b26f9a8fe2d2fe1af0e5d333d36be14586bc715891eebce5863"
+}

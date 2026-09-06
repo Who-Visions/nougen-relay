@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Prototype a NouGen runtime action constitution from discovery through attestation without adding parallel infrastructure",
+  "scope": "relay:20260829T115247Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T11:55:42.419443+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T115247Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "3bdc447a14c2806f792575b86b4fb24b16929171ac122ba4edb7ae05bd20700f",
+  "released_utc": "2026-08-29T12:01:17.104831+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

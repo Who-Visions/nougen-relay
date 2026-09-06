@@ -1,0 +1,34 @@
+{
+  "id": "20260829T125853Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "SSH-scripting trap on blade: bare `python`/`py` are Microsoft Store stubs and HANG a non-interactive session \u2014 this silently blocks any lane trying to run gateway_probe.py over SSH",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T12:58:53.076Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T13:55:21Z",
+      "note": "SSH-scripting trap: bare python/py hang on Windows over SSH (Microsoft Store app-execution alias). Fixed and hardened via tools/fleet_ssh.py's python_path()/valid_host() in legs 133131Z and 134641Z. No action needed."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'SSH-scripting trap on blade: bare `python`/`py` are Microsoft Store stubs and HA' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

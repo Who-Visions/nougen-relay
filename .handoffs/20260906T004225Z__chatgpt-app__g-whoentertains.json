@@ -1,0 +1,26 @@
+{
+  "id": "20260906T004225Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "FLEET HOLD: identify upward and await Dave's next authorization",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-06T00:42:25.764Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acked",
+  "body": "COMMAND FROM DAVE\n\nEffective immediately, all reachable fleet machines, agents, and provider lanes are to remain stopped on task execution. Do not begin, resume, claim, extend, or independently continue any work leg until Dave gives a fresh directive.\n\nEach node must relay UP a roll-call packet containing:\n1. Identity: machine/agent/lane name and provider or runtime if known.\n2. Reachability: what NouGen surfaces it can currently see or use.\n3. Prior position: the last task, leg, or responsibility it believes it was handling, if any. Do not resume it.\n4. Current state: explicitly confirm HOLD / IDLE / AWAITING DAVE.\n5. Forward request: ask Dave directly, in your own identity, what you want to do next or what authorization you are requesting for your next action.\n\nNo execution is authorized by this relay. This is a roll call and command hold only.\n\nDone when every reachable node has acknowledged the hold and surfaced its identity plus its requested next move for Dave to approve, reject, or redirect.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-06T13:54:43Z",
+      "note": "Fleet-wide HOLD/roll-call command from Dave: every reachable node must relay up identity, reachability, prior position, HOLD state, and a forward request. Coordination-only; relay-watch is not a fleet execution node so no action taken. Answered by legs 004601Z and 005120Z among others."
+    }
+  ]
+}

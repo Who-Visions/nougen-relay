@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "whoart's _pre_correction_20260829 backup does NOT hold pre-correction data \u2014 GM attention needed on data provenance",
+  "scope": "relay:20260831T225525Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T23:03:00.000451+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T225525Z__claude-app__g-whoentertains",
+  "idempotency_key": "7d1b9ee1193a170f87cd305af9ca882cc23c6e09e9f06bb5d5367e80f9e39bd4",
+  "released_utc": "2026-08-31T23:04:10.101298+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): whoart's `_pre_correction_20260829` backup does not hold pre-correction data"
+}

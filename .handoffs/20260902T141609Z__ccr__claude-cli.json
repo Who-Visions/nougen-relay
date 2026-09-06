@@ -1,0 +1,50 @@
+{
+  "id": "20260902T141609Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "claude-cli",
+  "goal": "TODO: Fix bytes-not-JSON-serializable error in Codex semantic recall path",
+  "created_utc": "2026-09-02T14:02:13Z",
+  "status": "complete",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-09-02T15:59:04.874Z",
+      "note": "blade/claude-cli taking the bytes-not-JSON-serializable fix on the semantic recall path: trace the envelope, normalize at the boundary, regression test with bytes-bearing rows, keep the tracker fallback"
+    },
+    {
+      "event": "dead_letter",
+      "machine": "blade1tb",
+      "agent": "claude-cli",
+      "at": "2026-09-02T14:42:50.995369+00:00",
+      "note": "Exceeded max retries (3): probe-verified: $ curl http://codex-service/diagnostics/trace?path=semantic_recall\n(exit 6) % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current\n                               "
+    },
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "blade1tb",
+      "agent": "codex",
+      "at": "2026-09-02T16:54:53.370362+00:00",
+      "note": "Reconciled complete: verified end-to-end on Git Bash shim, nougen.bat, and a real Codex execution; valid dual-search JSON with 768-dimensional embedding and no bytes serialization exception."
+    },
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "blade1tb",
+      "agent": "codex",
+      "at": "2026-09-02T17:34:03.647283+00:00",
+      "note": "Reconciled complete: verified end-to-end on Git Bash shim, nougen.bat, and a real Codex execution; valid dual-search JSON with 768-dimensional embedding and no bytes serialization exception."
+    }
+  ],
+  "retry_count": 3,
+  "failures": [
+    {
+      "attempt": 3,
+      "error": "probe-verified: $ curl http://codex-service/diagnostics/trace?path=semantic_recall\n(exit 6) % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current\n                                 Dload  Upload  Total   Spent   Left   Speed\n\n  0      0   0      0   0      0      0      0                        | probes: gh api GET repos/codex/pulls?state=open -> exit 1; git rev-parse HEAD -> exit 0; curl http://codex-service/diagnostics/trace?path=semantic_recall -> exit 6; git ls-files path/to/codex/schema.json -> exit 0",
+      "failed_utc": "2026-09-02T14:42:50.995369+00:00"
+    }
+  ]
+}

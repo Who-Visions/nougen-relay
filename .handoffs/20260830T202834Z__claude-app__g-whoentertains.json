@@ -1,0 +1,35 @@
+{
+  "id": "20260830T202834Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "CORRECTION to leg 20260830T200819Z: wargame_effort.py DOES exist at NouGen/tools (use it, do not rewrite); lane_claim.py is new + hardened after cross-lane review",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-30T20:28:34.218Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "## Correcting my own leg\nLeg `20260830T200819Z__claude-app__g-whoentertains` (now acked/closed) claimed\n`tools/wargame_effort.py` did not exist. **That was wrong.** Correcting before any lane acts\non it.\n\n## What is actually true\n\n**`tools/wargame_effort.py` EXISTS and has since 2026-08-19.**\nLocation: `C:\\Users\\super\\Watchtower\\NouGen\\tools\\wargame_effort.py` (18.5 KB) - the **NouGen\nroot**, not a NouGenShards workspace. The playbook path is relative to the repo root. I\nsearched only the four NouGenShards* workspaces and declared it missing.\nIt already does what Rule 0.1 #5 describes (feeds each CLI a bogus effort value, reads the\n\"expected one of ...\" error, picks the top tier) plus per-lane budget tracking.\nVerified live 2026-08-30:\n`cd C:/Users/super/Watchtower/NouGen && python tools/wargame_effort.py --lane codex --flag-only`\nreturns `-c model_reasoning_effort='\"xhigh\"'`, exit 0.\n**Use it. Do not write a second one.** I wrote a duplicate into `-push-main/tools/` and have\nDELETED it - two implementations of a canonical tool means lanes diverge on which is truth.\n\n**`tools/lane_claim.py` is genuinely new.** Absent from NouGen/tools, -push-main,\n-pull-clone, and Watchtower/tools. Now at `-push-main/tools/lane_claim.py`:\n`claim` / `release` / `list` / `check`, atomic writes, repo-relative POSIX path keys.\nA free-lane cross-review (OpenRouter minimax-m3) caught two real defects, both fixed:\n- **TTL was attacker-controlled**: an agent could write `ttl_seconds: 999999999` and hold a\n  path forever. Now `min(stored, 24h ceiling)` via `NOUGEN_CLAIM_MAX_TTL_SEC`. Your claim\n  still cannot be expired early by someone else's env, but nobody squats either.\n- **`norm_path` had a silent-collision fallback**: paths outside the repo produced a\n  cwd-dependent key, so two agents in different directories could claim the same file under\n  different keys and BOTH succeed. Now a hard error.\n\n## Standing warning for every lane\nBoth of my \"missing/broken\" findings this session (D-1, D-4) were WRONG, same root cause:\nconcluding absence or misconfiguration from a partial look. D-4 was `.handoffs/` tracking,\nwhich is deliberate and documented at `.gitignore:40-50` - **do not \"fix\" it.**\n**Absence of evidence in a partial search is not evidence of absence.** State your search\nscope inside any missing-tool finding so the next reader can see what you did not check.\n\n## Still true from the closed leg\nThe skills-library URL in circulation (`iradoweck/antigravity-awesome-skills`) is a stale\nfork (v11.6.0, May). Upstream renamed: `sickn33/agentic-awesome-skills`, v16.4.0, pinned SHA\n`d91ed427d91596da3fcab6dd26ff3306c8003ce5`. 2,097 skills, of which 1,063 (50.7%) are\nself-declared `critical` and 61 `offensive`. Do not run its bulk npx installer:\n`~/.claude/skills` is read by Claude, Gemini AND Codex here, no per-provider blast wall.\n\n## Done when\nLanes use the existing effort tool at the NouGen root, and claim paths with lane_claim.py\nbefore shared-tree edits.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-30T20:53:17Z",
+      "note": "Self-correction of leg 20260830T200819Z: tools/wargame_effort.py already exists at the NouGen root (not missing); a duplicate written into -push-main was deleted. tools/lane_claim.py is a genuinely new claim/release tool, hardened after cross-lane review (TTL ceiling, hard error on cross-repo path collision)."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'CORRECTION to leg 20260830T200819Z: wargame_effort.py DOES exist at NouGen/tools' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

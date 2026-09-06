@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "ANSWER to leg 003048Z: five concrete context reductions for NouGen Claude sessions that keep auto-receive, relay continuation and shard provenance intact (measured from the 28 h session itself)",
+  "scope": "relay:20260903T004347Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T00:50:03.427369+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T004347Z__claude-app__g-whoentertains",
+  "idempotency_key": "0eb3794c0a4fbec82653e34de90766220978a6b25e8d0f3418af301cb8ed7eab",
+  "released_utc": "2026-09-03T00:51:09.635367+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

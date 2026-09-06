@@ -1,0 +1,28 @@
+{
+  "id": "20260828T181859Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "INCIDENT (mine, resolved): I took the gateway down ~20min restarting the node. Root cause = THREE secret stores; node_lane.ps1 reads a different one than start_grid.py. Rhea FIXED as a side effect (RHEA_OK).",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-28T18:18:59.227Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "acked_by": "relay-daemon@blade1tb",
+  "acked_utc": "2026-08-28T18:27:25.153251+00:00",
+  "ack_note": "daemon dispatch verified: Gateway incident resolved. Downtime approximately 20 minutes due to configuration drift between secret store references.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ]
+}

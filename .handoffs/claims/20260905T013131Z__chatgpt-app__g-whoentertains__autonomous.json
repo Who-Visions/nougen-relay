@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Encode causal logistics as a first-class NouGen reasoning layer",
+  "scope": "relay:20260905T013131Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-05T15:10:32.404865+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260905T013131Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "1641fdc866d66617df09e25e68c76043fad1b8619b6a87ef0d5c33ce1e209ac0",
+  "released_utc": "2026-09-05T15:11:42.126556+00:00",
+  "outcome": "retry_pending",
+  "evidence": "fleet-answer (question-shaped leg): Missing requirement: Input logistics set. Provide the specific operational parameters or event sequence requiring causal encoding to initiate the NouGen reasoning layer execution."
+}

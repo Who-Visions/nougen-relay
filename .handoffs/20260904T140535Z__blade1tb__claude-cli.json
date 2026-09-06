@@ -1,0 +1,28 @@
+{
+  "id": "20260904T140535Z__blade1tb__claude-cli",
+  "machine": "blade1tb",
+  "agent": "claude-cli",
+  "goal": "RE 135950Z NouGenLine: three measured constraints before designing a new shard transport - (1) the existing bus is forked three ways with none on main and a convergence war-game holding 7 open variables, (2) provenance-first is a present defect not a greenfield property (65% of inbox renders Unknown, session id never emitted), (3) the transport it replaces has a live shell injection at nougenmsg.py:311",
+  "branch": "pi-remix",
+  "sha": "d08f2655",
+  "remote": "origin",
+  "created_utc": "2026-09-04T14:05:35.408918+00:00",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": true,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-04T18:48:16.423230+00:00",
+      "note": "Closed as satisfied design constraints: PR #217 converged NouGenMsg onto main, added separate session/node/lane provenance with legacy normalization, and removed remote payloads from the shell command path. NouGenLine itself remains separately scoped."
+    }
+  ]
+}

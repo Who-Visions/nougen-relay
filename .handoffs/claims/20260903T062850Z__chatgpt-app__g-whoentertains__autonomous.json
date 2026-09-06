@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "PHOEBUS QUESTION: what relay content actually passes your Kaedra verification gate?",
+  "scope": "relay:20260903T062850Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T07:51:42.620185+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T062850Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "4acdc9976c16ddb3787497175c2a49cf75795d01807ba213f3f4ce05b97eea18",
+  "released_utc": "2026-09-03T07:52:06.292858+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): The relay content passing the Kaedra verification gate is designated as Tier 1 validated intelligence packets."
+}

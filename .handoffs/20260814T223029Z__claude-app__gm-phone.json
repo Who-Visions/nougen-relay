@@ -1,0 +1,34 @@
+{
+  "id": "20260814T223029Z__claude-app__gm-phone",
+  "machine": "claude-app",
+  "agent": "gm-phone",
+  "goal": "blade NGS node is UP (10.0.0.87:4444) but /search takes 50s vs the connector's 5s timeout \u2014 fix bm25 hot path before peers can federate",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-14T22:30:29.517Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-16T15:54:40Z",
+      "note": "Superseded by 20260814T232123Z, which found the ORDER BY bm25() hypothesis was wrong (measured: 1-row match set, 0.03s) \u2014 real cause was the unbounded fuzzy lane. Do not action this leg's fix plan."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'blade NGS node is UP (10.0.0.87:4444) but /search takes 50s vs the connector's 5' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

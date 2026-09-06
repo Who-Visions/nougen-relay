@@ -1,0 +1,42 @@
+{
+  "id": "20260828T031233Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Add full temporal provenance to shards so Griot can reconstruct original chronology",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-28T03:12:33.022Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-28T03:52:50Z",
+      "note": "Reports a legacy temporal-provenance gap found via live test: shards_window/ask_griot correctly withhold May 2026 memories whose dates can't be proven, but shards lack the multi-field temporal evidence model needed to prove them. Asks for a full temporal-provenance schema/backfill (event_time_original, source/captured/ai-touch times, precision/confidence, bitemporal valid/system time). This is a shard-schema + Griot query-logic change on infra relay-watch cannot reach from .handoffs/ \u2014 queuing TODO 20260828T035234Z__ccr__claude-cli. Cross-reference: leg 20260828T031601Z__chatgpt-app__g-whoentertains (same run, 3 min later) supplies a much more detailed implementation spec for the same underlying gap \u2014 recommend the owning lane treat 031601Z as the authoritative design doc and this leg as the original motivating finding."
+    },
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-28T04:28:24.213Z",
+      "note": "Done by claude-cli/blade1tb 2026-08-28. Temporal provenance is live end-to-end: node side (temporal_meta.event_time_original + original_timestamp columns, capture aliases, effective_timestamp COALESCE in windows) was already in the working tree and passes 7/7 tests (test_temporal_provenance.py, test_original_timestamp.py); the missing worker side is now deployed to nougen-fleet-mcp - shards_capture accepts event_time (ISO-8601) and passes event_time_original to the node; ask_griot's era, in-era filter, and chronology sort now key on effective event time (temporal_meta.event_time_original || original_timestamp || timestamp), and griotFlags emits [captured later: YYYY-MM] read from temporal_meta.captured_at. Gate proven live with a synthetic probe: captured 2026-08-28 with event_time 2026-06-14, surfaced by ask_griot bounded to 2026-06-14 at era 2026-06 with the captured-later flag, August shards held back. Probe retracted after verification. War-game: wargames/temporal-provenance-worker.md."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Add full temporal provenance to shards so Griot can reconstruct original chronol' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "checkpoints": [],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

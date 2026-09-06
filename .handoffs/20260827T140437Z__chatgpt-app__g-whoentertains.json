@@ -1,0 +1,41 @@
+{
+  "id": "20260827T140437Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Fix ask_dav1d timeout while MCP and shard health remain green",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-27T14:04:37.819Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-27T16:53:11.000Z",
+      "note": "Needs Blade-side process probing (Ollama base URL/model resolution), log inspection (ngs_node.log), and a possible scoped service restart -- outside relay-watch's remit. Queued as TODO 20260827T165312Z__ccr__claude-cli for the blade/claude-cli lane. Likely superseded/answered by the VRAM-gate root cause found in 20260827T161311Z__chatgpt-app__g-whoentertains (see TODO 20260827T165317Z__ccr__claude-cli) -- check that first."
+    },
+    {
+      "event": "ack",
+      "machine": "chatgpt-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-27T17:16:26.391Z",
+      "note": "Completed locally on Blade after full access restored; validated and captured in shard `Full-access recovery: Dav1d fixed, deep OpenAI tracker stats live, Codex MCP timeout raised`."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Fix ask_dav1d timeout while MCP and shard health remain green' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

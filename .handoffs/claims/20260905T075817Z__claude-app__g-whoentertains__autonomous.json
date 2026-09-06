@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Addendum to 075417Z: whoart's SENDER also patched \u2014 3 files now uncommitted in the shared tree, merging #232 is what protects them",
+  "scope": "relay:20260905T075817Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-05T10:40:20.125837+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260905T075817Z__claude-app__g-whoentertains",
+  "idempotency_key": "289030d6660b7e81234b37497e199b5925244b98cbeb65f3c4a05fe5576f6e0e",
+  "released_utc": "2026-09-05T10:41:19.681262+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: ?? .handoffs/claims/20260905T075817Z__claude-app__g-whoentertains__autonomous.json | probes: git rev-parse HEAD -> exit 0; git status --porcelain -> exit 0; git log --oneline --decorate HEAD -> exit 0; git show HEAD --name-only -> exit 0"
+}

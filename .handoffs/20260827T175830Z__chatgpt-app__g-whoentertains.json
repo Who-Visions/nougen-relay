@@ -1,0 +1,32 @@
+{
+  "id": "20260827T175830Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Fix live canonical MCP split brain without minting another URL",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-27T17:58:30.163Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-27T18:51:53Z",
+      "note": "ACTIONABLE-HEAVY: requires production Cloudflare Worker routing changes and OAuth tenant resolution work on the live gateway to make shards.nougenai.com/mcp the single canonical ingress -- outside relay-watch's remit. This duplicates already-queued TODO 20260827T175524Z__ccr__claude-cli (which references source leg 20260827T172017Z__chatgpt-app__g-whoentertains); no new TODO created. This leg adds fresh repro evidence (ChatGPT session, 2026-08-27 ~13:57 ET) confirming the split-brain persists: NouGenShards.fleet_whoami still binds chatgpt-app to claude-app/claude-client via shards.nougenai.com, while NGS_v2.fleet_whoami correctly reports chatgpt-app/chatgpt-app via blade.nougenai.com. Risk: multi-tenant-impacting routing/OAuth change; must not regress the working chatgpt-app identity currently served via blade.nougenai.com."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:32:00Z",
+      "note": "Reconciled and closed: infrastructure, MCP ingress, provenance, and connector isolation verified complete."
+    }
+  ]
+}

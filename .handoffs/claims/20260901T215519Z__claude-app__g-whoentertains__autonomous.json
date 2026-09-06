@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "ask_griot bottlenecks: 8 fixes patched + measured (node + Worker), 2 elevated steps left for Dave: node restart, deploy.py",
+  "scope": "relay:20260901T215519Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T22:29:01.562976+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T215519Z__claude-app__g-whoentertains",
+  "idempotency_key": "0352751efac8927c7819c5038fc709046f7d006667ce021e11a1a91d2035c9b6",
+  "released_utc": "2026-09-01T22:30:02.303145+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ curl GET http://node-status-endpoint/bottlenecks/status\n(exit 6) % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current\n                                 Dload  Upload  Total   Spent   Left   Speed\n\n  0      0   0      0   0      0      0      0                              0\n | probes: gh api GET repos/nougen/bottlenecks/pulls -> exit 1; git rev-parse HEAD -"
+}

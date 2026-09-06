@@ -1,0 +1,35 @@
+{
+  "id": "20260830T045604Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "CORRECTION to leg 20260830T044908Z: that purge was INCOMPLETE \u2014 git grep only sees tracked files, and canon/metamers-protocol.md was untracked. Now finished; 'metamer' deliberately KEPT as technical vocabulary",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-30T04:56:04.327Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "## Correction\n\nLeg `20260830T044908Z__claude-app__g-whoentertains` claimed the Valerion purge was complete. **It was not.** That sweep used `git grep`, which only searches **tracked file contents** \u2014 so it missed (a) every file whose *name* carried the drift and (b) all untracked/gitignored files. The canonical protocol document itself was in the blind spot.\n\nAnyone auditing naming: do not trust a `git grep` sweep alone. Use `find -iname` for names and a plain `grep -r` for untracked content.\n\n## Now fixed\n\n**Renamed** (all three were untracked, which is why they were missed):\n- `canon/metamers-protocol.md` \u2192 `canon/valerion-protocol.md`\n- `canon/metamers-run-002.md` \u2192 `canon/valerion-run-002.md`\n- `analysis/jarvis-metamers/` \u2192 `analysis/jarvis-valerion/` (and `jarvis-metamers.md` \u2192 `jarvis-valerion.md`)\n\n**9 content edits**, all NAME uses only: `# METAMERS \u2014 orchestration protocol` \u2192 `VALERION`, the `METAMERS verbs` table header, `METAMERS Run 003`, the `jarvis \u2192 NouGen: Metamers Synthesis` title, the `**Protocol:** metamers` line, and the verbatim verb-list token.\n\n**1 real breakage repaired:** `analysis/jarvis-valerion/fleet_transpose.py:19` had `OUT_DIR` hardcoded to the old `jarvis-metamers` directory, which the rename would have broken. Now points at `jarvis-valerion`; `py_compile` clean.\n\n## Deliberate: \"metamer\" is KEPT as technical vocabulary\n\n25 occurrences remain in the canon docs and they are **correct**. These documents *define* the term and build their argument on it:\n\n> \"A metamer is two physically different stimuli producing an identical percept.\"\n> \"Metamerism is observer-relative. Two spectra metameric to a [given observer]\u2026\"\n> \"A units error *is* a metamer failure.\"\n> \"A metamer is safe iff a cheap verifier can reject divergence at the point of use.\"\n\nRun 002's whole ternary PARAMETRIC/RETRIEVE/UNSOLVED framework rests on metamerism as a concept, and `verify_metamers()` is a proposed dream.py phase. Purging this would gut a 49 KB research document. **Same standing as TMEM in commit `71f598a`: genuine technical term, not drift.** The *protocol* is named Valerion; the *concept* stays metamer. Reversible with one sed if the GM disagrees.\n\n`canon/valerion-protocol.md` line 3 carries a canon lock (\"given verbatim 2026-08-08, do not paraphrase the verb list\") and the drift word sat inside it. Rather than silently rewrite a verbatim artifact, a dated provenance line was added recording the operator-instructed rename.\n\n## Still open\n\n1. **Three stale agent worktrees** at pre-purge commit `bc73a539` (dated 2026-08-08 / 2026-08-16) still hold `metameric_deep_sweep.py` and `metameric_longform.py`: `.claude/worktrees/busy-euclid-e483a6`, `busy-sanderson-6defde`, `gracious-shirley-fd2f39`. Not touched \u2014 editing detached checkouts creates confusing dirty state. Candidates for `git worktree remove`. Two further worktrees already report `prunable`.\n2. **`NouGen\\.vault\\nougen_shards_{5,6,7,9}.db` contain the old strings** \u2014 that is the *stray* vault from the cwd trap, not `~\\.nougen\\shards`. Worth deciding whether that vault should exist at all.\n3. GEMINI.md Rule 0.7 collision \u2014 unchanged, still needs a decision (see prior leg).\n\n## Done when\n\nNaming is verified by `find -iname` **and** `grep -r`, not `git grep` alone; the stale worktrees are pruned; and the stray `NouGen\\.vault` is resolved.\n",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-30T04:58:56Z",
+      "note": "Follow-up correction to 20260830T044908Z (git grep missed untracked files): renamed the untracked canon/metamers-protocol.md, canon/metamers-run-002.md, and analysis/jarvis-metamers/, fixed a real hardcoded-path breakage this exposed, and confirmed the deliberate keep of 'metamer' as technical vocabulary. New follow-up items (stale pre-purge worktrees to prune, a stray NouGen\\.vault to resolve) folded into the existing TODO 20260830T045441Z rather than opening a duplicate."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'CORRECTION to leg 20260830T044908Z: that purge was INCOMPLETE \u2014 git grep only se' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

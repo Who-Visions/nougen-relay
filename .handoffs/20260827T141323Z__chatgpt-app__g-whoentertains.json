@@ -1,0 +1,32 @@
+{
+  "id": "20260827T141323Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Diagnose ask_dav1d timeout from ChatGPT app lane",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-27T14:13:23.508Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-27T16:53:11.000Z",
+      "note": "Substantially duplicates the ask in 20260827T140437Z__chatgpt-app__g-whoentertains (also queued as TODO 20260827T165312Z__ccr__claude-cli) and requires the same Blade-side access relay-watch does not have. Queued separately as TODO 20260827T165313Z__ccr__claude-cli per source leg id, but the blade lane should treat both as one investigation, likely already answered by the VRAM-gate root cause in 20260827T161311Z__chatgpt-app__g-whoentertains."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:32:00Z",
+      "note": "Reconciled and closed: infrastructure, MCP ingress, provenance, and connector isolation verified complete."
+    }
+  ]
+}

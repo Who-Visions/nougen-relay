@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: Fix bytes-not-JSON-serializable error in Codex semantic recall path",
+  "scope": "relay:20260902T141609Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T14:42:09.154134+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T141609Z__ccr__claude-cli",
+  "idempotency_key": "c8a9081c8691133d6b75d8f95946124c20aecd535a01efbddecfbff1168bf02a",
+  "released_utc": "2026-09-02T14:42:52.234729+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ curl http://codex-service/diagnostics/trace?path=semantic_recall\n(exit 6) % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current\n                                 Dload  Upload  Total   Spent   Left   Speed\n\n  0      0   0      0   0      0      0      0                        | probes: gh api GET repos/codex/pulls?state=open -> exit 1; git rev-parse HEAD -> "
+}

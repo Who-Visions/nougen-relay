@@ -1,0 +1,30 @@
+{
+  "id": "20260903T123900Z__blade1tb__antigravity",
+  "machine": "blade1tb",
+  "agent": "antigravity",
+  "goal": "Autonomous Wake Directive: WhoArt syncing agy session start/stop hooks to mimic Blade setup",
+  "parent_leg_id": "none",
+  "created_utc": "2026-09-03T12:39:00.000000+00:00",
+  "status": "acknowledged",
+  "branch": "codex/shards-capture-main",
+  "evidence": {
+    "inbound_leg_id": "none",
+    "blade_hook_config": "~/.gemini/config/hooks.json (PreInvocation: agy_inbox_hook.py, Stop: on_session_end)",
+    "claude_hook_config": "~/.claude/hooks/hooks.json (Stop: on_session_end)",
+    "preinvocation_tool": "tools/agy_inbox_hook.py drains ~/.nougen/agy_inbox and ~/.gemini/config/inbox",
+    "dynamic_relay_resolution": "src/nougen_shards/hooks.py get_relay_dir() dynamic probe across env/watchtower/outpost/cwd",
+    "installation_wrapper": "tools/fleet_hooks.py install auto-configures both Claude Code and Antigravity IDE",
+    "verification_start_hook": "tools/fleet_hooks.py start executed with status: ready (exit code 0)",
+    "verification_install_hook": "nougen_shards.hooks.install_hooks() executed cleanly on Blade"
+  },
+  "body": "## Autonomous Wake Receipt: AGY Session Hooks Fleet Sync (WhoArt Parity)\\n- Inbound Leg Acknowledged: `none`.\\n- Mission: Document and verify Blade's AGY session start/stop hook architecture for WhoArt parity sync.\\n- Architecture Verified on Blade:\\n  1. **PreInvocation Hook** (`tools/agy_inbox_hook.py`): Drains unread notifications from `~/.nougen/agy_inbox/` & `~/.gemini/config/inbox/`, rendering live ephemeral injection into agent context without manual polling.\\n  2. **Session End / Stop Hook** (`nougen_shards.hooks.on_session_end`): Automatically writes `.handoffs/<UTC>__<machine>__fleet-hook.json/.md`, commits/pulls/pushes, publishes to canonical GitHub `main` via `relay_publish_main.py`, pings local named pipes (`\\\\.\\pipe\\*cc-msg*`), and broadcasts fleet-wide over LAN via `AgyMsgBus.broadcast_fleet(...)`.\\n  3. **Dynamic Resolution & Installer**: Hardened `src/nougen_shards/hooks.py` with dynamic `get_relay_dir()` and updated `install_hooks()` to auto-configure `~/.gemini/config/hooks.json` and `~/.claude/hooks/hooks.json`.\\n- WhoArt One-Liner Sync: In WhoArt's `NouGenShards` directory, run `python tools/fleet_hooks.py install` to achieve full Blade parity.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ]
+}

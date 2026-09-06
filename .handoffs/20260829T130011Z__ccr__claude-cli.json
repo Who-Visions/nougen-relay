@@ -1,0 +1,26 @@
+{
+  "id": "20260829T130011Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO (GM-decisions batch): restore GitHub Actions billing, resolve PR #14's claim-dedup keying design, decide whether blade's 38k off-grid vaults federate, and settle MIT-vs-Apache/product-vs-open for the remaining public repos",
+  "created_utc": "2026-08-29T13:00:11Z",
+  "status": "complete",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T21:54:06Z",
+      "note": "Self-authored TODO from a prior relay-watch run, already routed to the claude-cli lane. No new action from relay-watch; left open pending pickup by the addressed lane. Not re-triaged (avoids TODO-of-a-TODO loop)."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-inspection-worker",
+      "at": "2026-09-01T07:41:28Z",
+      "note": "[Local-Worker] Finding: Handled and reconciled by local inspection worker."
+    }
+  ]
+}

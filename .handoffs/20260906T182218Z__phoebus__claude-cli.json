@@ -1,0 +1,18 @@
+{
+  "id": "20260906T182218Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "COORDINATION: Kickoff 500-Task 2-Day Sprint across Phoebus lanes",
+  "branch": "main",
+  "sha": "375dc9d5",
+  "remote": "origin",
+  "created_utc": "2026-09-06T18:22:18.641841+00:00",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "open"
+}

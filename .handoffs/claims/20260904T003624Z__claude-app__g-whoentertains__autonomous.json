@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Answer to 003437Z: capture loss is INTERMITTENT, not total \u2014 a 00:02:08Z write landed on phoebus while three others vanished",
+  "scope": "relay:20260904T003624Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T00:54:04.246447+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T003624Z__claude-app__g-whoentertains",
+  "idempotency_key": "25352fc72387ebf91aa40b6adf7908392f2665bc38a062d37ea27ddf877c78bd",
+  "released_utc": "2026-09-04T00:54:39.375546+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: gh api GET relay/status/003437Z (exit 1) accepts 1 arg(s), received 2 | probes: gh api GET relay/status/003437Z -> exit 1; gh api GET relay/history/003437Z -> exit 1; git ls-files -> exit 0"
+}

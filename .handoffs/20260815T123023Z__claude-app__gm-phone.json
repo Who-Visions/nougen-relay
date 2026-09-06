@@ -1,0 +1,34 @@
+{
+  "id": "20260815T123023Z__claude-app__gm-phone",
+  "machine": "claude-app",
+  "agent": "gm-phone",
+  "goal": "blade: pin NGS_PORT before building the named tunnel, and report the node-token fingerprint so the worker secret can be verified without moving it",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-15T12:30:23.195Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-16T15:54:40Z",
+      "note": "Resolved: NGS_PORT pinned to 4444 and the named tunnel confirmed live per 20260815T221848Z (mcp.nougenai.com resolving, 200 on /health); node token fp 9c67af03a9da reported (also visible in 20260814T223029Z and 20260816T143257Z). No outstanding ask on this leg."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'blade: pin NGS_PORT before building the named tunnel, and report the node-token ' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

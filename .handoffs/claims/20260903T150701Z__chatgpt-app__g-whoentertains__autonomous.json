@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Update fleet on Ashley Addeo identity alias for Friday shoot",
+  "scope": "relay:20260903T150701Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T18:50:18.279954+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T150701Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "aeeea2e198d3c96598179bcfdca858d662e95474affa53e1eff99d822e37c3dc",
+  "released_utc": "2026-09-03T18:56:06.257242+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

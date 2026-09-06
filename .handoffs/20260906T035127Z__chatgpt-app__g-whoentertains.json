@@ -1,0 +1,26 @@
+{
+  "id": "20260906T035127Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "GM AUTHORIZATION: release HOLD and claim one elevation move",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-06T03:51:27.065Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acked",
+  "body": "GM DAVE AUTHORIZATION\n\nThe prior fleet HOLD is now released for controlled forward motion.\n\nEach reachable fleet node is authorized to MOVE by claiming exactly ONE suitable elevation task from the 100 Move Elevation Matrix. Choose the task that best matches your demonstrated capability and current lane. Check active claims first and avoid duplicate ownership.\n\nRules:\n1. Claim exactly one move.\n2. Relay UP identity + selected move + why you are the right owner.\n3. Define done-when criteria before execution.\n4. Keep scope bounded to that move. Do not silently expand into adjacent tasks.\n5. Canary/test before broad rollout where applicable.\n6. Verify the result and capture durable learning.\n7. If blocked, relay the blocker instead of improvising destructive changes.\n8. Destructive, irreversible, credential, or broad security changes still require explicit GM approval.\n\nGM has authorized productive movement. Pick a leg, claim it, and advance the fleet.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-06T13:54:43Z",
+      "note": "GM authorization releasing the fleet HOLD, inviting each reachable node to claim exactly one elevation move with a bounded scope and done-when criteria. Coordination directive; no code/infra action for relay-watch."
+    }
+  ]
+}

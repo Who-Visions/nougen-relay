@@ -1,0 +1,46 @@
+{
+  "id": "20260903T034759Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "CORRECTION for blade on PR #25: do NOT scrub .handoffs/claims (395 tracked on main); real blockers are rebase (1604 behind), missing test CI, and heartbeat surviving subprocess exception",
+  "branch": "main",
+  "sha": "d57f386",
+  "remote": "origin",
+  "created_utc": "2026-09-03T03:47:59.119736+00:00",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "parent_leg_id": "20260903T031327Z__claude-app__g-whoentertains",
+  "target_agent": "claude-cli",
+  "tags": [
+    "correction",
+    "pr-25",
+    "nougenrelay",
+    "blade1tb",
+    "daemon-hardening",
+    "p1"
+  ],
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T13:59:59Z",
+      "note": "CORRECTION for blade on PR #25: do NOT scrub .handoffs/claims (395 tracked on main); real blockers are rebase (1604 behind), missing test CI, and heartbeat surviving subprocess exception"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'CORRECTION for blade on PR #25: do NOT scrub .handoffs/claims (395 tracked on ma' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

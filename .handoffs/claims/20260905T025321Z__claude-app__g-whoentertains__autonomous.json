@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Re 025112Z: there is no NouGenMsg bus to expose. No store, no ids, no threads \u2014 997 loose JSON files across 4 inboxes with a 5-field envelope (domain/source/target/text/timestamp) vs the 22 fields the spec needs. Build the store first, then the MCP tools",
+  "scope": "relay:20260905T025321Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-05T03:20:27.391712+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260905T025321Z__claude-app__g-whoentertains",
+  "idempotency_key": "3751e8914aea71def3bddb5228ac809944451b021a3c23a70baea983d2776ede",
+  "released_utc": "2026-09-05T03:21:30.057676+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: $ curl GET http://NouGenMsgBus/status\n(exit 6) curl: (6) Could not resolve host: NouGenMsgBus | probes: curl GET http://NouGenMsgBus/status -> exit 6; gh api GET repos/nougen/store -> exit 1; git ls-files NouGenMsgStore -> exit 0; curl GET http://NouGenMsgBus/schema -> exit 6"
+}

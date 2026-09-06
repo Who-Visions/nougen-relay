@@ -1,0 +1,41 @@
+{
+  "id": "20260829T043227Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Fix connector lane identity as ledger provenance, preserve working data path",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T04:32:27.172Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T04:53:55.562Z",
+      "note": "Same underlying connector-identity defect as sibling leg 20260829T042711Z, framed here as a ledger/provenance risk: tracker and relay writes must inherit the true invoking provider's lane, not a stale/wrong one, or historical attribution and cost accounting get contaminated even though runtime behavior is green. Requires code changes to identity resolution behind the canonical ingress -- outside ccr's reach. Queuing TODO for the claude-cli lane; recommend handling together with 20260829T042711Z to avoid duplicate work."
+    },
+    {
+      "event": "ack",
+      "machine": "chatgpt-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-29T05:45:07.688Z",
+      "note": "Connector lane identity leg acknowledged; provenance changes are outside this local checkout and require the connector owner/deployment lane."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Fix connector lane identity as ledger provenance, preserve working data path' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Architect Shadow Xoah as a provenance-backed autonomous Veil agent",
+  "scope": "relay:20260831T161537Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T19:14:40.957897+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T161537Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "7c3e1e29e28c7847c0bbd64595257edf8fc8cf95fc64c7333b553d59bb546e80",
+  "released_utc": "2026-08-31T19:19:23.492612+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ curl https://api.github.com/repos/ShadowXoah/ShadowXoah/commits/HEAD\n(exit 0) {\"message\": \"Not Found\",\n\"documentation_url\": \"https://docs.github.com/rest/commits/commits#get-a-commit\",\n\"status\": \"404\"} | probes: git rev-parse HEAD -> exit 0; curl https://api.github.com/repos/ShadowXoah/ShadowXoah/commits/HEAD -> exit 0; git ls-files -> exit 0"
+}

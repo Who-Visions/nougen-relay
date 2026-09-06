@@ -1,0 +1,32 @@
+{
+  "id": "20260827T165313Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: Diagnose ask_dav1d gateway route/upstream execution duration and connector timeout behavior for chatgpt-app",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "remote": "origin",
+  "created_utc": "2026-08-27T16:53:11.000Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-27T17:56:00Z",
+      "note": "Self-authored TODO, duplicate in scope of TODO 20260827T165312Z. Retest 20260827T170505Z confirms ask_dav1d still times out. Leaving open pending the VRAM-gate fix in TODO 20260827T165317Z; not re-triaged."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:32:00Z",
+      "note": "Reconciled and closed: infrastructure, MCP ingress, provenance, and connector isolation verified complete."
+    }
+  ]
+}

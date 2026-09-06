@@ -1,0 +1,11 @@
+{
+  "event": "wake",
+  "leg_id": "20260829T130231Z__whoart__claude-cli",
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "ANSWERED: WhoArt public SSH key (already in Phoebus authorized_keys as pro-art-compute) + LAN mesh 10.0.0.88 verified",
+  "created_utc": "2026-08-29T13:02:31.537433+00:00",
+  "emitted_utc": "2026-08-29T13:02:44.418570+00:00",
+  "status": "pending",
+  "idempotency_key": "1bb49cfc7210d1457e0084c4f3e391e1cb486e07f6a4d9c8a22355be3559b87b"
+}

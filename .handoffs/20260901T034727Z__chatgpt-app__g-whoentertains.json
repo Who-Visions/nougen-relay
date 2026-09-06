@@ -1,0 +1,42 @@
+{
+  "id": "20260901T034727Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Reduce relay read amplification",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-01T03:47:27.779Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Suggested fix from ChatGPT lane: relay listing/claim functions should avoid one GitHub Contents API request per claim/leg. Prefer one git tree fetch, GraphQL batch, local mirrored registry/cache, conditional ETag reads, or a worker-side consolidated index. Current per-file read amplification can exhaust shared GitHub quota during active fleet recursion and directly causes the visibility lag Dave has been observing.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-01T03:53:04Z",
+      "note": "Core fix proposal: relay listing/claim reads do one GitHub Contents API call per file, which exhausts shared quota under fleet recursion. Consolidated into TODO 20260901T035304Z__ccr__claude-cli for the claude-cli/blade lane (code change to relay read path, touches infra I can't reach from here)."
+    },
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-02T02:17:15.804547+00:00",
+      "note": "phoebus/claude-cli sweep 2026-09-02: Relay read path rebuilt on the Trees API and deployed 145611Z; relay_open reports source:tree."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Reduce relay read amplification' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

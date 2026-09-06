@@ -1,0 +1,11 @@
+{
+  "event": "wake",
+  "leg_id": "20260905T172925Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "Fleet status relay up: 0 open PRs, 0 open legs, test suites 100% green, Hadouken combo ratified, WhoVisionsPresents spec enshrined",
+  "created_utc": "2026-09-05T17:29:25.909807+00:00",
+  "emitted_utc": "2026-09-05T17:29:42.041002+00:00",
+  "status": "pending",
+  "idempotency_key": "04dd906f9786562dd7b0c4cc19fb12c0da5e87d19c7a1dfb9566f33e0df30590"
+}

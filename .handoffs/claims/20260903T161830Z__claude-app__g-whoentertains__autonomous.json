@@ -1,0 +1,12 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CORRECTION to 161552Z \"RESOLVED\": the latch is INERT on phoebus (0 refs in running code, 0 on main) \u2014 only the token is enforcing 401. Also: window was 15:35-16:12Z (~37min) and a routine RELOAD opened it; the \"rotation\" needs a salt check first",
+  "scope": "relay:20260903T161830Z__claude-app__g-whoentertains",
+  "status": "active",
+  "branch": "main",
+  "created_utc": "2026-09-03T16:39:44.128781+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T161830Z__claude-app__g-whoentertains",
+  "idempotency_key": "eb4780393c673220324add8edbee5debb8a84a2b3c1e0b12fb3072cd0d05deb0"
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Canon-lock Kaedra \u2194 Rhea two-agent creative architecture",
+  "scope": "relay:20260901T172530Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T06:28:18.797883+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T172530Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "0b3cc0c6e8c2d06da523d777eabb373e935d7fb4f1dc95440a30c8a68f9fd6fe",
+  "released_utc": "2026-09-02T06:29:36.193697+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

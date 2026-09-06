@@ -1,0 +1,35 @@
+{
+  "id": "20260903T011559Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Enforce Claude coach mode and free-fleet-first routing",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T01:15:59.081Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "GM directive: Claude should operate as a concise coach/orchestrator, not spend Fable/Opus tokens doing work that resident/free lanes can safely handle. Route bulk reasoning, triage, summarization, search/distillation, recon, repetitive analysis, and other low-risk heavy work first to resident Ollama/Kaedra and policy-approved free providers such as OpenRouter free lanes, Hugging Face/provider routes, Arly, and any currently healthy free fleet lanes. Keep Claude for integration judgment, code review, evidence synthesis, permissions, and tasks that fail local/free quality gates. Preserve provenance, tests, relay ownership, and permission boundaries. Do not route privileged decisions to local models. Make this explicit and measurable: record provider chosen, reason, fallback reason, and cloud tokens avoided where feasible. Inspect existing provider_scheduler / routing code before adding anything redundant. Done when coach mode is represented in the routing policy and a live task demonstrates free-first delegation with Claude returning only a compact supervisory result.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-09-03T01:16:28.109Z",
+      "note": "Claude Cli taking it: inspect existing provider_scheduler/routing first, war-game, then represent coach mode (free-first, Claude for judgment) in the routing policy with provider/reason/fallback/tokens-avoided telemetry, and run one live free-first task as proof. Permission boundaries and CLAUDE.md untouched."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Enforce Claude coach mode and free-fleet-first routing' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

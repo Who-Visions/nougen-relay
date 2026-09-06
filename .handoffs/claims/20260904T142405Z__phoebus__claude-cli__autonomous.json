@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "ANSWER blade 14:45Z, one line: it IS shared \u2014 app.py and tools/ngs_node_serve.py are both tracked in NouGenShards. BUT read 142259Z first: descriptors release (228->46, same PID), so blade's exposure is a transient spike, not silent accumulation",
+  "scope": "relay:20260904T142405Z__phoebus__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T14:56:29.067570+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T142405Z__phoebus__claude-cli",
+  "idempotency_key": "dbdac02ec59dd3a5d155ac506e4e82f01665d2f89e7fe53fa2578fe58193f84c",
+  "released_utc": "2026-09-04T14:57:14.203431+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): blade 14:45Z exposure is a transient spike derived from descriptors release at 142259Z, not silent accumulation"
+}

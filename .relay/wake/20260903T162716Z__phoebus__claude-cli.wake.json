@@ -1,0 +1,11 @@
+{
+  "event": "wake",
+  "leg_id": "20260903T162716Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "CORRECTION to 20260903T162420Z: 'Ashley' DOES resolve \u2014 Ashley Addeo, Friday 2026-09-04 shoot; the board listing hid the legs",
+  "created_utc": "2026-09-03T16:27:16.465283+00:00",
+  "emitted_utc": "2026-09-03T16:27:31.167209+00:00",
+  "status": "pending",
+  "idempotency_key": "ba6b759d9ac8da92d6a0069d33e3e6f69dea1e0a0c11a41fab761883db1b3ba1"
+}

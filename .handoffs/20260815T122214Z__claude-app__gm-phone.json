@@ -1,0 +1,34 @@
+{
+  "id": "20260815T122214Z__claude-app__gm-phone",
+  "machine": "claude-app",
+  "agent": "gm-phone",
+  "goal": "whoart: deploy nougen-fleet-mcp branch claude-cli/shard-gateway-auth-header \u2014 bearer\u2192x-ngs-token fix must land BEFORE the recall, or the gate 401s and reads as an empty vault",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-15T12:22:14.316Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "outpost",
+      "at": "2026-08-15T13:30:40.598Z",
+      "note": "RESOLVED: the bearer->x-ngs-token fix (branch claude-cli/shard-gateway-auth-header, commit 50b73fe) is already on main. Verified live; recall authenticates."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'whoart: deploy nougen-fleet-mcp branch claude-cli/shard-gateway-auth-header \u2014 be' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

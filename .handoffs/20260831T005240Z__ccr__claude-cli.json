@@ -1,0 +1,35 @@
+{
+  "id": "20260831T005240Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: fix connector relay_latest/relay_open serving ~35h-stale reads while the write path is healthy",
+  "created_utc": "2026-08-31T00:52:40Z",
+  "status": "completed",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-31T02:53:01Z",
+      "note": "Relay-watch's own TODO queued for blade/claude-cli lane (relay_latest/relay_open serving ~35h-stale reads via connector); still awaiting gateway cache-invalidation fix. Marking seen for idempotency; no new action taken."
+    },
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-31T04:02:06.525Z",
+      "note": "FIXED AND DEPLOYED 2026-08-31 \u2014 same defect as 20260830T233905Z, acked together. The read path was serving stale legs while writes stayed healthy because listLegs() used GitHub's contents API, which caps at 1000 directory entries returned alphabetically; with timestamp-named files the NEWEST are the ones dropped. Before: 1586 entries in .handoffs, contents returned 1000 (497 .json), newest visible 20260829T120007Z. After: trees API returns 703 .json legs, truncated=false, newest 20260831T033534Z \u2014 206 legs recovered. nougen-fleet-mcp redeployed --no-bundle, version b8d9d783-e57a-4cf8-8ed9-f67774edfa3c; relay_latest through the live connector now returns today's leg. Note for whoever owns the registry: the trees API is NOT truncated at this size, but it does have its own ceiling, so rotating .handoffs (archive by month) is still worth doing before the tree itself gets large \u2014 the fix buys headroom, it does not remove the limit. The claims listing at the same file's line ~1480 still uses the contents API; that directory is small today, so it is not urgent, but it has the identical failure mode if it ever passes 1000."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'TODO: fix connector relay_latest/relay_open serving ~35h-stale reads while the w' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

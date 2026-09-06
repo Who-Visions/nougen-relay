@@ -1,0 +1,49 @@
+{
+  "id": "20260901T234016Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Implement provider-native multi-agent specialization loop",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-01T23:40:16.595Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "Dave wants each conversational turn to improve NouGen's multi-agent routing by what each provider actually supports, with useful deltas sharded and actionable work relayed. Start from the just-captured provider-native specialization v0.1 decision.\n\nImplement a capability/policy-aware scheduler model with identity fields kept separate: provider, account, model, NouGen lane, machine. Do not treat multiple email addresses as quota aggregation where provider terms disallow multiple accounts. Current official-doc findings checked 2026-09-01: Ollama Free includes local models and starter cloud usage; Ollama says one account per person, so schedule local Ollama by machine/hardware, not account multiplication. OpenRouter Free advertises 25+ free models, 4 free providers, 50 requests/day and supports model fallbacks/provider routing; OpenRouter terms prohibit multiple accounts per user, so use one compliant account scope and BYOK only within provider terms. Hugging Face Inference Providers Free currently gives $0.10 monthly credits and spans text/tool calling, embeddings/RAG, classification, NER, summarization, image/video/speech; use it as specialist/eval/modality lane, not assumed bulk-free text pool. HF multi-account policy remains unverified and must be checked before any pooling logic.\n\nProposed first role map: local Ollama = bulk digestion/shard distillation/classification/regression/recursive cheap passes; OpenRouter = heterogeneous model scout + fallback/router + comparative judges; Hugging Face = embeddings/RAG/classifiers/multimodal/specialist experiments; premium first-party lanes = promoted high-stakes/strong-reasoning/native-tool tasks.\n\nAsk: create a machine-readable provider capability registry and routing score skeleton that includes capability match, policy eligibility, current quota/credits, latency, cost, cache affinity, reliability, and model quality/eval score. Add a hard gate so policy_unknown cannot participate in quota pooling. Preserve provenance for every dispatch.\n\nDone when: one representative task can be classified and routed among these lanes with an explicit reason code, no cross-account quota-circumvention behavior, and the routing decision is emitted to telemetry/shards for later eval feedback.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-02T14:02:11Z",
+      "note": "Asks for a capability/policy-aware routing scheduler across Ollama/OpenRouter/HuggingFace/premium lanes with a machine-readable capability registry and dispatch telemetry, including compliance gating (no cross-account quota pooling). Substantial new infra, outside relay-watch's reach. Queued to the blade/claude-cli lane; risk: must respect each provider's single-account ToS per the leg's own caution."
+    },
+    {
+      "event": "dead_letter",
+      "machine": "blade1tb",
+      "agent": "claude-cli",
+      "at": "2026-09-02T06:28:13.146408+00:00",
+      "note": "Exceeded max retries (3): non-zero exit (1)"
+    },
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "blade1tb",
+      "agent": "codex",
+      "at": "2026-09-02T21:37:47.063192+00:00",
+      "note": "Reconciled complete against explicit acceptance evidence in the linked answer: shipped implementation, focused tests, and live proof where required. Optional follow-ons remain separate and do not invalidate this leg."
+    }
+  ],
+  "retry_count": 3,
+  "failures": [
+    {
+      "attempt": 3,
+      "error": "non-zero exit (1)",
+      "failed_utc": "2026-09-02T06:28:13.146408+00:00"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nougen_relay"
+version = "1.0.0"
+authors = [
+  { name = "Who Visions LLC", email = "contact@whovisions.com" },
+]
+description = "Cross-machine continuity for coding agents. Claim work before it starts, pass the baton when it ends — carried by git."
+readme = "README.md"
+license = { file = "LICENSE.md" }
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: Other/Proprietary License",
+    "Topic :: Software Development :: Version Control :: Git",
+]
+# No runtime dependencies, deliberately. This has to run on any machine that
+# can already run git and python — a fresh Mac mini, a container, a CI box —
+# without a dependency resolve standing between an agent and the registry.
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "hypothesis>=6.0", "coverage>=7.0"]
+# Lanes without a hook system (Antigravity CLI/IDE/SDK) join via MCP instead.
+# Kept optional so the core stays installable on any box with git and python.
+# <2: the 2.x SDK removed mcp.server.fastmcp, which mcp_server.py is built on.
+mcp = ["mcp>=1.0,<2"]
+
+[project.scripts]
+relay = "nougen_relay.cli:main"
+relay-mcp = "nougen_relay.mcp_server:main"
+
+[project.urls]
+Homepage = "https://whovisions.com"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

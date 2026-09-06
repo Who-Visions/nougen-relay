@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: Fix GitHub-read amplification behind relay_claim_list/relay_open/relay_latest and add a degraded-read contract",
+  "scope": "relay:20260901T035304Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T04:27:48.423294+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T035304Z__ccr__claude-cli",
+  "idempotency_key": "1a7117e7b58d063e02e91169c3ccff5ef80e8efedc77174123aaef0b515ec6a0",
+  "released_utc": "2026-09-01T04:34:21.228794+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

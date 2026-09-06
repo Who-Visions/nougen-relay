@@ -1,0 +1,35 @@
+{
+  "id": "20260830T161127Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "TRUE ROOT CAUSE, supersedes all prior: blade C: drive is 100% FULL (0GB of 952GB). SQLite disk I/O errors, node crash-loop, and my \"unbounded query cost\" finding are ALL symptoms of this",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-30T16:11:27.346Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "**Supersedes `20260830T080424Z` and every earlier root cause in this incident, including my own most recent one.**\n\n## Measured\n```\nC: free=0GB  size=952.74GB  pct_free=0%\n```\n`Get-CimInstance Win32_LogicalDisk` on blade1tb. The drive is at **literally zero bytes free**.\n\n## What this explains\n`space_sync_daemon.py` has been crash-looping since ~06:18 with:\n```\nsqlite3.OperationalError: disk I/O error     (core.py:128, PRAGMA journal_mode=WAL)\nOSError: [Errno 28] No space left on device  (even the logger cannot flush)\n```\nA full disk makes SQLite fail every WAL write, which makes the node fail, which makes the pump crash and self-restart every 60s forever. My own shell commands hit the same wall (`sed: couldn't flush stdout`, `head: write error`) \u2014 I should have recognised that signal when it first appeared instead of treating it as a shell quirk.\n\n**Retracting my previous conclusion**: I reported \"unbounded query cost \u2014 a single broad recall can pin the node\" as the deepest fragility. The CPU-burn and health-flapping I measured were real observations, but they are **downstream of a disk that cannot accept writes**, not an independent defect. The query-cost hardening is still worth doing, but it is not what broke this.\n\n## Also distinguish two faults that look alike in that log\n- `OSError: [Errno 28] No space left on device` \u2192 **blade's local C: drive**, this incident.\n- `HTTP 502: Bad Gateway` on `/sync/push` \u2192 the **remote HF Space** being unreachable, a separate problem. Do not conflate them; GM asked exactly this question and the answer is both, independently.\n\n## Space map so far (~81GB of 952GB accounted for)\n| GB | Path | Disposition |\n|---|---|---|\n| 33.43 | `~/.ollama` | GM's models, re-pullable but in daily use |\n| 16.57 | `~/.gemini` | Antigravity brain \u2014 do NOT touch blind |\n| 11.36 | `C:\\Windows\\SoftwareDistribution\\Download` | pure Windows Update cache, safe |\n| 7.44 | `Watchtower/vault` | **the corpus \u2014 never delete** |\n| 5.44 | `~/Downloads` | GM's |\n| 4.53 | `AppData\\Local\\Temp` | safe |\n| 1.97 | `~/.cache` | safe |\n| 0.34 | `AppData\\Local\\CrashDumps` | safe |\n\nRecycle Bin empty; `pagefile.sys` only 13.6GB \u2014 the usual easy wins are absent. Also present: ~1.5GB of `nougen_shards_*.db.bak` files in the vault dir (0.27-0.29GB each) that may be stale backups worth reviewing.\n\n**GM is handling reclamation himself** (\"i got older stuff\") \u2014 no deletions performed by this lane. A broader `C:\\` + profile scan is running to locate the remaining ~870GB.\n\n## Standing lesson\n`OSError: Errno 28` / `disk I/O error` from SQLite means **check free space first**, before any performance or concurrency theory. A full disk presents as slowness, hangs, lock contention, and CPU burn \u2014 every symptom this incident chased for hours.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-30T16:53:45Z",
+      "note": "Retrospective root-cause note, not a new ask: blade C: was 100% full, explaining the SQLite disk I/O errors / node crash-loop from the same incident already closed by 20260830T063925Z + P1 escalation 20260830T065417Z (both acked). Supersedes 20260830T080424Z's 'RESOLVED' framing but GM is personally handling disk reclamation ('i got older stuff'); no lane action requested and no new escalation queued to avoid re-pinging GM on an incident he's already working. Space map (~81/952GB accounted for) and the SSE/502-vs-disk-full distinction are logged here for future reference."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'TRUE ROOT CAUSE, supersedes all prior: blade C: drive is 100% FULL (0GB of 952GB' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

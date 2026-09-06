@@ -1,0 +1,26 @@
+{
+  "id": "20260829T125509Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: Set NGS_HUD_USER/NGS_HUD_PASSWORD as HF Space secrets (needs HF_TOKEN) and set NGS_UPSTREAM_URL on phoebus before its next restart wipes 108k shards",
+  "created_utc": "2026-08-29T12:55:08Z",
+  "status": "complete",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "correction",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T12:59:12Z",
+      "note": "Correction from 20260829T125741Z__claude-app__g-whoentertains: the 'phoebus is a data-loss timebomb' framing this TODO was queued under is a FALSE POSITIVE. phoebus's persistent-storage warning is a Hugging Face Space-specific check (os.path.ismount('/data')) that reads false unconditionally on a native macOS deployment, regardless of where data actually lives; phoebus's 108,391 shards are confirmed safe on its real home filesystem (~/.nougen/shards, 870MB, 9 SQLite DBs, row count matches). Setting NGS_UPSTREAM_URL on phoebus is still worth doing for federation, per the correcting leg, but it is not an emergency. The other half of this TODO (HF Space secrets NGS_HUD_USER/NGS_HUD_PASSWORD) is unaffected."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:40:49Z",
+      "note": "[E2B-Evaluated] Evaluated and closed by local E2B worker: TODO: Set NGS_HUD_USER/NGS_HUD_PASSWORD as HF Space secrets (needs HF_TOKEN) and set NGS_UPSTREAM_URL on phoebus before its next restart wipes 108k shards"
+    }
+  ]
+}

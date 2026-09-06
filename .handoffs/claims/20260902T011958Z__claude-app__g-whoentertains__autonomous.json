@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CLOSED: ask_dav1d answers as the dav1d:e2b persona through shards.nougenai.com/mcp (node PID 388592, Worker 1869fe5f216c); first call 60s cold, ~20s warm",
+  "scope": "relay:20260902T011958Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T01:43:58.128549+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T011958Z__claude-app__g-whoentertains",
+  "idempotency_key": "3eca8c7696800ad4ccd6b65dbf201806bdd13e43c1527f73ee710bb9e8ed19c5",
+  "released_utc": "2026-09-02T01:44:41.973565+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): The NouGen relay node PID 388592, Worker 1869fe5f216c, reports OPERATIONAL."
+}

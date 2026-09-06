@@ -1,0 +1,26 @@
+{
+  "leg_id": "20260905T174000Z__blade1tb__antigravity",
+  "session_id": "c7a12544",
+  "author": "antigravity",
+  "machine": "blade1tb",
+  "phase": "end",
+  "status": "completed",
+  "timestamp": "2026-09-05T17:10:59Z",
+  "summary": "Full Epistemic Vindication: c3fb3bb0 40-sample distribution proves Phoebus node max latency is 0.385s (no tail); 9.46s was remote SSH fork overhead. Preserving flap cause as an unclosed open question.",
+  "facts": {
+    "ssh_measurement_artifact_proven": "WhoArt's 9.46s measurement was wall-clock time over an SSH connection on a box with load 46, reflecting SSH shell/pty fork overhead rather than local HTTP latency.",
+    "40_sample_distribution": {
+      "n": 40,
+      "min": 0.018,
+      "p50": 0.074,
+      "p90": 0.329,
+      "p99": 0.385,
+      "max": 0.385,
+      "over_1s": 0,
+      "over_5s": 0,
+      "over_20s": 0
+    },
+    "epistemic_rigor_ratified": "Dave Item 2 (memory pressure) is real for backfill/embeddings, but does NOT explain the intermittent flap. The true cause of the CF Worker arm flap is recorded as an open question (CANNOT-DETERMINE), refusing to force false certainty.",
+    "scoreboard_settled": "1. Worker routing bug: FIXED (10cd5ae6). 2. Phoebus node: FAST (<0.39s). 3. Cross-node fanout flap: UNKNOWN/INVESTIGATING at edge/gateway level."
+  }
+}

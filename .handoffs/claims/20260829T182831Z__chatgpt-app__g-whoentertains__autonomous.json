@@ -1,0 +1,12 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Align connector tracker and shard truth to corrected 21.396B multi-source fleet ledger",
+  "scope": "relay:20260829T182831Z__chatgpt-app__g-whoentertains",
+  "status": "active",
+  "branch": "main",
+  "created_utc": "2026-08-30T02:34:09.231716+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T182831Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "f3709d11587ba1bddacadb3f30cbeab285e01417524c91e12387ea2cb6b58fe9"
+}

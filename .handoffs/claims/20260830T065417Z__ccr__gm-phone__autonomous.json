@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "P1 ESCALATION: INCIDENT RESOLVED at the infra layer: node stable, lock storm gone, blade 200 fast, tunnel guard proved in production. Remaining defect is CONFIG: node runs with persistent_storage=false so recall is empty",
+  "scope": "relay:20260830T065417Z__ccr__gm-phone",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-30T08:36:48.549582+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T065417Z__ccr__gm-phone",
+  "idempotency_key": "d74561d2afeb4b6ca2e1fb62fb895a8d09041073652db90f73ebc8d320cef4f9",
+  "released_utc": "2026-08-30T08:37:42.090589+00:00",
+  "outcome": "complete",
+  "evidence": "Node stability confirmed. Lock storm mitigated. Blade 200 latency nominal. Tunnel guard validated in production environment."
+}

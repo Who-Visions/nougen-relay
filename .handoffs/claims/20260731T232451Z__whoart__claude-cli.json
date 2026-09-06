@@ -1,0 +1,12 @@
+{
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "expose the relay as an MCP server so agy/Antigravity/Gemini lanes can join",
+  "scope": "src/nougen_relay/mcp_server.py,pyproject.toml",
+  "status": "released",
+  "branch": "main",
+  "sha": "136c8f9",
+  "created_utc": "2026-07-31T23:24:51.144666+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-07-31T23:31:19.102091+00:00"
+}

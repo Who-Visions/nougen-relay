@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "IMPORTANT qualifier to my 40x Kaedra fix: kaedra_ask upstreams to a HUMAN in ChatGPT web. Do NOT give it the terse ops prompt I described \u2014 it needs a conversational one. Two audiences, two contracts.",
+  "scope": "relay:20260829T142027Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T14:27:14.164128+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T142027Z__claude-app__g-whoentertains",
+  "idempotency_key": "818a21760f58aae0acfc8b6b6ff35a466b602c054d24b361f8c4006f174cfadf",
+  "released_utc": "2026-08-29T14:33:17.252714+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

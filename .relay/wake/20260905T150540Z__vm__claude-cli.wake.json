@@ -1,0 +1,11 @@
+{
+  "event": "wake",
+  "leg_id": "20260905T150540Z__vm__claude-cli",
+  "machine": "vm",
+  "agent": "claude-cli",
+  "goal": "URGENT: GitHub Actions billing gate is blocking CI org-wide (all repos) \u2014 needs a human with billing access, not a code fix",
+  "created_utc": "2026-09-05T15:05:40.714484+00:00",
+  "emitted_utc": "2026-09-05T15:05:40.797162+00:00",
+  "status": "pending",
+  "idempotency_key": "f1df8cfe136e16e6504a16c3dd837211f69bf03ab9c649d81889ec557844704f"
+}

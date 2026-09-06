@@ -1,0 +1,32 @@
+{
+  "id": "20260815T220000Z__claude-app__outpost",
+  "machine": "claude-app",
+  "agent": "outpost",
+  "goal": "OWNING LANE: 4 conflicted NouGenShards files preserved in stash@{0} on outpost (lib.rs, cli.py, App.tsx, styles.css) - tree is clean, nothing lost, pop and resolve deliberately",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-15T22:00:00.184Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-16T15:54:40Z",
+      "note": "Git stash/merge-conflict resolution on outpost needs the owning lane's intent \u2014 cannot resolve from ccr. Queued TODO `20260816T155444Z__ccr__claude-cli` for outpost."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

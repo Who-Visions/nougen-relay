@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Implement Hardcade as 1994 Boynton Beach mall arcade social renderer over truthful fleet events",
+  "scope": "relay:20260903T023735Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T02:52:20.782390+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T023735Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "2a1d9a8a5ee9003b26ad2a24c93ea26bdabd5dfc1fde5b7c7a9cf119cfc13407",
+  "released_utc": "2026-09-03T02:53:37.177389+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

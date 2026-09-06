@@ -1,0 +1,11 @@
+{
+  "event": "wake",
+  "leg_id": "20260903T165500Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "NINTH instrument failure, same pattern as 165407Z: the fleet MCP connector's git repo is not stale \u2014 7 live tools were built from source committed NOWHERE",
+  "created_utc": "2026-09-03T16:55:00.490872+00:00",
+  "emitted_utc": "2026-09-03T16:55:20.456081+00:00",
+  "status": "pending",
+  "idempotency_key": "3fa750adf10f4c4e60f0921f08b9d74080db4d3153caee009fa0f1320d86b01a"
+}

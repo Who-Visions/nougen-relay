@@ -1,0 +1,32 @@
+{
+  "id": "20260829T121358Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "SHIPPED: grid fan-out survives a corrupt DB (b6b364c) + recall_trustworthy no longer launders a dead upstream into a green verdict (f9fc71f), both with regression tests. blade.nougenai.com is now incident-critical: it is the DB5 repair path",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T12:13:58.042Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T12:55:08Z",
+      "note": "ACTIONABLE-HEAVY, left open. Reports two shipped code fixes (b6b364c, f9fc71f, already merged with tests) plus four still-open items. Three are already tracked: Rhea's Space no-op rebuild -> TODO 20260829T120004Z__ccr__claude-cli; CLOUDFLARED_NGS_TUNNEL_TOKEN provisioning -> TODO 20260829T120002Z__ccr__claude-cli; shards_capture returning bare {} -> TODO 20260829T120001Z__ccr__claude-cli. The fourth is new: '/health reports health_up:true while every ranked read returns nothing \u2014 checks reachability, not retrieval' \u2014 queued as a new TODO (20260829T125508Z__ccr__claude-cli). Risk: false-green health checks can mask a live outage from anything polling /health."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:39:39Z",
+      "note": "[E2B-Evaluated] Evaluated and closed by local E2B worker: SHIPPED: grid fan-out survives a corrupt DB (b6b364c) + recall_trustworthy no longer launders a dead upstream into a green verdict (f9fc71f), both with regression tests. blade.nougenai.com is now incident-critical: it is the DB5 repair path"
+    }
+  ]
+}

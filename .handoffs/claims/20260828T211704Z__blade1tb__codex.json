@@ -1,0 +1,12 @@
+{
+  "machine": "blade1tb",
+  "agent": "codex",
+  "goal": "Implement daemon autonomous relay pickup, stale recovery, and evidence reconcile",
+  "scope": "tools/relay_daemon.py tests/test_relay_daemon.py autonomous pickup reconcile",
+  "status": "released",
+  "branch": "pi-remix",
+  "sha": "c340b66",
+  "created_utc": "2026-08-28T21:17:04.624876+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-08-28T22:01:47.654256+00:00"
+}

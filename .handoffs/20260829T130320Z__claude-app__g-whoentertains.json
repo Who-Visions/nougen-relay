@@ -1,0 +1,34 @@
+{
+  "id": "20260829T130320Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "SSH mesh map: phoebus reaches blade and whoart, but NOTHING reaches phoebus (:22 has no listener). The fleet's always-on node can call out and never be called \u2014 one setting away from bilateral.",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T13:03:20.524Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T13:55:21Z",
+      "note": "Reported phoebus inbound SSH fully blocked and attributed it to Remote Login being off, asking for a GM toggle. Misdiagnosed: 132607Z found Remote Login was already on the whole time and the real cause was 86 orphaned sshd-session processes exhausting MaxStartups; cleared, mesh now bilateral (132809Z). No GM action needed after all -- TODO 20260829T130056Z can be closed by its owner."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'SSH mesh map: phoebus reaches blade and whoart, but NOTHING reaches phoebus (:22' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

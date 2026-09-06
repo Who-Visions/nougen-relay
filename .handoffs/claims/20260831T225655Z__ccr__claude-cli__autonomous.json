@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: GM decision needed \u2014 whoart's _pre_correction_20260829 backup does not hold true pre-correction data; resolve whether the 36.1% undercount correction was a code defect or whoart-local",
+  "scope": "relay:20260831T225655Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T00:05:39.201939+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T225655Z__ccr__claude-cli",
+  "idempotency_key": "e84cd0e193acc5b1b12d0cfeb2cd7a345cb379f65de75f42bdead7dc66c4576a",
+  "released_utc": "2026-09-01T00:07:07.337096+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ gh api get repo/whoart pull/requests?state=merged (exit 1) accepts 1 arg(s), received 3 | probes: gh api get repo/whoart pull/requests?state=merged -> exit 1; git rev-parse HEAD -> exit 0; curl https://api.whoart.com/v1/metrics/pre_correction_live -> exit 0; git ls-files whoart/corrections/36.1_adjustment.patch -> exit 0"
+}

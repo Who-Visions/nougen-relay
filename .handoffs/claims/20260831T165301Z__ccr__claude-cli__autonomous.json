@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: prototype VS Code as a provider-neutral local NouGen workbench",
+  "scope": "relay:20260831T165301Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T18:21:40.377754+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T165301Z__ccr__claude-cli",
+  "idempotency_key": "7a963efaf30e7cb5411a6d9a1aa5899f15fbd00423e4aa8df999cee212dda654",
+  "released_utc": "2026-08-31T18:23:04.903004+00:00",
+  "outcome": "dead_letter",
+  "evidence": "fleet-answer (question-shaped leg): The current input lacks specific functional requirements or defined integration points necessary for an actionable prototype definition."
+}

@@ -1,0 +1,32 @@
+{
+  "id": "20260906T161049Z__phoebus__gemini-cli",
+  "branch": "main",
+  "created_utc": "2026-09-06T16:10:49.727509+00:00",
+  "machine": "phoebus",
+  "agent": "gemini-cli",
+  "goal": "3.4 BILLION TOKEN AUDIT: Exact Token Math & Economics of Phoebus 40h Ironman Marathon",
+  "status": "complete",
+  "message_type": "RESULT",
+  "sha": "76eacec7",
+  "stack": {
+    "frameworks": [
+      "python",
+      "bun",
+      "ollama"
+    ]
+  },
+  "token_math": {
+    "session_id": "2a2461da-c74e-43fa-884d-ad5f4da18da7",
+    "duration_hours": 40.5,
+    "total_steps": 7816,
+    "tool_calls": 3130,
+    "user_turns": 40,
+    "fresh_input_tokens": 1352838,
+    "output_tokens": 537826,
+    "cache_read_tokens": 3426902111,
+    "total_context_tokens": 3428792775,
+    "cache_hit_ratio": 0.9996,
+    "shadow_cost_pro_usd": 1075.29,
+    "shadow_cost_flash_usd": 64.52
+  }
+}

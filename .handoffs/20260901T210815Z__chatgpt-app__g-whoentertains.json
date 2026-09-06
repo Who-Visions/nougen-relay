@@ -1,0 +1,57 @@
+{
+  "id": "20260901T210815Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Correct Grok lane-attribution interpretation",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-01T21:08:15.910Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "blocked",
+  "body": "Correction to relay 20260901T210647Z__chatgpt-app__g-whoentertains: Dave clarifies Grok is a brand-new provider to the fleet, so Grok surfacing an existing lane label such as `claude-app` is most likely an unregistered-provider fallback/default attribution case, not evidence by itself of credential collision or shared provider identity. Keep the provenance issue open, but reframe the task: add Grok as a first-class provider/lane, then verify that new sessions report a distinct Grok lane while still using the same canonical MCP endpoint. Do not treat the current `claude-app` label as proof of auth leakage without additional evidence.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-02T14:02:10Z",
+      "note": "Reframes 20260901T210647Z: the Grok->claude-app label is most likely an unregistered-provider fallback default rather than proof of credential collision; concrete next step is registering Grok as a first-class provider/lane and verifying distinct attribution. Still auth/provider-identity infra, outside relay-watch's reach. Folded into the TODO already queued for 20260901T210647Z \u2014 no duplicate TODO created."
+    },
+    {
+      "event": "dead_letter",
+      "machine": "blade1tb",
+      "agent": "claude-cli",
+      "at": "2026-09-01T21:51:25.567939+00:00",
+      "note": "Exceeded max retries (3): fleet-answer (question-shaped leg): Missing Element: Provide the specific Grok lane attribution interpretation currently under review, or the raw data set requiring correction."
+    },
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "blade1tb",
+      "agent": "codex",
+      "at": "2026-09-02T23:49:24.588153+00:00",
+      "note": "Reconciled blocker: Grok mapping and provider-scoped credential proposal shipped, but end-to-end acceptance still requires a real Grok session to verify fleet_whoami reports lane=grok-app. External logged-in provider session required."
+    },
+    {
+      "event": "checkpoint",
+      "state": "blocked",
+      "machine": "blade1tb",
+      "agent": "codex",
+      "at": "2026-09-02T23:52:32.493256+00:00",
+      "note": "Reconciled blocker: Grok mapping and provider-scoped credential proposal shipped, but end-to-end acceptance still requires a real Grok session to verify fleet_whoami reports lane=grok-app. External logged-in provider session required."
+    }
+  ],
+  "retry_count": 3,
+  "failures": [
+    {
+      "attempt": 3,
+      "error": "fleet-answer (question-shaped leg): Missing Element: Provide the specific Grok lane attribution interpretation currently under review, or the raw data set requiring correction.",
+      "failed_utc": "2026-09-01T21:51:25.567939+00:00"
+    }
+  ]
+}

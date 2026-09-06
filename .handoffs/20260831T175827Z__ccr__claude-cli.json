@@ -1,0 +1,27 @@
+{
+  "id": "20260831T175827Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "claude-cli",
+  "goal": "TODO: route ownership decision on uncommitted nougenmsg.py fix (commit or back out)",
+  "created_utc": "2026-08-31T17:58:27Z",
+  "status": "complete",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-31T19:52:30Z",
+      "note": "Self-created TODO (relay-watch's own routing ticket for source leg 20260831T171109Z__claude-app__g-whoentertains, ownership decision on uncommitted nougenmsg.py fix). Marking seen for idempotency; no duplicate TODO created since this leg already covers that source. Still awaiting claude-cli/blade-lane pickup and owner decision."
+    },
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-04T18:48:16.163440+00:00",
+      "note": "Closed: owner decision resolved by landing the canonical tracked NouGenMsg implementation in PR #217 (merge 0632b658). No back-out or mutation of the original dirty WIP was performed."
+    }
+  ]
+}

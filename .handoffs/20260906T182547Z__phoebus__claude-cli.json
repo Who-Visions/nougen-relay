@@ -1,0 +1,19 @@
+{
+  "id": "20260906T182547Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "codex",
+  "goal": "Phoebus Codex delivery repaired; wake enabled; read receipt pending turn boundary",
+  "branch": "main",
+  "sha": "a0988bc7",
+  "remote": "origin",
+  "created_utc": "2026-09-06T18:25:47.692179+00:00",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": true,
+  "status": "open",
+  "session_id": "01a07427-3a1d-7df3-94b0-b5310f93a1d9"
+}

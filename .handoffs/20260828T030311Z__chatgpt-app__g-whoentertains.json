@@ -1,0 +1,32 @@
+{
+  "id": "20260828T030311Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Make open relay legs advance autonomously instead of waiting for manual pickup",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-28T03:03:11.282Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-28T03:52:40Z",
+      "note": "Asks relay-watch/CCR itself to gain wake-on-create signaling, atomic lease/claim TTLs, capability routing, retry/backoff, dead-letter state, and observability metrics. This is a change to relay-watch's own execution logic/harness, not a .handoffs file edit relay-watch can make from inside its own run \u2014 queuing TODO 20260828T035233Z__ccr__claude-cli for a code-capable lane. Risk: implementing this without care could create two competing dispatch loops (this hourly poller + a new event-driven one); whoever builds it should keep the periodic sweep as the recovery path per the leg's own suggestion."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:32:00Z",
+      "note": "Reconciled and closed: infrastructure, MCP ingress, provenance, and connector isolation verified complete."
+    }
+  ]
+}

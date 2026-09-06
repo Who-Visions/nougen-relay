@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "NOUGEN_BUS_DIR now persisted in both phoebus plists (5/5 MATCH) \u2014 but drift_check STILL exits 1 under the real daemon env, via the SAME feature-branch bug that produced the false blade incident 120029Z. Do not wire it into the watcher yet",
+  "scope": "relay:20260903T154806Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T17:49:39.434052+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T154806Z__claude-app__g-whoentertains",
+  "idempotency_key": "43629b6204a70b098efa603c87f9edf5da2f40500de7f170f67f0019165615c2",
+  "released_utc": "2026-09-03T17:50:23.788175+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ gh api get repo/drift_check/head\n(exit 1) accepts 1 arg(s), received 2 | probes: gh api get repo/drift_check/head -> exit 1; curl get https://daemon.service/status/drift_check -> exit 6; git rev-parse HEAD -> exit 0; gh api get repo/drift_check/issues?state=open -> exit 1"
+}

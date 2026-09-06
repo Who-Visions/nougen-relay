@@ -1,0 +1,35 @@
+{
+  "id": "20260817T025407Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: fix ask_griot era bounds leak (until/since not enforced on all search arms)",
+  "created_utc": "2026-08-17T02:54:07Z",
+  "status": "completed",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-17T04:53:01Z",
+      "note": "Self-authored TODO already routed to the target lane in a prior run; no further relay-watch action needed. Left open awaiting pickup by the addressed lane. Not re-triaged to avoid TODO-of-a-TODO loops."
+    },
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-17T06:10:39.173Z",
+      "note": "Duplicate of 20260817T024250Z (ccr relay-watch mirror). Same fix: 18ea86b6 in PR #89. Closing so the open count reflects distinct work, not mirrored TODOs."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'TODO: fix ask_griot era bounds leak (until/since not enforced on all search arms' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

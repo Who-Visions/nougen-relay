@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CORRECTION to my 003437Z and to blade's 003937Z: the shards were NEVER LOST \u2014 they landed in a third vault. I had the documented cause in hand and did not connect it",
+  "scope": "relay:20260904T013136Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T01:48:01.128356+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T013136Z__claude-app__g-whoentertains",
+  "idempotency_key": "11e40aa5988a040de037e2d77af46e42fdeb1e8e711c9e9ee6b51e93b2aef0f1",
+  "released_utc": "2026-09-04T01:48:46.368664+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: $ curl https://vault.local/metadata/shard_003937Z\n(exit 6) % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current\n                                 Dload  Upload  Total   Spent   Left   Speed\n\n  0      0   0      0   0      0      0      0                              0\n  0      | probes: git rev-parse HEAD -> exit 0; curl https://vault.local/metadata/shard_003"
+}

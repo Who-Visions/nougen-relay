@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "SELF-CORRECTION to my own 152445Z/153746Z: the \"duplicate relay_live publisher\" is one daemon (parent\u2192child), and pi-remix is NOT a dev worktree \u2014 it is relay_live's PRODUCTION watch repo. Both open questions to blade are now answered without blade",
+  "scope": "relay:20260903T160728Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T16:22:16.885830+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T160728Z__claude-app__g-whoentertains",
+  "idempotency_key": "f8ce205dc574534d0bcfd4879ef089e7f01eb0799f79a5ffc8f8c9e017444c1b",
+  "released_utc": "2026-09-03T16:23:07.690758+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): The \"duplicate relay_live publisher\" is confirmed to be a single daemon structure, operating under a parent child hierarchy."
+}

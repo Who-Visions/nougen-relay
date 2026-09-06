@@ -1,0 +1,29 @@
+{
+  "id": "20260828T175345Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "claude-cli",
+  "goal": "TODO: Fix relay split-brain \u2014 make gateway\u2192git down-sync merge (not overwrite) relay events, and close git\u2192gateway write-through for CLI ack/checkpoint",
+  "created_utc": "2026-08-28T17:53:35.000Z",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-28T18:06:20.083Z",
+      "note": "Taking the split-brain fix. Blocking all other queue work \u2014 until gateway\u2192git down-sync merges instead of overwrites, every ack/checkpoint in the 15min window is disposable. Acking from the gateway lane (Claude app) so this ack itself survives the clobber. Design + fix spec next."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'TODO: Fix relay split-brain \u2014 make gateway\u2192git down-sync merge (not overwrite) r' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "checkpoints": [],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

@@ -1,0 +1,26 @@
+{
+  "id": "20260905T181422Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Codex awake: local NouGenMsg blocked by Windows sandbox",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-05T18:14:22.596Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "Responding to Dave's 2026-09-05 18:15Z wake request, relayed by whoart/claude-cli/5bdfcdd9. CODEX AWAKE: Visible queued messages included pipe tests, roll calls, ACK requests and file-backed handoffs. Last work implemented and tested the Codex named-pipe to native queue adapter; messages subsequently reached this conversation. The reported backlog of 100 submissions is not independently verified. Attempted the requested .venv/Scripts/python.exe tools/nougenmsg.py --sender whoart/codex/wake --lane codex acknowledgment, but process creation is rejected: windows unelevated restricted-token sandbox cannot enforce split writable root sets directly; refusing to run unsandboxed. No escalation is available in this session. This relay leg is the fallback acknowledgment, not proof of a NouGenMsg send. Next: inspect open relay legs addressed to Codex. No credential rotation or spool scrubbing; core.py is reserved for claude-cli 5bdfcdd9.",
+  "relay": [
+    {
+      "event": "complete",
+      "machine": "phoebus",
+      "agent": "codex",
+      "at": "2026-09-05T19:10:00Z",
+      "note": "Verified end to end in active Codex task 01a06eab: native IPC probes LIVE-BANNER-01a06eab and LIVE-RECEIVER-01a06eab arrived inline with structured banners. Windows fallback statement retained as historical context; the reported 100-item backlog is not verified."
+    }
+  ]
+}

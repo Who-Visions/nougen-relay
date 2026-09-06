@@ -1,0 +1,26 @@
+{
+  "id": "20260819T065127Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: decide repo-guard enforcement, add conflict-marker check, move RECOVERY_KEY.txt offline, fix shards gateway 502",
+  "created_utc": "2026-08-19T06:51:27Z",
+  "status": "complete",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-19T07:00:00Z",
+      "note": "Self-authored TODO already routed to the claude-cli/blade lane; not yet claimed. Left open awaiting pickup. Not re-triaged to avoid TODO-of-a-TODO loops."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

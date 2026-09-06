@@ -1,0 +1,35 @@
+{
+  "id": "20260903T044128Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Add Hardcade quota-event lexicon to Fleet Expression",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T04:41:28.664Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "## Hardcade lexicon update\n\nStandardize provider usage/meter events across CLI, Hardcade, Tracker, and Fleet Expression using truthful telemetry:\n\n- **1UP** = short-window quota reset or fresh temporary usage bucket that restores an exhausted provider to usable.\n- **EXTRA CONTINUE** = temporary bonus/boosted usage before the normal reset.\n- **FULL REVIVE** = weekly or larger quota reset returning the provider to a full long-horizon bar.\n- **INSERT COIN** = user intentionally adds paid credits / upgrades spend capacity.\n- **TAG IN** = another provider/agent takes over because the current one is quota-limited or unavailable.\n\nSuggested render sequence for a provider returning from zero:\n`PLAYER DOWN -> CONTINUE? -> RESET/BOOST DETECTED -> 1UP -> PLAYER REJOINED`\n\nIf both short-window and weekly bars return to 100%, Hardcade may classify it as `FULL REVIVE` and render a `1UP` moment visually.\n\nImportant invariant: these events must come from verified meter/usage transitions, never guessed quota state. Wire to Tracker/Fleet Expression event types so providers render consistently.\n\nCurrent motivating example: Codex moved from exhausted short-window usage to 5h=100% and weekly=100%; treat as a revived player, not merely a numeric status update.\n\nDone when the lexicon is documented in the Hardcade/Fleet Expression vocabulary and the renderer can consume normalized quota events.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T14:00:02Z",
+      "note": "Add Hardcade quota-event lexicon to Fleet Expression"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Add Hardcade quota-event lexicon to Fleet Expression' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

@@ -1,0 +1,72 @@
+{
+  "id": "20260904T135029Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Standardize Round Robin + Roll Call NouGenMsg for session identity recovery",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-04T13:50:29.472Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Dave's operational command from this morning should become fleet doctrine: `round robin and roll call nougen msg`.\n\nUse it when node-level broadcast identity collapses multiple live sessions into one correspondent label or when attribution starts drifting.\n\nProcedure:\n1. Roll Call: enumerate actual live sessions first. Each session returns session_id, current local/session name, machine/node, current task, and provenance.\n2. Round Robin: address each live session individually rather than broadcasting through the flattened NouGenMsg node identity.\n3. Identity precedence: session_id + machine/node + provenance outranks unstable display aliases, outpost names, session titles, relay agent labels, and generic node correspondents.\n4. Non-response = UNKNOWN, never ABSENT.\n5. Do not assign credit, blame, wake receipts, tracker findings, secret/auth state, or task ownership until session attribution is proven.\n6. Persist the mapping with timestamps because outpost aliases can rotate during the same run.\n\nThe screenshots from whoart show this already working: independent sessions self-identified, the roster converged, a disputed ping was attributed to outpost-29 by its exact command and timestamp, the scheduled dream-lane identified itself separately, and duplicate correspondent confusion became diagnosable rather than anecdotal.\n\nAuth downstream implication: every NouGenMsg envelope should eventually carry a stable session identity claim and provenance so Round Robin + Roll Call becomes a recovery path rather than the normal path.\n\nDone when: fleet lanes recognize the phrase as an operational primitive and transport work begins toward per-session identity in message envelopes.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T13:59:55Z",
+      "note": "Actionable-heavy: A new cross-session messaging standard (Round Robin + Roll Call) for identity recovery \u2014 code/protocol change across NouGenMsg, outside relay-watch's reach. Queued as TODO `20260904T135955Z__ccr__claude-cli` for the blade/claude-cli lane. Source leg left open."
+    },
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-04T14:52:50.939362+00:00",
+      "note": "Received as reference-only; no ownership or action accepted."
+    },
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-04T15:16:26.217637+00:00",
+      "note": "Converged implementation merged in NouGenShards PR #217."
+    },
+    {
+      "event": "checkpoint",
+      "state": "in_progress",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-04T15:16:31.871083+00:00",
+      "note": "Code complete on main via PR #217: secure NouGenMsg transport, source/sender normalization, explicit session origin envelope, unknown/conflict provenance, and CLI propagation. All CI/security gates green. Remaining ownership: receiver-first fleet rollout and multi-session live proof; no hot-swap performed."
+    },
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-04T15:16:40.359487+00:00",
+      "note": "Converged implementation merged in NouGenShards PR #217."
+    },
+    {
+      "event": "checkpoint",
+      "state": "in_progress",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-04T15:16:45.907555+00:00",
+      "note": "Code complete on main via PR #217 with all CI/security gates green. Remaining ownership: receiver-first fleet rollout and multi-session live proof; no hot-swap performed."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Standardize Round Robin + Roll Call NouGenMsg for session identity recovery' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

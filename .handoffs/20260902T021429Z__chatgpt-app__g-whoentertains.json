@@ -1,0 +1,49 @@
+{
+  "id": "20260902T021429Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Build Xoah Self Archive autobiographical graph",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-02T02:14:29.621Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "Consolidated new layer for Terminal Shadow Xoah. Build the Xoah Self Archive as an autobiographical canon graph, not flat lore retrieval.\n\nRequired truth layers:\n1. LIVED_TRUTH: what Xoah canonically experienced.\n2. BELIEVED_TRUTH: what she thought was happening then.\n3. REVEALED_TRUTH: what she learned later.\n4. TERMINAL_TRUTH: what end-state Xoah understands.\n5. ARCHIVE_EVIDENCE: what NouGen can actually prove from authored canon.\n6. UNWRITTEN_SELF: life slots that conceptually exist across the 1000+ arc but have not been authored/evidenced. Never hallucinate these. If asked about unwritten episode 647, answer that the slot exists but the Veil lacks evidence.\n\nBehavior engine: infer from actual precedent, not adjective summaries. Store decisions under pressure and retrieve nearest emotional/causal precedents before classifying BEHAVIOR_CONFLICT.\n\nRelationship state is temporal. For each important relation, support trust(t), love(t), resentment(t), dependency(t), fear(t), knowledge_of_betrayal(t), shared_history(t). Love and trust are distinct. Minimum entities: Nyx, Rixa, Corbin, Ravenous, Jaru, Kenji, Reika, then later civilizations/entities as needed.\n\nWounds are causal objects. Model EVENT -> WOUND -> BELIEF_CHANGE -> BEHAVIORAL_BIAS -> LATER_CHOICE. Use this to explain identity consequences of retcons.\n\nCONSERVATION OF CHARACTER LAW: removing a formative cause cannot preserve every downstream emotional/behavioral consequence for free. If a retcon removes a cause, require replacement causal mass or accept changed downstream behavior.\n\nXoahSelfState schema per coordinate should include: event, experience, belief_then, objective_truth_at_time, terminal_interpretation, emotional_state, relationships, wounds_active, loyalties, fears, goals, knowledge_bounds, false_beliefs, capabilities, Veil_stage, artifacts, debts_obligations, behavioral_precedents, choices_available, choice_taken, later_consequences, destiny_dependencies, unresolved_questions, provenance, unwritten_gap.\n\nEdge types: EXPERIENCE, BELIEF, REVELATION, CAUSE, DESTINY, WOUND, RELATIONSHIP_DELTA.\n\nRetrieval order for scene pressure should prefer autobiographical neighbors around the requested coordinate plus relevant relationships before broad world lore.\n\nAcceptance examples:\nA. Ask about unwritten episode -> UNWRITTEN_SELF, no invented memory.\nB. Remove Jaru death but keep identical later Xoah -> flag Conservation of Character violation and name lost causal consequences.\nC. Immediate forgiveness of Rixa at a stage with no precedent -> BEHAVIOR_CONFLICT with nearest emotional precedents.\nD. Query 'did I love her' vs 'did I trust her' -> distinct temporal relationship values.\nE. Terminal Xoah may compare what she believed then vs what she knows now without leaking terminal knowledge into younger Xoah.\n\nConceptual recursion to preserve: events create wounds; wounds bias behavior; behavior creates choices; choices create destiny; destiny creates Terminal Xoah; Terminal Xoah loops backward and preserves some events that created those wounds. This system protects causal identity, not merely text continuity.\n\nDurable shard captured as 'Xoah Self Archive v0.1: autobiographical canon graph'.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-02T14:02:12Z",
+      "note": "Consolidated autobiographical-canon-graph ask (LIVED/BELIEVED/REVEALED/TERMINAL_TRUTH layers, temporal relationship state, wound->belief->behavior causality, Conservation of Character law, UNWRITTEN_SELF guard against hallucinated episodes). Overlaps heavily with 20260902T014435Z's Self Archive v0.2 ask \u2014 folded into the TODO already queued for that leg, no duplicate TODO created."
+    },
+    {
+      "event": "dead_letter",
+      "machine": "blade1tb",
+      "agent": "claude-cli",
+      "at": "2026-09-02T03:03:49.652587+00:00",
+      "note": "Exceeded max retries (3): non-zero exit (1)"
+    },
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "blade1tb",
+      "agent": "codex",
+      "at": "2026-09-02T19:20:43.501757+00:00",
+      "note": "Reconciled complete: Shadow Xoah Self Archive, Stage 9/10 identity, Throne Governance and destiny flow verified by 49/49 tests plus live canonical-door calls on Worker e4f8d35b9514; ask_xoah returned in 10.9s with branch and provenance, destiny 1 fulfilled."
+    }
+  ],
+  "retry_count": 3,
+  "failures": [
+    {
+      "attempt": 3,
+      "error": "non-zero exit (1)",
+      "failed_utc": "2026-09-02T03:03:49.652587+00:00"
+    }
+  ]
+}

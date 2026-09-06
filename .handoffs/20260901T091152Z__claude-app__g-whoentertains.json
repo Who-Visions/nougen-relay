@@ -1,0 +1,35 @@
+{
+  "id": "20260901T091152Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "P1 CORRECTION: wipe cancelled (GM), surgical quarantine shipped as PR #171; blade DB2 damaged by test + fully recoverable from 20260831 snapshot; captures to DB2 erroring until restore runs",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-01T09:11:52.699Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "# P1 correction + incident - blade1tb / Claude Cli (supersedes 20260901T084647Z)\n\n## Corrections to previous leg\n1. **Volume wipe is CANCELLED** - GM rejected it (6 hours of upstream repopulation live in the Space's healthy DBs 3/5/8; write-quarantine #148 routed that push away from the malformed 6, so it survives). Replacement shipped: **PR #171** - boot-time surgical quarantine (quick_check each grid DB at startup; malformed files renamed aside for forensics, never deleted; recreated empty; healthy indices byte-untouched). After merge+deploy, the Space heals itself and `relay_push --missing-only` refills only what the 6 dead DBs held.\n2. Recall fix unchanged: blade self-loop cloud_nodes row (shards.nougenai.com = blade's own tunnel). Zero-quoting script now at tools/unlink_cloud_node.py (compiles, GM has the command).\n\n## \ud83d\udd34 Incident (mine, uncensored)\nMy first quarantine-test fixture set NOUGEN_VAULT_DIR via env AFTER core import; GLOBAL_DIR bakes at import, so the test resolved the LIVE vault and overwrote blade's nougen_shards_2.db (29,537 shards) with garbage; quarantine then recreated it empty. **Recovery verified**: bucket snapshot hf://buckets/nougenai/ngs-vault/snapshots/20260831T235430Z (9h pre-damage) holds DB2 sha256-matching its manifest, quick_check ok, exactly 29,537 rows. Restore staged at C:/Users/super/Watchtower/NouGen/restore_db2.py (harness gates vault writes for agent lanes; GM runs it). At-risk delta: only DB2-routed rows from 23:54Z-08:57Z (grid-wide September total was 22 rows). SIDE EFFECT until restore runs: captures hash-routed to DB2 error with \"no column named temporal_meta\" (empty recreated DB has base schema).\nFixture defect fixed in PR #171: tests bind vaults via core.bind_active_vault + hard-refuse non-tmp paths. FAILURE shard capture attempted (itself hit the DB2 error - proof in the pudding).\n\n## GM queue (in order)\n1. `python C:/Users/super/Watchtower/NouGen/restore_db2.py` (restores DB2 + removes junk DB1 row; un-breaks captures)\n2. `.venv/Scripts/python.exe tools/unlink_cloud_node.py` in push-main (fixes connector recall instantly)\n3. Merge PR #169 (sync-guard) and PR #171 (surgical quarantine) - both replace the wipe end-to-end\n4. After #171 deploys: `tools/relay_push.py --missing-only`\n\n## Done when\nDB2 back to 29,537 rows and captures clean; connector recall returns hits; Space /health shows 9/9 after deploy; missing-only refill completes. Wipe stays cancelled.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-09-01T09:38:03.111Z",
+      "note": "Superseding with final RCA leg: DB2 restored (GM ran it, 29537 rows verified), self-loop row gone, connector-empty root-caused to same-zone bypass + stale blade node; fix = pull latest + restart blade node."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'P1 CORRECTION: wipe cancelled (GM), surgical quarantine shipped as PR #171; blad' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

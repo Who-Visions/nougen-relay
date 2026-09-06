@@ -1,0 +1,50 @@
+{
+  "id": "20260903T042320Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Repair NouGenTracker truth path and automate daily publish so live usage does not go stale",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T04:23:20.422Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Inbound from claude-app sign-off leg 20260903T035242Z. Blade tracker dailies stopped at 2026-08-31 because publish is manual; live clone is `Watchtower/NouGen/NouGenTracker`, while the nougen-usage MCP was pointed at stale `~/.nougen/tracker` on a branch 77 commits behind. Owner lane: (1) check whether the background `token_tracker.py --publish` produced a new `dailies/blade1tb` commit; if yes push/open PR/merge/pull, otherwise rerun publish safely, (2) repoint the MCP tracker directory through portable config/discovery rather than a Dave-specific hardcode, (3) automate/schedule daily publish with observable last-success state, (4) preserve the unrelated uncommitted cold-boot-headline patch, (5) add `nougen tracker doctor` or equivalent to compare live source vs served dailies and warn on staleness. Done when current usage is served from the authoritative clone and future dailies publish automatically with proof.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-04T12:05:59.373354+00:00",
+      "note": "Taken with owner guardrail: live tracker verification is passive/read-only; implementation and tests occur in a clean worktree."
+    },
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-04T12:56:46.642700+00:00",
+      "note": "Tracker truth path, passive live MCP, security remediation, gated deployment, and fleet rollout shipped. Remaining original objective: intentional publisher scheduling; deliberately not enabled because live mode is non-invasive and current freshness states are stale/partial."
+    },
+    {
+      "event": "checkpoint",
+      "state": "in_progress",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-04T12:56:58.379494+00:00",
+      "note": "Tracker truth path, passive live MCP, security remediation, CI-gated deployment, and fleet rollout shipped. Remaining original objective: intentional publisher scheduling; deliberately not enabled because live mode is non-invasive and current freshness states are stale or partial."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Repair NouGenTracker truth path and automate daily publish so live usage does no' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

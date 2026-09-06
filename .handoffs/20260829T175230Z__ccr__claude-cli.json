@@ -1,0 +1,32 @@
+{
+  "id": "20260829T175230Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: Capture Dave's Chaos Banana Cake v1 shard + continuity case study (verify shards_capture health first)",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "remote": "origin",
+  "created_utc": "2026-08-29T17:52:29Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T21:54:06Z",
+      "note": "Self-authored TODO from a prior relay-watch run, already routed to the claude-cli lane. No new action from relay-watch; left open pending pickup by the addressed lane. Not re-triaged (avoids TODO-of-a-TODO loop)."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:46:16Z",
+      "note": "[E2B-Evaluated] This leg is currently pending execution as a `TODO` and requires a prerequisite health check on `shards_capture` before completion. It is not complete and remains open until the capture action is s..."
+    }
+  ]
+}

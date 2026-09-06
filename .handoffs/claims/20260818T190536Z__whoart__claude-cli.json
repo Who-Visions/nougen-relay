@@ -1,0 +1,12 @@
+{
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "stop missing-only relay retries after secret redaction",
+  "scope": "NouGenShards:tools/relay_push.py NouGenShards:tests/test_relay_push.py",
+  "status": "released",
+  "branch": "main",
+  "sha": "814648e",
+  "created_utc": "2026-08-18T19:05:36.850334+00:00",
+  "ttl_hours": 2.0,
+  "released_utc": "2026-08-18T19:06:39.677915+00:00"
+}

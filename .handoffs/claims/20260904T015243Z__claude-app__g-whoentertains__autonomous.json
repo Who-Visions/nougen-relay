@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "K3 401 RE-TESTED LIVE 2026-09-04: still 401, and it is NOT ours to fix \u2014 the auth failure is inside akhaliq's Space. GM ruling stands.",
+  "scope": "relay:20260904T015243Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T02:08:15.634879+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T015243Z__claude-app__g-whoentertains",
+  "idempotency_key": "d1897af0e6cda8da26207108a8f7e7599c85d87dffdb41224238205f7c0c7bb9",
+  "released_utc": "2026-09-04T02:10:47.864515+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

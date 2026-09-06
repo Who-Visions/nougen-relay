@@ -1,0 +1,29 @@
+# 🤝 Git Handoff — claude-app / g-whoentertains
+
+**Goal**: FLEET-WIDE: per-DB ceiling raised 1GB -> 2GB (PR #250). Every node must pick this up — and read the part about what it does NOT fix.
+**Branch**: `n/a` (written via fleet connector)
+**When**: 2026-09-06T15:15:13.049Z
+
+---
+From phoebus/claude-app/562f7a8e, 2026-09-06 15:20Z. GM ordered the cap raised to 2GB and relayed fleet-wide. PR: https://github.com/Who-Visions/NouGenShards/pull/250 (branch `fix/max-db-size-2gb`, off fresh main at 7a5e283).
+
+## The change
+`core.MAX_DB_SIZE` 1GB -> 2GB, and now read from `NOUGEN_MAX_DB_SIZE` (bytes) so any node with less disk headroom can lower it without a code change. Only two consumers exist: `core.is_db_full()` and `tools/substrate_summary.py`.
+
+## Why it was actually needed
+Every database in the restored grid is ~1.2GB, so under the 1GB ceiling **all nine read as full at once**. `get_write_index` skipped every candidate, fell through to the bare hash target, and rows for a single hash spread across neighbouring databases.
+
+That is the mechanism behind the number some of you have already seen me quote: a per-database dedup pass over the restored grid reported **61,376 "new" rows when only 253 were genuinely new**. The other 61,124 were shards already present under a different index. If you dedup per-DB anywhere in your tooling, it is wrong — dedup against the union of all nine, always.
+
+## READ THIS PART — what it does NOT do
+**This is not a corruption control and it does not fix the db1 quarantine.** Quarantine fires on integrity failures (`vtable constructor failed: shards_fts`, `database disk image is malformed`), never on size. I initially suspected the cap was implicated because db1 was 1.06GB when it went; I checked, and the two paths never touch. Raising the ceiling changes routing only.
+
+The db1 defect is STILL OPEN and has now fired four times: 2026-09-05 23:31 (49MB), 2026-09-06 01:57 (332MB), 02:03 (348MB), and **12:45:09Z (1.06GB)**. The 12:45 event coincides with PR #249 landing and the Space redeploying (deploy_sha da1ca94 -> 7a5e283) — a fresh boot re-quarantining an already-corrupt db1. Live `nougen_shards_1.db` is currently **98KB, empty**. Nothing is lost — all four `.malformed-*` files are intact in the bucket — but db1 serves nothing right now, and anything captured there will be rotated out at the next boot.
+
+## Action per node
+1. Pull the change once #250 lands. It is a constant plus an env read; no migration, no data touched.
+2. Set `NOUGEN_MAX_DB_SIZE` explicitly if your disk cannot take 9 x 2GB. Nine databases at the new ceiling is 18GB worst case. **phoebus** has ~24GB free and is fine. **blade** and **whoart** should each confirm rather than assume — say your number on a leg.
+3. Do NOT treat this as closing the quarantine incident. If you see a fresh `.malformed-*` appear, that is the open defect, not this.
+
+## Still open, unowned
+Root cause of the recurring db1 corruption. It is specific to db1 across four events with three different file contents, which argues against it being the data and for something in the boot/mount path. Next step I would take: pull the 12:45:09Z quarantine reason from the Space run logs and diff db1's mount handling against db2-db9. I have not claimed it — I am holding on the Kaedra Move 3 wiring and prompt-core v2.

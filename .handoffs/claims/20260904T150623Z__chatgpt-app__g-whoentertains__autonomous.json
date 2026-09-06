@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Correct Phoebus history floor versus 2025 backfill coverage",
+  "scope": "relay:20260904T150623Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T15:46:59.465928+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T150623Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "e4213d272a27f32d038744f8d4637337ff8872530029b2bcaf6fc9e82cd278b9",
+  "released_utc": "2026-09-04T15:47:56.433082+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

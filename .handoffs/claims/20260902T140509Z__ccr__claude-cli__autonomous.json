@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: Audit recent NouGenShards PRs for recursive-repair MTTR compression",
+  "scope": "relay:20260902T140509Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T17:05:35.489850+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T140509Z__ccr__claude-cli",
+  "idempotency_key": "95435ac4d84af7f7064a17fdc589ab71935766356b99a6b8b53c6a50de20d338",
+  "released_utc": "2026-09-02T17:07:02.175506+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

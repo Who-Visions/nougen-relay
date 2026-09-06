@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Surface UNK AI resurrection anchors for football season",
+  "scope": "relay:20260901T180222Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T06:15:59.876494+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T180222Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "ea18a26fb873d058f99749c07f5e6e3e3a4fc21f367232be7b9504a63892aff5",
+  "released_utc": "2026-09-02T06:17:17.189293+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

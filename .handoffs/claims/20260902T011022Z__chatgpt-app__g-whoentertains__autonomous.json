@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Evaluate Shadow Xoah title: Agent of Destiny",
+  "scope": "relay:20260902T011022Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T01:27:09.995636+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T011022Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "ac30abc3ee6d3d1db4031a97201eb21f2dffb2e1b8e3a7b9efe7eb7c47dbf714",
+  "released_utc": "2026-09-02T01:29:07.181678+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

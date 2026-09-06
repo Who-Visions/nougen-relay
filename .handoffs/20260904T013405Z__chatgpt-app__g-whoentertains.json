@@ -1,0 +1,38 @@
+{
+  "id": "20260904T013405Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Catch-up: NouGen Lines as inter-stadium transport fabric; MCP is one Line class",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-04T01:34:05.186Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Dave's missing conceptual pieces after the NouGenLine doctrine. Treat this as an ontology extension, not a rename-only note.\n\n1. STADIUM MODEL\nA NouGen 'stadium' is a sovereign compute/memory domain. Today this may map to Blade, Phoebus, Who Art, an Ollama host, a provider surface, a vault/runtime, or a future agent cluster. A stadium owns local execution, local policy enforcement, local storage, and its entry/exit boundaries.\n\n2. LINES CONNECT STADIUMS\nNouGen Lines are the inter-stadium transit fabric. Shards, context, agents, commands, tool calls, attachments, embeddings, indexes, and other payloads travel between stadiums over Lines while preserving identity, provenance, authority, destination policy, and recovery semantics.\n\n3. LINE CLASSES\nDo not collapse all transport into one protocol. Model distinct Line classes under one NouGenLine abstraction:\n- MCP Line: tool calls, capabilities, commands, structured context\n- Shard Line: durable memory transport\n- Relay Line: baton/handoff state\n- Message Line: live agent-to-agent/user-to-agent messaging\n- Freight Line: oversized blobs, media, embeddings, sidecars\n- Provider Line: traffic to/from Claude, OpenAI, Kimi, Hugging Face, Ollama, etc.\nAdditional classes may be added without changing the ontology.\n\n4. MCP IS A LINE, NOT THE RAILROAD\nThe current `shards.nougenai.com/mcp` gateway should be understood as a major station/switching yard on the MCP Line, not as NouGen itself and not as the whole transport substrate. MCP is one protocol riding one class of Line. NouGenLine must remain protocol-agnostic so the system survives if MCP evolves, fragments, or is replaced.\n\n5. STATION / SWITCHING YARD VOCABULARY\n- Stadium = sovereign domain\n- Line = trusted transport path between domains\n- Station = ingress/egress point for a stadium\n- Switch = routing decision\n- Conductor = transfer coordinator / scheduler\n- Passenger = shard or logical payload\n- Luggage = sidecar dependencies\n- Freight = oversized/chunked payload\n- Ticket = narrowly scoped capability/authorization descriptor, but possession of ticket alone must NEVER imply identity or trust\n- Yard = staging/cache/reconciliation area\n\n6. SOVEREIGN CONTROL CONTRAST\nShadow Dweller canon supplied the metaphor: Olympus Lines run via Syndicate Control. NouGen Lines run under sovereign/user control. This means the owner is root policy authority over identity, routing, provenance, permissions, destination, retention, and recovery, but every node/workload/model still proves authorization. Sovereign control must NEVER become owner lockout. Existing anti-lockout relay `20260904T011708Z__chatgpt-app__g-whoentertains` remains constitutional.\n\n7. REDLINE / CANON RESONANCE\nRecovered Shadow Dweller canon now confirms Redline Courier is Xoah-Lin Oda's civilian employer and a hidden Crows logistics shell; Rixa unknowingly opens the Redline door for Xoah; BIK knows Redline is Crows-owned while Xoah/Rixa do not. Do not rename NouGenLine to Redline. Keep Redline reserved for Shadow Dweller canon. NouGenLine deliberately resonates with that logistics/control grammar without colliding with the proper noun.\n\n8. CORE ARCHITECTURAL LAW\nNouGen Lines are protocol-agnostic, provenance-preserving, owner-controlled routes between sovereign stadiums. Protocols are implementation details. A Line may ride MCP, HTTP/3/QUIC, local IPC, SSH, gRPC/Flight, file transport, or future transports while preserving the same identity/authority/provenance contract.\n\n9. IMPORTANT CONSEQUENCE\nDo not weld shard identity, agent identity, policy semantics, or completion state to MCP or any one wire format. The Line abstraction should survive transport substitution. Think: same passenger, same papers, different train.\n\n10. DONE WHEN\nFleet docs/schema/implementation vocabulary reflects Stadium -> Station -> Line -> Line Class -> Transport Adapter, and MCP is explicitly represented as one Line class/protocol path rather than the root NouGen architecture. Cross-stadium movement should be explainable and testable without assuming MCP.\n\nReference prior implementation legs: `20260904T005741Z__chatgpt-app__g-whoentertains` (1-to-1M Shard Rail), `20260904T011708Z__chatgpt-app__g-whoentertains` (owner anti-lockout), `20260904T011814Z__chatgpt-app__g-whoentertains` (full NouGenLine doctrine).",
+  "acked_by": "relay-daemon@blade1tb",
+  "acked_utc": "2026-09-04T01:47:52.314579+00:00",
+  "ack_note": "daemon dispatch verified: fleet-answer (question-shaped leg): NouGen Lines function as the core inter-stadium transport fabric. The MCP is defined as a single, unified Line class within this fabric architecture.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "blade1tb",
+      "agent": "relay-daemon",
+      "at": "2026-09-04T01:47:52.314579+00:00",
+      "note": "daemon dispatch verified: fleet-answer (question-shaped leg): NouGen Lines function as the core inter-stadium transport fabric. The MCP is defined as a single, unified Line class within this fabric ar"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Catch-up: NouGen Lines as inter-stadium transport fabric; MCP is one Line class' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

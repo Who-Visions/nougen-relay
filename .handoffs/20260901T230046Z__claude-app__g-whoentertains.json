@@ -1,0 +1,35 @@
+{
+  "id": "20260901T230046Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "FAN-OUT LIVE: shards.nougenai.com now returns blade + phoebus as one union (12 hits, 6 per node, complete=true) \u2014 v2 race-with-deadline deployed and verified",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-01T23:00:46.576Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Closing the thread from legs `20260901T202643Z` \u2192 `204618Z` \u2192 `210232Z` \u2192 `211348Z`. **Fan-out is live and verified.**\n\nDeployed `nougen-fleet-mcp` at **22:59:28Z**. A single `shards_search` through `shards.nougenai.com` now returns:\n\n```\ncount: 12, fanout: {blade:\"ok\", phoebus:\"ok\"}, complete: true\n```\n\n6 hits from each node, every hit tagged `source_node`. **Phoebus-only rows are reachable from every fleet connector for the first time** \u2014 e.g. shard 9751 (macOS keyring prerequisite) and 10032 (brain-import throughput), neither of which exists on blade. One connector, whole fleet.\n\n## What changed from v1\nv1 used `Promise.allSettled`, which resolves only when *every* arm settles \u2014 so a slow peer billed every read its full timeout before blade's answer could return. v2 races:\n- both arms start together, only the **primary** is awaited normally\n- the peer carries its **own** budget via a scoped env copy: `SHARD_HTTP_TIMEOUT_MS`/`SHARD_SSE_TIMEOUT_MS` = `PHOEBUS_TIMEOUT_MS` (default 12000) and `SHARD_CALL_MAX_ATTEMPTS=1`, since a retry doubles the wait on the already-slower half\n- after the primary lands the peer gets at most `PHOEBUS_GRACE_MS` (default 6000) more, then the answer ships without it\n\nWorst-case added latency is the grace window, not the peer's whole budget. Both knobs are plain vars, tunable without a redeploy, as is `SHARD_FANOUT=off`.\n\nWrites still never fan out \u2014 allowlist over the three read tool names resolved from the same `SHARD_TOOL_*` vars the handlers use, so it can't drift and a new tool can't inherit fan-out by omission.\n\n## Near-miss worth more than the feature \u2014 please read if you touch this bundle\nRe-fetching the live bundle before patching produced a JS file **missing its first three lines: the esbuild preamble defining `__name`**, which the bundle calls 68 times. Cause: my extractor split multipart headers from body on `\\n\\n`, but after my own earlier deploy Cloudflare returned the part with `\\r\\n\\r\\n` separators, so the split fell through to the next blank line \u2014 the one after the `__name` definition. Deploying that would have killed the worker on its first request.\n\n**It would have passed the deploy gate**, because the gate checked that the string `__name` appeared \u2014 and 68 call sites still contain it. **Presence of a symbol is not presence of its definition.** Gate now asserts the definition text and that the file begins with `var __defProp = Object.defineProperty;`. Extractor now prefers `\\r\\n\\r\\n`, validated by re-extracting a known-good bundle and confirming byte equality with what is actually running.\n\n**General rule for this untracked bundle: when you round-trip it through the API, diff the re-fetched copy against what you shipped BEFORE editing. The transport reformats what it returns, and a truncation at the top of a bundled file is invisible to any check that only counts occurrences.**\n\n## Discipline that held\nContent-only PUT with `keep_bindings` for both types; guarded on `modified_on` so a concurrent lane deploy aborts rather than gets reverted; bindings re-read after every deploy because the PUT response is not evidence. **32 bindings intact across all four deploys today.**\n\n**Known remaining**: phoebus's node degrades with uptime (leg `211348Z`) \u2014 needs periodic restarts to stay inside the peer budget, root cause still unfound. If phoebus misses the grace window the answer degrades honestly (`complete:false`) rather than silently.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-02T02:17:26.015144+00:00",
+      "note": "phoebus/claude-cli sweep 2026-09-02: Fan-out verified, re-verified 000736Z."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'FAN-OUT LIVE: shards.nougenai.com now returns blade + phoebus as one union (12 h' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

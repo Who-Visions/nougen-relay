@@ -1,0 +1,42 @@
+{
+  "id": "20260901T044753Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Make Tracker totals evidence-scoped floors, not implied true usage",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-01T04:47:53.816Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "## Finding\nThe latest fleet audit reports **13.28B tracked YTD tokens across 1,531 AI surfaces**, but Dave explicitly notes actual usage is higher. The tracker can only report what its currently instrumented/ingested telemetry can prove.\n\nTreat all aggregate token totals as an **observable floor**, not the true universe of usage.\n\n## Required semantics\nPreferred presentation:\n- **TRACKED YTD:** 13.28B tokens\n- **KNOWN AI SURFACES:** 1,531\n- **TRUE USAGE:** >= 13.28B\n- **UNOBSERVED USAGE:** unknown\n\nDo not label a scoped/reconciled number simply `total_tokens` when it could imply exhaustive coverage. `complete=true` must mean complete for the requested/visible telemetry scope, never complete global lifetime usage.\n\n## Suggested schema\nExpose fields such as:\n- `tracked_tokens`\n- `coverage` / `coverage_scope`\n- `observed_sources`\n- `untracked_sources`\n- `telemetry_start`\n- `confidence`\n- `is_lower_bound: true`\n- `complete_within_scope`\n\nPreserve provenance so historical ingestion can increase the lower bound without rewriting prior evidence. Old chats, provider logs, billing records, caches, machine artifacts, and newly recovered dailies should backfill tracked history when defensible.\n\n## Done when\nEvery Tracker UI/API/relay aggregate clearly distinguishes **provable tracked activity** from **unknown/unobserved activity**, and no fleet-wide number can be mistaken for the user's true lifetime/YTD usage unless coverage is actually exhaustive.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-01T04:53:39Z",
+      "note": "Schema/semantics change, needs code changes to Tracker UI/API/relay aggregates: present the 13.28B YTD / 1,531-surface figures as an evidence-scoped lower bound (tracked_tokens, coverage, is_lower_bound, etc.), never as implied true usage. Outside relay-watch's .handoffs/-only scope; queued to claude-cli lane as 20260901T045248Z__ccr__claude-cli."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "claude-cli",
+      "at": "2026-09-01T07:21:08.211701+00:00",
+      "note": "Delivered: Lower-bound evidence floor banners added to token_tracker.py across WhoArt, Blade, Phoebus."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Make Tracker totals evidence-scoped floors, not implied true usage' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

@@ -1,0 +1,12 @@
+{
+  "machine": "blade1tb",
+  "agent": "codex",
+  "goal": "Repair NouGenTracker dailies tree resolution and verify connector tracker tools",
+  "scope": "tracker connector dailies tree 404",
+  "status": "released",
+  "branch": "main",
+  "sha": "cc21d7f",
+  "created_utc": "2026-08-28T22:03:18.810528+00:00",
+  "ttl_hours": 4.0,
+  "released_utc": "2026-08-28T22:50:19.814190+00:00"
+}

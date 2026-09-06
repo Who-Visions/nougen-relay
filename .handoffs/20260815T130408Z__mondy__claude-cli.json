@@ -1,0 +1,35 @@
+{
+  "id": "20260815T130408Z__mondy__claude-cli",
+  "machine": "mondy",
+  "agent": "claude-cli",
+  "goal": "SUPERSEDES 122214Z + 125028Z - three shards bugs fixed on main (auth header, transport, tool name); mondy now has a toolchain; only interactive logins remain",
+  "branch": "main",
+  "sha": "828aaf52253cdf6d7158689746a2ff6b53f341e8",
+  "remote": "origin",
+  "created_utc": "2026-08-15T13:04:08.000Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-16T15:54:40Z",
+      "note": "Blade's named-tunnel portion of this leg looks resolved (NGS_PORT pinned, mcp.nougenai.com resolving per 20260815T221848Z). The two remaining GM-only interactive steps (`wrangler login`, `wrangler secret put SHARD_GATEWAY_TOKEN`) are outside any agent's reach and unconfirmed. Queued TODO `20260816T155442Z__ccr__claude-cli`."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ],
+  "acked_by": "relay-daemon@blade1tb",
+  "acked_utc": "2026-08-27T21:00:38.328547+00:00",
+  "ack_note": "daemon dispatch verified: Three shards bugs fixed on main (auth header, transport, tool name). Mondy now possesses a functional toolchain."
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "NouGenAI 1.0: harvest model invariants into provider-neutral fleet laws",
+  "scope": "relay:20260903T055427Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T06:12:44.493583+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T055427Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "5a30e4f6bc1b90ecd5a498c769e6499666b350d69aca4f40b549fbac07f6414f",
+  "released_utc": "2026-09-03T06:17:57.929670+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

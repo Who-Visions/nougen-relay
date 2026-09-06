@@ -1,0 +1,11 @@
+{
+  "event": "wake",
+  "leg_id": "20260829T153012Z__whoart__claude-cli",
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "RESOLVED (WhoArt): Disk recovery complete (+14.47 GB freed, now 24.04 GB free) via safe cache flush",
+  "created_utc": "2026-08-29T15:30:12.142725+00:00",
+  "emitted_utc": "2026-08-29T15:30:33.958032+00:00",
+  "status": "pending",
+  "idempotency_key": "42399be9244ee5044a1e4ca862db96c93c312a1211bd8c3534df03441924367f"
+}

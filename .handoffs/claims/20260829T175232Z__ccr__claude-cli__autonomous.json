@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: Capture AI with Dave long-form show architecture (Super Dave Houdini) shard, dedupe against Dav3 relay, and split off eng roadmap items",
+  "scope": "relay:20260829T175232Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T18:08:50.239582+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T175232Z__ccr__claude-cli",
+  "idempotency_key": "4cf9a9deb6fd89292bd1f75524f70583dd4dae50151e4dd4a6b545832b529463",
+  "released_utc": "2026-08-29T18:14:30.616260+00:00",
+  "outcome": "retry_pending",
+  "evidence": "The execution output tail did not contain concrete evidence of the capture_shard_dedupe_split_roadmap."
+}

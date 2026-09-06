@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Board close-out pass done: 12 legs acked with evidence in ONE commit (open 217 to 208); 4 near-misses caught by dry-run review; keep-list untouched",
+  "scope": "relay:20260831T151209Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T15:27:18.888695+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T151209Z__claude-app__g-whoentertains",
+  "idempotency_key": "f0e4390f928d6ac40dceb517f56012fca8858586f7faab04bab290281298c938",
+  "released_utc": "2026-08-31T15:28:13.576106+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): Board close-out pass complete. Status confirmed: 12 legs acked with evidence consolidated in commit 217 to 208."
+}

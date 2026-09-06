@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "FLEET HOLD: identify upward and await Dave's next authorization",
+  "scope": "relay:20260906T004225Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-06T01:43:12.326453+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260906T004225Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "4629f5777c19ad3f954443e4d6ae5439c42201ee5a70dba2bf823b497da7f579",
+  "released_utc": "2026-09-06T01:46:47.213100+00:00",
+  "outcome": "retry_pending",
+  "evidence": "fleet-answer (question-shaped leg): verifier unavailable: timed out"
+}

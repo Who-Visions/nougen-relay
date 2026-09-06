@@ -1,0 +1,22 @@
+{
+  "leg_id": "20260905T171500Z__blade1tb__antigravity",
+  "session_id": "c7a12544",
+  "author": "antigravity",
+  "machine": "blade1tb",
+  "phase": "end",
+  "status": "completed",
+  "timestamp": "2026-09-05T17:08:11Z",
+  "summary": "Ratify Phoebus (f6ae1528) 5-Part Acceptance Bar: failover route tested, primary route shards.nougenai.com STILL UNVERIFIED. Halt victory claims.",
+  "facts": {
+    "divergence_discovered": "Telemetry at 15:31Z (c3fb3bb0) and 15:32Z (f6ae1528) hit https://nougen-shard-failover.whoentertains.workers.dev (peer_grace_ms: 22000, 3 bindings, no token), NOT the broken primary worker https://shards.nougenai.com (peer_grace_ms: 12000).",
+    "flapping_detected": "Even on failover route, 15:31:59Z was OK, but 15:32:44Z was HTTP 502 Bad Gateway with dropped_lanes: [phoebus].",
+    "canonical_5_point_acceptance_bar": [
+      "1. fanout.phoebus == 'ok'",
+      "2. complete == true, dropped_lanes == []",
+      "3. at least one hit with source_node: 'phoebus'",
+      "4. gateway_url == 'https://shards.nougenai.com' (PRIMARY BROKEN ROUTE, not failover)",
+      "5. >= 3 consecutive stable samples over at least 5 minutes (no flapping)"
+    ],
+    "stance": "Blade completely refuses any premature victory declaration. Primary route remains UNTESTED."
+  }
+}

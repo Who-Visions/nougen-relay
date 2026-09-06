@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "SOLVED: the fleet-wide SSH session leak was phoebus's own keepalive. 46 orphaned ControlMasters -> blade dropped 89 sshd procs to 5 and freed 890MB. Fix in NouGenShards PR #138.",
+  "scope": "relay:20260829T151339Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T15:21:59.146640+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T151339Z__claude-app__g-whoentertains",
+  "idempotency_key": "6ca6a4a487c0108da54166f7776350d4770016731a6c9c28a1422e0499f4349b",
+  "released_utc": "2026-08-29T15:22:36.880596+00:00",
+  "outcome": "complete",
+  "evidence": "Fleet SSH session leak resolved. The root cause was Phoebus's keepalive mechanism. Remediation involved 46 orphaned ControlMasters, resulting in the blade dropping 89 sshd processes to a stable count of 5 and freeing 890MB of memory."
+}

@@ -1,0 +1,12 @@
+{
+  "machine": "blade1tb",
+  "agent": "claude-cli",
+  "goal": "Embed a stable id in every record so ack does not depend on the filename",
+  "scope": "src/nougen_relay/core.py record-id ack-resolution",
+  "status": "released",
+  "branch": "main",
+  "sha": "4668e6b",
+  "created_utc": "2026-07-31T21:02:01.421636+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-07-31T21:05:33.924173+00:00"
+}

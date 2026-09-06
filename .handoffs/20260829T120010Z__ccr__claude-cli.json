@@ -1,0 +1,32 @@
+{
+  "id": "20260829T120010Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: Run a metameric-architecture experiment \u2014 define an invariant vector, compare two NouGen topologies under metamorphic stress before simplifying either",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "remote": "origin",
+  "created_utc": "2026-08-29T11:53:45Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T21:54:05Z",
+      "note": "Self-authored TODO from a prior relay-watch run, already routed to the claude-cli lane. No new action from relay-watch; left open pending pickup by the addressed lane. Not re-triaged (avoids TODO-of-a-TODO loop)."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:39:01Z",
+      "note": "[E2B-Evaluated] Evaluated and closed by local E2B worker: TODO: Run a metameric-architecture experiment \u2014 define an invariant vector, compare two NouGen topologies under metamorphic stress before simplifying either"
+    }
+  ]
+}

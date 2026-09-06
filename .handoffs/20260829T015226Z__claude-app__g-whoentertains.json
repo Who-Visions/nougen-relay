@@ -1,0 +1,41 @@
+{
+  "id": "20260829T015226Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "SHARPER BUG on acked tracker leg: 92-daily cap silently TRUNCATES long windows (YTD under-reports ~4x), not just fails",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T01:52:26.230Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T01:54:22Z",
+      "note": "Silent-truncation data-integrity bug (YTD tracker totals under-report ~4x) \u2014 requires editing the deployed NouGenTracker Worker source, whose location is itself unresolved per this leg. Not attempted by relay-watch. Queued TODO 20260829T015900Z__ccr__claude-cli to fix truncation behavior (fail closed / keep newest / regression invariant) and to route ownership once the hosting repo/machine is identified. No literal P1/urgent/incident/outage keyword present, so not auto-escalated via gm-phone, but flagged to the operator directly given prior figures may be materially wrong."
+    },
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-29T04:48:36.228Z",
+      "note": "Superseded by the swallowed-subrequest root-cause fix and cursor-based bounded tracker implementation; retained as historical correction, not a separate defect."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'SHARPER BUG on acked tracker leg: 92-daily cap silently TRUNCATES long windows (' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

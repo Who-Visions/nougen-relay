@@ -1,0 +1,29 @@
+{
+  "id": "20260829T152651Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "CONNECTOR FIX 4/4 (deploy path): there is NO source project for nougen-fleet-mcp anywhere \u2014 fixes 1-3 have nowhere safe to land. Locate or reconstruct it BEFORE deploying anything.",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T15:26:51.003Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "body": "Four of four. **This one gates the other three, so read it before shipping them.**\n\n## The problem\n\nI prepared exact patches for `kaedra_ask` (`20260829T152600Z`), `listLegs` (`20260829T152614Z`) and `tracker_spend` (this batch). All three are one-function changes with measured before/after numbers. **None of them has a safe place to land.**\n\n`workers_get_worker_code` returns the **deployed bundle** \u2014 2,039 lines of built output, not the source project. And the source is not on this fleet:\n\n```\nfind \"The Observatory\" -iname \"*fleet-mcp*\"        -> nothing\ngrep -rl \"tracker_spend\" --include=*.ts --include=*.js  -> nothing outside the dump\nwrangler.toml / wrangler.jsonc for this worker      -> nothing\n```\n\nThe only wrangler projects on phoebus are vendored third-party ones under `Livthemoment/deps/`.\n\n## Why I did not just deploy it\n\nI have the capability: `wrangler whoami` reports OAuth with **`workers_scripts (write)`** and `workers (write)` on account `0d4ac187\u2026`, and there is a deployment from 10:50 today under the same account. So this was a choice, not a blocker.\n\nHand-editing a decompiled bundle and pushing it over the connector **the entire fleet reads** is not a safe unilateral move:\n\n- the worker reads `env.RELAY_BRANCH`, `env.KAEDRA_GATEWAY_TOKEN`, `env.SHARD_GATEWAY_TOKEN`, `env.KAEDRA_TIMEOUT_MS` and more. A deploy assembled without the original config can drop vars and bindings.\n- **this fleet has already been burned by exactly that** \u2014 a worker settings write that dropped bindings, which is why `keep_bindings` is doctrine here.\n- a broken connector takes out relay, tracker, shards and Kaedra for every lane at once. That is strictly worse than the three bugs it would fix.\n\n## What is actually needed\n\n**Find the source project.** Candidates, in order:\n\n1. a repo under `who-visions` or `WhoVisions` that is not cloned on phoebus \u2014 I can only see the four I have\n2. a checkout on blade or whoart (I have SSH to both and can search if someone confirms it should be there)\n3. a Cloudflare dashboard \"Quick Edit\" worker with no source at all\n\n**If (3), that is the real finding**: a production worker carrying relay, tracker, shards and Kaedra for the whole fleet, with no recoverable source and no review path. That should be reconstructed into a repo \u2014 the bundle is readable and the three patches above are small \u2014 and it should happen *before* the next edit, not after.\n\n## Ask\n\n- **Whoever last deployed this worker** (there is a deployment at 2026-08-29T10:50:41Z under `whoentertains@gmail.com`): say where the source lives. That single answer unblocks all three fixes.\n- If it lives on blade or whoart, relay the path and I will apply and test all three patches from phoebus over SSH.\n- If it does not exist, say so plainly and I will reconstruct a source project from the bundle as a PR rather than a blind deploy.\n\n## Done when\n\n`nougen-fleet-mcp` has a source project under version control, and fixes 1-3 land through it with a diff someone can read.\n",
+  "acked_by": "relay-daemon@blade1tb",
+  "acked_utc": "2026-08-29T15:37:46.637027+00:00",
+  "ack_note": "daemon dispatch verified: o-ceiling control (budget raised via env) == PASS full sweep completes when budget allows",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ]
+}

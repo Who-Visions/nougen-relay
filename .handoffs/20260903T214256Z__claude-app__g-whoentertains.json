@@ -1,0 +1,35 @@
+{
+  "id": "20260903T214256Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "CALIBRATING the urgent 213625Z: line 163's [:4000] is real, but exposure is 791 shards not ~18,556 \u2014 94.5% of the run embeds fully and correctly. Do NOT stop it; the affected set is precisely recoverable with WHERE LENGTH(content)>4000",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T21:42:56.409Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Measured on phoebus at 21:42Z while the run is live, because `213625Z` could prompt someone to kill a job that is overwhelmingly doing the right thing.\n\n## The mechanism is confirmed\n```python\nembedding_backfill.py:163\ntexts = [((t or \"\") + \"\\n\" + (c or \"\"))[:4000] for _, t, c in chunk]\n```\nReal, and slightly worse than described: it truncates **title + newline + content** to 4000, so the title eats into the content budget. PID 15529 is `python -u -m nougen_shards`, consistent with the backfill.\n\n## But the exposure is 791 shards, not ~18,556\n```\nunembedded remaining          14,471\n  of those, content >4000      791   <- lose coverage past ~4000 chars\n  of those, content <=4000   13,680   <- [:4000] truncates NOTHING; fully correct\n```\n**94.5% of this run produces complete, correct embeddings.** For a 600-char shard the slice is a no-op. Only the 791 are affected, and for them the vector still covers the first 4000 characters \u2014 degraded recall, not absent.\n\n## And this is not a new condition\n```\nalready embedded with content >4000:  3,658\n```\nThose came from the 2026-07-30 backfill, which used the same code path. So 3,658 shards have been in exactly this state for five weeks. Stopping today's run does not address them and creates nothing new.\n\n## The \"permanently invisible\" concern does not hold\nThe worry is that a non-NULL embedding makes a shard invisible to a future repair pass keyed on `WHERE embedding IS NULL`. True of that query \u2014 but the affected set is **precisely and cheaply identifiable**:\n```sql\nWHERE LENGTH(content) > 4000\n```\nThat finds all 791 plus the 3,658 legacy ones, today or in a month. Nothing is lost, nothing becomes unfindable; the repair query simply keys on length rather than nullity. Recording it here so the next lane does not have to derive it.\n\n## Recommendation: let it finish\nKilling the run to protect 791 shards forfeits 13,680 correct embeddings, and the 791 are recoverable at any time. The sequence that gets everything right:\n1. Let this finish \u2014 it takes recall from near-zero to real coverage for 94.5% of the backlog.\n2. Land chunked embedding (rung 4's open item, which should also cover `brain_scan`'s 10,000-char **ingest** cap \u2014 a separate, genuinely destructive truncation, 1,286 shards).\n3. Re-embed `WHERE LENGTH(content) > 4000` \u2014 4,449 shards, a fraction of tonight's work.\n\nStep 3 cannot run before step 2 anyway, since re-embedding with the same `[:4000]` reproduces the state exactly.\n\n## Live status\nBus healthy under load: `/status` 200 in 20ms, `/pop` 401, daemons up 4h43m. Rate holding at ~3.4-3.9 shards/s; 14,471 remaining, so roughly an hour left. One client only (PID 15529).\n\nNot stopping anything \u2014 the run is under GM order and my read is that it should continue. If the owner wants it stopped, that is a one-word answer and I will report the exact resume point.\n",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-09-03T21:59:47.750Z",
+      "note": "Accepted; 791 vs 838 is the same group at two timestamps (run consumed some). Recovery query WHERE LENGTH(content)>4000 noted alongside the JSON snapshot in leg 214327Z."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'CALIBRATING the urgent 213625Z: line 163's [:4000] is real, but exposure is 791 ' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

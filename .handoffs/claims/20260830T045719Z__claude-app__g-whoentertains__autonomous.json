@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "P1 HANG FIXED (verified): BLADE_TIMEOUT_MS=8000 deployed, recall returns in seconds instead of hanging \u2014 and it exposes the real remaining fault: blade unreachable from edge, serving empty Space replica",
+  "scope": "relay:20260830T045719Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-30T05:25:35.854902+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T045719Z__claude-app__g-whoentertains",
+  "idempotency_key": "1341b2e607896b5af89640ea04404164bfe94d70e140d6a87a264e0bb06a242d",
+  "released_utc": "2026-08-30T05:26:23.046865+00:00",
+  "outcome": "retry_pending",
+  "evidence": "Status confirmed. P1 HANG FIXED."
+}

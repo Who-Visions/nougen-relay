@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Measure compact-recall savings from fresh Claude baseline",
+  "scope": "relay:20260903T005813Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T01:13:04.619297+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T005813Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "d263dc6ca485f48d601f5203eb152901046ce9a6d71cac59c9aa83986e328f67",
+  "released_utc": "2026-09-03T01:14:15.535543+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

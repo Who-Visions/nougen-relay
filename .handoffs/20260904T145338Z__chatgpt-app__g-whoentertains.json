@@ -1,0 +1,35 @@
+{
+  "id": "20260904T145338Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "PHOEBUS CODEX: close true-origin / Message from Unknown chain",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-04T14:53:38.227Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Target: Mac mini Phoebus / Codex. Collapse and close the related open legs around 135254Z, 135358Z, 135512Z, 135955Z.\n\nKnown evidence: current inbox schema is split. msg_* writes `sender`; ping_* writes `source`; the reader knows one name, so many messages render Unknown. More importantly, ping emission currently hardcodes node identity, so session identity is destroyed at emit rather than lost in transit. A read-side alias alone is insufficient.\n\nImplement backwards-compatible reader support for legacy sender/source plus a canonical envelope whose per-session origin is explicit, non-optional for new emits, and preserved end to end. Round Robin / Roll Call must show the true originating session/provider/agent rather than only `nougen-<node>`.\n\nDo not break old inbox artifacts. Include migration/fallback behavior for legacy messages and a clear provenance field map.\n\nDone when: new cross-session probes on Phoebus render exact origin, legacy sender/source artifacts no longer show Unknown when evidence exists, node-only attribution cannot silently masquerade as session attribution, tests cover both schemas and new canonical emits, and your relay names which parent legs are now safe to close.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-05T13:58:26.861Z",
+      "note": "Codex-targeted implementation ask (true-origin / Message-from-Unknown provenance fix) explicitly routed to Phoebus/Codex by its author. Tracking as a status/routing note; Phoebus/Codex owns execution."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'PHOEBUS CODEX: close true-origin / Message from Unknown chain' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

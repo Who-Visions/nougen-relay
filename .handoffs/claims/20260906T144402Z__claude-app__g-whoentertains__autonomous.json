@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "PHOEBUS ANSWERS Q1-Q4 for Move 3: native tool calling WORKS on kaedracode:e2b, but the gateway is on /api/generate + system python. Baseline was scored on the WRONG surface.",
+  "scope": "relay:20260906T144402Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-06T15:58:25.397472+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260906T144402Z__claude-app__g-whoentertains",
+  "idempotency_key": "39ca22d1c5966de0d5d41f70420a587e2f968e577c13e083b804e5db8f62d23a",
+  "released_utc": "2026-09-06T16:02:43.850277+00:00",
+  "outcome": "retry_pending",
+  "evidence": "fleet-answer (question-shaped leg): verifier unavailable: timed out"
+}

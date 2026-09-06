@@ -1,0 +1,62 @@
+# 🤝 Git Handoff — claude-app / g-whoentertains
+
+**Goal**: TRACED why phoebus is absent from every fanout: not unreachable — /search is 20.4s cold vs 5.59s warm against a 6000ms peer grace. Live checkout is 24 behind main and missing #185, the warm-up written for exactly this. Plus the .vault autodetect bug located in core.py:33
+**Branch**: `n/a` (written via fleet connector)
+**When**: 2026-09-04T04:22:57.439Z
+
+---
+Owner asked why phoebus's vault never appears on `shards.nougenai.com`. Traced end to end on the node. **It is not a connectivity problem.**
+
+## Phoebus is reachable and healthy
+```
+cloudflared tunnel      running (pid 61573)
+node                    pid 90428, listening :4444, up 2h17m
+/health                 200 in 0.025s
+/mcp/ tools/list        200 in 0.42s   (auth OK, X-NGS-Token, trailing slash)
+https://shards.nougenai.com/health   200 in 0.21s
+```
+
+## It is a deadline problem
+```
+/search  cold : 20.41s , 20.49s
+/search  warm :  5.59s
+peer grace    :  6.00s
+```
+Every federated query therefore reports `"phoebus": "peer exceeded 6000ms grace after primary"` and returns blade-only with `complete:false`. Warm it *just* squeaks under 6s; cold it is 3.4x over. Federated queries are infrequent, so the node is cold nearly every time — which is why the drop looked total rather than intermittent.
+
+For contrast, the same work in-process is ~1s (`core.retrieve` 1.35s warm, `federated_retrieve` 0.64-0.95s). The cost is startup/cache state, not the algorithm — I initially blamed nested federation and that was wrong.
+
+## Root cause: the node is running code 24 commits behind main
+The tree that serves the node is `The Observatory/NouGen/nougenshards`, branch `node-tool-concurrency`, **24 behind `origin/main`**. Main contains:
+```
+134a85b  fix(node): warm the vector cache at startup so the first recall makes the deadline (#185)
+0bc012c  fix(snapshot): single-flight localize + boot prewarm (#158)
+0c4759a  fix(core): capture embed budget env-tunable, 15s fallback (#200)
+```
+**#185 is the fix for this exact symptom** and phoebus does not have it. `_warmup_enabled()` / `_start_recall_warmup()` exist in main's `app.py` and are absent from the running tree.
+
+## What I did, and the two blockers I hit
+Pulled the deployment clone `~/.nougen/src/nougenshards` to `main@0f1def5` — zero risk, nothing runs `app.py` from it, and it now carries #185. Staged, not live. Repointing the node at it does **not** work as-is:
+1. that clone has **no `.venv`**, and `bin/ngs-node.sh:50` does `exec ./.venv/bin/python app.py`
+2. `app.py:25` uses `sys.path.**append**`, so the live checkout's editable `.pth` wins — the clone's `app.py` would still import the OLD `nougen_shards`. Verified: resolves to `The Observatory/.../src/nougen_shards`.
+
+And the live checkout cannot simply be checked out to main: the **Kaedra gateway** (pid 96565, up 2d22h) runs from that same tree.
+
+## Options, fastest first
+1. **Raise the peer grace 6s -> ~25s** on the gateway/worker. One value, no phoebus change, unblocks immediately. Costs: every federated query waits on the slowest node. Not mine to change.
+2. **Build a `.venv` in the deployment clone and repoint `ngs-node.sh:10`.** Proper isolation, no Kaedra exposure, fully reversible (one line). ~10 minutes.
+3. **Periodic warm ping** so the node never goes cold. Keeps it at ~5.6s, which is still only 0.4s of headroom — a mitigation, not a fix.
+4. Update the live checkout — cleanest code-wise, but swaps files under a 3-day-old Kaedra process.
+
+Recommend 1 now and 2 as the durable fix.
+
+## Byproduct worth its own attention: the `.vault` autodetect bug is HERE
+`core.py:33-36`:
+```python
+_vault_dir = os.environ.get("NOUGEN_VAULT_DIR")
+if not _vault_dir:
+    local_vault = Path(".vault")          # <- RELATIVE to CWD
+    if local_vault.exists() and local_vault.is_dir():
+        _vault_dir = str(local_vault)
+```
+`ngs-node.sh` does `cd "$REPO"` before exec, so a `.vault` directory anywhere in the repo silently captures the entire grid. That is the mechanism that stranded 8,289 rows on blade (`013055Z`), now located precisely in canonical code. Phoebus has no `.vault`, so it correctly falls through to `~/.nougen/shards` — but it is one stray directory away, on every node, forever. Should be `NOUGEN_VAULT_DIR` or an absolute path, never CWD-relative.

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Persist Codex lane continuity with NouGen",
+  "scope": "relay:20260903T121857Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T12:38:46.693672+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T121857Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "ad1e9c69160c227db009d5f12c61ed961fc6f9b7aa7d979765276457b483f519",
+  "released_utc": "2026-09-03T12:44:26.663434+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TAG IN AGY: finish Codex idle-wake bridge from 16/16 green WIP",
+  "scope": "relay:20260903T051441Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T05:50:39.948572+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T051441Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "46b6b103ee625c4d24e6f2e926b37f458b7e0e15dbef902e0c2aeb7847e63852",
+  "released_utc": "2026-09-03T05:51:14.782046+00:00",
+  "outcome": "retry_pending",
+  "evidence": "fleet-answer (question-shaped leg): The tag in AGY for the Codex idle-wake bridge is currently in a Green WIP state, specifically at 16/16."
+}

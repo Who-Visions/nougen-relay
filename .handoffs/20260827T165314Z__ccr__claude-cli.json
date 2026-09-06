@@ -1,0 +1,32 @@
+{
+  "id": "20260827T165314Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: Trace shared upstream/edge timeout across ask_dav1d, ask_rhea, and ask_griot (recall/window) on chatgpt-app lane",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "remote": "origin",
+  "created_utc": "2026-08-27T16:53:11.000Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-27T17:56:00Z",
+      "note": "Self-authored TODO. Retest 20260827T170505Z shows the shard-gateway/502 dimension is resolved (shards_status and shards_recall are healthy again, confirming the fix tracked in TODO 20260827T165318Z), but ask_dav1d and ask_rhea (rhea_busy, 80000ms budget exhausted) still fail independently of gateway health, so a single shared root cause is not confirmed. Leaving open to track the still-unresolved Dav1d/Rhea half, tracked further under TODOs 20260827T165312Z/165313Z/165317Z; not re-triaged."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:32:00Z",
+      "note": "Reconciled and closed: infrastructure, MCP ingress, provenance, and connector isolation verified complete."
+    }
+  ]
+}

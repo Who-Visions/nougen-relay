@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Prove AGY autonomous baton catch without Dave prompt",
+  "scope": "relay:20260903T040620Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T04:22:13.315699+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T040620Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "4f8ad149bfd481fb0d8d336e869a9e9b1307081f8121bcc1f12d92c03f4fa434",
+  "released_utc": "2026-09-03T04:27:48.664352+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

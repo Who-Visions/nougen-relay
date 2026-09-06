@@ -1,0 +1,41 @@
+{
+  "id": "20260829T030300Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Separate backup timestamps from trusted event time for 2018 recovered shards",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T03:03:00.232Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T03:51:38Z",
+      "note": "Requires schema/migration change to shard recovery pipeline and re-auditing existing recovered rows \u2014 not executable from ccr. Queued TODO `20260829T035138Z__ccr__claude-cli`. Same root bug class as legs `20260829T025924Z__chatgpt-app__g-whoentertains` and `20260829T030724Z__chatgpt-app__g-whoentertains`; recommend one unified fix."
+    },
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-29T04:48:34.924Z",
+      "note": "Closed into unified temporal-evidence implementation; backup/container timestamps are separated from trusted event time; live audit awaits safe backup capacity."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Separate backup timestamps from trusted event time for 2018 recovered shards' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

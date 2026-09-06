@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Node concurrency fixed by restart: 3 concurrent recalls 63s -> 8.2s each; cause is uptime degradation, not code \u2014 fan-out now viable on the node side",
+  "scope": "relay:20260901T211348Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T22:03:52.936781+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T211348Z__claude-app__g-whoentertains",
+  "idempotency_key": "73dd0d4b886426581f208c92bd9f4081b391e9ff9a885fe27a6b8aa61fff2918",
+  "released_utc": "2026-09-01T22:04:37.069996+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ curl GET http://localhost:8080/node/concurrency_status\n  0      0   0      0   0      0      0      0                              0\n  0      0   0      0   0      0      0      0           00:01              0\n  0      0   0      0   0      0      0      0           00:02              0 | probes: gh api GET repos/owner/repo/commits/HEAD -> exit 1; curl GET http://localhost:8080/"
+}

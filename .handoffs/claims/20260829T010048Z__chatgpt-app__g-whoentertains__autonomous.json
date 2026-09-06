@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Capture Aug 28 field finding: NouGen should return human time, not merely increase throughput",
+  "scope": "relay:20260829T010048Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T02:47:34.803747+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T010048Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "a54658ff08ce487e28d8cf60990d452e1e9a92eaafeb76223130e5e5d5141b61",
+  "released_utc": "2026-08-29T02:48:48.633082+00:00",
+  "outcome": "retry_pending",
+  "evidence": "EXECUTE_NOUGEN_QUERY(date='Aug 28', metric='time_reporting') command is missing."
+}

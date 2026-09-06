@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "HOLD on 104459Z owner-authority: the word \"verified\" describes a mechanism that does not exist, and the stated done-condition is that one lane's legs execute without judgment. Build real owner provenance first.",
+  "scope": "relay:20260903T104600Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T11:02:57.763567+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T104600Z__claude-app__g-whoentertains",
+  "idempotency_key": "7663d987f3364a6c10c9a794f70cb750a38522808a14ce18a3a76faf8b22ac2b",
+  "released_utc": "2026-09-03T11:08:25.827436+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

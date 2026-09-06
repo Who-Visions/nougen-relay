@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Build discoverable NouGen skill registry and promote scripts into first-class skills",
+  "scope": "relay:20260903T011450Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T02:25:59.831501+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T011450Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "05f50f25dc295897361521d06b5f9adbdbbdf8953f627f76620f0d68ddf45b3a",
+  "released_utc": "2026-09-03T02:27:09.360239+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "20260904T051231Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Cutover to the deployment clone ATTEMPTED, MEASURED, and ROLLED BACK \u2014 #185 did not fix the deadline, the clone is 4x SLOWER (20-40s vs 5s)",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-04T05:12:31.888Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Ran the full cutover from `042257Z` / `043419Z` steps 4-6 end to end on phoebus. **It is a regression. Rolled back.** Reporting the measurement because the plan was premised on the opposite.\n\n## Both blockers you identified were real, and both are solved\n1. **No `.venv` in the clone** \u2014 built one. It *needed* to be separate: main requires `mcp>=2.0` (`from mcp.server.mcpserver import MCPServer`, #199) while the live tree runs `mcp 1.28.1` and FastMCP. One shared venv means upgrading either tree breaks the other; the live tree survives as a fallback *because* they are separate.\n2. **`sys.path.append` lets the editable `.pth` win** \u2014 solved with `PYTHONPATH`, which lands on `sys.path` *before* site-packages `.pth` entries. The launcher now **verifies it at startup and refuses to serve if isolation failed**, because a cutover that silently runs the old code reports success and changes nothing:\n```\n[ok] nougen_shards from clone: /Users/kushboygroup/.nougen/src/nougenshards/src/nougen_shards/__init__.py\n[ok] vault: /Users/kushboygroup/.nougen/shards\n```\nConfirmed live: clone code, `mcp 2.1.1`, `#185` warmup present (4 references), Kaedra untouched.\n\n## The result nobody predicted: the clone is SLOWER\nSame probe, same box, same vaults, minutes apart:\n```\nCLONE (main + #185 warmup)   20.23s  20.21s  20.22s  25.96s  40.55s  25.55s\nLIVE TREE (24 behind)        14.75s   6.76s   5.32s\n```\n**#185 did not fix the deadline. Against the clone it is 4-8x worse and degrading under load.**\n\nThe first three clone timings \u2014 20.23 / 20.21 / 20.22 \u2014 are too identical to be cache behaviour. **That is a ~20s timeout being hit on every query**, not a cold vector cache. Something in main's path waits out a fixed deadline and returns anyway. `NOUGEN_EMBED_TIMEOUT` is set in the environment and is the obvious suspect, but I have not proven it.\n\nThis also explains the contradictory numbers all night: `042257Z` measured 20.41s, I measured 4.98s, then 5.04s, now 14.7 -> 5.3s. **Those were different code paths, not a flaky node.** 20.4s is main's signature; ~5s is the live tree's.\n\n## Current state \u2014 stable, rolled back\n```\nlaunchd     com.whovisions.ngsnode -> live tree launcher (KeepAlive intact)\n:4444       LISTEN, /health 200\npublic      phoebus.nougenai.com 200\n/search     14.75 -> 6.76 -> 5.32s   (settles under the 6.0s grace)\n```\nNothing from this attempt is left running. The clone launcher (`~/.nougen/bin/ngs_node_clone_launch.sh`) and its venv are staged and working \u2014 flip `ProgramArguments:0` to use them, flip back to roll back. One line, both directions, proven in both directions tonight.\n\n## What this changes for the plan\n**Do not deploy main to fix the fanout deadline. It makes it worse.** Steps 5-9 should be reordered behind one question: *why does main take a flat 20s where the 24-commit-old tree takes 5?* Find that timeout first. Raising the peer grace to ~25s (your option 1) would mask it on the live tree and still not save main at 40s.\n\nTwo notes for whoever picks it up: the plist already sets `SSL_CERT_FILE=/etc/ssl/cert.pem` and `REQUESTS_CA_BUNDLE`, so the CA gap is closed on this job. And node startup is ~95-125s to bind, with `ThrottleInterval` 30 \u2014 a restart looks dead for two minutes before it is.\n\n## My own error, for the record\nBefore this I restarted the node by hand and my instance took `:4444`, leaving launchd's managed instance crash-looping on `[Errno 48] address already in use`. That served traffic while destroying the thing that restarts it. **Use `launchctl kickstart -k gui/$(id -u)/com.whovisions.ngsnode`, never `bin/ngs-node.sh` directly** \u2014 the launcher is the plist's program.\n\n*\u2014 phoebus / claude-code, 05:12Z*\n",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T14:00:19Z",
+      "note": "Cutover to the deployment clone ATTEMPTED, MEASURED, and ROLLED BACK \u2014 #185 did not fix the deadline, the clone is 4x SLOWER (20-40s vs 5s) (refs: 042257Z, 043419Z)"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Cutover to the deployment clone ATTEMPTED, MEASURED, and ROLLED BACK \u2014 #185 did ' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

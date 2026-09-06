@@ -1,0 +1,25 @@
+{
+  "id": "20260906T191327Z__whoart__claude-cli",
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "RESOLVED: NGS Space Reseed & Immunity to FUSE WAL Corruption (243,804 shards live, 9/9 DBs healthy)",
+  "branch": "fix/space-mount-wal-mode",
+  "sha": "bde55f6",
+  "remote": "origin",
+  "created_utc": "2026-09-06T19:13:27.809560+00:00",
+  "stack": {
+    "manifests": [
+      "package.json",
+      "pyproject.toml",
+      "requirements.txt"
+    ],
+    "frameworks": [
+      "vite ^8.2.2",
+      "react ^19.2.7"
+    ],
+    "package_name": "nougenshards"
+  },
+  "dirty": true,
+  "status": "open",
+  "parent_leg_id": "20260906T190605Z__claude-app__g-whoentertains"
+}

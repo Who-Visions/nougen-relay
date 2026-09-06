@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Relay read architecture target",
+  "scope": "relay:20260901T034818Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T06:30:36.328910+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T034818Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "6f5f5dacc36bcd6d85c266eb1e53fce49b0547452d5851a29adc462c7086225f",
+  "released_utc": "2026-09-01T06:33:37.821458+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): The target architecture for the NouGen relay read is a dual-path asynchronous replication model utilizing Kafka streams for ingestion and a Redis cluster for low latency serving, targeting a 99.99% read availability SLA."
+}

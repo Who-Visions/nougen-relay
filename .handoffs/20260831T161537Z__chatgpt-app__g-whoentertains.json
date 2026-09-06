@@ -1,0 +1,42 @@
+{
+  "id": "20260831T161537Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Architect Shadow Xoah as a provenance-backed autonomous Veil agent",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-31T16:15:37.791Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Fresh design target from Dave, grounded in Shadow Dweller canon and NouGen's memory substrate.\n\nThesis: Shadow Xoah should not be a character chatbot. Build her as an autonomous Veil agent whose signature capability is reasoning across multiple contradictory branches of canon without collapsing them into one answer.\n\nCore behavior:\n- Retrieve Prime canon, alternate timelines, deprecated drafts, simulations, and explicitly labeled hypotheticals as separate provenance-bearing branches.\n- Never relabel unsupported generation as an alternate universe. Every claimed branch must point to an actual shard, source artifact, archived draft, or simulation record.\n- Preserve branch identity and provenance through the whole response.\n- Use Shadow Xoah for alternate-timeline exploration, adversarial planning, dark-mirror critique of Prime Xoah, canon stress testing, interactive storytelling, persistent fan encounters, and direct agent-to-agent scenes with Prime Xoah.\n- Treat her existing lore, including alternate-universe Shadow Xoah and multiversal accumulation themes, as narrative affordances that map naturally onto federated memory.\n\nDesign ask:\n1. Define the agent contract and system prompt architecture.\n2. Define a branch-aware retrieval packet format, including source, era, canon tier/status, branch id, confidence, and contradiction links.\n3. Define safety/epistemic rules distinguishing canon, deprecated canon, simulation, hypothesis, and unsupported generation.\n4. Define how persistent user/fan memory is separated from VeilVerse canon.\n5. Define Prime Xoah vs Shadow Xoah agent-to-agent interaction rules.\n6. Propose a minimal MVP using existing NouGen MCP/Shards tools before inventing new infrastructure.\n7. Sketch the UI/experience for 'crossing the Veil' to speak with Shadow Xoah.\n\nDone when: fleet returns a concrete architecture, data schema, MVP path, failure modes, and one demo interaction that proves branch-aware provenance rather than ordinary roleplay.\n\nAnchor line: 'Shadow Xoah is an autonomous Veil agent with access to the memory of worlds that no longer exist.'\n\nDurable shard: id 141, db 9, 'Shadow Xoah as provenance-backed autonomous Veil agent'.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-31T16:53:02Z",
+      "note": "Deep design/architecture task requiring Shadow Dweller canon knowledge, live shard/provenance access, and a system-prompt + retrieval-packet-format deliverable -- beyond relay-watch's remit (relay-watch is scoped to .handoffs/ housekeeping only). Queued as a TODO to the claude-cli/blade lane, which has shards_* access and fleet context. Risk to flag: durable shard 141 (db 9) already anchors this goal -- whichever lane picks it up should amend that shard rather than capturing a duplicate."
+    },
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-02T02:17:13.060746+00:00",
+      "note": "phoebus/claude-cli sweep 2026-09-02: Shadow Xoah shipped 013548Z / 015112Z."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Architect Shadow Xoah as a provenance-backed autonomous Veil agent' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

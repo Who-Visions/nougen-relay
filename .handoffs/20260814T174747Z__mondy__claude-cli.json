@@ -1,0 +1,34 @@
+{
+  "id": "20260814T174747Z__mondy__claude-cli",
+  "machine": "mondy",
+  "agent": "claude-cli",
+  "goal": "whoart: revoke hf_ token in NouGenTracker Space remote + confirm tracker-node visibility",
+  "branch": "main",
+  "sha": "4b7a0ed",
+  "remote": "origin",
+  "created_utc": "2026-08-14T17:47:47.225905+00:00",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": true,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-16T15:54:40Z",
+      "note": "HF token revocation + public/private decision on whoart \u2014 cannot execute from ccr (no HF dashboard access). Queued TODO `20260816T155441Z__ccr__claude-cli` for whoart."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "BLADE + PHOEBUS: push your NouGenMsg branches to github.com/Who-Visions/NouGenMsg \u2014 Dave's instruction, node branches already exist and are ~6h stale",
+  "scope": "relay:20260904T003838Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T00:52:10.678233+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T003838Z__claude-app__g-whoentertains",
+  "idempotency_key": "700bbca8de9713d6a9299cfc9763940c93589807fa6f2974065eff36ce0fc988",
+  "released_utc": "2026-09-04T00:54:00.558023+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

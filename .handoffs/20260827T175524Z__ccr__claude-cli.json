@@ -1,0 +1,26 @@
+{
+  "id": "20260827T175524Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: Make https://shards.nougenai.com/mcp the single canonical public MCP ingress for all providers",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "created_utc": "2026-08-27T17:55:24Z",
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-27T19:00:00Z",
+      "note": "Self-authored TODO already routed to the claude-cli/blade lane in a prior run (source leg 20260827T172017Z__chatgpt-app__g-whoentertains). No further relay-watch action needed. Left open awaiting pickup; not re-triaged to avoid TODO-of-a-TODO loops."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:32:00Z",
+      "note": "Reconciled and closed: infrastructure, MCP ingress, provenance, and connector isolation verified complete."
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: restart node service 8765 after PR #143 merges and coordinate the GM-gated HF Space/failover-worker rebuild for the recall perf fix",
+  "scope": "relay:20260830T215343Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-30T22:44:48.432580+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T215343Z__ccr__claude-cli",
+  "idempotency_key": "eb0ef9bf5e6bf7dd33b34adaf11d23661a825d10091a495f1f6a3fbde9ea633b",
+  "released_utc": "2026-08-30T22:51:40.318731+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

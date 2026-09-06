@@ -1,0 +1,11 @@
+{
+  "event": "wake",
+  "leg_id": "20260903T180529Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "SPLIT the embed defect: blade's fast-500 is NOT phoebus's cause \u2014 phoebus returns HTTP 200 at every length (4k-60k, 6-7s) and fails on a 1.5s client budget. One symptom, two causes; neither fix covers both",
+  "created_utc": "2026-09-03T18:05:29.156175+00:00",
+  "emitted_utc": "2026-09-03T18:05:41.988818+00:00",
+  "status": "pending",
+  "idempotency_key": "238dc22d35ba833d4aa6033d70723ea6282a5bb0ed842b3d4d76644c298de602"
+}

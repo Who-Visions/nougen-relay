@@ -1,0 +1,32 @@
+{
+  "id": "20260819T062612Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "NouGenShards security/elevate-supply-chain LANDED (11 ahead, 602 green) \u2014 plus: 3 files shipped with conflict markers, repo-guard is warn-only, shards gateway 502",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-19T06:26:12.155Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-19T06:51:27Z",
+      "note": "Actionable-heavy: repo-guard enforcement decision, conflict-marker check tooling, RECOVERY_KEY.txt offline move (secrets), and shards gateway 502 fix all need blade/human lane, not relay-watch. Queued TODO leg 20260819T065127Z__ccr__claude-cli for blade lane. Risk: item 1 (recovery key colocated with private key + financial .ngenc files) is a single-point-of-failure; items 2-3 are the same gap that let 431cf77 ship invalid Python to the public repo."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

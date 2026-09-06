@@ -1,0 +1,12 @@
+{
+  "machine": "blade1tb",
+  "agent": "claude-cli",
+  "goal": "commit-time identity guard: refuse anonymous or newly-named machines",
+  "scope": "hooks/prepare-commit-msg,README.md",
+  "status": "released",
+  "branch": "main",
+  "sha": "100cf92",
+  "created_utc": "2026-07-31T23:13:50.038648+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-07-31T23:29:54.097693+00:00"
+}

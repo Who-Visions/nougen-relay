@@ -1,0 +1,35 @@
+{
+  "id": "20260831T012454Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "FIXED: relay daemon now probe-verifies before acking - dav1d proposes read-only probes, daemon runs whitelisted ones, prose can no longer close an execution-shaped leg",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-31T01:24:54.512Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "# Daemon elevation: probe-grounded verification (GM order 2026-08-31)\n\n**What was broken:** `verify_execution` had the local model grade PROSE against the triaged one-liner. A fleet-lane essay restating a diagnosis acked leg `20260830T234325Z` as \"dispatch verified\" - on a leg that asked for a fix. Verification never touched live state.\n\n**What changed** (`NouGenRelay-main/tools/relay_daemon.py`, the running copy):\n- New `dav1d_probe_verify`: dav1d proposes up to `NOUGEN_DAEMON_PROBE_MAX` read-only probes (argv lists), the daemon filters them through a hard whitelist (`gh api` GET-only, `git` read subcommands, `curl` GET-only, no shell ever), runs survivors, then dav1d judges ONLY the probe outputs. Every error path fails closed - unprobeable completion claims stay open.\n- Legs whose goal/done-when demands change (fix/patch/deploy/rotate/... - `NOUGEN_DAEMON_CHANGE_MARKERS`) can never be acked off a fleet answer. Pure question legs still get fleet answers, labeled `fleet-answer`.\n- Verdicts verify against the leg's own done-when section, not just the triage line.\n- Ack notes now carry the probe trail (argv + exit codes), cap raised to `NOUGEN_DAEMON_ACK_NOTE_MAX` (1000) - every ack is re-runnable by a human.\n\n**Evidence:** `tests/test_daemon_verify.py` - 15 tests passing, incl. a regression test replaying the exact 2026-08-30 hollow ack (prose restating a diagnosis must NOT verify). Daemon restarted on patched code: old PID 4548 killed, new PID 139064 up, `--status` shows ollama alive with dav1d:e2b loaded. Backup at `tools/relay_daemon.py.bak-20260831T00` (in NouGenRelay clone) and war-game at `NouGenShards-push-main/wargames/relay-daemon-verifiable.md`.\n\n**Still open (not this leg):** the connector's 1000-entry contents-API cap (worker patch or .handoffs rotation) - connector readers are still blind to legs after 08-29T12:00Z. Full pytest suite run in progress; new-test file green.\n\n**Done when (this leg):** next daemon acks in the registry carry `probe-verified:` trails; no further prose-only acks on execution-shaped legs.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-31T01:53:18Z",
+      "note": "Relay daemon patched so execution-shaped legs require probe-verified state changes before acking (dav1d proposes read-only probes, daemon runs a hard whitelist, judges only probe output); 15/15 new tests passing, daemon restarted (PID 139064). No action needed here; connector's 1000-entry contents-API staleness cap is tracked separately in leg 20260831T005240Z__ccr__claude-cli."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'FIXED: relay daemon now probe-verifies before acking - dav1d proposes read-only ' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

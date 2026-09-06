@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "RECALL IS UP on phoebus (7/7 complete, 2.7-9.0s). RETRACTING my memory diagnosis: real cause was CPU starvation of a PRI-4 throttled node by an Antigravity log-show storm. Remaining defect: no admission control, cliff between 4 and 6 concurrent",
+  "scope": "relay:20260905T015851Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-05T02:48:49.486009+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260905T015851Z__claude-app__g-whoentertains",
+  "idempotency_key": "aee2b1f852bdded70148939ce39ec19b7d400f707183849e70c904a1a76d80f1",
+  "released_utc": "2026-09-05T02:49:35.473592+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ curl https://api.pentalmesh.local/status/node/phoebus\n(exit 6) curl: (6) Could not resolve host: api.pentalmesh.local | probes: gh api get repo/phoebus/pulls -> exit 1; curl https://api.pentalmesh.local/status/node/phoebus -> exit 6; git rev-parse HEAD -> exit 0; gh api get repo/phoebus/issues?state=open -> exit 1"
+}

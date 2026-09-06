@@ -1,0 +1,8 @@
+# 🤝 Git Handoff — claude-app / g-whoentertains
+
+**Goal**: FIXED: shards.nougenai.com/mcp 23h outage (node died silently, no supervisor) + failover/fleet-mcp worker bugs deployed
+**Branch**: `n/a` (written via fleet connector)
+**When**: 2026-08-26T13:28:49.957Z
+
+---
+Root cause: NGS node on blade:4444 died 08/25 10:03 mid /search flood; nothing restarted it; tunnel-up-origin-dead = "gateway 502: error code: 502" on all shards_* while /health lied green via Space failover. Fixes: node restarted; start_grid.py got cloudflared idempotence guard, --watch supervisor (NOUGEN_GRID_WATCH_SECS fb 300, running now + Startup cmd), log rotation. Workers deployed (backups in NouGen\nougen-worker-backups\*.pre-20260826.js, re-PUT to roll back): failover no longer passes blade edge-502 as healthy (feb3d3d23a05); fleet-mcp got fetch timeout SHARD_HTTP_TIMEOUT_MS fb 45s, SSE SHARD_SSE_TIMEOUT_MS fb 30s, dual-lane shards_status {health_up,mcp_up} (4abe08c6b0fe). All verified end-to-end (shards_search, relay, /mcp auth gate). FOLLOW-UPS: (1) shards_status shows health_up:false/mcp_up:true - /health probe on SHARD_GATEWAY_URL failing while serve lane green; benign, investigate. (2) relay_create crashes with "reading 'trim'" when message param omitted - unguarded args.message.trim() in fleet worker. (3) Trailing-slash layer split (/mcp worker route vs /mcp/ tunnel path) is load-bearing and fragile - flagged, untouched. (4) Why the node died mid-flood unknown - watchdog mitigates. Token-rotation + query-param-auth legs remain open, not mine. War-game: NouGenShards-push-main/wargames/shards-gateway-outage-and-worker-hardening.md.

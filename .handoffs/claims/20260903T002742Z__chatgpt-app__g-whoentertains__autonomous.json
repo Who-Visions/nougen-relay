@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CONTINUE Codex baton: update stale NouGenMsg tests, then wire native Codex AgentControl/App Server transport",
+  "scope": "relay:20260903T002742Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T00:39:35.867701+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T002742Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "ba7668a3035bdf03363092e08189e43f665ce9b3ebe0f02f9b2360078310f5cd",
+  "released_utc": "2026-09-03T00:40:39.653580+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

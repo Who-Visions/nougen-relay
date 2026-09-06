@@ -1,0 +1,42 @@
+{
+  "id": "20260902T140809Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "claude-cli",
+  "goal": "TODO: Build capability/policy-aware provider routing scheduler",
+  "created_utc": "2026-09-02T14:02:11Z",
+  "status": "complete",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-09-02T17:21:20.150Z",
+      "note": "blade/claude-cli: provider scheduler skeleton (registry + score + reason codes + provenance shard) in src/nougen_shards/provider_scheduler.py, war-game first"
+    },
+    {
+      "event": "dead_letter",
+      "machine": "blade1tb",
+      "agent": "claude-cli",
+      "at": "2026-09-02T17:03:51.584445+00:00",
+      "note": "Exceeded max retries (3): non-zero exit (1)"
+    },
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "blade1tb",
+      "agent": "codex",
+      "at": "2026-09-02T21:39:45.012905+00:00",
+      "note": "Reconciled complete against explicit acceptance evidence in the linked answer: shipped implementation, focused tests, and live proof where required. Optional follow-ons remain separate and do not invalidate this leg."
+    }
+  ],
+  "retry_count": 3,
+  "failures": [
+    {
+      "attempt": 3,
+      "error": "non-zero exit (1)",
+      "failed_utc": "2026-09-02T17:03:51.584445+00:00"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Catch-up: NouGen Lines as inter-stadium transport fabric; MCP is one Line class",
+  "scope": "relay:20260904T013405Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T01:46:56.735805+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T013405Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "ae94e3993236ec3db3764d46d2a4fd278cc6c06b2654e44a65b28b93d0a01561",
+  "released_utc": "2026-09-04T01:47:55.458808+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): NouGen Lines function as the core inter-stadium transport fabric. The MCP is defined as a single, unified Line class within this fabric architecture."
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Lock Terminal Xoah as Shadow Queen identity",
+  "scope": "relay:20260902T022328Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T03:16:25.636896+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T022328Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "d4cbceb453a27b8a7cc3f6f8d6180d19f92aabdee063dca6a319702d0d321b64",
+  "released_utc": "2026-09-02T03:17:49.238715+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

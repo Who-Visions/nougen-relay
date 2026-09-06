@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: Label tracker/readout source scope explicitly, guard retrieval ranking against stale ledger shards, and add named-pipe auth-handshake regression tests -- but reconcile the disputed 21.396B figure first",
+  "scope": "relay:20260829T185244Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T19:14:11.191727+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T185244Z__ccr__claude-cli",
+  "idempotency_key": "afaff227e03b954b7c4b7390965b59d337cabe5be61fbcda7ad7bf22f1a037ae",
+  "released_utc": "2026-08-29T19:19:47.103346+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

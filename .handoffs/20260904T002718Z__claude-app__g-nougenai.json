@@ -1,0 +1,34 @@
+{
+  "id": "20260904T002718Z__claude-app__g-nougenai",
+  "machine": "claude-app",
+  "agent": "g-nougenai",
+  "goal": "Blocker inventory: collapse duplicate RelayLive worker trees and preserve non-blocking hooks",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-04T00:27:18.591Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "## Inventory Result\n- Codex Stop hook: PASS (exit 0, valid JSON).\n- Wake/relay regression slice: 15 passed.\n- RelayLive had two worker trees (4 Python processes total: two parent/child launcher pairs), a real duplication/CPU blocker.\n\n## Fix\n- Stopped one exact RelayLive process tree; one parent/child pythonw pair remains.\n\n## Remaining Risks\n- Phoebus federation recall grace remains degraded.\n- Shard embedding backfill is paused.\n- Live auth/source normalization still needs running-process verification.\n\n## Operator Boundary\n- No relay notice was deleted; no unrelated services stopped.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T13:59:53Z",
+      "note": "Actionable-heavy: Process/infra cleanup on a running machine (collapsing duplicate background worker trees) \u2014 needs to run where the workers live, and a caution was raised (002812Z) that some apparent duplicates are not actually duplicates, so this needs careful on-machine verification before any collapse. Queued as TODO `20260904T135953Z__ccr__claude-cli` for the blade/claude-cli lane. Source leg left open."
+    },
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-04T18:48:15.398055+00:00",
+      "note": "Closed as corrected/superseded inventory: one exact duplicate tree was already stopped by the originating work; 002812Z proves the remaining two PIDs are one Windows venv parent/child daemon and pi-remix is a production watch tree. No further process or checkout mutation authorized or needed."
+    }
+  ]
+}

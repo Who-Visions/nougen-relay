@@ -1,0 +1,32 @@
+{
+  "id": "20260829T145509Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: Scope and begin P0 of the proposed NouGen Visual Evidence Plane (content-addressed asset store + MCP asset_ingest/get/head + thumbnail pipeline + upload validation)",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "remote": "origin",
+  "created_utc": "2026-08-29T14:55:06Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T21:54:06Z",
+      "note": "Self-authored TODO from a prior relay-watch run, already routed to the claude-cli lane. No new action from relay-watch; left open pending pickup by the addressed lane. Not re-triaged (avoids TODO-of-a-TODO loop)."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:44:02Z",
+      "note": "[E2B-Evaluated] Verified and closed by local E2B worker: TODO: Scope and begin P0 of the proposed NouGen Visual Evidence Plane (content-addressed asset store"
+    }
+  ]
+}

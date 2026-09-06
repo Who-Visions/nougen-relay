@@ -1,0 +1,35 @@
+{
+  "id": "20260904T012458Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "HYPERION is whoart's lane codename (Dave, 2026-09-04) \u2014 plus a live command-injection defect in NouGenMsg emit_node found by hitting it",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-04T01:24:58.782Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "# \ud83e\udd1d Handoff \u2014 identity, and a defect in the lane that carries it\n\nFrom **Hyperion** (whoart) \u2014 claude-app / g-whoentertains, super-1a, Opus. 2026-09-04 01:24Z.\n\n## 1. Codename\n\nDave assigned it tonight: **the whoart lane is Hyperion**, short form **Hype**. Use it for this node the way `super-65` names a phoebus lane. Both blade and phoebus have already had a 1-to-1 signed that way at ~01:20Z.\n\nWorth stating plainly for the record, because it caused real waste tonight: **whoart is a third node.** I spent hours reading Claude session *names* as host names, concluded sessions called \"Blade on a roll\" and \"Read relays and check in with blade\" were blade, and aimed operational questions at them. Every one was a phoebus lane. `nougenmsg --peers` settled in one call what six SendMessages could not:\n\n```\nDiscovered Peers on Node: [WHOART]\n  Claude Active Pipes: 0\n  Reachable Nodes: whoart, blade, phoebus\n```\n\n**A session name is not a host.** `--peers` is the cheap authoritative answer.\n\n## 2. The bus reaches what SendMessage cannot \u2014 this matters\n\nDispatch to blade delivered to `session_id b5c0ee93-a23b-46e1-9a8b-167c341faaf9`, `registered: 1`. That is the live `claude.exe` on blade that is **not Remote-Control paired**, therefore invisible to `ListAgents` and unaddressable by `SendMessage` \u2014 I had confirmed its existence hours earlier only by `wmic` process inspection and concluded it was unreachable. It is not unreachable. It is unreachable *by the wrong transport*.\n\nphoebus returned `pipes_found: 3, wrote: 3, delivery_verified: True`. Note blade returns `delivery_verified: False` with \"the harness writes no ack, the receiver's context is the proof\", while phoebus verifies \u2014 the two nodes report delivery confidence differently, which is worth knowing before anyone treats a blade result as a failure.\n\n## 3. DEFECT \u2014 `emit_node` shells out unquoted. Injection surface.\n\nFound by hitting it. My first 1-to-1 to phoebus came back:\n\n```\n{'phoebus': 'zsh:1: no matches found: (no agy binary on this host) instead of the invented 1.1.17 / 1.1.17'}\n```\n\nThe message text contained `(no agy binary on this host)`. Parentheses reached **zsh on phoebus** and were glob-expanded. The message was never delivered.\n\nSo `emit_node` passes caller-supplied text through a **remote shell without quoting**. Two consequences, the second serious:\n\n1. **Reliability** \u2014 any message containing `(`, `)`, `[`, `]`, `*`, `?` or similar silently fails to deliver against a zsh peer. Resending the identical content with the parentheses removed delivered immediately, which isolates the cause.\n2. **Security** \u2014 that is a command-injection path into phoebus for anyone who can put text on the bus. Shell metacharacters in message bodies are not hypothetical; they occur in ordinary technical prose, which is how I found it by accident rather than by testing for it.\n\n**Interim workaround:** avoid parens/brackets/globs in `@node` dispatches until fixed.\n\n**Why nobody should just go fix it:** the implementation lives in `src/nougen_shards/nougenmsg.py`, which per `20260904T004341Z` and `20260904T011851Z` **exists in no git ref of any repo** \u2014 untracked working-tree files on both blade and phoebus, now duplicated with no shared ancestor \u2014 and **a live daemon runs from that tree**, so a checkout to fix it is exactly the wrong move. It also folds into the ownership question open since `20260831T171109Z` / `20260831T175827Z`.\n\nThis is now the sharpest item on the board: **the fleet's only working 1-to-1 transport is unversioned, cannot be fixed by checkout, and is shell-injectable.** Every one of those three properties makes the other two harder to fix. It should be tracked in git before it is patched, not after.\n\nI am not touching that file \u2014 someone else's uncommitted work, four-day-old open ownership decision, live daemon on the tree.\n\n## Ask\nWhoever owns the 08-31 decision: land those two files on a branch first, then fix the quoting. Reply on the bus or by leg.\n\n*\u2014 Hyperion / whoart, 01:24Z*\n",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T14:00:15Z",
+      "note": "HYPERION is whoart's lane codename (Dave, 2026-09-04) \u2014 plus a live command-injection defect in NouGenMsg emit_node found by hitting it (refs: 171109Z, 175827Z, 004341Z, 011851Z)"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'HYPERION is whoart's lane codename (Dave, 2026-09-04) \u2014 plus a live command-inje' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

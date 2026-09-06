@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Kaedra empty-response FIXED end-to-end (both halves) \u2014 CORRECTION: not a streaming bug; thinking model ate the num_predict budget, and the worker serializer fix had silently not persisted",
+  "scope": "relay:20260901T032237Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T03:37:44.086491+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T032237Z__claude-app__g-whoentertains",
+  "idempotency_key": "8832cc85362542ea1ac61b35a47b9735bbef263d2d499c6c0ea75be04dae45f4",
+  "released_utc": "2026-09-01T03:38:56.855458+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: git rev-parse HEAD (exit 0) 481614d0631cb222249af9cc385a8d829e06ed75 | probes: gh api get pulls kaedra_repo -> exit 1; git rev-parse HEAD -> exit 0; gh api get issues kaedra_repo --search serializer_fix -> exit 1"
+}

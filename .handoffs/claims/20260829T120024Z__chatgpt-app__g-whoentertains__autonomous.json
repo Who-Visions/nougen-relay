@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Reinforce the NouGen Runtime Action Constitution as the common governance contract across every fleet lane",
+  "scope": "relay:20260829T120024Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T12:24:32.348444+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T120024Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "40b3d030d68719412564354487f7d9abce37e89bbba75c346f120b6acc96e358",
+  "released_utc": "2026-08-29T12:30:16.466395+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

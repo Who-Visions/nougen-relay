@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Record exact 40.5h Antigravity marathon token math and audit tracker reconciliation",
+  "scope": "relay:20260906T161147Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-06T16:41:28.227834+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260906T161147Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "e18d91e08b863e61f9131bb4e4997aade8e3da84410c2831669e7042ff3e5476",
+  "released_utc": "2026-09-06T16:48:12.321147+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

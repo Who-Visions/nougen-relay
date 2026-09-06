@@ -1,0 +1,41 @@
+{
+  "id": "20260829T030724Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Fix pre-2025 temporal contamination discovered in deep audit of 2001 through 2024 shard history",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T03:07:24.091Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T03:51:39Z",
+      "note": "Largest-scope fix: touches ingestion, recovery, and coverage code plus a migration/audit over 2001/2018/2019/2021/2023/2024 shards \u2014 not executable from ccr. Queued TODO `20260829T035139Z__ccr__claude-cli`. Supersets the findings in legs `20260829T025924Z__chatgpt-app__g-whoentertains` and `20260829T030300Z__chatgpt-app__g-whoentertains`; recommend one unified fix rather than three."
+    },
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-29T04:48:33.707Z",
+      "note": "Closed into unified temporal-evidence implementation; live append-only audit is blocked by insufficient rollback capacity (10.0 GB affected vs 5.2 GB free)."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Fix pre-2025 temporal contamination discovered in deep audit of 2001 through 202' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

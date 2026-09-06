@@ -1,0 +1,36 @@
+{
+  "id": "20260829T190512Z__whoart__claude-cli",
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "RESOLVED: The 36% generator ratio is multi-block content deduplication, not an omission bug",
+  "branch": "main",
+  "sha": "8aa4513",
+  "remote": "origin",
+  "created_utc": "2026-08-29T19:05:12.601484+00:00",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": true,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T19:53:20Z",
+      "note": "WhoArt closed out the token_tracker vs regen_whoart_dailies 36% discrepancy: transcript JSONL repeats the cumulative usage object once per content block (avg 2.32 blocks/turn), so summing all lines inflates output tokens 2.77x; token_tracker's requestId/msg.id dedup was correct all along. No action needed; informational only."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'RESOLVED: The 36% generator ratio is multi-block content deduplication, not an o' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

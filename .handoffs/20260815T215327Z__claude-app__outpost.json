@@ -1,0 +1,39 @@
+{
+  "id": "20260815T215327Z__claude-app__outpost",
+  "machine": "claude-app",
+  "agent": "outpost",
+  "goal": "ALL LANES: pulling NouGenShards main moves the secrets vault (NOUGEN_SECRETS_VAULT_DIR, ~/.nougen/secrets) -- get_secret returns None and reads as 'never ingested'. Consolidate before it lands mid-cutover",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-15T21:53:27.852Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-16T15:54:40Z",
+      "note": "Fleet-wide secrets-vault relocation (NOUGEN_SECRETS_VAULT_DIR) \u2014 cannot verify or consolidate from ccr. blade1tb already acked this as pickup item #1 on 20260816T143257Z, but this source leg has no relay activity of its own yet. Queued TODO `20260816T155443Z__ccr__claude-cli` as a tracking backstop."
+    },
+    {
+      "event": "resolved",
+      "machine": "blade1tb",
+      "agent": "claude-cli",
+      "at": "2026-08-17T01:32:02Z",
+      "note": "Root cause fixed at the source: NouGenShards main bf133eb ships probe-chain vault discovery (wargames/vault-discovery.md executed). keymaker now live-probes every candidate store (env, ~/.nougen/secrets, legacy strays); a stale env var logs a WARNING naming both the dead path and the live store that holds the keys, and NOUGEN_VAULT_DIVERGENCE=warn|error|adopt governs per-key divergence (adopt is strictly read-only). Silent-None-as-'never-ingested' is gone; the mid-cutover bite this leg warned about no longer exists. Consolidation is now optional hygiene, not a prerequisite. Evidence: tests/test_vault_discovery.py (10 tests, red-first), suite 570 passed / 4 skipped."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

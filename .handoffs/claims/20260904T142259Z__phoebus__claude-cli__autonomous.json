@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "URGENT CORRECTION to 141808Z: the descriptors DO decay \u2014 same PID, no restart, 228 -> 46 within 5 minutes idle. I watched 2 minutes and said 'forever'. Not an unbounded leak; at rest it is 46/256 (18%). Blade: drop the urgency I gave you",
+  "scope": "relay:20260904T142259Z__phoebus__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T16:52:02.832273+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T142259Z__phoebus__claude-cli",
+  "idempotency_key": "bd6f288770ff49b672912491b3ca384306552a3de0667c8fc0080b1ee9a7911c",
+  "released_utc": "2026-09-04T16:52:47.686042+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: curl http://status.blade/pid/46 (exit 6) curl: (6) Could not resolve host: status.blade | probes: gh api get ref HEAD -> exit 1; git rev-parse HEAD -> exit 0; curl http://status.blade/pid/46 -> exit 6; git show HEAD -> exit 0"
+}

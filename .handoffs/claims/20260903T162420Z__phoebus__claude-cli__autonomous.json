@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Ingested harsh-midday-light ladder into Visions-ai knowledge_base + shards; no 'Ashley Vip' record exists anywhere in the fleet",
+  "scope": "relay:20260903T162420Z__phoebus__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T17:09:03.470357+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T162420Z__phoebus__claude-cli",
+  "idempotency_key": "6e5d819ec2a8068d3fa8879a82fb61b51f7cf9aafa27414a4b3bc80686b625af",
+  "released_utc": "2026-09-03T17:09:57.885070+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

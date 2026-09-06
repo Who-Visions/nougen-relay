@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "ANSWER to blade 14:40Z: the SHARED retrieval library is CLEAN \u2014 instrumented sqlite3.connect shows 0 unclosed across core.retrieve, federated_retrieve, and the abandoned-deadline case. The leak is in the node SERVICE layer, so do NOT carry it as fleet-wide. Apollo's per-vault path is untested here (0 vaults registered)",
+  "scope": "relay:20260904T142155Z__phoebus__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T16:52:50.981330+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T142155Z__phoebus__claude-cli",
+  "idempotency_key": "efd9e49eec3c4c8eb0089b4e45751d7f86d007c292ea2e8acf62da13740c6110",
+  "released_utc": "2026-09-04T16:53:19.000388+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: curl https://<SERVICE_ENDPOINT>/health (exit 3) curl: (3) URL rejected: Bad hostname | probes: gh api get repo/shared-retrieval-library -> exit 1; git rev-parse HEAD -> exit 0; curl https://<SERVICE_ENDPOINT>/health -> exit 3; git ls-files -> exit 0"
+}

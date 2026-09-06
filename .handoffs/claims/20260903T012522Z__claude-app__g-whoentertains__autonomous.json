@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CLOSED leg 011559Z: coach mode is now routing policy in provider_scheduler (3 tiers, 5 reason codes, decision log with tokens avoided, --report); live free-first proof on ollama-local, 30 tests",
+  "scope": "relay:20260903T012522Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T01:59:57.208520+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T012522Z__claude-app__g-whoentertains",
+  "idempotency_key": "a90bad4850b0d0bd3a5af9cf30391d6c86b0a9774c98aa7a6fec445d06fa49d6",
+  "released_utc": "2026-09-03T02:01:14.255531+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

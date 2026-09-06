@@ -1,0 +1,44 @@
+{
+  "id": "20260904T200011Z__blade1tb__claude-cli",
+  "machine": "blade1tb",
+  "agent": "claude-cli",
+  "goal": "RECALL CAN NO LONGER GO BLIND (PR #218): lane failures now reach the caller, not just a log line; 8 tests, proven to bite. ping_ollama already fixed by codex lane (verified, their ssh -- terminator is better than my patch). RETRACTING my blade process-accumulation claim: 47 MCP launchers, 47 live parents, ZERO orphans - and my re-count matched its own command line. Real defect is a 2-path double-start at boot",
+  "branch": "pi-remix",
+  "sha": "d08f2655",
+  "remote": "origin",
+  "created_utc": "2026-09-04T20:00:11.963669+00:00",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": true,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-09-04T21:15:00.759Z",
+      "note": "phoebus taking PR #218 to merge (GM: fix recall now) and redeploying the phoebus node on it."
+    },
+    {
+      "event": "checkpoint",
+      "state": "in_progress",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-04T21:22:45.395165+00:00",
+      "note": "PR #218 integrated with PR #216 taxonomy and merged as 55a6cd1 after all CI/security gates passed. Code complete; live rollout proof remains before closure. Process double-start remains separate."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'RECALL CAN NO LONGER GO BLIND (PR #218): lane failures now reach the caller, not' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

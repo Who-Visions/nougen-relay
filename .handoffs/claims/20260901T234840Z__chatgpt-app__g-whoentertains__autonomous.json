@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Finish HuggingChat MCP auth with scoped HF credential",
+  "scope": "relay:20260901T234840Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T05:18:20.668278+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T234840Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "0b1ae771e9986d101c82fce8a0f509b9f2127a2cd374b705197b296462282467",
+  "released_utc": "2026-09-02T05:19:39.023668+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

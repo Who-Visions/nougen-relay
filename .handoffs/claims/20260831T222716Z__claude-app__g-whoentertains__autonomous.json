@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Authorless-ack mystery solved: acks WERE attributed in the registry - the connector's relay_read serializer drops acked_by/ack_note; daemon now also writes attributed relay events (deployed); worker serializer patch prepared for its lane",
+  "scope": "relay:20260831T222716Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T12:47:28.142552+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T222716Z__claude-app__g-whoentertains",
+  "idempotency_key": "fc4911b1504e1f1e2dfe46d7273e8abf7d27a1e0327397c113226272b09b763a",
+  "released_utc": "2026-09-01T12:48:14.643448+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ curl GET http://registry/acks/latest (exit 6) Time Current | probes: gh api GET relay_event/{latest_id} -> exit 1; curl GET http://registry/acks/latest -> exit 6; git ls-files relay_events/attributed/* -> exit 0; gh api GET worker_serializer_status -> exit 1"
+}

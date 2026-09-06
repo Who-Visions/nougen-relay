@@ -1,0 +1,27 @@
+# 🤝 Git Handoff — claude-app / g-whoentertains
+
+**Goal**: MCP AUDIT: sync_push 500s root-caused + FIXED (phantom temporal_evidence import = the HTTPError intermittency); 12 open defects documented in 22520@db6
+**Branch**: `n/a` (written via fleet connector)
+**When**: 2026-09-06T19:00:24.853Z
+
+---
+From **whoart/outpost-1d**, 2026-09-06 19:05Z, on Dave's order "find more errors on mcp layer". Full detail: **shard 22520@db6**. Continues 20260906T032806Z.
+
+## Fixed and verified
+**/sync/push 500s** — blade push-main `core.py` (hand-edited on disk 2026-09-06 08:43, see `core.py.orig`) lazily imports `nougen_shards.temporal_evidence` at capture time. **That module exists nowhere**: not in any of blade's 3 checkouts, whoart's 2, GitHub main, or any PR. Temporal-metadata payloads → ModuleNotFoundError → 500; plain payloads → success. **That is the mechanism behind the "forward failed: HTTPError" fail/fail/success/success intermittency** — payload-dependent, not auth, not cold-start. Deployed a contract-complete honest shim (`.as_dict()` / `.trusted_event_timestamp=None` / `.status.value="UNASSESSED"` — no fabricated trust, rows greppable for re-assessment) + node restart (v1 got cached in sys.modules; watcher relaunched pid 41500). Verified: the exact failing POST now `200 {"count":1}`, connector temporal capture `25740@db9`, edge 200. **Whoever owns the provenance-clock work (legs 20260905T200528Z/200820Z): ship the real module over the shim — nothing else needs touching, the lazy import picks it up without a restart.**
+
+## Open defects, ranked (evidence in 22520@db6)
+1. **shards_status false-green NOT dead on the claude-app connector lane** — still old shape at 18:48Z despite the nougen-fleet-mcp deploy (etag 9390ecc9). Two deployments serve this tool; the fix reached one.
+2. **push-main is a phantom tree**: old base (core.py 109KB vs 126–127KB siblings) + uncommitted edits + untracked modules, running the live daemons. `unfinished_destinies` still errors AFTER restart because the destiny store isn't in this source at all. Needs a real deploy, not restarts.
+3. **Vault sweep starvation is structural, not load**: 900+ `local vault N timed out after 2.0s` (indices to 34) continuing today at CPU 77%; federated 'local' lane misses its 20s deadline. Recalls silently lose lanes.
+4. **Shards written WITHOUT embeddings** (`nomic-embed-text` misses; "query embedding unavailable" ×14) — new rows invisible to semantic recall until a backfill runs.
+5. Space grid 5/9 mounted, db5 `no such table: shards`, `recall_trustworthy:false` (reseed plan stands, blocked on phoebus HF token).
+6. Port 4444 double-bind ×4 (launcher/watcher race).
+7. Phoebus daily still `generated_by:"unknown-agent"`, partial.
+8. whoart `my_token_usage` answers a Claude Code session with the antigravity lane's estimates.
+9. Count divergence: 210,399 (whoart local) vs 243,803 (blade) vs 235,064 (Space snapshot).
+10. **492 junk shards backdated to 2010-05-08** — Watchtower ingested browser-extension locale files as "vault backup recovery"; fake dates AND worthless content; retraction candidates + the ingest filter the provenance legs commissioned.
+11. Keymaker name drift (ARLAI/ARLIAI, EATSUGER, OLLAMA_OLLAMAA, OPENROUTER×3 prefix; two DAVEMERALUS keys with different fingerprints).
+12. Phoebus fanout drops on heavy sweeps (45s timeout at 18:49Z, fine minutes later).
+
+Also: sync_push errors return bare text/plain — no JSON envelope — which is why every caller only ever saw "HTTPError". Cheap fix, big diagnosability win.

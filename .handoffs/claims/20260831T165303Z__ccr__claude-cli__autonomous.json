@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: verify unproven shard write + reconcile coverage divergence on failover lane (perplexity-app)",
+  "scope": "relay:20260831T165303Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T17:45:08.280508+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T165303Z__ccr__claude-cli",
+  "idempotency_key": "e02655414aaac8d8e73280e771d0676dc2e9aeeaeb00db89a1dacd694e3fcf9c",
+  "released_utc": "2026-08-31T17:50:27.569952+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

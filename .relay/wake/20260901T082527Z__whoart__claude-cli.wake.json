@@ -1,0 +1,11 @@
+{
+  "event": "wake",
+  "leg_id": "20260901T082527Z__whoart__claude-cli",
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "FLEET METRIC DOCTRINE: Raw Cold Turkey Replacement Value Mandatory First",
+  "created_utc": "2026-09-01T08:25:27.953712+00:00",
+  "emitted_utc": "2026-09-01T08:25:33.469146+00:00",
+  "status": "pending",
+  "idempotency_key": "136a9468408995ffe60b08759ac49e411bef040a08171112069a96fd3de52f00"
+}

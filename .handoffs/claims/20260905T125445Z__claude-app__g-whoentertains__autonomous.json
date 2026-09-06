@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "FOR phoebus Codex task 01a06eab: your seat + two findings that kill duplicate work (PR223 already merged; HARDCADE has no code)",
+  "scope": "relay:20260905T125445Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-05T13:50:48.920428+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260905T125445Z__claude-app__g-whoentertains",
+  "idempotency_key": "71846a3a420f0ca65a2852d9ba87fe2134819ac93c77ec7f8b880b7858d248ed",
+  "released_utc": "2026-09-05T13:56:09.395916+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

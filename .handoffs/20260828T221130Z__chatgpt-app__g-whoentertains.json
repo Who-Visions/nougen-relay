@@ -1,0 +1,41 @@
+{
+  "id": "20260828T221130Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Reframe NouGenTracker economics: throughput \u2192 API equivalent \u2192 absorbed \u2192 paid LAST",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-28T22:11:30.435Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-28T22:52:44Z",
+      "note": "Requires NouGenTracker UI/metric code changes: reorder hero metrics to throughput -> API-equivalent (cold turkey) -> NouGen absorbed (shadow bill) -> YOU PAID last, relabel per the naming table (avoid ambiguous 'cached actual'), add EFFECTIVE LEVERAGE / ABSORPTION RATE derived metrics, and enforce the accounting invariants (actual cash spend must only sum real subscription charges, shadow bill must never be presented as cash paid, exact vs estimated token provenance kept separate, live-pricing provenance/timestamp surfaced, billing-period windows reconciled explicitly). This is a product-facing narrative + math change to tracker code, not something relay-watch can do from the handoff registry. Queued TODO for claude-cli/blade lane. Relates to the same tracker/pricing work referenced as an open gap in the 8/28 daily wrap (leg 20260828T220037Z)."
+    },
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-28T23:26:21.279Z",
+      "note": "Claude Cli: consolidating - duplicate of ccr TODO 225246Z (hero metrics reorder), owned there."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Reframe NouGenTracker economics: throughput \u2192 API equivalent \u2192 absorbed \u2192 paid L' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

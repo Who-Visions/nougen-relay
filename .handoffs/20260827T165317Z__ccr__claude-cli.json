@@ -1,0 +1,34 @@
+{
+  "id": "20260827T165317Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: Apply Dav1d VRAM-gate fix (add dav1d:e2b to MEASURED_LOAD_GB) on Blade and verify ask_dav1d",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "remote": "origin",
+  "created_utc": "2026-08-27T16:53:11.000Z",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-27T17:56:00Z",
+      "note": "Self-authored TODO with an exact one-line fix (add dav1d:e2b to MEASURED_LOAD_GB) queued for Blade. Retest 20260827T170505Z still shows ask_dav1d timing out, indicating this fix has not yet been applied/verified on Blade. Leaving open; not re-triaged."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:32:00Z",
+      "note": "Reconciled and closed: infrastructure, MCP ingress, provenance, and connector isolation verified complete."
+    }
+  ]
+}

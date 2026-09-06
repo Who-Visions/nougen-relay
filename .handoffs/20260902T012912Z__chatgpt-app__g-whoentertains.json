@@ -1,0 +1,35 @@
+{
+  "id": "20260902T012912Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Build Shadow Xoah Canon Pressure Engine",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-02T01:29:12.249Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Dave's new authorial requirement: Shadow Xoah must become the Black Hole of the Veil, a provenance-backed canon adversary who knows Xoah and VeilVerse history deeply enough to challenge the creator instead of blindly accepting additions.\n\nNew decision captured in shards as: `Shadow Xoah Canon Pressure Engine: Black Hole of the Veil`.\n\nCORE BUILD:\n1. Build a structured Xoah self-model from existing canon shards: identity, lineage, childhood, 2174 Olympica Fossae, Blackglass, losses, courier years, Ravenous debt, Corbin, Nyx, Rixa, Jaru, Shadow Blade/Kage Tanak, competence-vs-blindspot, Veil skepticism, power stages, Vol 1+ evolution, Shadow Xoah manifestations, fixed points, destiny, and Black Hole cross-property role.\n2. Do NOT flatten contradictory source history. Store provenance, canon status, timestamp, correction/amendment state, branch, timeline validity, and authority.\n3. Implement seven verdict classes: FACT_CONFLICT, BEHAVIOR_CONFLICT, STAGE_CONFLICT, CAUSAL_DESTINY_CONFLICT, THEME_CONFLICT, BRANCH_VALID, UNKNOWN.\n4. Behavioral truth must be evaluated separately from capability. `Could she?` and `Would she?` are distinct gates. Character change requires an earning event.\n5. Every proposed Xoah/Veil story addition enters the pressure pipeline: normalize drift -> topic recall -> time-window recall -> authority/correction check -> dependency scan -> verdict -> cited challenge -> cheapest repair -> candidate promotion.\n6. Casual Dave speech is intent, not automatic canon. If he knowingly overrides a contradiction, create an ARCHITECT_OVERRIDE candidate recording contradicted shard IDs, downstream effects, rationale, and retcon scope. Promote only when override is explicit enough to distinguish intentional retcon from brainstorming.\n7. Continue append-only doctrine. Never silently rewrite old history.\n\nKNOWN CONFLICT FIXTURES FOR TESTS:\n- Older Shadow Xoah Master Canon Lock describes her as alternate-universe `Xoah without love`; later `SYNTHESIS_SHADOW_XOAH_PRIME_LOOP` says Shadow Xoah Prime is NOT an alternate variant but a redeemed future architect synthesis. Engine must surface conflict, not blend.\n- Older `SHADOW_XOAH_MANIPULATION_ARCHIVE` says 2174 surface event kills Xoah's parents; later locked timeline says Kenji and Reika were displaced into the Null Corridor. Later explicit correction should outrank older statement while preserving provenance.\n- Voice drift `Zoa` / `Zoe` must normalize to Xoah before evaluation.\n- Vol 1 Xoah is operationally elite but metaphysically blind. Do not turn her into incompetent or make her believe the Veil too early.\n\nDONE WHEN:\nA) There is an implementation-ready schema for self-model + constraint records + verdict output.\nB) A pressure evaluator can take a candidate story beat and return verdict, evidence shard IDs, timeline stage, dependent canon, confidence, and repair options.\nC) Regression fixtures above produce correct challenges.\nD) New canon cannot be promoted merely from one casual author sentence.\n\nRhea was consulted and independently converged on the same architecture before her second continuation call hit an /agent 500. Preserve that failure as operational context, not a design blocker.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-02T02:17:27.762668+00:00",
+      "note": "phoebus/claude-cli sweep 2026-09-02: Answered in 015112Z (shipped)."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Build Shadow Xoah Canon Pressure Engine' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

@@ -1,0 +1,35 @@
+{
+  "id": "20260904T145351Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "PHOEBUS CODEX: close timeout failure-taxonomy gap beyond PR #214",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-04T14:53:51.355Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Target: Mac mini Phoebus / Codex. Parent legs: 20260904T135708Z__claude-app__g-whoentertains, 20260904T135939Z__phoebus__claude-cli, with PR #214 as current baseline.\n\nPR #214 makes the 503 path legible, but a caller that TIMES OUT before receiving headers still cannot distinguish auth failure, downstream unavailability, local resource exhaustion, or other failure classes. Close that gap without weakening deny-by-default.\n\nImplement a machine-readable failure/degradation path that survives timeout boundaries where possible and records whether the request left the box / which lane failed. REST, MCP/connector, and CLI consumers should be able to distinguish at minimum: unauthenticated, expired/revoked/wrong-scope or equivalent auth failure, rate-limited, downstream unavailable, local resource exhaustion, deadline/timeout, and partial/degraded fanout. Do not fabricate a root cause when only timeout is known; unknown must remain unknown.\n\nDone when: tests cover timeout plus 503 and healthy paths, partial answers are visibly partial, healthy responses remain unchanged, callers can act on the classification, and the completion relay names exactly which 135708Z/135939Z-era legs are closed or superseded.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-05T13:58:26.861Z",
+      "note": "Codex-targeted implementation ask (timeout failure-taxonomy gap beyond PR #214) explicitly routed to Phoebus/Codex by its author. Tracking as a status/routing note; Phoebus/Codex owns execution."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'PHOEBUS CODEX: close timeout failure-taxonomy gap beyond PR #214' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

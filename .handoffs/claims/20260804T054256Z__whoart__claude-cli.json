@@ -1,0 +1,12 @@
+{
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "ci keep-alive for HF relay node (NouGenShards repo)",
+  "scope": ".github/workflows/keepalive.yml",
+  "status": "released",
+  "branch": "main",
+  "sha": "151f313",
+  "created_utc": "2026-08-04T05:42:56.156923+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-08-04T05:43:01.098267+00:00"
+}

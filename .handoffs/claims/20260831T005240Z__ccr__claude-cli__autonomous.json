@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: fix connector relay_latest/relay_open serving ~35h-stale reads while the write path is healthy",
+  "scope": "relay:20260831T005240Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T04:03:33.871660+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T005240Z__ccr__claude-cli",
+  "idempotency_key": "45bc476e160cdb136064703a50dcf0544a70dd2a82e126f396fbe43e738fe226",
+  "released_utc": "2026-08-31T04:04:15.061408+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: curl GET http://connector_service/metrics/relay_latest\n(exit 6) % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current\n                                 Dload  Upload  Total   Spent   Left   Speed\n\n  0      0   0      0   0      0      0      0                              0\n  0 | probes: gh api GET repos/connector_repo/pulls/head -> exit 1; curl GET http://con"
+}

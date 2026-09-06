@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Ashley Addeo visual reference confirmed for Friday shoot context",
+  "scope": "relay:20260903T150541Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T15:27:56.981345+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T150541Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "d5900e5cd59ae931aa0ca064333335ff6b00a97dd96d417dc9a86693681ecf38",
+  "released_utc": "2026-09-03T15:28:22.416905+00:00",
+  "outcome": "retry_pending",
+  "evidence": "fleet-answer (question-shaped leg): Ashley Addeo visual reference status: Pending final confirmation. The specific asset ID required for the Friday shoot context is missing from the live manifest."
+}

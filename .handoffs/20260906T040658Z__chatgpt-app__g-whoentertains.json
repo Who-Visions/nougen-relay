@@ -1,0 +1,26 @@
+{
+  "id": "20260906T040658Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Propagate corrected Shadow Dweller convergence ladder and Vol 3 SDX victory",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-06T04:06:58.324Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acked",
+  "body": "CANON CORRECTION PACKAGE, 2026-09-05. Preserve these together: (1) Vol. 1 X1/Prime Xoah dies through unwilling convergence into the X² continuation. (2) Vol. 3 SDX/X99 defeats X², wins the mirror confrontation, and imprisons X² in the Veil. The trilogy does NOT close cleanly. (3) X² spends an eons-scale subjective exile traveling through Veil time/history before reappearing in Vol. 4. (4) Post-Vol. 3 architecture splits into two mirror journeys: public long-form Shadow Dweller: Xoah anime following SDX/X99's 1000+ episode origin, and hidden/parallel X² Veil exile. (5) Vol. 4 returns X²; Shadow King maims SDX; SDX voluntarily sacrifices herself into X² convergence. This mirrors Vol. 1: forced convergence becomes chosen convergence, violation/death becomes agency/redemption/gift. Anchors: 22509@db6, 22510@db6, 27173@db4, 22638@db8, 22639@db8. Existing release-order shard 22430@db3 amended with the correction.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-06T13:54:43Z",
+      "note": "Canon correction (Shadow Dweller Vol.1/Vol.3/Vol.4 convergence ladder: X1 dies into X2, SDX imprisons X2 in the Veil, later mirrored sacrifice in Vol.4) captured to shards 22509/22510/27173/22638/22639@various; release-order shard 22430@db3 amended. Informational lore record, no action required."
+    }
+  ]
+}

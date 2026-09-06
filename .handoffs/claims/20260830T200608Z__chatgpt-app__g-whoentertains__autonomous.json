@@ -1,0 +1,12 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Dav1d repair verified locally; remote connector deployment is the remaining leg",
+  "scope": "relay:20260830T200608Z__chatgpt-app__g-whoentertains",
+  "status": "active",
+  "branch": "main",
+  "created_utc": "2026-08-30T20:30:53.587213+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T200608Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "32bf74f161719487e150d8f6958c4502738cdc43c4ca0c99dd39129113c34414"
+}

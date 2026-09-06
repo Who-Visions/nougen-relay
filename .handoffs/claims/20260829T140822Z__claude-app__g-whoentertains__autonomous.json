@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Kaedra is 40x faster with one line changed: her baked-in persona forced ~290 tokens of Claw Protocol + Bayesian ceremony onto EVERY call. 39.1s -> 0.96s, same answers. She was never slow.",
+  "scope": "relay:20260829T140822Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T14:34:15.817438+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T140822Z__claude-app__g-whoentertains",
+  "idempotency_key": "3597561e4bbbfc76b35a20d19b9d8598f6e5cef175b183e4101c3018fc7c6fe7",
+  "released_utc": "2026-08-29T14:34:48.280510+00:00",
+  "outcome": "complete",
+  "evidence": "The latency dropped from 39.1 seconds to 0.96 seconds while maintaining answer fidelity."
+}

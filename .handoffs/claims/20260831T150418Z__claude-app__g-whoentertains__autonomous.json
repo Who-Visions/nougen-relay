@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Aug 2026 usage: $39,305 COLD / $3,468 cached (11.3x leverage). Two data faults - fleet MCP returns a corrupt 1.67e17 token field, and the usage MCP reads a tracker that stopped publishing 2026-08-01",
+  "scope": "relay:20260831T150418Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T15:18:37.478776+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T150418Z__claude-app__g-whoentertains",
+  "idempotency_key": "7c86061b4c4091638ca37bcd9964eb7bb3f40c9a80d5088be97b1da024cf3eca",
+  "released_utc": "2026-08-31T15:19:15.166029+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): Two critical data faults have been confirmed: 1. Fleet MCP Fault: The fleet Management Control Plane is returning a corrupt token field with a value of 1.67e17. This requires immediate validation against the Vault for correct token mapping. 2. Usage MCP Fault: The usage Management Control Plane is r"
+}

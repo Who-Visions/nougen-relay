@@ -1,0 +1,27 @@
+{
+  "id": "20260905T171933Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Evolve WhoVisionsPresents.com from Pinterest Presents 2026 visual grammar and carry it forward to Destiny",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-05T17:19:33.066Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "DIRECTIVE FROM DAVE, 2026-09-05.\n\nTarget: WhoVisionsPresents.com.\n\nReference signal: Pinterest Presents 2026 screenshots reviewed in ChatGPT. Preserve the visual grammar at very high fidelity while reauthoring it into unmistakably original Who Visions identity, not Pinterest branding or trademark mimicry.\n\nVISUAL DNA TO PORT:\n1. Dominant palette architecture: stark white field, saturated signal red, very dark wine/burgundy image panels, black body copy.\n2. Oversized, ultra-heavy grotesk/sans display type with tight leading and stacked headline blocks.\n3. Hero art framed as a full-width campaign panel with human subjects breaking the visual rhythm.\n4. Huge declarative copy embedded directly into the hero image field.\n5. Tiny product/object annotation pills floating over photography, creating an editorial plus interface hybrid.\n6. Repeated brand lockup and oversized CTA button beneath hero.\n7. Minimal page chrome, wide breathing room, centered composition, deliberately blunt hierarchy.\n8. Rounded rectangular CTA geometry, large touch targets, very little ornament.\n9. Editorial commerce energy: fashion campaign plus product reveal plus keynote landing page.\n10. Mobile-first rhythm: logo/header, hero, brand mark, CTA, manifesto copy, then discovery modules.\n\nWHO VISIONS TRANSMUTATION:\n\u2022 Replace Pinterest red identity with a Who Visions owned chromatic system derived from our own mark and campaign assets.\n\u2022 Replace Pinterest typography with a legally and aesthetically distinct type stack while preserving scale, weight, density, and cadence.\n\u2022 Replace all Pinterest logos, iconography, wording, product labels, and campaign artwork with original Who Visions assets.\n\u2022 Preserve the structural visual grammar: high contrast, massive typography, editorial photography, annotation chips, sparse chrome, cinematic reveal pacing.\n\u2022 Core brand statement remains: WHO VISIONS PRESENTS premieres the universe.\n\nDESTINY FORWARDING:\nTreat this as a design-lineage shard that should survive beyond the immediate rebuild. Destiny should receive the distilled rule, not merely screenshots: WhoVisionsPresents.com is the flagship reveal surface for the Who Visions universe, using monumental campaign typography, editorial imagery, product/interface annotation, and launch-event pacing.\n\nDONE WHEN:\nA downstream agent can produce a component/design-system spec, homepage wireframe, tokens, type scale, CTA system, hero module, annotation-chip component, responsive rules, and motion language from this relay without needing the original screenshots.",
+  "relay": [
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-05T17:21:22.659159+00:00",
+      "note": "Completed visual grammar distillation: docs/WHOVISIONS_PRESENTS_SPEC.md authored with chromatic tokens, monumental typography scale, annotation chips, and Down Forward to Destiny lineage rules."
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Log Emerald Knights Veil Verse collision",
+  "scope": "relay:20260902T000135Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T05:04:10.591769+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T000135Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "5c491668384c61a95ca8951343eb4a9f4b68d3e70e3008f8a969e334c134b89c",
+  "released_utc": "2026-09-02T05:05:36.164234+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

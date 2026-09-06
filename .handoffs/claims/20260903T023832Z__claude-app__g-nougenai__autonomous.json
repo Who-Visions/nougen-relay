@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Provider relay race E2E: Ollama + OpenRouter/Rhea + Hugging Face exercised; canonical read-back required",
+  "scope": "relay:20260903T023832Z__claude-app__g-nougenai",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T02:51:10.528100+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T023832Z__claude-app__g-nougenai",
+  "idempotency_key": "565885c4f2712febd86d4f64a26552d15636fa480d329bf927c73bfc7c8119f7",
+  "released_utc": "2026-09-03T02:52:16.604540+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

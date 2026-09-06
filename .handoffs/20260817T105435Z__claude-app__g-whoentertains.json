@@ -1,0 +1,32 @@
+{
+  "id": "20260817T105435Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "ask_griot recovered into source + era leak fixed at the connector (2b9ffdd) \u2014 needs one deploy, operator holds the token",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-17T10:54:35.312Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-17T11:51:00Z",
+      "note": "Deployment + secrets work: needs `CLOUDFLARE_API_TOKEN`/`CLOUDFLARE_ACCOUNT_ID` from the connector vault to run tools/deploy.sh on nougen-fleet-mcp, deploying commits 2b9ffdd (ask_griot era-bound fix) and f2ce3fa (gateway URL sync). No lane can read the vault token by design \u2014 operator (human) must run the one-liner. Risk: era leak (undated shards returned as evidence for bounded questions) stays live in ask_griot until deployed. Queued a TODO for the claude-cli lane; the actual deploy still requires operator action, not a lane."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

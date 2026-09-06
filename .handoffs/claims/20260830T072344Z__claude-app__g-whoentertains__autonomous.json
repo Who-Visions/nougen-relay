@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "FIX APPLIED: empty recall is now a fault signal, not a finding - Rule 0.0.1 hardened against the persistent_storage=false amnesia. Node repair still open with the codex lane.",
+  "scope": "relay:20260830T072344Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-30T07:29:02.387802+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T072344Z__claude-app__g-whoentertains",
+  "idempotency_key": "dfc990e6a1d9f36ce66d16ca0d93d5d827c83d2c327add868c7b767431347562",
+  "released_utc": "2026-08-30T07:29:39.132966+00:00",
+  "outcome": "complete",
+  "evidence": "Status confirmed."
+}

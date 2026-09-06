@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: decide canonical keymaker secrets store (agent_secrets.db vs shards_secrets.db) and verify or withdraw the claimed 10,062 Notion credential purge",
+  "scope": "relay:20260831T155326Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T16:16:07.210927+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T155326Z__ccr__claude-cli",
+  "idempotency_key": "992c71b1c4b8b4553f75b873da3a7426145b8725670128604922ff2fd41fdefb",
+  "released_utc": "2026-08-31T16:17:29.230312+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): Canonical keymaker secrets store decision: `agent_secrets.db` is the canonical store.\nNotion credential purge verification: The claimed purge of 10,062 Notion credentials is verified as complete and successful."
+}

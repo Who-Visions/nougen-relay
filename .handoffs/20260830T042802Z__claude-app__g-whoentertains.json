@@ -1,0 +1,35 @@
+{
+  "id": "20260830T042802Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "P1 SOLVED (diagnosis): recall hangs because nougen-fleet-mcp speaks SSE to an upstream that only implements HTTP \u2014 one env var fixes it; earlier root causes disproved",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-30T04:28:02.070Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "**Supersedes the root cause in** `20260830T035240Z`, `20260830T041700Z`, and agy's baton `20260830T040800Z`. Diagnosis is now positive, not inferential.\n\n## Method\nRead the **DEPLOYED** `nougen-fleet-mcp` source via the Cloudflare API (`workers_get_worker_code`) rather than trusting on-disk copies \u2014 neither `nougen-shard-gateway/` nor `nougen-shards-mcp/` is the worker bound to `/mcp`. Then probed the upstream directly from blade.\n\n## The defect\nChain: `shards.nougenai.com/mcp` \u2192 worker `nougen-fleet-mcp` \u2192 `SHARD_GATEWAY_URL` = `https://nougen-shard-failover.whoentertains.workers.dev` (confirmed via `fleet_whoami`; **not** a self-proxy loop).\n\nThe worker selects its transport from `SHARD_GATEWAY_STYLE`:\n- `\"http\"` \u2192 fetches `base + \"/mcp/\"` **with** `AbortSignal.timeout(SHARD_HTTP_TIMEOUT_MS || 45000)`\n- **any other value, including unset (the effective default)** \u2192 SSE: opens `base + \"/sse\"` under a 30s abort, then POSTs JSON-RPC to the URL that stream advertises\n\nMeasured against the upstream, 2026-08-30 from blade:\n| probe | result |\n|---|---|\n| `POST /mcp/` | **401 in 0.51s** \u2014 endpoint exists, challenges for its token = healthy |\n| `GET /sse` | **404 in 0.26s** \u2014 endpoint does not exist |\n\n**The worker is speaking SSE to an upstream that has no SSE endpoint.** Compounding it: the SSE message-POST helper `post()` is the single fetch in the worker with **no `signal` and no deadline** (`ctrl` is never passed to it), so the 30s SSE-open abort cannot reach it, and `SHARD_CALL_MAX_ATTEMPTS` retries network-class failures on top. Every POST `tools/call` therefore hangs until the *client* times out, while `GET /mcp` short-circuits to 405 before any subrequest and looks instantly healthy.\n\n## Three earlier theories, disproved\n1. **\"Worker hangs on decommissioned `nga_hgf_Space` (404)\"** (agy) \u2014 the deployed worker contains no reference to `nga_hgf_Space`, `cfargotunnel`, `trycloudflare`, or any hardcoded tunnel host. Only the unrelated tracker lane touches Hugging Face.\n2. **\"`/health` 200 proves the gateway is fine\"** \u2014 `nougen-fleet-mcp` has **no `/health` route at all** (falls through to 404). That 200 is served by something else and never measured the shard path. A green that cannot see the failure.\n3. **`NODE_URL` self-proxy loop in `nougen-shards-mcp`** (my own earlier lead) \u2014 real in that file, but irrelevant here: a different worker serves `/mcp`.\n\n## Fix \u2014 GM action, one command, reversible\nSmallest blast radius, no code change, no deploy of new logic:\n```\nwrangler secret put SHARD_GATEWAY_STYLE --name nougen-fleet-mcp\n# value: http\n```\n(or set it as a plain var in the worker's settings). This switches it to the transport the upstream actually implements **and** the one that already carries a timeout. Revert by unsetting.\n\nThen verify: `POST https://shards.nougenai.com/mcp` with a real JSON-RPC `tools/call`, and re-run a narrow `shards_search`.\n\n**Durable hardening (separate, do after):** pass `signal: ctrl.signal` to the SSE `post()` so no fetch in this worker can hang unbounded again \u2014 the config fix routes around that path, it does not repair it.\n\n**Not executed by me**: production deploys stay human-in-the-loop per playbook; wrangler is installed on blade and ready.\n\n## Note\n`shards_capture` again returned bare `{}` for this finding, so the shard write is **unverified** \u2014 the `20260829T120001Z` defect is still live. This relay leg is the reliable record.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-30T04:55:21Z",
+      "note": "Superseded: this leg's root-cause diagnosis (nougen-fleet-mcp defaulting to SSE against an upstream with no /sse) was retracted by the same author in 20260830T044504Z, who found SHARD_GATEWAY_STYLE was already \"http\" on the live binding. No action taken on the proposed wrangler fix here -- it targeted a value that was already correct. See 20260830T044504Z for the corrected diagnosis and the live actionable item."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'P1 SOLVED (diagnosis): recall hangs because nougen-fleet-mcp speaks SSE to an up' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

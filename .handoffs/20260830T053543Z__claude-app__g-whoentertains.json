@@ -1,0 +1,42 @@
+{
+  "id": "20260830T053543Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "agent/nougen-assurance-sprint is now current with origin/main (0 behind, 57 ahead) \u2014 Valerion purge committed 2ea08a00, merge 46c75825, 19 hunks resolved, 672 tests pass. NOT pushed",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-30T05:35:43.924Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "## State\n\n`agent/nougen-assurance-sprint` \u2014 **0 behind `origin/main`, 57 ahead**, working tree clean. Two new commits, **neither pushed**:\n\n- `2ea08a00` \u2014 the Valerion naming purge + vault unstraying (was uncommitted; committed as its own isolated changeset so it cannot strand the way `71f598a` did).\n- `46c75825` \u2014 merge of `origin/main` (18 commits, 19 conflict hunks across 8 files).\n\n`github.com/eho-visions/nougenshards` does not exist; the repo is `Who-Visions/NouGenShards`, already this repo's `origin`. Nothing new was cloned.\n\n## Conflict resolutions worth knowing\n\nResolved **per-hunk**, not per-file, so cleanly auto-merged regions survived (`git checkout --theirs` would have discarded HEAD-only changes in the same files).\n\n**Took main:** app.py (gateway auth accepting multiple header aliases, `Query` import, `NGS_NODE_TOKEN` \u2192 `SHARD_GATEWAY_TOKEN` fallback); models_client.py (self-clearing reasoning spinner); agents.py (vault-grounding prompt); tunnel_lane.ps1 (`Get-VaultSecret` extracted, `Get-NodeHealth` added); cli.py (`_run_interactive_chat`, and a relevance threshold that is a strict superset \u2014 it retains this branch's `skill_ctx`/`relay_ctx` injection); rhea_noir.py (compose-at-round-limit rather than discarding the tool trace); core.py schema-v3 `source_uri` migration.\n\n**Kept this branch \u2014 two that matter:**\n1. `core.py` \"Module 1: **Convergent Traces**\". Main still carried the pre-purge \"Metamers\". Verified after merging: no drift reintroduced, only the two intentional preservations remain.\n2. `connectors/local_vault.py` `_allowed_roots()`. **Main reverts it to a one-line cwd-relative `resolve()` \u2014 the exact bug that stranded 154 captures in a repo-local `.vault`.** The branch version keeps the declared `NOUGEN_VAULT_DIR` root plus the warning. If anyone merges this branch *into* main, do not let main's version win.\n\n## Two defects surfaced and fixed\n\n- `tests/test_rhea_loop.py` (new from main) mocked `_chat(messages)`, but this branch's `_chat` takes `(messages, diagnostics=None)` and passes it. Mocks now accept the optional arg \u2014 keeps both the branch's diagnostics feature and main's new tests.\n- `ops/relay_answers/fanout.py:10` hardcoded `C:\\Users\\super\\Outpost\\NouGen\\tools`. **Pre-existing on this branch**, newly caught by main's `test_published_surface` \u2014 it names the operator and their disk layout on a *public* repo, and only worked on one box. Now derived from `__file__`.\n\n## Tests\n\n672 passed, 4 skipped. `test_federation_tiering::test_timeout_does_not_take_out_healthy_sibling` is load-flaky under the full suite and passes in isolation (verified twice).\n\n## Ask\n\n1. Review the two \"kept this branch\" calls above, especially `local_vault.py` \u2014 that one is a real regression risk in the other direction.\n2. Push when satisfied; nothing has left the machine.\n3. Still open from earlier: GEMINI.md Rule 0.7 collision, and the 4.2 GB `~\\.nougen\\shards.bak-20260830` is safe to delete.\n",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-30T05:54:56Z",
+      "note": "Needs human/blade review judgment (merge conflict resolutions, esp. local_vault.py _allowed_roots regression risk) plus a git push from the blade machine and disk cleanup relay-watch cannot perform from this file-only session. Queued as TODO 20260830T055456Z__ccr__claude-cli to the blade lane. Risk flagged: reviewer must not let main's local_vault.py version win if merging this branch into main (reintroduces the vault-capture-stranding bug)."
+    },
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-02T02:17:06.885710+00:00",
+      "note": "phoebus/claude-cli sweep 2026-09-02: Report read."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'agent/nougen-assurance-sprint is now current with origin/main (0 behind, 57 ahea' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

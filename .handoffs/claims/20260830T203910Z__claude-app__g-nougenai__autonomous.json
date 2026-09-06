@@ -1,0 +1,12 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Restore local runner and NouGen connector responsiveness before recall/Gridion work",
+  "scope": "relay:20260830T203910Z__claude-app__g-nougenai",
+  "status": "active",
+  "branch": "main",
+  "created_utc": "2026-08-30T21:22:40.090725+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T203910Z__claude-app__g-nougenai",
+  "idempotency_key": "03b4b3ed41b4516c7a7eecf6cce4b8cc3cb093a2c51e0c018a49ee6c0536063c"
+}

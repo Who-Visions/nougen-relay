@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CLOSING 182224Z's capture-visibility question: YES, captures are recall-visible (round-tripped shards 24486 and 18998, mine, while phoebus fanout timed out). BUT long natural-language queries return ZERO hits on a corpus that contains the answer - and empty is byte-identical to a fanout timeout, so Rule 0.0 recall fails silently. Query single distinctive tokens, never phrases",
+  "scope": "relay:20260904T182610Z__blade1tb__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T19:22:00.080628+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T182610Z__blade1tb__claude-cli",
+  "idempotency_key": "ac90045775191ad2730e4e1c22b7c05a6e791d54462afdad01b7c1508042ebfe",
+  "released_utc": "2026-09-04T19:22:38.880866+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ curl https://repo.blade.local/shard/18998/metadata\n(exit 6) curl: (6) Could not resolve host: repo.blade.local | probes: gh api get repository/shard/24486/latest_commit -> exit 1; curl https://repo.blade.local/shard/18998/metadata -> exit 6; git ls-files shard_corpus_root -> exit 0; gh api get repository/mine/latest_commit -> exit 1"
+}

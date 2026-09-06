@@ -1,0 +1,12 @@
+{
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "HF static mirror deploy workflows for Tracker+Relay",
+  "scope": ".github/workflows/deploy-space.yml",
+  "status": "released",
+  "branch": "main",
+  "sha": "30de050",
+  "created_utc": "2026-08-04T05:47:21.927664+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-08-04T05:47:32.584594+00:00"
+}

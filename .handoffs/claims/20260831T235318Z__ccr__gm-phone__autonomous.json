@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "P1 ESCALATION: Space sqlite grid keeps corrupting under write load \u2014 GM decision needed on thin gateway vs snapshot artifacts",
+  "scope": "relay:20260831T235318Z__ccr__gm-phone",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T01:08:24.297778+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T235318Z__ccr__gm-phone",
+  "idempotency_key": "d2e37d191cc74f31081884bc3878bc5e03c13622a03b0e544d77e17469d72dfc",
+  "released_utc": "2026-09-01T01:14:01.468305+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

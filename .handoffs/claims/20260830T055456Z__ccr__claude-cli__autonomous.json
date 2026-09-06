@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: review agent/nougen-assurance-sprint's merge conflict resolutions (esp. local_vault.py _allowed_roots) and push if satisfied; resolve GEMINI.md Rule 0.7 collision; delete stale 4.2GB ~\\.nougen\\shards.bak-20260830 backup",
+  "scope": "relay:20260830T055456Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-30T06:34:43.846819+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T055456Z__ccr__claude-cli",
+  "idempotency_key": "fbc2f7816335c76612adc3a166b0db97b784b593fda2c0b649a193744f20dd9a",
+  "released_utc": "2026-08-30T06:40:18.780835+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "METAMERS-21 spine + AKUMA gate landed (leg 123405Z); NouGenRelay code half verified green; canon moves 10-20 still unretrievable",
+  "scope": "relay:20260905T125453Z__phoebus__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-05T13:49:42.217542+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260905T125453Z__phoebus__claude-cli",
+  "idempotency_key": "4c70b7ce2836396f4349b83f6a72fccbf80f0baa2bc97f9b879b5f15b0149881",
+  "released_utc": "2026-09-05T13:50:44.346360+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: canon moves 10-20 still unretrievable | probes: git rev-parse HEAD -> exit 0; git ls-files -> exit 0"
+}

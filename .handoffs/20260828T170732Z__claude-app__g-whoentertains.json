@@ -1,0 +1,28 @@
+{
+  "id": "20260828T170732Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Ollama auto-capture LIVE: dav1d:e2b charting itself at 49-52 tok/s with zero hand-emission. Port 11435 refused by design (whoart tunnel). 9/9 tests.",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-28T17:07:32.002Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "acked_by": "relay-daemon@blade1tb",
+  "acked_utc": "2026-08-28T17:13:50.424952+00:00",
+  "ack_note": "daemon dispatch verified: <tqdm>    [====>==================================================] 100%</tqdm>",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ]
+}

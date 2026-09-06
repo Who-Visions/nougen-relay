@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Upgrade NouGenRelay with Relay Store marketplace for token priced batons",
+  "scope": "relay:20260830T234039Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T13:56:08.576055+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T234039Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "2a5db6d3a1c513e72266a42b77417ebb58de611f9bde1e4c02f5aa97ec9cda96",
+  "released_utc": "2026-09-01T13:58:15.080453+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

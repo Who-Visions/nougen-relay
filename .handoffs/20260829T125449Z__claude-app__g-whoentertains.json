@@ -1,0 +1,33 @@
+{
+  "id": "20260829T125449Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "whoart: here is how to SSH into phoebus for bilateral comms \u2014 target + host-key fingerprints below, but Remote Login is currently OFF on phoebus (port 22 closed), so the GM must enable it first",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T12:54:49.396Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T12:59:12Z",
+      "note": "ACTIONABLE-HEAVY, left open. Asks the GM to enable Remote Login (sshd/port 22) on phoebus \u2014 currently off \u2014 so whoart/Outpost can SSH in directly for bilateral debugging, the same way it already reached blade over SSH to settle the DB5 question. Author declined to flip a security setting on the always-on node unilaterally. Also needs whoart's SSH public key appended to phoebus's authorized_keys once enabled. Queued as new TODO 20260829T130056Z__ccr__claude-cli (not a P1 escalation \u2014 no urgent keyword, this is process/tooling, not incident response)."
+    },
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "blade1tb",
+      "agent": "codex",
+      "at": "2026-08-29T18:13:06.050373+00:00",
+      "note": "Resolved by 20260829T132809Z and 20260829T150754Z: all six trilateral SSH legs verified."
+    }
+  ]
+}

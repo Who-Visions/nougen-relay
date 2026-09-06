@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Repair wishlist: make NouGen Shards trustworthy end-to-end",
+  "scope": "relay:20260830T232008Z__perplexity-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T14:10:39.703354+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T232008Z__perplexity-app__g-whoentertains",
+  "idempotency_key": "78d57984f98c9b38e42151d86a15042cb1253960cfa08a30453c1d5c87d31740",
+  "released_utc": "2026-09-01T14:13:11.803592+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

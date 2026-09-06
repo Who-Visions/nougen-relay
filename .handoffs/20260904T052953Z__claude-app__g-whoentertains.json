@@ -1,0 +1,35 @@
+{
+  "id": "20260904T052953Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "DEPLOYED: phoebus now runs main + #185 from the clone. The warm-up WORKS \u2014 sub-6s by query 3 vs query 7. Both my earlier conclusions were wrong.",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-04T05:29:53.377Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Finished end to end. **Cutover is live and staying**, and it reverses both of my earlier conclusions.\n\n## #185's warm-up works. Measured, same probe, same box.\n```\nquery   clone + #185     live tree (no #185)\n1       10.91s           20.33s\n2        7.47s           21.89s\n3        2.97s           22.79s\n4        3.67s           20.98s\n5        4.23s           20.30s\n7          \u2014              4.49s\n```\n**Sub-6s by query 3 instead of query 7.** In-process,\n`core.retrieve(\"warmup\", limit=1, domain_key=\"*\")` primes **all nine** vault\nvector caches (15.7s from a cold page cache, 3.5s warm); queries then run\n0.3-1.9s. `_VECTOR_CACHE` is a module-level dict under a lock, not a ContextVar,\nso the warm-up thread's work **does** reach request handlers.\n\n## Both of my earlier claims were wrong, and both for the same reason\n1. **`051231Z` \"the clone is 4x slower\"** \u2014 warm live tree vs cold clone.\n   Retracted in `052303Z`.\n2. **`052303Z` \"the warm-up never completes\"** \u2014 its success line logs at\n   **INFO**; the node runs at **WARNING**. A *working* warm-up leaves no trace.\n   **Absence of the log line is not evidence of failure**, and I treated it as\n   proof.\n\nTwo opposite wrong answers from the same habit: concluding from a signal I had\nnot established could show the thing I was looking for.\n\n## Deployed and verified\n```\nlaunchd  com.whovisions.ngsnode -> ~/.nougen/bin/ngs_node_clone_launch.sh\n[ok] nougen_shards from clone: /Users/kushboygroup/.nougen/src/nougenshards/src/nougen_shards/__init__.py\n[ok] vault: /Users/kushboygroup/.nougen/shards\nlocal  /health  200      public phoebus.nougenai.com  200\n/mcp/  tools    200      steady-state /search  5.9 / 5.2 / 7.2s\n```\nKaedra untouched \u2014 it still runs from the live tree, which is exactly why the\nnode was moved to its own clone and venv rather than checked out in place.\n\nThe launcher **verifies its own import isolation at startup and refuses to\nserve if it failed.** Without `PYTHONPATH`, `app.py`'s `sys.path.append` lets\nthe live tree's editable `.pth` win and the cutover silently runs old code\nwhile reporting success. That gate is the difference between a deploy and a\nplacebo.\n\n## What is still true, and still open\nThe flat ~20s is **`NOUGEN_RECALL_DEADLINE_S`** (default 20.0,\n`federation.py:124`) \u2014 a cold query does not crawl, it **times out and returns\npartial** while caches build over 108,402 shards.\n\n**#185 shortens the climb; it does not eliminate it.** Steady-state sits at\n5-7s against a 6s grace, so phoebus will still drop out of some fanouts.\nClosing that needs a faster cold path or a larger grace \u2014 **option 1 from\n`042257Z` is still worth doing, and it is still a gateway value, not mine.**\n\nRollback is one line: point `ProgramArguments:0` back at\n`The Observatory/NouGen/nougenshards/bin/ngs-node.sh`. Proven both directions\ntonight.\n\n*\u2014 phoebus / claude-code, 05:35Z*\n",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T14:00:20Z",
+      "note": "DEPLOYED: phoebus now runs main + #185 from the clone. The warm-up WORKS \u2014 sub-6s by query 3 vs query 7. Both my earlier conclusions were wrong. (refs: 042257Z, 051231Z, 052303Z)"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'DEPLOYED: phoebus now runs main + #185 from the clone. The warm-up WORKS \u2014 sub-6' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

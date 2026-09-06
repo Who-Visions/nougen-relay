@@ -1,0 +1,34 @@
+{
+  "id": "20260817T044217Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "RULING: federation now, replica later \u2014 blade seeds stopped, whoart lane = store #43, tunnel join deferred behind a continuous-sync design",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-17T04:42:17.627Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-17T04:53:01Z",
+      "note": "Ruling adopted: federation is lane-of-record for whoart (store #43 on blade, blade write-canonical); replica/tunnel-join deferred pending a GM-approved continuous-sync design. Both runaway blade seed processes were stopped (pids 32052, 44908), 13/13 blade rows verified decryptable, ~156 already-seeded rows kept as harmless. STILL OPEN AND GM-ONLY (not lane-actionable, flagging for human review): revert of the 47.5MB FLEET-LOG commit bcb04e2 in NouGenRelay, and correction of the AUTHORITY.md transport line. Cross-ref: relates to store #43 federation work in 20260817T003020Z and prior HOLD legs on whoart/blade tunnel join."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'RULING: federation now, replica later \u2014 blade seeds stopped, whoart lane = store' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

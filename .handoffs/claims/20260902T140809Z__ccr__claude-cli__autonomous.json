@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: Build capability/policy-aware provider routing scheduler",
+  "scope": "relay:20260902T140809Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T17:02:12.135869+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T140809Z__ccr__claude-cli",
+  "idempotency_key": "f9a3a63b20811626294105026584dea92c1df941b60628e9da22041f33d3bb02",
+  "released_utc": "2026-09-02T17:03:53.033575+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

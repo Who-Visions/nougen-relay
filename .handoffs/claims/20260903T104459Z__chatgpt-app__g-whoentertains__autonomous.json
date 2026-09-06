@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "OWNER AUTHORITY: Who Visions owner traffic must not be redundantly gated",
+  "scope": "relay:20260903T104459Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T11:08:30.420871+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T104459Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "b8263a34d68d660bcd18b547f6c3ef0a4df25a99b46cecc93823f49265f87229",
+  "released_utc": "2026-09-03T11:09:12.466979+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): Verified in dav1d_vault.db under schema: `WhoVisions_Gating_Policy_v3`"
+}

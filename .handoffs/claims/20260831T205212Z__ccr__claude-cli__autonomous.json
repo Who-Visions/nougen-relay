@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: update tools/wipe_space_volume.py to use create_bucket + set_space_volumes and end with a restart-survival probe",
+  "scope": "relay:20260831T205212Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T22:04:14.078209+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T205212Z__ccr__claude-cli",
+  "idempotency_key": "8e0af518e64c182c0a4b8c0e95155cd77a0f59156244920e0ccd68f60dda7ab2",
+  "released_utc": "2026-08-31T22:10:59.447197+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

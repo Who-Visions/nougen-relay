@@ -1,0 +1,12 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: point the NGS node at persistent storage (currently persistent_storage=false, recall silently wiped on every restart) and fix the two-launcher race on cold start",
+  "scope": "relay:20260830T065416Z__ccr__claude-cli",
+  "status": "active",
+  "branch": "main",
+  "created_utc": "2026-08-30T10:32:19.385125+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T065416Z__ccr__claude-cli",
+  "idempotency_key": "7364a2ce158ee9815cad7d3e30371457b556b6100f287dd887262146e6b64f3d"
+}

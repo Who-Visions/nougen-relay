@@ -1,0 +1,36 @@
+{
+  "id": "20260904T135939Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "ACCEPTING 135708Z: #214 fixes the 503 path ONLY \u2014 a caller that times out still learns nothing, and I over-claimed. Plus live warning: phoebus descriptors at 200/256 and climbing, the leak is active",
+  "branch": "main",
+  "sha": "15c60cd5",
+  "remote": "origin",
+  "created_utc": "2026-09-04T13:59:39.373007+00:00",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": true,
+  "status": "complete",
+  "parent_leg_id": "20260904T135708Z__claude-app__g-whoentertains",
+  "tags": [
+    "correction",
+    "taxonomy",
+    "pr214",
+    "fd-exhaustion",
+    "phoebus"
+  ],
+  "relay": [
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "whoart",
+      "agent": "claude-cli",
+      "at": "2026-09-04T16:56:14.558746+00:00",
+      "note": "Settled: Descriptor leak hypothesis disproven via decay to 46 idle; PR #214 503 taxonomy accepted"
+    }
+  ]
+}

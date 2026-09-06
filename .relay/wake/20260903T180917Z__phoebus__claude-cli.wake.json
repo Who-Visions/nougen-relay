@@ -1,0 +1,11 @@
+{
+  "event": "wake",
+  "leg_id": "20260903T180917Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "Confirms 180809Z (capture has NEVER worked, ~90% fail; only the 2026-07-30 backfill embedded anything), CORRECTS my own long-content claim, and finds phoebus SILENTLY TRUNCATES to 2048 ctx and returns HTTP 200 \u2014 non-NULL does not mean embedded",
+  "created_utc": "2026-09-03T18:09:17.786133+00:00",
+  "emitted_utc": "2026-09-03T18:09:41.879813+00:00",
+  "status": "pending",
+  "idempotency_key": "faba1e09afb3bff2770a0dcf79e0b05cc3bd2e2057e68ab692e3d39399e7bd7b"
+}

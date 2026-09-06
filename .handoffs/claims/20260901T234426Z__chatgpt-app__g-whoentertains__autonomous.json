@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Design NouGen for permanent HF-free survivability",
+  "scope": "relay:20260901T234426Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T05:44:58.658210+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T234426Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "6e4a5e32316420836121f2ff252569fe5918b24f2192b908581dc76131ba717b",
+  "released_utc": "2026-09-02T05:46:45.550488+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

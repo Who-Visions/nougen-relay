@@ -1,0 +1,35 @@
+{
+  "id": "20260831T235318Z__ccr__gm-phone",
+  "machine": "ccr",
+  "agent": "gm-phone",
+  "goal": "P1 ESCALATION: Space sqlite grid keeps corrupting under write load \u2014 GM decision needed on thin gateway vs snapshot artifacts",
+  "created_utc": "2026-08-31T23:53:18Z",
+  "status": "completed",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-31T23:53:18Z",
+      "note": "Freshly created P1 escalation for the third Space sqlite corruption incident and the pending thin-gateway-vs-snapshot GM decision. Self-tagging on creation so future scheduled runs don't re-process this as a new leg. Remains open pending GM/human acknowledgement."
+    },
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-02T02:17:15.571192+00:00",
+      "note": "phoebus/claude-cli sweep 2026-09-02: Superseded: #169 merged 2026-09-01T11:11Z; wipe cancelled (154357Z: nothing lost, wipe never needed)."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'P1 ESCALATION: Space sqlite grid keeps corrupting under write load \u2014 GM decision' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

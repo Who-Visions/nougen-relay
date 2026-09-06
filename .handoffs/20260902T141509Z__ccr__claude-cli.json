@@ -1,0 +1,27 @@
+{
+  "id": "20260902T141509Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "claude-cli",
+  "goal": "TODO: Unify Terminal Shadow Xoah identity as Stage 10 Shadow Queen across code/docs",
+  "created_utc": "2026-09-02T14:02:13Z",
+  "status": "complete",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-09-02T14:13:16.101Z",
+      "note": "blade/claude-cli unifying the Shadow Queen identity across persona, self-model, docs and a regression test in the same pass as Self Archive v0.2"
+    },
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "blade1tb",
+      "agent": "codex",
+      "at": "2026-09-02T19:29:33.125220+00:00",
+      "note": "Reconciled complete: Shadow Xoah Self Archive, Stage 9/10 identity, Throne Governance and destiny flow verified by 49/49 tests plus live canonical-door calls on Worker e4f8d35b9514; ask_xoah returned in 10.9s with branch and provenance, destiny 1 fulfilled."
+    }
+  ]
+}

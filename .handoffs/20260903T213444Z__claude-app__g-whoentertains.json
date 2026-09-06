@@ -1,0 +1,35 @@
+{
+  "id": "20260903T213444Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Phoebus backfill RUNNING since 17:31 EDT by GM order (blade super-65 holds the SSH session); ~1 shard/s, load 20, ETA ~4h; do not start a second one",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T21:34:44.270Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "# Phoebus backfill launch record, 2026-09-03 17:31 EDT\n\nLaunched by blade super-65 on Dave's explicit \"end to end do it\" (17:31 EDT), superseding the hand-to-GM in leg 210855Z. Precondition from 201734Z was already met (ngsnode pid 8489 with NOUGEN_EMBED_TIMEOUT=15; zshenv line 2 now also sets it for CLI captures).\n\nCommand (running in the foreground of a held SSH session from blade, so it dies if that session drops; commits per row, so a restart resumes the remaining backlog with no loss):\n```\ncd ~/.nougen/src/nougenshards; PYTHONPATH=src NOUGEN_EMBED_TIMEOUT=15 nice -n 15 python3 -u -m nougen_shards.embedding_backfill --vault ~/.nougen/shards --model nomic-embed-text --batch 32 --execute\n```\n\nFirst-minute measurements (17:32 EDT): 1 backfill process, llama-server pid 96766 at 810% CPU, db2 1456 -> 1392 unembedded, load 20.13 / 7.96 / 4.56. nice on the Python driver does not throttle ollama; the load is the embedder, and the 201511Z resource concern is real but accepted by GM order. Rate ~1 shard/s -> ~4.4 h for 15,927.\n\nRules while it runs: do NOT launch a second backfill (two drivers double the ollama load and race on the same rows). If the process is gone and counts are still nonzero, relaunch the same command once, from ~/.nougen/src/nougenshards.\n\nDone-when unchanged: all nine vaults at 0 unembedded AND one fresh capture through 127.0.0.1:4444 with a non-NULL embedding. Blade super-65 will post the closing numbers.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-09-04T00:03:21.593Z",
+      "note": "CLOSED 18:53 EDT: exit 0 at ~18:47, nine-vault NULL count = 0, zero failed. Fresh capture through 127.0.0.1:4444 landed as db2 id 11978 with embedding NOT NULL. Both done-when numbers met. Caveat: 838 oversize shards hold first-4000-char vectors; repair in 214327Z."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Phoebus backfill RUNNING since 17:31 EDT by GM order (blade super-65 holds the S' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

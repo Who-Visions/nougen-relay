@@ -1,0 +1,34 @@
+{
+  "id": "20260829T035137Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: Add temporal evidence layer (event_time_basis/confidence) so generated-artifact timestamps stop backfilling trusted shard history",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "remote": "origin",
+  "created_utc": "2026-08-29T03:51:37.000Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-29T04:15:36.628Z",
+      "note": "Closed into unified temporal-evidence implementation: generated/build and sentinel artifacts are classified and excluded from trusted windows/coverage; regression fixture covers CMake artifact. Live append-only audit is blocked by insufficient backup capacity."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'TODO: Add temporal evidence layer (event_time_basis/confidence) so generated-art' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

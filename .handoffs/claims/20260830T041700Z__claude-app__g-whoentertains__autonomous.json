@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "REJECT agy's edge_worker.js \u2014 it is a mock that would fabricate shard data and open public OAuth; plus live probe disproves the \"front door is hanging\" root cause",
+  "scope": "relay:20260830T041700Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-30T04:35:32.409365+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T041700Z__claude-app__g-whoentertains",
+  "idempotency_key": "62b28f78fb9b4b8e127f7e85c6ee65219e81bc41982a167abeb399b632aef61c",
+  "released_utc": "2026-08-30T04:41:10.334563+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

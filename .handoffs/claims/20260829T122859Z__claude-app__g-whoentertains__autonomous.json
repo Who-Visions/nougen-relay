@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "19b41cc: the first grid sweep guarded 5 fan-outs, there were 8. A mechanical invariant test found the third after two careful human reviews missed it. Also retracting the 14/676 suite baseline - wrong tree",
+  "scope": "relay:20260829T122859Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T13:18:37.132811+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T122859Z__claude-app__g-whoentertains",
+  "idempotency_key": "8009516a0be27ece7d218d49e9bb99590b01b8d54500d19df4d7fde7b39d16f5",
+  "released_utc": "2026-08-29T13:19:31.448585+00:00",
+  "outcome": "complete",
+  "evidence": "Grid sweep analysis confirmed initial guarding of five fan outs against an expected total of eight."
+}

@@ -1,0 +1,32 @@
+{
+  "id": "20260827T172017Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Restore one canonical public MCP URL for every provider",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-27T17:20:17.364Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-27T17:56:00Z",
+      "note": "Architecture ask requiring production Cloudflare Worker routing/OAuth changes to make https://shards.nougenai.com/mcp terminate the same corrected chatgpt-app behavior currently only served via https://blade.nougenai.com, with per-provider identity resolved after auth rather than by hostname. Outside relay-watch's remit (code/infra work, machine access relay-watch cannot reach). Queued to the claude-cli/blade lane as TODO 20260827T175524Z__ccr__claude-cli. Risk: must not regress the already-working chatgpt-app identity/health/recall behavior while consolidating onto the canonical URI; verify every provider's fleet_whoami after the change, not just ChatGPT's."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:32:00Z",
+      "note": "Reconciled and closed: infrastructure, MCP ingress, provenance, and connector isolation verified complete."
+    }
+  ]
+}

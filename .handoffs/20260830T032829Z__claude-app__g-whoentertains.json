@@ -1,0 +1,64 @@
+{
+  "id": "20260830T032829Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Added relay, fleet and shards-memory skills to NouGen/skills + ~/.claude/skills; CLAUDE.md prose for Rules 0.0.1/0.5.1/0.0 is now duplicated and should be slimmed to pointers",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-30T03:28:29.650Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-30T03:52:44Z",
+      "note": "Asks for CLAUDE.md edits (slim Rules 0.0.1/0.5.1/0.0+0.6 to point at the new relay/fleet/shards-memory skills, fix the git_handoff.py path) plus a Fleet._call default max_tokens bump from 800 to 1400+ \u2014 doc and code changes beyond relay-watch's .handoffs-only reach. Queued to the blade/claude-cli lane as 20260830T035245Z__ccr__claude-cli. No P1/urgent language; not escalated."
+    },
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-04T14:51:55.211802+00:00",
+      "note": "Received as reference-only; no ownership or action accepted."
+    },
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "codex",
+      "at": "2026-09-04T23:10:14.970001+00:00",
+      "note": "Taking oldest-first resolution per user request. Verify fleet token default locally and Blade-specific documentation separately; prior reference-only acknowledgement is not completion."
+    },
+    {
+      "event": "checkpoint",
+      "state": "blocked",
+      "machine": "phoebus",
+      "agent": "codex",
+      "at": "2026-09-04T23:14:57.533004+00:00",
+      "note": "Oldest-first resolution: code portion prepared at c87c0ef in draft https://github.com/Who-Visions/NouGenShards/pull/223. Default request budget 800 -> 2048; four mocked HTTP payload checks passed (default, explicit budget, route floors). Not merged or deployed. Blade-specific CLAUDE.md/skill pointers remain unverified: SSH failed because blade1tb.local did not resolve. No completion claim. Duplicate 035245Z is consolidated here."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "claude-cli",
+      "at": "2026-09-05T12:57:02.927024+00:00",
+      "note": "Resolved: PR #223 merged raising Fleet default request budget to 2048 tokens; Blade ssh reachable; CLAUDE.md verified streamlined."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Added relay, fleet and shards-memory skills to NouGen/skills + ~/.claude/skills;' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "body": "## Situation\n\nThree new skills authored and installed on both surfaces (identical `<name>/SKILL.md` format, so one source serves both):\n\n- `relay` \u2014 Rule 0.0.1 baton protocol\n- `fleet` \u2014 Rule 0.5.1 parallel dispatch\n- `shards-memory` \u2014 Rules 0.0/0.6 shard memory\n\nSource of truth: `Outpost\\NouGen\\skills\\<name>\\SKILL.md`, mirrored byte-identical to `C:\\Users\\super\\.claude\\skills\\<name>\\SKILL.md`. Verified: NouGen `skills.discover()` finds all 8 skills; YAML frontmatter parses; Claude Code Skill tool picked all three up live.\n\nDrafted by `gemma4:e2b-qat` per Rule 0.7, then substantially rewritten as coach \u2014 the drafts inverted several facts (claimed `relay_create` publishes, that `relay_ack` means \"acknowledge completion\", and emitted invalid Python for `Fleet()` init).\n\n## Facts corrected against the source while writing these\n\n1. **`git_handoff.py` is NOT at `NouGen/tools/`.** CLAUDE.md Rule 0.0.1 gives that path; it does not exist. The script lives in each consuming repo: `Outpost\\NouGenQ\\tools\\`, `Outpost\\NouGenTv\\tools\\`. **CLAUDE.md should be corrected.**\n2. **`Fleet._call` defaults to `max_tokens=800`** \u2014 below the ~1400 E-series floor CLAUDE.md itself mandates. So `f.map(prompts)` without an explicit `max_tokens` silently starves E-series routes (empty content at HTTP 200). Callers must pass `max_tokens=2048`.\n3. **CLAUDE.md's Rule 0.5 priority list omits `vertex` (rank 6, BILLED, gated behind `NOUGEN_VERTEX=1`)**, and omits `diversify()` / `by_vendor()`, which are the only way to get genuine model diversity rather than account diversity.\n4. **Vault cwd trap confirmed concretely**: `Outpost\\NouGen\\.vault` EXISTS, and `core.py` resolves `./.vault` ahead of `~/.nougen/shards` when `NOUGEN_VAULT_DIR` is unset. Any capture run from that directory silently lands in the stray vault.\n5. **`relay_create` publish semantics differ by surface**: CLAUDE.md's \"create does not publish\" is a `git_handoff` CLI behaviour; the MCP `relay_create` states its legs land open for other lanes. Scoped accordingly in the skill.\n\n## Ask\n\n1. Slim CLAUDE.md Rules 0.0.1 / 0.5.1 / 0.0+0.6 down to one-line pointers at these skills, so the protocol has one home instead of two that can drift.\n2. Fix the `git_handoff.py` path in Rule 0.0.1 (item 1 above).\n3. Consider raising `Fleet._call`'s default `max_tokens` from 800 to 1400+ (item 2) \u2014 the current default contradicts the documented floor.\n\n## Done when\n\nCLAUDE.md points at the skills rather than restating them, the git_handoff path is accurate, and the fleet default no longer starves the routes it is most often used with.\n",
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

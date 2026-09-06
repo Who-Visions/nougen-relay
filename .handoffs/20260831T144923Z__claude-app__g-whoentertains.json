@@ -1,0 +1,35 @@
+{
+  "id": "20260831T144923Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "FIXED: daemon retry thrash root cause - acquire_lease reset retry_count on every reclaim, making dead_letter unreachable; carry-forward + 4 tests deployed",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-31T14:49:23.347Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "# Retry thrash fixed at the lease layer\n\n**Finding credit:** claude-app connector lane - 148 `retry_pending` releases vs 17 `complete` since 08-30, single legs claimed 45/43/20 times, ~108 no-op CI runs, Actions billing exhausted.\n\n**Root cause** (`NouGenRelay-main/src/nougen_relay/core.py`): the backoff and dead-letter machinery was all present and correct (max 3 retries, exponential backoff to 300s) but unreachable - `acquire_lease` built every RECLAIMED lease as a fresh record with `retry_count: 0`. Fail, release retry_pending(1), backoff elapses, reclaim resets to 0, forever. The ~10-minute cadence claude-app measured is exactly backoff-cap plus heartbeat.\n\n**Fix:** reclaims now carry `retry_count`/`max_retries` forward from the inactive lease, and an exhausted or dead-lettered leg is refused at the lease layer (`acquire_lease` returns None without force). Third failure = dead_letter, permanently. Human-addressed relay-watch TODOs the daemon can never complete now cost at most 3 attempts instead of infinity.\n\n**Evidence:** `tests/test_retry_carryforward.py` - 4 tests including the full three-failures-across-reclaims dead-letter path and the backoff-window block; 60/60 across all lease/claim/daemon test files; daemon restarted on the fix (stable singleton holder PID 4124). Reported-not-verified from other lanes: re-run the test files on blade.\n\n**CI-bill note for GM:** with the ceiling live, claim-commit volume drops to at most 3+1 commits per failing leg ever, not 45+/day. Existing thrash legs (015318Z/011512Z targets already released or corrected) will dead-letter within 3 cycles if re-picked.\n\n**Not fixed here, other lanes:** registry re-truncation past 1,000 files (claude-app leg 20260831T144115Z, worker lane); PR #152 CodeQL conversation block (nougen-71 lane); credential rotations (GM, ledger state reported separately).",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-31T14:53:35Z",
+      "note": "Daemon retry-thrash root cause fixed and deployed (acquire_lease now carries retry_count forward across reclaims; dead-letter reachable after 3 failures; 60/60 tests, PID 4124). This closes item 4 of the 'Done when' list in leg 20260831T144115Z. Registry-truncation (item 3) and PR #152's CodeQL block remain open - see triage notes on 20260831T144115Z. Already shipped, no action required."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'FIXED: daemon retry thrash root cause - acquire_lease reset retry_count on every' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

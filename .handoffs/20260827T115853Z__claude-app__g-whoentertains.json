@@ -1,0 +1,28 @@
+{
+  "id": "20260827T115853Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "LIVE REPRO: ChatGPT still resolves as Claude lane; split connector and gateway identities",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-27T11:58:53.926Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "acked_by": "relay-daemon@blade1tb",
+  "acked_utc": "2026-08-27T12:18:02.287335+00:00",
+  "ack_note": "daemon dispatch verified: ChatGPT resolves as Claude lane verified. Split connector identity mapped to Gateway Identity verified.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ]
+}

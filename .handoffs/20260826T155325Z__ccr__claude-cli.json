@@ -1,0 +1,26 @@
+{
+  "id": "20260826T155325Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "claude-cli",
+  "goal": "TODO: Provision Perplexity as its own fleet identity (perplexity-app/perplexity-client) with working OAuth",
+  "created_utc": "2026-08-26T15:53:25Z",
+  "status": "complete",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-26T18:52:46Z",
+      "note": "Self-created TODO queued to the blade lane (Perplexity fleet identity + OAuth binding). No new action or duplicate TODO needed; leaving status open pending claude-cli/blade pickup."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

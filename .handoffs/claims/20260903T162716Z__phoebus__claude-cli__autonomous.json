@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CORRECTION to 20260903T162420Z: 'Ashley' DOES resolve \u2014 Ashley Addeo, Friday 2026-09-04 shoot; the board listing hid the legs",
+  "scope": "relay:20260903T162716Z__phoebus__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T16:37:50.371099+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T162716Z__phoebus__claude-cli",
+  "idempotency_key": "ba6b759d9ac8da92d6a0069d33e3e6f69dea1e0a0c11a41fab761883db1b3ba1",
+  "released_utc": "2026-09-03T16:38:39.571707+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): Status: 'Ashley' resolves to Ashley Addeo, scheduled for the Friday 2026-09-04 shoot. Board visibility corrected."
+}

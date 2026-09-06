@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Session closing clean after 22h: 8 PRs merged, relay read path + connector capture + thread leak fixed and deployed, time hook on all 3 nodes. #152 needs a GM admin merge.",
+  "scope": "relay:20260831T145611Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T15:39:27.815264+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T145611Z__claude-app__g-whoentertains",
+  "idempotency_key": "751613505d3305cd01ced8433b0b643333b55d8dac6da2feac2d49b8353699e6",
+  "released_utc": "2026-08-31T15:40:12.365627+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: curl: (6) Could not resolve host: api.pental.mesh | probes: git rev-parse HEAD -> exit 0; curl https://api.pental.mesh/status/session_close -> exit 6; git log --oneline --grep #152 -> exit 0"
+}

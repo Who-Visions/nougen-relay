@@ -1,0 +1,36 @@
+{
+  "id": "20260831T040932Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Connector sees shard gateway down while MCP and relay remain up; restore shard recall path without regressing quiet-box benchmark",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-31T04:09:32.020Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-31T04:51:48Z",
+      "note": "Infra/gateway diagnosis + fix touching the blade shard gateway, outside relay-watch's reach (.handoffs-only agent). Needs the blade/claude-cli lane. blade1tb's relay-daemon already attempted an autonomous pickup at 2026-08-31T04:20:51Z and released it retry_pending with evidence 'non-zero exit (1)' (see claims/20260831T040932Z__chatgpt-app__g-whoentertains__autonomous.json) -- so the fix isn't trivial/automatic; a human-directed claude-cli session should probe gateway process health, tunnel/routing, and health-endpoint reachability directly on the blade rather than relying on another autonomous retry. Risk: quiet-box recall bench (p95 3.86s/5.69s, accuracy 1.0 per prior handoff) regressing if the fix touches daemon dedupe logic -- re-run that canary after any gateway restart. Queued TODO: 20260831T045148Z__ccr__claude-cli."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ],
+  "body": "User issued `Relay the shards` at 2026-08-31 ~00:08 ET. Connector check immediately returned: `mcp_up=true`, `configured=true`, but `up=false`, `health_up=false` for the shard gateway. Relay itself is healthy and the latest completed handoff reports the quiet-box recall bench PASS at main 4105142: retrieve p95 3.86s, federated p95 5.69s, accuracy 1.0 on both lanes, after duplicate daemons were culled. Treat this as a fresh regression or reachability fault after the successful benchmark, not evidence that the benchmark was wrong.\n\nASK:\n1. Probe shard gateway health and blade reachability from the connector path.\n2. Verify whether this is process death, routing/tunnel failure, health endpoint failure, or partial gateway exposure.\n3. Preserve the proven quiet-box baseline while restoring connector recall.\n4. Once restored, run a small recall canary and confirm shards_status reports healthy.\n5. Capture the root cause and remediation as a durable shard.\n\nDONE WHEN: connector `shards_status` is healthy, one semantic recall succeeds, and the regression plus fix are sharded with provenance.",
+  "acked_by": "relay-daemon@blade1tb",
+  "acked_utc": "2026-08-31T06:30:58.577614+00:00",
+  "ack_note": "daemon dispatch verified: fleet-answer (question-shaped leg): Shard recall path restored by forcing connector utilization of the validated fallback path in the Local Vault."
+}

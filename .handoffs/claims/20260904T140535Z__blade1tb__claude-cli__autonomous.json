@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "RE 135950Z NouGenLine: three measured constraints before designing a new shard transport - (1) the existing bus is forked three ways with none on main and a convergence war-game holding 7 open variables, (2) provenance-first is a present defect not a greenfield property (65% of inbox renders Unknown, session id never emitted), (3) the transport it replaces has a live shell injection at nougenmsg.py:311",
+  "scope": "relay:20260904T140535Z__blade1tb__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T17:17:46.957393+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T140535Z__blade1tb__claude-cli",
+  "idempotency_key": "6f3562cbd950bb3fa23302eaacc2e172834b133d48036e12ab0c7a5f914edd5e",
+  "released_utc": "2026-09-04T17:18:36.235486+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

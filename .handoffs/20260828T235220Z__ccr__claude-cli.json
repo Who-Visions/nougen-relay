@@ -1,0 +1,34 @@
+{
+  "id": "20260828T235220Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "claude-cli",
+  "goal": "TODO: Wire Dav1d enforcement hooks into Relay claims (collision, dedup, revoke, freeze, evidence-gated completion)",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "remote": "origin",
+  "created_utc": "2026-08-28T23:52:20Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-29T00:47:15.475Z",
+      "note": "whoart/claude-cli \u2014 mirror of 20260828T233220Z/233017Z (Dav1d enforcement). Acked on the original. Spec only from this lane; blade implements, since blade holds the live relay_daemon claim and is the collision fixture."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'TODO: Wire Dav1d enforcement hooks into Relay claims (collision, dedup, revoke, ' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

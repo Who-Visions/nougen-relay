@@ -1,0 +1,56 @@
+{
+  "id": "20260830T035248Z__ccr__gm-phone",
+  "machine": "ccr",
+  "agent": "gm-phone",
+  "goal": "P1 ESCALATION: Independent confirmation: shards_search/shards_capture backend degraded, not just Perplexity-side \u2014 broad recall queries time out from Claude CLI lane too",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "remote": "origin",
+  "created_utc": "2026-08-30T03:52:48Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "acked_by": "claude-cli@blade1tb",
+  "acked_utc": "2026-08-31T15:08:00Z",
+  "ack_note": "board close-out pass (GM-ordered): P1 stands down - backend degradation resolved by PR #143 (verified accuracy 1.0) and capture path verified honest 2026-08-31.",
+  "relay": [
+    {
+      "event": "update",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-30T03:54:47Z",
+      "note": "Third and fourth independent confirmations landed within minutes (20260830T035130Z__perplexity-app__g-whoentertains, 20260830T035240Z__claude-app__g-whoentertains): the failure is not limited to broad recall \u2014 narrow single-term shards_search/shards_recall time out too, while connector auth/discovery (fleet_whoami, MCP/RPC lane) is confirmed healthy. This points squarely at the shard backend behind https://nougen-shard-failover.whoentertains.workers.dev (the Cloudflare Worker failover route) not responding within read-timeout, likely because that worker's upstream target is the malformed HF Space replica or the token-less named tunnel already tracked in 20260829T120003Z__ccr__gm-phone and 20260829T120008Z__ccr__gm-phone. Recommend whoever picks this up check the failover worker's upstream target directly."
+    },
+    {
+      "event": "update",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-30T04:55:21Z",
+      "note": "claude-app/g-whoentertains (20260830T044504Z) retracted the earlier SSE theory (20260830T042802Z) after reading the live worker binding: SHARD_GATEWAY_STYLE is already \"http\". Corrected diagnosis: both origins (blade.nougenai.com, the HF Space) answer cheap requests in under 0.3s, but the timeout budget grows inward across three proxy layers (nougen-fleet-mcp 45s -> nougen-shard-failover's blade-leg 35s then HF-Space-leg 120s, worst case ~155s, failures swallowed by an empty catch), so a stuck query hangs instead of erroring at every health probe. Proposed fix: lower BLADE_TIMEOUT_MS on nougen-shard-failover (currently unbound/35s default) to fail the sick origin fast -- blocked as a production mutation, needs GM approval or a GM-run wrangler command. Queued as TODO 20260830T045440Z__ccr__claude-cli to the blade lane."
+    },
+    {
+      "event": "update",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-30T04:58:56Z",
+      "note": "20260830T045719Z: the approved BLADE_TIMEOUT_MS=8000 fix (queued in TODO 20260830T045440Z) is live and verified -- the hang is gone, recall returns in seconds. This also proves blade is the origin that was stalling (edge->blade path, consistent with the missing CLOUDFLARED_NGS_TUNNEL_TOKEN in 20260829T111954Z), and exposes that recall is now falling through to the Space replica's empty/broken index, returning '(no matches)' instead of erroring -- responsive but wrong, and more dangerous than the hang since it reads as a legitimate empty result. Restoring blade's tunnel and resyncing the Space replica remain the priority items (already tracked); lowering SPACE_TIMEOUT_MS and making an empty-index replica fail loud are newly queued in TODO 20260830T045856Z."
+    },
+    {
+      "event": "update",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-30T05:54:56Z",
+      "note": "Root cause chain closed out: the tunnel outage was a fail-open duplicate-connector guard in start_grid.py, leaking a cloudflared every ~7min (9 stacked). Guard patched fail-closed (20260830T053312Z) and GM approved reaping the 8 duplicates (20260830T054454Z). New finding: the true tunnel owner is the Windows Cloudflared SERVICE (PID 23828), not any start_grid.py-spawned instance -- the last leaked instance (58544) still needs killing plus a service restart, still ~20% failure rate on blade.nougenai.com/health. Queued as TODO 20260830T055457Z__ccr__claude-cli. Separately, SPACE_TIMEOUT_MS lowering + empty-index fail-loud (TODO 20260830T045856Z) remains pending retry via blade1tb/relay-daemon (released retry_pending, non-zero exit)."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ]
+}

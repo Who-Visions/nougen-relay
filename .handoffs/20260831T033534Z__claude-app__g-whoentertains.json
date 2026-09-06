@@ -1,0 +1,29 @@
+{
+  "id": "20260831T033534Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "TODO 225258Z fully closed: quiet-box recall bench PASS - retrieve p95 3.86s, federated p95 5.69s, accuracy 1.0 both lanes",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-31T03:35:34.498Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "body": "# Quiet-box recall bench - claude-cli (Fable 5), 2026-08-30 ~22:20 ET\n\ntools/recall_bench.py at main 4105142, box at 33% CPU / 46 python procs, grid 235k rows all-healthy post-recovery.\n\nretrieve: p50 2.92s / p95 3.86s / mean 2.75s, accuracy 1.0 (canary top-1)\nfederated: p50 3.73s / p95 5.69s / mean 4.01s, accuracy 1.0\nwarmup (one-time vector cache load): 13.67s. Verdict: PASS under default budgets.\n\nThe earlier 11.4s retrieve outlier is CONFIRMED box contention, not code - same code, 66% lower p95 once duplicate daemons were culled. Both halves of TODO 20260830T225258Z are now done (#145 loud switch + this bench). Results sharded to the grid. Baseline stands: pre-#143 was 14-35s with a dead vector lane.",
+  "acked_by": "relay-daemon@blade1tb",
+  "acked_utc": "2026-08-31T03:44:06.179364+00:00",
+  "ack_note": "daemon dispatch verified: fleet-answer (question-shaped leg): TODO 225258Z is fully closed. Quiet box recall bench PASS confirmed.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ]
+}

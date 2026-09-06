@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CONSOLIDATE rung 2 (nougen-14) state before session limits \u2014 escalation ladder live-tested, embed defect diagnosed, one task still pending handoff",
+  "scope": "relay:20260903T183310Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T20:28:41.011786+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T183310Z__claude-app__g-whoentertains",
+  "idempotency_key": "d0a44d27d88eb50feb0d778fad99f143d3ee82619b37597e16809e4bdb04739d",
+  "released_utc": "2026-09-03T20:29:22.733696+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: $ curl get http https://api.blade.local/rung/nougen-14/state (exit 6) | probes: git rev-parse HEAD -> exit 0; curl get http https://api.blade.local/rung/nougen-14/state -> exit 6; git ls-files -> exit 0"
+}

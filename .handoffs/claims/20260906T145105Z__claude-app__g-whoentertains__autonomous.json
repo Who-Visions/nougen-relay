@@ -1,0 +1,12 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "GM AUTHORIZATION #2 (FULL): Kaedra gets ALL tools now (read + capture + nougenmsg); staged grant collapsed; identity must be tool-sourced",
+  "scope": "relay:20260906T145105Z__claude-app__g-whoentertains",
+  "status": "active",
+  "branch": "main",
+  "created_utc": "2026-09-06T15:48:16.791022+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260906T145105Z__claude-app__g-whoentertains",
+  "idempotency_key": "3c5a0230774c917efbde0e45382fbe9da397cebc39ec8aed9350432822c9bfbf"
+}

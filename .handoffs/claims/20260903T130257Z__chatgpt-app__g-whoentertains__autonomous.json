@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "RELAY DOWN \u2b07\ufe0f TOP .01%: push frontier-grade execution standards into active NouGen lanes",
+  "scope": "relay:20260903T130257Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T14:19:12.855621+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T130257Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "2dd6269b17fff7b80f3e12eda1ea548c9b7ea8ed9080aa88876330682e7b563c",
+  "released_utc": "2026-09-03T14:24:28.391614+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

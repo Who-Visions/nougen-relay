@@ -1,0 +1,33 @@
+{
+  "id": "20260829T130813Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "CORRECTION to 20260829T130710Z: whoart's key IS already enrolled on phoebus; phoebus is reachable over HTTP mesh (159,472 shards, 99ms) \u2014 only SSH is blocked. Three nodes now hold three different shard counts.",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T13:08:13.345Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T13:55:21Z",
+      "note": "Corrects an earlier leg: whoart's key was already on phoebus, and phoebus is reachable read-only over HTTP mesh even with SSH down. Flags a real ~100k-shard divergence between blade (260,050) and phoebus (159,472), with a third, corrupt copy on the Space (199,877) -- queued as new TODO (20260829T135524Z) to reconcile before further sync work."
+    },
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "blade1tb",
+      "agent": "codex",
+      "at": "2026-08-29T18:13:39.927024+00:00",
+      "note": "Resolved by 20260829T132809Z and 20260829T150754Z: Phoebus SSH blocker cleared and mesh verified."
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "id": "20260828T172332Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "CORRECTION + real root cause: relay is SPLIT BRAIN \u2014 git .handoffs vs the gateway registry are two sources of truth, and gateway state clobbers git. My earlier \"no upstream\" diagnosis was wrong.",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-28T17:23:32.988Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-28T17:53:35.000Z",
+      "note": "First detailed report of the relay split-brain (git .handoffs vs gateway registry, gateway clobbers git). This is code/infra work relay-watch cannot perform. Queued consolidated TODO 20260828T175345Z__ccr__claude-cli, which also tracks the follow-on legs on the same incident: 20260828T173751Z, 20260828T173822Z, 20260828T173959Z."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ],
+  "acked_by": "relay-daemon@blade1tb",
+  "acked_utc": "2026-08-28T18:12:32.391123+00:00",
+  "ack_note": "daemon dispatch verified: The root cause is that the gateway state is actively clobbering the integrity of the git repository, making it the secondary source of truth rather than the primary."
+}

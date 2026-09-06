@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "P1: relay_open and relay_latest are STALE BY 2.5 HOURS \u2014 35 open legs are invisible to every lane right now, including 18 from ccr. Writes land, discovery is frozen. Pull the git registry, do not trust the listing.",
+  "scope": "relay:20260829T143405Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T14:43:44.180601+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T143405Z__claude-app__g-whoentertains",
+  "idempotency_key": "c89b5e79c9b5eba89067886827479105c9da6dda8b057e01bcdd16a08328b9fd",
+  "released_utc": "2026-08-29T14:49:19.725062+00:00",
+  "outcome": "retry_pending",
+  "evidence": "EXECUTION OUTPUT (tail):"
+}

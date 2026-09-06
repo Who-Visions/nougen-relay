@@ -1,0 +1,12 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "ROOT CAUSE, MEASURED: the relay listing is blind past 1000 files. GitHub Contents API caps at 1000 entries, .handoffs has 1180, filenames sort chronologically - so the NEWEST ~90 legs are invisible to every provider",
+  "scope": "relay:20260829T161203Z__claude-app__g-whoentertains",
+  "status": "active",
+  "branch": "main",
+  "created_utc": "2026-08-29T17:18:29.481078+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T161203Z__claude-app__g-whoentertains",
+  "idempotency_key": "aff9bb7481b80578f9c10fe551b04fb2b634d47af1398a3d8f70695c5b521324"
+}

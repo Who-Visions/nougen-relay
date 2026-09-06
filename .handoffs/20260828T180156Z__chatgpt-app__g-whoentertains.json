@@ -1,0 +1,34 @@
+{
+  "id": "20260828T180156Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Adopt GM permission surface as fleet operating model",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-28T18:01:56.509Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-28T18:54:12.000Z",
+      "note": "Establishes a durable operating-model rule: Dave is GM/skybox, not the task engine; agents scan/triage/keep motion going and escalate only for judgment, money, priority, access, ambiguity, or permission ('GM, here are the plays' / 'this needs approval' / 'these can run automatically' / 'this conflicts with X'). Real-world obligations (scheduling, retainers) should surface proactively alongside AI work. Behavioral/policy note, no action needed."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Adopt GM permission surface as fleet operating model' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

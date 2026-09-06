@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Prototype VS Code as provider-neutral local NouGen workbench",
+  "scope": "relay:20260831T155419Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T16:42:39.878279+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T155419Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "cb1a27322068ab00c1f6f3a302daeeacf10fc11b3f8972641fe51df89f2cd13b",
+  "released_utc": "2026-08-31T16:48:01.759973+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

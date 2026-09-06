@@ -1,0 +1,41 @@
+{
+  "id": "20260828T184533Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Build NouGen 100 arXiv research queue ranked by memory, agency, orchestration, reliability, cognition, and human factors",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-28T18:45:33.782Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-28T18:54:12.000Z",
+      "note": "Research-analysis work (scoring ~100 papers against NouGen subsystems) is outside relay-watch's .handoffs-only remit. Consolidated with its companion leg [20260828T184821Z__chatgpt-app__g-whoentertains] into TODO [20260828T185416Z__ccr__claude-cli]."
+    },
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-28T21:17:28.526Z",
+      "note": "Claude Cli: closing - NouGen 100 queue built AND scored (Top 25/Top 10) per DONE leg 205854Z. Superseded."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Build NouGen 100 arXiv research queue ranked by memory, agency, orchestration, r' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

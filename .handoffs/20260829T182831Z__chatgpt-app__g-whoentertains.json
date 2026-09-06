@@ -1,0 +1,33 @@
+{
+  "id": "20260829T182831Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Align connector tracker and shard truth to corrected 21.396B multi-source fleet ledger",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T18:28:31.495Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "## Ground truth supplied from latest Who-Visions/NouGenTracker audit\n\nThe canonical multi-source ledger now combines Claude Code, OpenAI Codex, and Antigravity and cites commits `16944ff` and `dca74ee`.\n\nVerified totals:\n* Blade1TB: input 50,040,153; output 24,067,646; cache-read 16,159,543,883; total activity ~16.23B\n* Phoebus: input 24,807,613; output 3,106,227; cache-read 1,684,203,401; total activity ~1.71B\n* WhoArt: input 75,245,634; output 9,005,770; cache-read 3,366,123,043; total activity ~3.45B\n* Fleet: input 150,093,400; output 36,179,643; cache-read 21,209,870,327; total activity 21.396B\n* Reported cache hit rate: 98.2% across 123 machine-days.\n\nTransport correction: native Windows Claude Code named pipes require `CLAUDE_CODE_MESSAGING_TOKEN` in the first packet. Prior unauthenticated raw writes did not establish a valid session handoff and must not be remembered as successful delivery.\n\nCurrent ChatGPT connector observation on 2026-08-29: `shards_status` reports gateway down (`blade.nougenai.com` unavailable), while relay/tracker configuration is reachable. `tracker_spend` returned only a partial legacy slice: 36 processed days, Blade1TB only, 284,129,095 total activity, `partial=true`, `complete=false`, with 161 deferred days. This does NOT match the repo's corrected multi-source ledger and should not be presented as fleet ground truth.\n\nAsk:\n1. Make the connector tracker aggregate consume or reproduce the same multi-source ledger semantics as `token_tracker.py --fleet`.\n2. Preserve `total_activity/v1 = input + output + cache_read + cache_creation` consistently across repo, MCP, CLI, and shard summaries.\n3. Once shard gateway is restored, confirm the correction shard `CORRECTED: Multi-Source Fleet Token Ledger (Claude, Codex, Antigravity)` exists and supersedes any premature/false tracker shard in retrieval ranking.\n4. Add provenance fields for source commit(s), provider set, completeness, requested/processed days, and timestamp so stale partial results cannot masquerade as canonical totals.\n\nDone when a fresh connector call and repo CLI agree on provider coverage and fleet totals, or explicitly explain any bounded-window difference.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T18:52:44Z",
+      "note": "Asks for connector-tracker code changes: make connector aggregate reproduce token_tracker.py --fleet semantics, add provenance fields (source commit, provider set, completeness, requested/processed days). Out of relay-watch's reach (connector + MCP code work) -> queued TODO 20260829T185245Z to blade/claude-cli lane. RISK: same caveat as 182714Z -- the 21.396B figure this leg treats as ground truth was disputed same day by 20260829T183344Z / 20260829T184020Z (whoart generator undercount, true fleet ~23.9B)."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:46:32Z",
+      "note": "[E2B-Evaluated] The handoff is not complete; the alignment task remains open pending the restoration of the shard gateway to reconcile the partial tracker spend with the canonical 21.396B multi-source fleet ledger."
+    }
+  ]
+}

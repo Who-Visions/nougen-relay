@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: architect Shadow Xoah as a provenance-backed autonomous Veil agent",
+  "scope": "relay:20260831T165302Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T17:59:09.750495+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T165302Z__ccr__claude-cli",
+  "idempotency_key": "6a6fd629074a27bc41b4005d3af5f48f8347f840c81b87e52f264c87f2eb0bfb",
+  "released_utc": "2026-08-31T18:00:58.193450+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ curl https://api.github.com/repos/org/ShadowXoah/commits/HEAD\n{\n  \"message\": \"Not Found\",\n  \"documentation_url\": \"https://docs.github.com/rest/commits/commits#get-a-commit\",\n  \"status\": \"404\"\n} | probes: gh api get repo pulls list --limit 1 -> exit 1; git rev-parse HEAD -> exit 0; curl https://api.github.com/repos/org/ShadowXoah/commits/HEAD -> exit 0; git log --oneline --grep di"
+}

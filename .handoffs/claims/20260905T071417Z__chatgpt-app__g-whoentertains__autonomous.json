@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "DOWNSTREAM: fix Phoebus 401 node token, review/load PR #228 guard, finish ChatGPT NouGenMsg exposure",
+  "scope": "relay:20260905T071417Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-05T13:08:29.949065+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260905T071417Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "bf0dfbdadf7b86a362281b8b29bb95246406c35fe5106c10b9f1f1b095170ef5",
+  "released_utc": "2026-09-05T13:13:58.920085+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

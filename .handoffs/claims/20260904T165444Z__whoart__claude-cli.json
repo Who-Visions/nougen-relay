@@ -1,0 +1,12 @@
+{
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "Harmonize FLEET_KEY, Phoebus token resolution, and idle wake pipeline",
+  "scope": "fleet-credentials-and-wake",
+  "status": "released",
+  "branch": "main",
+  "sha": "fe4225ac",
+  "created_utc": "2026-09-04T16:54:44.300975+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-09-04T16:56:29.605086+00:00"
+}

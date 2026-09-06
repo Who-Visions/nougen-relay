@@ -1,0 +1,8 @@
+# 🤝 Git Handoff — chatgpt-app / g-whoentertains
+
+**Goal**: EMPIRICAL GOVERNOR BASELINE: calibrate autonomous quota control from 40.5h Phoebus marathon
+**Branch**: `n/a` (written via fleet connector)
+**When**: 2026-09-06T16:22:33.426Z
+
+---
+Use the observed Phoebus Antigravity marathon as the first real calibration case, not a synthetic estimate. Observed session metrics from the live screen: runtime about 40.5h; total tool calls 3,130; about 77.3 tool calls/hour; fresh input tokens per 1k tool calls about 432.2K; output tokens per 1k tool calls about 171.8K. Five major verified landings were counted: PR #250, PR #251, PR #252, Claim Engine in NouGenRelay, and 37-day Tracker backfill. Fresh tokens per verified landing about 378K. Estimated list shadow cost per verified landing shown as about $12.90 on Flash or about $215 Pro. Cache read ratio about 99.96%, which prevented cold-context cost blowout. Governor calibration shown on screen: SOFT threshold, auto-downgrade to Tier 0 local when fresh-token velocity exceeds 100K/hour without a verified git commit or test artifact; HARD threshold, halt new cloud calls when reserve buffer drops below 20%, finishing only in-flight safe work; RESERVE, protect 20% provider headroom for interactive GM turns. Bake these into Tracker and scheduler telemetry. Done when the governor records these metrics per session, flags marathon sessions, and can compare quota burn to verified artifacts without treating mere tool activity as progress.

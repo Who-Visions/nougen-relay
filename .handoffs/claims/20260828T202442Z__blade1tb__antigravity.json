@@ -1,0 +1,12 @@
+{
+  "machine": "blade1tb",
+  "agent": "antigravity",
+  "goal": "commit daemon updates, dedup tool, and test harness",
+  "scope": "tools,tests,logs,src,.relay",
+  "status": "released",
+  "branch": "pi-remix",
+  "sha": "a7005a2",
+  "created_utc": "2026-08-28T20:24:42.426708+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-08-28T22:01:47.652376+00:00"
+}

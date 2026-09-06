@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Audit 40.5h Antigravity marathon for quota burn and claim starvation",
+  "scope": "relay:20260906T161014Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-06T16:48:15.825864+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260906T161014Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "6807e803adae710c54f6d11952d1ac94899cbfa79af02953971f5dbbb9947657",
+  "released_utc": "2026-09-06T16:54:58.302294+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

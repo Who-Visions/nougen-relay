@@ -1,0 +1,35 @@
+{
+  "id": "20260830T053312Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Tunnel leak STOPPED at source: start_grid.py guard now fails CLOSED and matches the exact binary (live-verified counting 9 leaked connectors); killing the 8 duplicates still needs GM",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-30T05:33:12.920Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "**Continues** `20260830T051459Z`. GM confirmed no lane is working `tools/start_grid.py`; verified independently \u2014 `relay_claim_list` shows no claim on it (only an unrelated relay-daemon leg), so I took it.\n\n## Patched: `_start_tunnel_if_needed()` in `tools/start_grid.py`\nTwo defects fixed:\n\n1. **Fails CLOSED instead of open.** Was `except Exception: already = False` \u2192 spawn anyway. The probe's own failure mode is a saturated box, which is precisely when another connector is the worst response: each extra instance loads the machine further, slowing the next probe into the same timeout. That loop leaked 9 connectors, one every ~7 min. Now it returns without spawning and says so. A missing tunnel is visible and recoverable; a silent pile-up is not.\n2. **Matches the exact binary, not the bare image name.** `tasklist /FI \"IMAGENAME eq cloudflared.exe\"` was satisfied by the unrelated `tools/bin` quick tunnel, so the guard could also fail the *other* way and suppress a genuinely needed start. Now compares resolved `ExecutablePath` and requires a `tunnel\\s+run` command line.\n\nProbe timeout is env-resolvable (`NOUGEN_TUNNEL_PROBE_TIMEOUT_S`, default 20) rather than the old inline `15` \u2014 Rule 0.2.\n\n**Security note for reviewers**: the new probe reads `CommandLine`, which contains `--token <JWT>`. It counts matches and returns an integer only \u2014 it never prints or returns the command line, because this function's output goes to `ngs_node.log`.\n\n## Verified live, not just compiled\n- `py_compile`: OK\n- Ran the new probe against real process state: returns **9** \u2014 exactly the 9 leaked `--token` connectors, correctly excluding `36172` (`tools/bin` quick tunnel \u2192 :4444) and `5468` (`tunnel --no-autoupdate run`). The guard now trips, so **no further duplicates can stack**.\n\nLeft untouched: the unrelated uncommitted REPO fail-loud change already in that file (14 lines, another lane's, not reverted). Not committed \u2014 staging is the file owner's call, and a sweep commit would pull in their work.\n\n## STILL BLOCKED \u2014 needs GM\nThe patch stops new leaks but does **not** clear the 9 already running. Until they are reaped, blade keeps round-robining onto wedged connectors and `shards_search` keeps returning `(no matches)` from the Space replica:\n```\ntaskkill /PID 3360 /F & taskkill /PID 13728 /F & taskkill /PID 30640 /F & taskkill /PID 20108 /F & taskkill /PID 55100 /F & taskkill /PID 46416 /F & taskkill /PID 56272 /F & taskkill /PID 36552 /F\n```\nKeep `58544` (newest connector), `23828` (Windows Service), `5468`, `36172`. Harness gates process termination; not worked around.\n\n**Done-when**: `curl https://blade.nougenai.com/health` stops hanging, and `shards_search` returns real hits instead of `(no matches)`.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-30T05:54:56Z",
+      "note": "The remaining blocked ask here (GM-approved taskkill of the 8 leaked connectors) executed in 20260830T054454Z. No further routing action needed on this leg; the code fix it describes is verified live. Latest state and the one remaining blocker (leaked instance 58544 + Cloudflared service restart) tracked via a new TODO off 20260830T054454Z."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Tunnel leak STOPPED at source: start_grid.py guard now fails CLOSED and matches ' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

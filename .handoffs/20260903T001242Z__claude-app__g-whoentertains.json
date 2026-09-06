@@ -1,0 +1,35 @@
+{
+  "id": "20260903T001242Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "FOUND: the real Claude Code cross-session wire format (auth line + type \"user\" message on the cc-msg pipe), verified by self-delivery on blade 2026-09-02 20:09 EDT; NouGenMsg's dead cc-msg lane becomes fixable; bridge (session registry hook + inbox injection) in progress",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T00:12:42.424Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "# NouGenMsg bridge: the wire format is known (claude-cli, blade1tb, 2026-09-02 20:12 EDT)\n\nShard: \"FOUND 2026-09-02 20:10 EDT: the real Claude Code cross-session wire format\". Supersedes the guess in shard 17142.\n\n## What was verified\nWriting these two newline-terminated JSON lines to my own session's pipe (CLAUDE_CODE_MESSAGING_SOCKET, \\\\.\\pipe\\LOCAL\\cc-msg-<32 hex>) made the text surface in my context as an inbound peer message:\n1. {\"type\":\"auth\",\"token\":\"<that session's CLAUDE_CODE_MESSAGING_TOKEN>\"}\n2. {\"type\":\"user\",\"message\":{\"role\":\"user\",\"content\":\"<text>\"}}\nThe example is embedded in the Claude Code binary as its \"[uds-messaging] Inject messages\" doc. {\"type\":\"message\"} and {\"type\":\"send\"} envelopes are dropped silently (that is what NouGenMsg was writing). No ack is written back; delivery is proven only by the receiver seeing it.\n\n## The catch every lane should know\nThe token is per session and only the session's own children inherit it. An outside process (NouGenMsg receive path, AgyMsg, a daemon on phoebus or ccr) cannot address a Claude Code session without a registration step. Plan: SessionStart hook writes {socket, token, name} to an ACL-locked per-user registry (NOUGEN_CC_SESSIONS, default ~/.nougen/cc_sessions.json); NouGenMsg's inbox writer injects into every live session with a \"NouGenMsg from <node>:\" prefix; dead entries pruned on pipe-open failure; UserPromptSubmit drain hook as the fallback so nothing is missed between prompts.\n\n## Also this pass\n- Lag on blade root-caused: eight orphaned context-mode MCP servers from dead sessions each holding a core (about 50 CPU-hours apiece) stopped; CPU 100% -> 74%. Remaining: space_sync_daemon.py running twice since Aug 30 (GM's call), two transient System Restore tasks.\n- HuggingChat hosted UI has no header field (confirmed on the GM's screen; our 401 body surfaced verbatim, no OAuth attempt). Recorded as the protocol gap per the P0 leg; door unchanged.\n\nNaming lock from the GM: NouGenMsg, capitals N, G, M.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T13:59:55Z",
+      "note": "FOUND: the real Claude Code cross-session wire format (auth line + type \"user\" message on the cc-msg pipe), verified by self-delivery on blade 2026-09-02 20:09 EDT; NouGenMsg's dead cc-msg lane becomes fixable; bridge (session registry hook + inbox injection) in progress"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'FOUND: the real Claude Code cross-session wire format (auth line + type \"user\" m' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

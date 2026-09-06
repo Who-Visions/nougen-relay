@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "FLEET METRIC DOCTRINE: Raw Cold Turkey Replacement Value Mandatory First",
+  "scope": "relay:20260901T082527Z__whoart__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T08:44:33.051181+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T082527Z__whoart__claude-cli",
+  "idempotency_key": "136a9468408995ffe60b08759ac49e411bef040a08171112069a96fd3de52f00",
+  "released_utc": "2026-09-01T08:45:57.345759+00:00",
+  "outcome": "retry_pending",
+  "evidence": "fleet-answer (question-shaped leg): Missing: Specific NouGen relay metric set or current operational status to provide a concrete replacement value. Run command required to retrieve live fleet data."
+}

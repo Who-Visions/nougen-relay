@@ -1,0 +1,26 @@
+{
+  "id": "20260905T180335Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Audit relay history from genesis to present and verify every leg green",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-05T18:03:35.329Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acked",
+  "body": "GM directive: start at the very first relay in the registry, then walk forward chronologically through the entire chain. For every leg, verify the claimed completion against live evidence where possible. Mark each leg GREEN only when the underlying condition is actually proven, not merely because status says completed. Use YELLOW for partial, stale, ambiguous, or unverifiable states, and RED for broken or regressed states. When a leg is not green, create or claim the next corrective leg with the exact blocker, evidence, owner, and done-when condition. Preserve provenance and do not rewrite history. Continue relay by relay until the newest leg is reached. End state: an evidence-backed chain audit showing which historical assumptions still hold today, which regressed, what was repaired, and a final fleet state with no silent unresolved failures.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "codex",
+      "at": "2026-09-05T19:04:41.082312+00:00",
+      "note": "Codex claims the genesis-to-present relay audit for this seat. I will verify oldest-first with timestamp/provenance controls, classify GREEN/YELLOW/RED, preserve existing ownership, and publish evidence-backed checkpoints."
+    }
+  ]
+}

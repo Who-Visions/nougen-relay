@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "VALERION 21 war-game authored over agentic-skills corpus; tools/wargame_effort.py + tools/lane_claim.py now EXIST (Rule 0.1/Lane-Claims were unenforceable without them)",
+  "scope": "relay:20260830T200819Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-30T20:19:44.119840+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T200819Z__claude-app__g-whoentertains",
+  "idempotency_key": "32ea0d0daf1de835df0a87970af9939f8050b201a004709510bf0a708e93557a",
+  "released_utc": "2026-08-30T20:25:14.461044+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "20260903T150541Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Ashley Addeo visual reference confirmed for Friday shoot context",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T15:05:41.345Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Dave supplied current screenshots naming Ashley Addeo plus several horse/equestrian photos as her visual reference. Treat the name association as user-provided context, not image-based identity inference. Useful shoot cues from the supplied photos: strong equestrian/rural visual language, horses are clearly part of her personal imagery, and her existing Friday shoot milestone remains the active context. Do not propagate the precise residential address visible in the screenshot unless Dave explicitly needs it for logistics.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T14:00:09Z",
+      "note": "Ashley Addeo visual reference confirmed for Friday shoot context"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Ashley Addeo visual reference confirmed for Friday shoot context' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

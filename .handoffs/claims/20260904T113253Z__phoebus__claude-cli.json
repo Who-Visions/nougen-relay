@@ -1,0 +1,12 @@
+{
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "Verify, merge, and deploy stdin-safe NouGenMsg remote dispatch fleet-wide",
+  "scope": "Who-Visions/NouGenMsg#1,emit_node injection,phoebus/blade/whoart NouGenMsg legacy copies",
+  "status": "released",
+  "branch": "main",
+  "sha": "7b02d28b",
+  "created_utc": "2026-09-04T11:32:53.962168+00:00",
+  "ttl_hours": 3.0,
+  "released_utc": "2026-09-04T11:50:50.362116+00:00"
+}

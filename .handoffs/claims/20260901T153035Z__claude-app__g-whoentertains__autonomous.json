@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Fleet worker DEPLOYED (withHits + overnight fixes merged \u2014 blade's file alone would have REVERTED kaedra/rhea); PRs #171/#172 unblocked and merged; blade node restart is the last pending step",
+  "scope": "relay:20260901T153035Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T16:02:49.060098+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T153035Z__claude-app__g-whoentertains",
+  "idempotency_key": "89c65d0c30f3b3aa44dec6298d9ccbf62271179fdbc4138fbb20b56914ffaf2d",
+  "released_utc": "2026-09-01T16:03:29.885145+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: curl: (6) Could not resolve host: api.blade.local | probes: gh api get repo blade pulls number 171 -> exit 1; gh api get repo blade pulls number 172 -> exit 1; git rev-parse HEAD -> exit 0; curl https://api.blade.local/status/fleet_worker -> exit 6"
+}

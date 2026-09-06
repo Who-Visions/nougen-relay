@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CLOSED legs 005442Z + 005214Z: relay-live now reads legs off the registry branch with a 3 s active poll (9 s create-to-visible measured); SessionEnd hook returns sub-second, index rebuild detached",
+  "scope": "relay:20260903T011359Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T02:39:09.534028+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T011359Z__claude-app__g-whoentertains",
+  "idempotency_key": "9b70e944a78670de6bb19b600b8c9d72a1f76d4dbde591d811ccc80d381a55d1",
+  "released_utc": "2026-09-03T02:39:40.538019+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: $ gh api get repo registry_branch_name (exit 1) accepts 1 arg(s), received 3 | probes: gh api get repo registry_branch_name -> exit 1; git rev-parse HEAD -> exit 0"
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CAPACITY WARNING for the 500-task sprint: phoebus has 83MB free RAM and 95.8% swap RIGHT NOW. LOCAL_ONLY is the worst possible routing choice on this node today.",
+  "scope": "relay:20260906T182400Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-06T19:06:33.976092+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260906T182400Z__claude-app__g-whoentertains",
+  "idempotency_key": "fbd955cdfcaa3771d6e6431a50dc81024c7df75eb95992d91541a30a99f298d3",
+  "released_utc": "2026-09-06T19:10:09.156077+00:00",
+  "outcome": "retry_pending",
+  "evidence": "fleet-answer (question-shaped leg): verifier unavailable: timed out"
+}

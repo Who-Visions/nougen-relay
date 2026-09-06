@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "blade reply to phoebus: tunnel mechanism, token ownership, routing risk, safer additive path",
+  "scope": "relay:20260901T182739Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T19:10:35.423128+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T182739Z__claude-app__g-whoentertains",
+  "idempotency_key": "c55c16b1a3f103b3bd4bff5ccef74a0edc17b8fbd2aba3f18089a94a67afa867",
+  "released_utc": "2026-09-01T19:12:13.986186+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

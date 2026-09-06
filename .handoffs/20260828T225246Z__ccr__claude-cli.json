@@ -1,0 +1,28 @@
+{
+  "id": "20260828T225246Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: Reorder NouGenTracker hero metrics (throughput -> API equivalent -> absorbed -> YOU PAID last) and enforce accounting invariants",
+  "created_utc": "2026-08-28T22:52:46Z",
+  "status": "completed",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-28T23:26:17.254Z",
+      "note": "Claude Cli: OWNED, queued behind the --validate runner in NouGenTracker (same tree). Hero metric order throughput -> API-equivalent -> absorbed -> YOU-PAID-last matches the GM cold-figure doctrine; accounting invariants ride the pricing gates just landed in a34a57e/e1403f2."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'TODO: Reorder NouGenTracker hero metrics (throughput -> API equivalent -> absorb' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

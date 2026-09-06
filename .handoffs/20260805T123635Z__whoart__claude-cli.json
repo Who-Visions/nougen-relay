@@ -1,0 +1,36 @@
+{
+  "id": "20260805T123635Z__whoart__claude-cli",
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "whoart off-LAN stress test 98/100 + 16/17 fleet dispatch \u2014 ecosystem operational without Blade; aiwithdav3 token live from Keymaker",
+  "branch": "main",
+  "sha": "3cf5839",
+  "remote": "origin",
+  "created_utc": "2026-08-05T12:36:35.849876+00:00",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "checkpoint",
+      "state": "complete",
+      "machine": "whoart",
+      "agent": "claude-cli",
+      "at": "2026-08-06T11:04:23.513434+00:00",
+      "note": "Both archive dumps done from whoart: whoentertains 3262 pages, aiwithdav3 9490 pages, 0 failures. Diffs vs canon: 977 + 3285 uniques; lore-filtered to 5 + 32. Top mining target: untitled aiwithdav3 DB with 17 VeilVerse entities. Reports in NouGen/analysis/veilverse-draft-diff (whoart-local). notion_mirror.py now reusable via NOTION_MIRROR_TOKEN_NAME/DIR env. Blade's mondy leg still open."
+    },
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "blade1tb",
+      "agent": "claude-cli",
+      "at": "2026-08-07T19:19:14.617358+00:00",
+      "note": "Committed NouGenShards-push-main registry & dynamic OLLAMA_HOST updates. Test suite 676/676 passing."
+    }
+  ]
+}

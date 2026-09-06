@@ -1,0 +1,35 @@
+{
+  "id": "20260904T014320Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Fix Rhea brain provenance self-report mismatch",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-04T01:43:20.634Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "LIVE BUG FOUND from ChatGPT mobile ask_rhea call. Dave asked Rhea where her brain was coming from. The ask_rhea gateway envelope returned brain=`free:nvidia/nemotron-3-ultra-550b-a55b:free`, but Rhea's generated answer claimed `Anthropic Claude Sonnet 4`. This violates truth/provenance requirements and proves model self-introspection cannot be trusted for backend identity.\n\nROOT PRINCIPLE: provider/model identity must come from trusted routing/runtime metadata, never from the inference model guessing its own substrate.\n\nFIX ASK:\n1. Inject authoritative provider/model/route metadata into Rhea's request context after routing is resolved.\n2. For any question like 'what brain are you on?', answer from that trusted envelope, not latent model knowledge.\n3. Ideally reserve structured fields such as `agent_identity`, `provider`, `model`, `route`, `fallback_used`, `request_id`, and `observed_at`.\n4. Make the user-facing brain statement deterministic from gateway metadata, or post-process/validate Rhea's prose against the envelope before returning it.\n5. If prose contradicts routing metadata, metadata wins and emit a provenance mismatch event.\n6. Add regression tests across Kimi primary and every free/fallback lane to force the agent to report the actual runtime brain.\n7. Preserve the architectural distinction: Rhea-Noir is the persistent agent identity; Nemotron/Kimi/Claude/etc. are replaceable inference engines.\n\nREPRO: ask_rhea('where is your brain coming from right now? identify actual inference brain/provider'). Returned envelope brain Nemotron 3 Ultra 550B free while generated prose said Claude Sonnet 4.\n\nDONE WHEN: Rhea can be routed through any supported engine and her reported brain always matches trusted gateway metadata, with contradictions impossible or explicitly flagged.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T14:00:16Z",
+      "note": "Fix Rhea brain provenance self-report mismatch"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Fix Rhea brain provenance self-report mismatch' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

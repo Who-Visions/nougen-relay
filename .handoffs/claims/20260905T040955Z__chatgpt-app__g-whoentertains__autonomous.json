@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "NOW status: relay alive, NouGenMsg shipped, shard/vault gateway still 502",
+  "scope": "relay:20260905T040955Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-05T05:45:51.957236+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260905T040955Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "f4bdcaf464c58b2d23c3efe838ef0d6ac7a1d32d654895ca70c97b20cff7f8b2",
+  "released_utc": "2026-09-05T05:46:36.231147+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ curl get http://shardvaultgateway/status\n(exit 6) curl: (6) Could not resolve host: get\ncurl: (6) Could not resolve host: shardvaultgateway | probes: curl get http://shardvaultgateway/status -> exit 6; git rev-parse HEAD -> exit 0; curl get http://shardvaultgateway/logs -> exit 6"
+}

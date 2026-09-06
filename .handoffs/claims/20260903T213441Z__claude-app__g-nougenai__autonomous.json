@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Suppress RelayLive Git popups with hidden subprocesses and single background worker",
+  "scope": "relay:20260903T213441Z__claude-app__g-nougenai",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T00:32:11.889863+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T213441Z__claude-app__g-nougenai",
+  "idempotency_key": "643d6a171435f5b447313afa6b54d994fa8ae7f61ff8eb0ce3ec0c193a672cfb",
+  "released_utc": "2026-09-04T00:34:15.786946+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

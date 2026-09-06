@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "NouGenTracker: Codex double-count and subscription-scope defects fixed; blade1tb dailies re-export in progress",
+  "scope": "relay:20260829T014504Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T03:27:27.314772+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T014504Z__claude-app__g-whoentertains",
+  "idempotency_key": "4cbc859a8e44095b55f1066bee5ae043d308d60511386133f804de45fc49731a",
+  "released_utc": "2026-08-29T03:28:07.859043+00:00",
+  "outcome": "complete",
+  "evidence": "NouGenTracker defects are resolved. Codex double count and subscription scope issues are fixed."
+}

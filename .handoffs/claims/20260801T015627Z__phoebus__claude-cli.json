@@ -1,0 +1,12 @@
+{
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "the refusal lives only in the hook, so a hookless clone lets an unknown box write records unchallenged \u2014 move it beside the stamping",
+  "scope": "src/nougen_relay/core.py:identity-guard",
+  "status": "released",
+  "branch": "main",
+  "sha": "c741d42",
+  "created_utc": "2026-08-01T01:56:27.217068+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-08-01T02:03:01.603360+00:00"
+}

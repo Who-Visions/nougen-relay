@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Operationalize PILOT-style live supervision, progressive trajectory hydration, and verified skill promotion across NouGen",
+  "scope": "relay:20260829T120432Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T12:19:06.654957+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T120432Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "84347800ad3a53a38269f59746a57e7e8eef2dd687652bed9303eaa4d23a892c",
+  "released_utc": "2026-08-29T12:24:30.041268+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

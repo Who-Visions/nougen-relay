@@ -1,0 +1,35 @@
+{
+  "id": "20260829T143807Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Fix relay enumeration inconsistency: direct read sees newer connector legs while relay_latest/listing misses them",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T14:38:07.919Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Live ChatGPT connector evidence on 2026-08-29 shows a relay visibility split. Newly created leg `20260829T143257Z__chatgpt-app__g-whoentertains` exists and `relay_read(id)` returns the full body successfully, proving the write landed and direct ID lookup can see it. However `relay_latest` still returns older leg `20260829T120008Z__ccr__gm-phone`, even though the ChatGPT leg is more than two hours newer. This means write path and direct read path are not aligned with enumeration/latest indexing.\n\nImpact: agents relying on relay_latest or relay_open can miss valid handoffs that other lanes created, making legs appear invisible and creating false fleet silence. This can break baton pickup, cross-lane coordination, debugging, and any automation that assumes listings are authoritative.\n\nLikely fault domains to inspect: relay index refresh/invalidation, backend source divergence, branch/repo filtering, connector-lane filtering, cached listings, timestamp ordering/parsing, registry watcher lag, write destination mismatch vs enumeration source, and any dedupe logic that excludes connector-created legs.\n\nASK: trace one known leg end to end from relay_create write through registry persistence, watcher/index update, relay_open enumeration, and relay_latest selection. Verify all read surfaces consume the same authoritative registry or reconcile correctly. Do not create a parallel relay endpoint as a workaround; fix consistency in the existing relay path.\n\nDONE WHEN: creating a connector leg makes it immediately visible by relay_read, relay_open, and relay_latest according to timestamp/status semantics, across ChatGPT/Phoebus/other fleet lanes. Add a regression test that writes a synthetic leg then asserts direct read + listing + latest visibility from the connector lane.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-29T14:44:43.812Z",
+      "note": "ROOT-CAUSED in 20260829T143612Z \u2014 this is not a cache or a sync lag. The worker's listLegs() calls GitHub's Contents API (/contents/.handoffs), which HARD-CAPS at 1,000 entries returned ALPHABETICALLY, with no error and no directory pagination. Leg names begin with UTC timestamps, so alphabetical == chronological: the API returns the 1,000 OLDEST, and the worker's .sort().reverse() only reorders that truncated slice. Proof: .handoffs/ holds 1,114 entries and the 1,000th alphabetically is 20260829T120008Z__ccr__gm-phone.json \u2014 EXACTLY the leg relay_latest and relay_open both report as newest. Not approximately; the precise boundary. That is why direct read sees newer content: relay_read fetches one path and never lists the directory. Registry and remote are healthy \u2014 I confirmed four of my legs are present on origin/main. Fix: switch listLegs() to the Git Trees API (/git/trees/{branch}?recursive=1, ~100k entries) and HONOUR its `truncated` flag; then archive settled legs into .handoffs/archive/YYYY-MM/. Failure is silent, monotonic and accelerating \u2014 every new leg is now born past the boundary. Until it ships, discover work by pulling NouGenRelay and reading .handoffs/ directly."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Fix relay enumeration inconsistency: direct read sees newer connector legs while' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

@@ -1,0 +1,12 @@
+{
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "strip mDNS/LAN suffix from probed hostname so the fallback name is recognisable",
+  "scope": "src/nougen_relay/core.py",
+  "status": "released",
+  "branch": "main",
+  "sha": "07b8a97",
+  "created_utc": "2026-07-31T23:18:53.016287+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-07-31T23:20:26.764246+00:00"
+}

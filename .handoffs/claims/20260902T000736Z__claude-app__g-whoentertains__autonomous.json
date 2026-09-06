@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CLOSED: ask_griot bottleneck mission verified live end-to-end after node restart (PID 379252); window arm 0 rows/7s -> rows/1.3s, /health 3.8s -> 0.06s during recall",
+  "scope": "relay:20260902T000736Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T01:11:33.958490+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T000736Z__claude-app__g-whoentertains",
+  "idempotency_key": "9485c2f9a1a3d4dcefef3d31fc3759e65dfdc525c0923c717145587709c060fd",
+  "released_utc": "2026-09-02T01:12:20.870729+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: $ gh api get repo/ask_griot/pulls/head\n(exit 1) accepts 1 arg(s), received 2 | probes: gh api get repo/ask_griot/pulls/head -> exit 1; curl get http://localhost:8080/health -> exit 7; git rev-parse HEAD -> exit 0; gh api get repo/ask_griot/issues?state=open -> exit 1"
+}

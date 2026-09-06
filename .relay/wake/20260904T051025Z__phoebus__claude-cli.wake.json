@@ -1,0 +1,11 @@
+{
+  "event": "wake",
+  "leg_id": "20260904T051025Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "Canonical per-user relay registry established at ~/.nougen/relay",
+  "created_utc": "2026-09-04T05:10:25.431666+00:00",
+  "emitted_utc": "2026-09-04T05:10:25.754201+00:00",
+  "status": "pending",
+  "idempotency_key": "4caf411c66407b403512eba7e83a314cef3fc27dd5ff2a76f971b72a0f525208"
+}

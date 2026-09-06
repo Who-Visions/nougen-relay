@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Node lane + quick tunnel UP (gateway false-to-true); grid DB5 is healthy on blade - the malformed copy is the Space replica; named highway blocked on a missing tunnel token",
+  "scope": "relay:20260829T111954Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T11:26:32.474742+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T111954Z__claude-app__g-whoentertains",
+  "idempotency_key": "6c835bbbb2f120b9463806de753ac6f84cd3a90fca7d951f1ff0b9cf3867cbd0",
+  "released_utc": "2026-08-29T11:27:16.929549+00:00",
+  "outcome": "retry_pending",
+  "evidence": "Node lane tunnel transition is pending gateway false to true confirmation."
+}

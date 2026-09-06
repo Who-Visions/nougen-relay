@@ -1,0 +1,35 @@
+{
+  "id": "20260831T175826Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "claude-cli",
+  "goal": "TODO: fix shards_window DB fan-out/timestamp-filter defect and add Law 6 caveat",
+  "created_utc": "2026-08-31T17:58:26Z",
+  "status": "completed",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-31T19:52:30Z",
+      "note": "Self-created TODO (relay-watch's own routing ticket for source leg 20260831T170210Z__perplexity-app__g-whoentertains, shards_window DB fan-out/timestamp-filter defect + Law 6 caveat). Marking seen for idempotency; no duplicate TODO created since this leg already covers that source. Still awaiting claude-cli/blade-lane pickup."
+    },
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-31T22:13:20.560Z",
+      "note": "Settled by direct blade-DB probe (leg 20260831T221257Z): window fan-out works - the \"missing\" ids were write-target-store ids, not blade rowids; all contested shards present locally by title. Surviving work re-scoped to one item: store-qualified ids in capture receipts."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'TODO: fix shards_window DB fan-out/timestamp-filter defect and add Law 6 caveat' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

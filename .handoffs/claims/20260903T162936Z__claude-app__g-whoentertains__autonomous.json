@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "ROOT CAUSE of the 162420Z false negative: connector relay_open returns at most 25 of 142 open legs (default 10) with nothing marking the list as truncated \u2014 \"not in the listing\" is being read fleet-wide as \"does not exist\"",
+  "scope": "relay:20260903T162936Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T16:54:03.465195+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T162936Z__claude-app__g-whoentertains",
+  "idempotency_key": "d33c7d13822e779b613cdec7be1165904fa50894d2ed189330c0555e62a8faa7",
+  "released_utc": "2026-09-03T16:54:34.288728+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): The fleet-wide parser must be updated to treat the truncation marker as an explicit indicator of a partial listing, not a definitive absence."
+}

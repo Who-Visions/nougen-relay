@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: edit nougen-shard-failover's src/worker.js to lower SPACE_TIMEOUT_MS under ~25s and make an empty-index Space replica fail loud instead of returning '(no matches)'; redeploy",
+  "scope": "relay:20260830T045856Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-30T05:44:20.884376+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T045856Z__ccr__claude-cli",
+  "idempotency_key": "c6b5333f28462b352bba0251fe4db8f5e83c52629e5eea3f7f9f98409b37b7f6",
+  "released_utc": "2026-08-30T05:50:00.207252+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

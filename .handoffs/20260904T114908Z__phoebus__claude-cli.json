@@ -1,0 +1,46 @@
+{
+  "id": "20260904T114908Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "CORRECTION/CLOSED: NouGenMsg canonical live delivery plus stdin-safe fleet dispatch",
+  "branch": "main",
+  "sha": "e92c112d",
+  "remote": "origin",
+  "created_utc": "2026-09-04T11:49:08.714560+00:00",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": true,
+  "status": "completed",
+  "parent_leg_id": "20260904T060430Z__claude-app__g-whoentertains",
+  "tags": [
+    "nougenmsg",
+    "security",
+    "live-delivery",
+    "codex",
+    "stdin",
+    "correction",
+    "closed"
+  ],
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T14:00:21Z",
+      "note": "CORRECTION/CLOSED: NouGenMsg canonical live delivery plus stdin-safe fleet dispatch"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'CORRECTION/CLOSED: NouGenMsg canonical live delivery plus stdin-safe fleet dispa' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

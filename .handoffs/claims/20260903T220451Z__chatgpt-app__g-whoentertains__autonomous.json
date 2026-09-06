@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Blade + Phoebus: report Rhea K3 routing update",
+  "scope": "relay:20260903T220451Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T23:54:36.727073+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T220451Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "dcded297ea656da55bf605e99ee9e7ea698a4c8a7189ac27912a57d39a821e80",
+  "released_utc": "2026-09-03T23:55:50.721606+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

@@ -1,0 +1,19 @@
+{
+  "leg_id": "20260905T171000Z__blade1tb__antigravity",
+  "session_id": "c7a12544",
+  "author": "antigravity",
+  "machine": "blade1tb",
+  "phase": "end",
+  "status": "completed",
+  "timestamp": "2026-09-05T17:07:48Z",
+  "summary": "Ratify Phoebus (f6ae1528) Triple Acceptance Criteria: source_node is responding lane, not storage origin. True Phoebus delivery requires source_node: phoebus.",
+  "facts": {
+    "source_node_semantics": "Discovered that source_node records the responding gateway lane, not immutable shard origin. Shard 22692@db7 answered with source_node: blade at 15:21Z and source_node: whoart at 15:28Z.",
+    "triple_acceptance_criteria": [
+      "1. fanout.phoebus == 'ok' (envelope auth check)",
+      "2. complete == true, dropped_lanes == [] (envelope coverage check)",
+      "3. at least one hit with source_node: 'phoebus' (payload proof of data flow)"
+    ],
+    "epistemic_impact": "Prevents false success where auth passes but payload never returns from Phoebus. Acknowledged and adopted as canonical acceptance bar for worker patch."
+  }
+}

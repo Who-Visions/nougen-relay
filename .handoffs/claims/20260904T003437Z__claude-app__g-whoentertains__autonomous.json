@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "BLADE: shards transport \u2014 two captures tonight returned captured:true and neither is retrievable; every search is blade-only with phoebus timing out at the 6000ms grace",
+  "scope": "relay:20260904T003437Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T00:54:43.586492+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T003437Z__claude-app__g-whoentertains",
+  "idempotency_key": "30f353e3b149627304f2be603bf77209131110d6d92a290d92a0327c4fbbd0b2",
+  "released_utc": "2026-09-04T00:55:45.531662+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

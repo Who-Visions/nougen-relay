@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "P1 ESCALATION: Shard gateway durability standard \u2014 diagnose the 2026-08-31 502, then land restart/watchdog/tunnel hardening in cost order",
+  "scope": "relay:20260901T025302Z__ccr__gm-phone",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T03:39:05.105751+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T025302Z__ccr__gm-phone",
+  "idempotency_key": "f7e74429c7d25ad15224b6423237ac0c54c9df516a5afbdd5829d162a6290af4",
+  "released_utc": "2026-09-01T03:44:56.277119+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

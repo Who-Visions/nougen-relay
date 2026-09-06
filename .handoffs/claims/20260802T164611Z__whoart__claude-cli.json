@@ -1,0 +1,12 @@
+{
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "registry records must not trip the guard's own-claim warning",
+  "scope": "src/nougen_relay/guard.py tests/test_guard.py",
+  "status": "released",
+  "branch": "main",
+  "sha": "054ef73",
+  "created_utc": "2026-08-02T16:46:11.291968+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-08-02T16:46:56.442233+00:00"
+}

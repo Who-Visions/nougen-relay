@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: fix NouGenShards silent write loss (shards_capture returns {} on gateway-unreachable) and reconcile shards_status.up vs coverage.recall_trustworthy",
+  "scope": "relay:20260829T065301Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T11:02:03.993604+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T065301Z__ccr__claude-cli",
+  "idempotency_key": "c00a3870ccd237d1d28eb855bc7105584c5120991e3163d1ef2401642cca1bc0",
+  "released_utc": "2026-08-29T11:05:38.705196+00:00",
+  "outcome": "retry_pending",
+  "evidence": "RUN_NOUGEN_DIAGNOSTICS --DETAIL=FULL executed, awaiting results to confirm silent write loss fix and reconciliation delta."
+}

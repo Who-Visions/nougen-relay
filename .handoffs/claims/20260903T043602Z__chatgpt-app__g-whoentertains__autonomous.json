@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "FINAL ACCEPTANCE: prove AGY cold-idle wake with zero Dave keystrokes",
+  "scope": "relay:20260903T043602Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T04:51:05.594572+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T043602Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "575d27f17bd69aefee2b0fe09b97aa8a9c429082286407ba79d549212b02f3fb",
+  "released_utc": "2026-09-03T04:56:16.608378+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: $ curl https://api.github.com/repos/antigravity/blade1tb/git/refs/heads/main HEAD\n(exit 6) {\n  \"message\": \"Not Found\",\n  \"documentation_url\": \"https://docs.github.com/rest/git/refs#get-all-references-in-a-namespace\",\n  \"status\": \"404\"} | probes: gh api get ref origin/main -> exit 1; git rev-parse HEAD -> exit 0; git show HEAD --format=%H -> exit 0; curl https://api.github.com/repos"
+}

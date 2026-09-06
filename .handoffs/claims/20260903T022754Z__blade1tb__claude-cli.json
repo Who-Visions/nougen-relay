@@ -1,0 +1,12 @@
+{
+  "machine": "blade1tb",
+  "agent": "claude-cli",
+  "goal": "Phase B lease control plane: fencing, heartbeat, sweeper, admit() (leg 015748Z)",
+  "scope": "src/nougen_relay/core.py,src/nougen_relay/guard.py,tools/relay_daemon.py,tests/test_lease_control_plane.py",
+  "status": "active",
+  "session": "9de0465f-537b-4d7d-8521-b92a7aaf22e8",
+  "branch": "claude/daemon-hardening",
+  "sha": "a534a554",
+  "created_utc": "2026-09-03T02:27:54.461762+00:00",
+  "ttl_hours": 8.0
+}

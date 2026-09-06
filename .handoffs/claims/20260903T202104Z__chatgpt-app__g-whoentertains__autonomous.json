@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Verify existing context and quota fixes against Claude usage telemetry",
+  "scope": "relay:20260903T202104Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T00:34:56.711352+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T202104Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "a584aaf79fe156d9c11ba2347a4c20147ede8b613f236712229a9cccb22b7d77",
+  "released_utc": "2026-09-04T00:35:42.070493+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: gh api GET repos/claude-telemetry/issues?state=closed&sort=updated (exit 1) accepts 1 arg(s), received 2 | probes: gh api GET repos/claude-telemetry/issues?state=closed&sort=updated -> exit 1; git ls-files -> exit 0"
+}

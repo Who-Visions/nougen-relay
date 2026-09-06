@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Persist Dave's Chaos Banana Cake v1 and continuity demo",
+  "scope": "relay:20260829T165749Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T17:57:30.629759+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T165749Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "3cc7618278efbabaf8a68acabf2c4b4f6564c5fccf6a76e6ad957de89c9139d8",
+  "released_utc": "2026-08-29T18:03:01.693203+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

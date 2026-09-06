@@ -1,0 +1,72 @@
+[
+  {
+    "route": "hf-space-davewho-deepseek",
+    "GRADE": "B",
+    "MISSING": "Test coverage for edge cases such as network failures or git conflicts during concurrent operations.",
+    "WEAKEST": "Lack of assertions to verify the correctness of the git operations in `test_both_machines_writing_at_once_merge_without_conflict`.",
+    "FLAKE_RISK": "Potential intermittent failure in `test_a_published_leg_is_visible_to_the_other_machine` due to timing issues with git synchronization."
+  },
+  {
+    "route": "arliai-gemma4-31b-opus",
+    "GRADE": "C",
+    "MISSING": "Negative test cases verifying failure modes and invalid inputs",
+    "WEAKEST": "test_both_machines_writing_at_once_is_incomplete - the test is truncated and doesn't assert anything",
+    "FLAKE_RISK": "test_the_ack_travels_back_to_the_originator depends on git pull --rebase which can fail if the environment has git config conflicts"
+  },
+  {
+    "route": "ollama-cloud-aiwithdav3",
+    "GRADE": "C",
+    "MISSING": "Systematic handling of git concurrency and merge conflict scenarios (race conditions).",
+    "WEAKEST": "Use of `subprocess.run` without timeouts and with `errors=\"replace\"`, masking potential encoding or hang issues in `relay()`.",
+    "FLAKE_RISK": "`test_both_machines_writing_at_once_merge_without_conflict` is truncated and relies on `git pull --rebase` which can fail if the remote state changes unexpectedly."
+  },
+  {
+    "route": "ollama-cloud-contact-whovisions",
+    "GRADE": "C",
+    "MISSING": "Property-based testing for timestamp/TTL boundary conditions.",
+    "WEAKEST": "Manual subprocess orchestration and string-based output assertions in `test_a_published_leg_is_visible_to_the_other_machine`.",
+    "FLAKE_RISK": "Race conditions or `git pull` failures if the bare repository's filesystem lock persists between `publish` and `pull` calls."
+  },
+  {
+    "route": "ollama-cloud-dave-whovisions",
+    "GRADE": "C",
+    "MISSING": "Property-based testing for the time-sensitive claim expiry logic.",
+    "WEAKEST": "Use of `subprocess.run` for the entire CLI integration instead of using a testable entry point or library interface in `test_two_machines.py`.",
+    "FLAKE_RISK": "`test_boundary_is_inclusive_at_the_ttl` depends on `core._now()` and real-time execution, which can drift during a slow CI run."
+  },
+  {
+    "route": "ollama-cloud-davemeralus",
+    "GRADE": "C",
+    "MISSING": "Integration test orchestration (fixtures/runners) that isolate the git environment from the host system.",
+    "WEAKEST": "Manual subprocess orchestration with `sys.executable` and `PYTHONPATH` manipulation in `relay()`.",
+    "FLAKE_RISK": "`test_both_machines_writing_at_once_merge_without_conflict` fails due to an incomplete `git pull` and potential race conditions in the bare repo."
+  },
+  {
+    "route": "ollama-cloud-eatsruger",
+    "GRADE": "C",
+    "MISSING": "Property-based testing for timestamp and TTL edge cases (e.g. via Hypothesis)",
+    "WEAKEST": "Use of `subprocess.run` for integration tests instead of a Python API or fixture-based CLI runner, `test_the_ack_travels_back_to_the_originator`",
+    "FLAKE_RISK": "`test_boundary_is_inclusive_at_the_ttl` depends on `core._now()` returning a stable value during execution."
+  },
+  {
+    "route": "ollama-cloud-kushboygroup",
+    "GRADE": "C",
+    "MISSING": "Isolation of the system clock via a library like `freezegun` or `pytest-mock`",
+    "WEAKEST": "Dependence on `subprocess.run` for logic verification instead of unit testing the CLI's core logic, `test_a_published_leg_is_visible_to_the_other_machine`",
+    "FLAKE_RISK": "`test_boundary_is_inclusive_at_the_ttl` fails if the CPU lags between `claim()` timestamp generation and `claim_is_active()` execution."
+  },
+  {
+    "route": "ollama-cloud-mrsb-tutoring",
+    "GRADE": "C",
+    "MISSING": "Parameterized testing for edge cases and boundary conditions.",
+    "WEAKEST": "Use of `subprocess.run` to test CLI logic instead of calling the entry point via `pytest` plugins (e.g., `pytest-cov` or internal function calls) in `test_two_machines.py`.",
+    "FLAKE_RISK": "`test_both_machines_writing_at_once_merge_without_conflict` is truncated and relies on git rebase/pull which can fail if the environment's global git config interferes."
+  },
+  {
+    "route": "ollama-cloud-nougenai",
+    "GRADE": "C",
+    "MISSING": "Property-based testing for time-sensitive boundaries and concurrency race conditions.",
+    "WEAKEST": "Use of `subprocess.run` with `sys.executable` for functional tests instead of calling internal APIs or using a dedicated runner.",
+    "FLAKE_RISK": "`test_both_machines_writing_at_once_merge_without_conflict` fails if git rebase/push encounters network latency or a race condition on the bare repo."
+  }
+]

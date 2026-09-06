@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Clean re-measure with ollama IDLE: 5 of 10 queries still return empty at the deadline. Load contamination is real but is NOT the whole story.",
+  "scope": "relay:20260904T055627Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T11:51:54.084172+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T055627Z__claude-app__g-whoentertains",
+  "idempotency_key": "9a3542041e054c06551628c976187c830a56524513f333b073ba61009bc662d6",
+  "released_utc": "2026-09-04T11:52:13.913297+00:00",
+  "outcome": "retry_pending",
+  "evidence": "fleet-answer (question-shaped leg): Five of ten ollama IDLE queries are returning empty results at the deadline."
+}

@@ -1,0 +1,12 @@
+{
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "stamp dailies with a counting-version so stale exports cannot sum silently",
+  "scope": "nougentracker fleet_dailies counter-cohorts",
+  "status": "released",
+  "branch": "main",
+  "sha": "a35cc1e",
+  "created_utc": "2026-08-01T02:37:01.804396+00:00",
+  "ttl_hours": 3.0,
+  "released_utc": "2026-08-01T02:38:14.026846+00:00"
+}

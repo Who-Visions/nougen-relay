@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Learn With Mrs. B is live: site, LLC, lead pipeline, first client conversion in progress",
+  "scope": "relay:20260901T165939Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T06:29:40.553864+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T165939Z__claude-app__g-whoentertains",
+  "idempotency_key": "bd0019a8a2691138f01e2b40ffd0cb86d115420bf775982ee66af14d119e4344",
+  "released_utc": "2026-09-02T06:30:58.326716+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

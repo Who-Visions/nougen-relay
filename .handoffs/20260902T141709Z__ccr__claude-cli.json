@@ -1,0 +1,35 @@
+{
+  "id": "20260902T141709Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "claude-cli",
+  "goal": "TODO: Build Shadow Queen Throne Governance Engine (observation vs intervention gating)",
+  "created_utc": "2026-09-02T14:02:13Z",
+  "status": "complete",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-09-02T14:26:55.732Z",
+      "note": "blade/claude-cli taking the Throne Governance Engine: war-game first, then throne_governance.py on top of canon_pressure + self_archive + destiny, Jaru golden test, Worker exposure"
+    },
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "blade1tb",
+      "agent": "codex",
+      "at": "2026-09-02T19:37:53.601330+00:00",
+      "note": "Reconciled complete: Shadow Xoah Self Archive, Stage 9/10 identity, Throne Governance and destiny flow verified by 49/49 tests plus live canonical-door calls on Worker e4f8d35b9514; ask_xoah returned in 10.9s with branch and provenance, destiny 1 fulfilled."
+    }
+  ],
+  "retry_count": 1,
+  "failures": [
+    {
+      "attempt": 1,
+      "error": "non-zero exit (1)",
+      "failed_utc": "2026-09-02T14:16:17.566595+00:00"
+    }
+  ]
+}

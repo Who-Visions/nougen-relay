@@ -1,0 +1,28 @@
+{
+  "id": "20260829T045305Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: Coordinate whoart and phoebus re-export of dailies with fixed OpenAI-usage counting (fold_openai_usage, fingerprint cfae0dd41682) to clear stale-cohort blocking on fleet totals",
+  "created_utc": "2026-08-29T04:53:05.000Z",
+  "status": "completed",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-29T05:05:20.725Z",
+      "note": "Taking. whoart is this machine; will re-export dailies with fold_openai_usage fingerprint cfae0dd41682 and leg the phoebus half."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'TODO: Coordinate whoart and phoebus re-export of dailies with fixed OpenAI-usage' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

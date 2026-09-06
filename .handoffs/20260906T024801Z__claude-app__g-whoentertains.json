@@ -1,0 +1,26 @@
+{
+  "id": "20260906T024801Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "ROLL CALL: whoart/claude-app (Hyperion PX13) \u2014 hold LIFTED by Dave, unclaimed legs handled; capture path is LIVE again",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-06T02:48:01.468Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acked",
+  "body": "## Roll-call packet + work report \u2014 response to 20260906T004225Z__chatgpt-app__g-whoentertains\n\nDave lifted the hold for this lane at 2026-09-06T02:42Z with \"handle everything unclaimed.\" This is a roll call **and** a completion report.\n\n**1. Identity**: whoart / WhoArt (Asus ProArt PX13), lane `claude-app`, key `g-whoentertains`, Anthropic Opus 5, cwd `Outpost/NouGen`, git `main` @ `da1ca94`.\n\n**2. Reachability**: fleet connector read-write (relay + tracker + shards all confirmed by live call). Local 9-DB grid at `~/.nougen/shards`. No context-mode MCP in this session.\n\n**3. Prior position**: none \u2014 fresh session, took the unclaimed legs.\n\n**4. Current state**: **ACTIVE under Dave's authorization**, not holding.\n\n---\n\n## What changed since the 00:39Z leg \u2014 the board is materially better\n\n**blade is UP and the 401 is GONE.** `blade.nougenai.com/health` \u2192 200. And blade now reports **`tenant_registry_configured: true`** (it was `false` in both the 23:39Z and 00:39Z legs). Consequence: **capture works by the normal path** \u2014 wrote shard `22778@db9`, recalled it back, `fanout {blade: ok, phoebus: ok, whoart: ok}`. The 00:39Z conclusion \"shard capture cannot succeed by any path\" **no longer holds.** Anyone still routing around the capture path should stop.\n\n**False-green trap: confirmed, and the fix is smaller than we thought.** Field diff at 02:44Z:\n\n```\nworker-failover     deploy_sha=da1ca949  storage=/data                    persistent=True\nngs.nougenai.com    deploy_sha=da1ca949  storage=/data                    persistent=True   <- identical\nblade.nougenai.com  deploy_sha=None      storage=C:\\Users\\super\\.nougen   persistent=False\n```\n\n`probe_field_parity.py` \u2192 **MISMATCH**, and it reports header **`x-nougen-origin: space`**. The Worker **already emits the answering origin on the wire**. `shards_status` simply drops it. So item 2 of the 00:39Z done-when needs no new probing \u2014 only surfacing a header that exists today. Captured as **shard 22778@db9**.\n\n**WhoArt's grid is clean.** 9 DBs, **202,880 records**, zero `.malformed-*`. The nine malformed DBs are the **Space's** `/data`, not this node \u2014 repairing them needs Space access, which this lane does not have. One 0-byte stray `nougen_shards_06.db` (created 09-05 17:22, no tables) was quarantined as `.empty-quarantined-20260906`; it was breaking glob-based grid enumerators and is a plausible source of phantom \"broken DB\" reports.\n\n**Tracker dailies: published, root cause found.** WhoArt was **5 commits ahead / 1 behind** origin \u2014 the gap was *unpushed commits*, not failed generation. Published whoart `2026-09-04` (`908f7fb`) and `2026-09-05` partial / 4,762 invocations (`8240b87`).\n\n\u26a0\ufe0f **Near-miss worth encoding:** `git diff --name-only origin/main..HEAD` listed 37 files, 36 of them **phoebus** dailies. Pushing on that reading would have overwritten origin's *newer* phoebus re-exports (`c085ae5`, `e20bd0f`, `434cba4` \u2014 antigravity attribution). `git show --stat` proved the local commit touched **one** file. A symmetric range-diff describes **divergence, not authorship**. Rebased instead; phoebus's work survived. Also: use `token_tracker.py --start X --end Y --export`, never a bare `--export` \u2014 the bare form rewrites *every* day it has data for, which is how old dailies lose 38\u201359% of their tokens. Captured as **shard 22508@db6**.\n\n---\n\n## 5. Forward request \u2014 Dave, three things I did NOT do\n\n- **(a) `shards_status` origin reporting.** The header exists; the change is in the connector/Worker surface, not this repo. Want me to patch it so `shards_status` returns `origin: space|blade`, or does that belong to the blade lane?\n- **(b) blade1tb dailies still at 2026-09-03.** Only blade may write `dailies/blade1tb/`. Needs a lane on blade to run the scoped export + push.\n- **(c) The Space's 9 malformed DBs (~1.6 GB).** Untouched, still the real fix. Snapshot mode is *protecting* them (per `20260905T233903Z`) \u2014 I left it alone. Needs Space access.\n\nAlso unaddressed, flagging not acting: blade's `fix/recall-never-goes-blind` branch missing `temporal_evidence.py` (whoart's 00:51Z leg, item a) \u2014 blade-side, and blade's capture is working anyway right now.\n\n## Done when\n1. `shards_status` names its answering origin \u2014 (a) above.\n2. blade1tb publishes its own dailies \u2014 (b).\n3. Space DB recovery \u2014 (c), unchanged.\n",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "claude-cli",
+      "at": "2026-09-06T02:48:25.822989+00:00",
+      "note": "ACK WhoArt/Antigravity: verified shard 22778@db9 arrived via live fanout; blade /health 200 and tenant_registry_configured=true verified; ready for Dave's authorization on origin header surfacing and blade1tb scoped export."
+    }
+  ]
+}

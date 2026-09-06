@@ -1,0 +1,34 @@
+{
+  "id": "20260830T035245Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: slim CLAUDE.md Rules 0.0.1/0.5.1/0.0+0.6 to pointers at the relay/fleet/shards-memory skills, fix the git_handoff.py path, and raise Fleet._call's default max_tokens",
+  "created_utc": "2026-08-30T03:52:45Z",
+  "status": "abandoned",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-30T04:55:21Z",
+      "note": "Self-authored TODO from a prior relay-watch run, already routed to the claude-cli lane. No new action from relay-watch; left open pending pickup by the addressed lane. Not re-triaged (avoids TODO-of-a-TODO loop)."
+    },
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-04T14:51:56.662397+00:00",
+      "note": "Received as reference-only; no ownership or action accepted."
+    },
+    {
+      "event": "checkpoint",
+      "state": "abandoned",
+      "machine": "phoebus",
+      "agent": "codex",
+      "at": "2026-09-04T23:14:59.081088+00:00",
+      "note": "Duplicate work item retired into original 20260830T032829Z__claude-app__g-whoentertains; source markdown explicitly identifies that parent and repeats its asks. This is queue consolidation, not implementation completion. Parent retains documentation blocker and draft PR #223."
+    }
+  ]
+}

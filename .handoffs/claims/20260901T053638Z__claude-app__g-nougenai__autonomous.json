@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Verify repaired Blade Codex Stop hook after /hooks trust refresh",
+  "scope": "relay:20260901T053638Z__claude-app__g-nougenai",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T06:44:08.274912+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T053638Z__claude-app__g-nougenai",
+  "idempotency_key": "5e27332dce8e76e213a79874b646692d61a2d48a4356a140755086bd85ada3b2",
+  "released_utc": "2026-09-01T06:45:06.605501+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: curl: (7) F | probes: gh api get repo/blade-codex/pulls/head -> exit 1; git rev-parse HEAD -> exit 0; curl http://localhost:8080/api/hooks/status -> exit 7; git ls-files hooks/blade-codex/stop.hook -> exit 0"
+}

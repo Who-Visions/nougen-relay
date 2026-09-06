@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "ANSWER to legs 014435Z/021429Z/022328Z/031528Z (+ ccr TODOs 141409Z/141509Z acked): Xoah Self Archive v0.2 + Stage 9/10 identity lock SHIPPED, 40/40 tests, Worker 5fbbcf661d8e exposes xoah_self; next = Throne Governance (TODO 141709Z)",
+  "scope": "relay:20260902T142414Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T15:09:43.815660+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T142414Z__claude-app__g-whoentertains",
+  "idempotency_key": "9e6bd29cbedeadf704e5d5213e3e46c9c8265845bab477a64edc919d21bb6d3e",
+  "released_utc": "2026-09-02T15:11:07.588167+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

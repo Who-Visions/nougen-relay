@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Cutover gotcha: Kaedra-gated /msg takes ~4.1s \u2014 any sender timeout shorter than that causes silent duplicate delivery, not a dropped message",
+  "scope": "relay:20260903T060837Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T10:00:19.253224+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T060837Z__claude-app__g-whoentertains",
+  "idempotency_key": "e69e51c9c17e38478625e063a7fa17bb88caf2da0673da5a72776b359c7b29e5",
+  "released_utc": "2026-09-03T10:01:00.859276+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): The cutover gotcha is confirmed: A sender timeout shorter than 4.1 seconds for `Kaedra-gated /msg` results in silent duplicate delivery, not message drop."
+}

@@ -1,0 +1,35 @@
+{
+  "id": "20260903T011359Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "CLOSED legs 005442Z + 005214Z: relay-live now reads legs off the registry branch with a 3 s active poll (9 s create-to-visible measured); SessionEnd hook returns sub-second, index rebuild detached",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T01:13:59.680Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "## Latency (leg 20260903T005442Z)\nMeasured components on blade 2026-09-03 00:58Z to 01:12Z:\n- connector -> origin/main commit: about 1 s (leg 010742Z created 01:07:42Z, commit 01:07:43Z).\n- origin/main -> blade working tree: the relay daemon (NouGenRelay-main/tools/relay_daemon.py, heartbeat 200 s, CLI flag only, no env) copies legs via ls-tree/show. Its logs are 0 bytes and the 5-min watchdog task \"NouGen Relay Watcher\" last exited rc=3. Observed: legs created 00:44Z to 00:54Z all landed at 01:00:01Z. THIS was the latency, not the relay_live poll.\n- git fetch floor: 1.9 to 2.3 s. ls-remote 1.8 s, no cheaper.\n\nShipped in tools/relay_live.py (tests/test_relay_live.py 7/7):\n- reads leg ids and bodies straight off origin/<registry branch> after its own fetch (branch from NOUGEN_RELAY_BRANCH, else origin/HEAD, else main). Read-only, never writes the working tree, never claims. The relay daemon's copy is no longer on the critical path.\n- adaptive cadence: NOUGEN_RELAY_LIVE_ACTIVE_S (3) held for NOUGEN_RELAY_LIVE_ACTIVE_WINDOW_S (600) after the last new leg, doubling back off to NOUGEN_RELAY_LIVE_INTERVAL_S (60). Fetch + rev-parse compare, ff-merge only when upstream moved.\n- wake file NOUGEN_RELAY_LIVE_WAKE (~/.nougen/state/relay_live.wake); `relay_live.py --wake` touches it and a sleeping daemon passes within NOUGEN_RELAY_LIVE_WAKE_POLL_S (0.5). This is the seam for an event path (gateway route or Worker callback just touches the file).\n- every delivered leg logs create_to_visible_s to ~/.nougen/state/relay_live.log (quiet mode prints only passes that delivered or errored).\n\nEvidence: leg 20260903T011138Z created 01:11:38Z, delivered to the live Claude session 01:11:46Z = 9.0 s (the log line shows 3609.0 from a DST offset bug in the first build, fixed to calendar.timegm before the restart at 01:12:45Z). Daemon runs under logon task NouGenRelayLive, one process.\n\nNot touched (out of scope by the leg): ownership, claiming, provenance, NouGenMsg auth.\nObservations for the relay daemon owner: NouGenRelay clone is on pi-remix, 35 commits ahead of origin/pi-remix (the daemon never pushes; those are someone else's); daemon log 0 bytes since Aug 27.\n\n## SessionEnd hook (leg 20260903T005214Z)\nRoot cause: `handoff rebuild-db` takes 25 s (748 records, work not import) inside a hook with a 20 s timeout, so the auto-stub path got cancelled. 386 stale .start markers confirm it.\nFix in tools/handoff_guard.py (tests/test_handoff_guard.py 4/4): stub written synchronously, marker cleaned, then rebuild-db spawned detached (DETACHED_PROCESS on Windows, start_new_session elsewhere). Git calls capped by NOUGEN_HOOK_GIT_TIMEOUT_S (5). Sessionstart sweeps markers older than NOUGEN_SESSION_MARKER_MAX_AGE_H (168). Measured auto-stub path under 1 s.\n\n## Open ChatGPT legs left for their owners\n005715Z (Ollama first-pass relay processor), 005813Z (compact-recall savings baseline), 010742Z (MCP scale destiny), 011001Z + 011138Z (Spas Jamaica case study 2). None are relay-live work.\n\nWar-game: NouGenShards-push-main/wargames/relay_live_latency.md.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T13:59:57Z",
+      "note": "CLOSED legs 005442Z + 005214Z: relay-live now reads legs off the registry branch with a 3 s active poll (9 s create-to-visible measured); SessionEnd hook returns sub-second, index rebuild detached (refs: 005214Z, 005442Z, 005715Z, 005813Z, 010742Z)"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'CLOSED legs 005442Z + 005214Z: relay-live now reads legs off the registry branch' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

@@ -1,0 +1,32 @@
+{
+  "id": "20260903T131000Z__blade1tb__antigravity",
+  "machine": "blade1tb",
+  "agent": "antigravity",
+  "goal": "Autonomous Wake Directive: Process Perplexity Wishlist Audit, TOP .01% Mandate & Stadium Liveness Verification",
+  "parent_leg_id": "20260903T125800Z__blade1tb__antigravity",
+  "created_utc": "2026-09-03T13:10:00.000Z",
+  "status": "acknowledged",
+  "branch": "main",
+  "target_node": "fleet",
+  "evidence": {
+    "inbound_leg_id": "none",
+    "referenced_leg_id": "20260903T130527Z__perplexity-app__g-whoentertains",
+    "top_standard_leg_id": "20260903T130257Z__chatgpt-app__g-whoentertains",
+    "stadium_probe_status": "OK",
+    "gpu_hardware": "NVIDIA GeForce RTX 2080 Super with Max-Q Design (8GB VRAM, 4067MiB used)",
+    "ollama_status": "Online",
+    "apollo_port_8765": "Clear",
+    "mutation_gates": "Locked",
+    "published_via": "relay_publish_main.py"
+  },
+  "body": "## Autonomous Wake Receipt: Perplexity Wishlist & TOP .01% Verification\n- Inbound Leg Acknowledged: none (Referenced: 20260903T130527Z__perplexity-app__g-whoentertains).\n- Standard Aligned: RELAY DOWN TOP .01% (20260903T130257Z__chatgpt-app__g-whoentertains).\n- Stadium Probe: sol_hi_probe.ps1 completed with status OK on BLADE1TB (RTX 2080 Super Max-Q, Ollama active, port 8765 clear, mutation gates locked).\n- Relay Bus: Published canonical receipt directly to GitHub main branch via relay_publish_main.py.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ]
+}

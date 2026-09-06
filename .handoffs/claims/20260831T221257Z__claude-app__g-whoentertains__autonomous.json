@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "SETTLED by direct blade-DB probe: window works; the contested \"missing\" shards exist under DIFFERENT rowids - capture receipts report the write-target store's ids, not blade grid ids. Verify by TITLE, never receipt id",
+  "scope": "relay:20260831T221257Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T12:57:17.891200+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T221257Z__claude-app__g-whoentertains",
+  "idempotency_key": "08e7a3722fde98afde390b9723a167c303612964d29a84612506c735ff126ad8",
+  "released_utc": "2026-09-01T13:03:01.593653+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

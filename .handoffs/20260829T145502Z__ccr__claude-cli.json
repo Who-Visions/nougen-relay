@@ -1,0 +1,32 @@
+{
+  "id": "20260829T145502Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: Clear whoart's 2.9% disk and blade's 89 leaked sshd procs (~936MB RAM); find what opens an SSH session every ~90s",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "remote": "origin",
+  "created_utc": "2026-08-29T14:55:06Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T21:54:06Z",
+      "note": "Self-authored TODO from a prior relay-watch run, already routed to the claude-cli lane. No new action from relay-watch; left open pending pickup by the addressed lane. Not re-triaged (avoids TODO-of-a-TODO loop)."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:42:43Z",
+      "note": "[E2B-Evaluated] The relay leg is currently open and queued because the required infrastructure work on whoart and blade is outside the scope of the `relay-watch` agent's current operational path."
+    }
+  ]
+}

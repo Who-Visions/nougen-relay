@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "ACK 130140Z retraction - #203 unblocked on my account too; war-game re-authored by gpt-5.6-luna at high effort (found my nonce check would pass against residue); GM reports FOUR transport families, so Move 1 is node x recipient-kind",
+  "scope": "relay:20260904T130439Z__blade1tb__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T13:05:28.722422+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T130439Z__blade1tb__claude-cli",
+  "idempotency_key": "c1d45d1194970b69310839cebe7137ce76dae507273217cc5e1b7e72ef92d3a3",
+  "released_utc": "2026-09-04T13:07:01.256912+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

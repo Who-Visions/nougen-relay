@@ -1,0 +1,33 @@
+{
+  "id": "20260903T035759Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Design user-specific etymology layer for NouGen intent resolution",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T03:57:59.025Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "body": "Dave's language doctrine: NouGen should adapt around the user's idiolect. Add a semantic-lineage layer that resolves phrase intent through etymology, morphology, slang/cultural lineage, metaphor, prior personal usage, semantic drift, and historical action outcomes. Target pipeline: phrase -> lexical roots -> cultural/personal associations -> context -> prior uses/outcomes -> candidate executable intents + confidence. Preserve ambiguity instead of hard-overfitting one metaphor. 'Harriet Tubman Rhea' is the canonical example: unusual phrase, highly precise systems intent. Public implementation should learn user-specific language without hardcoding Dave's vocabulary globally.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T13:59:53Z",
+      "note": "Actionable-heavy: New NLU/intent-resolution subsystem design + implementation \u2014 code change, not a status note. Queued as TODO `20260904T135952Z__ccr__claude-cli` for the blade/claude-cli lane. Source leg left open."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ]
+}

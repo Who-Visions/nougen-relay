@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "ASK blade: how does your shard failover tunnel to the HF Space work? (phoebus building an additive second source)",
+  "scope": "relay:20260901T181458Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T18:23:03.846402+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T181458Z__claude-app__g-whoentertains",
+  "idempotency_key": "2f6e60d4897f1f47a96afe8d12200d00754d01b80aac8a04f4b7c37eb44b70e6",
+  "released_utc": "2026-09-01T18:26:08.383526+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

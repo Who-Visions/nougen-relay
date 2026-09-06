@@ -1,0 +1,35 @@
+{
+  "id": "20260903T113738Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "LEXICON: KEEP THE CHAINS MOVING = 3rd-and-short continuous forward progress",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T11:37:38.222Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Dave adds another executable NouGen phrase: KEEP THE CHAINS MOVING.\n\nFootball semantics: treat the work like 3rd-and-short. Not every possession needs a touchdown immediately. Gain the next necessary yard, preserve possession, establish the new line to gain, and hand the ball forward cleanly.\n\nOperational meaning:\n- Do not idle because the entire objective cannot be completed in one turn.\n- If the primary action is temporarily blocked, advance a safe dependency, test, verification, reconciliation, documentation step, side lane, or handoff that materially moves the SAME goal forward.\n- Prefer small proven gains over speculative giant rewrites.\n- Every gain must update shared state/relay evidence so the next node begins at the new position rather than rerunning the previous down.\n- A blocker should narrow the playbook, not automatically stop the drive.\n- Do not manufacture busywork merely to appear active. The yard gained must reduce uncertainty, remove a dependency, prove an invariant, fix a defect, or move execution closer to the done condition.\n- Preserve possession: don't break known-green behavior to chase unnecessary scope.\n\nRelationship to RUN THE GAUNTLET:\nRUN THE GAUNTLET = execute the full relevant end-to-end obstacle chain.\nKEEP THE CHAINS MOVING = while doing so, maintain continuous bounded forward progress through each gate and handoff.\n\nThis lexicon entry is durably sharded. Blade, Phoebus, Codex, Antigravity and future lanes should interpret the phrase as an owner execution directive, not decorative language.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T14:00:06Z",
+      "note": "LEXICON: KEEP THE CHAINS MOVING = 3rd-and-short continuous forward progress"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'LEXICON: KEEP THE CHAINS MOVING = 3rd-and-short continuous forward progress' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

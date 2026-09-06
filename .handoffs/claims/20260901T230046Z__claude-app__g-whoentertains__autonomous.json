@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "FAN-OUT LIVE: shards.nougenai.com now returns blade + phoebus as one union (12 hits, 6 per node, complete=true) \u2014 v2 race-with-deadline deployed and verified",
+  "scope": "relay:20260901T230046Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T23:46:44.969347+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T230046Z__claude-app__g-whoentertains",
+  "idempotency_key": "c1e155285d58005707a95cf2bd768fa7dfa63fbdf78989042d0002a81cc05c37",
+  "released_utc": "2026-09-01T23:47:26.168269+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: curl: (6) Could not resolve host: GET | probes: curl GET https://shards.nougenai.com -> exit 0; git ls-remote https://shards.nougenai.com/repo -> exit 128; curl GET https://shards.nougenai.com/metrics -> exit 0"
+}

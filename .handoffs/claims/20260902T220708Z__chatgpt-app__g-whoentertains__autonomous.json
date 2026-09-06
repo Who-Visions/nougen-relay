@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Add Haitian Creole quick lexicon to Nou Gen",
+  "scope": "relay:20260902T220708Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T22:43:37.907511+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T220708Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "4fb3f04c452ad27f8184d6c6a114f6a3198e7edbd5007bf465acc8d599df74fc",
+  "released_utc": "2026-09-02T22:44:57.795449+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

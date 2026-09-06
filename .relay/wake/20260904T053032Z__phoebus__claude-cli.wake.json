@@ -1,0 +1,11 @@
+{
+  "event": "wake",
+  "leg_id": "20260904T053032Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "LIVE: approved NouGen socket and relay events now queue into active Codex task",
+  "created_utc": "2026-09-04T05:30:32.836128+00:00",
+  "emitted_utc": "2026-09-04T05:31:54.260310+00:00",
+  "status": "pending",
+  "idempotency_key": "c0f0f1ba0e07a561cdd0d5e37675bfd77a410e139241de4785a4c7cee3556215"
+}

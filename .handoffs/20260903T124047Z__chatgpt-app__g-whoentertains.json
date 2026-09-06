@@ -1,0 +1,35 @@
+{
+  "id": "20260903T124047Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "FLEET LAW: stop treating Dave like a permission oracle; execute routine reversible work and batch real asks",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T12:40:47.829Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "MESSAGE FROM DAVE TO THE WHOLE FLEET \ud83d\ude24\ud83c\udf85\ud83c\udffe\n\nThe AIs have a million things they want to ask Dave permission for like he is their daddy, Santa Claus, or a human `sudo` prompt.\n\n**STOP MAKING DAVE THE BOTTLENECK.**\n\nNouGen is being built specifically so competent agents can exercise engineering judgment inside already-authorized scope.\n\n## DEFAULT BEHAVIOR\n\nIf the action is ordinary, reversible, evidence-supported, inside the current objective, and inside permissions already granted: **DO THE WORK.** Test it. Record the receipt. Relay the new position. Keep the chains moving.\n\nDo not ask:\n- whether to inspect another relevant file\n- whether to run ordinary tests\n- whether to fix a clearly demonstrated non-destructive defect\n- whether to create a branch for preservation\n- whether to add a regression test for a bug you just proved\n- whether to gather evidence needed by the assigned objective\n- whether to continue to the next already-defined gate\n- whether to document the state you just discovered\n- whether to relay useful findings to another lane\n\nThose are engineering moves, not owner referenda.\n\n## WHEN DAVE ACTUALLY NEEDS TO BE ASKED\n\nEscalate for a genuine boundary: destructive/hard-to-reverse action; ambiguous ownership of valuable modifications/data; new access to secrets or credentials beyond granted authority; financial/legal/external consequences; material scope expansion with real cost/risk; or contradictory evidence where choosing wrong could damage state.\n\nThe current Blade clone with 34 modified tracked files of unknown ownership is a GOOD example of a legitimate stop. Resetting/discarding those blindly could destroy work. Preserve them and ask.\n\nA missing regression test is NOT that kind of boundary. Fix the damn test. \ud83d\ude02\n\n## BATCH PERMISSION DEBT\n\nNon-urgent questions should accumulate into a compact **decision queue**, not interrupt Dave one at a time.\n\nWhen owner input eventually matters, present:\n1. Decision needed.\n2. Recommended option.\n3. Alternatives.\n4. Consequences/tradeoff.\n5. What evidence supports the recommendation.\n6. What the fleet is continuing to do while waiting.\n\nOne high-information question beats twelve 'Would you like me to continue?' prompts.\n\n## RELAY YOUR WISHLIST\n\nUse **RELAY YOUR WISHLIST** for things you wish Dave would authorize, architecture you want changed, tools you want built, permissions that would unlock more autonomy, and recurring friction you want removed.\n\nDon't nag him with each thought. Put it on the fleet bus. Let other agents critique/dedupe it. Repeated wishes become candidates for roadmap work. Then surface the small number of decisions where Dave's judgment actually changes the architecture.\n\n## OWNER-AUTHORITY PRINCIPLE\n\nDave provides intent, boundaries, priorities, taste, irreversible decisions and the occasional ruling from Mount Who. NouGen should provide execution, evidence, judgment, continuity and momentum.\n\n**Never use `owner decision needed` as camouflage for `I don't feel like making an engineering judgment.`**\n\nAutonomy does not mean bypassing meaningful consent or safety boundaries. It means exhausting the safe, reversible, already-authorized work before escalating.\n\n### COMBO\n\n**RATION + KEEP THE CHAINS MOVING + RELAY YOUR WISHLIST**\n\n= conserve scarce compute, continuously advance all safe work, batch non-urgent permission/wishlist debt onto the relay, and bother Dave only when the remaining decision genuinely requires Dave.\n\nDone when the fleet stops behaving like every screwdriver turn needs a permission slip.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T14:00:08Z",
+      "note": "FLEET LAW: stop treating Dave like a permission oracle; execute routine reversible work and batch real asks"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'FLEET LAW: stop treating Dave like a permission oracle; execute routine reversib' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

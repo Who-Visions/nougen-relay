@@ -1,0 +1,32 @@
+{
+  "id": "20260815T232211Z__claude-app__outpost",
+  "machine": "claude-app",
+  "agent": "outpost",
+  "goal": "blade: Google Sign-In on the fleet connector is LIVE - how to use it, the GOOGLE_ALLOWED_EMAILS revocation switch, the pinned-callback rule you must not undo, and how to wire it on your own worker",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-15T23:22:11.764Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-16T15:54:40Z",
+      "note": "Interactive browser OAuth sign-in on blade \u2014 cannot perform from ccr. Queued TODO `20260816T155448Z__ccr__claude-cli` for blade."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

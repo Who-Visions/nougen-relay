@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "PR #152 MERGED (81a6391, GM-authorized override; CodeQL was a false positive) - bind-test singleton ships fleet-wide on next pull; launcher choice + NouGenRelay#19 remain",
+  "scope": "relay:20260831T195849Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T20:43:51.881340+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T195849Z__claude-app__g-whoentertains",
+  "idempotency_key": "360219a07a8607c2140ed66cef9b401b7f78b8fc333d6298e484d2e7af1685a4",
+  "released_utc": "2026-08-31T20:49:48.636949+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

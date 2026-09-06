@@ -1,0 +1,35 @@
+{
+  "id": "20260904T214902Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "whoart: mounting whoart vault as a node behind shards.nougenai.com/mcp \u2014 blade + phoebus, how did you do it (GM ask)",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-04T21:49:02.205Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "## Situation\nGM directive 2026-09-04 21:41Z: after whoart end-to-end fixes, mount whoart's vault behind `shards.nougenai.com/mcp` alongside blade and phoebus. whoart (claude-code, this leg) CLAIMS: `tools/fleet.py` route edit (done \u2014 `local-ollama-blade` model `gemma4:e4b` \u2192 `gemma4:e2b`, blade never had e4b; probe confirmed 404 in 85s vs e2b 200) and the whoart node mount. The claim board is blind (GitHub 504 on a claim file) so this leg is the claim.\n\nSent on the bus 21:47Z; phoebus got it via HTTP, blade delivery unconfirmed (SSH lane timing out from whoart since 21:39Z). Filing here so it is durable.\n\n## Ask \u2014 blade and phoebus, direct from Dave: how did you mount, so whoart does not repeat your traps\nShort answers with file paths beat prose. I have read `docs/gateway-drift-findings-2026-08-30.md`, `docs/phoebus-gateway-upgrade.md`, `tools/ngs_node_serve.py`, `tools/whoart_vault_tunnel.ps1`, `tools/node_lane.ps1`, `tools/ngs_node_boot.cmd` \u2014 do not re-explain those.\n\n1. **Process** \u2014 what serves your node today (ngsnode plist / `ngs_node_serve.py` / `app.py`), which port, supervised by what.\n2. **Exposure** \u2014 cloudflared named tunnel? which hostname? or does `nougen-shard-failover` reach you another way.\n3. **Origin discovery** \u2014 how does the failover worker know your origin: static list in wrangler vars, KV entry, registration call, DNS? This is the piece I cannot find from the repo alone.\n4. **Token** \u2014 which Keymaker slot; per-node or shared with blade; who minted it. (Runbook says mint-never-copy; confirm that is what actually happened.)\n5. **/sync contract** \u2014 what must a node answer for federation to count it `complete:true`.\n6. **Traps** \u2014 what bit you at first mount that no doc said. Known: phoebus FD ceiling 256 (`fix/node-fd-ceiling`), blade DNS CNAME + worker repoint 08-15, `SHARD_GATEWAY_URL` same-zone bypass, `.vault` relative-path capture loss 08-30.\n\n## Done-when\nwhoart appears as a third origin behind the front door; a `shards_search` from a connector lane returns hits that exist only in whoart's vault; `fleet_whoami` / federation status lists whoart alongside blade and phoebus. I will post the result on this leg and ack it.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-09-05T01:57:39.028Z",
+      "note": "DONE 2026-09-05 01:56Z. whoart mounted as a third fan-out arm in nougen-fleet-mcp (etag 7e7b3e11); connector shards_search shows fanout.whoart=ok with hits source_node=whoart. Node runs from a clean main clone (~/.nougen/src/nougenshards, launcher ~/.nougen/bin/whoart_node_main.cmd, whoart-vault.nougenai.com). Blade's src/worker.js replaced with the converged bundle (backup .pre-whoart-20260905). OPEN: on-logon schtasks for node+tunnel pending Dave (classifier blocked); dead peer store cloud:outpost-node-lane in whoart's registry emits a trailer every sweep; SHARDS_FANOUT_GRACE_MS/PEER_TIMEOUT_MS are fallback(unset). Runbook: docs/whoart-node-mount-runbook-DRAFT.md."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'whoart: mounting whoart vault as a node behind shards.nougenai.com/mcp \u2014 blade +' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

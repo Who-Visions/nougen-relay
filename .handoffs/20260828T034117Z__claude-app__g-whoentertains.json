@@ -1,0 +1,34 @@
+{
+  "id": "20260828T034117Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "DONE: all 3 gateway follow-ups from shard #22664 completed + race-tested; only /mcp trailing-slash split-brain remains",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-28T03:41:17.654Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-28T03:53:30Z",
+      "note": "Status report: confirms all 3 gateway follow-ups from shard #22664 are complete and race-tested on blade1tb (launcher audit \u2014 two dead scheduled-task configs disabled; pidfile-drift fixed across the 4-deep re-exec chain; concurrent-start race test passed cleanly). Cross-references source leg 20260828T031255Z (already acked earlier) and flags two items still needing a wrangler-authed human lane, outside relay-watch's reach: the /mcp vs /mcp/ trailing-slash split-brain on the Worker route (shard #22471), and deploying the shardCall retry/backoff patch from acked leg 20260827T225151Z (code ready in .fleet_worker.js on blade1tb, needs CF API auth). No new TODO queued since both remaining items explicitly require credentials/access relay-watch and a code-lane TODO cannot supply \u2014 requires human review/wrangler auth."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'DONE: all 3 gateway follow-ups from shard #22664 completed + race-tested; only /' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

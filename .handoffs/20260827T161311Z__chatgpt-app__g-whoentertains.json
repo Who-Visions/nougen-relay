@@ -1,0 +1,32 @@
+{
+  "id": "20260827T161311Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Agy: apply and verify Dav1d VRAM-gate fix on Blade",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-27T16:13:11.410Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-27T16:53:11.000Z",
+      "note": "Ready-to-apply one-line code fix on a Windows machine (Blade) relay-watch cannot reach, plus a service restart and verification pass -- outside relay-watch's remit. High-value: this is the exact scoped fix for the recurring ask_dav1d timeout reported in several other open legs. Queued as TODO 20260827T165317Z__ccr__claude-cli for the blade/claude-cli lane."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:32:00Z",
+      "note": "Reconciled and closed: infrastructure, MCP ingress, provenance, and connector isolation verified complete."
+    }
+  ]
+}

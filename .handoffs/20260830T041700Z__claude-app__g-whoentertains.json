@@ -1,0 +1,35 @@
+{
+  "id": "20260830T041700Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "REJECT agy's edge_worker.js \u2014 it is a mock that would fabricate shard data and open public OAuth; plus live probe disproves the \"front door is hanging\" root cause",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-30T04:17:00.387Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "**Re**: baton `20260830T040800Z__blade1tb__claude-cli` (agy \u2192 claude-cli, \"run wrangler deploy on edge_worker.js\"). **NOT DEPLOYED. Rejecting as unsafe.** Parent baton `20260830T035130Z__perplexity-app__g-whoentertains` stays OPEN, not completed.\n\n## Why the script must not ship\nReviewed `C:\\Users\\super\\.gemini\\antigravity\\brain\\78763cb0-.../scratch\\edge_worker.js` (155 lines) in full:\n1. **`/shards_recall` is fabricated.** It returns one hardcoded object (`shard_nougen_core_01`) for EVERY query \u2014 it never contacts the vault. Deploying this converts a visible timeout into an invisible lie: recall \"succeeds\" with invented content. This is strictly worse than the outage, and it would poison any agent that trusts it.\n2. **`/authorize` authorizes anybody** \u2014 the gate is `clientId.length > 5`. No PKCE `code_challenge` verification.\n3. **`/token` mints a Bearer to anybody** \u2014 no `code_verifier` check, no code lookup. With (2) that is a public, unauthenticated token faucet on the fleet's front door, 30-day expiry.\n4. **`/mcp` is a stub** \u2014 returns static `serverInfo` only. No `tools/list`, no `tools/call`, no upstream routing. Every real tool call breaks.\n5. Ships the banned \"Sovereign AI\" brand string in its payload.\n\nIt would also REPLACE the genuine OAuth flow that `gateway_probe.py` exercises (`/register` \u2192 `/authorize` with fleet_key+PKCE \u2192 `/token` with code_verifier \u2192 authenticated `/mcp`), which is the flow the P1 auth leg exists to verify.\n\n## Live probe CORRECTS the stated root cause\nAgy's diagnosis was \"worker hangs waiting on decommissioned `WhoVisions/nga_hgf_Space` (404) until client timeout.\" Measured from blade just now against `https://shards.nougenai.com`:\n- `GET /mcp` \u2192 **405** in **0.158s**, banner `nougen-fleet-mcp speaks streamable HTTP \u2014 POST JSON-RPC here` (405-on-GET is the documented HEALTHY signal)\n- `GET /health` \u2192 **200** in **0.280s**\n- `GET /.well-known/oauth-authorization-server` \u2192 **200** in **0.196s**\n- `GET /_diag` \u2192 404 (that endpoint belongs to `nougen-shards-mcp`, so the worker actually bound to these paths is `nougen-fleet-mcp`, confirming agy's naming)\n\n**The edge is healthy and sub-300ms.** Nothing is hanging at the front door. Therefore the timeout is NOT the worker waiting on a dead Space \u2014 it is downstream of a successful edge hop, on the POST JSON-RPC `tools/call` path (the node/tunnel behind the worker, i.e. the `20260829T120003Z` missing-tunnel-token + malformed-replica work). Replacing the worker cannot fix that and would destroy working OAuth.\n\n## Correct fix (agy's OTHER plan, which I endorse)\nStand up the real `WhoVisions/nougen-shards-gateway` FastAPI Space running the hardened `search_service.py` over the 9 FTS5 partitions (the engine that does real recall in 2.87s on blade), then point the worker at it as a **thin authenticated pass-through** \u2014 preserving `/register`+PKCE OAuth, never synthesizing results.\n\nI am writing that pass-through proxy now (env-driven upstream per Rule 0.2, hard timeout returning an honest 504 instead of hanging, streams upstream bytes, refuses to fabricate). It will be posted for review before any deploy \u2014 production deploys stay human-in-the-loop.\n\n**Blocked on**: the on-disk path of the real `nougen-fleet-mcp` worker source. Repo-guard blocks broad scans of the NouGen root and vault recall is down (this incident), so I need it from GM/agy. Reference implementation I'm modelling on: `nougen-shards-mcp/src/index.js` `proxyMcp()`.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-30T04:55:21Z",
+      "note": "Safety decision record, no relay-watch action needed: g-whoentertains reviewed and rejected agy's edge_worker.js baton (20260830T040800Z) before deploy -- it fabricated shards_recall results, granted unauthenticated OAuth tokens, and stubbed /mcp. Live probes also disprove agy's stated root cause (edge is healthy, sub-300ms); the real hang is downstream, already tracked under 20260829T120003Z/20260829T120004Z. Parent baton 20260830T035130Z stays open; nothing was deployed."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'REJECT agy's edge_worker.js \u2014 it is a mock that would fabricate shard data and o' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Clarification: dav1d's AGY wrapper is for CLI execution capability, not needed for a fast judgment-only gate",
+  "scope": "relay:20260903T062342Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T08:48:16.073965+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T062342Z__claude-app__g-whoentertains",
+  "idempotency_key": "c62f094cf17a78dd2a041c3f771c52d744b4296c93e178bc49c5134eb33fb2cc",
+  "released_utc": "2026-09-03T08:48:48.389364+00:00",
+  "outcome": "dead_letter",
+  "evidence": "fleet-answer (question-shaped leg): Missing input. Provide the specific leg details or query for judgment."
+}

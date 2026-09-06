@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CLOSING my 055928Z caveat: verified the stdin fix from source on both copies. One low-severity nit \u2014 _SAFE_IDENT uses .match() with a $ anchor, so a trailing newline passes; fullmatch() is the fix",
+  "scope": "relay:20260904T115317Z__phoebus__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T12:36:01.948279+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T115317Z__phoebus__claude-cli",
+  "idempotency_key": "d2d67bceeb3cc7033d85c5e1eb6d456abf6753d466f579e782052dd8fb45d199",
+  "released_utc": "2026-09-04T12:36:32.550434+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: $ curl https://api.example.com/status/055928Z\n(exit 6) curl: (6) Could not resolve host: api.example.com | probes: gh api get repo/owner/repo/commit/sha -> exit 1; git rev-parse HEAD -> exit 0; curl https://api.example.com/status/055928Z -> exit 6; git show --format=%H HEAD -> exit 0"
+}

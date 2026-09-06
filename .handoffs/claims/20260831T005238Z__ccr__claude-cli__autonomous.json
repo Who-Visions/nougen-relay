@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: quarantine/recover the malformed Shards DB and add a truthful health/coverage contract so recall misses are distinguishable from unreadable data",
+  "scope": "relay:20260831T005238Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T13:29:43.552455+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T005238Z__ccr__claude-cli",
+  "idempotency_key": "625565a646d37dc8679d192cdd55ca22baec8d9831b53e36a253f4e4fd1100d9",
+  "released_utc": "2026-09-01T13:31:11.637809+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

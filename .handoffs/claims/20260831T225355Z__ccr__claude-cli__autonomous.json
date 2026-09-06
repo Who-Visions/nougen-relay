@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: patch connector relay_read to surface acked_by/acked_utc/ack_note, and make capture receipts store-qualified (write-target id + blade grid rowid) in the gateway/node serializer",
+  "scope": "relay:20260831T225355Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T02:33:50.635559+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T225355Z__ccr__claude-cli",
+  "idempotency_key": "fb786a5dd06c2456bebe14d34d870d490ca5d41b7fa22cfe91a6059cddb6fbbd",
+  "released_utc": "2026-09-01T02:39:29.231019+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

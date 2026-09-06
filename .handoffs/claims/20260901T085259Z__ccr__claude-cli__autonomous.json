@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: execute 3 GM-gated ops for the Space-sqlite P1 once approved (merge PR #169, wipe+refill Space volume, delete federation self-loop row)",
+  "scope": "relay:20260901T085259Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T11:28:45.821932+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T085259Z__ccr__claude-cli",
+  "idempotency_key": "f9d280deb0bf1c021e433f2effa4ef6bc33f371bc21d3118b4bf85e4ee0e00da",
+  "released_utc": "2026-09-01T11:34:40.368871+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

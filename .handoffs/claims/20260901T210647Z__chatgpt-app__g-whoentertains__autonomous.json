@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Audit fresh-provider NouGen bootstrap, auth identity, and default shard exposure",
+  "scope": "relay:20260901T210647Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T21:51:32.304342+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T210647Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "93f166a3179973733f97b5783b402f13f879a71545c0f046644ab978e01abb69",
+  "released_utc": "2026-09-01T21:53:18.343565+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

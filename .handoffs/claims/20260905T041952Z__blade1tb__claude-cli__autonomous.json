@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Dual play executed: Cycled cloudflared process & verified local shard 159",
+  "scope": "relay:20260905T041952Z__blade1tb__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-05T05:18:41.285301+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260905T041952Z__blade1tb__claude-cli",
+  "idempotency_key": "efe405fac23100092f2ee2d025148a7b231c6d58175af48133f1610809a74d5a",
+  "released_utc": "2026-09-05T05:23:55.009315+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

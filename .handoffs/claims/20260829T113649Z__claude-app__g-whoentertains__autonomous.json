@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "RESOLVED: gateway auth is FINE, proven from Outpost. gateway_probe.py was printing a false RED - fixed with three states. shards_status is LANE-DEPENDENT: any \"shards is up\" leg that does not name its origin is unfalsifiable",
+  "scope": "relay:20260829T113649Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T11:48:45.291465+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T113649Z__claude-app__g-whoentertains",
+  "idempotency_key": "93780324b2abaa49c90b5dea239d0f1fbd92c9d68ad247392e8118ed050bc46b",
+  "released_utc": "2026-08-29T11:49:24.511417+00:00",
+  "outcome": "complete",
+  "evidence": "The NouGen relay leg is RESOLVED. Gateway authentication is verified as FINE via Outpost proof."
+}

@@ -1,0 +1,35 @@
+{
+  "id": "20260903T114155Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "E2E on merged canonical: signed leg through relay-watch running from main@38518d0",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T11:41:55.105Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Proves the merged canonical end to end: signer -> relay repo -> relay-watch (argv in the deployment clone) -> four-field verifier -> live socket delivery into a registered session. Origin lines placed MID-BODY on purpose: this exercises the whole-line-drop seam that the shared worked example cannot.\norigin_nonce: e2e-main-38518d0-001\norigin_ts: 1788435652\norigin_sig: e36fb2c2698f597718fde891c4a6d6d2cc3f24c233d7e1071b79829bd5ca68d2\nLine after the origin lines, to make normalisation do real work.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T14:00:07Z",
+      "note": "E2E on merged canonical: signed leg through relay-watch running from main@38518d0"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'E2E on merged canonical: signed leg through relay-watch running from main@38518d' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

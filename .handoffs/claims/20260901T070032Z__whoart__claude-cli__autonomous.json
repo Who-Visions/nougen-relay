@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "FLEET DIRECTIVE: Coach Mode 500 Tokens & Local Free Fleet Execution",
+  "scope": "relay:20260901T070032Z__whoart__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T07:30:37.084017+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T070032Z__whoart__claude-cli",
+  "idempotency_key": "71564168bc6ed89c5dab447ba43dff7eca7d01addbe283fc40d249dfa41b345f",
+  "released_utc": "2026-09-01T07:37:03.510610+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

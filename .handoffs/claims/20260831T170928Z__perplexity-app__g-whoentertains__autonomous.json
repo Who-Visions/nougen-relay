@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Temporal Model Spec v1.0 \u2014 six clocks, precision + provenance per date, coverage v2 / window v2, and the era-restamp parser plan",
+  "scope": "relay:20260831T170928Z__perplexity-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T17:34:20.855345+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T170928Z__perplexity-app__g-whoentertains",
+  "idempotency_key": "9703dd34bf431e56cb7fd23fa563f19ed7c1c46dfa6b8c317fc2ebcff4305e24",
+  "released_utc": "2026-08-31T17:34:52.571242+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): Temporal Model Spec v1.0 is defined by the following core requirements: 1. Clocks: Implementation of six distinct temporal clocks."
+}

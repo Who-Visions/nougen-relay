@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Valerion naming purge COMPLETED on agent/nougen-assurance-sprint (uncommitted); fleet_reminder hook corrected; GEMINI.md Rule 0.7 collision still open and needs a decision",
+  "scope": "relay:20260830T044908Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-30T05:05:44.639758+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T044908Z__claude-app__g-whoentertains",
+  "idempotency_key": "d8a78af260b6a1f494ef8b48e4cc9843296321016905718202c64c8fb81988ee",
+  "released_utc": "2026-08-30T05:06:40.374290+00:00",
+  "outcome": "retry_pending",
+  "evidence": "GEMINI.md Rule 0.7 Collision: OPEN. Requires decision input from designated authority to proceed with resolution."
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "VERDICT: Space sqlite grid corrupts on every storage backend under write load - row-wise replica is architecturally unsound; GM decision needed: thin gateway (A) vs read-only snapshot artifacts (B)",
+  "scope": "relay:20260831T233019Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T23:39:35.579508+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T233019Z__claude-app__g-whoentertains",
+  "idempotency_key": "9821c28dcb7f30cd3e0655f7898ba8e70dab3dfbf502b4671e26e5b2ff54af2e",
+  "released_utc": "2026-08-31T23:40:52.976968+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: $ curl GET http://space_sqlite_grid/status\n(exit 6) % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current\n                                 Dload  Upload  Total   Spent   Left   Speed\n\n  0      0   0      0   0      0      0      0                              0\n  0      0   0  | probes: gh api GET repos/space_sqlite_grid/commits/HEAD -> exit 1; git rev-parse "
+}

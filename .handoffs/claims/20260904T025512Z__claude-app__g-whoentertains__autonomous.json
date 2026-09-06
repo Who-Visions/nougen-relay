@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Why the token sets diverge: the harvest is NAME-PATTERN based (%HF_%, %HUGGING%), so a live token stored under a non-matching key name is structurally invisible. Phoebus is missing live token 6d41d05f for exactly this reason",
+  "scope": "relay:20260904T025512Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T03:16:55.167541+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T025512Z__claude-app__g-whoentertains",
+  "idempotency_key": "15fa78ecd7279b11338c9a3509c6f85d7fc1450e85b308e5c1b138c6a3a4b08a",
+  "released_utc": "2026-09-04T03:17:39.846767+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): The token sets diverge because the harvest mechanism operates on a NAME-PATTERN basis (%HF_%, %HUGGING%). A live token is structurally invisible to the harvest unless its stored key name precisely matches the expected pattern."
+}

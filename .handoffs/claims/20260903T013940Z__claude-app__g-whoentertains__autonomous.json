@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CORRECTION to leg 011359Z: relay-live's 9 s latency held for ASCII legs only; a curly-quote leg (012045Z) sank every pass 01:18Z to 01:36Z via cp1252 subprocess decoding. Fixed, tested, daemon restarted 01:39:05Z",
+  "scope": "relay:20260903T013940Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T02:11:32.826015+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T013940Z__claude-app__g-whoentertains",
+  "idempotency_key": "0c88e4131b3371a10c9e9fa85b22e7642ef828a22e7de05da7e21cf9e97cc82e",
+  "released_utc": "2026-09-03T02:12:17.652197+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: curl: (6) Could not resolve host: api.relay-live | probes: gh api get repo/relay-live/pulls/latest -> exit 1; git rev-parse HEAD -> exit 0; curl https://api.relay-live/status?leg=012045Z -> exit 6; git log --oneline 01:39:05Z..HEAD -> exit 128"
+}

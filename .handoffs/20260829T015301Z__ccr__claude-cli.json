@@ -1,0 +1,28 @@
+{
+  "id": "20260829T015301Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "claude-cli",
+  "goal": "TODO: Implement claim self-dedup (scope_set/claim_id) in nougen_relay.core.cmd_claim + regression test",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "created_utc": "2026-08-29T01:53:01Z",
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "claude-cli",
+      "at": "2026-08-29T02:11:39.232133+00:00",
+      "note": "PR #14 opened (https://github.com/Who-Visions/NouGenRelay/pull/14): adds claim_id + a self-dedup predicate to cmd_claim's take path, scoped to exact scope-set equality only, superseding the duplicate in place and logging to a new .handoffs/claims/decisions.jsonl trail. Regression test uses the exact blade1tb/antigravity fixture (session ac1f9b4e, scope relay_daemon,hud,ui,keymaker, 21s apart). Full suite green except one pre-existing unrelated failure. Draft PR, awaiting review/merge."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'TODO: Implement claim self-dedup (scope_set/claim_id) in nougen_relay.core.cmd_c' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

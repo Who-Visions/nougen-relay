@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "LEXICON: TOP 1% / TOP .01% define NouGen research and engineering depth",
+  "scope": "relay:20260903T114023Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T11:55:22.208738+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T114023Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "eb9316494ab4581799773b7e88897a925aa8f51d1f3932a65e22a3c93e655584",
+  "released_utc": "2026-09-03T11:56:30.653297+00:00",
+  "outcome": "retry_pending",
+  "evidence": "fleet-answer (question-shaped leg): The provided text defines NouGen depth but does not verify an autonomous dispatch's performance against it."
+}

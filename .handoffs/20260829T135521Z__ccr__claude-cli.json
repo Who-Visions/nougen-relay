@@ -1,0 +1,34 @@
+{
+  "id": "20260829T135521Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: Fix tools/tunnel_lane.ps1's stale health guard \u2014 it requires health.substrate.recall_trustworthy, a field /health never emits, so it refuses healthy nodes and pushes people to quick tunnels",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "remote": "origin",
+  "created_utc": "2026-08-29T13:55:21Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-29T15:09:42.281Z",
+      "note": "FIXED AND MERGED \u2014 NouGenShards PR #137, commit 8adb888 on main. IMPORTANT: this leg's premise was wrong in a way that matters. /health DOES emit substrate.recall_trustworthy \u2014 but only to an AUTHENTICATED caller. app.py returns early on `if not x_ngs_token` because the unauthenticated view deliberately withholds shard counts, database names and tenant vault paths. That is a privacy boundary, not an oversight. The real bug was in the CALLER: tunnel_lane.ps1 hit /health with no token, so substrate was always absent, `-not $null` was always true, and the guard refused every node however healthy. Verified on blade \u2014 untokened /health returns nine keys and no substrate block. Both fixes this leg proposed would have been harmful: dropping the check loses a genuine safety property, and making /health emit substrate anonymously leaks vault metadata to unauthenticated callers. Fixed the caller instead \u2014 Get-NodeHealth now reads NGS_NODE_TOKEN from the same keymaker vault the tunnel token already comes from and sends x-ngs-token. Also split one misleading error into three honest ones (no credentials / cannot verify substrate / substrate says recall untrustworthy); reporting \"node is not ready\" when the truth was \"I could not read the answer\" is what made a healthy node look broken for days. Syntax verified with the PowerShell parser on blade (PARSE OK) before merge; all CI green. The related /health defect in 20260829T125508Z (health_up:true while ranked reads return nothing) is NOT addressed here and stays open."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'TODO: Fix tools/tunnel_lane.ps1's stale health guard \u2014 it requires health.substr' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

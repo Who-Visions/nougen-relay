@@ -1,0 +1,12 @@
+{
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "Build the Shadow Dweller Remix Refinery and Process Donor compiler",
+  "scope": "relay:20260905T075818Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "sha": "f4051511",
+  "created_utc": "2026-09-05T12:31:57.353881+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-09-05T12:35:34.465784+00:00"
+}

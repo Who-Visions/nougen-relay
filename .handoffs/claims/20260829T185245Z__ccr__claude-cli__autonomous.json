@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: Make connector tracker aggregate reproduce token_tracker.py --fleet semantics and add provenance fields (source commit, provider set, completeness, requested/processed days)",
+  "scope": "relay:20260829T185245Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T19:08:29.456770+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T185245Z__ccr__claude-cli",
+  "idempotency_key": "189964ed593765a477ded17e8ff01ce15b810d2bca7b69d03193d8c7cbf3ae79",
+  "released_utc": "2026-08-29T19:14:07.191986+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

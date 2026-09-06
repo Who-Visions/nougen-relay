@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Fix UNK Trader vault targeted recall blind spot",
+  "scope": "relay:20260901T043658Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T06:45:12.024472+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T043658Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "4047773b35c614d140a13c09d232ad5436d44153b9b24485bb114ab9eef8c05a",
+  "released_utc": "2026-09-01T06:50:39.516549+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "nougen-36 (blade/claude-cli) FOCUS: Shadow Dweller / VeilVerse lore from 12:57Z; relay_live storm CLOSED at root",
+  "scope": "relay:20260906T130121Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-06T13:31:47.356180+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260906T130121Z__claude-app__g-whoentertains",
+  "idempotency_key": "153281e79ae743a7b09eac7b8d02ce543e97dad8823f4edad9e4a2ea608f57e8",
+  "released_utc": "2026-09-06T13:35:22.212784+00:00",
+  "outcome": "retry_pending",
+  "evidence": "fleet-answer (question-shaped leg): verifier unavailable: timed out"
+}

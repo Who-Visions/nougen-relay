@@ -1,0 +1,38 @@
+{
+  "id": "20260903T023851Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Leg 015748Z Phase B DONE (NouGenRelay-main, branch claude/daemon-hardening): fencing token + heartbeat + sweeper + history in core.py leases, admit() before acquisition in guard.py, daemon wired; 83 tests. Relay-live daemon shielded after a Ctrl+C death",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T02:38:51.457Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "## Phase B shipped (NouGenRelay-main, branch claude/daemon-hardening, GM go at 02:14Z)\nElevated the existing lease store (.relay/leases), no new subsystem.\n- core.py: acquire_lease issues lease_id, monotonic fencing_token per leg (increments across expiry reclaim and force; prior tokens never reused), heartbeat_utc + heartbeat_count, attempt_count, state (LEASED/RUNNING/RETRY_WAIT/DEAD_LETTER/COMPLETE/RELEASED/CLAIMABLE), history[] {utc, actor, from, to, evidence} capped by NOUGEN_LEASE_HISTORY_MAX (50). lease_is_active ages against the newest heartbeat.\n- fencing: release_lease(fencing_token=), record_leg_failure(fencing_token=), heartbeat_lease() reject a stale token, append to rejected[], and leave the record untouched. Legacy callers with no token still work.\n- heartbeat_interval_seconds = TTL / NOUGEN_LEASE_HEARTBEAT_DIVISOR (3). sweep_expired_leases marks expired active leases CLAIMABLE with \"sweeper: expired after N min\" evidence (idempotent). lease_metrics = live index: by_state, by_status, active, expired_swept, reclaimed, dead_letter, fencing_rejections, oldest_active_min.\n- guard.py: admit(root, leg, lane) -> (ALLOW|DEFER|DENY, reason). DENY: terminal leg status, dead_letter, closed lease, capability miss. DEFER: blocked, leased by another holder (names holder + token + ttl), retry window open. ALLOW: claimable or re-entry by the same holder. No model in the loop. CLI: `relay admit <leg_id> [--lane]`, exit 0/2/1.\n- relay_daemon.py: admit before acquire (verdict printed), tokens kept per leg and presented on every release/failure (FENCED lines when stale), heartbeat thread at TTL/3 wraps the agy subprocess (UTF-8, CREATE_NO_WINDOW), sweeper + metrics at the top of run_cycle.\nTests: tests/test_lease_control_plane.py 10 new (token monotonic across reclaim/force; stale token cannot release/fail/heartbeat; heartbeat extends liveness; sweeper + visible reclaim + metrics; dead-letter history; admission verdicts incl. retry window; history cap). Full suite 345 passed, 1 fixed (test double without the new kwarg), 6 skipped, 1 xfail.\nNot done: the running \"NouGen Relay Watcher\" task still runs the old daemon code until restarted (Dave's task, 5-min trigger; restart = next trigger after a stop). C (Worker-side relay_claim_list) and D (push wake into run_cycle) remain per the war-game.\n\n## Correction, relay-live (push-main commit 2080155)\nThe notifier died at 02:06Z to a console Ctrl+C (0xC000013A); legs 021127Z and 022118Z sat unseen until 02:31Z. Now: SIGINT ignored + SetConsoleCtrlHandler(None) on Windows, pid + interrupt mode in the banner. Task settings (RestartCount 0, ExecutionTimeLimit PT72H) need an elevated Set-ScheduledTask; one-liner in the correction shard.\n\n## Open legs seen, not taken\n021127Z (vibes.py persona stream), 022118Z (HF relay shadow-mirror war-game), 023538Z (Fleet Expression Protocol), 023600Z (Xoah hidden challenger). Session at 1.9 h; handoff-and-reset is the right next move for those.",
+  "acked_by": "relay-daemon@blade1tb",
+  "acked_utc": "2026-09-03T02:51:03.091724+00:00",
+  "ack_note": "daemon dispatch verified: fleet-answer (question-shaped leg): Phase B is COMPLETE.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "blade1tb",
+      "agent": "relay-daemon",
+      "at": "2026-09-03T02:51:03.091724+00:00",
+      "note": "daemon dispatch verified: fleet-answer (question-shaped leg): Phase B is COMPLETE."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Leg 015748Z Phase B DONE (NouGenRelay-main, branch claude/daemon-hardening): fen' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

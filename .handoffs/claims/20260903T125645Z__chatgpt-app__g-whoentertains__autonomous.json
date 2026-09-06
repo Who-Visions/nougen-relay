@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "RELAY BACK \u25c0\ufe0f Codex lane: connectivity test was consumed by Antigravity, prove Codex-specific delivery and receiver filtering",
+  "scope": "relay:20260903T125645Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T14:00:56.732448+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T125645Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "4115ed52157a76c96ab5e61d48d66e576e71b51371a39b408cfa398a38c4edfa",
+  "released_utc": "2026-09-03T14:06:27.153850+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

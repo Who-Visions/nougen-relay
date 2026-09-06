@@ -1,0 +1,42 @@
+{
+  "id": "20260903T023538Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Implement Fleet Expression Protocol, with Hardcade social renderer and Xoah hidden challenger renderer",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T02:35:38.155Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "## Core decision\nReplace the narrow `FleetThoughts` concept with a **Fleet Expression Protocol** built from existing Who Visions/NouGen lineage.\n\nThe protocol must encode one truthful operational event, then let persona/UI layers render that truth differently. No invented cognition, no fake thinking stream.\n\n### Unified event dimensions\n\n```text\nagent identity\n+ phase\n+ status\n+ action\n+ vibe\n+ reaction\n+ signature glyph\n+ color\n+ optional animation\n= one truthful Fleet Expression event\n```\n\n## Existing primitives to fuse\n* Dav1d: `emoji_dict.py`, `emoji_dict_extended.py`, `speech_enhancer.py`, `vibe_map`, `WORD_TO_EMOJI`, semantic context \u2192 glyph vocabulary.\n* Rhea Noir: `rhea_noir/expressions.py`, reaction groups, gestures, signature glyphs, callable expression skill, culturally aware presentation.\n* Rhea A2A AgentCard: portable `emoji`, `color`, `role` identity metadata. Prefer discovered identity over hardcoded central maps.\n* Visions AI: `visions/modules/visual/animations.py`, processing animation frames, execution stages, lifecycle states.\n* Kaedra: persona specific `thinking_message()` / streaming thought text tied to execution.\n* Dav1d SSE `/chat/stream`: transport pattern for metadata + streaming output.\n\n## Required protocol maps\n1. `AGENT_MAP`: identity, emoji, color, role, avatar, lane. Discovery first, fallback second.\n2. `PHASE_MAP`: RECALL, SEARCH, TRACE, VERIFY, CONFLICT, ROUTE, TOOL, RETRY, FAILOVER, RELAY, SHARD, MEMORY, SYNTHESIS, COMPLETE.\n3. `STATUS_MAP`: waiting, active, done, skipped, retrying, degraded, failed.\n4. `ACTION_MAP`: GitHub search, shard recall, relay handoff, provider call, tracker query, file fetch, etc.\n5. `VIBE_MAP`: expressive tone inherited from Dav1d.\n6. `REACTION_MAP`: expressive agent presentation inherited from Rhea.\n7. `CONCEPT_MAP`: semantic concept \u2192 visual token from Dav1d vocabulary.\n8. `SIGNATURE_MAP`: immutable primary identity glyphs.\n9. `ANIMATION_MAP`: optional frame sequences for long enough operations.\n10. `COLOR_MAP`: semantic colors independent of ANSI/web implementation.\n\n## Suggested canonical event\n\n```python\nFleetExpressionEvent(\n    agent=\"dav1d\",\n    phase=\"VERIFY\",\n    status=\"active\",\n    action=\"github_search\",\n    target=\"app/agents/vibes.py\",\n    vibe=\"analytical\",\n    reaction=\"focused\",\n)\n```\n\nResolver attaches discovered identity metadata and semantic visual tokens. Persona renderer supplies voice. CLI/web/logs all consume the same event.\n\n## Hardcade + Xoah integration\nHardcade must **not** become a separate fake cognition system. It rides on top of Fleet Expression Protocol as a social/game renderer.\n\nXoah likewise rides on the same protocol as an **Akuma class hidden challenger renderer**. Her appearance, threat level, hidden challenge behavior, boss style glyph language, stage metadata, and social game presentation are renderer semantics over real machine events, not a second fabricated event bus.\n\nThink:\n\n```text\nFleetExpressionEvent\n        \u2193\ncanonical truth\n        \u2193\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Ops Renderer  \u2502 Hardcade       \u2502 Xoah Challenger  \u2502\n\u2502 CLI/Web/Logs  \u2502 social/game    \u2502 hidden boss skin \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n```\n\nHardcade can add achievements, baton economy, challenge framing, social presence, versus screens, streaks, ranks, etc. Xoah can alter tone, threat presentation, glyph density, challenge rules and encounter framing. Neither may alter the underlying factual operation state.\n\n## Streaming events\nUse the existing operation stream, with semantic events such as:\n\n```text\nfleet.thought\nfleet.route\nfleet.tool\nfleet.relay\nfleet.shard\nfleet.retry\nfleet.complete\nfleet.challenge\nfleet.achievement\n```\n\n## UX hard requirement\nDo not spawn visible PowerShell/CMD/terminal windows for MCP activity. Dave explicitly wants background execution with no focus stealing or flashing windows. The fleet should whisper through the currently open surface via the event stream.\n\n## Done when\n1. Protocol schema exists and is transport agnostic.\n2. Legacy Dav1d/Rhea/Visions/Kaedra primitives are reused or migrated, not rewritten from scratch without reason.\n3. Agent visual identity can come from discovery metadata.\n4. CLI and web can render the same canonical event differently.\n5. Hardcade is implemented as a renderer/game/social layer over canonical events.\n6. Xoah is implemented as a hidden challenger renderer over canonical events.\n7. No popup terminal windows are required for normal MCP/event visibility.\n8. Tests prove renderers cannot mutate or invent underlying operation truth.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T13:59:51Z",
+      "note": "Actionable-heavy: Net-new feature build (Fleet Expression Protocol event lexicon, Hardcade arcade-style social renderer, CLI harness with stopwatch/context-governor) requiring code changes across the CLI and event pipeline. Not a status update; nothing in this batch shows it shipped. Queued as TODO `20260904T135951Z__ccr__claude-cli` for the blade/claude-cli lane. Source leg left open."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "claude-cli",
+      "at": "2026-09-05T16:22:22.519671+00:00",
+      "note": "Recorded: Fleet expression events captured via transcript and NouGenMsgBus audit streams."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Implement Fleet Expression Protocol, with Hardcade social renderer and Xoah hidd' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

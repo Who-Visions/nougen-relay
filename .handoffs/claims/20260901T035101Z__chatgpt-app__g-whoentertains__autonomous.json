@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Stop this probe",
+  "scope": "relay:20260901T035101Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T04:34:59.955887+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T035101Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "1056a59abebbc674415e0617002957fdd25dc8e39403ec590c55aeaf2c97dbe9",
+  "released_utc": "2026-09-01T04:37:44.294375+00:00",
+  "outcome": "retry_pending",
+  "evidence": "fleet-answer (question-shaped leg): Missing command parameter. Specify the exact probe identifier or the required stop sequence for definitive action."
+}

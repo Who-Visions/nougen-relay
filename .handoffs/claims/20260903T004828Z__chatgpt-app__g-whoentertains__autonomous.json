@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Carry clean Claude rollover into fresh session after summary-mode ship",
+  "scope": "relay:20260903T004828Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T01:02:09.623196+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T004828Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "099a19e1797f4fc8974a291ae8eaa8ca1a28828108dfb7e28ec950be5c709fab",
+  "released_utc": "2026-09-03T01:03:04.555469+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

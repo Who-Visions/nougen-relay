@@ -1,0 +1,12 @@
+{
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "Request Phoebus timed message in 90 seconds",
+  "scope": "phoebus-timed-ping",
+  "status": "released",
+  "branch": "main",
+  "sha": "3339a0b2",
+  "created_utc": "2026-09-05T00:01:38.335138+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-09-05T00:02:14.080272+00:00"
+}

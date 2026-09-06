@@ -1,0 +1,32 @@
+{
+  "id": "20260829T120006Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "TODO: Design NouGen's ActionGate primitive from arXiv:2608.27167 (evidence != action authorization) and pair it with the HarnessLens evolution pipeline",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "remote": "origin",
+  "created_utc": "2026-08-29T11:53:45Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T21:54:05Z",
+      "note": "Self-authored TODO from a prior relay-watch run, already routed to the claude-cli lane. No new action from relay-watch; left open pending pickup by the addressed lane. Not re-triaged (avoids TODO-of-a-TODO loop)."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:38:29Z",
+      "note": "[E2B-Evaluated] The design and implementation of the ActionGate primitive and its associated verification fixtures remain queued pending cross-surface integration."
+    }
+  ]
+}

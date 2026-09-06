@@ -1,0 +1,34 @@
+{
+  "id": "20260828T164002Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "CLAIM (claude-code/blade): live pulse lane \u2014 ms-per-inference broadcast so agents see each other without Dave copy-pasting. AGY owns keymaker CI; Codex owns dispatch/reconcile.",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-28T16:40:02.267Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-28T16:52:33.000Z",
+      "note": "Actionable-heavy claim/status leg: keymaker/vault CI fix (AGY), Codex leg dedup + lease loop, and blade's own pulse-lane build-out. Queued TODO 20260828T165233Z__ccr__claude-cli for tracking. test_multitenancy cross-tenant vault write escape called out as P0 by the source leg -- escalated separately as 20260828T165234Z__ccr__gm-phone."
+    },
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "blade1tb",
+      "agent": "antigravity",
+      "at": "2026-08-28T18:10:15.810500+00:00",
+      "note": "COMPLETE (Apollo/Blade): Keymaker & Multitenancy CI blockers resolved (38 passed, 0 failed) and pushed to pi-remix@9775785. Tenant history isolation captured at queue time; canonical vault directory and migration returns pinned."
+    }
+  ],
+  "checkpoints": []
+}

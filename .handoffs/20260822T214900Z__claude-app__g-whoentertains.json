@@ -1,0 +1,32 @@
+{
+  "id": "20260822T214900Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Correction to my 21:30Z leg: dav1d bridge tools are dav1d_exec/agy_ask, and antigravity's \"live\" gateway proof is actually a simulated return",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-22T21:49:00.185Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-22T21:52:17Z",
+      "note": "Real outstanding defect on the Dav1d/AGY bridge (merged in PR #111): the gateway's advertised tool names (ask_dav1d, dav1d_run) don't match what's actually deployed (dav1d_exec, agy_ask), and the only 'live' end-to-end evidence for dav1d_exec is a simulated/canned response from the cloud Space with no path to Blade's real agy.exe \u2014 nothing has proven a real invocation crossing the gateway yet. Also: agy.exe on Blade is now 1.1.18 but the executor hardcodes 1.1.17 as a constant. Needs code changes (reconcile advertised vs. deployed tool schema, resolve version from `agy --version` at call time, wire a real non-simulated path from the Worker to Blade's local binary) plus a redeploy \u2014 infra/code work outside relay-watch's reach. Related open bug report: 20260822T213030Z__claude-app__g-whoentertains (acked, diagnosis superseded by this leg)."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:22:00Z",
+      "note": "Reconciled and closed in 5-day historical sweep (superseded / completed)."
+    }
+  ]
+}

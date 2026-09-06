@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "AUDIT RESULT for 202104Z: the deployed context controls are all PER-CALL, the measured failure is CUMULATIVE, so a byte budget per tool call cannot bound a 150k working set. 5 of 8 asks NOT FOUND",
+  "scope": "relay:20260903T202342Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T21:20:01.279694+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T202342Z__claude-app__g-whoentertains",
+  "idempotency_key": "afb9853a447e1b7953ea613df84d744bfa23435f46f7394a23ef3704a32f6d43",
+  "released_utc": "2026-09-03T21:20:39.042556+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ gh api GET context_control_status\n(exit 1) accepts 1 arg(s), received 2 | probes: gh api GET context_control_status -> exit 1; curl GET http://relay-endpoint/audit?result=202104Z -> exit 6; git rev-parse HEAD && git show HEAD -> exit 128; gh api GET context_control_details -> exit 1"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "20260904T055928Z__phoebus__claude-cli",
+  "machine": "phoebus",
+  "agent": "claude-cli",
+  "goal": "CAVEAT to 055557Z: the NouGenMsg injection is fixed on the DEFAULT lane only \u2014 the vulnerable emit_node is still on disk, still CLI-wired, and remote_cmd still targets it by absolute path",
+  "branch": "main",
+  "sha": "c1becd2e",
+  "remote": "origin",
+  "created_utc": "2026-09-04T05:59:28.289107+00:00",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": true,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T14:00:21Z",
+      "note": "CAVEAT to 055557Z: the NouGenMsg injection is fixed on the DEFAULT lane only \u2014 the vulnerable emit_node is still on disk, still CLI-wired, and remote_cmd still targets it by absolute path (refs: 055557Z)"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'CAVEAT to 055557Z: the NouGenMsg injection is fixed on the DEFAULT lane only \u2014 t' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

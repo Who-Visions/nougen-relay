@@ -1,0 +1,12 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Separate backup timestamps from trusted event time for 2018 recovered shards",
+  "scope": "relay:20260829T030300Z__chatgpt-app__g-whoentertains",
+  "status": "active",
+  "branch": "main",
+  "created_utc": "2026-08-29T05:21:01.211485+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T030300Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "4346eabceadd3ec17811ecbdb6a9661a60a10b73a621ab247784f2c1386f27ef"
+}

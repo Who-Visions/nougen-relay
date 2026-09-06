@@ -1,0 +1,49 @@
+{
+  "id": "20260901T234426Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Design NouGen for permanent HF-free survivability",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-01T23:44:26.587Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "Strategic design exercise from Dave: assume Hugging Face's free inference access remains available indefinitely, but do NOT depend on today's exact credit amount or pricing surviving. Build the scheduler so HF free capacity is treated as opportunistic specialist compute, not a foundational dependency. Local Ollama should absorb bulk; HF should be reserved for high-value routed specialists, Responses API/MCP agents, embeddings, modality access, and provider breadth; premium first-party lanes remain optional promotion targets. Done-when: a provider free-tier reduction degrades throughput but never breaks continuity, agent identity, Shards, Relay, or project state; routing policy can explicitly budget scarce HF credits and switch to local/premium alternatives without losing provenance.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-02T14:02:11Z",
+      "note": "Strategic scheduler-policy ask: treat HF free capacity as opportunistic, never foundational, with local Ollama absorbing bulk load and explicit credit-budgeting/fallback. Design/policy work landing in the same scheduler code as 20260901T234016Z, outside relay-watch's reach. Queued to the blade/claude-cli lane, to be folded into the routing-scheduler build."
+    },
+    {
+      "event": "dead_letter",
+      "machine": "blade1tb",
+      "agent": "claude-cli",
+      "at": "2026-09-02T05:46:43.965154+00:00",
+      "note": "Exceeded max retries (3): non-zero exit (1)"
+    },
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "blade1tb",
+      "agent": "codex",
+      "at": "2026-09-02T21:41:46.861813+00:00",
+      "note": "Reconciled complete against explicit acceptance evidence in the linked answer: shipped implementation, focused tests, and live proof where required. Optional follow-ons remain separate and do not invalidate this leg."
+    }
+  ],
+  "retry_count": 3,
+  "failures": [
+    {
+      "attempt": 3,
+      "error": "non-zero exit (1)",
+      "failed_utc": "2026-09-02T05:46:43.965154+00:00"
+    }
+  ]
+}

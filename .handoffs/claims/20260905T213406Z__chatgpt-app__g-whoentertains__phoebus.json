@@ -1,0 +1,11 @@
+{
+  "machine": "phoebus",
+  "agent": "antigravity-coach",
+  "goal": "Archaeology wishlist: prove WhoArt November 2025 and normalize machine-origin provenance",
+  "scope": "relay:20260905T213406Z__chatgpt-app__g-whoentertains",
+  "status": "active",
+  "branch": "main",
+  "created_utc": "2026-09-05T21:44:30.000Z",
+  "ttl_hours": 2,
+  "note": "Antigravity on Phoebus claimed leg 213406Z. Excavated shards 12197, 12198, 12199 proving Phoebus genesis Nov 19 2025."
+}

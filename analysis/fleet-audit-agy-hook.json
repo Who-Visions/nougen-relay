@@ -1,0 +1,62 @@
+[
+  {
+    "route": "hf-space-davewho-deepseek",
+    "verdict": "HOLD",
+    "answer": "VERDICT: HOLD  \nTOP_RISK: The guard fails to enforce claims when `_scopes_overlap` returns inconsistent results, allowing edits despite overlapping claims.  \nBYPASS: An agent could bypass the guard by manipulating the `rel` path to avoid matching the scope format used in claims (e.g., using backslashes on Windows)."
+  },
+  {
+    "route": "arliai-gemma4-31b-it",
+    "verdict": "HOLD",
+    "answer": "VERDICT: HOLD\nTOP_RISK: Path traversal or normalization mismatch allows an agent to bypass the scope check by using relative paths (e.g., `../`) or symbolic links that resolve outside the claimed scope but target the same file.\nBYPASS: Pass `../` or a symbolic link in the `target_file` argument to bypass `Path(target).relative_to(repo)` or the `_scopes_overlap` check, triggering the `except Exception: pass` block which defaults the path to the raw input and potentially avoids matching the registered claim's scope."
+  },
+  {
+    "route": "local-ollama-whoart",
+    "verdict": "HOLD",
+    "answer": "VERDICT: HOLD\nTOP_RISK: If the `core` module or any dependency raises an exception during claim checking, the hook deliberately allows the edit, bypassing all security checks regardless of whether a conflicting claim exists.\nBYPASS: Triggering any internal error (e.g., by manipulating environment variables or file system state that causes `Path` operations to fail) will cause the final `except Exception as exc:` block to execute, resulting in an \"allow\" decision and permitting the edit."
+  },
+  {
+    "route": "ollama-cloud-aiwithdav3",
+    "verdict": "HOLD",
+    "answer": "VERDICT: HOLD\nTOP_RISK: Path traversal or manipulation allows an agent to target a file via a path that bypasses the `.git`/.handoffs root detection or the relative path overlap check.\nBYPASS: Use a tool with a `TargetFile` containing a path that doesn't resolve to a known repo root (e.g., using absolute paths outside the workspace or symlinks), triggering the `if not repo: _emit(\"allow\")` fail-open."
+  },
+  {
+    "route": "ollama-cloud-contact-whovisions",
+    "verdict": "HOLD",
+    "answer": "VERDICT: HOLD\nTOP_RISK: Path traversal or ambiguity in `_target_path` and `_repo_for` allows an agent to reference a file via a path that fails to resolve to the claimed repo root, bypassing the overlap check.\nBYPASS: Use a redundant path (e.g., `dir/../file.py`) or a path outside the current `workspacePaths` that refers to the same file, causing `_repo_for` to return `None` or a different root, triggering the `_emit(\"allow\")` fallback."
+  },
+  {
+    "route": "ollama-cloud-dave-whovisions",
+    "verdict": "HOLD",
+    "answer": "VERDICT: HOLD\nTOP_RISK: Path traversal or symlink manipulation allows an agent to bypass the scope check by providing a `target_file` that resolves to a claimed file but doesn't match the registry's string-based scope.\nBYPASS: Provide a `TargetFile` as a symlink or a path using `..` (e.g., `/repo/safe/../claimed_file.py`) that resolves to a claimed file; the hook calculates `rel` based on the raw string, which will not overlap with the claim's scope string, resulting in an \"ask\" (effectively allow) instead of \"deny\"."
+  },
+  {
+    "route": "ollama-cloud-davemeralus",
+    "verdict": "HOLD",
+    "answer": "VERDICT: HOLD\nTOP_RISK: Path traversal or normalization mismatch allowing a machine to edit a claimed file by using an alternative path representation (e.g., symlinks, `..`, or case-insensitive variants on Windows) that bypasses the string-based scope overlap check.\nBYPASS: Use a path like `/repo/src/../src/file.py` or a symlink to the target file; `Path(target).relative_to(repo)` will not resolve these, leading to a `rel` string that does not overlap with the registry's normalized scope."
+  },
+  {
+    "route": "ollama-cloud-eatsruger",
+    "verdict": "HOLD",
+    "answer": "VERDICT: HOLD\nTOP_RISK: Path traversal/normalization mismatch allows a machine to bypass the scope check by using unconventional path representations.\nBYPASS: Use a target path like `/repo/path/to/file/..` or a symlink to a file inside a claimed scope; `Path(target).relative_to(repo)` will calculate a path that doesn't match the registered scope string, triggering \"ask\" instead of \"deny\"."
+  },
+  {
+    "route": "ollama-cloud-kushboygroup",
+    "verdict": "HOLD",
+    "answer": "VERDICT: HOLD\nTOP_RISK: Path traversal or manipulation via `target` allowing an agent to bypass scope checks by referencing a file via a path that does not resolve to the repo root or matches an empty/different relative path.\nBYPASS: An agent can use a path that avoids the `_repo_for` logic (e.g., using a path outside the provided `workspacePaths` or a path that doesn't contain `.git`/.`.handoffs` in its parents), causing `repo` to be `None` and the hook to `_emit(\"allow\")`."
+  },
+  {
+    "route": "ollama-cloud-mrsb-tutoring",
+    "verdict": "HOLD",
+    "answer": "VERDICT: HOLD\nTOP_RISK: Path traversal or manipulation of `target_file` via symlinks or `..` sequences allows an agent to edit a file outside the claimed scope while the hook perceives the target as being in an unclaimed or different directory.\nBYPASS: Use a `target_file` argument containing `../../` to reference a file in a claimed repo from a path that resolves to a different root, or use a symlink to a claimed file located in an unclaimed directory."
+  },
+  {
+    "route": "ollama-cloud-nougenai",
+    "verdict": "HOLD",
+    "answer": "VERDICT: HOLD\nTOP_RISK: Path traversal or \"scope slipping\" via target path manipulation that bypasses the `_repo_for` and `relative_to` logic.\nBYPASS: Provide a `target_file` path that is outside the workspace (e.g., `/etc/passwd` or `../../secret.txt`); `_repo_for` will return `None` or a different root, causing the hook to `_emit(\"allow\")` and bypass the claim check entirely."
+  },
+  {
+    "route": "ollama-cloud-sexy-slumberparty",
+    "verdict": "HOLD",
+    "answer": "VERDICT: HOLD\nTOP_RISK: Path normalization inconsistencies between the agent's tool arguments and the registry's stored scopes allow a machine to edit a claimed file by using alternative path representations (e.g., absolute vs relative, or `.`/`..` segments) that bypass the `_scopes_overlap` check.\nBYPASS: Provide a `target_file` path that is logically equivalent to the claimed file but string-dissimilar (e.g., using a symlink, a redundant `./` prefix, or an absolute path when the claim is relative), as the hook performs no canonicalization of the `target` path before comparing it to claims."
+  }
+]

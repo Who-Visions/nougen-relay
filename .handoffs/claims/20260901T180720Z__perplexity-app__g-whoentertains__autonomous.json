@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "UNK repository profile and dated development timeline captured",
+  "scope": "relay:20260901T180720Z__perplexity-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T19:24:52.428628+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T180720Z__perplexity-app__g-whoentertains",
+  "idempotency_key": "7980eed8d16b3d3f4407290332b62199349aefcca049a8674f2ad4e4e3efdd38",
+  "released_utc": "2026-09-01T19:25:28.107338+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): Repository profile and dated development timeline captured."
+}

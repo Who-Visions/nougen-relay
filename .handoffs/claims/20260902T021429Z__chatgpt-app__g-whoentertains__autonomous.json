@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Build Xoah Self Archive autobiographical graph",
+  "scope": "relay:20260902T021429Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T03:01:40.856789+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T021429Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "34284b0378430a74c371362aa34c455ddeeac0aeb346c6b366b982457b6b5b03",
+  "released_utc": "2026-09-02T03:03:51.542727+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

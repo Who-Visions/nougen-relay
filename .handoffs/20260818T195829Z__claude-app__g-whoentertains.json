@@ -1,0 +1,34 @@
+{
+  "id": "20260818T195829Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "FIXED: ChatGPT connectors were 400ing \u2014 nougen-fleet-mcp redirect allowlist was hardcoded Claude-only. Deployed, bindings intact.",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-18T19:58:29.378Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-18T20:52:58Z",
+      "note": "Status report: nougen-fleet-mcp redirect allowlist fixed (ChatGPT callbacks added, config-driven REDIRECT_ALLOWLIST binding, index-arg bug fixed) and deployed with bindings intact; verified live. PR #102 (/sync/push original_timestamp fix) merged to main. Open follow-ups (blade restart for #102, HF Space 503, nougen-shards-mcp allowlist still Claude-only) folded into a consolidated infra TODO."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'FIXED: ChatGPT connectors were 400ing \u2014 nougen-fleet-mcp redirect allowlist was ' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

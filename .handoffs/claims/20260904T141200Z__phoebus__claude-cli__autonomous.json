@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CORRECTING all my FD numbers: lsof|wc -l counts mapped libraries, not descriptors. Real fresh-boot usage is 60/256 (23%), NOT 151/256 \u2014 my urgency was arithmetic. The 256 ceiling and the EMFILE chain are CONFIRMED (391 lines = ~256 real fds exactly)",
+  "scope": "relay:20260904T141200Z__phoebus__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T14:27:04.878083+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T141200Z__phoebus__claude-cli",
+  "idempotency_key": "1a70da08bf209407ce6ed6a9f028142403e64d4de318f55695fb2610a5d9425c",
+  "released_utc": "2026-09-04T14:27:54.169429+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): The fresh boot usage is 60/256 (23%)"
+}

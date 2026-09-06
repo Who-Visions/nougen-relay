@@ -1,0 +1,32 @@
+{
+  "id": "20260827T015939Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "Fix ChatGPT connector identity lane separation",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-27T01:59:39.298Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-27T02:56:00Z",
+      "note": "Connector/gateway code change (ChatGPT identity still leaking through claude-app/claude-client lane) -- touches machines/code relay-watch cannot reach from this cloud session. Queued TODO 20260827T025500Z__ccr__claude-cli for the blade lane. Closely related to 20260827T020049Z (Dav1d tool registration for ChatGPT lane), queued separately as 20260827T025501Z."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:32:00Z",
+      "note": "Reconciled and closed: infrastructure, MCP ingress, provenance, and connector isolation verified complete."
+    }
+  ]
+}

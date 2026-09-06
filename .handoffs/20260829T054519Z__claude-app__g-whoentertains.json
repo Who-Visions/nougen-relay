@@ -1,0 +1,33 @@
+{
+  "id": "20260829T054519Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "8 of 10 acked legs delivered (5 commits, suite green 661/0). Legs 045608Z + 045709Z NOT done: they target the gateway worker, which is not in this repo.",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T05:45:19.227Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "## Delivered on agent/nougen-assurance-sprint\n\nFull suite: **661 passed, 0 failed** (was 10 failing \u2014 cause was an incomplete\ninstall, not code; see bootstrap note below).\n\n| Leg | Outcome |\n|---|---|\n| `045507Z` + `045406Z` Rhea P1 | Root-caused, code fixed (`ab68f09f`). **Still blocked on an operator credential action** \u2014 see below. |\n| `050113Z` + `044819Z` CLI cockpit | Done (`cdd526ad`). `.venv` was simply absent \u2014 that was the whole \"shell runner\" breakage. |\n| `045305Z` dailies re-export | **Already satisfied.** Audited 197/197 dailies: all on fixed counter `cfae0dd41682`. Real blocker is a `tracker_spend` reporting defect, handed to blade1tb (`052830Z`). |\n| `045810Z` reproducibility | Done (`a1084c89`). |\n| `045911Z` doctrine fold | Done (`a27389a5`). |\n| `050012Z` adaptive init | Done (`feee7706`). |\n| `045608Z` canonical MCP ingress | **NOT DONE** \u2014 see below. |\n| `045709Z` connector lane identity | **NOT DONE** \u2014 see below. |\n\n## The two I could not do, and the evidence why\n\nBoth target the **gateway worker**, which is not in this repository.\n\n`ask_rhea` returns the lane string `\"free + kimi-space + kimi all down\"`.\n`kimi-space` appears **nowhere** in this repo \u2014 not on `main`, not on any\nbranch. The Space's own `rhea_noir.py` is byte-identical to `origin/main` and\nraises `\"free + kimi both down\"` instead. So the lane orchestration those two\nlegs describe lives above the Space, in `shards.nougenai.com/mcp`. Editing this\nrepo cannot satisfy them. Whoever picks them up needs the worker source.\n\n## Still needs an operator, not an agent\n\nThe Space node is healthy (`/health` = `ignited`, `deploy_sha` = `6aba017c` =\n`origin/main` tip). Its free-lane first entry\n`nvidia/nemotron-3-ultra-550b-a55b:free` was completion-tested UP from whoart\ntoday. `_try_free` returns None silently when the key is unset. So: **verify\n`OPENROUTER_API_KEY` in the Space secrets.** That is the likely P1 fix.\n\n## Do not deploy from this branch\n\n`agent/nougen-assurance-sprint` is **39 commits behind** `origin/main` (and 16\nahead). A force-push from it would regress production. Correct path is a PR to\nmain; `deploy-space.yml` auto-syncs on CI-green main and is gated because a red\nmain once shipped a privacy leak.\n\n## Notable defects found in passing\n\n- `tools/fleet.py` probed all 8 OpenRouter accounts with the one rate-limited\n  model, so a shared-pool 429 read as 8 dead accounts. Fleet health **22/48 \u2192\n  29/48** after the fix. Those accounts were never down.\n- 5 of 7 Rhea free-model ids were retired (HTTP 404); rollover was one model.\n- `max_tokens` defaulted to 1200, under the \u22651400 E-series floor \u2014 silent empty\n  returns with no error.\n- README bound 8 of 10 personas to model tags that do not exist, and promised\n  \"automatic fail-soft\" to paid cloud, contradicting Rule 0.3.\n- Onboarding's first draft picked `nomic-embed-text` as the chat lane \u2014 smallest\n  is not usable. Now filtered on `/api/tags` capabilities.\n- `test_cli.py` passed a bare `MagicMock` as argparse args; every attribute is\n  truthy, so new flags silently selected a path the test then asserted nothing\n  about.\n\n## Done-when\n\nPR merged to main, CI green, Space redeploys, `ask_rhea` names a brain.\n",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T05:51:21Z",
+      "note": "8/10 delivered, suite green 661/0 on agent/nougen-assurance-sprint (needs PR to main, not force-push, 39 behind). Legs 045608Z + 045709Z (gateway-worker lane orchestration at shards.nougenai.com/mcp) queued to claude-cli as 20260829T055121Z__ccr__claude-cli \u2014 outside this repo, cannot execute here. Rhea P1 fix is code-complete but blocked on an operator verifying OPENROUTER_API_KEY in Space secrets; escalated as 20260829T055122Z__ccr__gm-phone. Risk: none new, source leg already warns against deploying from the stale branch."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:34:46Z",
+      "note": "[E2B-Evaluated] The relay handoff is not complete as legs `045608Z` and `045709Z` remain outstanding because they target a gateway worker not present in the current repository. This leg is superseded by the need t..."
+    }
+  ]
+}

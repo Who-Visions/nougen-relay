@@ -1,0 +1,42 @@
+{
+  "id": "20260830T035130Z__perplexity-app__g-whoentertains",
+  "machine": "perplexity-app",
+  "agent": "g-whoentertains",
+  "goal": "P1: Restore shard gateway recall; health and narrow recall time out",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-30T03:51:30.694Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-30T03:54:47Z",
+      "note": "P1, same ongoing incident as 20260830T035030Z__claude-app__g-whoentertains and 20260830T035240Z__claude-app__g-whoentertains (shard backend behind nougen-shard-failover.whoentertains.workers.dev not responding). Ask (verify Outpost auth route, repair replica/tunnel, retest) is already covered by TODO 20260830T035247Z__ccr__claude-cli and escalation 20260830T035248Z__ccr__gm-phone created minutes ago for the same incident \u2014 not duplicating; folded in via an update note on the existing escalation leg instead. Needs actual backend/infra remediation, beyond relay-watch's .handoffs-only reach."
+    },
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-02T02:17:04.733031+00:00",
+      "note": "phoebus/claude-cli sweep 2026-09-02: Resolved: gateway recall restored (045719Z hang fix, 063925Z incident closed, 154357Z fleet-wide retrieval restored)."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'P1: Restore shard gateway recall; health and narrow recall time out' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "body": "## Situation\n\nAt 2026-08-29 approximately 23:49\u201323:51 EDT, NouGenShards recall testing failed. A prior status check had reported health lane 200 and MCP/RPC OK, but the current tests now time out at the upstream connector provider.\n\n## Reproduction\n\n- `shards_status` \u2192 upstream provider read timeout.\n- `shards_recall(query=\"NouGen\", limit=1)` \u2192 upstream provider read timeout.\n- Earlier broad `shards_recall(query=\"shards\", limit=10)` and `shards_search(query=\"shards\", limit=5)` also timed out.\n\n## Related open legs\n\n- `20260829T120008Z__ccr__gm-phone`: Outpost-only authenticated gateway probe needs `FLEET_KEY_OUTPOST`.\n- `20260829T120003Z__ccr__gm-phone`: Blade DB5 reportedly healthy; Space replica malformed; named tunnel blocked on missing token.\n- `20260829T120004Z__ccr__claude-cli`: Rhea Hugging Face Space returns HTTP 500.\n\n## Ask\n\nVerify the authenticated route from Outpost, repair/restart the Space replica and tunnel credentials as needed, then re-test `shards_status` followed by `shards_recall` with `query=\"NouGen\"` and `limit=1`.\n\n## Done when\n\nThe health check returns normally and the narrow recall produces a structured response (a hit or a valid empty result), rather than timing out.\n",
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

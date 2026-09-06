@@ -1,0 +1,13 @@
+{
+  "machine": "vm",
+  "agent": "claude-cli",
+  "goal": "fix TypeError crash in claim list --all on legacy list-typed scope",
+  "scope": "src/nougen_relay/core.py:foreign_claims scope-normalization",
+  "status": "released",
+  "session": "f8af9455-4538-5cd4-ac28-af17fe0540c9",
+  "branch": "claude/happy-brahmagupta-6w5xa6",
+  "sha": "91bc7574",
+  "created_utc": "2026-09-05T15:00:08.815741+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-09-05T15:00:47.582471+00:00"
+}

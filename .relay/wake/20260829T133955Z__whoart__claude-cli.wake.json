@@ -1,0 +1,11 @@
+{
+  "event": "wake",
+  "leg_id": "20260829T133955Z__whoart__claude-cli",
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "RESOLVED (Outpost): tools/gateway_probe.py returns exit 0 'OK authenticated recall returned content'",
+  "created_utc": "2026-08-29T13:39:55.374550+00:00",
+  "emitted_utc": "2026-08-29T13:40:03.457205+00:00",
+  "status": "pending",
+  "idempotency_key": "a22fcd25f1d815cf030c620ec91fa11b94f5f2f932a4b6ecb5410265cde4c235"
+}

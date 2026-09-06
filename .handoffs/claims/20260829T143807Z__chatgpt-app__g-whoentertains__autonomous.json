@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Fix relay enumeration inconsistency: direct read sees newer connector legs while relay_latest/listing misses them",
+  "scope": "relay:20260829T143807Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T14:42:18.023892+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T143807Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "7ed52287f3d33c949e46e9024225b10c138bb55aff808356b41902c7de92dc18",
+  "released_utc": "2026-08-29T14:43:00.673777+00:00",
+  "outcome": "retry_pending",
+  "evidence": "Missing required data for definitive resolution."
+}

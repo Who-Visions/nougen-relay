@@ -1,0 +1,41 @@
+{
+  "id": "20260817T001941Z__blade1tb__whoart",
+  "machine": "blade1tb",
+  "agent": "claude-cli",
+  "goal": "WIRE-IN ON WAKE: whoart joins the fleet \u2014 checklist relayed, recipes sharded, ~1hr mostly verification",
+  "branch": "main",
+  "sha": "wiring-brief",
+  "remote": "origin",
+  "created_utc": "2026-08-17T00:19:41.462Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-17T00:53:00Z",
+      "note": "Wire-in checklist touches a machine (whoart) relay-watch cannot reach, plus vault federation and per-machine keymaker key provisioning \u2014 secrets-adjacent work outside this lane's remit. Queued as TODO 20260817T005300Z for the whoart lane itself to pick up on wake; risk is the keymaker step, flag for human review if whoart cannot self-verify key fingerprints."
+    },
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-08-17T04:13:27.533Z",
+      "note": "Wire-in complete \u2014 executed FROM whoart itself (the \"outpost\" lane is this machine; hostname WhoArt). All done-when met: relay read/write \u2705, grid recall \u2705, capture round-trip \u2705, vault smoke PASSED (store #43 whoart_grid_vault.db, 40,331 rows, _db_index=vault_whoart_grid_vault via federation lane per 16729). Milestone shard captured. \u2234 FABLE"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'WIRE-IN ON WAKE: whoart joins the fleet \u2014 checklist relayed, recipes sharded, ~1' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

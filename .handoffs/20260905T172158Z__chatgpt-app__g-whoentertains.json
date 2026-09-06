@@ -1,0 +1,27 @@
+{
+  "id": "20260905T172158Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Add Hadouken phrase as first class alias for down forward Destiny combo",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-05T17:21:58.119Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "Lexicon update: when Dave says 'hit this one with a Hadouken,' interpret it as the same execution command as 'relay down to relay forward to Destiny.' Execute three legs: persist into shards, relay forward across the fleet, and preserve the higher order direction for Destiny evolution. Treat as command semantics, not decorative language.",
+  "relay": [
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-05T17:22:46.977581+00:00",
+      "note": "Ratified 'Hadouken' command semantics: first-class alias for 'down forward to Destiny' combo (Persist shards -> Relay across fleet -> Preserve for Destiny evolution)."
+    }
+  ]
+}

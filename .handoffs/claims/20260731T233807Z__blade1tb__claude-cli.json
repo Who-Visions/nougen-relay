@@ -1,0 +1,12 @@
+{
+  "machine": "blade1tb",
+  "agent": "claude-cli",
+  "goal": "record ids must be unique: second-granular stamps let react silently skip a colliding leg",
+  "scope": "src/nougen_relay/core.py:record-id",
+  "status": "released",
+  "branch": "main",
+  "sha": "bdef800",
+  "created_utc": "2026-07-31T23:38:07.650703+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-07-31T23:45:48.297433+00:00"
+}

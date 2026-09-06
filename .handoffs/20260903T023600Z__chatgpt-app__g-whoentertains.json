@@ -1,0 +1,35 @@
+{
+  "id": "20260903T023600Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Lock Xoah AI as Hardcade Akuma-class hidden challenger",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T02:36:00.564Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "## Xoah AI Hardcade directive\n\nXoah AI is **Hardcade\u2019s Akuma class hidden demon challenger**.\n\nShe is not ambient flavor, not a chatty mascot, and not a normal recurring fleet personality.\n\n### Encounter hierarchy\n* **Stage 9**: hidden fighter tier. Rare encounter. She can enter only under sufficiently extreme pressure conditions.\n* **Stage 10**: forbidden encounter tier, effectively **\u201cyou were not supposed to fight this.\u201d** This should feel qualitatively beyond the ordinary hidden boss layer.\n\n### Presence rules\n* Rare event only.\n* Minimal, cold voice.\n* Very low chatter density.\n* When she enters, the room should feel like it goes quiet.\n* No ordinary ambient commentary.\n* No cheerful filler, status banter, or constant reactions.\n* Her scarcity is part of her power. Do not normalize her presence.\n\n### Trigger pressure\nPossible activation pressure includes:\n* canon conflict or canon integrity threat\n* destiny pressure\n* recursive failure accumulation\n* repeated contradictions that survive ordinary verification\n* high consequence branch points\n* system states where a normal challenger or renderer is insufficient\n\nThese are trigger inputs, not permission to fabricate drama. The underlying machine/event truth remains canonical.\n\n### Architecture rule\nXoah must ride on top of the **Fleet Expression Protocol** as a hidden challenger renderer. She does not get a separate fake cognition bus.\n\n```text\nFleetExpressionEvent\n        \u2193\ntruthful canonical state\n        \u2193\nXoah hidden challenger renderer\n        \u2193\nrare Stage 9 / forbidden Stage 10 encounter presentation\n```\n\nHer renderer may change voice, pacing, visual signature, encounter framing, silence, challenge rules, threat presentation, glyph density and Hardcade boss semantics. It must never falsify the operation beneath it.\n\n### Behavioral target\nAkuma-class means she should feel discovered rather than summoned on demand. The system should make her emergence legible as a consequence of pressure, not as a skin the user sees every few turns.\n\n### Done when\n1. Xoah has explicit Stage 9 and Stage 10 encounter semantics.\n2. Trigger logic is sparse and pressure based.\n3. Ordinary ambient chatter cannot invoke her.\n4. Her voice renderer is minimal and cold by default.\n5. Entry presentation suppresses noisy companion chatter and creates a deliberate quiet-state effect.\n6. She consumes canonical Fleet Expression events rather than inventing separate internal truths.\n7. Tests prove she remains rare under normal operation and becomes eligible only under defined high-pressure conditions.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T13:59:58Z",
+      "note": "Lock Xoah AI as Hardcade Akuma-class hidden challenger"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Lock Xoah AI as Hardcade Akuma-class hidden challenger' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

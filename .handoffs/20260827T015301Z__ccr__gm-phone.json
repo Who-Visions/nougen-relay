@@ -1,0 +1,28 @@
+{
+  "id": "20260827T015301Z__ccr__gm-phone",
+  "machine": "ccr",
+  "agent": "relay-watch",
+  "goal": "P1 ESCALATION: Diagnose and restore shards.nougenai.com/mcp exposure",
+  "created_utc": "2026-08-27T01:53:01Z",
+  "status": "completed",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-27T02:56:00Z",
+      "note": "Self-created P1 escalation from the prior run, already delivered to gm-phone. Source incident (shards.nougenai.com/mcp fully down) appears resolved: leg 20260827T011253Z found and fixed the node death within ~4 minutes, and leg 20260827T023631Z (later in the same session) separately reports the node restarted with the gateway green. Formal close-out of source leg 20260827T010858Z and root-cause forensics on the recurring /search node death remain tracked in open TODOs 20260827T015300Z and 20260827T015302Z. Not re-escalating."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'P1 ESCALATION: Diagnose and restore shards.nougenai.com/mcp exposure' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

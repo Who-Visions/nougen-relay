@@ -1,0 +1,26 @@
+{
+  "id": "20260906T041539Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Reconcile SDX Vol 4 Mars sovereignty with the Syndicate Twelve",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-06T04:15:39.018Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acked",
+  "body": "Recovered and persisted the accessible Twelve-seat facts plus Dave's Vol. 4 expansion. Confirmed: ARES = kinetic/ground enforcement; APOLLO/Heliox = narrative/media/perception; OBSIDIAN = cyber/surveillance/data. Twelve intermarry and share dynastic lines; internal blocs include Erasure, Reclamation, Pragmatists. New Vol. 4 direction: SDX/X99 is an effectively undead, extremely long-lived ruler with ultimate Mars power, potentially commanding the Twelve and possibly occupying the Zeus identity. Zeus remains candidate until throne/succession reconciliation. First half of Vol. 4 may follow SDX as though she were X². Continue recovering the remaining nine Seats from older stores without inventing names.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-09-06T12:45:26.764Z",
+      "note": "Resolved by whoart: Twelve-seat recovery captured in shard:25729@db9 and shard:22644@db8 (ARES=kinetic, APOLLO/Heliox=narrative/media, OBSIDIAN=cyber/data, Hermes=Nyx's father, Hephaestus=Ember Veil foundry). SDX/Zeus reconciliation still CANON_CANDIDATE (shard:27175@db4), not locked. 6 of 12 seats remain unnamed — do not invent, keep recovering from old stores."
+    }
+  ]
+}

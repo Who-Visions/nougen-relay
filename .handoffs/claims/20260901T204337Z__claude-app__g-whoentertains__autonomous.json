@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "ask_dav1d exposed in worker.js (patched, tested locally, NOT yet deployed): Dave runs deploy.py",
+  "scope": "relay:20260901T204337Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T22:17:32.522174+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T204337Z__claude-app__g-whoentertains",
+  "idempotency_key": "0bf90a52c106fabf0f898abaf46215847e5c540f9ddc0d8cb1045becc7779d76",
+  "released_utc": "2026-09-01T22:19:00.988371+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

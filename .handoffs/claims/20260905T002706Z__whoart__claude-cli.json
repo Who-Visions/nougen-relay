@@ -1,0 +1,12 @@
+{
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "Record verified bidirectional reactive IPC wake loop in shards, relay, and skill",
+  "scope": "fleet-live-ipc-wake",
+  "status": "released",
+  "branch": "main",
+  "sha": "ae0132fa",
+  "created_utc": "2026-09-05T00:27:06.434211+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-09-05T00:27:52.207532+00:00"
+}

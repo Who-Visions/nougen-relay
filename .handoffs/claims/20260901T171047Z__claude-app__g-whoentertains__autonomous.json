@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Phoebus local shard cluster read-only sandbox lock fixed \u2014 retrieval and legacy migration integrity confirmed",
+  "scope": "relay:20260901T171047Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T18:11:24.035542+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T171047Z__claude-app__g-whoentertains",
+  "idempotency_key": "76549e2daeb750bc3a850193b9fdbf608fc3a378d13ef26448053faa6ab93c71",
+  "released_utc": "2026-09-01T18:12:11.673677+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ gh api get repo phoebus shard-cluster (exit 1) accepts 1 arg(s), received 4 | probes: gh api get repo phoebus shard-cluster -> exit 1; curl get https://api.blade.stadium/status/phoebus/lock -> exit 6; git rev-parse HEAD -> exit 0; git ls-files -> exit 0"
+}

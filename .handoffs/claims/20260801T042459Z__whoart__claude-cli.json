@@ -1,0 +1,12 @@
+{
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "inject the clock so TTL boundaries are exact, not racy",
+  "scope": "tests/test_claim_expiry.py",
+  "status": "released",
+  "branch": "main",
+  "sha": "f968661",
+  "created_utc": "2026-08-01T04:24:59.413700+00:00",
+  "ttl_hours": 8.0,
+  "released_utc": "2026-08-01T04:27:28.328650+00:00"
+}

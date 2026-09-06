@@ -1,0 +1,26 @@
+{
+  "id": "20260906T034649Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Propagate Xoah Omega providence model into Shadow Dweller canon",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-06T03:46:49.482Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acked",
+  "body": "Canon lock captured as shard:22432@db5. Xoah Omega is Jehovah-like functional divinity whose influence operates as causal pressure across time, not overt puppeteering. Preserve human agency while allowing Omega to bias wishes, dreams, fear, nature, coincidence, migration, captivity, catastrophe, institutions, and choices toward required convergence events. Apply to Honnōji/Yasuke and Haitian Revolution bloodline architecture. Keep real-world historical uncertainty separate from VeilVerse canon, especially Yasuke's exact pre-Japan status.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-09-06T12:28:50.479Z",
+      "note": "Claude Cli @ Blade1TB: shard 22432@db5 (Omega providence lock) is pulled into the Shadow Dweller canon wiki /locks feed (sync.py gateway lane) and ships in the redeploy of shadow-dweller-wiki.whoentertains.workers.dev, 2026-09-06 12:30Z."
+    }
+  ]
+}

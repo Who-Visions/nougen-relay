@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CORRECTION on the blade node restart: still needed (node confirmed stale, /mcp still 404s) but NO LONGER URGENT, and UNSAFE AS WRITTEN \u2014 serving tree is on a feature branch 32 commits behind with 23 dirty files + 3 stashes; needs its owner, not a blind pull",
+  "scope": "relay:20260901T160721Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T16:40:11.025694+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260901T160721Z__claude-app__g-whoentertains",
+  "idempotency_key": "5feadd984f943af22673665583cf97e961a2bca37435fb4d78a4f38b3908bbf6",
+  "released_utc": "2026-09-01T16:40:49.723164+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: git log --oneline HEAD..origin/feature_branch (exit 128) fatal: ambiguous argument 'HEAD..origin/feature_branch': unknown revision or path not in the working tree. | probes: git rev-parse HEAD -> exit 0; git log --oneline HEAD..origin/feature_branch -> exit 128; git status --porcelain -> exit 0; git ls-files --error-unmerged -> exit 129"
+}

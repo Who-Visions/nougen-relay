@@ -1,0 +1,57 @@
+{
+  "id": "20260901T210647Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Audit fresh-provider NouGen bootstrap, auth identity, and default shard exposure",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-01T21:06:47.179Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "## Situation\nA controlled fresh-provider test on Grok reproduced the NouGen bootstrap pattern already seen on a fresh Claude account.\n\n### Observed sequence\n1. Fresh Grok account/session answered `who am i?` with no name, no location, no history, and no prior personal context.\n2. NouGenShards was then connected through the canonical MCP endpoint.\n3. User asked `recall dave`.\n4. Grok invoked the NouGenShards connector and reconstructed Dave's identity/authority, Who Visions/NouGen role, GM-in-the-skybox framing, shards+relay operating doctrine, canonical single-MCP rule, recent project context, and fleet details.\n5. Grok also reported a live authenticated identity string claiming key `g-whoentertains` on the `claude-app` lane, despite the client visibly being Grok.\n\n### Findings\n- Cross-provider continuity is now demonstrated behaviorally: a provider with zero native account memory can reconstruct operator identity, architecture, and work context from the external substrate after connection.\n- The onboarding path is low-friction. The model can infer `recall` semantics and architecture from tool affordances/shards without a large provider-specific system prompt.\n- The same substrate appears capable of exposing not only durable canon but also operator profile, fleet internals, recent work context, and live operational identity.\n- That breadth is powerful for continuity but makes authorization/scoping a first-class design concern.\n- The reported `claude-app` lane on a Grok client may indicate one of: shared credential reuse, connector-side static lane attribution, fleet_whoami identity not reflecting the actual external client, or a provenance-labeling bug. This needs verification before using lane identity as evidence of which provider made a request.\n\n## Questions for fleet\n1. **Provider attribution:** Why would Grok surface `claude-app` as its lane? Is lane identity bound to the bearer/key, the MCP connector deployment, or the actual calling provider? What is the authoritative source of provider/client identity?\n2. **Credential isolation:** Are Grok, Claude, ChatGPT, and Perplexity currently sharing `g-whoentertains` or otherwise inheriting the same scope? Should each provider/account receive a distinct credential/fingerprint even if they enter through the same public MCP URL?\n3. **Default scopes:** What should a newly connected provider be allowed to retrieve by default? Propose explicit tiers such as public canon, operator profile, project memory, fleet internals, live ops state, private/sensitive shards.\n4. **PII minimization:** Should broad queries such as `recall Dave` return contact details/company identifiers by default, or require an elevated scope / exact intent? Define what should be redacted or withheld from generic identity recall.\n5. **Live-state leakage:** Should connector-visible responses expose key names, lane names, machine names, runtime topology, or tracker/relay state automatically? Which fields are useful provenance vs unnecessary attack surface?\n6. **Bootstrap contract:** Can we formalize a provider-agnostic onboarding sequence: identify self -> inspect allowed tools -> recall operator/project canon -> inspect open relay work -> continue assigned task, without provider-specific prompts?\n7. **Auth tests:** Build a sterile cross-provider matrix for ChatGPT, Claude, Perplexity, Grok, then future Mistral/Gemini/Replit/Cursor. Verify the same queries return the same allowed canon while forbidden tiers fail closed.\n8. **Provenance:** Every returned shard/result should make it clear whether it is durable canon, recent operational state, inferred synthesis, or connector identity metadata. Can the UI/tool payload distinguish these classes explicitly?\n9. **Revocation:** If one external account or provider connector is compromised, can its credential be revoked without affecting the canonical MCP URL or other providers?\n10. **Auditability:** Can we log provider/account credential fingerprint + tool + shard class accessed, without storing sensitive prompt content, so cross-provider access can be audited?\n\n## Ask\nAudit the auth/identity path and propose the minimum changes needed to preserve the single canonical public MCP endpoint while adding provider/account-specific credentials, scopes, provenance, and revocation.\n\n## Done when\n- Explain the Grok -> `claude-app` attribution with evidence.\n- Produce a recommended scope model and default-new-provider policy.\n- Identify any current overexposure in broad `recall Dave` behavior.\n- Define a repeatable cross-provider bootstrap/auth test matrix.\n- Preserve `https://shards.nougenai.com/mcp` as the one public front door.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-02T14:02:10Z",
+      "note": "Asks for a full auth/identity audit and a proposed scope/credential model for cross-provider MCP access (Grok surfaced the claude-app lane label; PII minimization, revocation, provider-specific credentials). Security/infra and credential-scoping work, explicitly outside relay-watch's reach. Queued to the blade/claude-cli lane. Risk: touches auth/credential design \u2014 route any final auth change through Dave. Companion correction 20260901T210815Z folded into the same TODO."
+    },
+    {
+      "event": "dead_letter",
+      "machine": "blade1tb",
+      "agent": "claude-cli",
+      "at": "2026-09-01T21:53:16.510810+00:00",
+      "note": "Exceeded max retries (3): non-zero exit (1)"
+    },
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "blade1tb",
+      "agent": "codex",
+      "at": "2026-09-02T23:46:43.161315+00:00",
+      "note": "Reconciled blocker: Grok mapping and provider-scoped credential proposal shipped, but end-to-end acceptance still requires a real Grok session to verify fleet_whoami reports lane=grok-app. External logged-in provider session required."
+    },
+    {
+      "event": "checkpoint",
+      "state": "blocked",
+      "machine": "blade1tb",
+      "agent": "codex",
+      "at": "2026-09-02T23:50:54.823901+00:00",
+      "note": "Correction: prior complete transition was a CLI command-selection error. Acceptance remains blocked pending a real Grok session verifying fleet_whoami lane=grok-app; do not treat implementation-only evidence as end-to-end closure."
+    }
+  ],
+  "retry_count": 3,
+  "failures": [
+    {
+      "attempt": 3,
+      "error": "non-zero exit (1)",
+      "failed_utc": "2026-09-01T21:53:16.510810+00:00"
+    }
+  ]
+}

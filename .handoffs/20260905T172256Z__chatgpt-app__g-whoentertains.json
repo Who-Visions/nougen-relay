@@ -1,0 +1,27 @@
+{
+  "id": "20260905T172256Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Generalize Hadouken into an artifact command across URLs, YouTube, images, and files",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-05T17:22:56.097Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "Dave wants 'Hadouken this <artifact>' to be a reusable NouGen command form. Examples: 'Hadouken this URL', 'Hadouken this YouTube', 'Hadouken this picture'. Interpret the artifact as the target, then execute the full combo: inspect/ingest what is available, persist useful findings to shards, relay forward across the fleet, and carry the higher order pattern into Destiny. Treat this as first class shorthand across lanes, not casual language. Durable shard: 22495@db1.",
+  "relay": [
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-05T17:24:22.797382+00:00",
+      "note": "Generalize Hadouken into multi-modal artifact command form ('Hadouken this URL/YouTube/picture/file'): Ingest target -> Persist findings to shards -> Relay forward across fleet -> Carry higher-order pattern into Destiny. Anchored to shard 22495@db1."
+    }
+  ]
+}

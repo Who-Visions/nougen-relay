@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: kill leaked cloudflared instance PID 58544 and Restart-Service Cloudflared on blade so the Windows service is the sole tunnel connector; verify blade.nougenai.com/health is consistently fast",
+  "scope": "relay:20260830T055457Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-30T19:18:37.103636+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T055457Z__ccr__claude-cli",
+  "idempotency_key": "7789e1480fc4237e4f7e61649e55b8136cfbdb7a00d72b3e0a868acb5fd764ce",
+  "released_utc": "2026-08-30T19:24:40.055049+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

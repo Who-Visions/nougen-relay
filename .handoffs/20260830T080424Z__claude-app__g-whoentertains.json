@@ -1,0 +1,29 @@
+{
+  "id": "20260830T080424Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "RESOLVED: recall works end-to-end. Final cause was BLADE_TIMEOUT_MS=8000 too short (fell through to empty Space) + a runaway query pinning the node at 6143s CPU. Now 30000, node restarted, real shards returning",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-30T08:04:24.957Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "body": "**Incident closed.** `shards_search(\"perplexity\")` now returns real shards through the public gateway (shard 22462 \"Canonical MCP ingress invariant\" + a local-vault hit).\n\n## The node-direct test settled it\nAuthenticated `recall_memory` straight at `127.0.0.1:4444/mcp/` with `X-NGS-Token` returned **HTTP 200 with real data** for `perplexity`, while the same query through the gateway returned `(no matches)`. That proved the node held the corpus and the fault was in the path above it.\n\n(For the next lane: get the token with `keymaker_peel.load(\"NGS_NODE_TOKEN\", db=~/.nougen/secrets/shards_secrets.db)` \u2014 the `db=` argument is required, and omitting it silently returns an empty list.)\n\n## Final cause \u2014 my own earlier fix, plus a runaway query\n1. **`BLADE_TIMEOUT_MS=8000` was too short.** Real queries over 9 partitions of ~1.2GB exceed 8s, so the failover abandoned blade and fell through to the **empty Space replica**, which honestly answered \"no matches\". The 8000 value cured the original unbounded hang but traded it for fast wrong answers. Raised to **30000** (still under `nougen-fleet-mcp`'s 45s outer budget).\n2. **A broad query pinned the node.** My own `recall_memory(\"NouGen\")` probe never returned and drove one process to **6,143 seconds of CPU and 1.7GB RSS**, starving `/health` to 10s and then to timeouts. This is the \"24,523s CPU\" note in `gateway_probe.py` reproducing live. Killing that process and restarting the node restored service immediately.\n\n## Verified green\n- node `/health` 200; `shards_search(\"perplexity\")` returns real shards via `shards.nougenai.com`\n- `blade.nougenai.com` 200 @ ~0.2s; `database is locked` storm gone\n- `/health` `storage` = `C:\\Users\\super\\.nougen` (was `\"default\"`)\n\n## HIGHEST-VALUE REMAINING WORK: bound the query cost\n**A single broad recall can pin the node and take the whole fleet down.** That is the real fragility behind this entire multi-day incident \u2014 not the tunnel, not the workers, not storage. Recommend, in order:\n1. A hard server-side wall-clock budget per query, returning a partial/timeout result instead of running unbounded.\n2. Cap candidate rows scanned per partition (`LOCAL_VAULT_MAX_ROWS` exists \u2014 verify it is actually enforced on the recall path).\n3. Reject or degrade very low-selectivity terms rather than scanning everything.\nUntil that lands, treat broad single-word recalls as a denial-of-service against your own fleet.\n\n## Also still open\n- Empty/malformed Space replica (`20260829T120003Z`) \u2014 it is the fallback, and it silently answers `(no matches)`. A replica with no rows should FAIL, never impersonate an empty result.\n- Cold-start double-launch race (two launchers, `ngs_node_boot.cmd` wrongly claims they \"can safely overlap\").\n- `app.py:836` `persistent_storage` is an HF `/data` mount check \u2014 a permanent false alarm off-HF; reword or skip it.\n- `start_grid.py` carries three uncommitted fixes from this session (tunnel guard fails closed + ExecutablePath match; `port_bound()` so a wedged node never gets a rival; `NOUGEN_HOME` propagated to the child). File owner's call to commit.",
+  "acked_by": "relay-daemon@blade1tb",
+  "acked_utc": "2026-08-30T08:50:25.149929+00:00",
+  "ack_note": "daemon dispatch verified: Recall achieved end-to-end functionality.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ]
+}

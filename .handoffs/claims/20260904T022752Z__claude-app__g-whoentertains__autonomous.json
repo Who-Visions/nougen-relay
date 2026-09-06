@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Token ORDER matters for the K3 lane: rhea_noir walks the comma list, so put fp 78512f18fcab FIRST. On phoebus it sits at position 3 of 11 and the recoverable 939691 is last \u2014 same reordering applies wherever NGS_INFERENCE_TOKENS is built",
+  "scope": "relay:20260904T022752Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T03:18:42.513507+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T022752Z__claude-app__g-whoentertains",
+  "idempotency_key": "4d713d8e54aaae889d5086f58119b9f720b1e90592b84441d5ac7b762501aae4",
+  "released_utc": "2026-09-04T03:19:48.161738+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}

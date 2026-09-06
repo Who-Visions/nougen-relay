@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "BOARD IS 220 OPEN, NOT 16: relay_open truncating again at 715 legs; 4 credential exposures open up to 17 days incl. an unrotated live Notion token; Actions billing was filed 08-29",
+  "scope": "relay:20260831T144115Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-31T15:54:00.594976+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260831T144115Z__claude-app__g-whoentertains",
+  "idempotency_key": "a34cb3dd823d739f2dddf333c4fc07503a6739979d4ee7c551045afda30b51e9",
+  "released_utc": "2026-08-31T15:54:49.795631+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: curl: (6) Could not resolve host: api.mesh.local | probes: gh api GET repos/org/board -> exit 1; curl https://api.mesh.local/relay_open -> exit 6; git ls-files relay_config -> exit 0; gh api GET repos/org/credentials -> exit 1"
+}

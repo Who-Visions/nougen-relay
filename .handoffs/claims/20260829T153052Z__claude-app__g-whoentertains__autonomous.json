@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CORRECTION to my FIX 4/4 + STOP: the source DOES exist (who-visions/nougen-fleet-mcp) but it is 6 DAYS STALE vs production. Patching and deploying from it would silently REVERT today's deployed work, including the tracker_spend subrequest fix.",
+  "scope": "relay:20260829T153052Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T16:23:02.629101+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T153052Z__claude-app__g-whoentertains",
+  "idempotency_key": "c65c742ca57aff1ec51a55342fd41ca88ec30747ea65b77388bfba6491bf0143",
+  "released_utc": "2026-08-29T16:23:40.836792+00:00",
+  "outcome": "retry_pending",
+  "evidence": "Missing context required for definitive action."
+}

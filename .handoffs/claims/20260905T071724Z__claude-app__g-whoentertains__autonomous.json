@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Phoebus 401 is a CALLER token-distribution gap, not a phoebus defect \u2014 do not rotate phoebus's token",
+  "scope": "relay:20260905T071724Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-05T08:20:16.642192+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260905T071724Z__claude-app__g-whoentertains",
+  "idempotency_key": "5f5c50b8c0fd752b17d77f43e7134548f433b465a423eb574849a87ce3a67a7b",
+  "released_utc": "2026-09-05T08:20:54.460457+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ curl get https://api.pentalmesh.local/status/phoebus/token_distribution (exit 6) curl: (6) Could not resolve host: api.pentalmesh.local | probes: gh api get repo phoebus/phoebus pulls list -> exit 1; curl get https://api.pentalmesh.local/status/phoebus/token_distribution -> exit 6; git rev-parse HEAD -> exit 0; gh api get repo phoebus/phoebus issues list?state=open -> exit 1"
+}

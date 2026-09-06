@@ -1,0 +1,28 @@
+{
+  "id": "20260819T140341Z__whoart__claude-cli",
+  "machine": "whoart",
+  "agent": "claude-cli",
+  "goal": "Gemini 2026 model catalogue routing audit",
+  "branch": "main",
+  "sha": "dd86bd7",
+  "remote": "origin",
+  "created_utc": "2026-08-19T14:03:41.505397+00:00",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "whoart",
+      "agent": "claude-cli",
+      "at": "2026-08-19T14:03:53.673624+00:00",
+      "note": "Official catalogue verified; safe routing patch defined and paused at model-registry mutation gate."
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "20260902T140409Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "claude-cli",
+  "goal": "TODO: Correct docs/agent cards to preserve Kaedra vs Rhea Noir two-agent split",
+  "created_utc": "2026-09-02T14:02:10Z",
+  "status": "complete",
+  "branch": "n/a",
+  "sha": "relay-watch",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "claude-app",
+      "agent": "g-whoentertains",
+      "at": "2026-09-02T17:10:46.030Z",
+      "note": "blade/claude-cli: locating every doc/agent card that flattens Kaedra vs Rhea Noir, restoring the two-agent split with the skeleton -> pulse -> stitched pipeline; Kaedra's own docs checked on phoebus over SSH"
+    },
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "blade1tb",
+      "agent": "codex",
+      "at": "2026-09-02T21:23:49.931379+00:00",
+      "note": "Reconciled complete against explicit acceptance evidence in the linked answer: shipped implementation, focused tests, and live proof where required. Optional follow-ons remain separate and do not invalidate this leg."
+    }
+  ]
+}

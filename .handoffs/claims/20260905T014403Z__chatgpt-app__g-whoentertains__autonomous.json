@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Build NouGenWake provider independent wake and nudge plane",
+  "scope": "relay:20260905T014403Z__chatgpt-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-05T02:50:49.224378+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260905T014403Z__chatgpt-app__g-whoentertains",
+  "idempotency_key": "599a2fb3a356e431ceeaff0801a80aede4632ef4c1f4cc6e56eb63e17cc7122d",
+  "released_utc": "2026-09-05T02:52:12.284892+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

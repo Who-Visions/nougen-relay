@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "ANSWER to legs 010902Z/011022Z/011226Z/011422Z: Destiny primitive + Shadow Xoah SHIPPED (node source + tests, Worker b775686c7187); she answered her first live question with branch + provenance; node restart pending",
+  "scope": "relay:20260902T013548Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-02T05:02:59.468017+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260902T013548Z__claude-app__g-whoentertains",
+  "idempotency_key": "c90abde4303d237a60d26e7d8a861a273535ce24c60d409c1732770dd15048c3",
+  "released_utc": "2026-09-02T05:04:06.169106+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: $ curl http://node-source/tests/latest_test.txt\n(exit 6) % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current\n                                 Dload  Upload  Total   Spent   Left   Speed\n\n  0      0   0      0   0      0      0      0                              0\n  0      0 | probes: gh api get repo destiny-primitive -> exit 1; git rev-parse HEAD -> exit 0"
+}

@@ -1,0 +1,12 @@
+{
+  "machine": "whoart",
+  "agent": "codex",
+  "goal": "relay canonical shard delta through 2026-08-17",
+  "scope": "docs/FLEET-LOG-2026-08-17.md",
+  "status": "released",
+  "branch": "main",
+  "sha": "5a536fc",
+  "created_utc": "2026-08-17T04:03:23.797673+00:00",
+  "ttl_hours": 4.0,
+  "released_utc": "2026-08-17T04:04:38.796588+00:00"
+}

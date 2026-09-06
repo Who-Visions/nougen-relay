@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "RETRACT my ~27-30d cliff: mtime is last-append not session age (content floor is 67d). Deletion is WORSE - 57 blade days / 33,897 invocations with no surviving source, and the latest hole is 2026-08-21 INSIDE the window. Not an age cutoff. Regeneration precondition must use content spans",
+  "scope": "relay:20260904T132835Z__blade1tb__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T13:42:33.847998+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T132835Z__blade1tb__claude-cli",
+  "idempotency_key": "6052e24017798ede825017006c1400d26d9150141e847dd903cf182d63b8a697",
+  "released_utc": "2026-09-04T13:43:20.994518+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

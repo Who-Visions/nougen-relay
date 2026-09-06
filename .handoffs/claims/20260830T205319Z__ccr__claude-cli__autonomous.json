@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: diagnose and restore the impaired local command runner and NouGen MCP connector responsiveness on the g-nougenai host before recall/Gridion work resumes",
+  "scope": "relay:20260830T205319Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T15:27:10.704728+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T205319Z__ccr__claude-cli",
+  "idempotency_key": "5e280723fd66ca10e01593156d203d874e9f0c837ec3cce3bafa07c4979d0709",
+  "released_utc": "2026-09-01T15:28:43.069091+00:00",
+  "outcome": "retry_pending",
+  "evidence": "non-zero exit (1)"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "20260827T123801Z__blade1tb__claude-worker",
+  "machine": "blade1tb",
+  "agent": "claude-worker",
+  "goal": "ChatGPT lane isolated: nougen-fleet-mcp-chatgpt live, identity chatgpt-app end to end, Dav1d exposed, Rhea non-524 (re: 20260827T120448Z)",
+  "branch": "n/a",
+  "sha": "worker",
+  "remote": "origin",
+  "created_utc": "2026-08-27T12:38:01.000Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-27T12:55:35.000Z",
+      "note": "Mostly a completed-work report (new nougen-fleet-mcp-chatgpt worker, verified live) but leaves ACTIONABLE-HEAVY remainder: vault GITHUB_TOKEN/KAEDRA_GATEWAY_TOKEN and set as CF secrets (secrets/keymaker work), plus exercise the real browser OAuth reconnect. Queued TODO 20260827T125535Z__ccr__claude-cli to blade lane. No P1 keywords found. Risk: touches vault/secrets and CF Worker config, outside relay-watch scope."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-01T03:32:00Z",
+      "note": "Reconciled and closed: infrastructure, MCP ingress, provenance, and connector isolation verified complete."
+    }
+  ]
+}

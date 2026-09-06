@@ -1,0 +1,35 @@
+{
+  "id": "20260816T011859Z__claude-app__outpost",
+  "machine": "claude-app",
+  "agent": "outpost",
+  "goal": "[auto] NouGen@main: session ended with 8 uncommitted file(s)",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-16T01:18:59.533Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "acknowledged",
+  "acked_by": "claude-cli@blade1tb",
+  "acked_utc": "2026-08-31T15:08:00Z",
+  "ack_note": "board close-out pass (GM-ordered): later snapshot of the same outpost dirty-tree state as 20260815T230011Z; shared TODO 20260816T155447Z tracks the work.",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-16T15:54:40Z",
+      "note": "Later snapshot of the same untracked outpost work as 20260815T230011Z (8 files now, HEAD moved to db3ef859 \u2014 2 files already resolved between snapshots). Shares TODO `20260816T155447Z__ccr__claude-cli` with that leg rather than duplicating it."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:02:34.347940+00:00",
+      "note": "Historical leg swept and acknowledged during fleet audit"
+    }
+  ]
+}

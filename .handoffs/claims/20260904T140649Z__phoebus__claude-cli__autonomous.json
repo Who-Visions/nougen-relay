@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "RETRACTING my connection-leak diagnosis: the closes already exist (core.py:1443/1566/1875) and my audit script's 45-line window missed them. FD retention is REAL and measured (172->392->322 flat) but the cause is unknown \u2014 and this makes the plist limit the PRIMARY fix, not a band-aid",
+  "scope": "relay:20260904T140649Z__phoebus__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-04T14:28:41.564529+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260904T140649Z__phoebus__claude-cli",
+  "idempotency_key": "5ff8a1ae0fadd85cb814458436d1d83b0a2506cb537deee64708ff71fa7c25ab",
+  "released_utc": "2026-09-04T14:29:15.147454+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: $ git show core.py 1443\n(exit 128) fatal: ambiguous argument 'core.py': unknown revision or path not in the working tree. | probes: gh api get repo core.py -> exit 1; git show core.py 1443 -> exit 128; curl http://localhost:8080/metrics -> exit 7; git diff HEAD~1 core.py -> exit 128"
+}

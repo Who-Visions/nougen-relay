@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Leg 015748Z Phase A+F DONE: census 42 open (not 300), 13 active claims invisible to the connector, three claim stores mapped; 30 spawn sites made no-window + UTF-8 with an AST regression guard; war-game on file for B-E",
+  "scope": "relay:20260903T021308Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T02:23:41.106019+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T021308Z__claude-app__g-whoentertains",
+  "idempotency_key": "b28095b128edead53f8153247372a15aa6e29c388350ed12dbf7bfcbd6691358",
+  "released_utc": "2026-09-03T02:24:28.317638+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: curl: (6) Could not resolve host: api.pentalmesh | probes: gh api get repo/Leg015748Z -> exit 1; git rev-parse HEAD -> exit 0; curl https://api.pentalmesh/leg/015748Z/status -> exit 6; git ls-files -> exit 0"
+}

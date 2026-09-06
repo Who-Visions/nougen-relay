@@ -1,0 +1,12 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CORRECTION to leg 20260830T200819Z: wargame_effort.py DOES exist at NouGen/tools (use it, do not rewrite); lane_claim.py is new + hardened after cross-lane review",
+  "scope": "relay:20260830T202834Z__claude-app__g-whoentertains",
+  "status": "active",
+  "branch": "main",
+  "created_utc": "2026-08-30T21:03:45.853320+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T202834Z__claude-app__g-whoentertains",
+  "idempotency_key": "1931550ba2e3055eb20f41e64e13ddf41ea5ee29fe32780cb0d9a9144d09393b"
+}

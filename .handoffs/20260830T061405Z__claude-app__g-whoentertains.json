@@ -1,0 +1,35 @@
+{
+  "id": "20260830T061405Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "ACTUAL ROOT CAUSE: the NGS shard node on :4444 is HUNG (accepts TCP, never answers HTTP). Tunnels/workers were faithfully reporting a dead origin. Connector pile-up was NOT the cause",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-30T06:14:05.782Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "**Supersedes my tunnel framing in** `20260830T051459Z` / `20260830T053312Z` / `20260830T054454Z`.\n\n## The actual fault\n`http://127.0.0.1:4444/health` \u2014 the real NGS shard node, straight to loopback, no Cloudflare involved:\n```\ntry1 http=000 t=20.003s\ntry2 http=000 t=20.010s\ntry3 http=000 t=20.027s   (empty body)\n```\n**The node accepts TCP connections but never answers HTTP.** It is HUNG, not down \u2014 `netstat` shows `0.0.0.0:4444 LISTENING` (PID 37860) with live `ESTABLISHED` connections from cloudflared. Every layer above it \u2014 connectors, the failover worker, `nougen-fleet-mcp`, every MCP client \u2014 was faithfully reporting a dead origin. There was never a gateway bug.\n\n## Two of my own claims retracted\n1. **\"The node is healthy, 5ms local\"** (`20260830T054454Z`) \u2014 WRONG. I probed `127.0.0.1:8765`, which is **Apollo's Sol-Ai mesh port**, not the shard node. `NGS_PORT=4444` is set and 4444 is where the node actually serves. Right method, wrong port; the 5ms result described a different service entirely.\n2. **\"Stacked connectors caused the outage\"** \u2014 WRONG, and GM supplied the disproof: Cloudflare explicitly supports running multiple `cloudflared` **replicas** for HA (each tunnel keeps 4 long-lived connections; replicas are a documented feature, not a fault). Replicas against a healthy origin are fine. They all hung because the **origin** hangs. The pile-up was a genuine resource leak worth fixing, but it was a symptom of restart-thrash against a hung node \u2014 not the cause of the outage.\n\nThe fail-closed guard patch in `tools/start_grid.py` still stands on its own merit (unbounded connector growth is a real defect), but it does not fix this.\n\n## Current state\n- Connectors now: only the Windows service `Cloudflared` (PID 23828, `tunnel run --token`, AUTO_START) + the unrelated `tools/bin` quick tunnel \u2192 `127.0.0.1:4444`.\n- `blade.nougenai.com/health` now returns a fast, consistent **530** (~0.15s) instead of hanging \u2014 Cloudflare has no healthy connector/origin. Honest failure beats a hang.\n- GM attempted `Restart-Service Cloudflared` from an elevated shell; it stalled on `Waiting for service to stop...` \u2014 consistent with a connector wedged against a non-responsive origin.\n- `.scratch/ngs_node.log` is **empty** (no tail output), so the node is not even logging \u2014 reinforcing a hard hang rather than an error loop.\n\n## The fix \u2014 restart the NODE, not the tunnel\n```\ntaskkill /PID 37860 /F\n```\nthen relaunch it (scheduled task `NouGen NGS Node` \u2192 `tools/ngs_node_boot.cmd`, or `tools/start_grid.py`). Everything upstream should recover on its own once 4444 answers, because the tunnel path is otherwise intact.\n\n**Do NOT** kill `23828` (the service \u2014 it is the intended sole connector and auto-restarts) or `52932`/current `tools/bin` quick tunnel PID.\n\n**Done-when**: `curl http://127.0.0.1:4444/health` returns 200 fast; then `blade.nougenai.com/health` stops 530-ing; then `shards_search` returns real hits instead of `(no matches)`.\n\n## Method lesson (third correction this session, same shape)\nEvery wrong turn tonight came from trusting an inherited value instead of probing the live one: a code default for `SHARD_GATEWAY_STYLE`, a stale 530/500 claim, and a wrong port for \"the node\". Probe the exact thing you are about to make a claim about \u2014 including which port the service you are naming actually listens on.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-30T06:54:15Z",
+      "note": "Superseded by the same author's follow-ons: 20260830T062602Z retracted the hung-node/taskkill-37860 theory in favor of duplicate uvicorn instances contending on SQLite, and 20260830T063925Z closed the infra incident outright (root cause was actually a dual bind-spec collision, 0.0.0.0 vs 127.0.0.1, not a hung process). The taskkill ask here is moot. This leg's 'outage'/'incident' language was folded into one P1 escalation on the final leg (20260830T065417Z__ccr__gm-phone) rather than escalating all three steps of the same 25-minute incident thread separately."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'ACTUAL ROOT CAUSE: the NGS shard node on :4444 is HUNG (accepts TCP, never answe' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

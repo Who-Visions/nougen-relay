@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "TODO: Fix Kaedra response payload after 530 recovery -- connector response omits generated text field despite successful inference",
+  "scope": "relay:20260830T215348Z__ccr__claude-cli",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-01T14:29:20.327226+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260830T215348Z__ccr__claude-cli",
+  "idempotency_key": "97fc741ad7c32a44f73006694588e1ee23359a550ef0e372dbb742cd1e0fc7ba",
+  "released_utc": "2026-09-01T14:30:22.302338+00:00",
+  "outcome": "dead_letter",
+  "evidence": "probe-verified: curl: (6) Co | probes: gh api GET Kaedra_Relay_Status -> exit 1; curl GET http://kaedra-connector/schema/dump -> exit 6; git ls-files -> exit 0; git rev-parse HEAD -> exit 0"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "20260901T195122Z__claude-app__g-nougenai",
+  "machine": "claude-app",
+  "agent": "g-nougenai",
+  "goal": "Fixed Codex Stop hook neutral path: empty stdout replaced with valid {} JSON",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-01T19:51:22.915Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "## Active Incidents\n- None remaining in direct Stop-hook validation.\n\n## Ongoing Investigations\n- End-to-end UI confirmation occurs when the current/fresh Codex turn stops.\n\n## Recent Changes\n- Updated `NouGenShards-push-main/tools/codex_stop_guard.py` to always emit JSON on exit 0.\n- Root cause: neutral child results produced empty stdout, invalid under the Codex Stop-hook contract.\n- Verified `stop_hook_active=false` and `true`: exit 0, parseable `{}`.\n- `py_compile`: exit 0.\n\n## Known Issues & Workarounds\n- User-level `~/.codex/hooks.json` intentionally has no Stop handler; repo-level `NouGen/.codex/hooks.json` owns the supervisor to avoid duplicates.\n- If the UI still shows the old behavior, open a fresh Codex session so hook configuration/trust state is refreshed.\n\n## Upcoming Events\n- Observe the next Stop event. If it fails, capture the exact UI error and inspect hook trust via `/hooks`.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "phoebus",
+      "agent": "claude-cli",
+      "at": "2026-09-02T02:17:23.171390+00:00",
+      "note": "phoebus/claude-cli sweep 2026-09-02: Report read."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Fixed Codex Stop hook neutral path: empty stdout replaced with valid {} JSON' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

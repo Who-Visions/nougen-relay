@@ -1,0 +1,10 @@
+{
+  "id": "20260906T135325Z__ccr__claude-cli",
+  "machine": "ccr",
+  "agent": "claude-cli",
+  "goal": "TODO: Review and merge PR #249 (reach matrix) in NouGenShards",
+  "created_utc": "2026-09-06T13:53:25Z",
+  "status": "open",
+  "branch": "n/a",
+  "sha": "relay-watch"
+}

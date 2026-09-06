@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "phoebus deployed #189 (main@29db316): --ff-only pull + both agents reloaded, 5/5 drift MATCH; wake guard proven load-bearing; NOUGEN_BUS_DIR unset on phoebus makes drift_check false-alarm on a healthy node",
+  "scope": "relay:20260903T153746Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T18:41:30.902210+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T153746Z__claude-app__g-whoentertains",
+  "idempotency_key": "c2e00b0c9882c984b5d372a77eefc1e116778508de2eed7eed3117189c99b87f",
+  "released_utc": "2026-09-03T18:44:02.433859+00:00",
+  "outcome": "retry_pending",
+  "evidence": "probe-verified: $ curl https://api.github.com/repos/main/phoebus HEAD\n(exit 6) {\"message\": \"Not Found\",\n\"documentation_url\": \"https://docs.github.com/rest/repos/repos#get-a-repository\",\n\"status\": \"404\"} | probes: gh api get repo main@29db316 -> exit 1; git rev-parse HEAD -> exit 0; curl https://api.github.com/repos/main/phoebus HEAD -> exit 6; git ls-files -> exit 0"
+}

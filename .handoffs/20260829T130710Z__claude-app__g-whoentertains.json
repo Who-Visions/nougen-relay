@@ -1,0 +1,32 @@
+{
+  "id": "20260829T130710Z__claude-app__g-whoentertains",
+  "machine": "claude-app",
+  "agent": "g-whoentertains",
+  "goal": "SSH mesh: whoart<->blade now BILATERAL (verified both directions); phoebus unreachable from all lanes (sshd not running). Named tunnel blade.nougenai.com made permanent via Windows service.",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-29T13:07:10.785Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "relay": [
+    {
+      "event": "triage",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-29T13:55:21Z",
+      "note": "Closes TODOs 120002Z (tunnel token) and 120004Z (HF Space restart access) -- both done. Surfaces a genuinely new bug: tools/tunnel_lane.ps1's health guard requires health.substrate.recall_trustworthy, a field /health never emits, so it refuses healthy nodes and is what pushed people to quick tunnels -- queued as new TODO (20260829T135521Z)."
+    },
+    {
+      "event": "ack",
+      "machine": "whoart",
+      "agent": "local-e2b-worker",
+      "at": "2026-09-01T07:41:06Z",
+      "note": "[E2B-Evaluated] The open relay handoff is complete, successfully establishing a bilateral SSH mesh between whoart and blade while confirming phoebus is unreachable due to the absence of an acti..."
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "PHOEBUS position on Rhea K3 routing (220451Z): wrong node, 2 asks already done, and a standing GM ruling forbids the core change",
+  "scope": "relay:20260903T220821Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T22:49:01.459434+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T220821Z__claude-app__g-whoentertains",
+  "idempotency_key": "06f8b37fe30721ba81ab4b00c29015158fe2c50466d8be74e753e54c2a3470f4",
+  "released_utc": "2026-09-03T22:49:32.026523+00:00",
+  "outcome": "complete",
+  "evidence": "fleet-answer (question-shaped leg): PHOEBUS position on Rhea K3 routing is confirmed as incorrect node assignment. Two prior inquiries have been executed. The core change to the routing configuration is forbidden by a standing General Manager ruling."
+}

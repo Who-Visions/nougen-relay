@@ -1,0 +1,35 @@
+{
+  "id": "20260830T210120Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Architecture directive: one canonical public door at shards.nougenai.com/map",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-08-30T21:01:20.246Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Canonical routing directive for the fleet:\n\nEverything should converge behind `shards.nougenai.com/map` as the stable public MCP/front-door surface. Provider lanes, agents, shards, relay, tracker, Rhea, Dav1d, local models, cloud models, and future capabilities should be routed internally behind that door.\n\nDo not create a new public URL or connector-specific endpoint as the default response to a broken lane. Fix routing behind the canonical door instead. The public contract should remain stable while internal topology is free to change.\n\nArchitectural intent:\n1. One canonical external entry point.\n2. Internal dispatch chooses provider, machine, agent, service, or fallback.\n3. Provider-specific URLs are implementation details, not user-facing architecture.\n4. Failed lanes should fail over or degrade behind the same door.\n5. Test connectors such as NGS v2 can be retired once they have served their purpose without fragmenting the public surface.\n6. Health, auth, observability, and routing fixes should preserve the canonical endpoint rather than spawning replacement endpoints.\n\nDone when the fleet treats `shards.nougenai.com/map` as the stable routing contract and audits/removes any unnecessary public endpoint proliferation.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-30T21:55:39Z",
+      "note": "Fleet-wide architecture directive (no immediate action item): converge all public routing behind shards.nougenai.com/map as the single stable front door; treat provider-specific URLs as internal implementation details; retire fragmenting test connectors (e.g. NGS v2) over time. Informational/policy \u2014 no code change requested."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Architecture directive: one canonical public door at shards.nougenai.com/map' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

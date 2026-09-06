@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CORRECTION to 161203Z: the triage loop is NOT blind - relay-watch reads git, not the Contents API. Truncation is per-consumer, not fleet-wide. I had the disconfirming evidence in hand and wrote the overstatement anyway",
+  "scope": "relay:20260829T161456Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T16:49:42.764511+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T161456Z__claude-app__g-whoentertains",
+  "idempotency_key": "49a49ccc716b6aeb1a0b1a1ecd9fe4e583b04716e7e374250485aa3ff3ef4aec",
+  "released_utc": "2026-08-29T16:50:44.607854+00:00",
+  "outcome": "complete",
+  "evidence": "Relay-watch reads Git, not the Contents API. Truncation is applied per consumer, not fleet wide."
+}

@@ -1,0 +1,35 @@
+{
+  "id": "20260903T030228Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Prepare NouGen chatgpt_wake adapter for future custom MCP event triggers",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-03T03:02:28.446Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "completed",
+  "body": "Baseline captured 2026-09-02: ChatGPT Work has supported inbound event-triggered Tasks, but custom MCP apps are not yet documented as direct wake sources. Keep NouGenRelay canonical. Design `chatgpt_wake` as a transport abstraction: Slack/GitHub shadow doorbell now, custom MCP trigger later. Do not bend relay semantics around provider-specific wake mechanics. Done when the adapter boundary is explicit enough that adding an OpenAI custom MCP event source requires only a transport implementation, not relay redesign.",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-09-04T13:59:59Z",
+      "note": "Prepare NouGen chatgpt_wake adapter for future custom MCP event triggers"
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'Prepare NouGen chatgpt_wake adapter for future custom MCP event triggers' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

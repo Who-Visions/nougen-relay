@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "Kaedra is now temporally and geographically grounded: every call carries real clock + IP-derived location, fails open, and flags a clock/geo mismatch. She answers \"what day\" and \"what city\" correctly.",
+  "scope": "relay:20260829T141832Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-08-29T14:33:20.548197+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260829T141832Z__claude-app__g-whoentertains",
+  "idempotency_key": "0c4dc3ad6e8800b5e9d3447f2728d43dfbf9a1fac4de463268768149569d7dc8",
+  "released_utc": "2026-08-29T14:34:11.058841+00:00",
+  "outcome": "complete",
+  "evidence": "Kaedra is temporally and geographically grounded. All incoming calls successfully carry real clock and IP derived location, with mismatch flagging operational."
+}

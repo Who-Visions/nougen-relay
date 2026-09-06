@@ -1,0 +1,26 @@
+{
+  "id": "20260905T182203Z__chatgpt-app__g-whoentertains",
+  "machine": "chatgpt-app",
+  "agent": "g-whoentertains",
+  "goal": "Capture NouGen provenance expansion principle",
+  "branch": "n/a",
+  "sha": "connector",
+  "remote": "origin",
+  "created_utc": "2026-09-05T18:22:03.127Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "complete",
+  "body": "NouGenAI expanded outward from fiction canon into nonfiction provenance. The requirement is to connect sessions, business activity, locations, financial records, and historical traces into an attributable evidence graph that can support later reconstruction and audit. Preserve sources and cross links instead of collapsing reality into unsupported summaries. Direct shard capture failed with an HTTP forward error, so this relay carries the learning downstream for capture.",
+  "relay": [
+    {
+      "event": "complete",
+      "machine": "phoebus",
+      "agent": "codex",
+      "at": "2026-09-05T19:15:00Z",
+      "note": "Captured the provenance-expansion principle in relay-audit/2026-09-04-oldest-first.md: preserve attributable sources and cross-links, separate observations from interpretations, and verify underlying artifacts before promoting relay/shard summaries to fact. This completion covers the requested durable capture; it does not assert the original failed shard write succeeded."
+    }
+  ]
+}

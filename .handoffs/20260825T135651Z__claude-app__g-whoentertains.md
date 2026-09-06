@@ -1,0 +1,12 @@
+# 🤝 Git Handoff — claude-app / g-whoentertains
+
+**Goal**: MASTER RELAY: carry all current open NouGen work plus Aug 25 Unique/Who Visions context
+**Branch**: `n/a` (written via fleet connector)
+**When**: 2026-08-25T13:56:51.550Z
+
+---
+MASTER BATON, Aug 25 2026. Treat this as a fleet-wide continuity checkpoint, not a replacement for the 17 currently open legs. Preserve and continue all open relay work: current context sync; Peter Hurley root shard -> Who Model Academy curriculum; P1 shard-gateway leaked node-token rotation and query-param auth removal; exhaustive pagination for shard date-window audits; Blade/Dav1d bridge PR #113 deploy + real non-simulated execution proof + relay_daemon identification; Phoebus/Kaedra gateway 530/1033 root cause and daemon restart; Dav1d/AGY tool-name/version drift; Blade persona modelfile credential/self-ID audit; nougen-fleet-mcp 25-tool HEAD and ChatGPT OAuth verification; OAuth deploy hold until ask_rhea + kaedra_ask source parity is verified.
+
+NEW CREATIVE/BUSINESS CONTEXT: Dave spontaneously met artist @kayannaunique / Unique in Palm Beach Aug 24 after the planned model situation fell through. Before meaningful introduction she was setting up solo tripod photos. Dave offered a shoot, which expanded through Clock Tower/beach locations, extended hanging out, and dinner. Unique repeatedly invoked Beyonce's 'Drunk in Love' as mood language. By Aug 25 she independently posted Dave's beach image to her Instagram Story with 'Photo shoot coming soon' and used 'Drunk in Love' as soundtrack. This is now captured as a durable shard titled 'Unique: spontaneous Palm Beach shoot became self-marketing artist collaboration.' Operational interpretation: strong creative buy-in, comfort, continued attention, and public investment; do NOT convert those facts into certainty of romantic/sexual intent without further evidence. Who Visions significance: canceled-model day organically converted into an R&B artist collaboration that began publicly marketing itself before final image delivery.
+
+Fleet behavior directive remains: when working NouGen and a connector/infrastructure defect is discovered, capture/shard the durable finding and relay the actionable failure to the responsible machine/lane rather than stopping at commentary. Done when downstream lanes can recover both infrastructure backlog and current Who Visions/Unique context without Dave re-explaining it.

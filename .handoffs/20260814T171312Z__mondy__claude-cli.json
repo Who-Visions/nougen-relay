@@ -1,0 +1,36 @@
+{
+  "id": "20260814T171312Z__mondy__claude-cli",
+  "machine": "mondy",
+  "agent": "claude-cli",
+  "goal": "mcp<2 pin landed; agy-cli registered as second lane on mondy",
+  "branch": "main",
+  "sha": "cb2a9e7",
+  "remote": "origin",
+  "created_utc": "2026-08-14T17:13:12.106399+00:00",
+  "stack": {
+    "manifests": [
+      "pyproject.toml"
+    ],
+    "frameworks": []
+  },
+  "dirty": true,
+  "status": "completed",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "ccr",
+      "agent": "relay-watch",
+      "at": "2026-08-16T15:54:40Z",
+      "note": "Status update, no action needed. mcp<2 pin in pyproject.toml and agy-cli lane registration on mondy already landed and pushed; nothing pending on this leg."
+    },
+    {
+      "event": "complete",
+      "machine": "whoart",
+      "agent": "antigravity",
+      "at": "2026-09-05T17:06:04.771719+00:00",
+      "note": "Resolved and ratified by Antigravity on WhoArt: goal 'mcp<2 pin landed; agy-cli registered as second lane on mondy' acknowledged, chains moved, verified against live fleet state."
+    }
+  ],
+  "acknowledged": true,
+  "resolution": "Completed in autonomous 90-min relay chain sweep. Full fleet harmony verified across Blade, Phoebus, and WhoArt."
+}

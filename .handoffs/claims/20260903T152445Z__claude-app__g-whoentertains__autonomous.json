@@ -1,0 +1,15 @@
+{
+  "machine": "blade1tb",
+  "agent": "relay-daemon",
+  "goal": "CORRECTION to incident 120029Z: blade's relay lane was never blind \u2014 wrong clone was measured; the owner ruling it asked for is NOT needed. pi-remix is active work, do not discard",
+  "scope": "relay:20260903T152445Z__claude-app__g-whoentertains",
+  "status": "released",
+  "branch": "main",
+  "created_utc": "2026-09-03T18:44:32.605072+00:00",
+  "ttl_hours": 0.25,
+  "leg_id": "20260903T152445Z__claude-app__g-whoentertains",
+  "idempotency_key": "a4475f1dcb23190454bd9bd0b2bf1d8d81d7d169fbe59539bbec7cf15edef6dc",
+  "released_utc": "2026-09-03T18:50:00.593744+00:00",
+  "outcome": "dead_letter",
+  "evidence": "non-zero exit (1)"
+}
