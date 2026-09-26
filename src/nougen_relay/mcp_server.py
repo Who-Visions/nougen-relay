@@ -25,7 +25,10 @@ from pathlib import Path
 from typing import Optional
 
 try:
-    from mcp.server.fastmcp import FastMCP
+    try:
+        from mcp.server.fastmcp import FastMCP
+    except (ImportError, ModuleNotFoundError):
+        from mcp.server.mcpserver import MCPServer as FastMCP
 except ImportError:  # pragma: no cover - exercised by the import-error path
     raise SystemExit(
         "nougen_relay.mcp_server needs the MCP SDK.\n"
@@ -34,9 +37,12 @@ except ImportError:  # pragma: no cover - exercised by the import-error path
 
 mcp = FastMCP("NouGenRelay")
 
+SRC_DIR = Path(__file__).resolve().parents[1]
+RELAY_ROOT = Path(__file__).resolve().parents[2]
+
 # A relay verb touches git and may push; it should never wedge an agent
 # session waiting on a network stall.
-TIMEOUT = 120
+TIMEOUT = 30
 
 
 def _run(args: list[str], repo: Optional[str] = None) -> str:
@@ -45,19 +51,30 @@ def _run(args: list[str], repo: Optional[str] = None) -> str:
     Errors are returned as text, not raised: a coordination tool that throws
     into an agent's transcript teaches the agent to stop calling it.
     """
-    cwd = repo or os.getcwd()
-    if not Path(cwd).is_dir():
-        return f"error: not a directory: {cwd}"
+    if repo and Path(repo).is_dir():
+        cwd = Path(repo)
+    elif Path(os.getcwd()).joinpath(".git").is_dir():
+        cwd = Path(os.getcwd())
+    else:
+        cwd = RELAY_ROOT
+
     try:
+        env = {
+            **os.environ,
+            "PYTHONIOENCODING": "utf-8",
+            "PYTHONUTF8": "1",
+            "PYTHONPATH": str(SRC_DIR) + os.pathsep + os.environ.get("PYTHONPATH", "")
+        }
         out = subprocess.run(
             [sys.executable, "-m", "nougen_relay.cli", *args],
-            cwd=cwd, capture_output=True, text=True, timeout=TIMEOUT,
-            encoding="utf-8", errors="replace",
-            env={**os.environ, "PYTHONIOENCODING": "utf-8"},
+            cwd=str(cwd), capture_output=True, timeout=TIMEOUT,
+            env=env,
         )
     except subprocess.TimeoutExpired:
         return f"error: `relay {' '.join(args)}` timed out after {TIMEOUT}s"
-    body = (out.stdout or "") + (out.stderr or "")
+    stdout_str = (out.stdout or b"").decode("utf-8", errors="replace")
+    stderr_str = (out.stderr or b"").decode("utf-8", errors="replace")
+    body = stdout_str + stderr_str
     return body.strip() or f"(no output, exit {out.returncode})"
 
 
@@ -109,13 +126,35 @@ def relay_claim_release(scope: str, repo: Optional[str] = None) -> str:
 
 
 @mcp.tool()
-def relay_create(goal: str, message: str, repo: Optional[str] = None) -> str:
+def relay_create(goal: str, message: str, repo: Optional[str] = None,
+                 parent_leg_id: Optional[str] = None) -> str:
     """Write a handoff at the END of work: what you did and where you left off.
+
+    Pass `parent_leg_id` (a FULL leg id) when this leg branches off an earlier
+    one, so investigations read as a tree instead of a flat list.
 
     The record is written locally; commit and push `.handoffs` so the other
     machines can read it.
     """
-    return _run(["create", "-g", goal, "-m", message], repo)
+    args = ["create", "-g", goal, "-m", message]
+    if parent_leg_id:
+        args += ["--parent", parent_leg_id]
+    return _run(args, repo)
+
+
+@mcp.tool()
+def relay_summarize(parent_leg_id: str, summary: str, goal: str = "",
+                    repo: Optional[str] = None) -> str:
+    """Close an ABANDONED branch: writes a `type: summary` leg pointing at the
+    parent and marks the parent `abandoned` so it leaves every open queue.
+
+    Use when giving up on a line of work — the summary carries what the branch
+    learned, instead of the leg silently going stale.
+    """
+    args = ["summarize", "--id", parent_leg_id, "-m", summary]
+    if goal:
+        args += ["-g", goal]
+    return _run(args, repo)
 
 
 @mcp.tool()
@@ -138,6 +177,30 @@ def relay_shards(dry: bool = False, repo: Optional[str] = None) -> str:
     not pushed has relayed nothing.
     """
     return _run(["shards", "--dry"] if dry else ["shards"], repo)
+
+
+@mcp.prompt()
+def research(topic: str) -> str:
+    """Autonomous deep research across the NouGen fleet substrate."""
+    return f"Execute deep autonomous research on '{topic}' across NouGen FTS5 shards, peer memory, and verified local code."
+
+
+@mcp.prompt()
+def lore(entity: str) -> str:
+    """Retrieve canon lore, character depth, and narrative architecture for an entity."""
+    return f"Excavate all canon lore, character depth, and narrative architecture for '{entity}' across Veilverse canon and memory shards."
+
+
+@mcp.prompt()
+def fleet_sync() -> str:
+    """Reciprocal fleet synchronization across WhoArt, Blade, and Phoebus."""
+    return "Perform a reciprocal fleet check: query active handoffs, inspect node inboxes, run health probes across WhoArt/Blade/Phoebus, and report the scoreboard."
+
+
+@mcp.prompt()
+def shot_card(scene_action: str) -> str:
+    """Generate a 26-field pre-render camera coherence shot card for AI video generation."""
+    return f"Generate a 26-field pre-render shot card for: '{scene_action}' adhering to HyperReality Camera Coherence specifications."
 
 
 def main() -> None:

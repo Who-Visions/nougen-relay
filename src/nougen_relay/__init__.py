@@ -31,25 +31,17 @@ from .core import (  # noqa: F401
     repo_root,
     resolve_agent,
     resolve_machine,
+    serialize_record,
+    write_record,
 )
 
-__version__ = "1.0.0"
+def __getattr__(name: str):
+    """Dynamic submodule resolution so 'from nougen_relay import <submodule>' always works cleanly."""
+    import importlib
+    try:
+        mod = importlib.import_module(f".{name}", __name__)
+        globals()[name] = mod
+        return mod
+    except ImportError:
+        raise AttributeError(f"module '{__name__}' has no attribute '{name}'") from None
 
-__all__ = [
-    "DEFAULT_DIR",
-    "DEFAULT_REMOTE",
-    "EXIT_OK",
-    "EXIT_FAILURE",
-    "EXIT_USAGE",
-    "EXIT_DIVERGED",
-    "RELAY_STATES",
-    "claim_is_active",
-    "evaluate_triggers",
-    "foreign_claims",
-    "identity",
-    "relay_status",
-    "repo_root",
-    "resolve_agent",
-    "resolve_machine",
-    "__version__",
-]

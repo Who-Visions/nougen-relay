@@ -34,6 +34,7 @@ less than no guard, because everyone believes it is running.
 from __future__ import annotations
 
 import argparse
+import json
 import os
 from pathlib import Path
 from typing import List
@@ -183,7 +184,75 @@ def cmd_guard(args: argparse.Namespace) -> int:
     return gh.EXIT_OK
 
 
+# --- admission: the question asked BEFORE a lease is taken -------------------
+# Deterministic, evidence-only. A local model may annotate a leg (priority,
+# summary, routing hint) but nothing here consults one: ALLOW is never a model
+# opinion. Verdicts: ALLOW (claimable now), DEFER (someone holds it, or a retry
+# window is still open), DENY (finished, dead-lettered, superseded, or this
+# lane cannot do it).
+
+ADMIT_ALLOW, ADMIT_DEFER, ADMIT_DENY = "ALLOW", "DEFER", "DENY"
+_TERMINAL_LEG_STATUS = {"complete", "closed", "published", "superseded"}
+
+
+def admit(root: Path, leg: dict, lane: str | None = None, *, machine: str | None = None,
+          agent: str | None = None, now_dt=None) -> tuple:
+    """Return (verdict, reason). Reads the leg record and its lease file only."""
+    leg_id = str(leg.get("id") or leg.get("leg_id") or "").strip()
+    if not leg_id:
+        return ADMIT_DENY, "leg has no id"
+    status = str(leg.get("status") or "").lower()
+    if status in _TERMINAL_LEG_STATUS:
+        return ADMIT_DENY, f"leg status {status}"
+    if status == "blocked":
+        return ADMIT_DEFER, "leg is blocked; dependency not ready"
+    if lane and not gh.is_lane_eligible(lane, leg):
+        return ADMIT_DENY, f"lane {lane} lacks a required capability"
+    lease_file = gh.leases_dir(root) / f"{leg_id}.lease.json"
+    if lease_file.is_file():
+        try:
+            lease = json.loads(lease_file.read_text(encoding="utf-8"))
+        except Exception:
+            lease = None
+        if lease:
+            lstatus = str(lease.get("status") or "")
+            if lstatus == "dead_letter":
+                return ADMIT_DENY, f"dead_letter after {lease.get('retry_count')} attempts: {str(lease.get('last_error') or '')[:80]}"
+            if lstatus in ("complete", "failed", "abandoned"):
+                return ADMIT_DENY, f"lease closed as {lstatus}"
+            if gh.lease_is_active(lease):
+                me = f"{machine or gh.resolve_machine()}/{agent or gh.resolve_agent()}"
+                holder = f"{lease.get('machine')}/{lease.get('agent')}"
+                if holder == me:
+                    return ADMIT_ALLOW, f"re-entry: this lane already holds token {lease.get('fencing_token')}"
+                return ADMIT_DEFER, f"leased by {holder} token {lease.get('fencing_token')}, ttl {lease.get('ttl_minutes')} min"
+            if lstatus == "retry_pending" and not gh.is_leg_retryable(lease, now_dt):
+                return ADMIT_DEFER, f"retry window open until {lease.get('next_retry_utc')}"
+    return ADMIT_ALLOW, "claimable"
+
+
+def cmd_admit(args: argparse.Namespace) -> int:
+    root = gh.repo_root() or Path.cwd()
+    rec = None
+    leg_file = root / ".handoffs" / f"{args.leg_id}.json"
+    if leg_file.is_file():
+        try:
+            rec = json.loads(leg_file.read_text(encoding="utf-8"))
+        except Exception:
+            rec = None
+    if rec is None:
+        rec = {"id": args.leg_id, "status": args.status or "open"}
+    verdict, reason = admit(root, rec, args.lane)
+    print(json.dumps({"leg_id": args.leg_id, "verdict": verdict, "reason": reason}))
+    return 0 if verdict == ADMIT_ALLOW else (2 if verdict == ADMIT_DEFER else 1)
+
+
 def register(sub) -> None:
+    a = sub.add_parser("admit", help="admission verdict for a leg BEFORE a lease is taken (ALLOW/DEFER/DENY)")
+    a.add_argument("leg_id")
+    a.add_argument("--lane", help="lane asking (capability check)")
+    a.add_argument("--status", help="leg status when the record is not local")
+    a.set_defaults(func=cmd_admit)
     g = sub.add_parser("guard", help="refuse work another machine has already claimed")
     g.add_argument("--staged", action="store_true",
                    help="check files staged for commit (what the hook uses)")

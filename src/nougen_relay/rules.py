@@ -43,6 +43,7 @@ from .core import (
     repo_root,
     resolve_agent,
     resolve_machine,
+    write_record,
 )
 
 # A subdirectory, not loose files in the registry: core._records() globs
@@ -131,7 +132,7 @@ def _read_json(path: Path, fallback):
 def _write_json(path: Path, data) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix(path.suffix + ".tmp")
-    tmp.write_text(json.dumps(data, indent=2), encoding="utf-8")
+    write_record(tmp, data)
     tmp.replace(path)
 
 
@@ -259,7 +260,7 @@ def _log_run(root: Path, entry: dict) -> None:
         path = runs_path(root)
         path.parent.mkdir(parents=True, exist_ok=True)
         with open(path, "a", encoding="utf-8") as f:
-            f.write(json.dumps(entry) + "\n")
+            f.write(json.dumps(entry, ensure_ascii=False) + "\n")
     except OSError:
         # An unwritable audit log must not stop the reaction it is recording.
         pass

@@ -54,8 +54,8 @@ PREPARE_COMMIT_MSG = r'''#!/bin/sh
 #
 # 1. AN EXISTING TRAILER IS NEVER OVERWRITTEN. This hook re-runs on every
 #    commit a rebase or cherry-pick replays, with the REPLAYING machine's
-#    environment. Measured live: `git rebase origin/main` on one box rewrote
-#    a commit stamped by another machine's lane into the rebasing box /
+#    environment. Measured 2026-07-31: `git rebase origin/main` on blade
+#    rewrote a commit stamped `phoebus` / `claude-cli` into `blade1tb` /
 #    `unknown-agent` — one command silently reattributed another machine's work
 #    and lost the lane. The trailer records who WROTE the commit, so the env is
 #    only ever used to fill a blank.
@@ -175,8 +175,8 @@ PRE_COMMIT = r'''#!/bin/sh
 # uninstalled, and an uninstalled guard is worse than none because everyone
 # believes it is running.
 
-# The `relay` console script is not guaranteed. On one box, pip could not write
-# the Scripts\relay.exe launcher at all, while `python -m nougen_relay.cli`
+# The `relay` console script is not guaranteed. On whoart, pip could not write
+# C:\Python311\Scripts\relay.exe at all, while `python -m nougen_relay.cli`
 # worked from every directory — so a hook that only knows the script name is a
 # hook that silently does nothing on a box where the protocol is installed and
 # working. Try the script, fall back to the module, give up quietly.

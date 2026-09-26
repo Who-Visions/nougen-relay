@@ -19,6 +19,8 @@ Anything here failing means a machine runs a command nobody asked it to.
 
 import json
 import os
+import shlex
+import subprocess
 import sys
 from pathlib import Path
 
@@ -43,7 +45,8 @@ def repo(tmp_path):
 
 def touch_cmd(target: Path) -> str:
     """A command that proves it ran, portable across shells."""
-    return f'{sys.executable} -c "open(r\'{target}\',\'w\').write(\'x\')"'
+    argv = [sys.executable, "-c", f"open({str(target)!r}, 'w').write('x')"]
+    return subprocess.list2cmdline(argv) if os.name == "nt" else shlex.join(argv)
 
 
 def leg(root: Path, machine: str = "boxb", rec_id: str = "20260801T000000Z__boxb__lane") -> dict:

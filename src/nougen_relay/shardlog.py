@@ -109,7 +109,12 @@ def vault_paths(explicit: Optional[str] = None) -> list:
     to run `relay --help`, and an import-time expanduser() would take the whole
     CLI down with it.
     """
-    raw = explicit or os.environ.get("NOUGEN_VAULT") or DEFAULT_VAULT
+    configured = explicit or os.environ.get("NOUGEN_VAULT")
+    if configured is None and not any(
+        os.environ.get(name) for name in ("HOME", "USERPROFILE", "HOMEPATH", "HOMEDRIVE")
+    ):
+        return []
+    raw = configured or DEFAULT_VAULT
     try:
         root = Path(raw).expanduser()
     except RuntimeError:

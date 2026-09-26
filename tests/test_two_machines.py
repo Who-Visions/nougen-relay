@@ -12,6 +12,7 @@ from pathlib import Path
 
 import pytest
 
+from nougen_relay import core
 from _env import cli_env
 
 SRC = str(Path(__file__).resolve().parents[1] / "src")
@@ -87,6 +88,46 @@ def test_your_own_leg_is_not_a_leg_you_need_to_take(fleet):
     publish(boxa)
     out = relay(boxa, "relay", "open", machine="boxa")
     assert out.returncode == 0
+
+
+def test_remote_handoffs_are_read_in_one_git_batch(fleet, monkeypatch):
+    boxa, boxb = fleet
+    directory = boxa / ".handoffs"
+    directory.mkdir()
+    for index in range(40):
+        record = {
+            "machine": "boxa",
+            "agent": "lane1",
+            "goal": f"batch-{index:02d}",
+            "status": "open",
+            "created_utc": f"2026-01-01T00:00:{index:02d}+00:00",
+        }
+        (directory / f"leg-{index:02d}.json").write_text(
+            json.dumps(record), encoding="utf-8"
+        )
+    claims = directory / "claims"
+    claims.mkdir()
+    (claims / "nested.json").write_text("{}", encoding="utf-8")
+    publish(boxa, "batch handoffs")
+    git("fetch", "-q", "origin", cwd=boxb)
+
+    calls = []
+    real_run = core.subprocess.run
+
+    def tracking_run(command, *args, **kwargs):
+        if command[:2] == ["git", "show"]:
+            raise AssertionError("remote JSON reads must not spawn git show per file")
+        if command[:2] == ["git", "archive"]:
+            calls.append(command)
+        return real_run(command, *args, **kwargs)
+
+    monkeypatch.setattr(core.subprocess, "run", tracking_run)
+    records = core._remote_handoffs(boxb, "origin/main")
+
+    assert len(records) == 40
+    assert records[0]["_file"] == "leg-00.json"
+    assert records[-1]["_file"] == "leg-39.json"
+    assert len(calls) == 1
 
 
 def test_the_ack_travels_back_to_the_originator(fleet):

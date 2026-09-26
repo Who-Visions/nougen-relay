@@ -33,14 +33,20 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import base64
+import hashlib
+import io
 import json
 import os
 import socket
+import shutil
 import subprocess
 import sys
-from datetime import datetime, timezone
+import tarfile
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Optional
+from typing import Any, Dict, List, Optional, Tuple
+from urllib.parse import urlsplit
 
 from . import ui
 
@@ -53,6 +59,43 @@ EXIT_DIVERGED = 3
 
 DEFAULT_DIR = ".handoffs"
 DEFAULT_REMOTE = "origin"
+
+# Leased execution, routing, wake signals, and retry defaults
+DEFAULT_LEASE_TTL_MINUTES = 15.0
+DEFAULT_MAX_RETRIES = 3
+DEFAULT_BACKOFF_BASE_SEC = 5.0
+DEFAULT_BACKOFF_FACTOR = 2.0
+DEFAULT_BACKOFF_MAX_SEC = 300.0
+
+# Semantic deduplication defaults (Agent Mesh, arXiv 2608.26225)
+DEFAULT_DEDUP_EXACT = 0.96
+DEFAULT_DEDUP_NEAR = 0.85
+DEFAULT_EMBED_URL = "http://127.0.0.1:11434"
+
+LANE_CAPABILITIES = {
+    "sol-ai": {"local", "fleet", "triage", "informational", "status", "diagnostic", "fast"},
+    "dav1d": {"local", "fleet", "triage", "informational", "status", "diagnostic", "fast"},
+    "ollama": {"local", "fleet", "triage", "informational", "status", "diagnostic", "fast"},
+    "codex": {"coding", "tests", "refactor", "patching", "cli", "backend", "execution"},
+    "openai": {"coding", "tests", "refactor", "patching", "cli", "backend", "execution"},
+    "claude-cli": {"reasoning", "architecture", "complex", "review", "planning", "frontend", "coding", "execution"},
+    "claude": {"reasoning", "architecture", "complex", "review", "planning", "frontend", "coding", "execution"},
+    "gemini": {"analysis", "multimodal", "search", "docs", "research", "reasoning", "execution"},
+}
+
+
+# --- canonical serializer ---------------------------------------------------
+
+def serialize_record(record: Any) -> str:
+    """Canonical record serializer: byte-stable UTF-8 JSON with trailing newline."""
+    return json.dumps(record, indent=2, ensure_ascii=False) + "\n"
+
+
+def write_record(path: Union[Path, str], record: Any) -> None:
+    """Write a record to disk using the canonical serializer."""
+    p = Path(path)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(serialize_record(record), encoding="utf-8")
 
 
 # --- probes -----------------------------------------------------------------
@@ -78,6 +121,55 @@ def _git(*args: str, cwd: Optional[Path] = None) -> Optional[str]:
     if out.returncode != 0:
         return None
     return out.stdout.strip()
+
+
+def _git_archive(ref: str, directory: str, *, cwd: Path) -> Optional[bytes]:
+    """Read one committed directory from a ref with a single git process."""
+    try:
+        out = subprocess.run(
+            ["git", "archive", "--format=tar", ref, "--", directory],
+            cwd=str(cwd),
+            capture_output=True,
+            check=False,
+        )
+    except FileNotFoundError:
+        return None
+    if out.returncode != 0:
+        return None
+    return out.stdout
+
+
+def _read_json_dir_from_ref(root: Path, target: str, directory: str) -> list:
+    """Read direct JSON children from a committed directory in one batch."""
+    archive = _git_archive(target, directory, cwd=root)
+    if archive is None:
+        return []
+
+    prefix = directory.rstrip("/") + "/"
+    records = []
+    try:
+        with tarfile.open(fileobj=io.BytesIO(archive), mode="r:") as bundle:
+            members = sorted(bundle.getmembers(), key=lambda member: member.name)
+            for member in members:
+                if not member.isfile() or not member.name.startswith(prefix):
+                    continue
+                filename = member.name[len(prefix):]
+                if "/" in filename or not filename.endswith(".json"):
+                    continue
+                stream = bundle.extractfile(member)
+                if stream is None:
+                    continue
+                try:
+                    rec = json.loads(stream.read().decode("utf-8", errors="replace"))
+                except (UnicodeError, json.JSONDecodeError):
+                    continue
+                if not isinstance(rec, dict):
+                    continue
+                rec["_file"] = filename
+                records.append(rec)
+    except tarfile.TarError:
+        return []
+    return records
 
 
 def repo_root() -> Optional[Path]:
@@ -131,6 +223,31 @@ def resolve_machine() -> str:
         return _slug(_strip_local_suffix(socket.gethostname()))
     except Exception:
         return "unknown-machine"
+
+
+def resolve_origin() -> str:
+    """The physical box this record was written on, regardless of its label.
+
+    `resolve_machine()` answers "what is this lane called", and a connector may
+    legitimately answer with its own name: every relay leg written through the
+    Claude connector carries machine="claude-app", which is a transport, not a
+    host. Measured on blade 2026-09-08: 124 legs filed under one such byline in
+    a single day, of which 28 came from the session that was reading them. Work
+    was credited to a machine four separate times that day on the strength of
+    that field, and the registry had no way to say otherwise.
+
+    So this is deliberately NOT `resolve_machine()` with a fallback. It ignores
+    NOUGEN_MACHINE and `git config nougen.machine` precisely because those are
+    the values a connector or an operator overrides, and asks the OS instead.
+    A label can be borrowed; a hostname is where the process actually ran.
+
+    Returns "" when the host cannot be determined, so a record carries no
+    origin field rather than a guess — same contract as `resolve_session()`.
+    """
+    try:
+        return _slug(_strip_local_suffix(socket.gethostname()))
+    except Exception:
+        return ""
 
 
 def machine_source() -> str:
@@ -361,6 +478,193 @@ def _publish(remote: str, branch: Optional[str]) -> bool:
     return _git("push", remote, f"HEAD:{branch}") is not None
 
 
+def _git_timeout_seconds() -> float:
+    """Resolve the bounded GitHub CLI timeout from the environment."""
+    raw = os.environ.get("NOUGEN_RELAY_GIT_TIMEOUT", "120").strip()
+    try:
+        return max(1.0, float(raw))
+    except ValueError:
+        print("⚠️ invalid NOUGEN_RELAY_GIT_TIMEOUT; using 120 seconds")
+        return 120.0
+
+
+def _registry_branch(root: Path, remote: str) -> str:
+    """Resolve the canonical registry branch without trusting this checkout.
+
+    A working clone may be on a feature branch while the gateway reads the
+    remote's default branch.  The branch is therefore env -> remote HEAD -> a
+    logged fallback, rather than the current checkout branch.
+    """
+    configured = os.environ.get("NOUGEN_RELAY_BRANCH", "").strip()
+    if configured:
+        return configured
+    head = _git("symbolic-ref", "--short", f"refs/remotes/{remote}/HEAD", cwd=root)
+    if head and "/" in head:
+        return head.split("/", 1)[1]
+    fallback = os.environ.get("NOUGEN_RELAY_FALLBACK_BRANCH", "main").strip() or "main"
+    print(f"⚠️ unable to resolve {remote} default branch; using {fallback!r}")
+    return fallback
+
+
+def _registry_repo_slug(root: Path, remote: str) -> Optional[str]:
+    """Return a GitHub ``owner/repo`` only when the remote is GitHub-backed."""
+    configured = os.environ.get("NOUGEN_RELAY_REPO_SLUG", "").strip()
+    if configured:
+        return configured
+    raw = (_git("remote", "get-url", remote, cwd=root) or "").strip()
+    if not raw:
+        return None
+    normalized = raw.rstrip("/").removesuffix(".git")
+    if "://" in normalized:
+        parsed = urlsplit(normalized)
+        if (parsed.hostname or "").lower() not in {"github.com", "www.github.com"}:
+            return None
+        parts = [part for part in parsed.path.strip("/").split("/") if part]
+    else:
+        # SSH remotes are commonly ``git@github.com:owner/repo.git``.
+        if "@github.com:" not in normalized.lower():
+            return None
+        parts = [part for part in normalized.rsplit(":", 1)[1].split("/") if part]
+    if len(parts) < 2:
+        return None
+    return f"{parts[-2]}/{parts[-1]}"
+
+
+def _relay_event_key(event: Any) -> tuple:
+    """Stable append-only identity shared by gateway and checkout records."""
+    if not isinstance(event, dict):
+        return ("", "", "")
+    return (
+        str(event.get("event") or ""),
+        str(event.get("at") or ""),
+        str(event.get("agent") or ""),
+    )
+
+
+def _merge_registry_records(local: Optional[dict], remote: Optional[dict]) -> dict:
+    """Union two registry projections without regressing lifecycle state."""
+    if not local:
+        return dict(remote or {})
+    if not remote:
+        return dict(local)
+    merged = dict(remote)
+    for field, value in local.items():
+        if field != "relay" and value not in (None, "", [], {}):
+            merged[field] = value
+
+    raw_order = os.environ.get(
+        "NOUGEN_RELAY_STATUS_ORDER",
+        "open,active,held,acked,in_progress,retry_pending,failed,blocked,complete,abandoned,dead_letter",
+    )
+    order = {name.strip(): index for index, name in enumerate(raw_order.split(","))
+             if name.strip()}
+    local_status = local.get("status", "open")
+    remote_status = remote.get("status", "open")
+    if order.get(str(local_status), 0) >= order.get(str(remote_status), 0):
+        merged["status"] = local_status
+    else:
+        merged["status"] = remote_status
+
+    events = []
+    positions: Dict[tuple, int] = {}
+    for candidate in list(remote.get("relay") or []) + list(local.get("relay") or []):
+        if not isinstance(candidate, dict):
+            continue
+        key = _relay_event_key(candidate)
+        if not any(key):
+            events.append(dict(candidate))
+            continue
+        position = positions.get(key)
+        if position is None:
+            positions[key] = len(events)
+            events.append(dict(candidate))
+            continue
+        combined = dict(events[position])
+        for field, value in candidate.items():
+            if value not in (None, "", [], {}):
+                combined[field] = value
+        events[position] = combined
+    if events or "relay" in local or "relay" in remote:
+        merged["relay"] = events
+    return merged
+
+
+def _write_registry_record_upstream(
+    root: Path,
+    remote: str,
+    handoff_id: str,
+    local_record: dict,
+    action: str,
+) -> Optional[bool]:
+    """CAS-write one relay record to the canonical GitHub registry branch.
+
+    Returns ``None`` when this clone is not GitHub-backed (so callers can use
+    the legacy git-push path), ``True`` on a successful/idempotent write, and
+    ``False`` after an attempted write fails.  A stale SHA is retried by
+    refetching and merging again, so concurrent acknowledgements do not lose
+    events.
+    """
+    if Path(handoff_id).name != handoff_id or not handoff_id:
+        return False
+    gh_name = os.environ.get("NOUGEN_GH_BIN", "gh").strip() or "gh"
+    gh = shutil.which(gh_name)
+    slug = _registry_repo_slug(root, remote)
+    if not gh or not slug:
+        return None
+    branch = _registry_branch(root, remote)
+    retries_raw = os.environ.get("NOUGEN_RELAY_UPSTREAM_RETRIES", "2").strip()
+    try:
+        retries = max(1, int(retries_raw))
+    except ValueError:
+        retries = 2
+    api = f"repos/{slug}/contents/{handoff_dir(root).name}/{handoff_id}.json"
+    payload_local = {key: value for key, value in local_record.items()
+                     if not key.startswith("_")}
+    for attempt in range(retries):
+        try:
+            current = subprocess.run(
+                [gh, "api", f"{api}?ref={branch}"],
+                capture_output=True, text=True, encoding="utf-8", errors="replace",
+                timeout=_git_timeout_seconds(),
+            )
+            if current.returncode != 0:
+                print(f"⚠️ canonical registry read failed for {handoff_id}: "
+                      f"{current.stderr.strip()[:160]}")
+                return False
+            metadata = json.loads(current.stdout)
+            remote_record = json.loads(
+                base64.b64decode(metadata["content"]).decode("utf-8")
+            )
+            merged = _merge_registry_records(payload_local, remote_record)
+            if merged == remote_record:
+                return True
+            content = base64.b64encode(
+                serialize_record(merged).encode("utf-8")
+            ).decode("ascii")
+            body = json.dumps({
+                "message": f"relay: {action} {handoff_id}",
+                "content": content,
+                "sha": metadata["sha"],
+                "branch": branch,
+            })
+            updated = subprocess.run(
+                [gh, "api", "-X", "PUT", api, "--input", "-"],
+                input=body, capture_output=True, text=True,
+                encoding="utf-8", errors="replace", timeout=_git_timeout_seconds(),
+            )
+            if updated.returncode == 0:
+                return True
+            if attempt + 1 < retries:
+                continue
+            print(f"⚠️ canonical registry write failed for {handoff_id}: "
+                  f"{updated.stderr.strip()[:160]}")
+            return False
+        except (OSError, KeyError, TypeError, ValueError, json.JSONDecodeError) as exc:
+            print(f"⚠️ canonical registry write raised for {handoff_id}: {exc}")
+            return False
+    return False
+
+
 def stamped_commit(subject: str, *paths: str) -> Optional[str]:
     """Commit a record with its identity already in the message.
 
@@ -519,6 +823,16 @@ def claim_is_active(rec: dict) -> bool:
     return age is None or age <= float(ttl)
 
 
+def _normalize_scope_field(rec: dict) -> dict:
+    """Some writers stored `scope` as a list instead of a string. Collapse it
+    so every downstream consumer (hashing as a dict key, `.replace()`/`.split()`
+    in `_normalize_scope`) can keep treating scope as a plain string."""
+    scope = rec.get("scope")
+    if isinstance(scope, list):
+        rec["scope"] = " ".join(str(s) for s in scope)
+    return rec
+
+
 def _read_claims_from(root: Path, target: Optional[str]) -> list:
     """Claims on a ref (or on disk when target is None)."""
     out = []
@@ -532,26 +846,60 @@ def _read_claims_from(root: Path, target: Optional[str]) -> list:
             except Exception:
                 continue
             rec["_file"] = path.name
-            out.append(rec)
+            out.append(_normalize_scope_field(rec))
         return out
 
     rel = f"{handoff_dir(root).name}/claims"
-    listing = _git("ls-tree", "--name-only", f"{target}:{rel}")
-    if not listing:
-        return out
-    for fname in sorted(listing.splitlines()):
-        if not fname.endswith(".json"):
-            continue
-        blob = _git("show", f"{target}:{rel}/{fname}")
-        if not blob:
-            continue
+    for fname, blob in _read_json_blobs_batch(f"{target}:{rel}"):
         try:
             rec = json.loads(blob)
         except Exception:
             continue
         rec["_file"] = fname
-        out.append(rec)
+        out.append(_normalize_scope_field(rec))
     return out
+
+
+def _read_json_blobs_batch(tree_spec: str) -> list:
+    """Every *.json blob under <ref>:<dir> as (name, text), read with ONE
+    `git cat-file --batch` instead of one `git show` per file. The claims dir
+    held 384 records on 2026-09-03 and the per-file version took the
+    pre-commit guard past two minutes per watched ref. Bytes on purpose: the
+    batch header's size is a byte count, each body is decoded on its own."""
+    listing = _git("ls-tree", "-z", tree_spec)
+    if not listing:
+        return []
+    entries = []
+    for rec in listing.split("\0"):
+        if "\t" not in rec:
+            continue
+        meta, name = rec.split("\t", 1)
+        parts = meta.split()
+        if len(parts) >= 3 and parts[1] == "blob" and name.endswith(".json"):
+            entries.append((parts[2], name))
+    if not entries:
+        return []
+    try:
+        cat = subprocess.run(
+            ["git", "cat-file", "--batch"], capture_output=True,
+            input=("\n".join(sha for sha, _ in entries) + "\n").encode("ascii"),
+            creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0),
+        )
+    except Exception:
+        return []
+    out, pos, data = [], 0, cat.stdout or b""
+    for _sha, name in entries:
+        nl = data.find(b"\n", pos)
+        if nl < 0:
+            break
+        header = data[pos:nl].split()
+        if len(header) < 3 or header[1] == b"missing":
+            pos = nl + 1
+            continue
+        size = int(header[2])
+        out.append((name, data[nl + 1: nl + 1 + size].decode("utf-8", errors="replace")))
+        pos = nl + 1 + size + 1
+    return sorted(out)
 
 
 def foreign_claims(root: Path, *, active_only: bool = True) -> dict:
@@ -585,7 +933,709 @@ def foreign_claims(root: Path, *, active_only: bool = True) -> dict:
 # Records written before this existed have no status field and read as `open`,
 # which is the honest answer for them: nobody ever acked them.
 
-RELAY_STATES = ("open", "acked", "in_progress", "blocked", "complete")
+# `abandoned` is terminal like `complete`, but means the branch was given up
+# and distilled into a summary leg rather than finished — see cmd_summarize.
+RELAY_STATES = (
+    "open",
+    "acked",
+    "in_progress",
+    "blocked",
+    "complete",
+    "abandoned",
+    "dead_letter",
+    "failed",
+    "retry_pending",
+)
+
+
+# --- wake signals & autonomous triggers -------------------------------------
+
+def wake_dir(root: Path) -> Path:
+    env = os.environ.get("NOUGEN_WAKE_DIR", "").strip()
+    if env:
+        return Path(env) if Path(env).is_absolute() else root / env
+    return root / ".relay" / "wake"
+
+
+def emit_wake_signal(root: Path, leg_id: str, record: Optional[dict] = None) -> Path:
+    """Emit an autonomous wake signal/marker when a new relay leg is created."""
+    wdir = wake_dir(root)
+    wdir.mkdir(parents=True, exist_ok=True)
+    stamp = _now()
+    rec = record or {}
+    marker = {
+        "event": "wake",
+        "leg_id": leg_id,
+        "machine": rec.get("machine") or resolve_machine(),
+        "agent": rec.get("agent") or resolve_agent(),
+        "goal": rec.get("goal") or "",
+        "created_utc": rec.get("created_utc") or stamp.isoformat(),
+        "emitted_utc": stamp.isoformat(),
+        "status": "pending",
+        "idempotency_key": compute_idempotency_key(leg_id, rec.get("goal", "")),
+    }
+    marker_path = wdir / f"{leg_id}.wake.json"
+    write_record(marker_path, marker)
+
+    # Touch trigger marker for file watchers
+    try:
+        sig_file = wdir.parent / "wake.signal"
+        write_record(sig_file, {"latest_leg_id": leg_id, "emitted_utc": stamp.isoformat()})
+    except Exception:
+        pass
+    return marker_path
+
+
+def pending_wake_signals(root: Path) -> list:
+    """List pending wake signals that have not been consumed."""
+    wdir = wake_dir(root)
+    if not wdir.is_dir():
+        return []
+    signals = []
+    for p in sorted(wdir.glob("*.wake.json")):
+        try:
+            data = json.loads(p.read_text(encoding="utf-8"))
+            data["_file"] = p.name
+            signals.append(data)
+        except Exception:
+            continue
+    return signals
+
+
+def consume_wake_signal(root: Path, leg_id: str) -> bool:
+    """Consume/clear a wake signal marker once acknowledged or claimed."""
+    wdir = wake_dir(root)
+    if not wdir.is_dir():
+        return False
+    target = wdir / f"{leg_id}.wake.json"
+    if target.is_file():
+        try:
+            target.unlink()
+            return True
+        except OSError:
+            pass
+    for p in wdir.glob(f"*{leg_id}*.wake.json"):
+        try:
+            p.unlink()
+            return True
+        except OSError:
+            pass
+    return False
+
+
+# --- idempotency (SHA-256 fingerprinting) -----------------------------------
+
+def compute_idempotency_key(leg_id: str, goal: str = "") -> str:
+    """Compute SHA-256 fingerprint for a leg ID and goal combination."""
+    payload = f"{leg_id.strip()}:{goal.strip()}"
+    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
+def idempotency_fingerprint(record: dict) -> str:
+    """Compute idempotency key directly from a record dict."""
+    lid = record_id(record) or ""
+    goal = record.get("goal") or ""
+    return compute_idempotency_key(lid, goal)
+
+
+def idempotency_dir(root: Path) -> Path:
+    env = os.environ.get("NOUGEN_IDEMPOTENCY_DIR", "").strip()
+    if env:
+        return Path(env) if Path(env).is_absolute() else root / env
+    return root / ".relay" / "idempotency"
+
+
+def is_duplicate_execution(root: Path, leg_id: str, goal: str = "") -> bool:
+    """Check if an execution with this idempotency fingerprint has already completed."""
+    key = compute_idempotency_key(leg_id, goal)
+    idir = idempotency_dir(root)
+    key_file = idir / f"{key}.json"
+    if key_file.is_file():
+        return True
+    rpath = _record_path(root, leg_id)
+    if rpath and rpath.is_file():
+        try:
+            rec = json.loads(rpath.read_text(encoding="utf-8"))
+            if rec.get("status") in ("complete", "abandoned"):
+                return True
+        except Exception:
+            pass
+    return False
+
+
+def record_idempotency(
+    root: Path, leg_id: str, goal: str = "", metadata: Optional[dict] = None
+) -> Path:
+    """Record an idempotency fingerprint after successful execution."""
+    idir = idempotency_dir(root)
+    idir.mkdir(parents=True, exist_ok=True)
+    key = compute_idempotency_key(leg_id, goal)
+    key_file = idir / f"{key}.json"
+    data = {
+        "idempotency_key": key,
+        "leg_id": leg_id,
+        "goal": goal,
+        "completed_utc": _now().isoformat(),
+        "machine": resolve_machine(),
+        "agent": resolve_agent(),
+        "metadata": metadata or {},
+    }
+    write_record(key_file, data)
+    return key_file
+
+
+# --- leased execution & atomic claims ----------------------------------------
+
+def _lease_ttl_minutes() -> float:
+    raw = os.environ.get("NOUGEN_LEASE_TTL_MINUTES", "").strip()
+    try:
+        return float(raw) if raw else DEFAULT_LEASE_TTL_MINUTES
+    except ValueError:
+        return DEFAULT_LEASE_TTL_MINUTES
+
+
+def leases_dir(root: Path) -> Path:
+    env = os.environ.get("NOUGEN_LEASE_DIR", "").strip()
+    if env:
+        return Path(env) if Path(env).is_absolute() else root / env
+    return root / ".relay" / "leases"
+
+
+def _lease_age_minutes(lease_rec: dict) -> Optional[float]:
+    """Minutes since the holder last proved it was alive: the newest heartbeat
+    wins, then the acquire stamp, then the leg's creation stamp."""
+    stamp = lease_rec.get("heartbeat_utc") or lease_rec.get("leased_utc") or lease_rec.get("created_utc") or ""
+    try:
+        return (_now() - datetime.fromisoformat(stamp)).total_seconds() / 60.0
+    except Exception:
+        return None
+
+
+# --- lease control plane: fencing, heartbeat, history ----------------------
+# Git stays the append-only ledger; the lease file is the hot state. Every
+# transition below is recorded in history[] with actor and evidence so the
+# reconciler can replay it, and every write that ends a lease must present the
+# fencing token it was issued, so a worker whose lease was reclaimed cannot
+# finish a leg someone else now holds.
+
+LEASE_STATES = ("DISCOVERED", "TRIAGED", "CLAIMABLE", "LEASED", "RUNNING", "COMPLETE", "BLOCKED",
+                "RELEASED", "RETRY_WAIT", "DEAD_LETTER", "ARCHIVAL_DEBT", "SUPERSEDED")
+_STATUS_TO_STATE = {"active": "LEASED", "released": "RELEASED", "complete": "COMPLETE", "failed": "RETRY_WAIT",
+                    "retry_pending": "RETRY_WAIT", "dead_letter": "DEAD_LETTER", "expired": "CLAIMABLE",
+                    "blocked": "BLOCKED", "abandoned": "RELEASED", "superseded": "SUPERSEDED"}
+
+
+def _lease_history_max() -> int:
+    raw = os.environ.get("NOUGEN_LEASE_HISTORY_MAX", "").strip()
+    try:
+        return int(raw) if raw else 50
+    except ValueError:
+        return 50
+
+
+def heartbeat_interval_seconds(ttl_minutes: Optional[float] = None) -> float:
+    """Heartbeat cadence: TTL / NOUGEN_LEASE_HEARTBEAT_DIVISOR (default 3)."""
+    ttl = float(ttl_minutes if ttl_minutes is not None else _lease_ttl_minutes())
+    raw = os.environ.get("NOUGEN_LEASE_HEARTBEAT_DIVISOR", "").strip()
+    try:
+        divisor = float(raw) if raw else 3.0
+    except ValueError:
+        divisor = 3.0
+    return max(1.0, ttl * 60.0 / max(1.0, divisor))
+
+
+def new_lease_id() -> str:
+    import uuid
+    return uuid.uuid4().hex[:12]
+
+
+def _actor(rec: dict) -> str:
+    return f"{rec.get('machine') or resolve_machine()}/{rec.get('agent') or resolve_agent()}"
+
+
+def _append_history(rec: dict, actor: str, frm: Optional[str], to: str, evidence: str = "") -> None:
+    hist = list(rec.get("history") or [])
+    hist.append({"utc": _now().isoformat(), "actor": actor, "from": frm, "to": to, "evidence": evidence[:300]})
+    rec["history"] = hist[-_lease_history_max():]
+    rec["state"] = to
+    rec["updated_utc"] = _now().isoformat()
+
+
+def fencing_ok(rec: dict, fencing_token: Optional[int]) -> bool:
+    """None = legacy caller (no token issued); otherwise the token must equal
+    the one on the record. A stale token is a zombie worker."""
+    if fencing_token is None:
+        return True
+    try:
+        return int(rec.get("fencing_token", 0) or 0) == int(fencing_token)
+    except (TypeError, ValueError):
+        return False
+
+
+def _read_lease(root: Path, leg_id: str) -> Tuple[Path, Optional[dict]]:
+    lease_file = leases_dir(root) / f"{leg_id}.lease.json"
+    if not lease_file.is_file():
+        return lease_file, None
+    try:
+        return lease_file, json.loads(lease_file.read_text(encoding="utf-8"))
+    except Exception:
+        return lease_file, None
+
+
+def _write_lease(lease_file: Path, rec: dict) -> None:
+    lease_file.parent.mkdir(parents=True, exist_ok=True)
+    tmp_file = lease_file.parent / f"{lease_file.stem}.tmp.{os.getpid()}"
+    write_record(tmp_file, rec)
+    try:
+        tmp_file.replace(lease_file)
+    except OSError:
+        write_record(lease_file, rec)
+        tmp_file.unlink(missing_ok=True)
+
+
+def heartbeat_lease(root: Path, leg_id: str, fencing_token: Optional[int], state: str = "RUNNING") -> bool:
+    """Prove the holder is alive: refresh heartbeat_utc (which is what
+    lease_is_active ages against). Rejected when the token is stale or the
+    lease is no longer active, so a reclaimed lease cannot be revived."""
+    lease_file, rec = _read_lease(root, leg_id)
+    if not rec or not lease_is_active(rec):
+        return False
+    if not fencing_ok(rec, fencing_token):
+        rec.setdefault("rejected", []).append({"utc": _now().isoformat(), "op": "heartbeat", "token": fencing_token})
+        _write_lease(lease_file, rec)
+        return False
+    rec["heartbeat_utc"] = _now().isoformat()
+    rec["heartbeat_count"] = int(rec.get("heartbeat_count", 0) or 0) + 1
+    if rec.get("state") != state:
+        _append_history(rec, _actor(rec), rec.get("state"), state, "heartbeat")
+    _write_lease(lease_file, rec)
+    return True
+
+
+def sweep_expired_leases(root: Path) -> List[str]:
+    """Reclaim step of the control plane: every active lease past its TTL is
+    marked expired (state CLAIMABLE) with the evidence in history, so the next
+    acquire is a visible reclaim and the metrics count it."""
+    ldir = leases_dir(root)
+    if not ldir.is_dir():
+        return []
+    swept: List[str] = []
+    for p in sorted(ldir.glob("*.lease.json")):
+        try:
+            rec = json.loads(p.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        if rec.get("status") != "active" or lease_is_active(rec):
+            continue
+        age = _lease_age_minutes(rec)
+        rec["status"] = "expired"
+        rec["expired_utc"] = _now().isoformat()
+        _append_history(rec, "sweeper", rec.get("state") or "LEASED", "CLAIMABLE",
+                        f"sweeper: expired after {age:.1f} min (ttl {rec.get('ttl_minutes')})" if age is not None else "sweeper: expired")
+        _write_lease(p, rec)
+        swept.append(str(rec.get("leg_id") or p.name.split(".lease.json")[0]))
+    return swept
+
+
+def lease_metrics(root: Path) -> Dict[str, Any]:
+    """Live claim index in numbers: leases by state and status, expired and
+    reclaimed counts, dead letters, fencing rejections, oldest active age."""
+    ldir = leases_dir(root)
+    out: Dict[str, Any] = {"leases": 0, "by_state": {}, "by_status": {}, "active": 0, "expired_swept": 0,
+                           "reclaimed": 0, "dead_letter": 0, "fencing_rejections": 0, "oldest_active_min": None}
+    if not ldir.is_dir():
+        return out
+    for p in ldir.glob("*.lease.json"):
+        try:
+            rec = json.loads(p.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        out["leases"] += 1
+        st = str(rec.get("state") or _STATUS_TO_STATE.get(str(rec.get("status")), "?"))
+        out["by_state"][st] = out["by_state"].get(st, 0) + 1
+        s = str(rec.get("status") or "?")
+        out["by_status"][s] = out["by_status"].get(s, 0) + 1
+        if lease_is_active(rec):
+            out["active"] += 1
+            age = _lease_age_minutes(rec)
+            if age is not None and (out["oldest_active_min"] is None or age > out["oldest_active_min"]):
+                out["oldest_active_min"] = round(age, 1)
+        if s == "dead_letter":
+            out["dead_letter"] += 1
+        out["fencing_rejections"] += len(rec.get("rejected") or [])
+        for h in rec.get("history") or []:
+            ev = str(h.get("evidence") or "")
+            if ev.startswith("sweeper"):
+                out["expired_swept"] += 1
+            elif ev.startswith("reclaim"):
+                out["reclaimed"] += 1
+    return out
+
+
+def lease_is_active(lease_rec: dict) -> bool:
+    """Check if an execution lease is currently valid and unexpired."""
+    if lease_rec.get("status") != "active":
+        return False
+    age = _lease_age_minutes(lease_rec)
+    ttl = lease_rec.get("ttl_minutes") or _lease_ttl_minutes()
+    return age is None or age <= float(ttl)
+
+
+def acquire_lease(
+    root: Path,
+    leg_id: str,
+    machine: Optional[str] = None,
+    agent: Optional[str] = None,
+    ttl_minutes: Optional[float] = None,
+    goal: str = "",
+    force: bool = False,
+) -> Optional[dict]:
+    """Atomically acquire an exclusive execution lease on a relay leg.
+
+    If the leg is already leased by an active worker, returns None unless force=True.
+    If the existing lease has expired (age > TTL), it is automatically reclaimed from dead workers.
+    """
+    ldir = leases_dir(root)
+    ldir.mkdir(parents=True, exist_ok=True)
+    lease_file = ldir / f"{leg_id}.lease.json"
+
+    machine = machine or resolve_machine()
+    agent = agent or resolve_agent()
+    session = resolve_session()
+    ttl = ttl_minutes if ttl_minutes is not None else _lease_ttl_minutes()
+    stamp = _now()
+
+    prior_retry_count = 0
+    prior_max_retries = None
+    prior_token = 0
+    prior_history: list = []
+    acquire_evidence = "acquire"
+    existing: Optional[dict] = None
+    if lease_file.is_file():
+        try:
+            existing = json.loads(lease_file.read_text(encoding="utf-8"))
+        except Exception:
+            existing = None  # Stale or corrupt lease file can be reclaimed
+    if existing is not None:
+        # the fencing token is monotonic per leg across every holder, forced or not
+        try:
+            prior_token = int(existing.get("fencing_token", 0) or 0)
+        except (TypeError, ValueError):
+            prior_token = 0
+        prior_history = list(existing.get("history") or [])
+    if existing is not None and not force:
+        if lease_is_active(existing):
+            # If held by the same machine, agent, and session, allow re-entry/renewal
+            same_holder = (
+                existing.get("machine") == machine
+                and existing.get("agent") == agent
+                and (not session or existing.get("session") == session)
+            )
+            if same_holder:
+                existing["leased_utc"] = stamp.isoformat()
+                existing["heartbeat_utc"] = stamp.isoformat()
+                existing["ttl_minutes"] = ttl
+                _append_history(existing, f"{machine}/{agent}", existing.get("state") or "LEASED",
+                                existing.get("state") or "LEASED", "renew")
+                _write_lease(lease_file, existing)
+                return existing
+            return None  # Active lease held by another worker
+        # Inactive lease: this is a reclaim, not a first acquisition. The
+        # fresh record used to reset retry_count to 0 here, which made
+        # dead_letter unreachable and let one leg be claimed 45 times
+        # (148 retry_pending vs 17 complete since 08-30, each claim commit
+        # firing CI). Retry history must survive the reclaim, and an
+        # exhausted or dead-lettered leg is not claimable without force.
+        if not is_leg_retryable(existing):
+            return None
+        prior_retry_count = int(existing.get("retry_count", 0) or 0)
+        prior_max_retries = existing.get("max_retries")
+        acquire_evidence = (f"reclaim: {existing.get('status')} lease from "
+                            f"{existing.get('machine')}/{existing.get('agent')} token {prior_token}")
+    elif existing is not None and force:
+        prior_retry_count = int(existing.get("retry_count", 0) or 0)
+        prior_max_retries = existing.get("max_retries")
+        acquire_evidence = f"force: took over {existing.get('status')} lease token {prior_token}"
+
+    lease_rec = {
+        "leg_id": leg_id,
+        "lease_id": new_lease_id(),
+        "fencing_token": prior_token + 1,
+        "machine": machine,
+        "agent": agent,
+        **({"session": session} if session else {}),
+        "status": "active",
+        "goal": goal,
+        "idempotency_key": compute_idempotency_key(leg_id, goal),
+        "leased_utc": stamp.isoformat(),
+        "heartbeat_utc": stamp.isoformat(),
+        "heartbeat_count": 0,
+        "ttl_minutes": ttl,
+        "retry_count": prior_retry_count,
+        "attempt_count": prior_retry_count + 1,
+        **({"max_retries": prior_max_retries} if prior_max_retries is not None else {}),
+        "history": prior_history,
+    }
+    _append_history(lease_rec, f"{machine}/{agent}", "CLAIMABLE", "LEASED", acquire_evidence)
+    _write_lease(lease_file, lease_rec)
+
+    consume_wake_signal(root, leg_id)
+    return lease_rec
+
+
+def release_lease(root: Path, leg_id: str, status: str = "released", fencing_token: Optional[int] = None,
+                  evidence: str = "") -> bool:
+    """End a lease. With a fencing token, a stale token is rejected and recorded,
+    so a zombie worker cannot close a leg another holder now owns."""
+    lease_file, rec = _read_lease(root, leg_id)
+    if rec is None:
+        return False
+    try:
+        if not fencing_ok(rec, fencing_token):
+            rec.setdefault("rejected", []).append({"utc": _now().isoformat(), "op": f"release:{status}", "token": fencing_token})
+            _write_lease(lease_file, rec)
+            return False
+        rec["status"] = status
+        rec["released_utc"] = _now().isoformat()
+        _append_history(rec, _actor(rec), rec.get("state"), _STATUS_TO_STATE.get(status, status.upper()), evidence or f"release:{status}")
+        _write_lease(lease_file, rec)
+        return True
+    except Exception:
+        return False
+
+
+def active_leases(root: Path, active_only: bool = True) -> list:
+    """List leases across all legs in this repo."""
+    ldir = leases_dir(root)
+    if not ldir.is_dir():
+        return []
+    out = []
+    for p in sorted(ldir.glob("*.lease.json")):
+        try:
+            rec = json.loads(p.read_text(encoding="utf-8"))
+            rec["_file"] = p.name
+            if active_only and not lease_is_active(rec):
+                continue
+            out.append(rec)
+        except Exception:
+            continue
+    return out
+
+
+# --- capability / tag routing heuristic -------------------------------------
+
+def lane_capabilities(lane: str) -> set:
+    """Get the set of capabilities for a given lane name."""
+    clean = _slug(lane)
+    for known_lane, caps in LANE_CAPABILITIES.items():
+        if known_lane in clean or clean in known_lane:
+            return set(caps)
+    return {"general", "execution"}
+
+
+def is_lane_eligible(lane: str, leg: dict) -> bool:
+    """Determine if a worker lane is eligible to execute an open leg."""
+    clean_lane = _slug(lane)
+
+    # 1. Explicit target lane / agent check
+    target = (
+        leg.get("target_agent")
+        or leg.get("target_lane")
+        or leg.get("agent_target")
+        or ""
+    ).strip()
+    if target:
+        clean_target = _slug(target)
+        return clean_target in clean_lane or clean_lane in clean_target
+
+    # 2. Explicit tags / required capabilities
+    required_tags = set()
+    raw_tags = (
+        leg.get("tags") or leg.get("capabilities") or leg.get("required_capabilities")
+    )
+    if isinstance(raw_tags, (list, tuple, set)):
+        required_tags = {str(t).lower().strip() for t in raw_tags if str(t).strip()}
+    elif isinstance(raw_tags, str) and raw_tags.strip():
+        required_tags = {
+            t.lower().strip()
+            for t in raw_tags.replace(",", " ").split()
+            if t.strip()
+        }
+
+    lane_caps = lane_capabilities(lane)
+    if required_tags:
+        return bool(required_tags & lane_caps)
+
+    # 3. Goal & task type heuristic inference
+    goal = (leg.get("goal") or "").lower()
+    task_type = (leg.get("type") or leg.get("task_type") or "").lower()
+
+    coding_keywords = (
+        "test",
+        "fix",
+        "patch",
+        "bug",
+        "refactor",
+        "build",
+        "compile",
+        "implement",
+    )
+    if any(kw in goal or kw in task_type for kw in coding_keywords):
+        return bool({"coding", "tests", "patching", "execution"} & lane_caps)
+
+    triage_keywords = (
+        "status",
+        "triage",
+        "summary",
+        "info",
+        "check",
+        "diagnos",
+        "heartbeat",
+    )
+    if any(kw in goal or kw in task_type for kw in triage_keywords):
+        return bool(
+            {"triage", "informational", "status", "diagnostic", "fleet"} & lane_caps
+        )
+
+    return True
+
+
+def match_lane_for_leg(
+    leg: dict, available_lanes: Optional[list] = None
+) -> Optional[str]:
+    """Find the best eligible lane for an open leg from candidate lanes."""
+    candidates = available_lanes or list(LANE_CAPABILITIES.keys())
+    for lane in candidates:
+        if is_lane_eligible(lane, leg):
+            return lane
+    return candidates[0] if candidates else None
+
+
+def filter_eligible_legs(legs: list, lane: str) -> list:
+    """Filter open legs to those eligible for execution by the specified lane."""
+    return [leg for leg in legs if is_lane_eligible(lane, leg)]
+
+
+# --- retry backoff & dead-letter logic --------------------------------------
+
+def _max_retries() -> int:
+    raw = os.environ.get("NOUGEN_RELAY_MAX_RETRIES", "").strip()
+    try:
+        return int(raw) if raw else DEFAULT_MAX_RETRIES
+    except ValueError:
+        return DEFAULT_MAX_RETRIES
+
+
+def calculate_backoff_seconds(
+    attempt: int,
+    base_seconds: float = DEFAULT_BACKOFF_BASE_SEC,
+    factor: float = DEFAULT_BACKOFF_FACTOR,
+    max_seconds: float = DEFAULT_BACKOFF_MAX_SEC,
+) -> float:
+    """Calculate exponential backoff duration in seconds."""
+    if attempt <= 0:
+        return 0.0
+    delay = base_seconds * (factor ** (attempt - 1))
+    return min(max_seconds, delay)
+
+
+def record_leg_failure(
+    root: Path,
+    leg_id: str,
+    error_message: str,
+    max_retries: Optional[int] = None,
+    fencing_token: Optional[int] = None,
+) -> dict:
+    """Record a failure for a leg, applying exponential retry backoff or marking dead_letter.
+    A stale fencing token is rejected without touching the record."""
+    limit = max_retries if max_retries is not None else _max_retries()
+    stamp = _now()
+    ldir = leases_dir(root)
+    ldir.mkdir(parents=True, exist_ok=True)
+    lease_file = ldir / f"{leg_id}.lease.json"
+
+    lease_rec = {}
+    if lease_file.is_file():
+        try:
+            lease_rec = json.loads(lease_file.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+
+    if lease_rec and not fencing_ok(lease_rec, fencing_token):
+        lease_rec.setdefault("rejected", []).append({"utc": stamp.isoformat(), "op": "failure", "token": fencing_token})
+        _write_lease(lease_file, lease_rec)
+        return {"leg_id": leg_id, "rejected": True, "reason": "stale fencing token", "status": lease_rec.get("status")}
+
+    retry_count = int(lease_rec.get("retry_count", 0)) + 1
+    failures = lease_rec.get("failures", [])
+    failures.append({
+        "attempt": retry_count,
+        "error": error_message,
+        "failed_utc": stamp.isoformat(),
+    })
+
+    if retry_count >= limit:
+        status = "dead_letter"
+        next_retry_utc = None
+    else:
+        status = "retry_pending"
+        backoff_sec = calculate_backoff_seconds(retry_count)
+        next_retry_dt = stamp + timedelta(seconds=backoff_sec)
+        next_retry_utc = next_retry_dt.isoformat()
+
+    lease_rec.update({
+        "leg_id": leg_id,
+        "status": status,
+        "retry_count": retry_count,
+        "attempt_count": retry_count,
+        "max_retries": limit,
+        "failures": failures,
+        "last_error": error_message,
+        "last_failed_utc": stamp.isoformat(),
+        "next_retry_utc": next_retry_utc,
+    })
+    _append_history(lease_rec, _actor(lease_rec), lease_rec.get("state"), _STATUS_TO_STATE[status],
+                    f"attempt {retry_count}/{limit}: {error_message}")
+
+    _write_lease(lease_file, lease_rec)
+
+    def update_rec(rec):
+        rec["retry_count"] = retry_count
+        rec["failures"] = failures
+        if status == "dead_letter":
+            rec["status"] = "dead_letter"
+            rec.setdefault("relay", []).append({
+                "event": "dead_letter",
+                "machine": resolve_machine(),
+                "agent": resolve_agent(),
+                "at": stamp.isoformat(),
+                "note": f"Exceeded max retries ({limit}): {error_message[:200]}",
+            })
+
+    _touch_record(root, leg_id, update_rec)
+    return lease_rec
+
+
+def is_leg_retryable(lease_rec: dict, now_dt: Optional[datetime] = None) -> bool:
+    """Check if a failed/pending leg is eligible for retry after backoff."""
+    status = lease_rec.get("status")
+    if status in ("dead_letter", "failed", "complete", "abandoned"):
+        return False
+    if status != "retry_pending":
+        return True
+    retries = int(lease_rec.get("retry_count", 0))
+    max_r = int(lease_rec.get("max_retries", _max_retries()))
+    if retries >= max_r:
+        return False
+    next_retry_str = lease_rec.get("next_retry_utc")
+    if not next_retry_str:
+        return True
+    try:
+        next_retry = datetime.fromisoformat(next_retry_str)
+        now = now_dt or _now()
+        return now >= next_retry
+    except Exception:
+        return True
 
 
 def record_id(rec: dict, path: Optional[Path] = None) -> Optional[str]:
@@ -680,7 +1730,7 @@ def _touch_record(root: Path, handoff_id: Optional[str], mutate) -> Optional[dic
     except Exception:
         return None
     mutate(rec)
-    path.write_text(json.dumps(rec, indent=2) + "\n", encoding="utf-8")
+    write_record(path, rec)
     rec["_file"] = path.name
     return rec
 
@@ -763,9 +1813,28 @@ def cmd_relay(args: argparse.Namespace) -> int:
     _git("add", handoff_dir(root).name)
     stamped_commit(f"relay({machine}): {action} {rec.get('goal') or rec['_file']}",
                    handoff_dir(root).name)
-    if not _publish(remote, current_branch()):
+
+    # A feature-branch checkout is not necessarily the gateway's canonical
+    # registry branch.  Prefer a compare-and-swap contents write when this is
+    # a GitHub-backed relay; fall back to the historical branch push for local
+    # remotes and installations without `gh`.
+    upstream = _write_registry_record_upstream(
+        root, remote, Path(str(rec.get("_file", ""))).stem, rec, action
+    )
+    if upstream is False:
+        print("⚠️ canonical registry write failed — local record is committed but "
+              "the gateway may still be stale")
+        return EXIT_FAILURE
+
+    pushed = _publish(remote, current_branch())
+    if upstream is True and not pushed:
+        print("⚠️ published registry projection, but push of local commit failed — local branch diverged. Reconcile and push.")
+        return EXIT_FAILURE
+    if not pushed:
         print("⚠️ push failed — this leg is local only. Reconcile and push.")
         return EXIT_FAILURE
+    if upstream is True:
+        print(f"ℹ️ published registry projection to {_registry_branch(root, remote)} and pushed to {remote}/{current_branch()}")
     return EXIT_OK
 
 
@@ -836,7 +1905,7 @@ def cmd_claim(args: argparse.Namespace) -> int:
             "created_utc": stamp.isoformat(),
             "ttl_hours": args.ttl if args.ttl is not None else _claim_ttl_hours(),
         }
-        (outdir / f"{name}.json").write_text(json.dumps(rec, indent=2) + "\n", encoding="utf-8")
+        write_record(outdir / f"{name}.json", rec)
         print(f"✅ claimed: {args.scope}")
 
         if args.no_push:
@@ -894,7 +1963,7 @@ def cmd_claim(args: argparse.Namespace) -> int:
             rec["status"] = "released"
             rec["released_utc"] = _now().isoformat()
             fname = rec.pop("_file")
-            (directory / fname).write_text(json.dumps(rec, indent=2) + "\n", encoding="utf-8")
+            write_record(directory / fname, rec)
             released += 1
         if skipped_other_session:
             print(f"ℹ️ left {skipped_other_session} claim(s) held by another session "
@@ -953,6 +2022,103 @@ def stack_fingerprint(root: Path) -> dict:
     return fp
 
 
+def resolve_dedup_exact() -> float:
+    raw = os.environ.get("NOUGEN_DEDUP_EXACT")
+    if raw:
+        try:
+            return float(raw)
+        except ValueError:
+            pass
+    return DEFAULT_DEDUP_EXACT
+
+
+def resolve_dedup_near() -> float:
+    raw = os.environ.get("NOUGEN_DEDUP_NEAR")
+    if raw:
+        try:
+            return float(raw)
+        except ValueError:
+            pass
+    return DEFAULT_DEDUP_NEAR
+
+
+def resolve_embed_url() -> str:
+    url = (
+        os.environ.get("NOUGEN_EMBED_URL")
+        or os.environ.get("OLLAMA_HOST_URL")
+        or os.environ.get("NOUGEN_OLLAMA_URL")
+        or DEFAULT_EMBED_URL
+    )
+    return url.rstrip("/")
+
+
+def _get_dedup_module(root: Optional[Path] = None):
+    try:
+        import relay_dedup
+        return relay_dedup
+    except ImportError:
+        pass
+
+    candidates = []
+    if root:
+        candidates.append(root / "tools")
+    repo_toplevel = repo_root()
+    if repo_toplevel:
+        candidates.append(repo_toplevel / "tools")
+    candidates.append(Path(__file__).resolve().parents[2] / "tools")
+    for c in candidates:
+        if c.is_dir() and (c / "relay_dedup.py").is_file():
+            if str(c) not in sys.path:
+                sys.path.insert(0, str(c))
+            try:
+                import relay_dedup
+                return relay_dedup
+            except ImportError:
+                pass
+    return None
+
+
+def check_leg_dedup(
+    root: Optional[Path],
+    outdir: Path,
+    goal: str,
+) -> Tuple[str, Any, float]:
+    """Check candidate goal for duplicate open legs via relay_dedup.
+
+    Returns:
+        ("exact", leg_id, score): similarity >= NOUGEN_DEDUP_EXACT
+        ("near", [similar_ids], score): similarity >= NOUGEN_DEDUP_NEAR
+        ("ok", None, 0.0): no duplicate found
+        ("skipped", reason, 0.0): embed lane unreachable or advisory skip
+    """
+    rd = _get_dedup_module(root)
+    if rd is None:
+        print("ℹ️ dedup check skipped: relay_dedup module unavailable")
+        return ("skipped", "module unavailable", 0.0)
+
+    try:
+        report: dict = {}
+        status, payload, score = rd.check_dedup(
+            goal=goal,
+            directory=outdir,
+            exact_threshold=resolve_dedup_exact(),
+            near_threshold=resolve_dedup_near(),
+            report=report,
+        )
+        if status == "skipped":
+            print(f"ℹ️ dedup check skipped: {payload}")
+        elif report.get("degraded"):
+            # Say which method produced the verdict. A check that silently
+            # changes method is how a weaker guarantee gets mistaken for the
+            # one that was advertised.
+            print(f"⚠️ dedup ran in token-overlap mode ({report.get('reason')}); "
+                  "wording-similar legs are caught, semantically-similar ones may not be")
+        return status, payload, score
+    except Exception as exc:
+        print(f"ℹ️ dedup check skipped: {exc}")
+        return ("skipped", str(exc), 0.0)
+
+
 # --- write ------------------------------------------------------------------
 
 def cmd_create(args: argparse.Namespace) -> int:
@@ -988,8 +2154,52 @@ def cmd_create(args: argparse.Namespace) -> int:
     stamp = _now()
     outdir = handoff_dir(root)
     outdir.mkdir(parents=True, exist_ok=True)
+
+    # Semantic deduplication check (Agent Mesh, arXiv 2608.26225)
+    goal = (args.goal or "").strip()
+    similar_to: List[str] = []
+    if goal:
+        status, payload, score = check_leg_dedup(root, outdir, goal)
+        if status == "exact":
+            existing_id = str(payload)
+            print(
+                f"ℹ️ duplicate leg already exists: {existing_id} "
+                f"(similarity {score:.3f} >= {resolve_dedup_exact():.2f})"
+            )
+            print(existing_id)
+            return EXIT_OK
+        elif status == "near":
+            similar_to = payload if isinstance(payload, list) else [str(payload)]
+            print(f"⚠️ near duplicate open leg(s) detected: {', '.join(similar_to)}")
+
     name = unique_record_name(outdir, stamp, machine, agent)
 
+    # Parentage lives in the JSON, never the filename — filename segments are
+    # parsed back out for identity by the commit hook and adopt.py, so nothing
+    # may be appended there. Resolve to the FULL id when the parent is local
+    # (substring ids inherit _record_path's ambiguity refusal); a parent on an
+    # unfetched ref is legitimate, so an unresolved id is stored as given
+    # rather than refused.
+    parent_id = None
+    parent_arg = (getattr(args, "parent", None) or "").strip()
+    if parent_arg:
+        ppath = _record_path(root, parent_arg)
+        if ppath is not None:
+            try:
+                parent_id = record_id(
+                    json.loads(ppath.read_text(encoding="utf-8")), ppath
+                )
+            except Exception:
+                parent_id = ppath.stem
+        else:
+            parent_id = parent_arg
+            print(
+                f"⚠️ parent {parent_arg!r} not found locally — stored as given "
+                "(it may live on a ref this machine has not fetched)"
+            )
+
+    leg_session = resolve_session()
+    leg_origin = resolve_origin()
     record = {
         # The leg's identity, carried IN the record rather than only in the
         # filename. Without this a rename silently destroys identity and `ack
@@ -1006,14 +2216,42 @@ def cmd_create(args: argparse.Namespace) -> int:
         "created_utc": stamp.isoformat(),
         "stack": stack_fingerprint(root),
         "dirty": bool(_git("status", "--porcelain")),
+        # WHO wrote this, not just what lane it was filed under. `machine` can
+        # be a connector name shared by every session on every box; these two
+        # fields are what make a leg attributable to one writer. Both are
+        # omitted when unknown rather than guessed — a half-discriminator that
+        # lies is worse than none, and consumers written before this change see
+        # exactly what they saw before.
+        **({"session": leg_session} if leg_session else {}),
+        **({"origin": leg_origin} if leg_origin else {}),
         # Open until another machine acks it. An unacked leg is a dropped
         # baton, and that is only visible if the record says so.
         "status": "open",
     }
+    if parent_id:
+        record["parent_leg_id"] = parent_id
+    leg_type = (getattr(args, "leg_type", None) or "").strip()
+    if leg_type:
+        record["type"] = leg_type
+    target_agent = (getattr(args, "target_agent", None) or "").strip()
+    if target_agent:
+        record["target_agent"] = target_agent
+    tags = getattr(args, "tags", None)
+    if tags:
+        if isinstance(tags, str):
+            record["tags"] = [t.strip() for t in tags.split(",") if t.strip()]
+        elif isinstance(tags, (list, tuple)):
+            record["tags"] = list(tags)
+    if similar_to:
+        record["similar_to"] = similar_to
 
-    (outdir / f"{name}.json").write_text(
-        json.dumps(record, indent=2) + "\n", encoding="utf-8"
-    )
+    # Guardrail: no leg is born without a disposition. Addressed legs leave
+    # with their target lane stamped from the registry (see policy.py).
+    from . import policy as _policy
+    _policy.stamp_at_birth(record, body, root)
+
+    write_record(outdir / f"{name}.json", record)
+    emit_wake_signal(root, name, record)
 
     header = [
         f"# 🤝 Git Handoff — {machine} / {agent}",
@@ -1033,6 +2271,56 @@ def cmd_create(args: argparse.Namespace) -> int:
 
     print(f"✅ git handoff written: {outdir.name}/{name}.md")
     print("ℹ️ commit and push it so the other machines can read it")
+    return EXIT_OK
+
+
+def cmd_summarize(args: argparse.Namespace) -> int:
+    """Close an abandoned branch with a distilled summary leg.
+
+    Two moves in one motion: a new `type: summary` leg is created pointing at
+    the parent through `parent_leg_id`, and the parent is checkpointed to
+    `abandoned` so it leaves every open queue. The summary carries what the
+    branch learned; the abandoned leg stops asking to be picked up. Without
+    this, giving up on a leg looks identical to never having seen it.
+    """
+    root = repo_root()
+    if root is None:
+        print("❌ not inside a git repository")
+        return EXIT_FAILURE
+
+    parent_arg = (args.id or "").strip()
+    if not parent_arg:
+        print("❌ summarize needs --id <parent-leg>")
+        return EXIT_USAGE
+
+    args.parent = parent_arg
+    args.leg_type = "summary"
+    if not (getattr(args, "goal", "") or "").strip():
+        args.goal = f"Summary of abandoned branch {parent_arg}"
+
+    rc = cmd_create(args)
+    if rc != EXIT_OK:
+        return rc
+
+    machine, agent = resolve_machine(), resolve_agent()
+    stamp = _now().isoformat()
+
+    def mark(rec):
+        rec["status"] = "abandoned"
+        rec.setdefault("relay", []).append(
+            {"event": "checkpoint", "state": "abandoned", "machine": machine,
+             "agent": agent, "at": stamp,
+             "note": "branch summarized into a summary leg"}
+        )
+
+    rec = _touch_record(root, parent_arg, mark)
+    if rec is None:
+        # The summary still stands on its own; the parent may live on an
+        # unfetched ref, in which case whoever holds it marks it themselves.
+        print(f"⚠️ summary written, but parent {parent_arg!r} was not found "
+              "locally to mark abandoned")
+        return EXIT_OK
+    print(f"ℹ️ {rec['_file']} -> abandoned (summarized)")
     return EXIT_OK
 
 
@@ -1230,23 +2518,7 @@ def _stale_hours() -> float:
 def _remote_handoffs(root: Path, target: str) -> list:
     """Handoff records that exist on `target`, newest last."""
     dirname = handoff_dir(root).name
-    listing = _git("ls-tree", "--name-only", f"{target}:{dirname}")
-    if not listing:
-        return []
-    out = []
-    for fname in sorted(listing.splitlines()):
-        if not fname.endswith(".json"):
-            continue
-        blob = _git("show", f"{target}:{dirname}/{fname}")
-        if not blob:
-            continue
-        try:
-            rec = json.loads(blob)
-        except Exception:
-            continue
-        rec["_file"] = fname
-        out.append(rec)
-    return out
+    return _read_json_dir_from_ref(root, target, dirname)
 
 
 def watch_targets(remote: Optional[str] = None) -> list:
@@ -1520,9 +2792,264 @@ def cmd_status(args: argparse.Namespace) -> int:
     return worst
 
 
+def cmd_lease(args: argparse.Namespace) -> int:
+    root = repo_root()
+    if root is None:
+        print("❌ not inside a git repository")
+        return EXIT_FAILURE
+    action = args.action
+    if action == "acquire":
+        if not args.id:
+            print("❌ --id is required for lease acquire")
+            return EXIT_USAGE
+        lease = acquire_lease(
+            root,
+            args.id,
+            ttl_minutes=args.ttl,
+            goal=args.goal or "",
+            force=args.force,
+        )
+        if lease is None:
+            print(f"❌ could not acquire lease for {args.id} (already actively leased)")
+            return EXIT_FAILURE
+        print(f"✅ leased {args.id} to {lease['machine']}/{lease['agent']} (TTL: {lease['ttl_minutes']:.1f}m)")
+        return EXIT_OK
+    elif action == "release":
+        if not args.id:
+            print("❌ --id is required for lease release")
+            return EXIT_USAGE
+        ok = release_lease(root, args.id)
+        if ok:
+            print(f"✅ released lease for {args.id}")
+            return EXIT_OK
+        print(f"⚠️ no active lease found for {args.id}")
+        return EXIT_FAILURE
+    elif action == "list":
+        leases = active_leases(root, active_only=not args.all)
+        if not leases:
+            print("ℹ️ no leases recorded")
+            return EXIT_OK
+        print(f"🔍 Found {len(leases)} lease(s)")
+        for lease in leases:
+            age = _lease_age_minutes(lease)
+            state = "active" if lease_is_active(lease) else (lease.get("status") or "expired")
+            age_s = f"{age:.1f}m" if age is not None else "?"
+            print(f"  [{state:<7}] {lease.get('leg_id')} -> {lease.get('machine')}/{lease.get('agent')} · {age_s} ago (TTL: {lease.get('ttl_minutes', DEFAULT_LEASE_TTL_MINUTES)}m)")
+        return EXIT_OK
+    print(f"❌ unknown lease action: {action}")
+    return EXIT_USAGE
+
+
+def cmd_wake(args: argparse.Namespace) -> int:
+    root = repo_root()
+    if root is None:
+        print("❌ not inside a git repository")
+        return EXIT_FAILURE
+    action = args.action
+    if action == "list":
+        sigs = pending_wake_signals(root)
+        if not sigs:
+            print("✅ no pending wake signals")
+            return EXIT_OK
+        print(f"⚡ {len(sigs)} pending wake signal(s):")
+        for s in sigs:
+            print(f"  • {s.get('leg_id')} ({s.get('machine')}/{s.get('agent')}) — {s.get('goal')}")
+        return EXIT_OK
+    elif action == "emit":
+        if not args.id:
+            print("❌ --id is required to emit wake signal")
+            return EXIT_USAGE
+        p = emit_wake_signal(root, args.id, {"goal": args.goal or ""})
+        print(f"✅ wake signal emitted: {p.name}")
+        return EXIT_OK
+    elif action == "consume":
+        if not args.id:
+            print("❌ --id is required to consume wake signal")
+            return EXIT_USAGE
+        ok = consume_wake_signal(root, args.id)
+        if ok:
+            print(f"✅ consumed wake signal for {args.id}")
+            return EXIT_OK
+        print(f"⚠️ no wake signal found for {args.id}")
+        return EXIT_FAILURE
+    print(f"❌ unknown wake action: {action}")
+    return EXIT_USAGE
+
+
+def cmd_schedule(args: argparse.Namespace) -> int:
+    """Evaluate open actionable legs, compute claim scores, and schedule work.
+
+    Integrates the Quota Governor: legs that would breach HARD/RESERVE
+    thresholds are filtered out. SOFT threshold triggers a model downshift.
+    Ghost worker status is reported alongside the scheduling decision.
+    """
+    root = repo_root()
+    if root is None:
+        print("❌ not inside a git repository")
+        return EXIT_FAILURE
+    from . import claim_engine
+    from . import quota_governor as qg
+
+    caps = claim_engine.machine_capabilities(root)
+
+    # Load quota snapshot (from env vars or defaults)
+    snapshot = qg.load_snapshot_from_env()
+    governor = qg.QuotaGovernor(qg.load_thresholds_from_env())
+
+    # Show quota status
+    status = governor.status_report(snapshot)
+    print(qg.format_quota_status(status))
+    print()
+
+    # Ghost worker check
+    ghosts = claim_engine.ghost_worker_check(root)
+    ghost_reports = [qg.GhostWorkerReport(**{
+        "machine": g["machine"], "agent": g["agent"], "session": g["session"],
+        "status": qg.GhostStatus(g["status"]), "active_claims": g["active_claims"],
+        "detail": g["detail"],
+    }) for g in ghosts]
+    ghost_ghosts = [r for r in ghost_reports if r.status == qg.GhostStatus.GHOST]
+    if ghost_ghosts:
+        print(qg.format_ghost_report(ghost_reports))
+        print()
+
+    # Schedule best leg (quota-gated)
+    best = claim_engine.schedule_best_leg(root, caps, quota_snapshot=snapshot)
+    if not best:
+        print("ℹ️ no compatible unclaimed actionable work available")
+        return EXIT_OK
+    leg, score_info = best
+    lid = record_id(leg) or leg.get("_file", "")
+    print(f"🎯 Scheduled best leg: {lid}")
+    print(f"   Score: {score_info['score']} (unblocks={score_info['unblocks_others']}, priority={score_info['gm_priority']}, finishable={score_info['finishable_now']})")
+    print(f"   Goal:  {leg.get('goal') or '(no goal)'}")
+    if score_info.get("quota_decision"):
+        print(f"   Quota: {score_info['quota_decision']} — {score_info.get('quota_reason', '')}")
+    if args.take:
+        print(f"⚡ Auto-claiming leg {lid}...")
+        return cmd_claim(_ns(action="take", scope=f"relay:{lid}", goal=f"CLAIMED_FOR_EXECUTION: {leg.get('goal') or lid}", ttl=args.ttl, force=args.force, no_push=args.no_push))
+    return EXIT_OK
+
+
+def cmd_quota(args: argparse.Namespace) -> int:
+    """Display quota governor status, burn velocity, and breach projections."""
+    root = repo_root()
+    if root is None:
+        print("❌ not inside a git repository")
+        return EXIT_FAILURE
+
+    from . import quota_governor as qg
+
+    snapshot = qg.load_snapshot_from_env()
+    thresholds = qg.load_thresholds_from_env()
+
+    # Try to load burn ledger from disk
+    ledger_path = root / ".handoffs" / "burn_ledger.json"
+    ledger = qg.load_ledger_from_file(ledger_path)
+
+    governor = qg.QuotaGovernor(thresholds, ledger)
+    status = governor.status_report(snapshot)
+    print(qg.format_quota_status(status))
+
+    # Marathon calibration reference
+    if getattr(args, "calibration", False):
+        print()
+        print("📊 MARATHON CALIBRATION (40.5h Phoebus session):")
+        cal = qg.MARATHON_CALIBRATION
+        print(f"   Duration: {cal['duration_hours']}h | Steps: {cal['total_steps']:,}")
+        print(f"   Billable: {cal['billable_tokens']:,} tokens ({cal['fresh_input_tokens']:,} in + {cal['output_tokens']:,} out)")
+        print(f"   Cache: {cal['cache_read_tokens']:,} reads ({cal['cache_hit_ratio']:.2%} hit)")
+        print(f"   Shadow: ${cal['shadow_cost_flash_usd']:.2f} (Flash) / ${cal['shadow_cost_pro_usd']:.2f} (Pro)")
+        print(f"   Rate: ${cal['cost_per_hour_flash_usd']:.2f}/hr (Flash) | {cal['tokens_per_hour_billable']:,} billable tok/hr")
+        print(f"   Efficiency: {cal['tokens_per_1k_tool_calls']:,} tok/1k tools | {cal['tokens_per_landing']:,} tok/landing")
+
+    return EXIT_OK
+
+
+def cmd_ghost(args: argparse.Namespace) -> int:
+    """Detect ghost workers and orphan work across the fleet."""
+    root = repo_root()
+    if root is None:
+        print("❌ not inside a git repository")
+        return EXIT_FAILURE
+
+    from . import claim_engine
+    from . import quota_governor as qg
+
+    ghosts = claim_engine.ghost_worker_check(root)
+
+    if not ghosts:
+        print("✅ No active sessions detected.")
+        return EXIT_OK
+
+    ghost_reports = [qg.GhostWorkerReport(**{
+        "machine": g["machine"], "agent": g["agent"], "session": g["session"],
+        "status": qg.GhostStatus(g["status"]), "active_claims": g["active_claims"],
+        "detail": g["detail"],
+    }) for g in ghosts]
+
+    print(qg.format_ghost_report(ghost_reports))
+
+    # Fleet Execution Law reminder
+    ghost_count = sum(1 for r in ghost_reports if r.status == qg.GhostStatus.GHOST)
+    if ghost_count:
+        print()
+        print("📜 FLEET EXECUTION LAW:")
+        print("   1. Session/process activity ≠ ownership")
+        print("   2. ONLY an explicit live claim reserves a leg/scope")
+        print("   3. Scheduler continues assigning unrelated work across all lanes")
+        print(f"   ⚠️ {ghost_count} session(s) should register claims or be isolated")
+
+    return EXIT_OK
+
+
+def cmd_route(args: argparse.Namespace) -> int:
+    root = repo_root()
+    if root is None:
+        print("❌ not inside a git repository")
+        return EXIT_FAILURE
+    if not args.id:
+        print("❌ --id is required for routing check")
+        return EXIT_USAGE
+    path = _record_path(root, args.id)
+    if not path or not path.is_file():
+        print(f"❌ record {args.id} not found")
+        return EXIT_FAILURE
+    try:
+        rec = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        print("❌ record corrupt")
+        return EXIT_FAILURE
+    matched = match_lane_for_leg(rec)
+    print(f"🎯 Best matched lane for {args.id}: {matched}")
+    eligible = [lane for lane in LANE_CAPABILITIES if is_lane_eligible(lane, rec)]
+    print(f"   Eligible lanes: {', '.join(eligible)}")
+    return EXIT_OK
+
+
+def cmd_fail(args: argparse.Namespace) -> int:
+    root = repo_root()
+    if root is None:
+        print("❌ not inside a git repository")
+        return EXIT_FAILURE
+    if not args.id:
+        print("❌ --id is required for fail/retry record")
+        return EXIT_USAGE
+    err = args.message or "execution error"
+    res = record_leg_failure(root, args.id, err, max_retries=args.max_retries)
+    status = res.get("status")
+    retries = res.get("retry_count")
+    if status == "dead_letter":
+        print(f"❌ {args.id} marked as dead_letter (exceeded max retries: {retries})")
+    else:
+        print(f"⚠️ {args.id} failed (attempt {retries}) -> next retry: {res.get('next_retry_utc')}")
+    return EXIT_OK
+
+
 def _ns(**kw) -> argparse.Namespace:
     base = dict(id=None, state=None, message="", no_push=True, no_fetch=True,
-                scope=None, goal=None, ttl=None, force=False, action=None, all=False)
+                scope=None, goal=None, ttl=None, force=False, action=None, all=False,
+                target_agent=None, tags=None, max_retries=None)
     base.update(kw)
     return argparse.Namespace(**base)
 
@@ -1538,7 +3065,22 @@ def build_parser() -> argparse.ArgumentParser:
     c.add_argument("-g", "--goal", default="", help="one-line goal")
     c.add_argument("-m", "--message", help="body text (single line; prefer -M)")
     c.add_argument("-M", "--message-file", help="path to a UTF-8 markdown body")
+    c.add_argument("--parent", help="full id of the leg this one branches from")
+    c.add_argument("--target-agent", help="designated target lane for capability routing")
+    c.add_argument("--tags", help="comma-separated tags / capability requirements")
     c.set_defaults(func=cmd_create)
+
+    s2 = sub.add_parser(
+        "summarize",
+        help="close an abandoned branch: summary leg + parent -> abandoned",
+    )
+    s2.add_argument("--id", required=True,
+                    help="parent leg to summarize and mark abandoned")
+    s2.add_argument("-g", "--goal", default="",
+                    help="one-line goal (defaults to naming the parent)")
+    s2.add_argument("-m", "--message", help="summary text (single line; prefer -M)")
+    s2.add_argument("-M", "--message-file", help="path to a UTF-8 markdown summary")
+    s2.set_defaults(func=cmd_summarize)
 
     listing = sub.add_parser("list", help="list recorded handoffs")
     listing.add_argument("-n", "--number", type=int, default=10)
@@ -1572,6 +3114,50 @@ def build_parser() -> argparse.ArgumentParser:
     c2.add_argument("--no-fetch", action="store_true")
     c2.set_defaults(func=cmd_claim)
 
+    # Leased execution subcommand
+    l_parser = sub.add_parser("lease", help="atomic execution leases for open legs")
+    l_parser.add_argument("action", choices=["acquire", "release", "list"])
+    l_parser.add_argument("--id", help="leg id to lease/release")
+    l_parser.add_argument("-g", "--goal", default="", help="one-line intent")
+    l_parser.add_argument("--ttl", type=float, help="minutes before lease expires (default: 15m)")
+    l_parser.add_argument("--force", action="store_true", help="force acquire lease")
+    l_parser.add_argument("--all", action="store_true", help="list expired leases too")
+    l_parser.set_defaults(func=cmd_lease)
+
+    # Wake signal subcommand
+    w_parser = sub.add_parser("wake", help="autonomous wake signal queue")
+    w_parser.add_argument("action", choices=["list", "emit", "consume"])
+    w_parser.add_argument("--id", help="leg id for wake signal")
+    w_parser.add_argument("-g", "--goal", default="", help="goal description")
+    w_parser.set_defaults(func=cmd_wake)
+
+    # Schedule subcommand (Claim Engine)
+    sch_parser = sub.add_parser("schedule", help="auto-score and select the best compatible open leg")
+    sch_parser.add_argument("--take", action="store_true", help="automatically take an active claim on the best leg")
+    sch_parser.add_argument("--ttl", type=float, help="claim TTL in hours")
+    sch_parser.add_argument("--force", action="store_true", help="force claim regardless of overlap")
+    sch_parser.add_argument("--no-push", action="store_true", help="keep claim local")
+    sch_parser.set_defaults(func=cmd_schedule)
+
+    # Route subcommand
+    rt_parser = sub.add_parser("route", help="check capability/tag routing for a leg")
+    rt_parser.add_argument("--id", required=True, help="leg id to evaluate")
+    rt_parser.set_defaults(func=cmd_route)
+
+    # Fail / Retry subcommand
+    f_parser = sub.add_parser("fail", help="record failure with exponential backoff or dead_letter")
+    f_parser.add_argument("--id", required=True, help="leg id")
+    f_parser.add_argument("-m", "--message", default="", help="error message")
+    f_parser.add_argument("--max-retries", type=int, default=DEFAULT_MAX_RETRIES, help="max retries before dead_letter")
+    # Quota subcommand (Quota Governor)
+    q_parser = sub.add_parser("quota", help="view quota governor status and burn velocity")
+    q_parser.add_argument("--calibration", action="store_true", help="show 40.5h marathon calibration metrics")
+    q_parser.set_defaults(func=cmd_quota)
+
+    # Ghost subcommand (Ghost Worker Detector)
+    g_parser = sub.add_parser("ghost", help="detect ghost workers and unowned background processes")
+    g_parser.set_defaults(func=cmd_ghost)
+
     r = sub.add_parser("relay", help="the baton: ack / checkpoint / complete a leg")
     r.add_argument("action", choices=["open", "ack", "checkpoint", "complete"])
     r.add_argument("--id", help="record id (defaults to the newest foreign leg)")
@@ -1597,6 +3183,11 @@ def build_parser() -> argparse.ArgumentParser:
         f.add_argument("--no-push", action="store_true")
         f.add_argument("--no-fetch", action="store_true")
         f.set_defaults(func=cmd_relay, action=verb)
+
+    from . import autoclose as _autoclose  # local import: autoclose imports core
+    from . import policy as _policy
+    _autoclose.add_parser(sub)
+    _policy.add_parser(sub)
 
     i = sub.add_parser("init", help="name this clone's lane once, in git config")
     i.add_argument("--agent", help="lane name, e.g. claude-cli")
