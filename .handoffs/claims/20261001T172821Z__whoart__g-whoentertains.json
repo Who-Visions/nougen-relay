@@ -1,0 +1,14 @@
+{
+  "machine": "whoart",
+  "agent": "g-whoentertains",
+  "goal": "Implement and document deterministic, fault-tolerant Git relay transport contract cases",
+  "scope": "src/nougen_relay/core.py tools/relay_daemon.py tests/test_transport_contract.py tests/test_two_machines.py docs/SHANNON-TRANSPORT-CONTRACT.md",
+  "status": "active",
+  "branch": "codex/shannon-transport-contract",
+  "sha": "edd23a1",
+  "created_utc": "2026-10-01T17:28:21.849543+00:00",
+  "ttl_hours": 8.0,
+  "execution_status": "executing",
+  "first_action_utc": "2026-10-01T17:28:21.971035+00:00",
+  "claimed_at_utc": "2026-10-01T17:28:21.849543+00:00"
+}
