@@ -3,12 +3,13 @@
   "agent": "g-whoentertains",
   "goal": "Add transport fault conformance tests for loss, duplication, reordering, truncation, corruption, stale state, and schema drift",
   "scope": "tests/test_transport_contract.py tests/test_two_machines.py",
-  "status": "active",
+  "status": "released",
   "branch": "codex/shannon-transport-contract",
   "sha": "1d05f85",
   "created_utc": "2026-10-01T17:24:37.976506+00:00",
   "ttl_hours": 8.0,
   "execution_status": "executing",
   "first_action_utc": "2026-10-01T17:24:38.126682+00:00",
-  "claimed_at_utc": "2026-10-01T17:24:37.976506+00:00"
+  "claimed_at_utc": "2026-10-01T17:24:37.976506+00:00",
+  "released_utc": "2026-10-01T20:29:41.518906+00:00"
 }

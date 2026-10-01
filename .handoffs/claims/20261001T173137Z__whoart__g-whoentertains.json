@@ -3,12 +3,13 @@
   "agent": "g-whoentertains",
   "goal": "Restore Python 3.10-3.11 test collection blocked by nested f-string quoting",
   "scope": "src/nougen_relay/quota_governor.py tests/test_quota_governor.py",
-  "status": "active",
+  "status": "released",
   "branch": "codex/shannon-transport-contract",
   "sha": "e607ec1",
   "created_utc": "2026-10-01T17:31:37.043917+00:00",
   "ttl_hours": 8.0,
   "execution_status": "executing",
   "first_action_utc": "2026-10-01T17:31:37.172753+00:00",
-  "claimed_at_utc": "2026-10-01T17:31:37.043917+00:00"
+  "claimed_at_utc": "2026-10-01T17:31:37.043917+00:00",
+  "released_utc": "2026-10-01T20:29:41.519911+00:00"
 }
