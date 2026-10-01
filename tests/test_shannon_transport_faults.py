@@ -95,3 +95,19 @@ def test_future_clock_does_not_reorder_or_block_later_arrivals(merge_record):
 
     assert result["relay"] == [a, future, complete]
     assert result["status"] == "complete"
+
+
+@pytest.mark.parametrize("stamp", [None, "not-a-date"])
+def test_legacy_create_timestamp_does_not_move_after_complete(merge_record, stamp):
+    create = {"event": "create", "agent": "a"}
+    if stamp is not None:
+        create["at"] = stamp
+    ack = {"event": "ack", "at": "2026-08-28T00:00:10Z", "agent": "b"}
+    complete = {"event": "complete", "at": "2026-08-28T00:00:20Z", "agent": "b"}
+    remote = {"id": "leg-1", "status": "acked", "relay": [create, ack]}
+    local = {"id": "leg-1", "status": "complete", "relay": [create, complete]}
+
+    result = merge_record(local, remote)
+
+    assert result["relay"] == [create, ack, complete]
+    assert result["status"] == "complete"
