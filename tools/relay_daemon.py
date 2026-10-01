@@ -444,6 +444,21 @@ def _relay_event_key(event: Any) -> Tuple[str, str, str]:
     )
 
 
+def _relay_event_order(event: dict) -> tuple:
+    """Canonical ordering for events merged from independently updated replicas."""
+    stamp = str(event.get("at") or "")
+    try:
+        parsed = datetime.datetime.fromisoformat(stamp.replace("Z", "+00:00"))
+        if parsed.tzinfo is None:
+            parsed = parsed.replace(tzinfo=datetime.timezone.utc)
+        instant = parsed.astimezone(datetime.timezone.utc).isoformat()
+        stamp_key = (0, instant)
+    except (TypeError, ValueError):
+        stamp_key = (1, stamp)
+    payload = json.dumps(event, sort_keys=True, ensure_ascii=False, separators=(",", ":"))
+    return (*stamp_key, *_relay_event_key(event), payload)
+
+
 def _merge_relay_events(remote_events: Any, local_events: Any) -> List[dict]:
     """Union relay event arrays without allowing either projection to win.
 
@@ -472,7 +487,7 @@ def _merge_relay_events(remote_events: Any, local_events: Any) -> List[dict]:
             if value not in (None, "", [], {}):
                 combined[field] = value
         merged[position] = combined
-    return merged
+    return sorted(merged, key=_relay_event_order)
 
 
 def _merge_relay_records(local: Optional[dict], remote: Optional[dict]) -> dict:

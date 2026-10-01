@@ -81,6 +81,52 @@ def test_a_published_leg_is_visible_to_the_other_machine(fleet):
     assert out.returncode != 0, "an unacked leg must be detectable by exit code"
 
 
+def test_a_delayed_publish_is_delivered_on_the_receivers_next_poll(fleet):
+    """A locally written leg remains recoverable while publication is delayed."""
+    boxa, boxb = fleet
+    goal = "recover a delayed relay after the publisher reconnects"
+    assert relay(boxa, "create", "-g", goal, "-m", "queued locally",
+                 machine="boxa").returncode == 0
+
+    before = relay(boxb, "open", machine="boxb")
+    assert before.returncode == 0
+    assert goal not in before.stdout
+
+    publish(boxa, "publish after temporary loss")
+    after = relay(boxb, "open", machine="boxb")
+    assert after.returncode != 0
+    assert goal in after.stdout
+
+
+def test_malformed_record_does_not_hide_a_legacy_schema_neighbor(fleet):
+    """The receiver skips a truncated packet and still decodes older records."""
+    boxa, boxb = fleet
+    handoffs = boxa / ".handoffs"
+    handoffs.mkdir(exist_ok=True)
+    (handoffs / "20260828T000001Z__boxa__broken.json").write_text(
+        '{"id":"20260828T000001Z__boxa__broken","status":"open"',
+        encoding="utf-8",
+    )
+    legacy_id = "20260828T000002Z__boxa__legacy"
+    legacy = {
+        "schema_version": 1,
+        "machine": "boxa",
+        "agent": "lane1",
+        "goal": "legacy payload without embedded id or status",
+        "created_utc": "2026-08-28T00:00:02Z",
+        "future_extension": {"trace": "kept"},
+    }
+    (handoffs / f"{legacy_id}.json").write_text(json.dumps(legacy), encoding="utf-8")
+    publish(boxa, "publish mixed schema records")
+    git("fetch", "-q", "origin", cwd=boxb)
+
+    records = core._remote_handoffs(boxb, "origin/main")
+    assert [record["_file"] for record in records] == [f"{legacy_id}.json"]
+    assert core.record_id(records[0]) == legacy_id
+    assert core.relay_status(records[0]) == "open"
+    assert records[0]["future_extension"] == {"trace": "kept"}
+
+
 def test_your_own_leg_is_not_a_leg_you_need_to_take(fleet):
     """`relay open` answers 'what is waiting for me', not 'what exists'."""
     boxa, _ = fleet

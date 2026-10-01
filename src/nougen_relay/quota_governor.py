@@ -475,21 +475,21 @@ def format_quota_status(report: Dict[str, Any]) -> str:
     lines.append(f"   Routing: {decision} | Utilization: {util:.1%}")
 
     th = report["thresholds"]
-    lines.append(f"   Thresholds: SOFT={th["soft"]:.0%} | HARD={th["hard"]:.0%} | RESERVE={th["reserve"]:.0%}")
+    lines.append(f"   Thresholds: SOFT={th['soft']:.0%} | HARD={th['hard']:.0%} | RESERVE={th['reserve']:.0%}")
 
     vel = report["velocity"]
     if vel["tokens_per_hour"] > 0:
-        lines.append(f"   Burn rate: {vel["tokens_per_hour"]:,.0f} tok/hr | ${vel["cost_per_hour"]:.2f}/hr | {vel["legs_per_hour"]:.1f} legs/hr")
+        lines.append(f"   Burn rate: {vel['tokens_per_hour']:,.0f} tok/hr | ${vel['cost_per_hour']:.2f}/hr | {vel['legs_per_hour']:.1f} legs/hr")
 
     bp = report["breach_projection"]
     if bp.get("exhaustion_hours") is not None:
-        lines.append(f"   Breach ETA: SOFT={bp.get("soft_breach_hours", "—")}h | HARD={bp.get("hard_breach_hours", "—")}h | Empty={bp["exhaustion_hours"]}h")
-        lines.append(f"   Remaining: ${bp.get("remaining_usd", 0):.2f} at ${bp["burn_rate_usd_per_hour"]:.2f}/hr")
+        lines.append(f"   Breach ETA: SOFT={bp.get('soft_breach_hours', '—')}h | HARD={bp.get('hard_breach_hours', '—')}h | Empty={bp['exhaustion_hours']}h")
+        lines.append(f"   Remaining: ${bp.get('remaining_usd', 0):.2f} at ${bp['burn_rate_usd_per_hour']:.2f}/hr")
 
     if report["is_local"]:
         lines.append("   ⚡ Local provider — unlimited, zero cloud cost")
 
-    lines.append(f"   Ledger: {report["ledger_records"]} records in window")
+    lines.append(f"   Ledger: {report['ledger_records']} records in window")
     return "\n".join(lines)
 
 
