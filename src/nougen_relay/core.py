@@ -502,29 +502,12 @@ def _relay_event_key(event: Any) -> tuple:
     )
 
 
-def _relay_event_order(event: dict) -> tuple:
-    """Return a replica-independent order for merged append-only events.
-
-    Independent replicas can publish the same events in different commit
-    orders. Use the event timestamp first, then its stable identity and a
-    canonical payload tie-breaker so a merge converges regardless of which
-    projection was read as local or remote.
-    """
-    stamp = str(event.get("at") or "")
-    try:
-        parsed = datetime.fromisoformat(stamp.replace("Z", "+00:00"))
-        if parsed.tzinfo is None:
-            parsed = parsed.replace(tzinfo=timezone.utc)
-        instant = parsed.astimezone(timezone.utc).isoformat()
-        stamp_key = (0, instant)
-    except (TypeError, ValueError):
-        stamp_key = (1, stamp)
-    payload = json.dumps(event, sort_keys=True, ensure_ascii=False, separators=(",", ":"))
-    return (*stamp_key, *_relay_event_key(event), payload)
-
-
 def _merge_registry_records(local: Optional[dict], remote: Optional[dict]) -> dict:
-    """Union two registry projections without regressing lifecycle state."""
+    """Union projections, preserving remote event positions and lifecycle state.
+
+    Local-only events append to the published trail. Wall-clock timestamps do
+    not establish arrival or causal order and must not reorder existing events.
+    """
     if not local:
         return dict(remote or {})
     if not remote:
@@ -567,7 +550,7 @@ def _merge_registry_records(local: Optional[dict], remote: Optional[dict]) -> di
                 combined[field] = value
         events[position] = combined
     if events or "relay" in local or "relay" in remote:
-        merged["relay"] = sorted(events, key=_relay_event_order)
+        merged["relay"] = events
     return merged
 
 

@@ -454,28 +454,14 @@ def _relay_event_key(event: Any) -> Tuple[str, str, str]:
     )
 
 
-def _relay_event_order(event: dict) -> tuple:
-    """Canonical ordering for events merged from independently updated replicas."""
-    stamp = str(event.get("at") or "")
-    try:
-        parsed = datetime.datetime.fromisoformat(stamp.replace("Z", "+00:00"))
-        if parsed.tzinfo is None:
-            parsed = parsed.replace(tzinfo=datetime.timezone.utc)
-        instant = parsed.astimezone(datetime.timezone.utc).isoformat()
-        stamp_key = (0, instant)
-    except (TypeError, ValueError):
-        stamp_key = (1, stamp)
-    payload = json.dumps(event, sort_keys=True, ensure_ascii=False, separators=(",", ":"))
-    return (*stamp_key, *_relay_event_key(event), payload)
-
-
 def _merge_relay_events(remote_events: Any, local_events: Any) -> List[dict]:
     """Union relay event arrays without allowing either projection to win.
 
     Remote events are retained in their existing order, then local-only events
     are appended.  For a duplicate key, non-empty fields from both records are
     combined; this preserves a richer note or evidence field without creating
-    a second audit event.
+    a second audit event. Timestamps do not establish causal order: late or
+    clock-skewed arrivals must not move published events.
     """
     merged: List[dict] = []
     positions: Dict[Tuple[str, str, str], int] = {}
@@ -497,7 +483,7 @@ def _merge_relay_events(remote_events: Any, local_events: Any) -> List[dict]:
             if value not in (None, "", [], {}):
                 combined[field] = value
         merged[position] = combined
-    return sorted(merged, key=_relay_event_order)
+    return merged
 
 
 def _merge_relay_records(local: Optional[dict], remote: Optional[dict]) -> dict:
