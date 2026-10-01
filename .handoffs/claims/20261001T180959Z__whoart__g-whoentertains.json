@@ -1,0 +1,14 @@
+{
+  "machine": "whoart",
+  "agent": "g-whoentertains",
+  "goal": "Preserve published audit positions under late delivery, equal timestamps, and clock skew",
+  "scope": "src/nougen_relay/core.py tools/relay_daemon.py tests/test_shannon_transport_faults.py docs/SHANNON-TRANSPORT-CONTRACT.md",
+  "status": "active",
+  "branch": "fix/preserve-relay-audit-order",
+  "sha": "0525645",
+  "created_utc": "2026-10-01T18:09:59.443640+00:00",
+  "ttl_hours": 8.0,
+  "execution_status": "executing",
+  "first_action_utc": "2026-10-01T18:09:59.708505+00:00",
+  "claimed_at_utc": "2026-10-01T18:09:59.443640+00:00"
+}
