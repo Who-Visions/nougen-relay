@@ -49,3 +49,41 @@ def test_replica_merge_converges_after_reordered_duplicate_delivery(merge):
         "ack",
         "complete",
     ]
+
+
+@pytest.mark.parametrize(
+    "merge",
+    [core._merge_registry_records, relay_daemon._merge_relay_records],
+    ids=["checkout-registry", "watcher-projection"],
+)
+def test_replica_merge_orders_undated_legacy_events_first(merge):
+    """Legacy/undated events without 'at' must sort before subsequent state events."""
+    create_undated = {
+        "event": "create",
+        "agent": "boxa",
+        "goal": "legacy handoff",
+    }
+    ack = {"event": "ack", "at": "2026-08-28T00:01:00Z", "agent": "boxb"}
+    complete = {
+        "event": "complete",
+        "at": "2026-08-28T00:02:00Z",
+        "agent": "boxb",
+        "evidence": "tests passed",
+    }
+    local = {"id": "leg-legacy", "status": "complete", "relay": [ack, complete]}
+    remote = {
+        "id": "leg-legacy",
+        "status": "open",
+        "relay": [complete, create_undated],
+    }
+
+    forward = merge(local, remote)
+    reverse = merge(remote, local)
+
+    assert forward == reverse
+    assert forward["status"] == "complete"
+    assert [event["event"] for event in forward["relay"]] == [
+        "create",
+        "ack",
+        "complete",
+    ]

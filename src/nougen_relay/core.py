@@ -516,9 +516,10 @@ def _relay_event_order(event: dict) -> tuple:
         if parsed.tzinfo is None:
             parsed = parsed.replace(tzinfo=timezone.utc)
         instant = parsed.astimezone(timezone.utc).isoformat()
-        stamp_key = (0, instant)
+        stamp_key = (1, instant)
     except (TypeError, ValueError):
-        stamp_key = (1, stamp)
+        # Legacy or undated events predate the timestamp field and sort first
+        stamp_key = (0, stamp)
     payload = json.dumps(event, sort_keys=True, ensure_ascii=False, separators=(",", ":"))
     return (*stamp_key, *_relay_event_key(event), payload)
 
