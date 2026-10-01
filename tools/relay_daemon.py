@@ -203,7 +203,17 @@ class SingletonLock:
             try:
                 fd = os.open(self.lock_path, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
             except FileExistsError:
-                pid = self._holder_pid()
+                # O_EXCL publishes the pathname before this process can finish
+                # writing the JSON body. A competing starter that reads in that
+                # interval sees an invalid/empty lock; deleting it would let a
+                # second process win. Briefly wait for the atomic creator to
+                # finish before treating an unreadable record as stale.
+                pid = -1
+                for _ in range(10):
+                    pid = self._holder_pid()
+                    if pid != -1:
+                        break
+                    time.sleep(0.01)
                 if str(self.lock_path.resolve()) in SingletonLock._held:
                     self.holder_pid = pid
                     return False
