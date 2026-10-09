@@ -6,7 +6,7 @@ Copyright © 2026 Who Visions LLC. All rights reserved.
 
 This is a **source-available** license. This software is **not open source**. This license governs the original NouGenRelay source code, documentation, and protocol materials owned by Who Visions LLC (the "Software").
 
-Who Visions LLC owns the original Software in this repository. The limited permissions below do not transfer ownership. Third-party code, data, assets, and other materials with separate copyright, license, or attribution notices are excluded and remain governed by their own terms; this license does not replace or expand those terms.
+Who Visions LLC owns the original Software in this repository. The limited permissions below do not transfer ownership. Third-party code, data, assets, and other materials with separate copyright, license, or attribution notices are excluded and remain governed by their own terms; this license does not replace or expand those terms. Version 1.1 applies to copies distributed or accessed under these terms on or after October 9, 2026; it does not withdraw permissions validly granted under earlier license versions for earlier copies.
 
 ## 2. Permitted Use
 
