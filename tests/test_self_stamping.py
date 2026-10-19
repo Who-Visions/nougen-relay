@@ -28,7 +28,7 @@ def git(*args, cwd):
                           encoding="utf-8", errors="replace")
 
 
-def relay(repo, *args, machine="phoebus", agent="claude-cli", **extra):
+def relay(repo, *args, machine="node-a", agent="claude-cli", **extra):
     env = {**os.environ, "PYTHONPATH": SRC, "NOUGEN_MACHINE": machine,
            "NOUGEN_AGENT": agent, "PYTHONIOENCODING": "utf-8"}
     env.update({k: str(v) for k, v in extra.items()})
@@ -66,7 +66,7 @@ def repo(tmp_path):
 def test_a_claim_is_stamped_without_any_hook(repo):
     out = relay(repo, "claim", "take", "-s", "src/lib", "-g", "oauth fix")
     assert "claimed" in out.stdout, out.stdout + out.stderr
-    assert trailers(repo, "Machine") == "phoebus"
+    assert trailers(repo, "Machine") == "node-a"
     assert trailers(repo, "Agent") == "claude-cli"
 
 
@@ -74,7 +74,7 @@ def test_a_release_is_stamped_without_any_hook(repo):
     relay(repo, "claim", "take", "-s", "src/lib", "-g", "oauth fix")
     relay(repo, "claim", "release", "-s", "src/lib")
     assert git("log", "-1", "--format=%s", cwd=repo).stdout.strip().endswith("release")
-    assert trailers(repo, "Machine") == "phoebus"
+    assert trailers(repo, "Machine") == "node-a"
     assert trailers(repo, "Agent") == "claude-cli"
 
 
@@ -84,21 +84,21 @@ def test_the_ack_of_a_leg_is_stamped_without_any_hook(repo):
     git("commit", "-qm", "handoff", cwd=repo)
 
     # A different box takes the baton.
-    out = relay(repo, "relay", "ack", "-m", "picking this up", machine="blade1tb")
+    out = relay(repo, "relay", "ack", "-m", "picking this up", machine="node-b1")
     assert "baton taken" in out.stdout, out.stdout + out.stderr
-    assert trailers(repo, "Machine") == "blade1tb"
+    assert trailers(repo, "Machine") == "node-b1"
     assert trailers(repo, "Agent") == "claude-cli"
 
 
 def test_an_unset_agent_is_recorded_as_such_not_omitted(repo):
     """Half an answer that looks authoritative is worse than an honest gap."""
-    env_free = {**os.environ, "PYTHONPATH": SRC, "NOUGEN_MACHINE": "phoebus",
+    env_free = {**os.environ, "PYTHONPATH": SRC, "NOUGEN_MACHINE": "node-a",
                 "PYTHONIOENCODING": "utf-8"}
     env_free.pop("NOUGEN_AGENT", None)
     subprocess.run([sys.executable, "-m", "nougen_relay.cli",
                     "claim", "take", "-s", "src/lib", "-g", "anonymous lane"],
                    cwd=repo, env=env_free, capture_output=True, text=True)
-    assert trailers(repo, "Machine") == "phoebus"
+    assert trailers(repo, "Machine") == "node-a"
     assert trailers(repo, "Agent") == "unknown-agent"
 
 
@@ -109,7 +109,7 @@ def test_stamping_does_not_duplicate_when_the_hook_is_installed(repo):
     body = git("log", "-1", "--format=%B", cwd=repo).stdout
     assert body.count("Machine:") == 1, body
     assert body.count("Agent:") == 1, body
-    assert "phoebus" in body
+    assert "node-a" in body
 
 
 def test_whoami_reports_a_missing_hook(repo):

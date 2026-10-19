@@ -95,7 +95,7 @@ def process_single_leg(json_path: str) -> bool:
     
     meta["relay"].append({
         "event": "ack",
-        "machine": "whoart",
+        "machine": "node-c",
         "agent": "local-inspection-worker",
         "at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "note": f"[Local-Worker] {clean_finding}"

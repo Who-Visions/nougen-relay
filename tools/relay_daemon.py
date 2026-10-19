@@ -1068,7 +1068,7 @@ class RelayDaemon:
         out = (exec_res.get("stdout") or "")[-1200:]
         try:
             plan = self._dav1d_json(
-                "You are Dav1d, verification planner on the Blade node. An autonomous "
+                "You are Dav1d, verification planner on the Node-b node. An autonomous "
                 "dispatch claims it completed a relay leg. Propose up to "
                 f"{PROBE_MAX} READ-ONLY probe commands that would prove or refute it "
                 "against live state. Allowed binaries: gh (api GET only), git "
@@ -1092,7 +1092,7 @@ class RelayDaemon:
             for r in ran)
         try:
             verdict = self._dav1d_json(
-                "You are Dav1d, verification judge on the Blade node. Decide whether "
+                "You are Dav1d, verification judge on the Node-b node. Decide whether "
                 "the PROBE OUTPUTS below prove the leg's goal was accomplished in live "
                 "state. The dispatch's own prose is NOT evidence; only probe output "
                 "counts. Unclear or partial = not verified.\n"
@@ -1618,7 +1618,7 @@ class RelayDaemon:
 
         # Build local prompt
         prompt = (
-            f"You are Dav1d, the local execution triager on the Blade node.\n"
+            f"You are Dav1d, the local execution triager on the Node-b node.\n"
             f"Classify this incoming relay goal into JSON:\n"
             f"Goal: {goal}\n\n"
             f"Allowed task_type values: EXECUTION_RUN, CODE_MUTATION, STATUS_CHECK, INFORMATIONAL, DIAGNOSTIC.\n"

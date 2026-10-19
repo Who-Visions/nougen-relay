@@ -5,7 +5,7 @@ Implements the three-layer Jarvis Mode architecture:
   Layer 2: Quota Governor (SOFT/HARD/RESERVE thresholds, burn velocity, ledger)
   Layer 3: Jarvis Mode (adaptive routing, preserve autonomy, expose economics)
 
-Ground truth calibration from the 40.5h Phoebus marathon (2026-09-04/06):
+Ground truth calibration from the 40.5h Node-a marathon (2026-09-04/06):
   - 3,428,792,775 total context tokens moved
   - 99.96% cache hit ratio
   - 1,352,838 fresh input + 537,826 output = 1,890,664 billable

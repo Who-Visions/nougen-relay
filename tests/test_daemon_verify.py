@@ -282,9 +282,9 @@ class TestDefectReportsAreNotQuestions:
         d.verify_execution = spy_verify
         d.dav1d_probe_verify(
             _triage(False),
-            {"goal": "How many relay legs mention Kaedra?"},
+            {"goal": "How many relay legs mention Assistant-1?"},
             {"exit_code": 0, "stdout": "Nine."})
-        assert seen["action"] == "How many relay legs mention Kaedra?"
+        assert seen["action"] == "How many relay legs mention Assistant-1?"
 
 
 class TestTodoPrefixShapeRule:

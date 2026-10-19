@@ -1,6 +1,6 @@
 ---
 name: nougen-relay
-description: Coordinates work across the machines that share a repo (whoart, blade1tb, phoebus). Claims scope before editing files and writes a handoff after. Use whenever starting work in a git repo that contains a .handoffs directory, before editing any file, and before ending a working session.
+description: Coordinates work across the machines that share a repo (node-c, node-b1, node-a). Claims scope before editing files and writes a handoff after. Use whenever starting work in a git repo that contains a .handoffs directory, before editing any file, and before ending a working session.
 ---
 
 # NouGenRelay — do not start work blind
@@ -66,7 +66,7 @@ Run `relay_whoami` if anything looks wrong. Records are stamped with a machine
 and an agent lane. `NOUGEN_AGENT` has no OS equivalent, so if it is unset your
 records land as `unknown-agent` — that has already happened once in a live
 registry. The machine name comes from the hostname unless `NOUGEN_MACHINE` says
-otherwise; on the Mac mini it must be `phoebus`.
+otherwise; on the Mac mini it must be `node-a`.
 
 ## Writing a good handoff
 

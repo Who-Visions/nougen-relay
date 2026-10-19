@@ -87,7 +87,7 @@ def test_an_ignored_registry_is_reported_not_called_present(bare):
     question, and nothing was asking it.
     """
     (bare / ".handoffs").mkdir()
-    (bare / ".handoffs" / "20260615T000000Z__whoart__claude-cli.md").write_text("x", encoding="utf-8")
+    (bare / ".handoffs" / "20260615T000000Z__node-c__claude-cli.md").write_text("x", encoding="utf-8")
     (bare / ".gitignore").write_text(".handoffs/\n", encoding="utf-8")
 
     changes = adopt.adopt(bare, agent="claude-cli")
@@ -153,7 +153,7 @@ def test_the_pre_commit_hook_only_blocks_on_exit_three():
 
 
 def test_the_pre_commit_hook_can_find_relay_without_the_console_script():
-    """pip could not write relay.exe on whoart; the module path still worked."""
+    """pip could not write relay.exe on node-c; the module path still worked."""
     assert "python -m nougen_relay.cli" in adopt.PRE_COMMIT
 
 

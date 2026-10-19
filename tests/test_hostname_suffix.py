@@ -1,7 +1,7 @@
 """A probed hostname has to produce a name its operator recognises.
 
-mDNS appends `.local`, so the Mac mini probed as `KushBoyGroups-Mac-mini.local`
-and every record it wrote said `kushboygroups-mac-mini-local` — correct by the
+mDNS appends `.local`, so the Mac mini probed as `users-Mac-mini.local`
+and every record it wrote said `users-mac-mini-local` — correct by the
 tool's own rules, and recognisable to nobody. Observed 2026-07-31 in this repo's
 own history.
 """
@@ -29,13 +29,13 @@ def no_stored_machine(monkeypatch):
 
 
 @pytest.mark.parametrize("hostname,expected", [
-    ("KushBoyGroups-Mac-mini.local", "kushboygroups-mac-mini"),  # the real one
-    ("blade1tb.lan", "blade1tb"),
+    ("users-Mac-mini.local", "users-mac-mini"),  # the real one
+    ("node-b1.lan", "node-b1"),
     ("box.home", "box"),
     ("runner.internal", "runner"),
     ("host.localdomain", "host"),
     ("MacBook.LOCAL", "macbook"),                                # case-insensitive
-    ("WhoArt", "whoart"),                                        # nothing to strip
+    ("Node-c", "node-c"),                                        # nothing to strip
 ])
 def test_network_suffixes_are_not_part_of_the_name(hostname, expected, monkeypatch):
     monkeypatch.delenv("NOUGEN_MACHINE", raising=False)
@@ -68,5 +68,5 @@ def test_a_hostname_that_is_only_a_suffix_survives(monkeypatch):
 def test_an_explicit_name_is_passed_through_untouched(monkeypatch):
     """If an operator types a dotted name, that is their word on what this box
     is called — the tool does not second-guess an explicit answer."""
-    monkeypatch.setenv("NOUGEN_MACHINE", "phoebus.local")
-    assert core.resolve_machine() == "phoebus-local"
+    monkeypatch.setenv("NOUGEN_MACHINE", "node-a.local")
+    assert core.resolve_machine() == "node-a-local"

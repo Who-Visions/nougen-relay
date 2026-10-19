@@ -11,3 +11,8 @@ venv/
 .coverage
 .coverage.*
 docs/FLEET-LOG-2026-08-17.md
+
+# Runtime relay records are local data, never published.
+.handoffs/
+.relay/
+logs/

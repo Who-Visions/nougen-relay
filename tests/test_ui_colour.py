@@ -30,7 +30,7 @@ def fresh(monkeypatch):
 def test_no_escape_codes_when_not_a_tty(monkeypatch):
     monkeypatch.setattr(sys.stdout, "isatty", lambda: False)
     ui.reset_cache()
-    assert ui.machine("whoart") == "whoart"
+    assert ui.machine("node-c") == "node-c"
     assert "\033" not in ui.good("done")
 
 
@@ -60,8 +60,8 @@ def test_painted_text_still_contains_the_text(monkeypatch):
     """Colour wraps, never replaces — greps on the message keep working."""
     monkeypatch.setenv("FORCE_COLOR", "1")
     ui.reset_cache()
-    painted = ui.machine("whoart")
-    assert "whoart" in painted and painted.endswith("\033[0m")
+    painted = ui.machine("node-c")
+    assert "node-c" in painted and painted.endswith("\033[0m")
 
 
 def test_every_style_closes_what_it_opens(monkeypatch):

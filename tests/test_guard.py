@@ -33,7 +33,7 @@ def repo(tmp_path, monkeypatch):
     _run("git", "config", "user.email", "t@example.com", cwd=root)
     _run("git", "config", "user.name", "Test", cwd=root)
     (root / ".handoffs" / "claims").mkdir(parents=True)
-    monkeypatch.setenv("NOUGEN_MACHINE", "whoart")
+    monkeypatch.setenv("NOUGEN_MACHINE", "node-c")
     monkeypatch.setenv("NOUGEN_AGENT", "claude-cli")
     monkeypatch.chdir(root)
     gh._AGENT_CACHE = None
@@ -72,29 +72,29 @@ class _Args:
 
 
 def test_another_machines_claim_blocks(repo, monkeypatch):
-    _claim(repo, "phoebus", "token_tracker.py")
+    _claim(repo, "node-a", "token_tracker.py")
     _stage(repo, "token_tracker.py")
     monkeypatch.setattr(gh, "watch_targets", lambda: [None])
     assert guard.cmd_guard(_Args()) == gh.EXIT_DIVERGED
 
 
 def test_an_unrelated_claim_does_not_block(repo, monkeypatch):
-    _claim(repo, "phoebus", "docs/RELAY.md")
-    _claim(repo, "whoart", "token_tracker.py")
+    _claim(repo, "node-a", "docs/RELAY.md")
+    _claim(repo, "node-c", "token_tracker.py")
     _stage(repo, "token_tracker.py")
     monkeypatch.setattr(gh, "watch_targets", lambda: [None])
     assert guard.cmd_guard(_Args()) == gh.EXIT_OK
 
 
 def test_your_own_claim_never_blocks_you(repo, monkeypatch):
-    _claim(repo, "whoart", "token_tracker.py")
+    _claim(repo, "node-c", "token_tracker.py")
     _stage(repo, "token_tracker.py")
     monkeypatch.setattr(gh, "watch_targets", lambda: [None])
     assert guard.cmd_guard(_Args(require_claim=True)) == gh.EXIT_OK
 
 
 def test_an_expired_claim_stops_blocking(repo, monkeypatch):
-    rec = _claim(repo, "phoebus", "token_tracker.py")
+    rec = _claim(repo, "node-a", "token_tracker.py")
     stale = gh._now().replace(year=gh._now().year - 1).isoformat()
     path = next((repo / ".handoffs" / "claims").glob("*.json"))
     rec["created_utc"] = stale
@@ -105,7 +105,7 @@ def test_an_expired_claim_stops_blocking(repo, monkeypatch):
 
 
 def test_a_released_claim_stops_blocking(repo, monkeypatch):
-    _claim(repo, "phoebus", "token_tracker.py", status="released")
+    _claim(repo, "node-a", "token_tracker.py", status="released")
     _stage(repo, "token_tracker.py")
     monkeypatch.setattr(gh, "watch_targets", lambda: [None])
     assert guard.cmd_guard(_Args()) == gh.EXIT_OK
@@ -149,7 +149,7 @@ def test_nothing_staged_is_not_a_finding(repo, monkeypatch):
 
 
 def test_a_directory_claim_covers_files_beneath_it(repo, monkeypatch):
-    _claim(repo, "phoebus", "fleet/")
+    _claim(repo, "node-a", "fleet/")
     _stage(repo, "fleet/agy_usage.py")
     monkeypatch.setattr(gh, "watch_targets", lambda: [None])
     assert guard.cmd_guard(_Args()) == gh.EXIT_DIVERGED
@@ -162,7 +162,7 @@ def test_a_windows_claim_matches_a_posix_path(repo, monkeypatch):
     _normalize_scope folded separators these shared no token, so the check
     reported all-clear on the exact collision it exists to catch.
     """
-    _claim(repo, "phoebus", r"src\lib.py")
+    _claim(repo, "node-a", r"src\lib.py")
     _stage(repo, "src/lib.py")
     monkeypatch.setattr(gh, "watch_targets", lambda: [None])
     assert guard.cmd_guard(_Args()) == gh.EXIT_DIVERGED
@@ -181,7 +181,7 @@ def test_the_registry_does_not_trip_the_guards_own_warning(repo, monkeypatch, ca
     claimed by nobody, collided on by nobody. Warning about them is the
     cry-wolf failure this guard is weighted to avoid, self-inflicted.
     """
-    _stage(repo, ".handoffs/20260802T000000Z__whoart__claude-cli.md")
+    _stage(repo, ".handoffs/20260802T000000Z__node-c__claude-cli.md")
     monkeypatch.setattr(gh, "watch_targets", lambda: [None])
     assert guard.cmd_guard(_Args(quiet=False)) == gh.EXIT_OK
     assert "not covered by a claim" not in capsys.readouterr().out
@@ -189,7 +189,7 @@ def test_the_registry_does_not_trip_the_guards_own_warning(repo, monkeypatch, ca
 
 def test_real_work_alongside_a_record_is_still_warned_about(repo, monkeypatch, capsys):
     """Exempting the registry must not exempt the commit that carries it."""
-    _stage(repo, ".handoffs/20260802T000000Z__whoart__claude-cli.md")
+    _stage(repo, ".handoffs/20260802T000000Z__node-c__claude-cli.md")
     _stage(repo, "token_tracker.py")
     monkeypatch.setattr(gh, "watch_targets", lambda: [None])
     guard.cmd_guard(_Args(quiet=False))
@@ -200,6 +200,6 @@ def test_real_work_alongside_a_record_is_still_warned_about(repo, monkeypatch, c
 
 
 def test_an_explicit_path_does_not_need_git(repo, monkeypatch):
-    _claim(repo, "phoebus", "token_tracker.py")
+    _claim(repo, "node-a", "token_tracker.py")
     monkeypatch.setattr(gh, "watch_targets", lambda: [None])
     assert guard.cmd_guard(_Args(path=["token_tracker.py"], staged=False)) == gh.EXIT_DIVERGED

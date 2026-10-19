@@ -21,14 +21,14 @@ import relay_dedup as rd  # noqa: E402
 
 DUP_A = "CLOSED: NouGenTracker passive live status, security gate, and fleet rollout"
 DUP_B = "CLOSED: NouGenTracker passive live status and fleet rollout"
-DISTINCT = "Restore Phoebus shard path and direct capture/recall"
+DISTINCT = "Restore Node-a shard path and direct capture/recall"
 
 
 @pytest.fixture()
 def legs(tmp_path):
     import json
     for i, goal in enumerate((DUP_A, DISTINCT)):
-        (tmp_path / f"2026090{i}T000000Z__phoebus__claude-cli.json").write_text(
+        (tmp_path / f"2026090{i}T000000Z__node-a__claude-cli.json").write_text(
             json.dumps({"goal": goal, "status": "open"}))
     return tmp_path
 

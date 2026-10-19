@@ -78,9 +78,9 @@ def test_a_leg_is_written_as_json_plus_a_readable_twin(repo):
 
 def test_the_record_names_the_machine_and_agent_that_wrote_it(repo):
     """Filenames carry identity so two machines never write the same path."""
-    relay(repo, "create", "-g", "g", "-m", "m", machine="phoebus", agent="claude-cli")
+    relay(repo, "create", "-g", "g", "-m", "m", machine="node-a", agent="claude-cli")
     name = records(repo)[0].name
-    assert "phoebus" in name and "claude-cli" in name
+    assert "node-a" in name and "claude-cli" in name
 
 
 def test_concurrent_legs_from_two_machines_do_not_collide(repo):

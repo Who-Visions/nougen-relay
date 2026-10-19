@@ -1,6 +1,6 @@
 """Two records from one machine in the same second must not share a name.
 
-Flagged by phoebus while porting the trigger layer: ids are second-granular.
+Flagged by node-a while porting the trigger layer: ids are second-granular.
 The consequence is worse than a duplicate label — the second write lands on the
 first one's filename and DESTROYS it, and if the first was already reacted to,
 the survivor carries an id `react` has seen and never fires a rule for. A
@@ -24,50 +24,50 @@ from nougen_relay.core import unique_record_name
 
 SRC = str(Path(__file__).resolve().parents[1] / "src")
 STAMP = datetime(2026, 7, 31, 23, 30, 15, tzinfo=timezone.utc)
-BASE = "20260731T233015Z__blade1tb__claude-cli"
+BASE = "20260731T233015Z__node-b1__claude-cli"
 
 
 def test_an_empty_directory_gives_the_plain_name(tmp_path):
     """Every id already in circulation keeps resolving — the counter appears
     only when it has to."""
-    assert unique_record_name(tmp_path, STAMP, "blade1tb", "claude-cli") == BASE
+    assert unique_record_name(tmp_path, STAMP, "node-b1", "claude-cli") == BASE
 
 
 def test_a_taken_name_gets_a_counter(tmp_path):
     (tmp_path / f"{BASE}.json").write_text("{}", encoding="utf-8")
-    assert (unique_record_name(tmp_path, STAMP, "blade1tb", "claude-cli")
-            == "20260731T233015Z-2__blade1tb__claude-cli")
+    assert (unique_record_name(tmp_path, STAMP, "node-b1", "claude-cli")
+            == "20260731T233015Z-2__node-b1__claude-cli")
 
 
 def test_the_counter_keeps_climbing(tmp_path):
     (tmp_path / f"{BASE}.json").write_text("{}", encoding="utf-8")
-    (tmp_path / "20260731T233015Z-2__blade1tb__claude-cli.json").write_text("{}", encoding="utf-8")
-    assert (unique_record_name(tmp_path, STAMP, "blade1tb", "claude-cli")
-            == "20260731T233015Z-3__blade1tb__claude-cli")
+    (tmp_path / "20260731T233015Z-2__node-b1__claude-cli.json").write_text("{}", encoding="utf-8")
+    assert (unique_record_name(tmp_path, STAMP, "node-b1", "claude-cli")
+            == "20260731T233015Z-3__node-b1__claude-cli")
 
 
 def test_a_markdown_body_alone_still_counts_as_taken(tmp_path):
     """Records are a .json/.md pair. Checking only one half would overwrite
     the other."""
     (tmp_path / f"{BASE}.md").write_text("x", encoding="utf-8")
-    assert unique_record_name(tmp_path, STAMP, "blade1tb", "claude-cli") != BASE
+    assert unique_record_name(tmp_path, STAMP, "node-b1", "claude-cli") != BASE
 
 
 def test_identity_segments_survive_disambiguation(tmp_path):
     """The counter goes inside the timestamp segment because the commit hook
     and the registry both parse identity back out of these filenames."""
     (tmp_path / f"{BASE}.json").write_text("{}", encoding="utf-8")
-    name = unique_record_name(tmp_path, STAMP, "blade1tb", "claude-cli")
+    name = unique_record_name(tmp_path, STAMP, "node-b1", "claude-cli")
     _stamp, machine, agent = name.split("__")
-    assert (machine, agent) == ("blade1tb", "claude-cli")
+    assert (machine, agent) == ("node-b1", "claude-cli")
 
 
 def test_another_machine_never_collides(tmp_path):
     """What already worked, and must keep working: same instant, different box,
     different name — that is why this registry merges without conflicts."""
     (tmp_path / f"{BASE}.json").write_text("{}", encoding="utf-8")
-    assert (unique_record_name(tmp_path, STAMP, "phoebus", "claude-cli")
-            == "20260731T233015Z__phoebus__claude-cli")
+    assert (unique_record_name(tmp_path, STAMP, "node-a", "claude-cli")
+            == "20260731T233015Z__node-a__claude-cli")
 
 
 # --- end to end --------------------------------------------------------------
@@ -80,7 +80,7 @@ def git(*args, cwd):
 
 def relay(repo, *args, **env_extra):
     env = {**os.environ, "PYTHONPATH": SRC, "NOUGEN_AGENT": "claude-cli",
-           "NOUGEN_MACHINE": "blade1tb", "PYTHONIOENCODING": "utf-8"}
+           "NOUGEN_MACHINE": "node-b1", "PYTHONIOENCODING": "utf-8"}
     env.update({k: str(v) for k, v in env_extra.items()})
     return subprocess.run([sys.executable, "-m", "nougen_relay.cli", *args],
                           cwd=repo, env=env, capture_output=True, text=True,
@@ -100,7 +100,7 @@ def repo(tmp_path):
     return work
 
 
-def occupy_the_next_few_seconds(directory, machine="blade1tb", agent="claude-cli"):
+def occupy_the_next_few_seconds(directory, machine="node-b1", agent="claude-cli"):
     """Claim every name the next write could want, so the collision is certain
     rather than a race the test might lose."""
     directory.mkdir(parents=True, exist_ok=True)

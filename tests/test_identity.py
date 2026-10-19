@@ -27,14 +27,14 @@ def no_ambient_identity(monkeypatch):
 
 
 def test_env_machine_wins_over_hostname(monkeypatch):
-    monkeypatch.setenv("NOUGEN_MACHINE", "phoebus")
-    assert core.resolve_machine() == "phoebus"
+    monkeypatch.setenv("NOUGEN_MACHINE", "node-a")
+    assert core.resolve_machine() == "node-a"
 
 
 def test_hostname_is_the_fallback(monkeypatch):
     monkeypatch.delenv("NOUGEN_MACHINE", raising=False)
-    monkeypatch.setattr(core.socket, "gethostname", lambda: "WhoArt")
-    assert core.resolve_machine() == "whoart"
+    monkeypatch.setattr(core.socket, "gethostname", lambda: "Node-c")
+    assert core.resolve_machine() == "node-c"
 
 
 def test_hostname_failure_does_not_raise(monkeypatch):
@@ -51,8 +51,8 @@ def test_hostname_failure_does_not_raise(monkeypatch):
 def test_blank_env_is_not_an_identity(monkeypatch):
     """An exported-but-empty NOUGEN_MACHINE is a shell accident, not a name."""
     monkeypatch.setenv("NOUGEN_MACHINE", "   ")
-    monkeypatch.setattr(core.socket, "gethostname", lambda: "blade1tb")
-    assert core.resolve_machine() == "blade1tb"
+    monkeypatch.setattr(core.socket, "gethostname", lambda: "node-b1")
+    assert core.resolve_machine() == "node-b1"
 
 
 def test_names_are_slugged_into_filename_safe_tokens(monkeypatch):
@@ -63,7 +63,7 @@ def test_names_are_slugged_into_filename_safe_tokens(monkeypatch):
 
 
 def test_git_config_names_the_machine_when_env_is_unset(monkeypatch):
-    """Observed 2026-08-05 on phoebus: `relay init --machine phoebus` stored
+    """Observed 2026-08-05 on node-a: `relay init --machine node-a` stored
     the name, then an env-less shell acked a leg as the raw hostname anyway,
     because nothing ever read nougen.machine back."""
     monkeypatch.delenv("NOUGEN_MACHINE", raising=False)
@@ -112,7 +112,7 @@ def test_env_still_beats_stored_config(monkeypatch):
 
 def test_identity_reports_where_each_answer_came_from(monkeypatch):
     """A reader must be able to tell an env-var name from an OS-probed one."""
-    monkeypatch.setenv("NOUGEN_MACHINE", "whoart")
+    monkeypatch.setenv("NOUGEN_MACHINE", "node-c")
     monkeypatch.setenv("NOUGEN_AGENT", "claude-cli")
     ident = core.identity()
     assert ident["machine_source"] == "NOUGEN_MACHINE"

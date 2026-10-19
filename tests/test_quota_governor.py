@@ -67,11 +67,11 @@ class TestQuotaGovernor(unittest.TestCase):
 
     def test_ghost_worker_detection(self):
         sessions = [
-            {"machine": "phoebus", "agent": "worker-1", "session_id": "s1"},
-            {"machine": "phoebus", "agent": "worker-2", "session_id": "s2"},
+            {"machine": "node-a", "agent": "worker-1", "session_id": "s1"},
+            {"machine": "node-a", "agent": "worker-2", "session_id": "s2"},
         ]
         claims = [
-            {"machine": "phoebus", "agent": "worker-1", "scope": "relay:123"},
+            {"machine": "node-a", "agent": "worker-1", "scope": "relay:123"},
         ]
         reports = qg.detect_ghost_workers(sessions, claims)
         self.assertEqual(len(reports), 2)

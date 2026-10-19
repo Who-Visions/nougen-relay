@@ -1,7 +1,7 @@
 """A relay commit must never absorb the operator's staged work.
 
 Measured on 2026-08-01: a `claim release` committed a source fix, its tests and
-a new tool alongside the claim record, under the subject "claim(whoart):
+a new tool alongside the claim record, under the subject "claim(node-c):
 release". Nothing was lost and the code was correct — which is precisely why it
 is dangerous. A commit that fails announces itself; a commit that quietly
 describes itself wrong is believed by the next person to read `git log`.

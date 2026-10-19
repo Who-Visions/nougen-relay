@@ -1,7 +1,7 @@
 """Two sessions on one lane, and the release that took the wrong claim.
 
 Identity is machine+lane, which was enough while a lane meant one session. On
-2026-08-02 two agent sessions ran on `whoart` under `claude-cli` at the same
+2026-08-02 two agent sessions ran on `node-c` under `claude-cli` at the same
 time. They were invisible to each other's claims, and a bare `claim release` in
 one released the other's while it was still working.
 
@@ -36,7 +36,7 @@ def repo(tmp_path, monkeypatch):
     _run("git", "config", "user.email", "t@example.com", cwd=root)
     _run("git", "config", "user.name", "Test", cwd=root)
     (root / ".handoffs" / "claims").mkdir(parents=True)
-    monkeypatch.setenv("NOUGEN_MACHINE", "whoart")
+    monkeypatch.setenv("NOUGEN_MACHINE", "node-c")
     monkeypatch.setenv("NOUGEN_AGENT", "claude-cli")
     for var in gh._SESSION_VARS:
         monkeypatch.delenv(var, raising=False)
@@ -59,7 +59,7 @@ class _Release:
 _SEQ = itertools.count()
 
 
-def _write_claim(root, scope, *, session=None, machine="whoart", status="active"):
+def _write_claim(root, scope, *, session=None, machine="node-c", status="active"):
     """One claim file, guaranteed distinct from the last one.
 
     The sequence number is not decoration. Windows' clock granularity is coarse
@@ -138,7 +138,7 @@ def test_scope_still_narrows_a_release(repo, monkeypatch):
 
 
 def test_another_machines_claim_is_untouched_either_way(repo, monkeypatch):
-    theirs = _write_claim(repo, "a.py", machine="phoebus", session="alpha")
+    theirs = _write_claim(repo, "a.py", machine="node-a", session="alpha")
     monkeypatch.setenv("NOUGEN_SESSION", "alpha")
     gh.cmd_claim(_Release(all_sessions=True))
     assert _status_of(theirs) == "active"
