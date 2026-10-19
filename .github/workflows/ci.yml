@@ -43,3 +43,20 @@ jobs:
       # with 476 findings across code nobody had touched (2026-07-31).
       - run: pip install "ruff==0.14.2"
       - run: ruff check src tests
+
+  go:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: gorelay
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: gorelay/go.mod
+      - name: Format
+        run: test -z "$(gofmt -l .)"
+      - name: Vet
+        run: go vet ./...
+      - name: Test
+        run: go test -race ./...
