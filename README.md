@@ -108,7 +108,7 @@ both legitimate but not the same claim.
 
 ```
 relay whoami
-🧠 machine  whoart      (via NOUGEN_MACHINE; hostname=WhoArt)
+🧠 machine  node-c      (via NOUGEN_MACHINE; hostname=node-c)
 🤝 agent    claude-cli  (via NOUGEN_AGENT)
 ```
 
@@ -207,7 +207,7 @@ git config core.hooksPath hooks
 **An existing trailer is never overwritten.** This hook re-runs on every commit
 a rebase or cherry-pick replays, with the *replaying* machine's environment.
 Measured here on 2026-07-31: one `git rebase` rewrote a commit stamped
-`phoebus` / `claude-cli` into `blade1tb` / `unknown-agent` — silently moving
+`node-a` / `claude-cli` into `node-b1` / `unknown-agent` — silently moving
 another machine's work onto the rebasing box. The trailer records who wrote the
 commit, so the environment only ever fills a blank.
 
@@ -235,7 +235,7 @@ picked up when a human remembers to look.
 
 ```bash
 relay rules add --id mac-build --run './scripts/build.sh' \
-  --from-machine whoart --goal-contains deploy
+  --from-machine node-c --goal-contains deploy
 relay react                # fire rules for legs this box has not reacted to
 relay react --dry          # show what would run, run nothing
 relay rules runs           # audit: what fired, from whom, with what exit code

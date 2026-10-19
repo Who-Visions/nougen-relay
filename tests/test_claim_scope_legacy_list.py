@@ -1,5 +1,5 @@
 """Some claim writers stamped `scope` as a JSON list instead of a string
-(e.g. `.handoffs/claims/blade1tb__agy.json` on the live registry). Any reader
+(e.g. `.handoffs/claims/node-b1__agy.json` on the live registry). Any reader
 that hashes `(machine, scope)` as a dict key — `foreign_claims` chief among
 them — crashed with `TypeError: unhashable type: 'list'` the moment one such
 record was active in the same directory, taking `claim list --all` down for
@@ -14,7 +14,7 @@ import json
 from nougen_relay import core
 
 
-def _write_claim(root, name, scope, *, machine="blade1tb", status="released"):
+def _write_claim(root, name, scope, *, machine="node-b1", status="released"):
     claims = root / ".handoffs" / "claims"
     claims.mkdir(parents=True, exist_ok=True)
     (claims / f"{name}.json").write_text(

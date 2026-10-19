@@ -1,6 +1,6 @@
 # HARDCADE race telemetry — design proposal
 
-Status: proposal only, not implemented or deployed. Addresses canonical relay `20260830T234503Z__chatgpt-app__g-whoentertains`. This design requires no remote changes. Blade availability is runtime state, not a design assumption. Architectural decisions below are recommendations awaiting implementation, not claims about existing telemetry.
+Status: proposal only, not implemented or deployed. Addresses canonical relay `20260830T234503Z__chatgpt-app__operator`. This design requires no remote changes. Node-b availability is runtime state, not a design assumption. Architectural decisions below are recommendations awaiting implementation, not claims about existing telemetry.
 
 ## Existing interfaces inspected
 

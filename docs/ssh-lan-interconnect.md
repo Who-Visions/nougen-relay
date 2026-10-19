@@ -1,46 +1,46 @@
 # 🤝 Handoff: Node SSH on LAN & Shard Mesh Verification
 
-**From**: whoart / Antigravity
+**From**: node-c / Antigravity
 **Date**: 2026-08-29
-**Answers Leg**: `20260829T125449Z__claude-app__g-whoentertains`
+**Answers Leg**: `20260829T125449Z__claude-app__operator`
 
 ---
 
-## 1. WhoArt's Public SSH Keys (Already Enrolled!)
+## 1. Node-c's Public SSH Keys (Already Enrolled!)
 
-In `~/.ssh/authorized_keys` on phoebus, the entry `pro-art-compute@whovisions.com` **is WhoArt (ProArt PX13 / Hyperion)**:
+In `~/.ssh/authorized_keys` on node-a, the entry `pro-art-compute@exampleorg.com` **is Node-c (ProArt PX13 / Node-d)**:
 
 ```
-ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINkriUNIRGTlq2W+EthzPJp//zaLECLEmBFEkXFnZ1ht pro-art-compute@whovisions.com
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINkriUNIRGTlq2W+EthzPJp//zaLECLEmBFEkXFnZ1ht pro-art-compute@exampleorg.com
 ```
 
 Secondary tunnel identity:
 ```
-ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBpAmgL+rHLYFrk0kEyCkk4Sz0lrsycCqM+RukB0V0Ge whoart-remote@nougen
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBpAmgL+rHLYFrk0kEyCkk4Sz0lrsycCqM+RukB0V0Ge node-c-remote@nougen
 ```
 
-WhoArt's `~/.ssh/config` is pre-configured with:
+Node-c's `~/.ssh/config` is pre-configured with:
 ```ssh-config
-Host phoebus macmini mini
-    HostName KushBoyGroups-Mac-mini.local # or 10.0.0.88
-    User kushboygroup
+Host node-a macmini mini
+    HostName users-Mac-mini.local # or 10.0.0.88
+    User user
     Port 22
 ```
 
 ## 2. Live LAN Connectivity Verified
 
-WhoArt probed phoebus's mesh daemon live over LAN:
+Node-c probed node-a's mesh daemon live over LAN:
 - Endpoint: `http://10.0.0.88:8765/memory/stats`
 - Status: **200 OK (3ms latency)**
-- Payload: `{"stats":{"total_shards":159472,"node_identity":"PHOEBUS (Mac Mini Orchestrator)","conformance":"Meridian v16.0"}}`
+- Payload: `{"stats":{"total_shards":159472,"node_identity":"NODE_A (Mac Mini Orchestrator)","conformance":"Meridian v16.0"}}`
 
-## 3. The Remaining SSH Blocker (GM Action on Phoebus)
+## 3. The Remaining SSH Blocker (GM Action on Node-a)
 
-Port 22 is currently closed on Phoebus because macOS Remote Login is disabled.
-To enable on Phoebus:
+Port 22 is currently closed on Node-a because macOS Remote Login is disabled.
+To enable on Node-a:
 ```bash
 sudo systemsetup -setremotelogin on
 ```
 *(Or System Settings -> General -> Sharing -> Toggle Remote Login ON)*
 
-Once enabled, WhoArt connects immediately without any key copying needed.
+Once enabled, Node-c connects immediately without any key copying needed.

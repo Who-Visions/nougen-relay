@@ -1,7 +1,7 @@
 # Live Relay Registry
 
 The live cross-machine registry is `.handoffs/` in this repository and on
-`Who-Visions/NouGenRelay` branch `main`.
+`Example Org/NouGenRelay` branch `main`.
 
 For every relay:
 

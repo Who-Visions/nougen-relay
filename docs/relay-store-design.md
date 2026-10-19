@@ -2,7 +2,7 @@
 
 Status: design only. No marketplace, budget, billing, capability grant, or background worker is activated by this document.
 
-Acceptance scope: relay `20260830T234039Z__chatgpt-app__g-whoentertains` explicitly asks for a design proposal or implementation plan. This proposal covers its marketplace schema, discovery, quoting, publishing, reservation, execution, settlement, Tracker hooks, Shards feedback, permission boundaries, loop prevention, and compatibility requirements.
+Acceptance scope: relay `20260830T234039Z__chatgpt-app__operator` explicitly asks for a design proposal or implementation plan. This proposal covers its marketplace schema, discovery, quoting, publishing, reservation, execution, settlement, Tracker hooks, Shards feedback, permission boundaries, loop prevention, and compatibility requirements.
 
 ## Existing boundaries
 

@@ -1,7 +1,7 @@
 """The commit-time identity guard.
 
 Documentation was already there and it still did not hold: a box committed to
-this repo as `kushboygroups-mac-mini-local` / `unknown-agent`, read the
+this repo as `users-mac-mini-local` / `unknown-agent`, read the
 onboarding note, and corrected itself one commit too late. These assert that
 the hook now refuses at the only moment the mistake is still fixable.
 """
@@ -66,7 +66,7 @@ def last_message(repo):
 
 
 def test_an_unset_agent_is_refused_before_it_reaches_history(repo):
-    out = commit(repo, "a.txt", NOUGEN_MACHINE="blade1tb")
+    out = commit(repo, "a.txt", NOUGEN_MACHINE="node-b1")
     assert out.returncode != 0, "an anonymous commit must not land"
     assert "unknown-agent" in out.stderr
     # The refusal must tell you how to fix it — but not in one fixed spelling.
@@ -86,34 +86,34 @@ def test_a_first_commit_still_works_in_an_empty_registry(repo):
 
 
 def test_a_machine_the_registry_already_knows_commits_normally(repo):
-    record(repo, "blade1tb")
-    out = commit(repo, "a.txt", NOUGEN_MACHINE="blade1tb", NOUGEN_AGENT="claude-cli")
+    record(repo, "node-b1")
+    out = commit(repo, "a.txt", NOUGEN_MACHINE="node-b1", NOUGEN_AGENT="claude-cli")
     assert out.returncode == 0, out.stderr
-    assert "Machine: blade1tb" in last_message(repo)
+    assert "Machine: node-b1" in last_message(repo)
 
 
 def test_a_name_the_registry_has_never_seen_is_refused(repo):
     """The exact failure: the Mac mini's hostname, not the name the fleet uses."""
-    record(repo, "blade1tb")
-    record(repo, "whoart")
+    record(repo, "node-b1")
+    record(repo, "node-c")
     out = commit(repo, "a.txt",
-                 NOUGEN_MACHINE="kushboygroups-mac-mini-local", NOUGEN_AGENT="claude-cli")
+                 NOUGEN_MACHINE="users-mac-mini-local", NOUGEN_AGENT="claude-cli")
     assert out.returncode != 0, "a second identity for one box must not land silently"
-    assert "kushboygroups-mac-mini-local" in out.stderr
-    assert "blade1tb" in out.stderr and "whoart" in out.stderr, "show what the fleet calls itself"
+    assert "users-mac-mini-local" in out.stderr
+    assert "node-b1" in out.stderr and "node-c" in out.stderr, "show what the fleet calls itself"
     assert any(hint in out.stderr for hint in ("NOUGEN_MACHINE", "relay init"))
 
 
 def test_the_override_lets_a_genuinely_new_box_introduce_itself(repo):
-    record(repo, "blade1tb")
-    out = commit(repo, "a.txt", NOUGEN_MACHINE="phoebus", NOUGEN_AGENT="claude-cli",
+    record(repo, "node-b1")
+    out = commit(repo, "a.txt", NOUGEN_MACHINE="node-a", NOUGEN_AGENT="claude-cli",
                  NOUGEN_IDENTITY_OK="1")
     assert out.returncode == 0, out.stderr
-    assert "Machine: phoebus" in last_message(repo)
+    assert "Machine: node-a" in last_message(repo)
 
 
 def test_the_override_is_the_only_way_past_an_unset_agent(repo):
-    out = commit(repo, "a.txt", NOUGEN_MACHINE="blade1tb", NOUGEN_IDENTITY_OK="1")
+    out = commit(repo, "a.txt", NOUGEN_MACHINE="node-b1", NOUGEN_IDENTITY_OK="1")
     assert out.returncode == 0, out.stderr
     assert "Agent: unknown-agent" in last_message(repo), (
         "an override still records the truth — it does not invent an identity"
@@ -125,28 +125,28 @@ def test_a_rebase_does_not_reattribute_another_machines_commit(repo):
     commit with the REBASING box's environment, and `--if-exists replace` used
     that to overwrite the author's own trailer — silently moving one machine's
     work onto another and losing the lane."""
-    record(repo, "phoebus")
-    record(repo, "blade1tb")
-    assert commit(repo, "base.txt", NOUGEN_MACHINE="phoebus",
+    record(repo, "node-a")
+    record(repo, "node-b1")
+    assert commit(repo, "base.txt", NOUGEN_MACHINE="node-a",
                   NOUGEN_AGENT="claude-cli").returncode == 0
 
     git("checkout", "-qb", "feat", cwd=repo)
-    assert commit(repo, "feat.txt", NOUGEN_MACHINE="phoebus",
+    assert commit(repo, "feat.txt", NOUGEN_MACHINE="node-a",
                   NOUGEN_AGENT="claude-cli").returncode == 0
 
     git("checkout", "-q", "main", cwd=repo)
-    assert commit(repo, "main.txt", NOUGEN_MACHINE="blade1tb",
+    assert commit(repo, "main.txt", NOUGEN_MACHINE="node-b1",
                   NOUGEN_AGENT="claude-cli").returncode == 0
 
-    # The rebase runs on blade, in a shell that never exported phoebus's identity.
+    # The rebase runs on node-b, in a shell that never exported node-a's identity.
     git("checkout", "-q", "feat", cwd=repo)
     env = {k: v for k, v in os.environ.items() if not k.startswith("NOUGEN_")}
-    env["NOUGEN_MACHINE"] = "blade1tb"
+    env["NOUGEN_MACHINE"] = "node-b1"
     rebase = git("rebase", "main", cwd=repo, env=env, check=False)
     assert rebase.returncode == 0, rebase.stderr
 
     message = last_message(repo)
-    assert "Machine: phoebus" in message, "the rebasing box took the credit"
+    assert "Machine: node-a" in message, "the rebasing box took the credit"
     assert "Agent: claude-cli" in message, "the lane was replaced by unknown-agent"
 
 
@@ -154,14 +154,14 @@ def test_a_replay_is_never_refused_partway(repo):
     """Refusing mid-rebase aborts it halfway, which is a worse failure than a
     wrong trailer — and there is nothing left to refuse, since the replayed
     commit keeps the identity it was written with."""
-    record(repo, "phoebus")
-    assert commit(repo, "base.txt", NOUGEN_MACHINE="phoebus",
+    record(repo, "node-a")
+    assert commit(repo, "base.txt", NOUGEN_MACHINE="node-a",
                   NOUGEN_AGENT="claude-cli").returncode == 0
     git("checkout", "-qb", "feat", cwd=repo)
-    assert commit(repo, "feat.txt", NOUGEN_MACHINE="phoebus",
+    assert commit(repo, "feat.txt", NOUGEN_MACHINE="node-a",
                   NOUGEN_AGENT="claude-cli").returncode == 0
     git("checkout", "-q", "main", cwd=repo)
-    assert commit(repo, "main.txt", NOUGEN_MACHINE="phoebus",
+    assert commit(repo, "main.txt", NOUGEN_MACHINE="node-a",
                   NOUGEN_AGENT="claude-cli").returncode == 0
     git("checkout", "-q", "feat", cwd=repo)
 
@@ -171,7 +171,7 @@ def test_a_replay_is_never_refused_partway(repo):
     env["NOUGEN_MACHINE"] = "a-box-nobody-knows"
     rebase = git("rebase", "main", cwd=repo, env=env, check=False)
     assert rebase.returncode == 0, f"the guard aborted a rebase: {rebase.stderr}"
-    assert "Machine: phoebus" in last_message(repo)
+    assert "Machine: node-a" in last_message(repo)
 
 
 @pytest.mark.skipif(sys.platform == "win32", reason="PATH shim needs a POSIX shell")
@@ -182,14 +182,14 @@ def test_a_probed_hostname_drops_its_network_suffix(repo, tmp_path):
     fake_bin = tmp_path / "bin"
     fake_bin.mkdir()
     (fake_bin / "hostname").write_text(
-        "#!/bin/sh\necho KushBoyGroups-Mac-mini.local\n", encoding="utf-8")
+        "#!/bin/sh\necho users-Mac-mini.local\n", encoding="utf-8")
     os.chmod(fake_bin / "hostname", 0o755)
 
-    record(repo, "kushboygroups-mac-mini")
+    record(repo, "users-mac-mini")
     out = commit(repo, "a.txt", NOUGEN_AGENT="claude-cli",
                  PATH=f"{fake_bin}{os.pathsep}{os.environ['PATH']}")
     assert out.returncode == 0, out.stderr
-    assert "Machine: kushboygroups-mac-mini\n" in last_message(repo)
+    assert "Machine: users-mac-mini\n" in last_message(repo)
 
 
 def test_an_explicit_name_is_passed_through_untouched(repo):
@@ -208,13 +208,13 @@ def test_the_guard_follows_the_configured_registry_directory(repo):
     rather than assuming `.handoffs`."""
     directory = repo / "legs"
     directory.mkdir()
-    (directory / "20260731T000000Z__blade1tb__claude-cli.md").write_text("x\n", encoding="utf-8")
+    (directory / "20260731T000000Z__node-b1__claude-cli.md").write_text("x\n", encoding="utf-8")
 
     refused = commit(repo, "a.txt", NOUGEN_GIT_HANDOFF_DIR="legs",
                      NOUGEN_MACHINE="stranger", NOUGEN_AGENT="claude-cli")
     assert refused.returncode != 0, "the guard read the wrong directory"
-    assert "blade1tb" in refused.stderr
+    assert "node-b1" in refused.stderr
 
     ok = commit(repo, "a.txt", NOUGEN_GIT_HANDOFF_DIR="legs",
-                NOUGEN_MACHINE="blade1tb", NOUGEN_AGENT="claude-cli")
+                NOUGEN_MACHINE="node-b1", NOUGEN_AGENT="claude-cli")
     assert ok.returncode == 0, ok.stderr

@@ -29,7 +29,7 @@ def test_gateway_write_merges_remote_events_and_targets_canonical_branch(tmp_pat
         "relay": [{"event": "create", "at": "2026-08-28T17:59:00Z", "agent": "claude"}],
     }
     calls = []
-    monkeypatch.setenv("NOUGEN_RELAY_REPO_SLUG", "Who-Visions/NouGenRelay")
+    monkeypatch.setenv("NOUGEN_RELAY_REPO_SLUG", "Example Org/NouGenRelay")
     monkeypatch.setenv("NOUGEN_RELAY_BRANCH", "main")
     monkeypatch.setattr(core.shutil, "which", lambda _: "gh")
 
@@ -46,7 +46,7 @@ def test_gateway_write_merges_remote_events_and_targets_canonical_branch(tmp_pat
     ) is True
 
     put_argv, put_kwargs = calls[-1]
-    assert put_argv[:5] == ["gh", "api", "-X", "PUT", "repos/Who-Visions/NouGenRelay/contents/.handoffs/leg-1.json"]
+    assert put_argv[:5] == ["gh", "api", "-X", "PUT", "repos/Example Org/NouGenRelay/contents/.handoffs/leg-1.json"]
     body = json.loads(put_kwargs["input"])
     assert body["branch"] == "main"
     merged = json.loads(base64.b64decode(body["content"]).decode("utf-8"))
@@ -78,7 +78,7 @@ def test_gateway_write_retries_a_stale_sha_without_losing_events(tmp_path, monke
         json.dumps(_remote_metadata(remote_two, "sha-2")),
     ])
     puts = []
-    monkeypatch.setenv("NOUGEN_RELAY_REPO_SLUG", "Who-Visions/NouGenRelay")
+    monkeypatch.setenv("NOUGEN_RELAY_REPO_SLUG", "Example Org/NouGenRelay")
     monkeypatch.setenv("NOUGEN_RELAY_BRANCH", "main")
     monkeypatch.setenv("NOUGEN_RELAY_UPSTREAM_RETRIES", "2")
     monkeypatch.setattr(core.shutil, "which", lambda _: "gh")
@@ -110,9 +110,9 @@ def test_cmd_relay_uses_gateway_write_before_branch_push(tmp_path, monkeypatch):
         subprocess.run(["git", *args], cwd=root, check=True, capture_output=True)
     handoffs = root / ".handoffs"
     handoffs.mkdir()
-    leg_id = "20260828T180000Z__claude__g-whoentertains"
+    leg_id = "20260828T180000Z__claude__operator"
     (handoffs / f"{leg_id}.json").write_text(
-        json.dumps({"id": leg_id, "machine": "claude", "agent": "g-whoentertains",
+        json.dumps({"id": leg_id, "machine": "claude", "agent": "operator",
                     "goal": "take the baton", "status": "open", "relay": []}, indent=2) + "\n",
         encoding="utf-8",
     )

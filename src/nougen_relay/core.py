@@ -164,7 +164,7 @@ def repo_root() -> Optional[Path]:
 
 
 # Suffixes a machine gets from its network, not from anyone naming it. mDNS
-# hands out `.local` and the box is suddenly `kushboygroups-mac-mini-local` in
+# hands out `.local` and the box is suddenly `users-mac-mini-local` in
 # every record — a name no operator recognises as theirs. Only these known
 # local-network suffixes are stripped: a general FQDN is left alone, because
 # `build.corp.example.com` -> `build` would silently collide with a `build` in
@@ -302,7 +302,7 @@ def unintroduced_machine_warning(root: Path) -> Optional[str]:
     frequently runs where nobody is.
 
     Still the check that catches one box under two names, which is how
-    `who-mac-mini`, `phoebus` and `kushboygroups-mac-mini-local` all came to
+    `who-mac-mini`, `node-a` and `users-mac-mini-local` all came to
     mean the same Mac.
     """
     if identity_ok():
@@ -637,7 +637,7 @@ def stamped_commit(subject: str, *paths: str) -> Optional[str]:
     commits whatever the operator happened to have staged, under a message that
     describes a claim — measured here on 2026-08-01, where a `claim release`
     swept a source fix, its tests and a new tool into a commit titled
-    "claim(whoart): release". Nothing was lost and the code was correct, but
+    "claim(node-c): release". Nothing was lost and the code was correct, but
     `git log` then misdescribes the change, which is worse than a failure that
     announces itself: the next person bisecting or auditing reads the subject
     and believes it.
@@ -690,7 +690,7 @@ def claims_dir(root: Path) -> Path:
 
 # Read in order. NOUGEN_SESSION first so a lane can always override, then
 # session ids harnesses already export — VERIFIED to exist, not guessed at.
-# CLAUDE_CODE_SESSION_ID was confirmed on whoart 2026-08-02 as the per-session
+# CLAUDE_CODE_SESSION_ID was confirmed on node-c 2026-08-02 as the per-session
 # UUID (it matches the session's own scratchpad directory name). Add another
 # only after seeing it on a real box: a variable that is usually unset would
 # make this look configured while doing nothing, which is the failure this
@@ -702,7 +702,7 @@ def resolve_session() -> str:
     """Which SESSION on this lane is speaking, or "" when nothing knows.
 
     Identity is machine+lane, and that was enough while a lane meant one
-    session. On 2026-08-02 two agent sessions ran on whoart under the same
+    session. On 2026-08-02 two agent sessions ran on node-c under the same
     `claude-cli` lane at the same time: they were invisible to each other's
     claims, and a bare `claim release` in one released the other's, mid-work.
 
@@ -2412,7 +2412,7 @@ def cmd_check(args: argparse.Namespace) -> int:
 def identity() -> dict:
     """Who and where, with the provenance of each answer.
 
-    Provenance matters: a handoff that says `blade1tb` is only trustworthy if
+    Provenance matters: a handoff that says `node-b1` is only trustworthy if
     the reader can tell whether that came from an env var someone set or from
     the OS itself. Both are legitimate; conflating them is not.
     """
@@ -2905,7 +2905,7 @@ def cmd_quota(args: argparse.Namespace) -> int:
     # Marathon calibration reference
     if getattr(args, "calibration", False):
         print()
-        print("📊 MARATHON CALIBRATION (40.5h Phoebus session):")
+        print("📊 MARATHON CALIBRATION (40.5h Node-a session):")
         cal = qg.MARATHON_CALIBRATION
         print(f"   Duration: {cal['duration_hours']}h | Steps: {cal['total_steps']:,}")
         print(f"   Billable: {cal['billable_tokens']:,} tokens ({cal['fresh_input_tokens']:,} in + {cal['output_tokens']:,} out)")

@@ -138,8 +138,8 @@ def last_relayed(log_dir: Path, machine: Optional[str] = None) -> Optional[str]:
 
     Vaults are per-box, so when ``machine`` is given, only markers written by
     that machine (or by nobody — attribution postdates the first logs) can
-    advance its cutoff. Observed 2026-08-08: whoart's 08-05 relay had pushed
-    the fleet-wide cutoff past shards blade1tb had never published at all —
+    advance its cutoff. Observed 2026-08-08: node-c's 08-05 relay had pushed
+    the fleet-wide cutoff past shards node-b1 had never published at all —
     not republished, never published, and nothing would ever offer them again.
     A box relaying for the first time therefore sees its whole vault as
     unpublished, which is the truth; curate with --since / --exclude.

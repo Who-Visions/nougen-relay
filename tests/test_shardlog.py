@@ -93,11 +93,11 @@ def test_prose_quoting_the_marker_format_is_not_a_cutoff(tmp_path):
     (docs / "FLEET-LOG-2026-08-01.md").write_text(
         "# Fleet log\n"
         "Each log ends with `<!-- relay-shards through=<iso> machine=<m> -->`.\n"
-        "<!-- relay-shards through=2026-08-01T02:20:07.635032Z machine=whoart -->\n",
+        "<!-- relay-shards through=2026-08-01T02:20:07.635032Z machine=node-c -->\n",
         encoding="utf-8",
     )
     (docs / "FLEET-LOG-2026-08-05.md").write_text(
-        "# Fleet log\n<!-- relay-shards through=2026-08-05T04:55:27.029878Z machine=whoart -->\n",
+        "# Fleet log\n<!-- relay-shards through=2026-08-05T04:55:27.029878Z machine=node-c -->\n",
         encoding="utf-8",
     )
     assert shardlog.last_relayed(docs) == "2026-08-05T04:55:27.029878Z"
@@ -118,23 +118,23 @@ def test_a_log_whose_only_marker_is_prose_falls_back_to_headings(tmp_path):
 
 
 def test_another_machines_marker_is_not_my_cutoff(tmp_path):
-    """Vaults are per-box. Observed 2026-08-08: whoart's 08-05 relay had
-    advanced the fleet-wide cutoff past shards blade1tb had NEVER published —
+    """Vaults are per-box. Observed 2026-08-08: node-c's 08-05 relay had
+    advanced the fleet-wide cutoff past shards node-b1 had NEVER published —
     not republished, never offered at all, silently and permanently."""
     docs = tmp_path / "docs"
     docs.mkdir()
     (docs / "FLEET-LOG-2026-08-05.md").write_text(
         "# Fleet log\n"
-        "<!-- relay-shards through=2026-08-05T04:55:27.029878Z machine=whoart -->\n",
+        "<!-- relay-shards through=2026-08-05T04:55:27.029878Z machine=node-c -->\n",
         encoding="utf-8",
     )
     (docs / "FLEET-LOG-2026-07-19.md").write_text(
         "# Fleet log\n"
-        "<!-- relay-shards through=2026-07-19T15:14:07.803861Z machine=blade1tb -->\n",
+        "<!-- relay-shards through=2026-07-19T15:14:07.803861Z machine=node-b1 -->\n",
         encoding="utf-8",
     )
-    assert shardlog.last_relayed(docs, "blade1tb") == "2026-07-19T15:14:07.803861Z"
-    assert shardlog.last_relayed(docs, "whoart") == "2026-08-05T04:55:27.029878Z"
+    assert shardlog.last_relayed(docs, "node-b1") == "2026-07-19T15:14:07.803861Z"
+    assert shardlog.last_relayed(docs, "node-c") == "2026-08-05T04:55:27.029878Z"
     # No machine asked = the old global answer, unchanged.
     assert shardlog.last_relayed(docs) == "2026-08-05T04:55:27.029878Z"
 
@@ -148,7 +148,7 @@ def test_an_unattributed_marker_still_binds_every_box(tmp_path):
         "<!-- relay-shards through=2026-07-31T23:45:10.527740Z -->\n",
         encoding="utf-8",
     )
-    assert shardlog.last_relayed(docs, "blade1tb") == "2026-07-31T23:45:10.527740Z"
+    assert shardlog.last_relayed(docs, "node-b1") == "2026-07-31T23:45:10.527740Z"
 
 
 def test_another_machines_log_headings_are_not_a_fallback_cutoff(tmp_path):
@@ -159,11 +159,11 @@ def test_another_machines_log_headings_are_not_a_fallback_cutoff(tmp_path):
     docs.mkdir()
     (docs / "FLEET-LOG-2026-08-05.md").write_text(
         "# Fleet log\n"
-        "## 04:55Z — whoart's entry\n\nbody\n"
-        "<!-- relay-shards through=2026-08-05T04:55:27.029878Z machine=whoart -->\n",
+        "## 04:55Z — node-c's entry\n\nbody\n"
+        "<!-- relay-shards through=2026-08-05T04:55:27.029878Z machine=node-c -->\n",
         encoding="utf-8",
     )
-    assert shardlog.last_relayed(docs, "blade1tb") is None
+    assert shardlog.last_relayed(docs, "node-b1") is None
 
 
 def test_a_box_that_never_relayed_has_no_cutoff(tmp_path):
@@ -171,7 +171,7 @@ def test_a_box_that_never_relayed_has_no_cutoff(tmp_path):
     Curation is --since/--exclude, not a silently borrowed cutoff."""
     docs = tmp_path / "docs"
     docs.mkdir()
-    assert shardlog.last_relayed(docs, "phoebus") is None
+    assert shardlog.last_relayed(docs, "node-a") is None
 
 
 def test_already_relayed_shards_are_not_repeated(tmp_path):
@@ -258,7 +258,7 @@ def test_a_variable_name_is_not_a_secret(tmp_path):
 
 
 def test_insurance_shards_do_not_travel(tmp_path):
-    """Observed 2026-08-08: blade1tb held 8 shards of an active insurance
+    """Observed 2026-08-08: node-b1 held 8 shards of an active insurance
     claim — strategy, photo evidence, receipts — tagged 'insurance', which was
     not in WITHHELD_TAGS, so relay would have copied the bodies verbatim into
     a tracked file. An active claim has an adversarial counterparty; its

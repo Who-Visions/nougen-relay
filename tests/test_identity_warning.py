@@ -55,20 +55,20 @@ def repo(tmp_path):
 
 def test_the_first_record_ever_is_not_flagged(repo):
     """An empty registry has nobody to be a stranger to."""
-    out = relay(repo, "create", "-g", "first ever", "-m", "notes", machine="phoebus")
+    out = relay(repo, "create", "-g", "first ever", "-m", "notes", machine="node-a")
     assert "never written a record" not in out.stdout, out.stdout
 
 
 def test_a_second_name_on_the_same_repo_is_flagged(repo):
-    relay(repo, "create", "-g", "first", "-m", "notes", machine="phoebus")
+    relay(repo, "create", "-g", "first", "-m", "notes", machine="node-a")
     out = relay(repo, "create", "-g", "second", "-m", "notes", machine="who-mac-mini")
     assert "never written a record" in out.stdout, out.stdout
-    assert "phoebus" in out.stdout, "the warning must name who is already here"
+    assert "node-a" in out.stdout, "the warning must name who is already here"
 
 
 def test_the_warning_never_blocks_the_write(repo):
     """The record is the point. A flag that loses one is worse than the gap."""
-    relay(repo, "create", "-g", "first", "-m", "notes", machine="phoebus")
+    relay(repo, "create", "-g", "first", "-m", "notes", machine="node-a")
     out = relay(repo, "create", "-g", "from a new box", "-m", "notes",
                 machine="brand-new-box")
     assert out.returncode == 0, out.stdout + out.stderr
@@ -78,32 +78,32 @@ def test_the_warning_never_blocks_the_write(repo):
 
 def test_a_joining_box_can_still_take_the_baton(repo):
     """The exact workflow refusing would have broken."""
-    relay(repo, "create", "-g", "needs a mac", "-m", "notes", machine="whoart")
+    relay(repo, "create", "-g", "needs a mac", "-m", "notes", machine="node-c")
     git("add", ".handoffs", cwd=repo)
     git("commit", "-qm", "handoff", cwd=repo)
 
-    out = relay(repo, "relay", "ack", "-m", "picking this up", machine="phoebus")
+    out = relay(repo, "relay", "ack", "-m", "picking this up", machine="node-a")
     assert out.returncode == 0, out.stdout + out.stderr
     assert "baton taken" in out.stdout
     assert "never written a record" in out.stdout, "still flagged, just not blocked"
 
 
 def test_a_known_machine_is_quiet(repo):
-    relay(repo, "create", "-g", "first", "-m", "notes", machine="phoebus")
-    out = relay(repo, "create", "-g", "second", "-m", "notes", machine="phoebus")
+    relay(repo, "create", "-g", "first", "-m", "notes", machine="node-a")
+    out = relay(repo, "create", "-g", "second", "-m", "notes", machine="node-a")
     assert "never written a record" not in out.stdout, out.stdout
 
 
 def test_reads_are_never_flagged(repo):
     """`claim list` is what you run to find out which name the fleet uses."""
-    relay(repo, "create", "-g", "first", "-m", "notes", machine="phoebus")
+    relay(repo, "create", "-g", "first", "-m", "notes", machine="node-a")
     for args in (("claim", "list"), ("claim", "check", "-s", "src"), ("list",)):
         out = relay(repo, *args, machine="a-stranger")
         assert "never written a record" not in out.stdout, (args, out.stdout)
 
 
 def test_the_override_silences_it(repo):
-    relay(repo, "create", "-g", "first", "-m", "notes", machine="phoebus")
+    relay(repo, "create", "-g", "first", "-m", "notes", machine="node-a")
     out = relay(repo, "create", "-g", "deliberate", "-m", "notes",
                 machine="brand-new-box", NOUGEN_IDENTITY_OK="1")
     assert "never written a record" not in out.stdout, out.stdout
@@ -112,7 +112,7 @@ def test_the_override_silences_it(repo):
 @pytest.mark.skipif(shutil.which("sh") is None, reason="Needs sh to test the hook's shell snippet")
 def test_tool_and_hook_agree_on_who_is_known(repo):
     """Two notions of 'known' would be worse than one."""
-    relay(repo, "create", "-g", "first", "-m", "notes", machine="phoebus")
+    relay(repo, "create", "-g", "first", "-m", "notes", machine="node-a")
     hook_view = subprocess.run(
         ["sh", "-c",
          "ls .handoffs 2>/dev/null | sed -n 's/^[^_]*__\\([^_]*\\)__.*/\\1/p' | sort -u"],

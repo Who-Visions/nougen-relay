@@ -3,7 +3,7 @@
 Two properties matter more than its triage output: exactly one daemon may run
 against a state DB (they share a SQLite ledger, and two writers double every lag
 alert), and every path it uses has to be discovered rather than baked in, because
-the same file runs from Sol-Ai/tools on blade and from tools/ in this repo.
+the same file runs from Sol-Ai/tools on node-b and from tools/ in this repo.
 """
 
 import datetime

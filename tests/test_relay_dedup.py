@@ -67,7 +67,7 @@ def test_cross_agent_duplicate_is_flagged(tmp_path, monkeypatch, degraded):
     monkeypatch.setenv("NOUGEN_HANDOFFS_DIR", str(tmp_path))
     g = "Build autonomous completion reconciliation for the relay"
     _leg(tmp_path, "20260828T000001Z__a__codex", g, "codex", machine="ccr")
-    _leg(tmp_path, "20260828T000002Z__b__agy", g, "antigravity", machine="blade")
+    _leg(tmp_path, "20260828T000002Z__b__agy", g, "antigravity", machine="node-b")
     pairs = rd.find_pairs(rd.load_legs(), rd.DEFAULT_THRESHOLD, degraded)
     assert len(pairs) == 1 and pairs[0][0] >= rd.DEFAULT_THRESHOLD
 

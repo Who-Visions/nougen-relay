@@ -18,7 +18,7 @@ def test_infer_message_type():
 
 def test_claim_score_calculation():
     caps = {
-        "machine": "phoebus",
+        "machine": "node-a",
         "agent": "gemini-cli",
         "repos": ["NouGenRelay"],
         "write_access": True,
@@ -27,7 +27,7 @@ def test_claim_score_calculation():
     leg = {
         "id": "leg_1",
         "goal": "GM DIRECTIVE: critical scheduler fix",
-        "machine": "phoebus",
+        "machine": "node-a",
         "created_utc": "2026-09-06T11:00:00+00:00",
     }
     res = claim_engine.compute_claim_score(leg, caps, active_claims=[], now_dt=FROZEN)
@@ -39,17 +39,17 @@ def test_claim_score_calculation():
 
 def test_claim_score_with_conflict():
     caps = {
-        "machine": "phoebus",
+        "machine": "node-a",
         "agent": "gemini-cli",
         "write_access": True,
     }
     leg = {
         "id": "leg_2",
         "goal": "refactor database",
-        "machine": "whoart",
+        "machine": "node-c",
     }
     foreign_claim = {
-        "machine": "whoart",
+        "machine": "node-c",
         "agent": "claude",
         "scope": "leg_2 database",
         "status": "active",
