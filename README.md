@@ -313,3 +313,16 @@ copies and drive real pushes and pulls between them, because the transport *is*
 the behaviour worth testing. That has a measurement cost — coverage.py cannot
 see into a subprocess, so `conftest.py` arms the children explicitly; without it
 the suite reports 20% while exercising 63%.
+
+<!-- nougen:fleet-role:begin (generated from NouGenRelay fleet/manifest.json; edit the manifest, not this block) -->
+## Fleet role
+
+| | |
+|---|---|
+| Role | public mirror of NouGenRelay |
+| Kind | core |
+| Status | mirror |
+| Canonical for | — |
+| Visibility | public |
+
+<!-- nougen:fleet-role:end -->
