@@ -1,0 +1,12 @@
+{
+  "machine": "node-b",
+  "agent": "worker",
+  "goal": "Legacy list-scope claim fixture",
+  "scope": [
+    "src/pkg/legacy.py",
+    "docs/RELAY.md"
+  ],
+  "status": "active",
+  "created_utc": "2026-11-11T17:10:00+00:00",
+  "ttl_hours": 8.0
+}

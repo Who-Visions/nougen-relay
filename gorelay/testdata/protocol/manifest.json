@@ -1,0 +1,45 @@
+{
+  "schema_version": "phase0/v1",
+  "baseline_commit": "5327c0021",
+  "inventory": {
+    "handoffs_top_level_json": 6881,
+    "handoffs_top_level_md": 6842,
+    "handoffs_json_without_md": 75,
+    "handoffs_md_without_json": 36,
+    "claim_dirs": [
+      ".handoffs/claims",
+      ".claims",
+      "claims"
+    ],
+    "canonical_claims_count": 853,
+    "legacy_dot_claims_count": 6,
+    "legacy_root_claims_count": 1,
+    "lease_dir": ".relay/leases",
+    "idempotency_dir": ".relay/idempotency",
+    "fencing_token_source_files": [
+      "src/nougen_relay/core.py",
+      "src/nougen_relay/guard.py",
+      "tools/relay_daemon.py"
+    ],
+    "lease_id_source_files": [
+      "src/nougen_relay/core.py"
+    ],
+    "authority_file_in_repo": false,
+    "authority_external_path": "~/.nougen/AUTHORITY.md"
+  },
+  "fixtures": [
+    "handoffs/open_explicit.json",
+    "handoffs/open_implicit.json",
+    "handoffs/acked.json",
+    "handoffs/complete.json",
+    "handoffs/non_handoff_sidecar.json",
+    "claims/active_string_scope.json",
+    "claims/active_list_scope.json",
+    "claims/released_claim.json",
+    "claims/expired_claim.json",
+    "leases/active_lease.json",
+    "leases/reclaimed_lease.json",
+    "idempotency/ack_receipt.json",
+    "vectors.json"
+  ]
+}

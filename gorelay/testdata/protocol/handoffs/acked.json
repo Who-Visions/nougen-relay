@@ -1,0 +1,20 @@
+{
+  "id": "20261111T170000Z__node-b__worker",
+  "machine": "node-b",
+  "agent": "worker",
+  "goal": "Already acked leg fixture",
+  "branch": "main",
+  "sha": "def5678",
+  "created_utc": "2026-11-11T17:00:00Z",
+  "status": "acked",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "node-a",
+      "agent": "runner",
+      "at": "2026-11-11T17:05:00+00:00",
+      "note": "taken",
+      "idempotency_key": "8442c5ec04361d7bda87297ecdec6c5fd9d4437d6eb8688c3e239053f41544e"
+    }
+  ]
+}

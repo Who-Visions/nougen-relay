@@ -16,3 +16,4 @@ docs/FLEET-LOG-2026-08-17.md
 .handoffs/
 .relay/
 logs/
+gorelay/gorelay

@@ -1,0 +1,9 @@
+{
+  "machine": "node-b",
+  "agent": "worker",
+  "goal": "Expired claim fixture",
+  "scope": "src/pkg/expired.py",
+  "status": "active",
+  "created_utc": "2026-11-10T01:00:00+00:00",
+  "ttl_hours": 8.0
+}
