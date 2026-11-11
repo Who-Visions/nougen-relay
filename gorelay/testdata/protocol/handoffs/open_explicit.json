@@ -1,0 +1,17 @@
+{
+  "id": "20261111T172801Z__node-b__worker",
+  "machine": "node-b",
+  "agent": "worker",
+  "goal": "Add ack and claim to gorelay",
+  "branch": "feat/example",
+  "sha": "abc1234",
+  "remote": "origin",
+  "created_utc": "2026-11-11T17:28:01Z",
+  "stack": {
+    "manifests": [],
+    "frameworks": []
+  },
+  "dirty": false,
+  "status": "open",
+  "body": "Golden open explicit leg fixture."
+}

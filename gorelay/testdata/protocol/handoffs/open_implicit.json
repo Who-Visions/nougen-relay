@@ -1,0 +1,8 @@
+{
+  "machine": "node-b",
+  "agent": "worker",
+  "goal": "Legacy open leg without status field",
+  "branch": "main",
+  "sha": "1112223",
+  "created_utc": "2026-10-01T12:00:00Z"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "20261111T160000Z__node-b__worker",
+  "machine": "node-b",
+  "agent": "worker",
+  "goal": "Completed leg fixture",
+  "branch": "main",
+  "sha": "9998887",
+  "created_utc": "2026-11-11T16:00:00Z",
+  "status": "complete",
+  "relay": [
+    {
+      "event": "ack",
+      "machine": "node-a",
+      "agent": "runner",
+      "at": "2026-11-11T16:02:00+00:00",
+      "note": "started"
+    },
+    {
+      "event": "complete",
+      "state": "complete",
+      "machine": "node-a",
+      "agent": "runner",
+      "at": "2026-11-11T16:10:00+00:00",
+      "note": "verified"
+    }
+  ]
+}

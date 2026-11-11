@@ -1,0 +1,9 @@
+{
+  "op": "ack",
+  "idempotency_key": "be8f579321c1ba154849d8d331850a4e2bb29157fb0a91ff2dcb926eb8f15356",
+  "leg_id": "20261111T172801Z__node-b__worker",
+  "goal": "Add ack and claim to gorelay",
+  "acked_utc": "2026-11-11T17:28:15+00:00",
+  "machine": "node-a",
+  "agent": "runner"
+}

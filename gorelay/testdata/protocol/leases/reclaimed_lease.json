@@ -1,0 +1,41 @@
+{
+  "leg_id": "20261111T172801Z__node-b__worker",
+  "lease_id": "f6e5d4c3b2a1",
+  "fencing_token": 2,
+  "machine": "node-c",
+  "agent": "runner",
+  "status": "active",
+  "state": "LEASED",
+  "goal": "Add ack and claim to gorelay",
+  "idempotency_key": "be8f579321c1ba154849d8d331850a4e2bb29157fb0a91ff2dcb926eb8f15356",
+  "leased_utc": "2026-11-11T17:29:00+00:00",
+  "heartbeat_utc": "2026-11-11T17:29:00+00:00",
+  "updated_utc": "2026-11-11T17:29:00+00:00",
+  "heartbeat_count": 0,
+  "ttl_minutes": 10.0,
+  "retry_count": 1,
+  "attempt_count": 2,
+  "history": [
+    {
+      "utc": "2026-11-11T17:20:00+00:00",
+      "actor": "node-a/runner",
+      "from": "CLAIMABLE",
+      "to": "LEASED",
+      "evidence": "acquire"
+    },
+    {
+      "utc": "2026-11-11T17:29:00+00:00",
+      "actor": "node-c/runner",
+      "from": "CLAIMABLE",
+      "to": "LEASED",
+      "evidence": "reclaim: expired lease from node-a/runner token 1"
+    }
+  ],
+  "rejected": [
+    {
+      "utc": "2026-11-11T17:29:05+00:00",
+      "op": "release:complete",
+      "token": 1
+    }
+  ]
+}
