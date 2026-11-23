@@ -110,10 +110,20 @@ def process_single_leg(json_path: str) -> bool:
         print(f"❌ Error writing {leg_id}: {e}")
         return False
 
+def _is_open(json_path: str) -> bool:
+    """True if the leg file parses and is open; unreadable files are skipped,
+    not fatal (one corrupt leg must not abort the whole batch)."""
+    try:
+        with open(json_path, "r", encoding="utf-8") as f:
+            meta = json.load(f)
+    except (OSError, ValueError):
+        return False
+    return isinstance(meta, dict) and meta.get("status") == "open"
+
 def advance_batch(target_date: str, max_count: int = 15):
     relay_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".handoffs"))
     files = sorted(glob.glob(os.path.join(relay_dir, f"{target_date}*.json")))
-    open_files = [f for f in files if json.load(open(f, encoding="utf-8")).get("status") == "open"]
+    open_files = [f for f in files if _is_open(f)]
     
     batch = open_files[:max_count]
     print(f"\n🛡️ [VRAM-Safe Sequential Worker] Processing {len(batch)} of {len(open_files)} open legs for [{target_date}]...")
