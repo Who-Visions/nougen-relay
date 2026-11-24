@@ -234,3 +234,16 @@ Who Visions Source-Available License (v1.0) — see `LICENSE.md`. Copyright © 2
 
 - [nougen-relay on GitHub](<https://github.com/Who-Visions/nougen-relay>)
 - [NouGenShards (fleet memory)](<https://github.com/Who-Visions/NouGenShards>)
+
+<!-- nougen:fleet-role:begin (generated from NouGenRelay fleet/manifest.json; edit the manifest, not this block) -->
+## Fleet role
+
+| | |
+|---|---|
+| Role | public mirror of NouGenRelay |
+| Kind | core |
+| Status | mirror |
+| Canonical for | — |
+| Visibility | public |
+
+<!-- nougen:fleet-role:end -->
