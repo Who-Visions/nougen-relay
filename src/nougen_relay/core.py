@@ -798,6 +798,19 @@ def _normalize_scope_field(rec: dict) -> dict:
     return rec
 
 
+def _load_record_obj(path: Path) -> Optional[dict]:
+    """Read a JSON record file; None unless it parses to a JSON object.
+
+    json.loads returns any JSON type, so a hand-edited or corrupt file holding
+    a list/string/number parses fine and then crashes on the first .get().
+    """
+    try:
+        rec = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+    return rec if isinstance(rec, dict) else None
+
+
 def _read_claims_from(root: Path, target: Optional[str]) -> list:
     """Claims on a ref (or on disk when target is None)."""
     out = []
@@ -806,9 +819,8 @@ def _read_claims_from(root: Path, target: Optional[str]) -> list:
         if not directory.is_dir():
             return out
         for path in sorted(directory.glob("*.json")):
-            try:
-                rec = json.loads(path.read_text(encoding="utf-8"))
-            except Exception:
+            rec = _load_record_obj(path)
+            if rec is None:
                 continue
             rec["_file"] = path.name
             out.append(_normalize_scope_field(rec))
@@ -1636,11 +1648,10 @@ def _record_path(root: Path, handoff_id: str) -> Optional[Path]:
         return candidate
 
     for path in sorted(directory.glob("*.json")):
-        try:
-            rec = json.loads(path.read_text(encoding="utf-8"))
-        except Exception:
+        rec = _load_record_obj(path)
+        if rec is None:
             continue
-        if (rec.get("id") or "").strip() == handoff_id:
+        if str(rec.get("id") or "").strip() == handoff_id:
             return path
 
     matches = sorted(directory.glob(f"*{handoff_id}*.json"))
@@ -1693,9 +1704,8 @@ def _touch_record(root: Path, handoff_id: Optional[str], mutate) -> Optional[dic
         path = candidates[-1] if candidates else None
     if path is None or not path.is_file():
         return None
-    try:
-        rec = json.loads(path.read_text(encoding="utf-8"))
-    except Exception:
+    rec = _load_record_obj(path)
+    if rec is None:
         return None
     mutate(rec)
     path.write_text(json.dumps(rec, indent=2) + "\n", encoding="utf-8")
@@ -2966,9 +2976,8 @@ def cmd_route(args: argparse.Namespace) -> int:
     if not path or not path.is_file():
         print(f"❌ record {args.id} not found")
         return EXIT_FAILURE
-    try:
-        rec = json.loads(path.read_text(encoding="utf-8"))
-    except Exception:
+    rec = _load_record_obj(path)
+    if rec is None:
         print("❌ record corrupt")
         return EXIT_FAILURE
     matched = match_lane_for_leg(rec)
