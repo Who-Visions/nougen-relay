@@ -1140,14 +1140,21 @@ def fencing_ok(rec: dict, fencing_token: Optional[int]) -> bool:
         return False
 
 
+def _load_lease_obj(path: Path) -> Optional[dict]:
+    """Parse a lease file; None unless it holds a JSON object (corrupt or non-dict
+    content such as a list is treated like a missing lease, never a crash)."""
+    try:
+        rec = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+    return rec if isinstance(rec, dict) else None
+
+
 def _read_lease(root: Path, leg_id: str) -> Tuple[Path, Optional[dict]]:
     lease_file = leases_dir(root) / f"{leg_id}.lease.json"
     if not lease_file.is_file():
         return lease_file, None
-    try:
-        return lease_file, json.loads(lease_file.read_text(encoding="utf-8"))
-    except Exception:
-        return lease_file, None
+    return lease_file, _load_lease_obj(lease_file)
 
 
 def _write_lease(lease_file: Path, rec: dict) -> None:
@@ -1189,9 +1196,8 @@ def sweep_expired_leases(root: Path) -> List[str]:
         return []
     swept: List[str] = []
     for p in sorted(ldir.glob("*.lease.json")):
-        try:
-            rec = json.loads(p.read_text(encoding="utf-8"))
-        except Exception:
+        rec = _load_lease_obj(p)
+        if rec is None:
             continue
         if rec.get("status") != "active" or lease_is_active(rec):
             continue
@@ -1214,9 +1220,8 @@ def lease_metrics(root: Path) -> Dict[str, Any]:
     if not ldir.is_dir():
         return out
     for p in ldir.glob("*.lease.json"):
-        try:
-            rec = json.loads(p.read_text(encoding="utf-8"))
-        except Exception:
+        rec = _load_lease_obj(p)
+        if rec is None:
             continue
         out["leases"] += 1
         st = str(rec.get("state") or _STATUS_TO_STATE.get(str(rec.get("status")), "?"))
@@ -1280,10 +1285,7 @@ def acquire_lease(
     acquire_evidence = "acquire"
     existing: Optional[dict] = None
     if lease_file.is_file():
-        try:
-            existing = json.loads(lease_file.read_text(encoding="utf-8"))
-        except Exception:
-            existing = None  # Stale or corrupt lease file can be reclaimed
+        existing = _load_lease_obj(lease_file)  # stale/corrupt/non-object lease can be reclaimed
     if existing is not None:
         # the fencing token is monotonic per leg across every holder, forced or not
         try:
@@ -1524,10 +1526,7 @@ def record_leg_failure(
 
     lease_rec = {}
     if lease_file.is_file():
-        try:
-            lease_rec = json.loads(lease_file.read_text(encoding="utf-8"))
-        except Exception:
-            pass
+        lease_rec = _load_lease_obj(lease_file) or {}
 
     if lease_rec and not fencing_ok(lease_rec, fencing_token):
         lease_rec.setdefault("rejected", []).append({"utc": stamp.isoformat(), "op": "failure", "token": fencing_token})

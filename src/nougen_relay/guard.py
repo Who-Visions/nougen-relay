@@ -210,10 +210,7 @@ def admit(root: Path, leg: dict, lane: str | None = None, *, machine: str | None
         return ADMIT_DENY, f"lane {lane} lacks a required capability"
     lease_file = gh.leases_dir(root) / f"{leg_id}.lease.json"
     if lease_file.is_file():
-        try:
-            lease = json.loads(lease_file.read_text(encoding="utf-8"))
-        except Exception:
-            lease = None
+        lease = gh._load_lease_obj(lease_file)
         if lease:
             lstatus = str(lease.get("status") or "")
             if lstatus == "dead_letter":
