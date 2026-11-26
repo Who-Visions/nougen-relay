@@ -1818,6 +1818,8 @@ class RelayDaemon:
                 record = json.loads(path.read_text(encoding="utf-8"))
             except (OSError, json.JSONDecodeError):
                 continue
+            if not isinstance(record, dict):
+                continue
             candidate_id = str(record.get("id") or path.stem)
             if candidate_id == handoff_id:
                 continue

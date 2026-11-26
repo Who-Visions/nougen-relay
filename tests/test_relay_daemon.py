@@ -104,6 +104,25 @@ def test_auto_shard_does_not_treat_an_unrelated_correction_as_supersession(relay
     ) == []
 
 
+@pytest.mark.parametrize("payload", ["[]", '"text"', "42", "null"])
+def test_supersession_scan_ignores_non_object_leg_files(relay_env, payload):
+    """Valid but non-object JSON must be skipped, not crash auto-capture."""
+    relay_dir, db_path = relay_env
+    handoffs = relay_dir / ".handoffs"
+    source_id = "20260904T142512Z__claude-app__agent"
+    (handoffs / "aaa-broken.json").write_text(payload, encoding="utf-8")
+    correction_id = "20260904T142715Z__claude-app__agent"
+    (handoffs / f"{correction_id}.json").write_text(json.dumps({
+        "id": correction_id,
+        "created_utc": "2026-09-04T14:27:15Z",
+        "goal": f"CORRECTING my earlier finding in {source_id}",
+    }), encoding="utf-8")
+
+    assert _daemon(relay_dir, db_path)._superseding_relay_ids(
+        source_id, "2026-09-04T14:25:12Z"
+    ) == [correction_id]
+
+
 def test_lag_is_measured_against_the_threshold(relay_env):
     relay_dir, db_path = relay_env
     daemon = _daemon(relay_dir, db_path)
