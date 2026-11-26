@@ -260,3 +260,36 @@ def test_a_garbage_timeout_falls_back_rather_than_crashing(monkeypatch):
     turn a typo into a fleet-wide outage of unattended work."""
     monkeypatch.setenv("NOUGEN_RULES_TIMEOUT", "soon")
     assert rules.default_timeout() == 60
+
+
+# --- corrupt local state ----------------------------------------------------
+
+@pytest.mark.parametrize("payload", ["[]", '"x"', "7", "null", '{"reacted": "abc"}'])
+def test_wrong_shape_state_does_not_crash_react(repo, payload):
+    """Valid JSON of the wrong shape in the state file used to raise
+    AttributeError on every react, so no rule could ever fire again. It must
+    recover as an uninitialised box: adopt history, fire nothing."""
+    target = repo / MARKER
+    rules.add_rule(repo, rule_id="r1", run=touch_cmd(target))
+    leg(repo)
+    sp = rules.state_path(repo)
+    sp.parent.mkdir(parents=True, exist_ok=True)
+    sp.write_text(payload, encoding="utf-8")
+
+    rules.react(repo)
+
+    assert not target.exists(), "corrupt state made the box fire on history"
+    state = json.loads(sp.read_text(encoding="utf-8"))
+    assert isinstance(state, dict) and state["initialised"] is True
+    assert "20260801T000000Z__boxb__lane" in state["reacted"]
+
+
+def test_recent_runs_skips_non_object_lines(repo):
+    path = rules.runs_path(repo)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text('{"rule": "r1"}\n[1, 2]\n"oops"\nnot json\n{"rule": "r2"}\n',
+                    encoding="utf-8")
+
+    runs = rules.recent_runs(repo)
+
+    assert [r["rule"] for r in runs] == ["r2", "r1"]

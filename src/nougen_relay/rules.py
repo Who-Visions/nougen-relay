@@ -325,7 +325,16 @@ def react(root: Path, *, dry: bool = False, replay_all: bool = False) -> list:
         return []
 
     state = _read_json(state_path(root), {})
-    seen = set(state.get("reacted") or [])
+    if not isinstance(state, dict):
+        # Valid JSON of the wrong shape (a list, a string) would crash every
+        # react. Start over as an uninitialised box: that adopts history as the
+        # baseline rather than firing on it, the safe direction.
+        state = {}
+    reacted = state.get("reacted")
+    if not isinstance(reacted, list):
+        state.pop("reacted", None)
+        reacted = []
+    seen = {r for r in reacted if isinstance(r, str)}
     me = resolve_machine()
     fired = []
     newly_seen = []
@@ -368,9 +377,13 @@ def recent_runs(root: Path, limit: int = 20) -> list:
     out = []
     for line in lines[-limit:]:
         try:
-            out.append(json.loads(line))
+            entry = json.loads(line)
         except ValueError:
             continue
+        if isinstance(entry, dict):
+            # `rules log` calls .get() on every entry; a non-object line must
+            # be skipped like a torn one, not crash the listing.
+            out.append(entry)
     return list(reversed(out))
 
 
