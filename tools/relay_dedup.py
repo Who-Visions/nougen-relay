@@ -159,9 +159,16 @@ def load_legs(only_open: bool = True, since: str = "", directory: Optional[Path]
             d = json.loads(p.read_text(encoding="utf-8"))
         except (ValueError, OSError):
             continue
+        # Valid JSON of the wrong shape is as unreadable as a syntax error. A
+        # non-object leg raised AttributeError here, which check_dedup turns
+        # into "skipped" (so cmd_create wrote the new leg with no dedup at all);
+        # a non-string goal crashed check_dedup's .strip() and find_pairs.
+        if not isinstance(d, dict):
+            continue
         if only_open and d.get("status") not in (None, "", "open"):
             continue
-        if d.get("goal"):
+        goal = d.get("goal")
+        if isinstance(goal, str) and goal.strip():
             d["_id"] = p.stem
             out.append(d)
     return out
