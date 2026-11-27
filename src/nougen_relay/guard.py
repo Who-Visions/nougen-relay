@@ -214,7 +214,7 @@ def admit(root: Path, leg: dict, lane: str | None = None, *, machine: str | None
             lease = json.loads(lease_file.read_text(encoding="utf-8"))
         except Exception:
             lease = None
-        if lease:
+        if isinstance(lease, dict) and lease:
             lstatus = str(lease.get("status") or "")
             if lstatus == "dead_letter":
                 return ADMIT_DENY, f"dead_letter after {lease.get('retry_count')} attempts: {str(lease.get('last_error') or '')[:80]}"
@@ -240,7 +240,7 @@ def cmd_admit(args: argparse.Namespace) -> int:
             rec = json.loads(leg_file.read_text(encoding="utf-8"))
         except Exception:
             rec = None
-    if rec is None:
+    if not isinstance(rec, dict):
         rec = {"id": args.leg_id, "status": args.status or "open"}
     verdict, reason = admit(root, rec, args.lane)
     print(json.dumps({"leg_id": args.leg_id, "verdict": verdict, "reason": reason}))
