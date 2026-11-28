@@ -1494,6 +1494,15 @@ def _max_retries() -> int:
         return DEFAULT_MAX_RETRIES
 
 
+def _stored_max_retries(lease_rec: dict) -> int:
+    """The per-leg retry limit stored on a lease, else the env/default."""
+    try:
+        stored = int(lease_rec.get("max_retries"))
+    except (TypeError, ValueError):
+        return _max_retries()
+    return stored if stored > 0 else _max_retries()
+
+
 def calculate_backoff_seconds(
     attempt: int,
     base_seconds: float = DEFAULT_BACKOFF_BASE_SEC,
@@ -1516,7 +1525,6 @@ def record_leg_failure(
 ) -> dict:
     """Record a failure for a leg, applying exponential retry backoff or marking dead_letter.
     A stale fencing token is rejected without touching the record."""
-    limit = max_retries if max_retries is not None else _max_retries()
     stamp = _now()
     ldir = leases_dir(root)
     ldir.mkdir(parents=True, exist_ok=True)
@@ -1534,6 +1542,10 @@ def record_leg_failure(
         _write_lease(lease_file, lease_rec)
         return {"leg_id": leg_id, "rejected": True, "reason": "stale fencing token", "status": lease_rec.get("status")}
 
+    # An explicit limit wins; otherwise keep the limit this leg already
+    # carries (set by an earlier `fail --max-retries N` and honoured by
+    # is_leg_retryable), and only then fall back to the env/default.
+    limit = max_retries if max_retries is not None else _stored_max_retries(lease_rec)
     retry_count = int(lease_rec.get("retry_count", 0)) + 1
     failures = lease_rec.get("failures", [])
     failures.append({
@@ -3099,7 +3111,10 @@ def build_parser() -> argparse.ArgumentParser:
     f_parser = sub.add_parser("fail", help="record failure with exponential backoff or dead_letter")
     f_parser.add_argument("--id", required=True, help="leg id")
     f_parser.add_argument("-m", "--message", default="", help="error message")
-    f_parser.add_argument("--max-retries", type=int, default=DEFAULT_MAX_RETRIES, help="max retries before dead_letter")
+    f_parser.add_argument("--max-retries", type=int, default=None,
+                          help="max retries before dead_letter (default: the leg's stored "
+                               "limit, else NOUGEN_RELAY_MAX_RETRIES, else "
+                               f"{DEFAULT_MAX_RETRIES})")
     # Quota subcommand (Quota Governor)
     q_parser = sub.add_parser("quota", help="view quota governor status and burn velocity")
     q_parser.add_argument("--calibration", action="store_true", help="show 40.5h marathon calibration metrics")
